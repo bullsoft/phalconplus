@@ -1,0 +1,5 @@
+
+extern zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
+
+ZEPHIR_INIT_CLASS(PhalconPlus_RPC_Server_AbstractServer);
+

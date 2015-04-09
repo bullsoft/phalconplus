@@ -1,7 +1,7 @@
 //<?php
-namespace PhalconPlus;
+namespace PhalconPlus\Base;
 
-abstract class Module
+abstract class AbstractModule
 {
     protected di = null;
     

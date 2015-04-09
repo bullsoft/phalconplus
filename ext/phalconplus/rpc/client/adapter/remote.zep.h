@@ -1,0 +1,5 @@
+
+extern zend_class_entry *phalconplus_rpc_client_adapter_remote_ce;
+
+ZEPHIR_INIT_CLASS(PhalconPlus_RPC_Client_Adapter_Remote);
+

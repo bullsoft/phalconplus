@@ -9,8 +9,21 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
-	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/bootstrap.zep.c
-	phalconplus/module.zep.c
+	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/base/abstractmodule.zep.c
+	phalconplus/base/abstractrequest.zep.c
+	phalconplus/base/backendserver.zep.c
+	phalconplus/base/model.zep.c
+	phalconplus/base/pagable.zep.c
+	phalconplus/base/page.zep.c
+	phalconplus/base/protobuffer.zep.c
+	phalconplus/base/response.zep.c
+	phalconplus/base/service.zep.c
+	phalconplus/base/simplerequest.zep.c
+	phalconplus/bootstrap.zep.c
+	phalconplus/rpc/client/abstractclient.zep.c
+	phalconplus/rpc/client/adapter/local.zep.c
+	phalconplus/rpc/client/adapter/remote.zep.c
+	phalconplus/rpc/server/abstractserver.zep.c
 	phalconplus/volt/extension/phpfunction.zep.c "
 	PHP_NEW_EXTENSION(phalconplus, $phalconplus_sources, $ext_shared,, )
 	PHP_SUBST(PHALCONPLUS_SHARED_LIBADD)

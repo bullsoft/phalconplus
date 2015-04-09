@@ -25,6 +25,7 @@ final class Bootstrap
     ];
     // 运行环境
     protected env = "dev";
+
     // 定义类常量
     const COMMON_DIR_NAME      = "common";
     const COMMON_CONF_DIR_NAME = "config";
@@ -32,7 +33,7 @@ final class Bootstrap
     const ROOT_PUB_DIR_NAME    = "public";
     const MODULE_APP_DIR_NAME  = "app";
 
-    public function __construct(var modulePath)
+    public function __construct(string! modulePath)
     {
         // 模块目录
         if !is_dir(modulePath) {
@@ -55,10 +56,10 @@ final class Bootstrap
         define("APP_ENV", this->env, true);
         define("APP_MODULE_DIR", rtrim(modulePath, "/") . "/", true);
         define("APP_ROOT_DIR", rtrim(dirname(modulePath), "/") . "/", true);
+        define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . self::COMMON_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . self::COMMON_CONF_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . self::COMMON_LOAD_DIR_NAME . "/", true);
-        define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
     }
 
     private function setModule(array module)
@@ -88,9 +89,9 @@ final class Bootstrap
         if !is_file(moduleConfPath) {
             throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
         }
-        
         let moduleConf  = new \Phalcon\Config(this->load(moduleConfPath));
         
+        // 初始化模块三要素
         var module = [];
         let module["mode"] = ucfirst(strtolower(moduleConf->application->mode));
         let module["className"] = moduleConf->application->ns . this->modeMap[module["mode"]];
@@ -98,9 +99,10 @@ final class Bootstrap
 
         // 定义工作模式
         define("APP_RUN_MODE", module["mode"], true);
-        
+
         this->setModule(module);
-        
+
+        // 合并配置，Module配置优先级更高
         this->config->merge(moduleConf);
     }
 
@@ -114,24 +116,25 @@ final class Bootstrap
     
     public function execModule(var uri = null)
     {
-        var moduleClass;
-        
+        var moduleClass, module;
+        // 应用初始化
         let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
         let this->application = new \Phalcon\Mvc\Application();
         this->application->setDI(this->di);
 
+        // 加载Web模式依赖
         this->load(APP_ROOT_COMMON_LOAD_DIR . "default-web.php");
-
+        // 把自己注入di
         this->di->setShared("bootstrap", this);
-
+        // 包含模块化类
         require this->module["classPath"];
-
+        // 模块初始化类
         let moduleClass = this->module["className"];
-    
-        var module;
+        // 实例化该类
         let module = new {moduleClass}(this->di);
 
+        // 执行
         try {
             echo this->application->handle(uri)->getContent();
         } catch \Phalcon\Mvc\Application\Exception {
@@ -140,6 +143,33 @@ final class Bootstrap
             let newUri = "/" . router->getDefaultModule() . router->getRewriteUri();
             echo this->application->handle(newUri)->getContent();
         }
+    }
+
+    public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null)
+    {
+        var moduleClass, module;
+
+        this->initConf();
+        let this->loader = new \Phalcon\Loader();
+
+        if is_null(di) || ! (di instanceof \Phalcon\DI\FactoryDefault\CLI) {
+            let this->di = new \Phalcon\DI\FactoryDefault\CLI();
+        } else {
+            let this->di = di;
+        }
+
+        let this->application = new \Phalcon\CLI\Console();
+        this->application->setDI(this->di);
+
+        this->load(APP_ROOT_COMMON_LOAD_DIR . "default-cli.php");
+        this->di->setShared("bootstrap", this);
+
+        // Load module
+        require this->module["classPath"];
+        let moduleClass = this->module["className"];
+        let module = new {moduleClass}(this->di);
+
+        this->application->handle($argv);
     }
     
     public function load(var filePath)

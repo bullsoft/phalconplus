@@ -26,8 +26,21 @@
 
 
 
+zend_class_entry *phalconplus_base_abstractmodule_ce;
+zend_class_entry *phalconplus_base_abstractrequest_ce;
+zend_class_entry *phalconplus_base_backendserver_ce;
+zend_class_entry *phalconplus_base_model_ce;
+zend_class_entry *phalconplus_base_pagable_ce;
+zend_class_entry *phalconplus_base_page_ce;
+zend_class_entry *phalconplus_base_protobuffer_ce;
+zend_class_entry *phalconplus_base_response_ce;
+zend_class_entry *phalconplus_base_service_ce;
+zend_class_entry *phalconplus_base_simplerequest_ce;
 zend_class_entry *phalconplus_bootstrap_ce;
-zend_class_entry *phalconplus_module_ce;
+zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
+zend_class_entry *phalconplus_rpc_client_adapter_local_ce;
+zend_class_entry *phalconplus_rpc_client_adapter_remote_ce;
+zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 zend_class_entry *phalconplus_volt_extension_phpfunction_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(phalconplus)
@@ -50,8 +63,21 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	setlocale(LC_ALL, "C");
 #endif
 
+	ZEPHIR_INIT(PhalconPlus_Base_AbstractModule);
+	ZEPHIR_INIT(PhalconPlus_Base_AbstractRequest);
+	ZEPHIR_INIT(PhalconPlus_Base_BackendServer);
+	ZEPHIR_INIT(PhalconPlus_Base_Model);
+	ZEPHIR_INIT(PhalconPlus_Base_Pagable);
+	ZEPHIR_INIT(PhalconPlus_Base_Page);
+	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
+	ZEPHIR_INIT(PhalconPlus_Base_Response);
+	ZEPHIR_INIT(PhalconPlus_Base_Service);
+	ZEPHIR_INIT(PhalconPlus_Base_SimpleRequest);
 	ZEPHIR_INIT(PhalconPlus_Bootstrap);
-	ZEPHIR_INIT(PhalconPlus_Module);
+	ZEPHIR_INIT(PhalconPlus_RPC_Client_AbstractClient);
+	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Local);
+	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Remote);
+	ZEPHIR_INIT(PhalconPlus_RPC_Server_AbstractServer);
 	ZEPHIR_INIT(PhalconPlus_Volt_Extension_PhpFunction);
 
 #if PHP_VERSION_ID < 50500
