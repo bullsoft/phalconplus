@@ -10,6 +10,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
 	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/bootstrap.zep.c
+	phalconplus/module.zep.c
 	phalconplus/volt/extension/phpfunction.zep.c "
 	PHP_NEW_EXTENSION(phalconplus, $phalconplus_sources, $ext_shared,, )
 	PHP_SUBST(PHALCONPLUS_SHARED_LIBADD)

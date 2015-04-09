@@ -11,7 +11,7 @@ SHLIB_DL_SUFFIX_NAME = so
 ZEND_EXT_TYPE = zend_extension
 RE2C = re2c
 AWK = gawk
-shared_objects_phalconplus = phalconplus.lo kernel/main.lo kernel/memory.lo kernel/exception.lo kernel/hash.lo kernel/debug.lo kernel/backtrace.lo kernel/object.lo kernel/array.lo kernel/extended/array.lo kernel/string.lo kernel/fcall.lo kernel/extended/fcall.lo kernel/require.lo kernel/file.lo kernel/operators.lo kernel/concat.lo kernel/variables.lo kernel/filter.lo kernel/iterator.lo kernel/time.lo kernel/exit.lo phalconplus/bootstrap.lo phalconplus/volt/extension/phpfunction.lo
+shared_objects_phalconplus = phalconplus.lo kernel/main.lo kernel/memory.lo kernel/exception.lo kernel/hash.lo kernel/debug.lo kernel/backtrace.lo kernel/object.lo kernel/array.lo kernel/extended/array.lo kernel/string.lo kernel/fcall.lo kernel/extended/fcall.lo kernel/require.lo kernel/file.lo kernel/operators.lo kernel/concat.lo kernel/variables.lo kernel/filter.lo kernel/iterator.lo kernel/time.lo kernel/exit.lo phalconplus/bootstrap.lo phalconplus/module.lo phalconplus/volt/extension/phpfunction.lo
 PHP_PECL_EXTENSION = phalconplus
 PHALCONPLUS_SHARED_LIBADD =
 PHP_MODULES = $(phplibdir)/phalconplus.la
@@ -223,6 +223,8 @@ kernel/exit.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/exit.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/exit.c -o kernel/exit.lo 
 phalconplus/bootstrap.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c -o phalconplus/bootstrap.lo 
+phalconplus/module.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/module.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/module.zep.c -o phalconplus/module.lo 
 phalconplus/volt/extension/phpfunction.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c -o phalconplus/volt/extension/phpfunction.lo 
 $(phplibdir)/phalconplus.la: ./phalconplus.la

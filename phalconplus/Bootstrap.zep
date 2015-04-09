@@ -1,3 +1,4 @@
+//<?php
 namespace PhalconPlus;
 
 final class Bootstrap
@@ -24,6 +25,12 @@ final class Bootstrap
     ];
     // 运行环境
     protected env = "dev";
+    // 定义类常量
+    const COMMON_DIR_NAME      = "common";
+    const COMMON_CONF_DIR_NAME = "config";
+    const COMMON_LOAD_DIR_NAME = "load";
+    const ROOT_PUB_DIR_NAME    = "public";
+    const MODULE_APP_DIR_NAME  = "app";
 
     public function __construct(var modulePath)
     {
@@ -44,24 +51,21 @@ final class Bootstrap
             debug->listen();
         }
 
-        // var path = "/Users/guweigang/tmp/phalconplus/test.php";
-        // require path;
-        
-        // 定义常量
+        // 定义全局常量
         define("APP_ENV", this->env, true);
+        define("APP_MODULE_DIR", rtrim(modulePath, "/") . "/", true);
         define("APP_ROOT_DIR", rtrim(dirname(modulePath), "/") . "/", true);
-        define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . "common/", true);
-        define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . "config/", true);
-        define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . "load/", true);
-        define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . "public/", true);
+        define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . self::COMMON_DIR_NAME . "/", true);
+        define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . self::COMMON_CONF_DIR_NAME . "/", true);
+        define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . self::COMMON_LOAD_DIR_NAME . "/", true);
+        define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
     }
 
     private function setModule(array module)
     {
-        var actualKeys, expectedKeys;
-        let actualKeys = array_keys(module);
-        let expectedKeys = array_keys(this->module);
-        if actualKeys != expectedKeys {
+        var diff = [];
+        let diff = array_diff_key(this->module, module);
+        if !empty diff {
             throw new \Exception("Module is is not a legal module");
         }
         let this->module = module;
@@ -115,6 +119,7 @@ final class Bootstrap
         let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
         let this->application = new \Phalcon\Mvc\Application();
+        this->application->setDI(this->di);
 
         this->load(APP_ROOT_COMMON_LOAD_DIR . "default-web.php");
 
@@ -139,13 +144,12 @@ final class Bootstrap
     
     public function load(var filePath)
     {
-        var rootPath, loader, config, application, bootstrap, di;
-        let rootPath    = APP_ROOT_DIR;
-        let loader      = this->loader;
-        let config      = this->config;
-        let application = this->application;
-        let bootstrap   = this;
-        let di          = this->di;
+        let {"rootPath"} = APP_ROOT_DIR;
+        let {"loader"}   = this->loader;
+        let {"config"}   = this->config;
+        let {"application"} = this->application;
+        let {"bootstrap"}   = this;
+        let {"di"}          = this->di;
         return require filePath;
     }
 }

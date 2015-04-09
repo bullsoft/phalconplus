@@ -27,6 +27,7 @@
 
 
 zend_class_entry *phalconplus_bootstrap_ce;
+zend_class_entry *phalconplus_module_ce;
 zend_class_entry *phalconplus_volt_extension_phpfunction_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(phalconplus)
@@ -50,6 +51,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 #endif
 
 	ZEPHIR_INIT(PhalconPlus_Bootstrap);
+	ZEPHIR_INIT(PhalconPlus_Module);
 	ZEPHIR_INIT(PhalconPlus_Volt_Extension_PhpFunction);
 
 #if PHP_VERSION_ID < 50500

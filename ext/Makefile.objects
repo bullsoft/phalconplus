@@ -44,6 +44,8 @@ kernel/exit.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/exit.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/exit.c -o kernel/exit.lo 
 phalconplus/bootstrap.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c -o phalconplus/bootstrap.lo 
+phalconplus/module.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/module.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/module.zep.c -o phalconplus/module.lo 
 phalconplus/volt/extension/phpfunction.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c -o phalconplus/volt/extension/phpfunction.lo 
 $(phplibdir)/phalconplus.la: ./phalconplus.la
