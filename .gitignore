@@ -30,3 +30,7 @@
 
 # Debug files
 *.dSYM/
+
+.temp/*
+*.log
+ext/autom4te.cache/*
