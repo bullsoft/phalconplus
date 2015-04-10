@@ -16,6 +16,7 @@
 #include "kernel/object.h"
 #include "kernel/concat.h"
 #include "kernel/memory.h"
+#include "kernel/string.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Volt_Extension_PhpFunction) {
@@ -30,7 +31,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL, *_2 = NULL;
-	zval *params = NULL, *name = NULL, *_3 = NULL, *_4;
+	zval *params = NULL, *name = NULL, *_3;
 
 	ZEPHIR_MM_GROW();
 	ZEPHIR_INIT_VAR(params);
@@ -47,11 +48,8 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 	Z_UNSET_ISREF_P(params);
 	zephir_check_call_status();
 	if ((zephir_function_exists(name TSRMLS_CC)  == SUCCESS)) {
-		ZEPHIR_INIT_VAR(_4);
-		ZVAL_STRING(_4, ",", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_3, params, "join", NULL, _4);
-		zephir_check_temp_parameter(_4);
-		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(_3);
+		zephir_fast_join_str(_3, SL(","), params TSRMLS_CC);
 		ZEPHIR_CONCAT_VSVS(return_value, name, "(", _3, ")");
 		RETURN_MM();
 	}

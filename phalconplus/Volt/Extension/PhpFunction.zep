@@ -11,7 +11,7 @@ class PhpFunction
         let name = array_shift(params);
         array_pop(params);
         if function_exists(name) {
-            return name . "(" . params->join(",") . ")";
+            return name . "(" . join(",", params) . ")";
         }
     }
 }
