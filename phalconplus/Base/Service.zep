@@ -13,4 +13,13 @@ class Service
     {
         return this->di;
     }
+
+    protected function __get(string! key)
+    {
+        if property_exists(this, key) {
+            return this->{key};
+        } else {
+            return this->di->get(key);
+        }
+    }
 }

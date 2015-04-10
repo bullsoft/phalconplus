@@ -56,6 +56,16 @@ abstract class AbstractServer
         }
     }
 
+    /**
+     *
+     * @param array rawData
+     * <code> 
+     *     rawData = ["service":"Demo", "method":"demo", "args": <ProtoBuffer>]
+     * </code>
+     * @return <ProtoBuffer>
+     * @throw \Exception
+     *
+     */
     public function callByObject(array rawData)
     {
         var service, method, request;
