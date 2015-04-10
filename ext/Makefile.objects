@@ -64,6 +64,8 @@ phalconplus/base/simplerequest.lo: /Users/guweigang/tmp/phalconplus/ext/phalconp
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/simplerequest.zep.c -o phalconplus/base/simplerequest.lo 
 phalconplus/bootstrap.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c -o phalconplus/bootstrap.lo 
+phalconplus/db/mysql.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/mysql.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/mysql.zep.c -o phalconplus/db/mysql.lo 
 phalconplus/rpc/client/abstractclient.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c -o phalconplus/rpc/client/abstractclient.lo 
 phalconplus/rpc/client/adapter/local.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/adapter/local.zep.c

@@ -1,6 +1,6 @@
 namespace PhalconPlus\RPC\Server;
 
-class AbstractServer
+abstract class AbstractServer
 {
-
+    
 }

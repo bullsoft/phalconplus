@@ -15,6 +15,7 @@
 #include "phalconplus/base/service.zep.h"
 #include "phalconplus/base/simplerequest.zep.h"
 #include "phalconplus/bootstrap.zep.h"
+#include "phalconplus/db/mysql.zep.h"
 #include "phalconplus/rpc/client/abstractclient.zep.h"
 #include "phalconplus/rpc/client/adapter/local.zep.h"
 #include "phalconplus/rpc/client/adapter/remote.zep.h"

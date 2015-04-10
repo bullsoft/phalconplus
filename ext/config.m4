@@ -20,6 +20,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/service.zep.c
 	phalconplus/base/simplerequest.zep.c
 	phalconplus/bootstrap.zep.c
+	phalconplus/db/mysql.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/rpc/client/adapter/local.zep.c
 	phalconplus/rpc/client/adapter/remote.zep.c

@@ -37,6 +37,7 @@ zend_class_entry *phalconplus_base_response_ce;
 zend_class_entry *phalconplus_base_service_ce;
 zend_class_entry *phalconplus_base_simplerequest_ce;
 zend_class_entry *phalconplus_bootstrap_ce;
+zend_class_entry *phalconplus_db_mysql_ce;
 zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_local_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_remote_ce;
@@ -74,6 +75,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Base_Service);
 	ZEPHIR_INIT(PhalconPlus_Base_SimpleRequest);
 	ZEPHIR_INIT(PhalconPlus_Bootstrap);
+	ZEPHIR_INIT(PhalconPlus_Db_Mysql);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_AbstractClient);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Local);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Remote);
