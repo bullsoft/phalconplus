@@ -16,9 +16,13 @@
 
 ZEPHIR_INIT_CLASS(PhalconPlus_RPC_Client_AbstractClient) {
 
-	ZEPHIR_REGISTER_CLASS(PhalconPlus\\RPC\\Client, AbstractClient, phalconplus, rpc_client_abstractclient, NULL, 0);
+	ZEPHIR_REGISTER_CLASS(PhalconPlus\\RPC\\Client, AbstractClient, phalconplus, rpc_client_abstractclient, phalconplus_rpc_client_abstractclient_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	return SUCCESS;
+
+}
+
+PHP_METHOD(PhalconPlus_RPC_Client_AbstractClient, callByObject) {
 
 }
 

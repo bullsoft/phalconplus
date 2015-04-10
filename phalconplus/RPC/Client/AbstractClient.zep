@@ -1,6 +1,6 @@
 namespace PhalconPlus\RPC\Client;
 
-class AbstractClient
+abstract class AbstractClient
 {
-
+    abstract public function callByObject(array rawData);
 }

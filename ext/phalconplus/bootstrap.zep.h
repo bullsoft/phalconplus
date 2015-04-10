@@ -8,7 +8,13 @@ PHP_METHOD(PhalconPlus_Bootstrap, setModule);
 PHP_METHOD(PhalconPlus_Bootstrap, initConf);
 PHP_METHOD(PhalconPlus_Bootstrap, exec);
 PHP_METHOD(PhalconPlus_Bootstrap, execModule);
+PHP_METHOD(PhalconPlus_Bootstrap, execSrv);
 PHP_METHOD(PhalconPlus_Bootstrap, execTask);
+PHP_METHOD(PhalconPlus_Bootstrap, dependModule);
+PHP_METHOD(PhalconPlus_Bootstrap, getEnv);
+PHP_METHOD(PhalconPlus_Bootstrap, getConfig);
+PHP_METHOD(PhalconPlus_Bootstrap, setConfig);
+PHP_METHOD(PhalconPlus_Bootstrap, getDI);
 PHP_METHOD(PhalconPlus_Bootstrap, load);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap___construct, 0, 0, 1)
@@ -32,6 +38,14 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_exectask, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI\\FactoryDefault, 1)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_dependmodule, 0, 0, 1)
+	ZEND_ARG_INFO(0, moduleName)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_setconfig, 0, 0, 1)
+	ZEND_ARG_OBJ_INFO(0, config, Phalcon\\Config, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_load, 0, 0, 1)
 	ZEND_ARG_INFO(0, filePath)
 ZEND_END_ARG_INFO()
@@ -42,7 +56,13 @@ ZEPHIR_INIT_FUNCS(phalconplus_bootstrap_method_entry) {
 	PHP_ME(PhalconPlus_Bootstrap, initConf, NULL, ZEND_ACC_PRIVATE)
 	PHP_ME(PhalconPlus_Bootstrap, exec, arginfo_phalconplus_bootstrap_exec, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, execModule, arginfo_phalconplus_bootstrap_execmodule, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, execSrv, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, execTask, arginfo_phalconplus_bootstrap_exectask, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, dependModule, arginfo_phalconplus_bootstrap_dependmodule, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, getEnv, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, getConfig, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, setConfig, arginfo_phalconplus_bootstrap_setconfig, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, getDI, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, load, arginfo_phalconplus_bootstrap_load, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };

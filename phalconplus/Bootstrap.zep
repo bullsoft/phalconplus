@@ -39,6 +39,8 @@ final class Bootstrap
         if !is_dir(modulePath) {
             throw new \Exception("Module directory not exists or not a dir, file positon: " . modulePath);
         }
+
+
         // 获取并初始化运行环境
         var env;
         let env = get_cfg_var("phalconplus.env");
@@ -145,6 +147,27 @@ final class Bootstrap
         }
     }
 
+    public function execSrv()
+    {
+        var backendSrv = null;
+        var moduleClass, moduleObj;
+        
+        let this->loader = new \Phalcon\Loader();
+        let this->di = new \Phalcon\DI\FactoryDefault();
+
+        this->di->setShared("bootstrap", this);
+        this->load(APP_ROOT_COMMON_LOAD_DIR . "default-web.php");
+
+        require this->module["classPath"];
+        let moduleClass = this->module["className"];
+        let moduleObj = new {moduleClass}(this->di);
+        
+        let backendSrv = new \PhalconPlus\Base\BackendServer(this->di);
+        let this->application = new \Yar_Server($backendSrv);
+
+        this->application->handle();
+    }
+    
     public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null)
     {
         var moduleClass, module;
@@ -170,6 +193,57 @@ final class Bootstrap
         let module = new {moduleClass}(this->di);
 
         this->application->handle($argv);
+    }
+
+    public function dependModule(string! moduleName)
+    {
+        var moduleConfPath, moduleConf, moduleClassName, moduleClassPath, moduleRunMode;
+        let moduleConfPath = APP_ROOT_DIR . "/" . moduleName . "/app/config/" . APP_ENV . ".php";
+        if !is_file(moduleConfPath) {
+            throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
+        }
+        let moduleConf = new \Phalcon\Config(this->load(moduleConfPath));
+        let moduleRunMode = moduleConf->application->mode;
+        // @TODO: check if mode exists
+
+        let moduleClassName = moduleConf->application->ns . this->modeMap[moduleRunMode];
+        let moduleClassPath = APP_ROOT_DIR . moduleName . "/app/" . this->modeMap[moduleRunMode] . ".php";
+
+        // 全局配置文件优先级高于被依赖的模块
+        moduleConf->merge(this->config);
+        this->setConfig(moduleConf);
+
+        require moduleClassPath;
+        return new {moduleClassName}(this->di);
+    }
+
+    public function getEnv() -> string
+    {
+        return this->env;
+    }
+
+    public function getConfig() -> <\Phalcon\Config>
+    {
+        return this->config;
+    }
+
+    public function setConfig(<\Phalcon\Config> config)
+    {
+        var globalConf;
+        if ! this->di->has("config") {
+            let globalConf = new \Phalcon\Config();
+        } else {
+            let globalConf = this->di->getConfig();
+        }
+        globalConf->merge(config);
+        let this->config = globalConf;
+        this->di->set("config", this->config);
+        return this;
+    }
+    
+    public function getDI() -> <\Phalcon\DI>
+    {
+        return this->di;
     }
     
     public function load(var filePath)
