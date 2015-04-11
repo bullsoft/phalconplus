@@ -7,7 +7,8 @@ class ProtoBuffer implements \JsonSerializable
         var key, val;
         for key, val in data {
             if property_exists(this, key) {
-                let this->{key} = val;
+                // error_log("SoftClone: ". key . ": " . var_export(val, true));
+                this->__set(key, val);
             }
         }
     }
@@ -16,9 +17,11 @@ class ProtoBuffer implements \JsonSerializable
     {
         var method, param, paramClass, paramObj;
         let method = "set" . key->upperfirst();
+        // error_log("Proto__set: " . key . ": " . var_export(val, true));
         if method_exists(this, method) {
             let param = new \ReflectionParameter([this, method], 0);
             if param->getClass() {
+                // error_log("Proto__set: param class" . param->getClass());
                 let paramClass = param->getClass()->getName();
                 let paramObj = new {paramClass}();
                 paramObj->softClone(val);
@@ -41,7 +44,6 @@ class ProtoBuffer implements \JsonSerializable
         if property_exists(this, key) {
             return true;
         }
-        
         return false;
     }
 

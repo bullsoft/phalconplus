@@ -22,7 +22,7 @@ abstract class AbstractServer
         var serviceClass = "";
         let serviceClass = service->upperfirst() . "Service";
 
-        if request instanceof ProtoBuffer {
+        if is_object(request) && request instanceof ProtoBuffer {
             let this->phpOnly = true;
         } elseif is_array(request) {
             var tmp = [], param, paramClass;
