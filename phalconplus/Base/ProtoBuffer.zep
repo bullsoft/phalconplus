@@ -24,16 +24,31 @@ class ProtoBuffer implements \JsonSerializable
                 paramObj->softClone(val);
                 let val = paramObj;
             }
-            this->{method}(val);
+            return this->{method}(val);
         }
-        // hard code
-        let this->{key} = val;
+        
+        // rule break: hard code
+        if is_scalar(val) {
+            let this->{key} = val;
+            return this;
+        } else {
+            throw new \Exception("Please add " . method . " in your class, complex-type vars are not allowed to assign directly");
+        }
+    }
+
+    public function __isset(string! key)
+    {
+        if property_exists(this, key) {
+            return true;
+        }
+        
+        return false;
     }
 
     public function __get(string! key)
     {
         var method;
-        let method = "set" . key->upperfirst();
+        let method = "get" . key->upperfirst();
 
         if method_exists(this, method) {
             return this->{method}();
@@ -42,7 +57,7 @@ class ProtoBuffer implements \JsonSerializable
         if property_exists(this, key) {
             return this->{key};
         }
-
+        
         return null;
     }
 
@@ -68,15 +83,26 @@ class ProtoBuffer implements \JsonSerializable
 
     public function toArray()
     {
-        var pros = [];
+        var pros = [], newPros = [];
         let pros = this->getSelfVars();
-        /*
-          array_walk_recursive(pros, function(&property, key){
+
+        var key, val;
+        for key, val in pros {
+            if is_object(val) {
+                let newPros[key] = val->toArray();
+            } else {
+                let newPros[key] = val;
+            }
+        }
+        return newPros;
+            
+        /* Zephir 暂时不支持 引用传递
+        array_walk_recursive(pros, function(&property, key){
             if is_object(property) {
                 let property = property->toArray();
             } 
         });
-        */
         return pros;
+        */
     }
 }
