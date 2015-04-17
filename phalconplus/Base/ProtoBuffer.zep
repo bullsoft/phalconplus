@@ -83,19 +83,30 @@ class ProtoBuffer implements \JsonSerializable
         return this->toArray();
     }
 
-    public function toArray()
+    public function toArray(bool isArray = false, array data = [])
     {
         var pros = [], newPros = [];
-        let pros = this->getSelfVars();
+        
+        if isArray == false {
+            let pros = this->getSelfVars();
+        } else {
+            let pros = data;
+        }
 
         var key, val;
+        
         for key, val in pros {
-            if is_object(val) {
+            if is_array(val) {
+                let newPros[key] = this->toArray(true, val);
+            } elseif is_object(val) && method_exists(val, "toArray") {
                 let newPros[key] = val->toArray();
+            } elseif is_object(val) && method_exists(val, "__toString") {
+                let newPros[key] = val->__toString();
             } else {
-                let newPros[key] = val;
+                let newPros[key] = val;                
             }
         }
+        
         return newPros;
             
         /* Zephir 暂时不支持 引用传递

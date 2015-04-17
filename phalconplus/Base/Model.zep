@@ -1,4 +1,6 @@
 namespace PhalconPlus\Base;
+use PhalconPlus\Base\Pagable;
+use PhalconPlus\Assert\Assertion as Assert;
 
 // use Phalcon\Mvc\Model;
 // use Phalcon\Mvc\ModelMessage;
@@ -74,5 +76,65 @@ class Model extends \Phalcon\Mvc\Model
     {
         let this->mtime = date("Y-m-d H:i:s");
         return true;
+    }
+
+    /**
+     * params["columns"]
+     * params["conditions"]
+     * params["bind"]
+     *
+     */
+    public function findByPagable(<Pagable> pagable, array params = [])
+    {
+        Assert::notNull(pagable, __CLASS__."::".__METHOD__ .": Pagable can not be null");
+        
+        var builder;
+
+        let builder = this->createBuilder();
+        
+        var val, orderBy = "", orderBys = [];
+
+        let orderBys = pagable->getOrderBys();
+
+        for val in orderBys {
+            if empty orderBy {
+                let orderBy = orderBy . val->__toString();
+            } else {
+                let orderBy = orderBy . ", " . val->__toString();
+            }
+        }
+
+        if !empty orderBy {
+            error_log(var_export(orderBy, true));
+            builder->orderBy(orderBy);
+        }
+
+        if fetch val, params["columns"] {
+            builder->columns(val);
+        }
+
+        var bind = [];
+        if fetch val, params["bind"] {
+            let bind = val;
+        }
+        
+        if fetch val, params["conditions"] {
+            if empty bind {
+                builder->where(val);
+            } else {
+                builder->where(val, bind);
+            }
+        }
+        var queryBuilder, page;
+        let queryBuilder = new \Phalcon\Paginator\Adapter\QueryBuilder([
+            "builder":builder,
+            "limit":pagable->getPageSize(),
+            "page":pagable->getPageNo()
+        ]);
+        
+        let page = queryBuilder->getPaginate();
+        error_log(var_export(pagable->toArray(), true));
+
+        return new Page(pagable, page->total_items, page->items);
     }
 }

@@ -53,8 +53,8 @@
     },
     "namespace": "phalconplus",
     "name": "phalconplus",
-    "description": "",
-    "author": "",
+    "description": "Phalcon+",
+    "author": "Gu Weigang",
     "version": "0.0.1",
     "verbose": false,
     "requires": {

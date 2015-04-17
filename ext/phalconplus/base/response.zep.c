@@ -16,7 +16,7 @@
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_Response) {
 
-	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, Response, phalconplus, base_response, NULL, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, Response, phalconplus, base_response, phalconplus_base_protobuffer_ce, NULL, 0);
 
 	return SUCCESS;
 

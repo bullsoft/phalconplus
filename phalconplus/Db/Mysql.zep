@@ -32,7 +32,7 @@ class Mysql
     public function getConnection() -> <\Phalcon\Db\Adapter\Pdo\Mysql>
     {
         var connection = null;
-        var tryTimes, e, nowTimes;
+        var tryTimes, e;
         
         let tryTimes = self::TRY_TIMES;
         
@@ -45,7 +45,7 @@ class Mysql
                 if tryTimes > 0 {
                     // wait for xxx ms
                     usleep(self::RETRY_WAIT);
-                    // let nowTimes = self::TRY_TIMES - tryTimes;
+
                     error_log("PHP Notice:  PhalconPlus::Db::MySQL::connnect() retry to connect to MySQL for the time ... ");
                 } else {
                     error_log("PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL");

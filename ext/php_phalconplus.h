@@ -13,9 +13,9 @@
 #define PHP_PHALCONPLUS_NAME        "phalconplus"
 #define PHP_PHALCONPLUS_VERSION     "0.0.1"
 #define PHP_PHALCONPLUS_EXTNAME     "phalconplus"
-#define PHP_PHALCONPLUS_AUTHOR      ""
-#define PHP_PHALCONPLUS_ZEPVERSION  "0.6.1a"
-#define PHP_PHALCONPLUS_DESCRIPTION ""
+#define PHP_PHALCONPLUS_AUTHOR      "Gu Weigang"
+#define PHP_PHALCONPLUS_ZEPVERSION  "0.6.2a"
+#define PHP_PHALCONPLUS_DESCRIPTION "Phalcon+"
 
 
 

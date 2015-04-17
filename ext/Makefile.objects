@@ -42,6 +42,12 @@ kernel/time.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/time.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/time.c -o kernel/time.lo 
 kernel/exit.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/exit.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/exit.c -o kernel/exit.lo 
+phalconplus/assert/assertion.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertion.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertion.zep.c -o phalconplus/assert/assertion.lo 
+phalconplus/assert/assertionfailedexception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertionfailedexception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertionfailedexception.zep.c -o phalconplus/assert/assertionfailedexception.lo 
+phalconplus/assert/invalidargumentexception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/invalidargumentexception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/invalidargumentexception.zep.c -o phalconplus/assert/invalidargumentexception.lo 
 phalconplus/base/abstractmodule.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/abstractmodule.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/abstractmodule.zep.c -o phalconplus/base/abstractmodule.lo 
 phalconplus/base/abstractrequest.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/abstractrequest.zep.c
@@ -56,6 +62,8 @@ phalconplus/base/page.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/page.zep.c -o phalconplus/base/page.lo 
 phalconplus/base/protobuffer.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protobuffer.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protobuffer.zep.c -o phalconplus/base/protobuffer.lo 
+phalconplus/base/protoorderby.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protoorderby.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protoorderby.zep.c -o phalconplus/base/protoorderby.lo 
 phalconplus/base/response.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/response.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/response.zep.c -o phalconplus/base/response.lo 
 phalconplus/base/service.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/service.zep.c
@@ -66,6 +74,12 @@ phalconplus/bootstrap.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/boots
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c -o phalconplus/bootstrap.lo 
 phalconplus/db/mysql.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/mysql.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/mysql.zep.c -o phalconplus/db/mysql.lo 
+phalconplus/enum/abstractenum.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/abstractenum.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/abstractenum.zep.c -o phalconplus/enum/abstractenum.lo 
+phalconplus/enum/assertioncode.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/assertioncode.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/assertioncode.zep.c -o phalconplus/enum/assertioncode.lo 
+phalconplus/enum/orderbydirection.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/orderbydirection.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/orderbydirection.zep.c -o phalconplus/enum/orderbydirection.lo 
 phalconplus/rpc/client/abstractclient.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c -o phalconplus/rpc/client/abstractclient.lo 
 phalconplus/rpc/client/adapter/local.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/adapter/local.zep.c

@@ -1,6 +1,6 @@
 namespace PhalconPlus\Base;
 
-class Response
+class Response extends ProtoBuffer
 {
-
+    
 }
