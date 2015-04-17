@@ -22,6 +22,10 @@
 #include "kernel/object.h"
 
 
+/**
+ *
+ * @ref https://github.com/beberlei/assert
+ */
 ZEPHIR_INIT_CLASS(PhalconPlus_Assert_Assertion) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Assert, Assertion, phalconplus, assert_assertion, phalconplus_assert_assertion_method_entry, 0);
@@ -91,7 +95,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 		ZVAL_LONG(_3, 34);
 		ZEPHIR_CALL_STATIC(&_1, "createexception", NULL, value, message, _3, propertyPath, _2);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 24 TSRMLS_CC);
+		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 28 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -135,7 +139,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 		ZVAL_LONG(_3, 33);
 		ZEPHIR_CALL_STATIC(&_1, "createexception", NULL, value, message, _3, propertyPath, _2);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 39 TSRMLS_CC);
+		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 43 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -173,7 +177,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 		ZVAL_LONG(_2, 14);
 		ZEPHIR_CALL_STATIC(&_1, "createexception", NULL, value, message, _2, propertyPath);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 52 TSRMLS_CC);
+		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 56 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -211,7 +215,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 		ZVAL_LONG(_2, 15);
 		ZEPHIR_CALL_STATIC(&_1, "createexception", NULL, value, message, _2, propertyPath);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 64 TSRMLS_CC);
+		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 68 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -249,7 +253,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 		ZVAL_LONG(_2, 23);
 		ZEPHIR_CALL_STATIC(&_1, "createexception", NULL, value, message, _2, propertyPath);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 76 TSRMLS_CC);
+		zephir_throw_exception_debug(_1, "phalconplus/Assert/Assertion.zep", 80 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

@@ -11,11 +11,11 @@
 #include "kernel/globals.h"
 
 #define PHP_PHALCONPLUS_NAME        "phalconplus"
-#define PHP_PHALCONPLUS_VERSION     "0.0.1"
+#define PHP_PHALCONPLUS_VERSION     "0.0.2"
 #define PHP_PHALCONPLUS_EXTNAME     "phalconplus"
-#define PHP_PHALCONPLUS_AUTHOR      "Gu Weigang"
+#define PHP_PHALCONPLUS_AUTHOR      "Gu Weigang<guweigang@outlook.com> and NetCredit Group"
 #define PHP_PHALCONPLUS_ZEPVERSION  "0.6.2a"
-#define PHP_PHALCONPLUS_DESCRIPTION "Phalcon+"
+#define PHP_PHALCONPLUS_DESCRIPTION "Phalcon+ is a new framework based on Phalcon."
 
 
 
