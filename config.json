@@ -53,9 +53,9 @@
     },
     "namespace": "phalconplus",
     "name": "phalconplus",
-    "description": "Phalcon+",
-    "author": "Gu Weigang",
-    "version": "0.0.1",
+    "description": "Phalcon+ is a new framework based on Phalcon.",
+    "author": "Gu Weigang<guweigang@outlook.com> and NetCredit Group",
+    "version": "0.0.2",
     "verbose": false,
     "requires": {
         "extensions": ["phalcon"]
