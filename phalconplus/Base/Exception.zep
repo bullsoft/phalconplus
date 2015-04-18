@@ -6,7 +6,7 @@ class Exception extends \Exception
     protected level = \Phalcon\Logger::DEBUG;
     protected code = 0;
 
-    public function __construct(var message = "", var logger = null)
+    public function __construct(var message = "", <\Phalcon\Logger\Adapter> logger = null)
     {
         if !is_null(logger) {
             logger->log(message, this->getLevel());
@@ -25,10 +25,12 @@ class Exception extends \Exception
     public function setCode(var code)
     {
         let this->code = code;
+        return this;
     }
 
     public function setLevel(var level)
     {
         let this->level = level;
+        return this;
     }
 }

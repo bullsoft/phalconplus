@@ -10,7 +10,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setLevel);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_exception___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, message)
-	ZEND_ARG_INFO(0, logger)
+	ZEND_ARG_OBJ_INFO(0, logger, Phalcon\\Logger\\Adapter, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_exception_setcode, 0, 0, 1)

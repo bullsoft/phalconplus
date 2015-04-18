@@ -101,6 +101,8 @@ class Model extends \Phalcon\Mvc\Model
 
         if fetch val, params["columns"] {
             builder->columns(val);
+        } else {
+            builder->columns("*");
         }
 
         var bind = [];

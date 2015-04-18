@@ -298,6 +298,12 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	if (zephir_array_isset_string_fetch(&val, params, SS("columns"), 0 TSRMLS_CC)) {
 		ZEPHIR_CALL_METHOD(NULL, builder, "columns", NULL, val);
 		zephir_check_call_status();
+	} else {
+		ZEPHIR_INIT_NVAR(_5);
+		ZVAL_STRING(_5, "*", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, builder, "columns", NULL, _5);
+		zephir_check_temp_parameter(_5);
+		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_NVAR(val);
 	if (zephir_array_isset_string_fetch(&val, params, SS("bind"), 0 TSRMLS_CC)) {

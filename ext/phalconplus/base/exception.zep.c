@@ -79,6 +79,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setCode) {
 
 
 	zephir_update_property_this(this_ptr, SL("code"), code TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -91,6 +92,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setLevel) {
 
 
 	zephir_update_property_this(this_ptr, SL("level"), level TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
