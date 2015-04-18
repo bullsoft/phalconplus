@@ -4244,6 +4244,7 @@ $as_echo "@%:@define HAVE_PHALCONPLUS 1" >>confdefs.h
 	phalconplus/base/abstractmodule.zep.c
 	phalconplus/base/abstractrequest.zep.c
 	phalconplus/base/backendserver.zep.c
+	phalconplus/base/exception.zep.c
 	phalconplus/base/model.zep.c
 	phalconplus/base/pagable.zep.c
 	phalconplus/base/page.zep.c

@@ -15,17 +15,25 @@ class ProtoBuffer implements \JsonSerializable
 
     public function __set(string! key, val)
     {
-        var method, param, paramClass, paramObj;
+        var method, param, paramClass, paramClassRef, paramObj;
         let method = "set" . key->upperfirst();
         // error_log("Proto__set: " . key . ": " . var_export(val, true));
         if method_exists(this, method) {
             let param = new \ReflectionParameter([this, method], 0);
             if param->getClass() {
                 // error_log("Proto__set: param class" . param->getClass());
+                // error_log("Proto__set: value" . var_export(val, true));
                 let paramClass = param->getClass()->getName();
-                let paramObj = new {paramClass}();
-                paramObj->softClone(val);
-                let val = paramObj;
+                let paramClassRef = new \ReflectionClass(paramClass);
+                // if is-a ProtoBuffer class
+                if paramClassRef->isSubclassOf("\\PhalconPlus\\Base\\ProtoBuffer") {
+                    let paramObj = paramClassRef->newInstance();
+                    paramObj->softClone(val);
+                    let val = paramObj;
+                } else {
+                    let paramObj = paramClassRef->newInstance(val);
+                    let val = paramObj;
+                }
             }
             return this->{method}(val);
         }

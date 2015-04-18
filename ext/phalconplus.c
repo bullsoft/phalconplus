@@ -36,6 +36,7 @@ zend_class_entry *phalconplus_assert_invalidargumentexception_ce;
 zend_class_entry *phalconplus_base_abstractmodule_ce;
 zend_class_entry *phalconplus_base_abstractrequest_ce;
 zend_class_entry *phalconplus_base_backendserver_ce;
+zend_class_entry *phalconplus_base_exception_ce;
 zend_class_entry *phalconplus_base_model_ce;
 zend_class_entry *phalconplus_base_pagable_ce;
 zend_class_entry *phalconplus_base_page_ce;
@@ -81,6 +82,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractModule);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractRequest);
 	ZEPHIR_INIT(PhalconPlus_Base_BackendServer);
+	ZEPHIR_INIT(PhalconPlus_Base_Exception);
 	ZEPHIR_INIT(PhalconPlus_Base_Model);
 	ZEPHIR_INIT(PhalconPlus_Base_Pagable);
 	ZEPHIR_INIT(PhalconPlus_Base_Page);

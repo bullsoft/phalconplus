@@ -54,6 +54,8 @@ phalconplus/base/abstractrequest.lo: /Users/guweigang/tmp/phalconplus/ext/phalco
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/abstractrequest.zep.c -o phalconplus/base/abstractrequest.lo 
 phalconplus/base/backendserver.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/backendserver.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/backendserver.zep.c -o phalconplus/base/backendserver.lo 
+phalconplus/base/exception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/exception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/exception.zep.c -o phalconplus/base/exception.lo 
 phalconplus/base/model.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/model.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/model.zep.c -o phalconplus/base/model.lo 
 phalconplus/base/pagable.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/pagable.zep.c

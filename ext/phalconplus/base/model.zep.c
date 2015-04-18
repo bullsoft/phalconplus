@@ -20,8 +20,8 @@
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/concat.h"
-#include "kernel/hash.h"
 #include "kernel/variables.h"
+#include "kernel/string.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_Model) {
@@ -251,13 +251,11 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeSave) {
  */
 PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 
-	HashTable *_3;
-	HashPosition _2;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_1;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_8 = NULL, *_12 = NULL;
-	zval *params = NULL, *_9;
-	zval *pagable, *params_param = NULL, *builder = NULL, *val = NULL, *orderBy = NULL, *orderBys = NULL, **_4, *_5 = NULL, *_6 = NULL, *_7 = NULL, *bind = NULL, *queryBuilder, *page = NULL, *_10, *_11;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_4 = NULL, *_6 = NULL, *_12 = NULL;
+	zval *params = NULL, *_8;
+	zval *pagable, *params_param = NULL, *builder = NULL, *val = NULL, *orderBys = NULL, *_2 = NULL, _3, *_5 = NULL, *_7, *bind = NULL, *queryBuilder, *page = NULL, *_9 = NULL, *_10, *_11;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &pagable, &params_param);
@@ -268,8 +266,6 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	} else {
 		zephir_get_arrval(params, params_param);
 	}
-	ZEPHIR_INIT_VAR(orderBy);
-	ZVAL_STRING(orderBy, "", 1);
 	ZEPHIR_INIT_VAR(orderBys);
 	array_init(orderBys);
 	ZEPHIR_INIT_VAR(bind);
@@ -282,34 +278,20 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&builder, this_ptr, "createbuilder", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&orderBys, pagable, "getorderbys", NULL);
+	ZEPHIR_CALL_METHOD(&_2, pagable, "getorderbys", NULL);
 	zephir_check_call_status();
-	zephir_is_iterable(orderBys, &_3, &_2, 0, 0, "phalconplus/Base/Model.zep", 107);
-	for (
-	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_3, &_2)
-	) {
-		ZEPHIR_GET_HVALUE(val, _4);
-		if (ZEPHIR_IS_EMPTY(orderBy)) {
-			ZEPHIR_CALL_METHOD(&_5, val, "__tostring", NULL);
-			zephir_check_call_status();
-			ZEPHIR_INIT_LNVAR(_6);
-			ZEPHIR_CONCAT_VV(_6, orderBy, _5);
-			ZEPHIR_CPY_WRT(orderBy, _6);
-		} else {
-			ZEPHIR_CALL_METHOD(&_5, val, "__tostring", NULL);
-			zephir_check_call_status();
-			ZEPHIR_INIT_LNVAR(_6);
-			ZEPHIR_CONCAT_VSV(_6, orderBy, ", ", _5);
-			ZEPHIR_CPY_WRT(orderBy, _6);
-		}
-	}
-	if (!(ZEPHIR_IS_EMPTY(orderBy))) {
-		ZEPHIR_INIT_VAR(_7);
-		zephir_var_export_ex(_7, &(orderBy) TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_8, _7);
+	ZEPHIR_SINIT_VAR(_3);
+	ZVAL_STRING(&_3, "strval", 0);
+	ZEPHIR_CALL_FUNCTION(&orderBys, "array_map", &_4, &_3, _2);
+	zephir_check_call_status();
+	if (!(ZEPHIR_IS_EMPTY(orderBys))) {
+		ZEPHIR_INIT_VAR(_5);
+		zephir_var_export_ex(_5, &(orderBys) TSRMLS_CC);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_6, _5);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, builder, "orderby", NULL, orderBy);
+		ZEPHIR_INIT_VAR(_7);
+		zephir_fast_join_str(_7, SL(", "), orderBys TSRMLS_CC);
+		ZEPHIR_CALL_METHOD(NULL, builder, "orderby", NULL, _7);
 		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_VAR(val);
@@ -333,24 +315,24 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	}
 	ZEPHIR_INIT_VAR(queryBuilder);
 	object_init_ex(queryBuilder, zephir_get_internal_ce(SS("phalcon\\paginator\\adapter\\querybuilder") TSRMLS_CC));
-	ZEPHIR_INIT_VAR(_9);
-	zephir_create_array(_9, 3, 0 TSRMLS_CC);
-	zephir_array_update_string(&_9, SL("builder"), &builder, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(&_5, pagable, "getpagesize", NULL);
+	ZEPHIR_INIT_VAR(_8);
+	zephir_create_array(_8, 3, 0 TSRMLS_CC);
+	zephir_array_update_string(&_8, SL("builder"), &builder, PH_COPY | PH_SEPARATE);
+	ZEPHIR_CALL_METHOD(&_9, pagable, "getpagesize", NULL);
 	zephir_check_call_status();
-	zephir_array_update_string(&_9, SL("limit"), &_5, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(&_5, pagable, "getpageno", NULL);
+	zephir_array_update_string(&_8, SL("limit"), &_9, PH_COPY | PH_SEPARATE);
+	ZEPHIR_CALL_METHOD(&_9, pagable, "getpageno", NULL);
 	zephir_check_call_status();
-	zephir_array_update_string(&_9, SL("page"), &_5, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(NULL, queryBuilder, "__construct", NULL, _9);
+	zephir_array_update_string(&_8, SL("page"), &_9, PH_COPY | PH_SEPARATE);
+	ZEPHIR_CALL_METHOD(NULL, queryBuilder, "__construct", NULL, _8);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&page, queryBuilder, "getpaginate", NULL);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(_7);
-	ZEPHIR_CALL_METHOD(&_5, pagable, "toarray", NULL);
+	ZEPHIR_INIT_NVAR(_5);
+	ZEPHIR_CALL_METHOD(&_9, pagable, "toarray", NULL);
 	zephir_check_call_status();
-	zephir_var_export_ex(_7, &(_5) TSRMLS_CC);
-	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_8, _7);
+	zephir_var_export_ex(_5, &(_9) TSRMLS_CC);
+	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_6, _5);
 	zephir_check_call_status();
 	object_init_ex(return_value, phalconplus_base_page_ce);
 	ZEPHIR_OBS_VAR(_10);

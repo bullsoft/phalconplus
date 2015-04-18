@@ -21,10 +21,11 @@ class Page extends ProtoBuffer
         let this->pagable = pagable;
         let this->data = data;
         let this->totalSize = totalSize;
-        
-        this->setPageNo();
-        this->setPageSize();
-        this->setTotalPage();
+
+        // initialize
+        this->setPageNo()
+            ->setPageSize()
+            ->setTotalPage();
     }
 
     public function setPageNo()

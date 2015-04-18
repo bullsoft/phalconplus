@@ -42,7 +42,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL;
-	zval *pagable, *totalSize, *data;
+	zval *pagable, *totalSize, *data, *_1 = NULL, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &pagable, &totalSize, &data);
@@ -54,11 +54,11 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 	zephir_update_property_this(this_ptr, SL("pagable"), pagable TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("data"), data TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("totalSize"), totalSize TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setpageno", NULL);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "setpageno", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setpagesize", NULL);
+	ZEPHIR_CALL_METHOD(&_2, _1, "setpagesize", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "settotalpage", NULL);
+	ZEPHIR_CALL_METHOD(NULL, _2, "settotalpage", NULL);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

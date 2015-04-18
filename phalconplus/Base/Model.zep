@@ -89,24 +89,14 @@ class Model extends \Phalcon\Mvc\Model
         Assert::notNull(pagable, __CLASS__."::".__METHOD__ .": Pagable can not be null");
         
         var builder;
-
         let builder = this->createBuilder();
         
         var val, orderBy = "", orderBys = [];
 
-        let orderBys = pagable->getOrderBys();
-
-        for val in orderBys {
-            if empty orderBy {
-                let orderBy = orderBy . val->__toString();
-            } else {
-                let orderBy = orderBy . ", " . val->__toString();
-            }
-        }
-
-        if !empty orderBy {
-            error_log(var_export(orderBy, true));
-            builder->orderBy(orderBy);
+        let orderBys = array_map("strval", pagable->getOrderBys());
+        if !empty orderBys {
+            error_log(var_export(orderBys, true));
+            builder->orderBy(implode(", ", orderBys));
         }
 
         if fetch val, params["columns"] {

@@ -44,7 +44,7 @@ abstract class AbstractEnum implements \JsonSerializable
         return true;
     }
 
-    public static function validValues()
+    public static function validValues(bool assoc = false)
     {
         var reflection, consts;
         
@@ -52,7 +52,11 @@ abstract class AbstractEnum implements \JsonSerializable
         let consts = reflection->getConstants();
         unset(consts["__default"]);
         
-        return array_values(consts);
+        if assoc == true {
+            return consts;
+        } else {
+            return array_values(consts);
+        }
     }
 
     public function jsonSerialize()
@@ -63,10 +67,5 @@ abstract class AbstractEnum implements \JsonSerializable
     public function __toString()
     {
         return (string) this->getValue();
-    }
-
-    public function toArray()
-    {
-        return this->getValue();
     }
 }

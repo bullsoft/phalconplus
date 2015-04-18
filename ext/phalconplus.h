@@ -10,6 +10,7 @@
 #include "phalconplus/base/abstractmodule.zep.h"
 #include "phalconplus/base/abstractrequest.zep.h"
 #include "phalconplus/base/backendserver.zep.h"
+#include "phalconplus/base/exception.zep.h"
 #include "phalconplus/base/model.zep.h"
 #include "phalconplus/base/pagable.zep.h"
 #include "phalconplus/base/page.zep.h"

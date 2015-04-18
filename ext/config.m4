@@ -15,6 +15,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/abstractmodule.zep.c
 	phalconplus/base/abstractrequest.zep.c
 	phalconplus/base/backendserver.zep.c
+	phalconplus/base/exception.zep.c
 	phalconplus/base/model.zep.c
 	phalconplus/base/pagable.zep.c
 	phalconplus/base/page.zep.c
