@@ -47,6 +47,7 @@ zend_class_entry *phalconplus_base_simplerequest_ce;
 zend_class_entry *phalconplus_bootstrap_ce;
 zend_class_entry *phalconplus_db_mysql_ce;
 zend_class_entry *phalconplus_enum_assertioncode_ce;
+zend_class_entry *phalconplus_enum_exception_ce;
 zend_class_entry *phalconplus_enum_orderbydirection_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_local_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_remote_ce;
@@ -93,6 +94,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Bootstrap);
 	ZEPHIR_INIT(PhalconPlus_Db_Mysql);
 	ZEPHIR_INIT(PhalconPlus_Enum_AssertionCode);
+	ZEPHIR_INIT(PhalconPlus_Enum_Exception);
 	ZEPHIR_INIT(PhalconPlus_Enum_OrderByDirection);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Local);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Remote);

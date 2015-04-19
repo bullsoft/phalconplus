@@ -1,0 +1,87 @@
+namespace PhalconPlus\Enum;
+use \PhalconPlus\Enum\AbstractEnum;
+
+class Exception extends AbstractEnum
+{
+    protected static details;
+    
+    protected static function has(var eCode)
+    {
+        var code = null, details = [], className, val;
+        let className = get_called_class();
+        let code = new {className}(eCode);
+
+        %{
+            zephir_read_static_property(&details, Z_STRVAL_P(className), Z_STRLEN_P(className), SL("details") TSRMLS_CC);
+        }%
+             
+        if fetch val, details[code->__toString()] {
+            return val;
+        } else {
+            return [];
+        }
+    }
+    
+    public static function getByCode(var eCode)
+    {
+        var detail = [];
+        let detail = static::has(eCode); 
+        if !empty detail {
+            let detail["code"] = eCode;
+        }
+        return detail;
+    }
+
+    public static function newException(eCode, <\Phalcon\Logger\Adapter> logger = null)
+    {
+        var code, eName, map2Name, className;
+        let map2Name = array_flip(static::validValues(true));
+
+        // e.g. USER_NOT_EXISTS -> UserNotExists
+        let eName = \Phalcon\Text::camelize(map2Name[eCode]);
+
+        var eClassName, exception;
+        let eClassName = static::exceptionClassPrefix() . eName;
+        
+        let className = get_called_class();
+        let code = new {className}(eCode);
+        
+        let exception = new {eClassName}(code->getMessage(), logger);
+        
+        exception->setCode(code->getCode());
+        exception->setLevel(code->getLevel());
+        return exception;
+    }
+
+    public static function exceptionClassPrefix()
+    {
+        return __NAMESPACE__ . "\\Exception\\";
+    }
+    
+    public function getMessage()
+    {
+        var detail, val;
+        let detail = static::getByCode(this->getValue());
+        if fetch val, detail["message"] {
+            return val;
+        } else {
+            return "";
+        }
+    }
+
+    public function getLevel()
+    {
+        var detail, val;
+        let detail = static::getByCode(this->getValue());
+        if fetch val, detail["level"] {
+            return val;
+        } else {
+            return \Phalcon\Logger::DEBUG;
+        }
+    }
+
+    public function getCode()
+    {
+        return this->getValue();
+    }
+}

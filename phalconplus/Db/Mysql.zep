@@ -2,18 +2,33 @@ namespace PhalconPlus\Db;
 
 class Mysql
 {
-    const TRY_TIMES = 5;
-    const RETRY_WAIT = 100000; // 100 ms
+    const RETRY_TIMES = 5;  // 5 times
+    const RETRY_INTERVAL = 100000; // 100 ms
     
-    private di;
+    private di = null;
     private descriptor = [];
-    
-    public function __construct(<\Phalcon\DI> di, string! confName)
+
+    private retryTimes = self::RETRY_TIMES;
+    private retryInterval = self::RETRY_INTERVAL;
+
+    private name;
+    private connection = null;
+    private connected = false;
+
+    public function __construct(<\Phalcon\DI> di, string! name)
     {
         var config, dbConfig;
         let config = di->get("config");
-        let dbConfig = config->{confName};
+        let dbConfig = config->{name};
         let this->di = di;
+
+        let this->name = name;
+        if isset(dbConfig->retryTimes) {
+            let this->retryTimes = dbConfig->retryTimes;
+        }
+        if isset(dbConfig->retryInterval) {
+            let this->retryInterval = dbConfig->retryInterval;
+        }
         
         let this->descriptor = [
             "host" : dbConfig->host,
@@ -31,28 +46,29 @@ class Mysql
 
     public function getConnection() -> <\Phalcon\Db\Adapter\Pdo\Mysql>
     {
-        var connection = null;
         var tryTimes, e;
+        let tryTimes = this->retryTimes;
         
-        let tryTimes = self::TRY_TIMES;
-        
-        while !is_object(connection) {
+        while !this->connected {
             try {
-                let connection = new \Phalcon\Db\Adapter\Pdo\Mysql(this->descriptor);
-            } catch Exception, e {
-                error_log("PHP Fatal error:  PhalconPlus::Db::MySQL::connect() failed to connect to MySQL. Detail: " . json_encode(this->descriptor));
+                let this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql(this->descriptor);
+                let this->connected = true;
+            } catch \Exception, e {
+                error_log("PHP Fatal error:  PhalconPlus::Db::MySQL::connect() failed to connect to MySQL. Detail: " .
+                          json_encode(this->descriptor) .
+                          ". We will try " . strval(tryTimes) . " times for you.");
                 let tryTimes = tryTimes - 1;
                 if tryTimes > 0 {
                     // wait for xxx ms
-                    usleep(self::RETRY_WAIT);
-
-                    error_log("PHP Notice:  PhalconPlus::Db::MySQL::connnect() retry to connect to MySQL for the time ... ");
+                    usleep(this->retryInterval);
+                    error_log("PHP Notice:  PhalconPlus::Db::MySQL::connnect() retry to connect to MySQL for the ".strval(this->retryTimes - tryTimes)." time ... ");
                 } else {
-                    error_log("PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL");
+                    error_log("PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: " .
+                              json_encode(this->descriptor));
                     throw e;
                 }
             }
         }
-        return connection;
+        return this->connection;
     }
 }

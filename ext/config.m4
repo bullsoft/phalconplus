@@ -28,6 +28,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/db/mysql.zep.c
 	phalconplus/enum/abstractenum.zep.c
 	phalconplus/enum/assertioncode.zep.c
+	phalconplus/enum/exception.zep.c
 	phalconplus/enum/orderbydirection.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/rpc/client/adapter/local.zep.c

@@ -12,10 +12,11 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/fcall.h"
-#include "kernel/memory.h"
 #include "kernel/operators.h"
+#include "kernel/concat.h"
+#include "kernel/memory.h"
 #include "kernel/object.h"
+#include "kernel/fcall.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_Exception) {
@@ -35,7 +36,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Exception) {
 PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *message = NULL, *logger = NULL, *_0 = NULL, *_1;
+	zval *message = NULL, *logger = NULL, *_0, *_1 = NULL, *_2;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &message, &logger);
@@ -43,20 +44,28 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	if (!message) {
 		ZEPHIR_INIT_VAR(message);
 		ZVAL_STRING(message, "", 1);
+	} else {
+		ZEPHIR_SEPARATE_PARAM(message);
 	}
 	if (!logger) {
 		logger = ZEPHIR_GLOBAL(global_null);
 	}
 
 
+	if (ZEPHIR_IS_EMPTY(message)) {
+		ZEPHIR_INIT_VAR(_0);
+		zephir_get_called_class(_0 TSRMLS_CC);
+		ZEPHIR_INIT_NVAR(message);
+		ZEPHIR_CONCAT_SV(message, "An exception created: ", _0);
+	}
 	if (!(Z_TYPE_P(logger) == IS_NULL)) {
-		ZEPHIR_CALL_METHOD(&_0, this_ptr, "getlevel", NULL);
+		ZEPHIR_CALL_METHOD(&_1, this_ptr, "getlevel", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, logger, "log", NULL, message, _0);
+		ZEPHIR_CALL_METHOD(NULL, logger, "log", NULL, message, _1);
 		zephir_check_call_status();
 	}
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("message"), PH_NOISY_CC);
-	if (ZEPHIR_IS_EMPTY(_1)) {
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("message"), PH_NOISY_CC);
+	if (ZEPHIR_IS_EMPTY(_2)) {
 		zephir_update_property_this(this_ptr, SL("message"), message TSRMLS_CC);
 	}
 	ZEPHIR_MM_RESTORE();

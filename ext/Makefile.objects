@@ -80,6 +80,8 @@ phalconplus/enum/abstractenum.lo: /Users/guweigang/tmp/phalconplus/ext/phalconpl
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/abstractenum.zep.c -o phalconplus/enum/abstractenum.lo 
 phalconplus/enum/assertioncode.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/assertioncode.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/assertioncode.zep.c -o phalconplus/enum/assertioncode.lo 
+phalconplus/enum/exception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/exception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/exception.zep.c -o phalconplus/enum/exception.lo 
 phalconplus/enum/orderbydirection.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/orderbydirection.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/orderbydirection.zep.c -o phalconplus/enum/orderbydirection.lo 
 phalconplus/rpc/client/abstractclient.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c

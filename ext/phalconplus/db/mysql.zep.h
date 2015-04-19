@@ -8,7 +8,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_mysql___construct, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
-	ZEND_ARG_INFO(0, confName)
+	ZEND_ARG_INFO(0, name)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_db_mysql_method_entry) {

@@ -23,6 +23,7 @@
 #include "phalconplus/db/mysql.zep.h"
 #include "phalconplus/enum/abstractenum.zep.h"
 #include "phalconplus/enum/assertioncode.zep.h"
+#include "phalconplus/enum/exception.zep.h"
 #include "phalconplus/enum/orderbydirection.zep.h"
 #include "phalconplus/rpc/client/abstractclient.zep.h"
 #include "phalconplus/rpc/client/adapter/local.zep.h"
