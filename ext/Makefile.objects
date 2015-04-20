@@ -84,6 +84,16 @@ phalconplus/enum/exception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/exception.zep.c -o phalconplus/enum/exception.lo 
 phalconplus/enum/orderbydirection.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/orderbydirection.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/orderbydirection.zep.c -o phalconplus/enum/orderbydirection.lo 
+phalconplus/logger/adapter/fileplus.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/adapter/fileplus.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/adapter/fileplus.zep.c -o phalconplus/logger/adapter/fileplus.lo 
+phalconplus/logger/formatter/lineplus.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/formatter/lineplus.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/formatter/lineplus.zep.c -o phalconplus/logger/formatter/lineplus.lo 
+phalconplus/logger/processor/abstractprocessor.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/abstractprocessor.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/abstractprocessor.zep.c -o phalconplus/logger/processor/abstractprocessor.lo 
+phalconplus/logger/processor/trace.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/trace.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/trace.zep.c -o phalconplus/logger/processor/trace.lo 
+phalconplus/logger/processor/uid.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/uid.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/uid.zep.c -o phalconplus/logger/processor/uid.lo 
 phalconplus/rpc/client/abstractclient.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c -o phalconplus/rpc/client/abstractclient.lo 
 phalconplus/rpc/client/adapter/local.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/adapter/local.zep.c

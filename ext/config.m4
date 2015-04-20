@@ -30,6 +30,11 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/assertioncode.zep.c
 	phalconplus/enum/exception.zep.c
 	phalconplus/enum/orderbydirection.zep.c
+	phalconplus/logger/adapter/fileplus.zep.c
+	phalconplus/logger/formatter/lineplus.zep.c
+	phalconplus/logger/processor/abstractprocessor.zep.c
+	phalconplus/logger/processor/trace.zep.c
+	phalconplus/logger/processor/uid.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/rpc/client/adapter/local.zep.c
 	phalconplus/rpc/client/adapter/remote.zep.c

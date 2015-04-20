@@ -112,7 +112,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 	ZEPHIR_CALL_FUNCTION(&map2Name, "array_flip", &_2, _0);
 	zephir_check_call_status();
 	_3 = zend_fetch_class(SL("Phalcon\\Text"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-	zephir_array_fetch(&_4, map2Name, eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 40 TSRMLS_CC);
+	zephir_array_fetch(&_4, map2Name, eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 41 TSRMLS_CC);
 	ZEPHIR_CALL_CE_STATIC(&eName, _3, "camelize", NULL, _4);
 	zephir_check_call_status();
 	ZEPHIR_CALL_STATIC(&_5, "exceptionclassprefix", NULL);

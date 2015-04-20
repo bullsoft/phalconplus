@@ -29,6 +29,7 @@
 zend_class_entry *phalconplus_assert_assertionfailedexception_ce;
 zend_class_entry *phalconplus_base_protobuffer_ce;
 zend_class_entry *phalconplus_enum_abstractenum_ce;
+zend_class_entry *phalconplus_logger_processor_abstractprocessor_ce;
 zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
 zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 zend_class_entry *phalconplus_assert_assertion_ce;
@@ -49,6 +50,10 @@ zend_class_entry *phalconplus_db_mysql_ce;
 zend_class_entry *phalconplus_enum_assertioncode_ce;
 zend_class_entry *phalconplus_enum_exception_ce;
 zend_class_entry *phalconplus_enum_orderbydirection_ce;
+zend_class_entry *phalconplus_logger_adapter_fileplus_ce;
+zend_class_entry *phalconplus_logger_formatter_lineplus_ce;
+zend_class_entry *phalconplus_logger_processor_trace_ce;
+zend_class_entry *phalconplus_logger_processor_uid_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_local_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_remote_ce;
 zend_class_entry *phalconplus_volt_extension_phpfunction_ce;
@@ -76,6 +81,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
 	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);
+	ZEPHIR_INIT(PhalconPlus_Logger_Processor_AbstractProcessor);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_AbstractClient);
 	ZEPHIR_INIT(PhalconPlus_RPC_Server_AbstractServer);
 	ZEPHIR_INIT(PhalconPlus_Assert_Assertion);
@@ -96,6 +102,10 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Enum_AssertionCode);
 	ZEPHIR_INIT(PhalconPlus_Enum_Exception);
 	ZEPHIR_INIT(PhalconPlus_Enum_OrderByDirection);
+	ZEPHIR_INIT(PhalconPlus_Logger_Adapter_FilePlus);
+	ZEPHIR_INIT(PhalconPlus_Logger_Formatter_LinePlus);
+	ZEPHIR_INIT(PhalconPlus_Logger_Processor_Trace);
+	ZEPHIR_INIT(PhalconPlus_Logger_Processor_Uid);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Local);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Remote);
 	ZEPHIR_INIT(PhalconPlus_Volt_Extension_PhpFunction);
