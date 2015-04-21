@@ -82,9 +82,15 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
 
     public function __wakeup()
     {
-        var type, ext;
+        var type, ext, handler, ext2Handler = [];
         for type, ext in this->type2Ext {
-            let this->type2Handler[type] = this->open(this->_path . ext);
+            if fetch handler, ext2Handler["ext"] {
+                // do nothing
+            } else {
+                let handler = this->open(this->_path . ext);
+                let ext2Handler[ext] = handler;
+            }
+            let this->type2Handler[type] = handler;
         }
         let this->_fileHandler = this->type2Handler[-1];
     }

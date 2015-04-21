@@ -286,32 +286,39 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, close) {
 
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_7 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_6 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_2;
 	HashPosition _1;
-	zval *type = NULL, *ext = NULL, *_0, **_3, *_4 = NULL, *_5, *_6 = NULL, *_8;
+	zval *type = NULL, *ext = NULL, *handler = NULL, *ext2Handler, *_0, **_3, *_4, *_5 = NULL, *_7;
 
 	ZEPHIR_MM_GROW();
+	ZEPHIR_INIT_VAR(ext2Handler);
+	array_init(ext2Handler);
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("type2Ext"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "phalconplus/Logger/Adapter/FilePlus.zep", 89);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "phalconplus/Logger/Adapter/FilePlus.zep", 95);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HMKEY(type, _2, _1);
 		ZEPHIR_GET_HVALUE(ext, _3);
-		_5 = zephir_fetch_nproperty_this(this_ptr, SL("_path"), PH_NOISY_CC);
-		ZEPHIR_INIT_LNVAR(_6);
-		ZEPHIR_CONCAT_VV(_6, _5, ext);
-		ZEPHIR_CALL_METHOD(&_4, this_ptr, "open", &_7, _6);
-		zephir_check_call_status();
-		zephir_update_property_array(this_ptr, SL("type2Handler"), type, _4 TSRMLS_CC);
+		ZEPHIR_OBS_NVAR(handler);
+		if (zephir_array_isset_string_fetch(&handler, ext2Handler, SS("ext"), 0 TSRMLS_CC)) {
+		} else {
+			_4 = zephir_fetch_nproperty_this(this_ptr, SL("_path"), PH_NOISY_CC);
+			ZEPHIR_INIT_LNVAR(_5);
+			ZEPHIR_CONCAT_VV(_5, _4, ext);
+			ZEPHIR_CALL_METHOD(&handler, this_ptr, "open", &_6, _5);
+			zephir_check_call_status();
+			zephir_array_update_zval(&ext2Handler, ext, &handler, PH_COPY | PH_SEPARATE);
+		}
+		zephir_update_property_array(this_ptr, SL("type2Handler"), type, handler TSRMLS_CC);
 	}
-	_5 = zephir_fetch_nproperty_this(this_ptr, SL("type2Handler"), PH_NOISY_CC);
-	zephir_array_fetch_long(&_8, _5, -1, PH_NOISY | PH_READONLY, "phalconplus/Logger/Adapter/FilePlus.zep", 89 TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("_fileHandler"), _8 TSRMLS_CC);
+	_4 = zephir_fetch_nproperty_this(this_ptr, SL("type2Handler"), PH_NOISY_CC);
+	zephir_array_fetch_long(&_7, _4, -1, PH_NOISY | PH_READONLY, "phalconplus/Logger/Adapter/FilePlus.zep", 95 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_fileHandler"), _7 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
