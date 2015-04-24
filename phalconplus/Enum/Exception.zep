@@ -1,5 +1,5 @@
 namespace PhalconPlus\Enum;
-use \PhalconPlus\Enum\AbstractEnum;
+use PhalconPlus\Enum\AbstractEnum;
 
 class Exception extends AbstractEnum
 {
