@@ -19,8 +19,6 @@
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/hash.h"
-#include "kernel/concat.h"
-#include "kernel/variables.h"
 #include "ext/spl/spl_exceptions.h"
 
 
@@ -110,9 +108,8 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, callByObject) {
 PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __call) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
-	zval *args = NULL, *_4;
-	zval *method_param = NULL, *args_param = NULL, *_0, *_1, *_2, *_5;
+	zval *args = NULL, *_1;
+	zval *method_param = NULL, *args_param = NULL, *_0, *_2;
 	zval *method = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -135,18 +132,12 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __call) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("client"), PH_NOISY_CC);
 	if ((zephir_method_exists(_0, method TSRMLS_CC)  == SUCCESS)) {
 		ZEPHIR_INIT_VAR(_1);
-		zephir_var_export_ex(_1, &(args) TSRMLS_CC);
-		ZEPHIR_INIT_VAR(_2);
-		ZEPHIR_CONCAT_SVSV(_2, "Remote RPC set Opts: ", method, " args: ", _1);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_3, _2);
-		zephir_check_call_status();
-		ZEPHIR_INIT_VAR(_4);
-		zephir_create_array(_4, 2, 0 TSRMLS_CC);
-		ZEPHIR_OBS_VAR(_5);
-		zephir_read_property_this(&_5, this_ptr, SL("client"), PH_NOISY_CC);
-		zephir_array_fast_append(_4, _5);
-		zephir_array_fast_append(_4, method);
-		ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, _4, args);
+		zephir_create_array(_1, 2, 0 TSRMLS_CC);
+		ZEPHIR_OBS_VAR(_2);
+		zephir_read_property_this(&_2, this_ptr, SL("client"), PH_NOISY_CC);
+		zephir_array_fast_append(_1, _2);
+		zephir_array_fast_append(_1, method);
+		ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, _1, args);
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {

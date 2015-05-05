@@ -95,7 +95,7 @@ class Model extends \Phalcon\Mvc\Model
 
         let orderBys = array_map("strval", pagable->getOrderBys());
         if !empty orderBys {
-            error_log(var_export(orderBys, true));
+            // error_log(var_export(orderBys, true));
             builder->orderBy(implode(", ", orderBys));
         }
 
@@ -125,7 +125,7 @@ class Model extends \Phalcon\Mvc\Model
         ]);
         
         let page = queryBuilder->getPaginate();
-        error_log(var_export(pagable->toArray(), true));
+        // error_log(var_export(pagable->toArray(), true));
 
         return new Page(pagable, page->total_items, page->items);
     }

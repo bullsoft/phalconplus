@@ -22,7 +22,7 @@
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Exception) {
 
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Enum, Exception, phalconplus, enum_exception, zephir_get_internal_ce(SS("phalconplus\\enum\\abstractenum") TSRMLS_CC), phalconplus_enum_exception_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Enum, Exception, phalconplus, enum_exception, phalconplus_enum_abstractenum_ce, phalconplus_enum_exception_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_enum_exception_ce, SL("details"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
 

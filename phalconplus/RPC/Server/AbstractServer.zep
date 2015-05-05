@@ -17,7 +17,7 @@ abstract class AbstractServer
         // @TODO: check request object
     }
 
-    protected function callByParams(string! service, string! method, request)
+    protected function callByParams(string! service, string! method, request, rawData)
     {
         var serviceClass = "";
         let serviceClass = service->upperfirst() . "Service";
@@ -38,9 +38,13 @@ abstract class AbstractServer
         } else {
             throw new \Exception("Your input is not allowed. Request: " . json_encode(request));
         }
-
-        this->requestCheck(serviceClass, method, request);
-
+        
+        if this->di->has("requestCheck") {
+            this->di->get("requestCheck", [serviceClass, method, rawData]);
+        } else {
+            this->requestCheck(serviceClass, method, request);
+        }
+        
         var serviceObj, response, e;
         let serviceObj = new {serviceClass}(this->di);
         
@@ -68,9 +72,7 @@ abstract class AbstractServer
      */
     public function callByObject(array rawData)
     {
-        var service, method, request;
-        
-        error_log("Remote callByObject: " . var_export(rawData, true));
+        var service, method, request, response, logId = "", message = "";
         
         if !fetch service, rawData["service"] {
             throw new \Exception("service " . service . " not exists");
@@ -90,7 +92,23 @@ abstract class AbstractServer
         if empty service || empty method {
             throw new \Exception("service:method(args) must exists. All of them!!!");
         }
-        error_log("Invoke callByParams");
-        return this->callByParams(service, method, request);
+
+        if fetch logId, rawData["logId"] {
+            // ...
+        }
+        
+        if this->di->has("logger") {
+            let message = "RPC Request - logId: " . logId . ", invoke: " . service . "::" . method . ", args: " . json_encode(request);           
+            this->di->get("logger")->log(message);
+        }
+        
+        let response = this->callByParams(service, method, request, rawData);
+
+        if this->di->has("logger") {
+            let message = "RPC Response - logId: " . logId . ", invoke: " . service . "::" . method . ", response: " . json_encode(response);
+            this->di->get("logger")->log(message);
+        }
+
+        return response;
     }
 }

@@ -32,7 +32,7 @@ class Remote extends AbstractClient
     public function __call(string! method, array args)
     {
         if method_exists(this->client, method) {
-            error_log("Remote RPC set Opts: " . method . " args: " . var_export(args, true));
+            // error_log("Remote RPC set Opts: " . method . " args: " . var_export(args, true));
             return call_user_func_array([this->client, method], args);
         } else {
             throw new \Exception("method not exists");

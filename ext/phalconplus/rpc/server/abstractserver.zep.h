@@ -18,10 +18,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_requestchec
 	ZEND_ARG_OBJ_INFO(0, request, PhalconPlus\\Base\\ProtoBuffer, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyparams, 0, 0, 3)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyparams, 0, 0, 4)
 	ZEND_ARG_INFO(0, service)
 	ZEND_ARG_INFO(0, method)
 	ZEND_ARG_INFO(0, request)
+	ZEND_ARG_INFO(0, rawData)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyobject, 0, 0, 1)
