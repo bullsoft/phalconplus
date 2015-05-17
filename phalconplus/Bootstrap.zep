@@ -108,17 +108,24 @@ final class Bootstrap
         this->config->merge(moduleConf);
     }
 
-    public function exec(var argv = null)
+    public function exec()
     {
         var handleMethod;
         this->initConf();
         let handleMethod = "exec" . this->modeMap[APP_RUN_MODE];
-        this->{handleMethod}(argv);
+        var params = [];
+        let params = func_get_args();
+        return call_user_func_array([this, handleMethod], params);
     }
     
-    public function execModule(var uri = null)
+    public function execModule(var uri = null, bool needHandle = true)
     {
         var moduleClass, module;
+
+        if !needHandle {
+            this->initConf();
+        }
+        
         // 应用初始化
         let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
@@ -136,6 +143,10 @@ final class Bootstrap
         // 实例化该类
         let module = new {moduleClass}(this->di);
 
+        if !needHandle {
+            return true;
+        }
+        
         // 执行
         try {
             echo this->application->handle(uri)->getContent();
@@ -147,10 +158,14 @@ final class Bootstrap
         }
     }
 
-    public function execSrv()
+    public function execSrv(bool needHandle = true)
     {
         var backendSrv = null;
         var moduleClass, moduleObj;
+
+        if !needHandle {
+            this->initConf();
+        }
         
         let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
@@ -161,6 +176,10 @@ final class Bootstrap
         require this->module["classPath"];
         let moduleClass = this->module["className"];
         let moduleObj = new {moduleClass}(this->di);
+
+        if !needHandle {
+            return true;
+        }
         
         let backendSrv = new \PhalconPlus\Base\BackendServer(this->di);
         let this->application = new \Yar_Server($backendSrv);
