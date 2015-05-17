@@ -58,6 +58,6 @@
     "version": "0.0.5-dev",
     "verbose": false,
     "requires": {
-        "extensions": ["phalcon"]
+        "extensions": ["phalcon", "yar"]
     }
 }
