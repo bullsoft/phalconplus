@@ -133,17 +133,17 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_1, *_2, *orderBy = NULL, *_3, *_4, *_5, *_6;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL;
+	zephir_fcall_cache_entry *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 	ZEPHIR_INIT_VAR(orderBy);
 	ZVAL_STRING(orderBy, "", 1);
 
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("property"), PH_NOISY_CC);
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, _1);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 25, _1);
 	zephir_check_call_status();
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("direction"), PH_NOISY_CC);
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, _2);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 25, _2);
 	zephir_check_call_status();
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("alias"), PH_NOISY_CC);
 	if (!(ZEPHIR_IS_EMPTY(_3))) {

@@ -6,6 +6,7 @@ abstract class AbstractServer
     protected di = null;
     protected config = null;
     protected phpOnly = false;
+    protected eventsManager = null;
 
     abstract public function __construct(<\Phalcon\DI> di);
 
@@ -17,7 +18,7 @@ abstract class AbstractServer
         // @TODO: check request object
     }
 
-    protected function callByParams(string! service, string! method, request, rawData)
+    protected function callByParams(string! service, string! method, request)
     {
         var serviceClass = "";
         let serviceClass = service->upperfirst() . "Service";
@@ -39,21 +40,17 @@ abstract class AbstractServer
             throw new \Exception("Your input is not allowed. Request: " . json_encode(request));
         }
         
-        if this->di->has("requestCheck") {
-            this->di->get("requestCheck", [serviceClass, method, rawData]);
-        } else {
-            this->requestCheck(serviceClass, method, request);
-        }
-        
         var serviceObj, response, e;
         let serviceObj = new {serviceClass}(this->di);
-        
+
         if is_callable([serviceObj, method]) {
+            this->eventsManager->fire("backend-server:beforeExecute", $this, [service, method, request]);
             try {
                 let response = <ProtoBuffer> call_user_func_array([serviceObj, method], [request]);
             } catch \Exception, e {
                 throw e;
             }
+            this->eventsManager->fire("backend-server:afterExecute", $this, [service, method, request]);
             return this->phpOnly == true ? response : response->toArray();
         } else {
             throw new \Exception("Service:method not found. Detail: " . service . " : " . method);
@@ -64,7 +61,7 @@ abstract class AbstractServer
      *
      * @param array rawData
      * <code> 
-     *     rawData = ["service":"Demo", "method":"demo", "args": <ProtoBuffer>]
+     *     rawData = ["service":"Demo", "method":"demo", "args": <ProtoBuffer>, "logId": "234fdfaf3334"]
      * </code>
      * @return <ProtoBuffer>
      * @throw \Exception
@@ -86,6 +83,8 @@ abstract class AbstractServer
             throw new \Exception("args not exists");
         }
 
+        this->eventsManager->fire("backend-server:requestCheck", $this, [service, method, rawData]);
+
         let service = trim(service);
         let method = trim(method);
 
@@ -101,8 +100,10 @@ abstract class AbstractServer
             let message = "RPC Request - logId: " . logId . ", invoke: " . service . "::" . method . ", args: " . json_encode(request);           
             this->di->get("logger")->log(message);
         }
-        
-        let response = this->callByParams(service, method, request, rawData);
+
+        this->eventsManager->fire("backend-server:beforeDispatch", $this, [service, method, request]);
+        let response = this->callByParams(service, method, request);
+        this->eventsManager->fire("backend-server:afterDispatch", $this, [service, method, request, response]);
 
         if this->di->has("logger") {
             let message = "RPC Response - logId: " . logId . ", invoke: " . service . "::" . method . ", response: " . json_encode(response);

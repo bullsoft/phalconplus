@@ -52,8 +52,7 @@ PHP_METHOD(PhalconPlus_Base_Service, getDI) {
 PHP_METHOD(PhalconPlus_Base_Service, __get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
-	zval *key_param = NULL, *_0 = NULL, *_2, *_3;
+	zval *key_param = NULL, *_0 = NULL, *_1, *_2;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -72,15 +71,15 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", &_1, this_ptr, key);
+	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", NULL, 15, this_ptr, key);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
-		ZEPHIR_OBS_VAR(_2);
-		zephir_read_property_zval(&_2, this_ptr, key, PH_NOISY_CC);
-		RETURN_CCTOR(_2);
+		ZEPHIR_OBS_VAR(_1);
+		zephir_read_property_zval(&_1, this_ptr, key, PH_NOISY_CC);
+		RETURN_CCTOR(_1);
 	} else {
-		_3 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
-		ZEPHIR_RETURN_CALL_METHOD(_3, "get", NULL, key);
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+		ZEPHIR_RETURN_CALL_METHOD(_2, "get", NULL, 0, key);
 		zephir_check_call_status();
 		RETURN_MM();
 	}

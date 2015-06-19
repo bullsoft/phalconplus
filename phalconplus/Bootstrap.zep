@@ -40,7 +40,6 @@ final class Bootstrap
             throw new \Exception("Module directory not exists or not a dir, file positon: " . modulePath);
         }
 
-
         // 获取并初始化运行环境
         var env;
         let env = get_cfg_var("phalconplus.env");
@@ -74,7 +73,7 @@ final class Bootstrap
         let this->module = module;
     }
 
-    private function initConf()
+    public function initConf()
     {
         var globalConfPath, moduleConfPath;
         var moduleConf;
@@ -121,11 +120,10 @@ final class Bootstrap
     public function execModule(var uri = null, bool needHandle = true)
     {
         var moduleClass, module;
-
+        // 如果不需要handle，需要自己加载配置
         if !needHandle {
             this->initConf();
         }
-        
         // 应用初始化
         let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
@@ -142,7 +140,7 @@ final class Bootstrap
         let moduleClass = this->module["className"];
         // 实例化该类
         let module = new {moduleClass}(this->di);
-
+        // 如果不需要handle，则直接返回
         if !needHandle {
             return true;
         }
@@ -187,11 +185,14 @@ final class Bootstrap
         this->application->handle();
     }
     
-    public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null)
+    public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null, var needInitConf = true, var needHandle = true)
     {
         var moduleClass, module;
 
-        this->initConf();
+        if needInitConf {
+            this->initConf();
+        }
+        
         let this->loader = new \Phalcon\Loader();
 
         if is_null(di) || ! (di instanceof \Phalcon\DI\FactoryDefault\CLI) {
@@ -211,7 +212,11 @@ final class Bootstrap
         let moduleClass = this->module["className"];
         let module = new {moduleClass}(this->di);
 
-        this->application->handle($argv);
+        if !needHandle {
+            return true;
+        }
+
+        return this->application->handle(argv);
     }
 
     public function dependModule(string! moduleName)

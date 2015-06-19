@@ -7,5 +7,5 @@ PHP_METHOD(PhalconPlus_Logger_Processor_AbstractProcessor, __toString);
 
 ZEPHIR_INIT_FUNCS(phalconplus_logger_processor_abstractprocessor_method_entry) {
 	PHP_ME(PhalconPlus_Logger_Processor_AbstractProcessor, __toString, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_ABSTRACT)
-  PHP_FE_END
+	PHP_FE_END
 };

@@ -16,5 +16,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_assert_assertionfailedexception_method_entry) {
 	PHP_ABSTRACT_ME(PhalconPlus_Assert_AssertionFailedException, getPropertyPath, NULL)
 	PHP_ABSTRACT_ME(PhalconPlus_Assert_AssertionFailedException, getValue, NULL)
 	PHP_ABSTRACT_ME(PhalconPlus_Assert_AssertionFailedException, getConstraints, NULL)
-  PHP_FE_END
+	PHP_FE_END
 };

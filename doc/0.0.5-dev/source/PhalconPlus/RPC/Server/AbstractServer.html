@@ -1,0 +1,212 @@
+<html>
+
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../asset/static/style.css" />
+
+
+        <script src="../../../../asset/static/jquery.min.js"></script>
+        <script src="../../../../asset/static/prettify.js"></script>
+        <script src="../../../../asset/api_definition.js"></script>
+
+        <script>var ZepCurrentPath = '../../../../'</script>
+
+        <script src="../../../../asset/static/script.js"></script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                Zephir Documentation <span class="version">v0.0.5-dev</span>
+            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../class/PhalconPlus/RPC/Server/AbstractServer.html">PhalconPlus\RPC\Server\AbstractServer</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../class/PhalconPlus/RPC/Server/AbstractServer.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/RPC.html">RPC</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/RPC/Server.html">Server</a>
+        </span>
+                <h1 class="class-name">AbstractServer</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\RPC\Server;
+use PhalconPlus\Base\ProtoBuffer;
+
+abstract class AbstractServer
+{
+    protected di = null;
+    protected config = null;
+    protected phpOnly = false;
+
+    abstract public function __construct(<\Phalcon\DI> di);
+
+    protected function requestCheck(string! service, string! method, <ProtoBuffer> request)
+    {
+        var serviceReflection, methodReflection;
+        let serviceReflection = new \ReflectionClass(service);
+        let methodReflection = serviceReflection->getMethod(method);
+        // @TODO: check request object
+    }
+
+    protected function callByParams(string! service, string! method, request, rawData)
+    {
+        var serviceClass = "";
+        let serviceClass = service->upperfirst() . "Service";
+
+        if is_object(request) && request instanceof ProtoBuffer {
+            let this->phpOnly = true;
+        } elseif is_array(request) {
+            var tmp = [], param, paramClass;
+            let tmp = request;
+            let param = new \ReflectionParameter([serviceClass, method], 0);
+            if param->getClass() {
+                let paramClass = param->getClass()->getName();
+                let request = new {paramClass}();
+                request->softClone(tmp);
+            } else {
+                throw new \Exception("Service class:method definition is invalid. Detail: " . service . " : " . method . ". Request: " . json_encode(request));
+            }
+        } else {
+            throw new \Exception("Your input is not allowed. Request: " . json_encode(request));
+        }
+        
+        if this->di->has("requestCheck") {
+            this->di->get("requestCheck", [serviceClass, method, rawData]);
+        } else {
+            this->requestCheck(serviceClass, method, request);
+        }
+        
+        var serviceObj, response, e;
+        let serviceObj = new {serviceClass}(this->di);
+        
+        if is_callable([serviceObj, method]) {
+            try {
+                let response = <ProtoBuffer> call_user_func_array([serviceObj, method], [request]);
+            } catch \Exception, e {
+                throw e;
+            }
+            return this->phpOnly == true ? response : response->toArray();
+        } else {
+            throw new \Exception("Service:method not found. Detail: " . service . " : " . method);
+        }
+    }
+
+    /**
+     *
+     * @param array rawData
+     * <code> 
+     *     rawData = ["service":"Demo", "method":"demo", "args": <ProtoBuffer>]
+     * </code>
+     * @return <ProtoBuffer>
+     * @throw \Exception
+     *
+     */
+    public function callByObject(array rawData)
+    {
+        var service, method, request, response, logId = "", message = "";
+        
+        if !fetch service, rawData["service"] {
+            throw new \Exception("service " . service . " not exists");
+        }
+
+        if !fetch method, rawData["method"] {
+            throw new \Exception("method " . method . " not exists");
+        }
+
+        if !fetch request, rawData["args"] {
+            throw new \Exception("args not exists");
+        }
+
+        let service = trim(service);
+        let method = trim(method);
+
+        if empty service || empty method {
+            throw new \Exception("service:method(args) must exists. All of them!!!");
+        }
+
+        if fetch logId, rawData["logId"] {
+            // ...
+        }
+        
+        if this->di->has("logger") {
+            let message = "RPC Request - logId: " . logId . ", invoke: " . service . "::" . method . ", args: " . json_encode(request);           
+            this->di->get("logger")->log(message);
+        }
+        
+        let response = this->callByParams(service, method, request, rawData);
+
+        if this->di->has("logger") {
+            let message = "RPC Response - logId: " . logId . ", invoke: " . service . "::" . method . ", response: " . json_encode(response);
+            this->di->get("logger")->log(message);
+        }
+
+        return response;
+    }
+}
+</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

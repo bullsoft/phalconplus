@@ -14,7 +14,7 @@
 #define PHP_PHALCONPLUS_VERSION     "0.0.5-dev"
 #define PHP_PHALCONPLUS_EXTNAME     "phalconplus"
 #define PHP_PHALCONPLUS_AUTHOR      "Gu Weigang<guweigang@outlook.com> and NetCredit Group"
-#define PHP_PHALCONPLUS_ZEPVERSION  "0.6.2a"
+#define PHP_PHALCONPLUS_ZEPVERSION  "0.7.0b"
 #define PHP_PHALCONPLUS_DESCRIPTION "Phalcon+ is a new framework based on Phalcon."
 
 
@@ -33,6 +33,8 @@ ZEND_BEGIN_MODULE_GLOBALS(phalconplus)
 
 	/** Function cache */
 	HashTable *fcache;
+
+	zephir_fcall_cache_entry *scache[ZEPHIR_MAX_CACHE_SLOTS];
 
 	/* Cache enabled */
 	unsigned int cache_enabled;

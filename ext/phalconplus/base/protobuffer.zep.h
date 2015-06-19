@@ -41,5 +41,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_protobuffer_method_entry) {
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, getSelfVars, NULL, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, toArray, arginfo_phalconplus_base_protobuffer_toarray, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

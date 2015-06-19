@@ -5,6 +5,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Trace);
 
 PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct);
 PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString);
+static void zephir_init_properties(zval *this_ptr TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_processor_trace___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, mode)
@@ -14,5 +15,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(phalconplus_logger_processor_trace_method_entry) {
 	PHP_ME(PhalconPlus_Logger_Processor_Trace, __construct, arginfo_phalconplus_logger_processor_trace___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Logger_Processor_Trace, __toString, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

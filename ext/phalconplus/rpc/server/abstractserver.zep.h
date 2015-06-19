@@ -18,11 +18,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_requestchec
 	ZEND_ARG_OBJ_INFO(0, request, PhalconPlus\\Base\\ProtoBuffer, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyparams, 0, 0, 4)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyparams, 0, 0, 3)
 	ZEND_ARG_INFO(0, service)
 	ZEND_ARG_INFO(0, method)
 	ZEND_ARG_INFO(0, request)
-	ZEND_ARG_INFO(0, rawData)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyobject, 0, 0, 1)
@@ -34,5 +33,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_rpc_server_abstractserver_method_entry) {
 	PHP_ME(PhalconPlus_RPC_Server_AbstractServer, requestCheck, arginfo_phalconplus_rpc_server_abstractserver_requestcheck, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_RPC_Server_AbstractServer, callByParams, arginfo_phalconplus_rpc_server_abstractserver_callbyparams, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_RPC_Server_AbstractServer, callByObject, arginfo_phalconplus_rpc_server_abstractserver_callbyobject, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

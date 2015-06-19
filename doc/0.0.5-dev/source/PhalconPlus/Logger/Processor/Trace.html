@@ -1,0 +1,166 @@
+<html>
+
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../asset/static/style.css" />
+
+
+        <script src="../../../../asset/static/jquery.min.js"></script>
+        <script src="../../../../asset/static/prettify.js"></script>
+        <script src="../../../../asset/api_definition.js"></script>
+
+        <script>var ZepCurrentPath = '../../../../'</script>
+
+        <script src="../../../../asset/static/script.js"></script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                Zephir Documentation <span class="version">v0.0.5-dev</span>
+            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../class/PhalconPlus/Logger/Processor/Trace.html">PhalconPlus\Logger\Processor\Trace</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../class/PhalconPlus/Logger/Processor/Trace.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/Logger.html">Logger</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/Logger/Processor.html">Processor</a>
+        </span>
+                <h1 class="class-name">Trace</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Logger\Processor;
+
+class Trace extends AbstractProcessor
+{
+    const T_FILE = 0x0001;
+    const T_CLASS = 0x0010;
+    
+    private skipClassesPartials = [];
+
+    private mode = self::T_FILE;
+    
+    public function __construct(int mode = self::T_FILE, array skipClassesPartials = [])
+    {
+        let this->mode = mode;
+        if empty skipClassesPartials {
+            let this->skipClassesPartials = ["PhalconPlus\\", "Phalcon\\"];
+        }
+    }
+    
+    public function __toString()
+    {
+        var trace;
+        let trace = debug_backtrace();
+        
+        // skip first since it's always the current method
+        array_shift(trace);
+        // the strval is also skipped
+        array_shift(trace);
+
+        var i = 0, part;
+        
+        %{CHECK:}%
+        while isset(trace[i]["class"]) {
+            // error_log("Class: " .trace[i]["class"]);
+            for part in this->skipClassesPartials {
+                if strpos(trace[i]["class"], part) !== false {
+                    let i = i + 1;
+                    %{goto CHECK;}%
+                }
+            }
+            break;
+        }
+    
+        var j, trace1 = [], trace2 = [];
+        let j = i - 1;
+        
+        let trace1 = [
+            "file"      : isset(trace[j]["file"]) ? trace[j]["file"] : "Nil",
+            "line"      : isset(trace[j]["line"]) ? trace[j]["line"] : -1
+        ];
+        
+        let trace2 = [
+            "class"     : isset(trace[i]["class"]) ? trace[i]["class"] : "Nil",
+            "function"  : isset(trace[i]["function"]) ? trace[i]["function"] : "Nil"
+        ];
+
+        switch this->mode & 0x0011 {
+            case self::T_CLASS:
+                return join(":", trace2);
+            case 0x11:
+                return join(":", trace1) . "][" . join(":", trace2);
+            case self::T_FILE:
+            default:
+                return join(":", trace1);
+        }
+    }
+}
+
+</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

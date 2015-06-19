@@ -7,5 +7,9 @@ class BackendServer extends AbstractServer
     {
         let this->di = di;
         let this->config = di->get("config");
+        let this->eventsManager = di->getShared("eventsManager");
+        if di->has("serviceListener") {
+            di->get("serviceListener");
+        }
     }
 }

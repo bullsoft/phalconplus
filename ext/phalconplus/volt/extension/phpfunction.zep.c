@@ -30,27 +30,26 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Volt_Extension_PhpFunction) {
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL, *_2 = NULL;
-	zval *params = NULL, *name = NULL, *_3;
+	zval *params = NULL, *name = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
 	ZEPHIR_INIT_VAR(params);
 	array_init(params);
 
-	ZEPHIR_CALL_FUNCTION(&params, "func_get_args", &_0);
+	ZEPHIR_CALL_FUNCTION(&params, "func_get_args", NULL, 35);
 	zephir_check_call_status();
 	Z_SET_ISREF_P(params);
-	ZEPHIR_CALL_FUNCTION(&name, "array_shift", &_1, params);
+	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 52, params);
 	Z_UNSET_ISREF_P(params);
 	zephir_check_call_status();
 	Z_SET_ISREF_P(params);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", &_2, params);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 58, params);
 	Z_UNSET_ISREF_P(params);
 	zephir_check_call_status();
 	if ((zephir_function_exists(name TSRMLS_CC)  == SUCCESS)) {
-		ZEPHIR_INIT_VAR(_3);
-		zephir_fast_join_str(_3, SL(","), params TSRMLS_CC);
-		ZEPHIR_CONCAT_VSVS(return_value, name, "(", _3, ")");
+		ZEPHIR_INIT_VAR(_0);
+		zephir_fast_join_str(_0, SL(","), params TSRMLS_CC);
+		ZEPHIR_CONCAT_VSVS(return_value, name, "(", _0, ")");
 		RETURN_MM();
 	}
 	ZEPHIR_MM_RESTORE();

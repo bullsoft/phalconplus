@@ -30,6 +30,8 @@ kernel/file.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/file.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/file.c -o kernel/file.lo 
 kernel/operators.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/operators.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/operators.c -o kernel/operators.lo 
+kernel/math.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/math.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/math.c -o kernel/math.lo 
 kernel/concat.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/concat.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/concat.c -o kernel/concat.lo 
 kernel/variables.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/variables.c

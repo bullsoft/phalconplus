@@ -38,9 +38,9 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, __construct) {
 
 
 	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerautoloaders", NULL);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerautoloaders", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerservices", NULL);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerservices", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

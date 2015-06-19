@@ -61,6 +61,41 @@ class Model extends \Phalcon\Mvc\Model
         return new {className}();
     }
 
+    public static function batchInsert(array columns, array rows)
+    {
+        var model, conn, e, row;
+        var columnMap = [], newColumns = [];
+
+        var className;
+        let className = get_called_class();
+        let model = new {className}();
+        
+        if method_exists(model, "columnMap") {
+            let columnMap = array_flip(model->columnMap());
+            var val;
+            for val in columns {
+                if isset(columnMap[val]) {
+                    let newColumns[] = columnMap[val];
+                }
+            }
+        } else {
+            let newColumns = columns;
+        }
+        let conn = model->getWriteConnection();
+        try {
+            conn->begin();
+            for row in rows {
+                conn->insert(model->getSource(), row, newColumns);
+            }
+            conn->commit();
+        } catch \Exception, e {
+            conn->rollback();
+            throw e;
+        }
+        
+        return true;
+    }
+
     public function beforeValidationOnCreate()
     {
         let this->ctime = date("Y-m-d H:i:s");

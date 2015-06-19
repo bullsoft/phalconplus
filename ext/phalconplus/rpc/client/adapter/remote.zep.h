@@ -25,5 +25,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_rpc_client_adapter_remote_method_entry) {
 	PHP_ME(PhalconPlus_RPC_Client_Adapter_Remote, __construct, arginfo_phalconplus_rpc_client_adapter_remote___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_RPC_Client_Adapter_Remote, callByObject, arginfo_phalconplus_rpc_client_adapter_remote_callbyobject, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_RPC_Client_Adapter_Remote, __call, arginfo_phalconplus_rpc_client_adapter_remote___call, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

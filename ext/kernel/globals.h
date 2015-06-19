@@ -24,6 +24,7 @@
 #include <php.h>
 
 #define ZEPHIR_MAX_MEMORY_STACK 48
+#define ZEPHIR_MAX_CACHE_SLOTS 512
 
 /** Memory frame */
 typedef struct _zephir_memory_entry {
@@ -52,6 +53,19 @@ typedef struct _zephir_function_cache {
 	zend_class_entry *ce;
 	zend_function *func;
 } zephir_function_cache;
+
+#ifndef ZEPHIR_RELEASE
+
+typedef struct _zephir_fcall_cache_entry {
+	zend_function *f;
+	zend_uint times;
+} zephir_fcall_cache_entry;
+
+#else
+
+typedef zend_function zephir_fcall_cache_entry;
+
+#endif
 
 #if PHP_VERSION_ID >= 50400
 	#define ZEPHIR_INIT_FUNCS(class_functions) static const zend_function_entry class_functions[] =
@@ -144,6 +158,12 @@ typedef struct _zephir_function_cache {
 # define __func__ __FUNCTION__
 #endif
 
+#if defined(__GNUC__)
+# define ZEPHIR_NO_OPT __attribute__((optimize("O0")))
+#else
+# define ZEPHIR_NO_OPT
+#endif
+
 /*#if PHP_VERSION_ID > 50399
 # define ZLK_DC , const struct _zend_literal* key
 # define ZLK_CC , key
@@ -154,12 +174,8 @@ typedef struct _zephir_function_cache {
 # define ZLK_NULL_CC
 #endif*/
 
-#if PHP_VERSION_ID < 50600
 #ifdef ZTS
 #define zephir_nts_static
-#else
-#define zephir_nts_static static
-#endif
 #else
 #define zephir_nts_static
 #endif

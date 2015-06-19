@@ -32,11 +32,12 @@ class Exception extends AbstractEnum
         return detail;
     }
 
-    public static function newException(eCode, <\Phalcon\Logger\Adapter> logger = null)
+    public static function newException(e, <\Phalcon\Logger\Adapter> logger = null)
     {
-        var code, eName, map2Name, className;
+        var code, eCode, eName, map2Name, className;
         let map2Name = array_flip(static::validValues(true));
-
+        let eCode = e->getCode();
+        
         // e.g. USER_NOT_EXISTS -> UserNotExists
         let eName = \Phalcon\Text::camelize(map2Name[eCode]);
 
@@ -50,6 +51,8 @@ class Exception extends AbstractEnum
         
         exception->setCode(code->getCode());
         exception->setLevel(code->getLevel());
+        exception->setMessage(e->getMessage());
+        
         return exception;
     }
 

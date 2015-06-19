@@ -54,7 +54,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, phalconplus_assert_invalidargumentexception_ce, this_ptr, "__construct", NULL, message, code);
+	ZEPHIR_CALL_PARENT(NULL, phalconplus_assert_invalidargumentexception_ce, this_ptr, "__construct", NULL, 0, message, code);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("propertyPath"), propertyPath TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("value"), value TSRMLS_CC);

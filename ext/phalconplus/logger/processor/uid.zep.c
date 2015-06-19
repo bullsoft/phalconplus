@@ -32,8 +32,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Uid) {
 PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
-	zval *len = NULL, _0 = zval_used_for_init, *_1 = NULL, *_3 = NULL, *_4;
+	zval *len = NULL, _0 = zval_used_for_init, *_1 = NULL, *_2 = NULL, *_3;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &len);
@@ -46,17 +45,17 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __construct) {
 
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_STRING(&_0, "", 0);
-	ZEPHIR_CALL_FUNCTION(&_1, "uniqid", &_2, &_0, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(&_1, "uniqid", NULL, 53, &_0, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_0);
 	ZVAL_STRING(&_0, "md5", 0);
-	ZEPHIR_CALL_FUNCTION(&_3, "hash", NULL, &_0, _1);
+	ZEPHIR_CALL_FUNCTION(&_2, "hash", NULL, 54, &_0, _1);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_0);
 	ZVAL_LONG(&_0, 0);
-	ZEPHIR_INIT_VAR(_4);
-	zephir_substr(_4, _3, 0 , zephir_get_intval(len), 0);
-	zephir_update_property_this(this_ptr, SL("uid"), _4 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_3);
+	zephir_substr(_3, _2, 0 , zephir_get_intval(len), 0);
+	zephir_update_property_this(this_ptr, SL("uid"), _3 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }

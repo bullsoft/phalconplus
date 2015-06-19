@@ -20,7 +20,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_exception_getbycode, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_exception_newexception, 0, 0, 1)
-	ZEND_ARG_INFO(0, eCode)
+	ZEND_ARG_INFO(0, e)
 	ZEND_ARG_OBJ_INFO(0, logger, Phalcon\\Logger\\Adapter, 1)
 ZEND_END_ARG_INFO()
 
@@ -32,5 +32,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_enum_exception_method_entry) {
 	PHP_ME(PhalconPlus_Enum_Exception, getMessage, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Enum_Exception, getLevel, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Enum_Exception, getCode, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };
