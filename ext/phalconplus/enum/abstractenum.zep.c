@@ -55,13 +55,13 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "__default", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&_1, reflection, "hasconstant", NULL, 40, _2);
+	ZEPHIR_CALL_METHOD(&_1, reflection, "hasconstant", NULL, 41, _2);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
 	if (zephir_is_true(_1)) {
 		ZEPHIR_INIT_NVAR(_2);
 		ZVAL_STRING(_2, "__default", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&defaultVal, reflection, "getconstant", NULL, 41, _2);
+		ZEPHIR_CALL_METHOD(&defaultVal, reflection, "getconstant", NULL, 42, _2);
 		zephir_check_temp_parameter(_2);
 		zephir_check_call_status();
 		ZEPHIR_CALL_STATIC(&_3, "isvalid", NULL, 0, defaultVal);
@@ -73,9 +73,9 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 			zephir_get_class(_4, this_ptr, 0 TSRMLS_CC);
 			ZEPHIR_SINIT_VAR(_5);
 			ZVAL_STRING(&_5, "Invalid __default enumeration %s for Enum %s", 0);
-			ZEPHIR_CALL_FUNCTION(&_6, "sprintf", NULL, 42, &_5, defaultVal, _4);
+			ZEPHIR_CALL_FUNCTION(&_6, "sprintf", NULL, 43, &_5, defaultVal, _4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, 43, _6);
+			ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, 44, _6);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(_2, "phalconplus/Enum/AbstractEnum.zep", 15 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -112,9 +112,9 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 		zephir_get_class(_2, this_ptr, 0 TSRMLS_CC);
 		ZEPHIR_SINIT_VAR(_3);
 		ZVAL_STRING(&_3, "Invalid enumeration %s for Enum %s", 0);
-		ZEPHIR_CALL_FUNCTION(&_4, "sprintf", NULL, 42, &_3, val, _2);
+		ZEPHIR_CALL_FUNCTION(&_4, "sprintf", NULL, 43, &_3, val, _2);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 44, _4);
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 45, _4);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_1, "phalconplus/Enum/AbstractEnum.zep", 29 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -144,7 +144,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
 
 	ZEPHIR_CALL_STATIC(&_0, "validvalues", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_1, "in_array", NULL, 45, val, _0, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(&_1, "in_array", NULL, 46, val, _0, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	if (!(zephir_is_true(_1))) {
 		RETURN_MM_BOOL(0);
@@ -175,13 +175,13 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 	zephir_get_called_class(_0 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, reflection, "__construct", NULL, 18, _0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&consts, reflection, "getconstants", NULL, 46);
+	ZEPHIR_CALL_METHOD(&consts, reflection, "getconstants", NULL, 47);
 	zephir_check_call_status();
 	zephir_array_unset_string(&consts, SS("__default"), PH_SEPARATE);
 	if (assoc == 1) {
 		RETURN_CCTOR(consts);
 	} else {
-		ZEPHIR_RETURN_CALL_FUNCTION("array_values", NULL, 47, consts);
+		ZEPHIR_RETURN_CALL_FUNCTION("array_values", NULL, 48, consts);
 		zephir_check_call_status();
 		RETURN_MM();
 	}

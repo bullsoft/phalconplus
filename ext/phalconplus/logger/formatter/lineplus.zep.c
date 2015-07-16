@@ -126,14 +126,14 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		_7 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
 		ZEPHIR_INIT_VAR(_8);
 		ZEPHIR_CONCAT_SV(_8, "Logger format is not valid: ", _7);
-		ZEPHIR_CALL_METHOD(NULL, _6, "__construct", NULL, 44, _8);
+		ZEPHIR_CALL_METHOD(NULL, _6, "__construct", NULL, 45, _8);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_6, "phalconplus/Logger/Formatter/LinePlus.zep", 29 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	Z_SET_ISREF_P(matches);
-	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 50, matches);
+	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 51, matches);
 	Z_UNSET_ISREF_P(matches);
 	zephir_check_call_status();
 	Z_SET_ISREF_P(matches);
@@ -158,7 +158,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 			zephir_array_update_zval(&processors, val1, &_6, PH_COPY | PH_SEPARATE);
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(&_13, "array_values", NULL, 47, processors);
+	ZEPHIR_CALL_FUNCTION(&_13, "array_values", NULL, 48, processors);
 	zephir_check_call_status();
 	_7 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(logStr);

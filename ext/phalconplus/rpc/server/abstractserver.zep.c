@@ -80,7 +80,7 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, requestCheck) {
 	object_init_ex(serviceReflection, zephir_get_internal_ce(SS("reflectionclass") TSRMLS_CC));
 	ZEPHIR_CALL_METHOD(NULL, serviceReflection, "__construct", NULL, 18, service);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&methodReflection, serviceReflection, "getmethod", NULL, 57, method);
+	ZEPHIR_CALL_METHOD(&methodReflection, serviceReflection, "getmethod", NULL, 58, method);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

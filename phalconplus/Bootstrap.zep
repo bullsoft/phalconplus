@@ -185,13 +185,11 @@ final class Bootstrap
         this->application->handle();
     }
     
-    public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null, var needInitConf = true, var needHandle = true)
+    public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null, var needHandle = true)
     {
         var moduleClass, module;
 
-        if needInitConf {
-            this->initConf();
-        }
+        this->initConf();
         
         let this->loader = new \Phalcon\Loader();
 
@@ -228,6 +226,7 @@ final class Bootstrap
         }
         let moduleConf = new \Phalcon\Config(this->load(moduleConfPath));
         let moduleRunMode = moduleConf->application->mode;
+
         // @TODO: check if mode exists
 
         let moduleClassName = moduleConf->application->ns . this->modeMap[moduleRunMode];
@@ -272,12 +271,13 @@ final class Bootstrap
     
     public function load(var filePath)
     {
-        let {"rootPath"} = APP_ROOT_DIR;
-        let {"loader"}   = this->loader;
-        let {"config"}   = this->config;
-        let {"application"} = this->application;
-        let {"bootstrap"}   = this;
-        let {"di"}          = this->di;
+        extract(["rootPath": APP_ROOT_DIR,
+                 "loader": this->loader,
+                 "config": this->config,
+                 "application": this->application,
+                 "bootstrap": this,
+                 "di": this->di
+        ]);
         return require filePath;
     }
 }

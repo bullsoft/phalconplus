@@ -38,7 +38,6 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_exectask, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, argv, 0)
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI\\FactoryDefault, 1)
-	ZEND_ARG_INFO(0, needInitConf)
 	ZEND_ARG_INFO(0, needHandle)
 ZEND_END_ARG_INFO()
 

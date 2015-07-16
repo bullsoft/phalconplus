@@ -166,14 +166,14 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 				zephir_check_call_status();
 				ZEPHIR_INIT_LNVAR(_6);
 				ZEPHIR_CONCAT_SVSVS(_6, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() failed to connect to MySQL. Detail: ", _1, ". We will try ", _4, " times for you.");
-				ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 38, _6);
+				ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 39, _6);
 				zephir_check_call_status();
 				_8 = (zephir_get_numberval(tryTimes) - 1);
 				ZEPHIR_INIT_NVAR(tryTimes);
 				ZVAL_LONG(tryTimes, _8);
 				if (ZEPHIR_GT_LONG(tryTimes, 0)) {
 					_9 = zephir_fetch_nproperty_this(this_ptr, SL("retryInterval"), PH_NOISY_CC);
-					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_10, 39, _9);
+					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_10, 40, _9);
 					zephir_check_call_status();
 					_11 = zephir_fetch_nproperty_this(this_ptr, SL("retryTimes"), PH_NOISY_CC);
 					ZEPHIR_SINIT_NVAR(_12);
@@ -182,7 +182,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 					zephir_check_call_status();
 					ZEPHIR_INIT_LNVAR(_14);
 					ZEPHIR_CONCAT_SVS(_14, "PHP Notice:  PhalconPlus::Db::MySQL::connnect() retry to connect to MySQL for the ", _13, " time ... ");
-					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 38, _14);
+					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 39, _14);
 					zephir_check_call_status();
 				} else {
 					ZEPHIR_INIT_NVAR(_15);
@@ -190,7 +190,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 					zephir_json_encode(_15, &(_15), _9, 0  TSRMLS_CC);
 					ZEPHIR_INIT_LNVAR(_14);
 					ZEPHIR_CONCAT_SV(_14, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: ", _15);
-					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 38, _14);
+					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 39, _14);
 					zephir_check_call_status();
 					zephir_throw_exception_debug(e, "phalconplus/Db/Mysql.zep", 68 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();
