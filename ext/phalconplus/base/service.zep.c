@@ -71,7 +71,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", NULL, 15, this_ptr, key);
+	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", NULL, 1, this_ptr, key);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
 		ZEPHIR_OBS_VAR(_1);

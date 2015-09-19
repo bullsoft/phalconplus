@@ -23,6 +23,7 @@
 #include "kernel/hash.h"
 #include "kernel/array.h"
 
+
 ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Formatter_LinePlus) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Logger\\Formatter, LinePlus, phalconplus, logger_formatter_lineplus, zephir_get_internal_ce(SS("phalcon\\logger\\formatter") TSRMLS_CC), phalconplus_logger_formatter_lineplus_method_entry, 0);
@@ -30,6 +31,8 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Formatter_LinePlus) {
 	zend_declare_property_null(phalconplus_logger_formatter_lineplus_ce, SL("processors"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	zend_declare_property_string(phalconplus_logger_formatter_lineplus_ce, SL("formatString"), "[%date%][%type%] %message%", ZEND_ACC_PRIVATE TSRMLS_CC);
+
+	phalconplus_logger_formatter_lineplus_ce->create_object = zephir_init_properties_PhalconPlus_Logger_Formatter_LinePlus;
 
 	zend_class_implements(phalconplus_logger_formatter_lineplus_ce TSRMLS_CC, 1, zephir_get_internal_ce(SS("phalcon\\logger\\formatterinterface") TSRMLS_CC));
 	return SUCCESS;
@@ -57,9 +60,6 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __construct) {
 	}
 
 
-	if (EG(called_scope) == phalconplus_logger_formatter_lineplus_ce) {
-		zephir_init_properties(this_ptr TSRMLS_CC);
-	}
 	if (!(ZEPHIR_IS_EMPTY(formatString))) {
 		zephir_update_property_this(this_ptr, SL("formatString"), formatString TSRMLS_CC);
 	}
@@ -105,7 +105,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	zephir_update_property_array(this_ptr, SL("processors"), _0, message TSRMLS_CC);
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_STRING(&_1, "Y-m-d H:i:s", 0);
-	ZEPHIR_CALL_FUNCTION(&_2, "date", NULL, 10, &_1, date);
+	ZEPHIR_CALL_FUNCTION(&_2, "date", NULL, 29, &_1, date);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_STRING(_3, "date", 1);
@@ -126,18 +126,18 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		_7 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
 		ZEPHIR_INIT_VAR(_8);
 		ZEPHIR_CONCAT_SV(_8, "Logger format is not valid: ", _7);
-		ZEPHIR_CALL_METHOD(NULL, _6, "__construct", NULL, 45, _8);
+		ZEPHIR_CALL_METHOD(NULL, _6, "__construct", NULL, 16, _8);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_6, "phalconplus/Logger/Formatter/LinePlus.zep", 29 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	Z_SET_ISREF_P(matches);
-	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 51, matches);
+	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 52, matches);
 	Z_UNSET_ISREF_P(matches);
 	zephir_check_call_status();
 	Z_SET_ISREF_P(matches);
-	ZEPHIR_CALL_FUNCTION(&replace1, "end", NULL, 8, matches);
+	ZEPHIR_CALL_FUNCTION(&replace1, "end", NULL, 27, matches);
 	Z_UNSET_ISREF_P(matches);
 	zephir_check_call_status();
 	zephir_is_iterable(replace1, &_10, &_9, 0, 0, "phalconplus/Logger/Formatter/LinePlus.zep", 46);
@@ -149,7 +149,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		ZEPHIR_OBS_NVAR(val2);
 		_7 = zephir_fetch_nproperty_this(this_ptr, SL("processors"), PH_NOISY_CC);
 		if (zephir_array_isset_fetch(&val2, _7, val1, 0 TSRMLS_CC)) {
-			ZEPHIR_CALL_FUNCTION(&_2, "strval", &_12, 4, val2);
+			ZEPHIR_CALL_FUNCTION(&_2, "strval", &_12, 23, val2);
 			zephir_check_call_status();
 			zephir_array_update_zval(&processors, val1, &_2, PH_COPY | PH_SEPARATE);
 		} else {
@@ -158,7 +158,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 			zephir_array_update_zval(&processors, val1, &_6, PH_COPY | PH_SEPARATE);
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(&_13, "array_values", NULL, 48, processors);
+	ZEPHIR_CALL_FUNCTION(&_13, "array_values", NULL, 19, processors);
 	zephir_check_call_status();
 	_7 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(logStr);
@@ -225,16 +225,24 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get) {
 
 }
 
-static void zephir_init_properties(zval *this_ptr TSRMLS_DC) {
+static zend_object_value zephir_init_properties_PhalconPlus_Logger_Formatter_LinePlus(zend_class_entry *class_type TSRMLS_DC) {
 
-	zval *_0;
+		zval *_0, *_1;
 
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_INIT_VAR(_0);
-	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("processors"), _0 TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("processors"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("processors"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

@@ -11,7 +11,7 @@ SHLIB_DL_SUFFIX_NAME = so
 ZEND_EXT_TYPE = zend_extension
 RE2C = re2c
 AWK = gawk
-shared_objects_phalconplus = phalconplus.lo kernel/main.lo kernel/memory.lo kernel/exception.lo kernel/hash.lo kernel/debug.lo kernel/backtrace.lo kernel/object.lo kernel/array.lo kernel/extended/array.lo kernel/string.lo kernel/fcall.lo kernel/extended/fcall.lo kernel/require.lo kernel/file.lo kernel/operators.lo kernel/math.lo kernel/concat.lo kernel/variables.lo kernel/filter.lo kernel/iterator.lo kernel/time.lo kernel/exit.lo phalconplus/assert/assertion.lo phalconplus/assert/assertionfailedexception.lo phalconplus/assert/invalidargumentexception.lo phalconplus/base/abstractmodule.lo phalconplus/base/abstractrequest.lo phalconplus/base/backendserver.lo phalconplus/base/exception.lo phalconplus/base/model.lo phalconplus/base/pagable.lo phalconplus/base/page.lo phalconplus/base/protobuffer.lo phalconplus/base/protoorderby.lo phalconplus/base/response.lo phalconplus/base/service.lo phalconplus/base/simplerequest.lo phalconplus/bootstrap.lo phalconplus/db/mysql.lo phalconplus/enum/abstractenum.lo phalconplus/enum/assertioncode.lo phalconplus/enum/exception.lo phalconplus/enum/orderbydirection.lo phalconplus/logger/adapter/fileplus.lo phalconplus/logger/formatter/lineplus.lo phalconplus/logger/processor/abstractprocessor.lo phalconplus/logger/processor/trace.lo phalconplus/logger/processor/uid.lo phalconplus/rpc/client/abstractclient.lo phalconplus/rpc/client/adapter/local.lo phalconplus/rpc/client/adapter/remote.lo phalconplus/rpc/server/abstractserver.lo phalconplus/volt/extension/phpfunction.lo
+shared_objects_phalconplus = phalconplus.lo kernel/main.lo kernel/memory.lo kernel/exception.lo kernel/hash.lo kernel/debug.lo kernel/backtrace.lo kernel/object.lo kernel/array.lo kernel/extended/array.lo kernel/string.lo kernel/fcall.lo kernel/extended/fcall.lo kernel/require.lo kernel/file.lo kernel/operators.lo kernel/math.lo kernel/concat.lo kernel/variables.lo kernel/filter.lo kernel/iterator.lo kernel/time.lo kernel/exit.lo phalconplus/base/protobuffer.lo phalconplus/enum/abstractenum.lo phalconplus/logger/processor/abstractprocessor.lo phalconplus/rpc/client/abstractclient.lo phalconplus/assert/assertionfailedexception.lo phalconplus/rpc/server/abstractserver.lo phalconplus/assert/assertion.lo phalconplus/assert/invalidargumentexception.lo phalconplus/base/abstractmodule.lo phalconplus/base/abstractrequest.lo phalconplus/base/backendserver.lo phalconplus/base/exception.lo phalconplus/base/model.lo phalconplus/base/pagable.lo phalconplus/base/page.lo phalconplus/base/protoorderby.lo phalconplus/base/response.lo phalconplus/base/service.lo phalconplus/base/simplerequest.lo phalconplus/bootstrap.lo phalconplus/db/mysql.lo phalconplus/enum/assertioncode.lo phalconplus/enum/exception.lo phalconplus/enum/orderbydirection.lo phalconplus/logger/adapter/fileplus.lo phalconplus/logger/formatter/lineplus.lo phalconplus/logger/processor/trace.lo phalconplus/logger/processor/uid.lo phalconplus/rpc/client/adapter/local.lo phalconplus/rpc/client/adapter/remote.lo phalconplus/volt/extension/phpfunction.lo
 PHP_PECL_EXTENSION = phalconplus
 PHALCONPLUS_SHARED_LIBADD =
 PHP_MODULES = $(phplibdir)/phalconplus.la
@@ -223,10 +223,20 @@ kernel/time.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/time.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/time.c -o kernel/time.lo 
 kernel/exit.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/exit.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/exit.c -o kernel/exit.lo 
-phalconplus/assert/assertion.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertion.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertion.zep.c -o phalconplus/assert/assertion.lo 
+phalconplus/base/protobuffer.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protobuffer.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protobuffer.zep.c -o phalconplus/base/protobuffer.lo 
+phalconplus/enum/abstractenum.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/abstractenum.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/abstractenum.zep.c -o phalconplus/enum/abstractenum.lo 
+phalconplus/logger/processor/abstractprocessor.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/abstractprocessor.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/abstractprocessor.zep.c -o phalconplus/logger/processor/abstractprocessor.lo 
+phalconplus/rpc/client/abstractclient.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c -o phalconplus/rpc/client/abstractclient.lo 
 phalconplus/assert/assertionfailedexception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertionfailedexception.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertionfailedexception.zep.c -o phalconplus/assert/assertionfailedexception.lo 
+phalconplus/rpc/server/abstractserver.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/server/abstractserver.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/server/abstractserver.zep.c -o phalconplus/rpc/server/abstractserver.lo 
+phalconplus/assert/assertion.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertion.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/assertion.zep.c -o phalconplus/assert/assertion.lo 
 phalconplus/assert/invalidargumentexception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/invalidargumentexception.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/assert/invalidargumentexception.zep.c -o phalconplus/assert/invalidargumentexception.lo 
 phalconplus/base/abstractmodule.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/abstractmodule.zep.c
@@ -243,8 +253,6 @@ phalconplus/base/pagable.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/ba
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/pagable.zep.c -o phalconplus/base/pagable.lo 
 phalconplus/base/page.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/page.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/page.zep.c -o phalconplus/base/page.lo 
-phalconplus/base/protobuffer.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protobuffer.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protobuffer.zep.c -o phalconplus/base/protobuffer.lo 
 phalconplus/base/protoorderby.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protoorderby.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/protoorderby.zep.c -o phalconplus/base/protoorderby.lo 
 phalconplus/base/response.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/base/response.zep.c
@@ -257,8 +265,6 @@ phalconplus/bootstrap.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/boots
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c -o phalconplus/bootstrap.lo 
 phalconplus/db/mysql.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/mysql.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/mysql.zep.c -o phalconplus/db/mysql.lo 
-phalconplus/enum/abstractenum.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/abstractenum.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/abstractenum.zep.c -o phalconplus/enum/abstractenum.lo 
 phalconplus/enum/assertioncode.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/assertioncode.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/assertioncode.zep.c -o phalconplus/enum/assertioncode.lo 
 phalconplus/enum/exception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/exception.zep.c
@@ -269,20 +275,14 @@ phalconplus/logger/adapter/fileplus.lo: /Users/guweigang/tmp/phalconplus/ext/pha
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/adapter/fileplus.zep.c -o phalconplus/logger/adapter/fileplus.lo 
 phalconplus/logger/formatter/lineplus.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/formatter/lineplus.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/formatter/lineplus.zep.c -o phalconplus/logger/formatter/lineplus.lo 
-phalconplus/logger/processor/abstractprocessor.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/abstractprocessor.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/abstractprocessor.zep.c -o phalconplus/logger/processor/abstractprocessor.lo 
 phalconplus/logger/processor/trace.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/trace.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/trace.zep.c -o phalconplus/logger/processor/trace.lo 
 phalconplus/logger/processor/uid.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/uid.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/logger/processor/uid.zep.c -o phalconplus/logger/processor/uid.lo 
-phalconplus/rpc/client/abstractclient.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c -o phalconplus/rpc/client/abstractclient.lo 
 phalconplus/rpc/client/adapter/local.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/adapter/local.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/adapter/local.zep.c -o phalconplus/rpc/client/adapter/local.lo 
 phalconplus/rpc/client/adapter/remote.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/adapter/remote.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/adapter/remote.zep.c -o phalconplus/rpc/client/adapter/remote.lo 
-phalconplus/rpc/server/abstractserver.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/server/abstractserver.zep.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/server/abstractserver.zep.c -o phalconplus/rpc/server/abstractserver.lo 
 phalconplus/volt/extension/phpfunction.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c -o phalconplus/volt/extension/phpfunction.lo 
 $(phplibdir)/phalconplus.la: ./phalconplus.la

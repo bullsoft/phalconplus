@@ -9,8 +9,13 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
-	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/assert/assertion.zep.c
+	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/base/protobuffer.zep.c
+	phalconplus/enum/abstractenum.zep.c
+	phalconplus/logger/processor/abstractprocessor.zep.c
+	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
+	phalconplus/rpc/server/abstractserver.zep.c
+	phalconplus/assert/assertion.zep.c
 	phalconplus/assert/invalidargumentexception.zep.c
 	phalconplus/base/abstractmodule.zep.c
 	phalconplus/base/abstractrequest.zep.c
@@ -19,26 +24,21 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/model.zep.c
 	phalconplus/base/pagable.zep.c
 	phalconplus/base/page.zep.c
-	phalconplus/base/protobuffer.zep.c
 	phalconplus/base/protoorderby.zep.c
 	phalconplus/base/response.zep.c
 	phalconplus/base/service.zep.c
 	phalconplus/base/simplerequest.zep.c
 	phalconplus/bootstrap.zep.c
 	phalconplus/db/mysql.zep.c
-	phalconplus/enum/abstractenum.zep.c
 	phalconplus/enum/assertioncode.zep.c
 	phalconplus/enum/exception.zep.c
 	phalconplus/enum/orderbydirection.zep.c
 	phalconplus/logger/adapter/fileplus.zep.c
 	phalconplus/logger/formatter/lineplus.zep.c
-	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/logger/processor/trace.zep.c
 	phalconplus/logger/processor/uid.zep.c
-	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/rpc/client/adapter/local.zep.c
 	phalconplus/rpc/client/adapter/remote.zep.c
-	phalconplus/rpc/server/abstractserver.zep.c
 	phalconplus/volt/extension/phpfunction.zep.c "
 	PHP_NEW_EXTENSION(phalconplus, $phalconplus_sources, $ext_shared,, )
 	PHP_SUBST(PHALCONPLUS_SHARED_LIBADD)

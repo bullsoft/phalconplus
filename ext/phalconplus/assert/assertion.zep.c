@@ -52,7 +52,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 
 
 	object_init_ex(return_value, phalconplus_assert_invalidargumentexception_ce);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, message, code, propertyPath, value, constraints);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 21, message, code, propertyPath, value, constraints);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -79,9 +79,9 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 
 
 	if (!ZEPHIR_IS_EQUAL(value, value2)) {
-		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 2, value);
+		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 22, value);
 		zephir_check_call_status();
-		ZEPHIR_CALL_SELF(&v2, "stringify", &_0, 2, value2);
+		ZEPHIR_CALL_SELF(&v2, "stringify", &_0, 22, value2);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -123,9 +123,9 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 
 
 	if (!ZEPHIR_IS_IDENTICAL(value, value2)) {
-		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 2, value);
+		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 22, value);
 		zephir_check_call_status();
-		ZEPHIR_CALL_SELF(&v2, "stringify", &_0, 2, value2);
+		ZEPHIR_CALL_SELF(&v2, "stringify", &_0, 22, value2);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -166,7 +166,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 
 
 	if (ZEPHIR_IS_EMPTY(value)) {
-		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 2, value);
+		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 22, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -204,7 +204,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 
 
 	if (Z_TYPE_P(value) == IS_NULL) {
-		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 2, value);
+		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 22, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -242,7 +242,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 
 
 	if (!(zephir_is_numeric(value))) {
-		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 2, value);
+		ZEPHIR_CALL_SELF(&v1, "stringify", &_0, 22, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -280,7 +280,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, stringify) {
 		}
 		RETURN_CCTOR(_0);
 	}
-	ZEPHIR_CALL_FUNCTION(&_1, "is_scalar", NULL, 3, value);
+	ZEPHIR_CALL_FUNCTION(&_1, "is_scalar", NULL, 7, value);
 	zephir_check_call_status();
 	if (zephir_is_true(_1)) {
 		zephir_get_strval(_2, value);

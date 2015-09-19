@@ -22,6 +22,7 @@
 #include "kernel/operators.h"
 #include "kernel/string.h"
 
+
 ZEPHIR_INIT_CLASS(PhalconPlus_Db_Mysql) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Db, Mysql, phalconplus, db_mysql, phalconplus_db_mysql_method_entry, 0);
@@ -40,6 +41,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_Mysql) {
 
 	zend_declare_property_bool(phalconplus_db_mysql_ce, SL("connected"), 0, ZEND_ACC_PRIVATE TSRMLS_CC);
 
+	phalconplus_db_mysql_ce->create_object = zephir_init_properties_PhalconPlus_Db_Mysql;
 	zend_declare_class_constant_long(phalconplus_db_mysql_ce, SL("RETRY_TIMES"), 5 TSRMLS_CC);
 
 	zend_declare_class_constant_long(phalconplus_db_mysql_ce, SL("RETRY_INTERVAL"), 100000 TSRMLS_CC);
@@ -71,9 +73,6 @@ PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
 	}
 
 
-	if (EG(called_scope) == phalconplus_db_mysql_ce) {
-		zephir_init_properties(this_ptr TSRMLS_CC);
-	}
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "config", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(&config, di, "get", NULL, 0, _0);
@@ -162,27 +161,27 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 				ZEPHIR_INIT_NVAR(_1);
 				_2 = zephir_fetch_nproperty_this(this_ptr, SL("descriptor"), PH_NOISY_CC);
 				zephir_json_encode(_1, &(_1), _2, 0  TSRMLS_CC);
-				ZEPHIR_CALL_FUNCTION(&_4, "strval", &_5, 4, tryTimes);
+				ZEPHIR_CALL_FUNCTION(&_4, "strval", &_5, 23, tryTimes);
 				zephir_check_call_status();
 				ZEPHIR_INIT_LNVAR(_6);
 				ZEPHIR_CONCAT_SVSVS(_6, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() failed to connect to MySQL. Detail: ", _1, ". We will try ", _4, " times for you.");
-				ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 39, _6);
+				ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 48, _6);
 				zephir_check_call_status();
 				_8 = (zephir_get_numberval(tryTimes) - 1);
 				ZEPHIR_INIT_NVAR(tryTimes);
 				ZVAL_LONG(tryTimes, _8);
 				if (ZEPHIR_GT_LONG(tryTimes, 0)) {
 					_9 = zephir_fetch_nproperty_this(this_ptr, SL("retryInterval"), PH_NOISY_CC);
-					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_10, 40, _9);
+					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_10, 49, _9);
 					zephir_check_call_status();
 					_11 = zephir_fetch_nproperty_this(this_ptr, SL("retryTimes"), PH_NOISY_CC);
 					ZEPHIR_SINIT_NVAR(_12);
 					sub_function(&_12, _11, tryTimes TSRMLS_CC);
-					ZEPHIR_CALL_FUNCTION(&_13, "strval", &_5, 4, &_12);
+					ZEPHIR_CALL_FUNCTION(&_13, "strval", &_5, 23, &_12);
 					zephir_check_call_status();
 					ZEPHIR_INIT_LNVAR(_14);
 					ZEPHIR_CONCAT_SVS(_14, "PHP Notice:  PhalconPlus::Db::MySQL::connnect() retry to connect to MySQL for the ", _13, " time ... ");
-					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 39, _14);
+					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 48, _14);
 					zephir_check_call_status();
 				} else {
 					ZEPHIR_INIT_NVAR(_15);
@@ -190,7 +189,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 					zephir_json_encode(_15, &(_15), _9, 0  TSRMLS_CC);
 					ZEPHIR_INIT_LNVAR(_14);
 					ZEPHIR_CONCAT_SV(_14, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: ", _15);
-					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 39, _14);
+					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 48, _14);
 					zephir_check_call_status();
 					zephir_throw_exception_debug(e, "phalconplus/Db/Mysql.zep", 68 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();
@@ -203,16 +202,24 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 
 }
 
-static void zephir_init_properties(zval *this_ptr TSRMLS_DC) {
+static zend_object_value zephir_init_properties_PhalconPlus_Db_Mysql(zend_class_entry *class_type TSRMLS_DC) {
 
-	zval *_0;
+		zval *_0, *_1;
 
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_INIT_VAR(_0);
-	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("descriptor"), _0 TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("descriptor"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("descriptor"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

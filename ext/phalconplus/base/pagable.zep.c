@@ -15,6 +15,8 @@
 #include "kernel/object.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
+
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_Pagable) {
 
@@ -26,6 +28,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Pagable) {
 
 	zend_declare_property_null(phalconplus_base_pagable_ce, SL("orderBys"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
+	phalconplus_base_pagable_ce->create_object = zephir_init_properties_PhalconPlus_Base_Pagable;
 	zend_declare_class_constant_long(phalconplus_base_pagable_ce, SL("DEFAULT_PAGE_NO"), 1 TSRMLS_CC);
 
 	zend_declare_class_constant_long(phalconplus_base_pagable_ce, SL("DEFAULT_PAGE_SIZE"), 15 TSRMLS_CC);
@@ -67,7 +70,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("orderBys"), PH_NOISY_CC);
 	Z_SET_ISREF_P(_0);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 14, _0, orderBy);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 33, _0, orderBy);
 	Z_UNSET_ISREF_P(_0);
 	zephir_check_call_status();
 	RETURN_THIS();
@@ -100,25 +103,24 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize) {
 
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, __construct) {
+static zend_object_value zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type TSRMLS_DC) {
 
+		zval *_0, *_1;
 
-	if (EG(called_scope) == phalconplus_base_pagable_ce) {
-		zephir_init_properties(this_ptr TSRMLS_CC);
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("orderBys"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("orderBys"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
 	}
-
-}
-
-static void zephir_init_properties(zval *this_ptr TSRMLS_DC) {
-
-	zval *_0;
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_INIT_VAR(_0);
-	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("orderBys"), _0 TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
 
 }
 

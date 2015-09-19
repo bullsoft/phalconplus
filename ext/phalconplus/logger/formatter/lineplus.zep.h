@@ -7,7 +7,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __construct);
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format);
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, addProcessor);
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get);
-static void zephir_init_properties(zval *this_ptr TSRMLS_DC);
+static zend_object_value zephir_init_properties_PhalconPlus_Logger_Formatter_LinePlus(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, formatString)

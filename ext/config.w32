@@ -11,17 +11,17 @@ if (PHP_PHALCONPLUS != "no") {
     AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
   }
   
-  ADD_SOURCES(configure_module_dirname + "/phalconplus/assert", "assertion.zep.c assertionfailedexception.zep.c invalidargumentexception.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus/base", "abstractmodule.zep.c abstractrequest.zep.c backendserver.zep.c exception.zep.c model.zep.c pagable.zep.c page.zep.c protobuffer.zep.c protoorderby.zep.c response.zep.c service.zep.c simplerequest.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus", "bootstrap.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus/db", "mysql.zep.c", "phalconplus");
+  ADD_SOURCES(configure_module_dirname + "/phalconplus/base", "protobuffer.zep.c abstractmodule.zep.c abstractrequest.zep.c backendserver.zep.c exception.zep.c model.zep.c pagable.zep.c page.zep.c protoorderby.zep.c response.zep.c service.zep.c simplerequest.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/enum", "abstractenum.zep.c assertioncode.zep.c exception.zep.c orderbydirection.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/adapter", "fileplus.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/formatter", "lineplus.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/processor", "abstractprocessor.zep.c trace.zep.c uid.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/client", "abstractclient.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/client/adapter", "local.zep.c remote.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/assert", "assertionfailedexception.zep.c assertion.zep.c invalidargumentexception.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/server", "abstractserver.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus", "bootstrap.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/db", "mysql.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/adapter", "fileplus.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/formatter", "lineplus.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/client/adapter", "local.zep.c remote.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/volt/extension", "phpfunction.zep.c", "phalconplus");
   ADD_FLAG("CFLAGS_PHALCONPLUS", "/D ZEPHIR_RELEASE");
 }

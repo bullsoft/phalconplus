@@ -21,6 +21,7 @@
 #include "kernel/string.h"
 #include "kernel/concat.h"
 
+
 ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Trace) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Logger\\Processor, Trace, phalconplus, logger_processor_trace, phalconplus_logger_processor_abstractprocessor_ce, phalconplus_logger_processor_trace_method_entry, 0);
@@ -29,6 +30,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Trace) {
 
 	zend_declare_property_long(phalconplus_logger_processor_trace_ce, SL("mode"), 0x0001, ZEND_ACC_PRIVATE TSRMLS_CC);
 
+	phalconplus_logger_processor_trace_ce->create_object = zephir_init_properties_PhalconPlus_Logger_Processor_Trace;
 	zend_declare_class_constant_long(phalconplus_logger_processor_trace_ce, SL("T_FILE"), 0x0001 TSRMLS_CC);
 
 	zend_declare_class_constant_long(phalconplus_logger_processor_trace_ce, SL("T_CLASS"), 0x0010 TSRMLS_CC);
@@ -59,9 +61,6 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 	}
 
 
-	if (EG(called_scope) == phalconplus_logger_processor_trace_ce) {
-		zephir_init_properties(this_ptr TSRMLS_CC);
-	}
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(_0, mode);
 	zephir_update_property_this(this_ptr, SL("mode"), _0 TSRMLS_CC);
@@ -94,14 +93,14 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	ZEPHIR_INIT_VAR(trace2);
 	array_init(trace2);
 
-	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 52);
+	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 53);
 	zephir_check_call_status();
 	Z_SET_ISREF_P(trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 53, trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 54, trace);
 	Z_UNSET_ISREF_P(trace);
 	zephir_check_call_status();
 	Z_SET_ISREF_P(trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 53, trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 54, trace);
 	Z_UNSET_ISREF_P(trace);
 	zephir_check_call_status();
 	CHECK:
@@ -200,16 +199,24 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 
 }
 
-static void zephir_init_properties(zval *this_ptr TSRMLS_DC) {
+static zend_object_value zephir_init_properties_PhalconPlus_Logger_Processor_Trace(zend_class_entry *class_type TSRMLS_DC) {
 
-	zval *_0;
+		zval *_0, *_1;
 
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_INIT_VAR(_0);
-	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("skipClassesPartials"), _0 TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("skipClassesPartials"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("skipClassesPartials"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

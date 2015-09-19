@@ -78,9 +78,9 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, requestCheck) {
 
 	ZEPHIR_INIT_VAR(serviceReflection);
 	object_init_ex(serviceReflection, zephir_get_internal_ce(SS("reflectionclass") TSRMLS_CC));
-	ZEPHIR_CALL_METHOD(NULL, serviceReflection, "__construct", NULL, 18, service);
+	ZEPHIR_CALL_METHOD(NULL, serviceReflection, "__construct", NULL, 4, service);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&methodReflection, serviceReflection, "getmethod", NULL, 58, method);
+	ZEPHIR_CALL_METHOD(&methodReflection, serviceReflection, "getmethod", NULL, 20, method);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -146,12 +146,12 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 		zephir_array_fast_append(_3, method);
 		ZEPHIR_INIT_VAR(_4);
 		ZVAL_LONG(_4, 0);
-		ZEPHIR_CALL_METHOD(NULL, param, "__construct", NULL, 16, _3, _4);
+		ZEPHIR_CALL_METHOD(NULL, param, "__construct", NULL, 2, _3, _4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_5, param, "getclass", NULL, 17);
+		ZEPHIR_CALL_METHOD(&_5, param, "getclass", NULL, 3);
 		zephir_check_call_status();
 		if (zephir_is_true(_5)) {
-			ZEPHIR_CALL_METHOD(&_6, param, "getclass", NULL, 17);
+			ZEPHIR_CALL_METHOD(&_6, param, "getclass", NULL, 3);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&paramClass, _6, "getname", NULL, 0);
 			zephir_check_call_status();
@@ -172,7 +172,7 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 			zephir_json_encode(_9, &(_9), request, 0  TSRMLS_CC);
 			ZEPHIR_INIT_VAR(_10);
 			ZEPHIR_CONCAT_SVSVSV(_10, "Service class:method definition is invalid. Detail: ", service, " : ", method, ". Request: ", _9);
-			ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, 21, _10);
+			ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, 8, _10);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(_4, "phalconplus/RPC/Server/AbstractServer.zep", 37 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -185,7 +185,7 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 		zephir_json_encode(_9, &(_9), request, 0  TSRMLS_CC);
 		ZEPHIR_INIT_LNVAR(_10);
 		ZEPHIR_CONCAT_SV(_10, "Your input is not allowed. Request: ", _9);
-		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, 21, _10);
+		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, 8, _10);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_4, "phalconplus/RPC/Server/AbstractServer.zep", 40 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -266,7 +266,7 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 		object_init_ex(_4, zend_exception_get_default(TSRMLS_C));
 		ZEPHIR_INIT_VAR(_20);
 		ZEPHIR_CONCAT_SVSV(_20, "Service:method not found. Detail: ", service, " : ", method);
-		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, 21, _20);
+		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, 8, _20);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_4, "phalconplus/RPC/Server/AbstractServer.zep", 56 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -308,7 +308,7 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByObject) {
 		object_init_ex(_0, zend_exception_get_default(TSRMLS_C));
 		ZEPHIR_INIT_VAR(_1);
 		ZEPHIR_CONCAT_SVS(_1, "service ", service, " not exists");
-		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 21, _1);
+		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 8, _1);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_0, "phalconplus/RPC/Server/AbstractServer.zep", 75 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -320,7 +320,7 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByObject) {
 		object_init_ex(_0, zend_exception_get_default(TSRMLS_C));
 		ZEPHIR_INIT_LNVAR(_1);
 		ZEPHIR_CONCAT_SVS(_1, "method ", method, " not exists");
-		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 21, _1);
+		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 8, _1);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_0, "phalconplus/RPC/Server/AbstractServer.zep", 79 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
