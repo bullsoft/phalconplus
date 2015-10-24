@@ -57,7 +57,8 @@ final class Bootstrap
         define("APP_ENV", this->env, true);
         define("APP_MODULE_DIR", rtrim(modulePath, "/") . "/", true);
         define("APP_ROOT_DIR", rtrim(dirname(modulePath), "/") . "/", true);
-        define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
+        // 不需要的常量定义
+        // define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . self::COMMON_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . self::COMMON_CONF_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . self::COMMON_LOAD_DIR_NAME . "/", true);
