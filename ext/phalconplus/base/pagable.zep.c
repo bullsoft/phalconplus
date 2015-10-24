@@ -39,6 +39,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Pagable) {
 
 PHP_METHOD(PhalconPlus_Base_Pagable, getPageNo) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "pageNo");
 
@@ -46,6 +47,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, getPageNo) {
 
 PHP_METHOD(PhalconPlus_Base_Pagable, getPageSize) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "pageSize");
 
@@ -53,6 +55,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, getPageSize) {
 
 PHP_METHOD(PhalconPlus_Base_Pagable, getOrderBys) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "orderBys");
 
@@ -69,9 +72,9 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("orderBys"), PH_NOISY_CC);
-	Z_SET_ISREF_P(_0);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 33, _0, orderBy);
-	Z_UNSET_ISREF_P(_0);
+	ZEPHIR_MAKE_REF(_0);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 32, _0, orderBy);
+	ZEPHIR_UNREF(_0);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -105,7 +108,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize) {
 
 static zend_object_value zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type TSRMLS_DC) {
 
-		zval *_0, *_1;
+		zval *_0, *_1$$3;
 
 		ZEPHIR_MM_GROW();
 	
@@ -114,9 +117,9 @@ static zend_object_value zephir_init_properties_PhalconPlus_Base_Pagable(zend_cl
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("orderBys"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
-			ZEPHIR_INIT_VAR(_1);
-			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("orderBys"), _1 TSRMLS_CC);
+			ZEPHIR_INIT_VAR(_1$$3);
+			array_init(_1$$3);
+			zephir_update_property_this(this_ptr, SL("orderBys"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

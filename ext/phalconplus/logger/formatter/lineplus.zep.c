@@ -51,7 +51,6 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __construct) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'formatString' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(formatString_param) == IS_STRING)) {
 		zephir_get_strval(formatString, formatString_param);
 	} else {
@@ -69,11 +68,11 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __construct) {
 
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 
-	zephir_fcall_cache_entry *_12 = NULL;
 	HashTable *_10;
 	HashPosition _9;
+	zephir_fcall_cache_entry *_14 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *message_param = NULL, *type, *date, *context = NULL, *_0, _1 = zval_used_for_init, *_2 = NULL, *_3, *_4, *matches, *result, *_5, *_6 = NULL, *_7, *_8, *replace0 = NULL, *replace1 = NULL, *val1 = NULL, *val2 = NULL, *processors, **_11, *logStr, *_13 = NULL;
+	zval *message_param = NULL, *type, *date, *context = NULL, *_0, _1 = zval_used_for_init, *_2 = NULL, *_3, *_4, *matches = NULL, *result = NULL, *_5, *replace0 = NULL, *replace1 = NULL, *val1 = NULL, *val2 = NULL, *processors = NULL, **_11, *logStr = NULL, *_16, *_17, *_6$$3, *_7$$3, *_8$$3, *_12$$4, *_13$$5 = NULL, *_15$$6 = NULL;
 	zval *message = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -83,7 +82,6 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'message' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(message_param) == IS_STRING)) {
 		zephir_get_strval(message, message_param);
 	} else {
@@ -94,10 +92,6 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		ZEPHIR_INIT_VAR(context);
 		array_init(context);
 	}
-	ZEPHIR_INIT_VAR(matches);
-	array_init(matches);
-	ZEPHIR_INIT_VAR(processors);
-	array_init(processors);
 
 
 	ZEPHIR_INIT_VAR(_0);
@@ -105,7 +99,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	zephir_update_property_array(this_ptr, SL("processors"), _0, message TSRMLS_CC);
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_STRING(&_1, "Y-m-d H:i:s", 0);
-	ZEPHIR_CALL_FUNCTION(&_2, "date", NULL, 29, &_1, date);
+	ZEPHIR_CALL_FUNCTION(&_2, "date", NULL, 28, &_1, date);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_STRING(_3, "date", 1);
@@ -115,31 +109,35 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	ZEPHIR_INIT_VAR(_4);
 	ZVAL_STRING(_4, "type", 1);
 	zephir_update_property_array(this_ptr, SL("processors"), _4, _2 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(matches);
+	array_init(matches);
 	_5 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
 	ZEPHIR_SINIT_NVAR(_1);
 	ZVAL_STRING(&_1, "/%(\\w+)%/", 0);
 	ZEPHIR_INIT_VAR(result);
 	zephir_preg_match(result, &_1, _5, matches, 1, 0 , 0  TSRMLS_CC);
 	if (ZEPHIR_IS_FALSE(result)) {
-		ZEPHIR_INIT_VAR(_6);
-		object_init_ex(_6, spl_ce_InvalidArgumentException);
-		_7 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
-		ZEPHIR_INIT_VAR(_8);
-		ZEPHIR_CONCAT_SV(_8, "Logger format is not valid: ", _7);
-		ZEPHIR_CALL_METHOD(NULL, _6, "__construct", NULL, 16, _8);
+		ZEPHIR_INIT_VAR(_6$$3);
+		object_init_ex(_6$$3, spl_ce_InvalidArgumentException);
+		_7$$3 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(_8$$3);
+		ZEPHIR_CONCAT_SV(_8$$3, "Logger format is not valid: ", _7$$3);
+		ZEPHIR_CALL_METHOD(NULL, _6$$3, "__construct", NULL, 15, _8$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_6, "phalconplus/Logger/Formatter/LinePlus.zep", 29 TSRMLS_CC);
+		zephir_throw_exception_debug(_6$$3, "phalconplus/Logger/Formatter/LinePlus.zep", 29 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	Z_SET_ISREF_P(matches);
-	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 52, matches);
-	Z_UNSET_ISREF_P(matches);
+	ZEPHIR_MAKE_REF(matches);
+	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 51, matches);
+	ZEPHIR_UNREF(matches);
 	zephir_check_call_status();
-	Z_SET_ISREF_P(matches);
-	ZEPHIR_CALL_FUNCTION(&replace1, "end", NULL, 27, matches);
-	Z_UNSET_ISREF_P(matches);
+	ZEPHIR_MAKE_REF(matches);
+	ZEPHIR_CALL_FUNCTION(&replace1, "end", NULL, 26, matches);
+	ZEPHIR_UNREF(matches);
 	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(processors);
+	array_init(processors);
 	zephir_is_iterable(replace1, &_10, &_9, 0, 0, "phalconplus/Logger/Formatter/LinePlus.zep", 46);
 	for (
 	  ; zephir_hash_get_current_data_ex(_10, (void**) &_11, &_9) == SUCCESS
@@ -147,25 +145,25 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	) {
 		ZEPHIR_GET_HVALUE(val1, _11);
 		ZEPHIR_OBS_NVAR(val2);
-		_7 = zephir_fetch_nproperty_this(this_ptr, SL("processors"), PH_NOISY_CC);
-		if (zephir_array_isset_fetch(&val2, _7, val1, 0 TSRMLS_CC)) {
-			ZEPHIR_CALL_FUNCTION(&_2, "strval", &_12, 23, val2);
+		_12$$4 = zephir_fetch_nproperty_this(this_ptr, SL("processors"), PH_NOISY_CC);
+		if (zephir_array_isset_fetch(&val2, _12$$4, val1, 0 TSRMLS_CC)) {
+			ZEPHIR_CALL_FUNCTION(&_13$$5, "strval", &_14, 22, val2);
 			zephir_check_call_status();
-			zephir_array_update_zval(&processors, val1, &_2, PH_COPY | PH_SEPARATE);
+			zephir_array_update_zval(&processors, val1, &_13$$5, PH_COPY | PH_SEPARATE);
 		} else {
-			ZEPHIR_INIT_NVAR(_6);
-			ZVAL_STRING(_6, "undefined", 1);
-			zephir_array_update_zval(&processors, val1, &_6, PH_COPY | PH_SEPARATE);
+			ZEPHIR_INIT_NVAR(_15$$6);
+			ZVAL_STRING(_15$$6, "undefined", 1);
+			zephir_array_update_zval(&processors, val1, &_15$$6, PH_COPY | PH_SEPARATE);
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(&_13, "array_values", NULL, 19, processors);
+	ZEPHIR_CALL_FUNCTION(&_2, "array_values", NULL, 18, processors);
 	zephir_check_call_status();
-	_7 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
+	_16 = zephir_fetch_nproperty_this(this_ptr, SL("formatString"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(logStr);
-	zephir_fast_str_replace(&logStr, replace0, _13, _7 TSRMLS_CC);
-	ZEPHIR_INIT_NVAR(_6);
-	ZEPHIR_GET_CONSTANT(_6, "PHP_EOL");
-	ZEPHIR_CONCAT_VV(return_value, logStr, _6);
+	zephir_fast_str_replace(&logStr, replace0, _2, _16 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_17);
+	ZEPHIR_GET_CONSTANT(_17, "PHP_EOL");
+	ZEPHIR_CONCAT_VV(return_value, logStr, _17);
 	RETURN_MM();
 
 }
@@ -182,7 +180,6 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, addProcessor) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -208,7 +205,6 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
 		zephir_get_strval(key, key_param);
 	} else {
@@ -227,7 +223,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get) {
 
 static zend_object_value zephir_init_properties_PhalconPlus_Logger_Formatter_LinePlus(zend_class_entry *class_type TSRMLS_DC) {
 
-		zval *_0, *_1;
+		zval *_0, *_1$$3;
 
 		ZEPHIR_MM_GROW();
 	
@@ -236,9 +232,9 @@ static zend_object_value zephir_init_properties_PhalconPlus_Logger_Formatter_Lin
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("processors"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
-			ZEPHIR_INIT_VAR(_1);
-			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("processors"), _1 TSRMLS_CC);
+			ZEPHIR_INIT_VAR(_1$$3);
+			array_init(_1$$3);
+			zephir_update_property_this(this_ptr, SL("processors"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

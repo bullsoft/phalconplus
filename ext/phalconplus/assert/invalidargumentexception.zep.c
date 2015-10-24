@@ -65,6 +65,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getPropertyPath) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "propertyPath");
 
@@ -72,6 +73,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getPropertyPath) {
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getValue) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "value");
 
@@ -79,6 +81,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getValue) {
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getConstraints) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "constraints");
 

@@ -50,7 +50,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 
 
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 30, pagable);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 29, pagable);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("pagable"), pagable TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("data"), data TSRMLS_CC);
@@ -67,8 +67,8 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_1 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -82,8 +82,8 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 
 PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_1 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -113,6 +113,7 @@ PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 
 PHP_METHOD(PhalconPlus_Base_Page, getPageNo) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "pageNo");
 
@@ -120,6 +121,7 @@ PHP_METHOD(PhalconPlus_Base_Page, getPageNo) {
 
 PHP_METHOD(PhalconPlus_Base_Page, getTotalPage) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "totalPage");
 
@@ -127,6 +129,7 @@ PHP_METHOD(PhalconPlus_Base_Page, getTotalPage) {
 
 PHP_METHOD(PhalconPlus_Base_Page, getTotalSize) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "totalSize");
 
@@ -144,8 +147,8 @@ PHP_METHOD(PhalconPlus_Base_Page, hasPreviousPage) {
 
 PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -157,8 +160,8 @@ PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
 
 PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -170,8 +173,8 @@ PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 
 PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL, *_1 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -185,6 +188,7 @@ PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
 
 PHP_METHOD(PhalconPlus_Base_Page, getData) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "data");
 

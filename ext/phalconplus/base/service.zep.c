@@ -44,6 +44,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 PHP_METHOD(PhalconPlus_Base_Service, getDI) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "di");
 
@@ -52,7 +53,7 @@ PHP_METHOD(PhalconPlus_Base_Service, getDI) {
 PHP_METHOD(PhalconPlus_Base_Service, __get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *_0 = NULL, *_1, *_2;
+	zval *key_param = NULL, *_0 = NULL, *_1$$3, *_2$$4;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -62,7 +63,6 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
 		zephir_get_strval(key, key_param);
 	} else {
@@ -74,12 +74,12 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", NULL, 1, this_ptr, key);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
-		ZEPHIR_OBS_VAR(_1);
-		zephir_read_property_zval(&_1, this_ptr, key, PH_NOISY_CC);
-		RETURN_CCTOR(_1);
+		ZEPHIR_OBS_VAR(_1$$3);
+		zephir_read_property_zval(&_1$$3, this_ptr, key, PH_NOISY_CC);
+		RETURN_CCTOR(_1$$3);
 	} else {
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
-		ZEPHIR_RETURN_CALL_METHOD(_2, "get", NULL, 0, key);
+		_2$$4 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+		ZEPHIR_RETURN_CALL_METHOD(_2$$4, "get", NULL, 0, key);
 		zephir_check_call_status();
 		RETURN_MM();
 	}

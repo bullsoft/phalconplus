@@ -29,7 +29,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_BackendServer) {
 PHP_METHOD(PhalconPlus_Base_BackendServer, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *di, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL;
+	zval *di, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, *_4$$3;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &di);
@@ -55,10 +55,10 @@ PHP_METHOD(PhalconPlus_Base_BackendServer, __construct) {
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	if (zephir_is_true(_3)) {
-		ZEPHIR_INIT_NVAR(_1);
-		ZVAL_STRING(_1, "serviceListener", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(NULL, di, "get", NULL, 0, _1);
-		zephir_check_temp_parameter(_1);
+		ZEPHIR_INIT_VAR(_4$$3);
+		ZVAL_STRING(_4$$3, "serviceListener", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, di, "get", NULL, 0, _4$$3);
+		zephir_check_temp_parameter(_4$$3);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();

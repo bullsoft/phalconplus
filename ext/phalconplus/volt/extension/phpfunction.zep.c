@@ -12,10 +12,10 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
 #include "kernel/concat.h"
-#include "kernel/memory.h"
 #include "kernel/string.h"
 
 
@@ -29,27 +29,27 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Volt_Extension_PhpFunction) {
 
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 
+	zval *params = NULL, *name = NULL, *_0$$3;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *params = NULL, *name = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
+
 	ZEPHIR_INIT_VAR(params);
 	array_init(params);
-
-	ZEPHIR_CALL_FUNCTION(&params, "func_get_args", NULL, 44);
+	ZEPHIR_CALL_FUNCTION(&params, "func_get_args", NULL, 43);
 	zephir_check_call_status();
-	Z_SET_ISREF_P(params);
-	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 54, params);
-	Z_UNSET_ISREF_P(params);
+	ZEPHIR_MAKE_REF(params);
+	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 53, params);
+	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
-	Z_SET_ISREF_P(params);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 59, params);
-	Z_UNSET_ISREF_P(params);
+	ZEPHIR_MAKE_REF(params);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 58, params);
+	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
 	if ((zephir_function_exists(name TSRMLS_CC)  == SUCCESS)) {
-		ZEPHIR_INIT_VAR(_0);
-		zephir_fast_join_str(_0, SL(","), params TSRMLS_CC);
-		ZEPHIR_CONCAT_VSVS(return_value, name, "(", _0, ")");
+		ZEPHIR_INIT_VAR(_0$$3);
+		zephir_fast_join_str(_0$$3, SL(","), params TSRMLS_CC);
+		ZEPHIR_CONCAT_VSVS(return_value, name, "(", _0$$3, ")");
 		RETURN_MM();
 	}
 	ZEPHIR_MM_RESTORE();
