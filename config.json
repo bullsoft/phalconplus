@@ -16,6 +16,15 @@
             }
         }
     },
+    "info": [
+        {
+            "header": ["Directive", "Value"],
+            "rows": [
+                ["phalconplus.env", "Your environment, such as: dev, test etc."]
+            ]
+                
+        }
+    ],
     "warnings": {
         "unused-variable": true,
         "unused-variable-external": false,
