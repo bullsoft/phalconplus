@@ -30,6 +30,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/simplerequest.zep.c
 	phalconplus/bootstrap.zep.c
 	phalconplus/db/mysql.zep.c
+	phalconplus/db/unitofwork.zep.c
 	phalconplus/enum/assertioncode.zep.c
 	phalconplus/enum/exception.zep.c
 	phalconplus/enum/orderbydirection.zep.c

@@ -164,4 +164,27 @@ class Model extends \Phalcon\Mvc\Model
 
         return new Page(pagable, page->total_items, page->items);
     }
+
+    public function exists() -> boolean
+    {
+        var metaData, readConnection, schema, source, table;
+
+        let metaData = this->getModelsMetaData(),
+                     readConnection = this->getReadConnection();
+
+        let schema = this->getSchema(),
+                   source = this->getSource();
+
+        if schema {
+            let table = [schema, source];
+        } else {
+            let table = source;
+        }
+
+        if this->_exists(metaData, readConnection, table) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

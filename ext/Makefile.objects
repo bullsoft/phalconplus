@@ -86,6 +86,8 @@ phalconplus/bootstrap.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/boots
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/bootstrap.zep.c -o phalconplus/bootstrap.lo 
 phalconplus/db/mysql.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/mysql.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/mysql.zep.c -o phalconplus/db/mysql.lo 
+phalconplus/db/unitofwork.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/unitofwork.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/db/unitofwork.zep.c -o phalconplus/db/unitofwork.lo 
 phalconplus/enum/assertioncode.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/assertioncode.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/assertioncode.zep.c -o phalconplus/enum/assertioncode.lo 
 phalconplus/enum/exception.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/enum/exception.zep.c

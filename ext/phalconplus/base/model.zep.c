@@ -425,3 +425,36 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 
 }
 
+PHP_METHOD(PhalconPlus_Base_Model, exists) {
+
+	zval *metaData = NULL, *readConnection = NULL, *schema = NULL, *source = NULL, *table = NULL, *_0 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_CALL_METHOD(&metaData, this_ptr, "getmodelsmetadata", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&readConnection, this_ptr, "getreadconnection", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&schema, this_ptr, "getschema", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&source, this_ptr, "getsource", NULL, 0);
+	zephir_check_call_status();
+	if (zephir_is_true(schema)) {
+		ZEPHIR_INIT_VAR(table);
+		zephir_create_array(table, 2, 0 TSRMLS_CC);
+		zephir_array_fast_append(table, schema);
+		zephir_array_fast_append(table, source);
+	} else {
+		ZEPHIR_CPY_WRT(table, source);
+	}
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_exists", NULL, 0, metaData, readConnection, table);
+	zephir_check_call_status();
+	if (zephir_is_true(_0)) {
+		RETURN_MM_BOOL(1);
+	} else {
+		RETURN_MM_BOOL(0);
+	}
+
+}
+

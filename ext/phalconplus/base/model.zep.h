@@ -14,6 +14,7 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeValidationOnCreate);
 PHP_METHOD(PhalconPlus_Base_Model, afterFetch);
 PHP_METHOD(PhalconPlus_Base_Model, beforeSave);
 PHP_METHOD(PhalconPlus_Base_Model, findByPagable);
+PHP_METHOD(PhalconPlus_Base_Model, exists);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, 0)
 	ZEND_ARG_INFO(0, alias)
@@ -41,5 +42,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, afterFetch, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, beforeSave, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, findByPagable, arginfo_phalconplus_base_model_findbypagable, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, exists, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

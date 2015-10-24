@@ -25,6 +25,7 @@
 #include "phalconplus/base/simplerequest.zep.h"
 #include "phalconplus/bootstrap.zep.h"
 #include "phalconplus/db/mysql.zep.h"
+#include "phalconplus/db/unitofwork.zep.h"
 #include "phalconplus/enum/assertioncode.zep.h"
 #include "phalconplus/enum/exception.zep.h"
 #include "phalconplus/enum/orderbydirection.zep.h"
