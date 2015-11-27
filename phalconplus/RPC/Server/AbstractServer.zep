@@ -10,14 +10,6 @@ abstract class AbstractServer
 
     abstract public function __construct(<\Phalcon\DI> di);
 
-    protected function requestCheck(string! service, string! method, <ProtoBuffer> request)
-    {
-        var serviceReflection, methodReflection;
-        let serviceReflection = new \ReflectionClass(service);
-        let methodReflection = serviceReflection->getMethod(method);
-        // @TODO: check request object
-    }
-
     protected function callByParams(string! service, string! method, request)
     {
         var serviceClass = "";

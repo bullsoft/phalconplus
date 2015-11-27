@@ -50,7 +50,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 
 
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 29, pagable);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 28, pagable);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("pagable"), pagable TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("data"), data TSRMLS_CC);

@@ -164,27 +164,27 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 				ZEPHIR_INIT_NVAR(_4$$5);
 				_5$$5 = zephir_fetch_nproperty_this(this_ptr, SL("descriptor"), PH_NOISY_CC);
 				zephir_json_encode(_4$$5, &(_4$$5), _5$$5, 0  TSRMLS_CC);
-				ZEPHIR_CALL_FUNCTION(&_6$$5, "strval", &_7, 22, tryTimes);
+				ZEPHIR_CALL_FUNCTION(&_6$$5, "strval", &_7, 21, tryTimes);
 				zephir_check_call_status();
 				ZEPHIR_INIT_LNVAR(_8$$5);
 				ZEPHIR_CONCAT_SVSVS(_8$$5, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() failed to connect to MySQL. Detail: ", _4$$5, ". We will try ", _6$$5, " times for you.");
-				ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 47, _8$$5);
+				ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 46, _8$$5);
 				zephir_check_call_status();
 				_10$$5 = (zephir_get_numberval(tryTimes) - 1);
 				ZEPHIR_INIT_NVAR(tryTimes);
 				ZVAL_LONG(tryTimes, _10$$5);
 				if (ZEPHIR_GT_LONG(tryTimes, 0)) {
 					_11$$6 = zephir_fetch_nproperty_this(this_ptr, SL("retryInterval"), PH_NOISY_CC);
-					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_12, 48, _11$$6);
+					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_12, 47, _11$$6);
 					zephir_check_call_status();
 					_13$$6 = zephir_fetch_nproperty_this(this_ptr, SL("retryTimes"), PH_NOISY_CC);
 					ZEPHIR_SINIT_NVAR(_14$$6);
 					zephir_sub_function(&_14$$6, _13$$6, tryTimes);
-					ZEPHIR_CALL_FUNCTION(&_15$$6, "strval", &_7, 22, &_14$$6);
+					ZEPHIR_CALL_FUNCTION(&_15$$6, "strval", &_7, 21, &_14$$6);
 					zephir_check_call_status();
 					ZEPHIR_INIT_LNVAR(_16$$6);
 					ZEPHIR_CONCAT_SVS(_16$$6, "PHP Notice:  PhalconPlus::Db::MySQL::connnect() retry to connect to MySQL for the ", _15$$6, " time ... ");
-					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 47, _16$$6);
+					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 46, _16$$6);
 					zephir_check_call_status();
 				} else {
 					ZEPHIR_INIT_NVAR(_17$$7);
@@ -192,7 +192,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 					zephir_json_encode(_17$$7, &(_17$$7), _18$$7, 0  TSRMLS_CC);
 					ZEPHIR_INIT_LNVAR(_19$$7);
 					ZEPHIR_CONCAT_SV(_19$$7, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: ", _17$$7);
-					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 47, _19$$7);
+					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 46, _19$$7);
 					zephir_check_call_status();
 					zephir_throw_exception_debug(e, "phalconplus/Db/Mysql.zep", 68 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();

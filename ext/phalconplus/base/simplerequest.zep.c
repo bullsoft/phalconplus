@@ -73,7 +73,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("params"), PH_NOISY_CC);
 	ZEPHIR_MAKE_REF(_0);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 32, _0, val);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 31, _0, val);
 	ZEPHIR_UNREF(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
