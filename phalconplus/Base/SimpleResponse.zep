@@ -1,6 +1,6 @@
 namespace PhalconPlus\Base;
 
-class SimpleResponse extends Response
+final class SimpleResponse extends Response
 {
     private result = [];
     

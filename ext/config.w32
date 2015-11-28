@@ -11,7 +11,7 @@ if (PHP_PHALCONPLUS != "no") {
     AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
   }
   
-  ADD_SOURCES(configure_module_dirname + "/phalconplus/base", "protobuffer.zep.c abstractmodule.zep.c abstractrequest.zep.c backendserver.zep.c exception.zep.c model.zep.c pagable.zep.c page.zep.c protoorderby.zep.c response.zep.c service.zep.c simplerequest.zep.c", "phalconplus");
+  ADD_SOURCES(configure_module_dirname + "/phalconplus/base", "protobuffer.zep.c response.zep.c abstractmodule.zep.c abstractrequest.zep.c backendserver.zep.c exception.zep.c model.zep.c pagable.zep.c page.zep.c protoorderby.zep.c service.zep.c simplerequest.zep.c simpleresponse.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/enum", "abstractenum.zep.c assertioncode.zep.c exception.zep.c orderbydirection.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/processor", "abstractprocessor.zep.c trace.zep.c uid.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/client", "abstractclient.zep.c", "phalconplus");

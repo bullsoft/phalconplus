@@ -13,8 +13,8 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
@@ -24,7 +24,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, Service, phalconplus, base_service, phalconplus_base_service_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_base_service_ce, SL("di"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_service_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -32,13 +32,25 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
 
 PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *di;
 
-	zephir_fetch_params(0, 1, 0, &di);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &di);
 
 
 
 	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_Base_Service, onConstruct) {
+
+	
+
 
 }
 

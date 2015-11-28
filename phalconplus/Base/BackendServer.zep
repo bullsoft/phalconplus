@@ -1,7 +1,7 @@
 namespace PhalconPlus\Base;
 use PhalconPlus\RPC\Server\AbstractServer;
 
-class BackendServer extends AbstractServer
+final class BackendServer extends AbstractServer
 {
     public function __construct(<\Phalcon\DI> di)
     {
