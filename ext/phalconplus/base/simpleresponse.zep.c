@@ -20,7 +20,7 @@
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleResponse) {
 
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, SimpleResponse, phalconplus, base_simpleresponse, phalconplus_base_response_ce, phalconplus_base_simpleresponse_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, SimpleResponse, phalconplus, base_simpleresponse, phalconplus_base_response_ce, phalconplus_base_simpleresponse_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	zend_declare_property_null(phalconplus_base_simpleresponse_ce, SL("result"), ZEND_ACC_PRIVATE TSRMLS_CC);
 

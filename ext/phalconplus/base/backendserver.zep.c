@@ -20,7 +20,7 @@
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_BackendServer) {
 
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, BackendServer, phalconplus, base_backendserver, phalconplus_rpc_server_abstractserver_ce, phalconplus_base_backendserver_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, BackendServer, phalconplus, base_backendserver, phalconplus_rpc_server_abstractserver_ce, phalconplus_base_backendserver_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	return SUCCESS;
 

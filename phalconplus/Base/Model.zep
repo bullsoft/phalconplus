@@ -114,9 +114,11 @@ class Model extends \Phalcon\Mvc\Model
     }
 
     /**
-     * params["columns"]
-     * params["conditions"]
-     * params["bind"]
+     * find with paginator
+     * @var array params
+     *    - params["columns"]
+     *    - params["conditions"]
+     *    - params["bind"]
      *
      */
     public function findByPagable(<Pagable> pagable, array params = [])
@@ -165,15 +167,18 @@ class Model extends \Phalcon\Mvc\Model
         return new Page(pagable, page->total_items, page->items);
     }
 
+    /**
+     * Check if a reord is already exists?
+     */
     public function exists() -> boolean
     {
         var metaData, readConnection, schema, source, table;
-
-        let metaData = this->getModelsMetaData(),
-                     readConnection = this->getReadConnection();
-
-        let schema = this->getSchema(),
-                   source = this->getSource();
+        let
+            metaData = this->getModelsMetaData(),
+            readConnection = this->getReadConnection();
+        let
+            schema = this->getSchema(),
+            source = this->getSource();
 
         if schema {
             let table = [schema, source];
@@ -186,5 +191,16 @@ class Model extends \Phalcon\Mvc\Model
         } else {
             return false;
         }
+    }
+
+    public function toProtoBuffer(columns = null) -> <ProtoBuffer>
+    {
+        var proto, toArray, key, val;
+        let toArray = this->toArray(columns);
+        let proto = new ProtoBuffer();
+        for key, val in toArray {
+            let proto->{key} = is_scalar(val)?val:strval(val);
+        }
+        return proto;
     }
 }

@@ -15,6 +15,7 @@ PHP_METHOD(PhalconPlus_Base_Model, afterFetch);
 PHP_METHOD(PhalconPlus_Base_Model, beforeSave);
 PHP_METHOD(PhalconPlus_Base_Model, findByPagable);
 PHP_METHOD(PhalconPlus_Base_Model, exists);
+PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, 0)
 	ZEND_ARG_INFO(0, alias)
@@ -30,6 +31,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findbypagable, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, params, 1)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_toprotobuffer, 0, 0, 0)
+	ZEND_ARG_INFO(0, columns)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, initialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, getMessage, NULL, ZEND_ACC_PUBLIC)
@@ -43,5 +48,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, beforeSave, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, findByPagable, arginfo_phalconplus_base_model_findbypagable, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, exists, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, toProtoBuffer, arginfo_phalconplus_base_model_toprotobuffer, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
