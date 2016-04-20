@@ -47,7 +47,7 @@ final class Bootstrap
             let this->env = env;
         }
         // 如果不是生产环境，打开Debug
-        if this->env != "product" {
+        if substr(PHP_SAPI, 0, 3) != "cli" && this->env != "product"{
             var debug;
             let debug = new \Phalcon\Debug();
             debug->listen();
