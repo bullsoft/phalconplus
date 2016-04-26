@@ -1,6 +1,9 @@
 namespace PhalconPlus\Base;
 use PhalconPlus\Base\Pagable;
 use PhalconPlus\Assert\Assertion as Assert;
+use Phalcon\Db\AdapterInterface;
+use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
+
 
 // use Phalcon\Mvc\Model;
 // use Phalcon\Mvc\ModelMessage;
@@ -128,7 +131,7 @@ class Model extends \Phalcon\Mvc\Model
         var builder;
         let builder = this->createBuilder();
         
-        var val, orderBy = "", orderBys = [];
+        var val, orderBys = [];
 
         let orderBys = array_map("strval", pagable->getOrderBys());
         if !empty orderBys {
@@ -202,5 +205,30 @@ class Model extends \Phalcon\Mvc\Model
             let proto->{key} = is_scalar(val)?val:strval(val);
         }
         return proto;
+    }
+
+    /**
+     *
+     * Once in a transaction, a read-sql should always use the write connection for the data consistency.
+     * But, if you do not like this, you can rewrite this method Or use <\PhalconPlus\Db\UnitOfWork>
+     *
+     */
+    public function selectReadConnection() -> <AdapterInterface>
+    {
+        var txm, transaction;
+        if !this->getDI()->has("txm") {
+            return this->getReadConnection();
+        }
+        let txm = this->getDI()->get("txm");
+        if !(txm instanceof TxManager) {
+            return this->getReadConnection();
+        }
+        txm->setDbService(this->getWriteConnectionService());
+        let transaction = txm->get(false); // just get an instance, not begin a transaction really
+        if(transaction->isValid()) {
+            return this->getWriteConnection();
+        } else {
+            return this->getReadConnection();
+        }
     }
 }

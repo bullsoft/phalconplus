@@ -236,15 +236,15 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(&columnMap, "array_flip", NULL, 26, _2$$3);
 		zephir_check_call_status();
-		zephir_is_iterable(columns, &_4$$3, &_3$$3, 0, 0, "phalconplus/Base/Model.zep", 81);
+		zephir_is_iterable(columns, &_4$$3, &_3$$3, 0, 0, "phalconplus/Base/Model.zep", 84);
 		for (
 		  ; zephir_hash_get_current_data_ex(_4$$3, (void**) &_5$$3, &_3$$3) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_4$$3, &_3$$3)
 		) {
 			ZEPHIR_GET_HVALUE(val$$3, _5$$3);
 			if (zephir_array_isset(columnMap, val$$3)) {
-				zephir_array_fetch(&_6$$5, columnMap, val$$3, PH_NOISY | PH_READONLY, "phalconplus/Base/Model.zep", 78 TSRMLS_CC);
-				zephir_array_append(&newColumns, _6$$5, PH_SEPARATE, "phalconplus/Base/Model.zep", 78);
+				zephir_array_fetch(&_6$$5, columnMap, val$$3, PH_NOISY | PH_READONLY, "phalconplus/Base/Model.zep", 81 TSRMLS_CC);
+				zephir_array_append(&newColumns, _6$$5, PH_SEPARATE, "phalconplus/Base/Model.zep", 81);
 			}
 		}
 	} else {
@@ -257,7 +257,7 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 
 		ZEPHIR_CALL_METHOD(NULL, conn, "begin", NULL, 0);
 		zephir_check_call_status_or_jump(try_end_1);
-		zephir_is_iterable(rows, &_8$$7, &_7$$7, 0, 0, "phalconplus/Base/Model.zep", 90);
+		zephir_is_iterable(rows, &_8$$7, &_7$$7, 0, 0, "phalconplus/Base/Model.zep", 93);
 		for (
 		  ; zephir_hash_get_current_data_ex(_8$$7, (void**) &_9$$7, &_7$$7) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_8$$7, &_7$$7)
@@ -279,7 +279,7 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 			zend_clear_exception(TSRMLS_C);
 			ZEPHIR_CALL_METHOD(NULL, conn, "rollback", NULL, 0);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(e, "phalconplus/Base/Model.zep", 93 TSRMLS_CC);
+			zephir_throw_exception_debug(e, "phalconplus/Base/Model.zep", 96 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -343,7 +343,7 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *params = NULL, *_6;
-	zval *pagable, *params_param = NULL, *builder = NULL, *val = NULL, *orderBy = NULL, *orderBys = NULL, *_2 = NULL, _3, *bind = NULL, *queryBuilder = NULL, *page = NULL, *_7 = NULL, *_8, *_9, *_4$$3, *_5$$5;
+	zval *pagable, *params_param = NULL, *builder = NULL, *val = NULL, *orderBys = NULL, *_2 = NULL, _3, *bind = NULL, *queryBuilder = NULL, *page = NULL, *_7 = NULL, *_8, *_9, *_4$$3, *_5$$5;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &pagable, &params_param);
@@ -362,8 +362,6 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&builder, this_ptr, "createbuilder", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(orderBy);
-	ZVAL_STRING(orderBy, "", 1);
 	ZEPHIR_INIT_VAR(orderBys);
 	array_init(orderBys);
 	ZEPHIR_CALL_METHOD(&_2, pagable, "getorderbys", NULL, 0);
@@ -491,7 +489,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 		ZEPHIR_CALL_METHOD(NULL, proto, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_is_iterable(toArray, &_1, &_0, 0, 0, "phalconplus/Base/Model.zep", 204);
+	zephir_is_iterable(toArray, &_1, &_0, 0, 0, "phalconplus/Base/Model.zep", 207);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -508,6 +506,65 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 		zephir_update_property_zval_zval(proto, key, _3$$3 TSRMLS_CC);
 	}
 	RETURN_CCTOR(proto);
+
+}
+
+/**
+ *
+ * Once in a transaction, a read-sql should always use the write connection for the data consistency.
+ * But, if you do not like this, you can rewrite this method Or use <\PhalconPlus\Db\UnitOfWork>
+ *
+ */
+PHP_METHOD(PhalconPlus_Base_Model, selectReadConnection) {
+
+	zval *txm = NULL, *transaction = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getdi", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_2);
+	ZVAL_STRING(_2, "txm", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&_1, _0, "has", NULL, 0, _2);
+	zephir_check_temp_parameter(_2);
+	zephir_check_call_status();
+	if (!(zephir_is_true(_1))) {
+		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getreadconnection", NULL, 0);
+		zephir_check_call_status();
+		RETURN_MM();
+	}
+	ZEPHIR_CALL_METHOD(&_3, this_ptr, "getdi", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "txm", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&txm, _3, "get", NULL, 0, _2);
+	zephir_check_temp_parameter(_2);
+	zephir_check_call_status();
+	if (!(zephir_instance_of_ev(txm, zephir_get_internal_ce(SS("phalcon\\mvc\\model\\transaction\\manager") TSRMLS_CC) TSRMLS_CC))) {
+		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getreadconnection", NULL, 0);
+		zephir_check_call_status();
+		RETURN_MM();
+	}
+	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getwriteconnectionservice", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, txm, "setdbservice", NULL, 0, _4);
+	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_BOOL(_2, 0);
+	ZEPHIR_CALL_METHOD(&transaction, txm, "get", NULL, 0, _2);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_5, transaction, "isvalid", NULL, 0);
+	zephir_check_call_status();
+	if (zephir_is_true(_5)) {
+		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getwriteconnection", NULL, 0);
+		zephir_check_call_status();
+		RETURN_MM();
+	} else {
+		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getreadconnection", NULL, 0);
+		zephir_check_call_status();
+		RETURN_MM();
+	}
 
 }
 
