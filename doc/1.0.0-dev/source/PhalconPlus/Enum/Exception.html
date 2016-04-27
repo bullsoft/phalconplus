@@ -1,0 +1,192 @@
+<html>
+
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+            
+        <script>var ZepCurrentPath = '../../../'</script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.0.0-dev</span>
+                            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Enum/Exception.html">PhalconPlus\Enum\Exception</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Enum/Exception.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Enum.html">Enum</a>
+        </span>
+                <h1 class="class-name">Exception</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Enum;
+use PhalconPlus\Enum\AbstractEnum;
+
+class Exception extends AbstractEnum
+{
+    protected static details;
+    
+    protected static function has(var eCode)
+    {
+        var code = null, details = [], className, val;
+        let className = get_called_class();
+        let code = new {className}(eCode);
+
+        %{
+            zephir_read_static_property(&details, Z_STRVAL_P(className), Z_STRLEN_P(className), SL("details") TSRMLS_CC);
+        }%
+             
+        if fetch val, details[code->__toString()] {
+            return val;
+        } else {
+            return [];
+        }
+    }
+    
+    public static function getByCode(var eCode)
+    {
+        var detail = [];
+        let detail = static::has(eCode); 
+        if !empty detail {
+            let detail["code"] = eCode;
+        }
+        return detail;
+    }
+
+    public static function newException(e, <\Phalcon\Logger\Adapter> logger = null)
+    {
+        var code, eCode, eName, map2Name, className;
+        let map2Name = array_flip(static::validValues(true));
+        let eCode = e->getCode();
+        
+        // e.g. USER_NOT_EXISTS -> UserNotExists
+        let eName = \Phalcon\Text::camelize(map2Name[eCode]);
+
+        var eClassName, exception;
+        let eClassName = static::exceptionClassPrefix() . eName;
+        
+        let className = get_called_class();
+        let code = new {className}(eCode);
+        
+        let exception = new {eClassName}(code->getMessage(), logger);
+        
+        exception->setCode(code->getCode());
+        exception->setLevel(code->getLevel());
+        exception->setMessage(e->getMessage());
+        
+        return exception;
+    }
+
+    public static function exceptionClassPrefix()
+    {
+        return __NAMESPACE__ . "\\Exception\\";
+    }
+    
+    public function getMessage()
+    {
+        var detail, val;
+        let detail = static::getByCode(this->getValue());
+        if fetch val, detail["message"] {
+            return val;
+        } else {
+            return "";
+        }
+    }
+
+    public function getLevel()
+    {
+        var detail, val;
+        let detail = static::getByCode(this->getValue());
+        if fetch val, detail["level"] {
+            return val;
+        } else {
+            return \Phalcon\Logger::DEBUG;
+        }
+    }
+
+    public function getCode()
+    {
+        return this->getValue();
+    }
+}
+</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

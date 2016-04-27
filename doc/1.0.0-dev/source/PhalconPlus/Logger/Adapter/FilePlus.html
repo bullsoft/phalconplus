@@ -1,0 +1,202 @@
+<html>
+
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+
+<script src="../../../../asset/static/prettify.js"></script>
+<script src="../../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../asset/api_definition.js"></script>
+                    <script src="../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../asset/static/zephir-doc.js"></script>
+            
+        <script>var ZepCurrentPath = '../../../../'</script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.0.0-dev</span>
+                            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../class/PhalconPlus/Logger/Adapter/FilePlus.html">PhalconPlus\Logger\Adapter\FilePlus</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../class/PhalconPlus/Logger/Adapter/FilePlus.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/Logger.html">Logger</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/Logger/Adapter.html">Adapter</a>
+        </span>
+                <h1 class="class-name">FilePlus</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Logger\Adapter;
+use PhalconPlus\Assert\Assertion as Assert;
+
+class FilePlus extends \Phalcon\Logger\Adapter\File
+{
+    private type2Handler = [];
+    private type2Ext = [];
+
+    private mode; // file open mode
+    
+    private _path;
+    private _options;
+    private _fileHandler;
+
+    public function __construct(string! filePath, array options = [])
+    {
+        Assert::notEmpty(filePath);
+
+        var mode;
+        if fetch mode, options["mode"] {
+            if strpos(mode, "r") === false {
+                let this->mode = mode;
+            } else {
+                throw new \InvalidArgumentException("Logger must be opened in append or write mode");
+            }
+        } else {
+            let this->mode = "ab";
+        }
+
+        let this->_fileHandler = this->open(filePath);
+        let this->_path = filePath;
+        let this->_options = options;
+
+        // store default file handler with index -1
+        let this->type2Handler[-1] = this->_fileHandler;
+        let this->type2Ext[-1] = "";
+    }
+
+    private function open(string! filePath)
+    {
+        var handler = null;
+        let handler = fopen(filePath, this->mode);
+        if handler == false {
+            throw new \Exception("Cannot open log file " . filePath);
+        } 
+        return handler;
+    }
+
+    // Not compatible with PSR-3
+    public function log(string! message, int type = \Phalcon\Logger::DEBUG, array context = null)
+    {
+        var handler;
+        if fetch handler, this->type2Handler[type] {
+            let this->_fileHandler = handler;
+        } else {
+            let this->_fileHandler = this->type2Handler[-1];
+        }
+        parent::logInternal(message, type, time(), context);
+    }
+
+    public function registerExtension(string! ext, array types)
+    {
+        Assert::notEmpty(ext);
+        Assert::notEmpty(types);
+        
+        var filePath, type, fileHandler;
+        let filePath  = this->_path . ext;
+        let fileHandler = this->open(filePath);
+        for type in types {
+            let this->type2Handler[type] = fileHandler;
+            let this->type2Ext[type] = ext;
+        }
+    }
+
+    public function close()
+    {
+        var handler;
+        for handler in this->type2Handler {
+            fclose(handler);
+        }
+    }
+
+    public function __wakeup()
+    {
+        var type, ext, handler, ext2Handler = [];
+        for type, ext in this->type2Ext {
+            if fetch handler, ext2Handler["ext"] {
+                // do nothing
+            } else {
+                let handler = this->open(this->_path . ext);
+                let ext2Handler[ext] = handler;
+            }
+            let this->type2Handler[type] = handler;
+        }
+        let this->_fileHandler = this->type2Handler[-1];
+    }
+}
+</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

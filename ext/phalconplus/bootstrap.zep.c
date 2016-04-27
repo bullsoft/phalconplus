@@ -362,8 +362,10 @@ PHP_METHOD(PhalconPlus_Bootstrap, execModule) {
 	}
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, zephir_get_internal_ce(SS("phalcon\\loader") TSRMLS_CC));
-	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 0);
-	zephir_check_call_status();
+	if (zephir_has_constructor(_0 TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 0);
+		zephir_check_call_status();
+	}
 	zephir_update_property_this(this_ptr, SL("loader"), _0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	object_init_ex(_1, zephir_get_internal_ce(SS("phalcon\\di\\factorydefault") TSRMLS_CC));
@@ -477,8 +479,10 @@ PHP_METHOD(PhalconPlus_Bootstrap, execSrv) {
 	}
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, zephir_get_internal_ce(SS("phalcon\\loader") TSRMLS_CC));
-	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 0);
-	zephir_check_call_status();
+	if (zephir_has_constructor(_0 TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 0);
+		zephir_check_call_status();
+	}
 	zephir_update_property_this(this_ptr, SL("loader"), _0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	object_init_ex(_1, zephir_get_internal_ce(SS("phalcon\\di\\factorydefault") TSRMLS_CC));
@@ -558,8 +562,10 @@ PHP_METHOD(PhalconPlus_Bootstrap, execTask) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, zephir_get_internal_ce(SS("phalcon\\loader") TSRMLS_CC));
-	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 0);
-	zephir_check_call_status();
+	if (zephir_has_constructor(_0 TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 0);
+		zephir_check_call_status();
+	}
 	zephir_update_property_this(this_ptr, SL("loader"), _0 TSRMLS_CC);
 	_1 = Z_TYPE_P(di) == IS_NULL;
 	if (!(_1)) {

@@ -1,0 +1,383 @@
+<html>
+
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../../asset/static/prettify.css" />
+
+<script src="../../asset/static/prettify.js"></script>
+<script src="../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../asset/static/prettify.js"></script>
+                                    <script src="../../asset/api_definition.js"></script>
+                    <script src="../../asset/static/jquery.min.js"></script>
+                    <script src="../../asset/static/zephir-doc.js"></script>
+            
+        <script>var ZepCurrentPath = '../../'</script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.0.0-dev</span>
+                            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../index.html">Home</a></li>
+        
+                <li><a href="../../classes.html">Classes</a></li>
+                <li><a href="../../class/PhalconPlus/Bootstrap.html">PhalconPlus\Bootstrap</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../class/PhalconPlus/Bootstrap.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <h1 class="class-name">Bootstrap</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">//<?php
+namespace PhalconPlus;
+
+final class Bootstrap
+{
+    // 全局配置文件
+    protected config;
+    // 全局DI容器
+    protected di;
+    protected application;
+    // 自动加载器
+    protected loader;
+    // 模块属性
+    protected module = [
+        "classPath" : "",
+        "className" : "",
+        "mode"      : ""
+    ];
+    // 运行模式
+    protected modeMap = [
+        "Web"     : "Module",
+        "Cli"     : "Task",
+        "Srv"     : "Srv",
+        "Micro"   : "Micro"
+    ];
+    // 运行环境
+    protected env = "dev";
+
+    // 定义类常量
+    const COMMON_DIR_NAME      = "common";
+    const COMMON_CONF_DIR_NAME = "config";
+    const COMMON_LOAD_DIR_NAME = "load";
+    const ROOT_PUB_DIR_NAME    = "public";
+    const MODULE_APP_DIR_NAME  = "app";
+
+    public function __construct(string! modulePath)
+    {
+        // 模块目录
+        if !is_dir(modulePath) {
+            throw new \Exception("Module directory not exists or not a dir, file positon: " . modulePath);
+        }
+
+        // 获取并初始化运行环境
+        var env;
+        let env = get_cfg_var("phalconplus.env");
+        if !empty(env) {
+            let this->env = env;
+        }
+        // 如果不是生产环境，打开Debug
+        if substr(PHP_SAPI, 0, 3) != "cli" && this->env != "product"{
+            var debug;
+            let debug = new \Phalcon\Debug();
+            debug->listen();
+        }
+
+        // 定义全局常量
+        define("APP_ENV", this->env, true);
+        define("APP_MODULE_DIR", rtrim(modulePath, "/") . "/", true);
+        define("APP_ROOT_DIR", rtrim(dirname(modulePath), "/") . "/", true);
+        // 不需要的常量定义
+        // define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
+        define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . self::COMMON_DIR_NAME . "/", true);
+        define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . self::COMMON_CONF_DIR_NAME . "/", true);
+        define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . self::COMMON_LOAD_DIR_NAME . "/", true);
+    }
+
+    private function setModule(array module)
+    {
+        var diff = [];
+        let diff = array_diff_key(this->module, module);
+        if !empty diff {
+            throw new \Exception("Module is is not a legal module");
+        }
+        let this->module = module;
+    }
+
+    public function initConf()
+    {
+        var globalConfPath, moduleConfPath;
+        var moduleConf;
+
+        // 全局配置
+        let globalConfPath = APP_ROOT_COMMON_CONF_DIR . "config.php";
+        if !is_file(globalConfPath) {
+            throw new \Phalcon\Config\Exception("Global config file not exist, file position: " . globalConfPath);
+        }
+        let this->config = new \Phalcon\Config(this->load(globalConfPath));
+        
+        // 模块配置
+        let moduleConfPath = APP_MODULE_DIR . "/app/config/" . APP_ENV . ".php";
+        if !is_file(moduleConfPath) {
+            throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
+        }
+        let moduleConf  = new \Phalcon\Config(this->load(moduleConfPath));
+        
+        // 初始化模块三要素
+        var module = [];
+        let module["mode"] = ucfirst(strtolower(moduleConf->application->mode));
+        let module["className"] = moduleConf->application->ns . this->modeMap[module["mode"]];
+        let module["classPath"] = APP_MODULE_DIR . "app/" . this->modeMap[$module["mode"]] . ".php";
+
+        // 定义工作模式
+        define("APP_RUN_MODE", module["mode"], true);
+
+        this->setModule(module);
+
+        // 合并配置，Module配置优先级更高
+        this->config->merge(moduleConf);
+    }
+
+    public function exec()
+    {
+        var handleMethod;
+        this->initConf();
+        let handleMethod = "exec" . this->modeMap[APP_RUN_MODE];
+        var params = [];
+        let params = func_get_args();
+        return call_user_func_array([this, handleMethod], params);
+    }
+    
+    public function execModule(var uri = null, bool needHandle = true)
+    {
+        var moduleClass, module;
+        // 如果不需要handle，需要自己加载配置
+        if !needHandle {
+            this->initConf();
+        }
+        // 应用初始化
+        let this->loader = new \Phalcon\Loader();
+        let this->di = new \Phalcon\DI\FactoryDefault();
+        let this->application = new \Phalcon\Mvc\Application();
+        this->application->setDI(this->di);
+
+        // 加载Web模式依赖
+        this->load(APP_ROOT_COMMON_LOAD_DIR . "default-web.php");
+        // 把自己注入di
+        this->di->setShared("bootstrap", this);
+        // 包含模块化类
+        require this->module["classPath"];
+        // 模块初始化类
+        let moduleClass = this->module["className"];
+        // 实例化该类
+        let module = new {moduleClass}(this->di);
+        // 如果不需要handle，则直接返回
+        if !needHandle {
+            return true;
+        }
+        
+        // 执行
+        try {
+            echo this->application->handle(uri)->getContent();
+        } catch \Phalcon\Mvc\Application\Exception {
+            var router, newUri;
+            let router = this->di->get("router");
+            let newUri = "/" . router->getDefaultModule() . router->getRewriteUri();
+            echo this->application->handle(newUri)->getContent();
+        }
+    }
+
+    public function execSrv(bool needHandle = true)
+    {
+        var backendSrv = null;
+        var moduleClass, moduleObj;
+
+        if !needHandle {
+            this->initConf();
+        }
+        
+        let this->loader = new \Phalcon\Loader();
+        let this->di = new \Phalcon\DI\FactoryDefault();
+
+        this->di->setShared("bootstrap", this);
+        this->load(APP_ROOT_COMMON_LOAD_DIR . "default-web.php");
+
+        require this->module["classPath"];
+        let moduleClass = this->module["className"];
+        let moduleObj = new {moduleClass}(this->di);
+
+        if !needHandle {
+            return true;
+        }
+        
+        let backendSrv = new \PhalconPlus\Base\BackendServer(this->di);
+        let this->application = new \Yar_Server($backendSrv);
+
+        this->application->handle();
+    }
+    
+    public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null, var needHandle = true)
+    {
+        var moduleClass, module;
+
+        this->initConf();
+        
+        let this->loader = new \Phalcon\Loader();
+
+        if is_null(di) || ! (di instanceof \Phalcon\DI\FactoryDefault\CLI) {
+            let this->di = new \Phalcon\DI\FactoryDefault\CLI();
+        } else {
+            let this->di = di;
+        }
+
+        let this->application = new \Phalcon\CLI\Console();
+        this->application->setDI(this->di);
+
+        this->load(APP_ROOT_COMMON_LOAD_DIR . "default-cli.php");
+        this->di->setShared("bootstrap", this);
+
+        // Load module
+        require this->module["classPath"];
+        let moduleClass = this->module["className"];
+        let module = new {moduleClass}(this->di);
+
+        if !needHandle {
+            return true;
+        }
+
+        return this->application->handle(argv);
+    }
+
+    public function dependModule(string! moduleName)
+    {
+        var moduleConfPath, moduleConf, moduleClassName, moduleClassPath, moduleRunMode;
+        let moduleConfPath = APP_ROOT_DIR . "/" . moduleName . "/app/config/" . APP_ENV . ".php";
+        if !is_file(moduleConfPath) {
+            throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
+        }
+        let moduleConf = new \Phalcon\Config(this->load(moduleConfPath));
+        let moduleRunMode = moduleConf->application->mode;
+
+        // @TODO: check if mode exists
+
+        let moduleClassName = moduleConf->application->ns . this->modeMap[moduleRunMode];
+        let moduleClassPath = APP_ROOT_DIR . moduleName . "/app/" . this->modeMap[moduleRunMode] . ".php";
+
+        // 全局配置文件优先级高于被依赖的模块
+        moduleConf->merge(this->config);
+        this->setConfig(moduleConf);
+
+        require moduleClassPath;
+        return new {moduleClassName}(this->di);
+    }
+
+    public function getEnv() -> string
+    {
+        return this->env;
+    }
+
+    public function getConfig() -> <\Phalcon\Config>
+    {
+        return this->config;
+    }
+
+    public function setConfig(<\Phalcon\Config> config)
+    {
+        var globalConf;
+        if ! this->di->has("config") {
+            let globalConf = new \Phalcon\Config();
+        } else {
+            let globalConf = this->di->getConfig();
+        }
+        globalConf->merge(config);
+        let this->config = globalConf;
+        this->di->set("config", this->config);
+        return this;
+    }
+    
+    public function getDI() -> <\Phalcon\DI>
+    {
+        return this->di;
+    }
+    
+    public function load(var filePath)
+    {
+        extract(["rootPath": APP_ROOT_DIR,
+                 "loader": this->loader,
+                 "config": this->config,
+                 "application": this->application,
+                 "bootstrap": this,
+                 "di": this->di
+        ]);
+        return require filePath;
+    }
+}
+</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

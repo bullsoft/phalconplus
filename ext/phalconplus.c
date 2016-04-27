@@ -199,7 +199,7 @@ static PHP_MINFO_FUNCTION(phalconplus)
 	php_info_print_table_end();
 	php_info_print_table_start();
 	php_info_print_table_header(2, "Directive", "Value");
-	php_info_print_table_row(2, "phalconplus.env", "Your environment, such as: dev, test etc.");
+	php_info_print_table_row(2, "phalconplus.env", "Your environment, such as: dev, test, production etc.");
 	php_info_print_table_end();
 
 	DISPLAY_INI_ENTRIES();

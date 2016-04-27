@@ -1,0 +1,175 @@
+<html>
+
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+            
+        <script>var ZepCurrentPath = '../../../'</script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.0.0-dev</span>
+                            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Db/Mysql.html">PhalconPlus\Db\Mysql</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Db/Mysql.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Db.html">Db</a>
+        </span>
+                <h1 class="class-name">Mysql</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Db;
+
+class Mysql
+{
+    const RETRY_TIMES = 5;  // 5 times
+    const RETRY_INTERVAL = 100000; // 100 ms
+    
+    private di = null;
+    private descriptor = [];
+
+    private retryTimes = self::RETRY_TIMES;
+    private retryInterval = self::RETRY_INTERVAL;
+
+    private name;
+    private connection = null;
+    private connected = false;
+
+    public function __construct(<\Phalcon\DI> di, string! name)
+    {
+        var config, dbConfig;
+        let config = di->get("config");
+        let dbConfig = config->{name};
+        let this->di = di;
+
+        let this->name = name;
+        if isset(dbConfig->retryTimes) {
+            let this->retryTimes = dbConfig->retryTimes;
+        }
+        if isset(dbConfig->retryInterval) {
+            let this->retryInterval = dbConfig->retryInterval;
+        }
+        
+        let this->descriptor = [
+            "host" : dbConfig->host,
+            "port" : dbConfig->port,
+            "username" : dbConfig->username,
+            "password" : dbConfig->password,
+            "dbname" : dbConfig->dbname,
+            "options" : [
+                \PDO::MYSQL_ATTR_INIT_COMMAND : "SET NAMES " . dbConfig->charset,
+                \PDO::ATTR_TIMEOUT : dbConfig->timeout, // seconds
+                \PDO::ATTR_ERRMODE : \PDO::ERRMODE_EXCEPTION
+            ]
+        ];
+    }
+
+    public function getConnection() -> <\Phalcon\Db\Adapter\Pdo\Mysql>
+    {
+        var tryTimes, e;
+        let tryTimes = this->retryTimes;
+        
+        while !this->connected {
+            try {
+                let this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql(this->descriptor);
+                let this->connected = true;
+            } catch \Exception, e {
+                error_log("PHP Fatal error:  PhalconPlus::Db::MySQL::connect() failed to connect to MySQL. Detail: " .
+                          json_encode(this->descriptor) .
+                          ". We will try " . strval(tryTimes) . " times for you.");
+                let tryTimes = tryTimes - 1;
+                if tryTimes > 0 {
+                    // wait for xxx ms
+                    usleep(this->retryInterval);
+                    error_log("PHP Notice:  PhalconPlus::Db::MySQL::connnect() retry to connect to MySQL for the ".strval(this->retryTimes - tryTimes)." time ... ");
+                } else {
+                    error_log("PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: " .
+                              json_encode(this->descriptor));
+                    throw e;
+                }
+            }
+        }
+        return this->connection;
+    }
+}</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

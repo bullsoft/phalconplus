@@ -20,7 +20,7 @@
         {
             "header": ["Directive", "Value"],
             "rows": [
-                ["phalconplus.env", "Your environment, such as: dev, test etc."]
+                ["phalconplus.env", "Your environment, such as: dev, test, production etc."]
             ]
                 
         }
