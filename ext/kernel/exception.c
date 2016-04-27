@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -45,28 +45,37 @@ void zephir_throw_exception(zval *object TSRMLS_DC){
 /**
  * Throws a zval object as exception
  */
-void zephir_throw_exception_debug(zval *object, const char *file, zend_uint line TSRMLS_DC){
+void zephir_throw_exception_debug(zval *object, const char *file, zend_uint line TSRMLS_DC) {
 
 	zend_class_entry *default_exception_ce;
 	int ZEPHIR_LAST_CALL_STATUS = 0;
-	zval *curline = NULL;
+	zval *curline = NULL, *object_copy = NULL;
 
 	ZEPHIR_MM_GROW();
+
+	if (Z_TYPE_P(object) != IS_OBJECT) {
+		object_copy = object;
+		ALLOC_INIT_ZVAL(object);
+		object_init_ex(object, zend_exception_get_default(TSRMLS_C));
+		ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, 0, object_copy);
+	}
 
 	Z_ADDREF_P(object);
 
 	if (line > 0) {
 		curline = 0;
-		ZEPHIR_CALL_METHOD(&curline, object, "getline", NULL);
+		ZEPHIR_CALL_METHOD(&curline, object, "getline", NULL, 0);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_LONG(curline, 0)) {
 			default_exception_ce = zend_exception_get_default(TSRMLS_C);
-			zend_update_property_string(default_exception_ce, object, "file", sizeof("file")-1, file TSRMLS_CC);
-			zend_update_property_long(default_exception_ce, object, "line", sizeof("line")-1, line TSRMLS_CC);
+			zend_update_property_string(default_exception_ce, object, "file", sizeof("file") - 1, file TSRMLS_CC);
+			zend_update_property_long(default_exception_ce, object, "line", sizeof("line") - 1, line TSRMLS_CC);
 		}
 	}
 
-	zend_throw_exception_object(object TSRMLS_CC);
+	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
+		zend_throw_exception_object(object TSRMLS_CC);
+	}
 	ZEPHIR_MM_RESTORE();
 }
 
@@ -85,8 +94,7 @@ void zephir_throw_exception_string_debug(zend_class_entry *ce, const char *messa
 	ALLOC_INIT_ZVAL(msg);
 	ZVAL_STRINGL(msg, message, message_len, 1);
 
-	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, msg);
-	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, 0, msg);
 
 	if (line > 0) {
 		default_exception_ce = zend_exception_get_default(TSRMLS_C);
@@ -94,7 +102,9 @@ void zephir_throw_exception_string_debug(zend_class_entry *ce, const char *messa
 		zend_update_property_long(default_exception_ce, object, "line", sizeof("line")-1, line TSRMLS_CC);
 	}
 
-	zend_throw_exception_object(object TSRMLS_CC);
+	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
+		zend_throw_exception_object(object TSRMLS_CC);
+	}
 
 	zval_ptr_dtor(&msg);
 }
@@ -113,10 +123,11 @@ void zephir_throw_exception_string(zend_class_entry *ce, const char *message, ze
 	ALLOC_INIT_ZVAL(msg);
 	ZVAL_STRINGL(msg, message, message_len, 1);
 
-	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, msg);
-	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, 0, msg);
 
-	zend_throw_exception_object(object TSRMLS_CC);
+	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
+		zend_throw_exception_object(object TSRMLS_CC);
+	}
 
 	zval_ptr_dtor(&msg);
 }
@@ -141,10 +152,11 @@ void zephir_throw_exception_format(zend_class_entry *ce TSRMLS_DC, const char *f
 	ALLOC_INIT_ZVAL(msg);
 	ZVAL_STRINGL(msg, buffer, len, 0);
 
-	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, msg);
-	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, 0, msg);
 
-	zend_throw_exception_object(object TSRMLS_CC);
+	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
+		zend_throw_exception_object(object TSRMLS_CC);
+	}
 
 	zval_ptr_dtor(&msg);
 }
@@ -161,8 +173,7 @@ void zephir_throw_exception_zval_debug(zend_class_entry *ce, zval *message, cons
 	ALLOC_INIT_ZVAL(object);
 	object_init_ex(object, ce);
 
-	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, message);
-	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, 0, message);
 
 	if (line > 0) {
 		default_exception_ce = zend_exception_get_default(TSRMLS_C);
@@ -170,7 +181,9 @@ void zephir_throw_exception_zval_debug(zend_class_entry *ce, zval *message, cons
 		zend_update_property_long(default_exception_ce, object, "line", sizeof("line")-1, line TSRMLS_CC);
 	}
 
-	zend_throw_exception_object(object TSRMLS_CC);
+	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
+		zend_throw_exception_object(object TSRMLS_CC);
+	}
 }
 
 /**
@@ -184,9 +197,9 @@ void zephir_throw_exception_zval(zend_class_entry *ce, zval *message TSRMLS_DC){
 	ALLOC_INIT_ZVAL(object);
 	object_init_ex(object, ce);
 
-	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, message);
-	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, 0, message);	
 
-	zend_throw_exception_object(object TSRMLS_CC);
+	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
+		zend_throw_exception_object(object TSRMLS_CC);
+	}
 }
-

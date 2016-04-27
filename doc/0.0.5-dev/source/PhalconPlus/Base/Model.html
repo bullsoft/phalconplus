@@ -1,0 +1,262 @@
+<html>
+
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/style.css" />
+
+
+        <script src="../../../asset/static/jquery.min.js"></script>
+        <script src="../../../asset/static/prettify.js"></script>
+        <script src="../../../asset/api_definition.js"></script>
+
+        <script>var ZepCurrentPath = '../../../'</script>
+
+        <script src="../../../asset/static/script.js"></script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                Zephir Documentation <span class="version">v0.0.5-dev</span>
+            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Base/Model.html">PhalconPlus\Base\Model</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Base/Model.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Base.html">Base</a>
+        </span>
+                <h1 class="class-name">Model</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Base;
+use PhalconPlus\Base\Pagable;
+use PhalconPlus\Assert\Assertion as Assert;
+
+// use Phalcon\Mvc\Model;
+// use Phalcon\Mvc\ModelMessage;
+// use Phalcon\Db\RawValue;
+
+class Model extends \Phalcon\Mvc\Model
+{
+    // 记录创建时间
+    public ctime;
+    // 记录更新时间
+    public mtime;
+
+    public function initialize()
+    {
+        self::setUp([
+            "notNullValidations" : false
+        ]);
+        this->useDynamicUpdate(true);
+        this->keepSnapshots(true);
+    }
+
+    public function getMessage()
+    {
+        return this->getFirstMessage();
+    }
+
+    public function getFirstMessage()
+    {
+        if count(this->getMessages("")) {
+            return (string) current(this->getMessages(""));
+        }
+        return false;
+    }
+
+    public function getLastMessage()
+    {
+        if count(this->getMessages("")) {
+            return (string) end(this->getMessages(""));
+        }
+        return false;
+    }
+
+    public function createBuilder(string! alias = "") -> <\Phalcon\Mvc\Model\Query\BuilderInterface>
+    {
+        var source;
+        if !empty alias {
+            let source = [alias:get_called_class()];
+        } else {
+            let source  = get_called_class();
+        }
+        return this->getModelsManager()->createBuilder()->from(source);
+    }
+
+    public static function getInstance() -> <\Phalcon\Mvc\Model>
+    {
+        var className;
+        let className = get_called_class();
+        return new {className}();
+    }
+
+    public static function batchInsert(array columns, array rows)
+    {
+        var model, conn, e, row;
+        var columnMap = [], newColumns = [];
+
+        var className;
+        let className = get_called_class();
+        let model = new {className}();
+        
+        if method_exists(model, "columnMap") {
+            let columnMap = array_flip(model->columnMap());
+            var val;
+            for val in columns {
+                if isset(columnMap[val]) {
+                    let newColumns[] = columnMap[val];
+                }
+            }
+        } else {
+            let newColumns = columns;
+        }
+        let conn = model->getWriteConnection();
+        try {
+            conn->begin();
+            for row in rows {
+                conn->insert(model->getSource(), row, newColumns);
+            }
+            conn->commit();
+        } catch \Exception, e {
+            conn->rollback();
+            throw e;
+        }
+        
+        return true;
+    }
+
+    public function beforeValidationOnCreate()
+    {
+        let this->ctime = date("Y-m-d H:i:s");
+        let this->mtime = this->ctime;
+    }
+
+    public function afterFetch()
+    {
+        // nothing
+    }
+
+    public function beforeSave()
+    {
+        let this->mtime = date("Y-m-d H:i:s");
+        return true;
+    }
+
+    /**
+     * params["columns"]
+     * params["conditions"]
+     * params["bind"]
+     *
+     */
+    public function findByPagable(<Pagable> pagable, array params = [])
+    {
+        Assert::notNull(pagable, __CLASS__."::".__METHOD__ .": Pagable can not be null");
+        
+        var builder;
+        let builder = this->createBuilder();
+        
+        var val, orderBy = "", orderBys = [];
+
+        let orderBys = array_map("strval", pagable->getOrderBys());
+        if !empty orderBys {
+            // error_log(var_export(orderBys, true));
+            builder->orderBy(implode(", ", orderBys));
+        }
+
+        if fetch val, params["columns"] {
+            builder->columns(val);
+        } else {
+            builder->columns("*");
+        }
+
+        var bind = [];
+        if fetch val, params["bind"] {
+            let bind = val;
+        }
+        
+        if fetch val, params["conditions"] {
+            if empty bind {
+                builder->where(val);
+            } else {
+                builder->where(val, bind);
+            }
+        }
+        var queryBuilder, page;
+        let queryBuilder = new \Phalcon\Paginator\Adapter\QueryBuilder([
+            "builder":builder,
+            "limit":pagable->getPageSize(),
+            "page":pagable->getPageNo()
+        ]);
+        
+        let page = queryBuilder->getPaginate();
+        // error_log(var_export(pagable->toArray(), true));
+
+        return new Page(pagable, page->total_items, page->items);
+    }
+}
+</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

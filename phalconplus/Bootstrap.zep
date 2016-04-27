@@ -40,7 +40,6 @@ final class Bootstrap
             throw new \Exception("Module directory not exists or not a dir, file positon: " . modulePath);
         }
 
-
         // 获取并初始化运行环境
         var env;
         let env = get_cfg_var("phalconplus.env");
@@ -48,7 +47,7 @@ final class Bootstrap
             let this->env = env;
         }
         // 如果不是生产环境，打开Debug
-        if this->env != "product" {
+        if substr(PHP_SAPI, 0, 3) != "cli" && this->env != "product"{
             var debug;
             let debug = new \Phalcon\Debug();
             debug->listen();
@@ -58,7 +57,8 @@ final class Bootstrap
         define("APP_ENV", this->env, true);
         define("APP_MODULE_DIR", rtrim(modulePath, "/") . "/", true);
         define("APP_ROOT_DIR", rtrim(dirname(modulePath), "/") . "/", true);
-        define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
+        // 不需要的常量定义
+        // define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . self::COMMON_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . self::COMMON_CONF_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . self::COMMON_LOAD_DIR_NAME . "/", true);
@@ -74,7 +74,7 @@ final class Bootstrap
         let this->module = module;
     }
 
-    private function initConf()
+    public function initConf()
     {
         var globalConfPath, moduleConfPath;
         var moduleConf;
@@ -108,17 +108,23 @@ final class Bootstrap
         this->config->merge(moduleConf);
     }
 
-    public function exec(var argv = null)
+    public function exec()
     {
         var handleMethod;
         this->initConf();
         let handleMethod = "exec" . this->modeMap[APP_RUN_MODE];
-        this->{handleMethod}(argv);
+        var params = [];
+        let params = func_get_args();
+        return call_user_func_array([this, handleMethod], params);
     }
     
-    public function execModule(var uri = null)
+    public function execModule(var uri = null, bool needHandle = true)
     {
         var moduleClass, module;
+        // 如果不需要handle，需要自己加载配置
+        if !needHandle {
+            this->initConf();
+        }
         // 应用初始化
         let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
@@ -135,7 +141,11 @@ final class Bootstrap
         let moduleClass = this->module["className"];
         // 实例化该类
         let module = new {moduleClass}(this->di);
-
+        // 如果不需要handle，则直接返回
+        if !needHandle {
+            return true;
+        }
+        
         // 执行
         try {
             echo this->application->handle(uri)->getContent();
@@ -147,10 +157,14 @@ final class Bootstrap
         }
     }
 
-    public function execSrv()
+    public function execSrv(bool needHandle = true)
     {
         var backendSrv = null;
         var moduleClass, moduleObj;
+
+        if !needHandle {
+            this->initConf();
+        }
         
         let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
@@ -161,6 +175,10 @@ final class Bootstrap
         require this->module["classPath"];
         let moduleClass = this->module["className"];
         let moduleObj = new {moduleClass}(this->di);
+
+        if !needHandle {
+            return true;
+        }
         
         let backendSrv = new \PhalconPlus\Base\BackendServer(this->di);
         let this->application = new \Yar_Server($backendSrv);
@@ -168,11 +186,12 @@ final class Bootstrap
         this->application->handle();
     }
     
-    public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null)
+    public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null, var needHandle = true)
     {
         var moduleClass, module;
 
         this->initConf();
+        
         let this->loader = new \Phalcon\Loader();
 
         if is_null(di) || ! (di instanceof \Phalcon\DI\FactoryDefault\CLI) {
@@ -192,7 +211,11 @@ final class Bootstrap
         let moduleClass = this->module["className"];
         let module = new {moduleClass}(this->di);
 
-        this->application->handle($argv);
+        if !needHandle {
+            return true;
+        }
+
+        return this->application->handle(argv);
     }
 
     public function dependModule(string! moduleName)
@@ -204,6 +227,7 @@ final class Bootstrap
         }
         let moduleConf = new \Phalcon\Config(this->load(moduleConfPath));
         let moduleRunMode = moduleConf->application->mode;
+
         // @TODO: check if mode exists
 
         let moduleClassName = moduleConf->application->ns . this->modeMap[moduleRunMode];
@@ -248,12 +272,13 @@ final class Bootstrap
     
     public function load(var filePath)
     {
-        let {"rootPath"} = APP_ROOT_DIR;
-        let {"loader"}   = this->loader;
-        let {"config"}   = this->config;
-        let {"application"} = this->application;
-        let {"bootstrap"}   = this;
-        let {"di"}          = this->di;
+        extract(["rootPath": APP_ROOT_DIR,
+                 "loader": this->loader,
+                 "config": this->config,
+                 "application": this->application,
+                 "bootstrap": this,
+                 "di": this->di
+        ]);
         return require filePath;
     }
 }

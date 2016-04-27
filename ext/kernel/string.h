@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -81,7 +81,7 @@ void zephir_substr(zval *return_value, zval *str, long from, long length, int fl
 zval *zephir_eol(int eol TSRMLS_DC);
 
 /** Preg-Match */
-void zephir_preg_match(zval *return_value, zval **return_value_ptr, zval *regex, zval *subject, zval *matches, int global, long flags, long offset TSRMLS_DC);
+void zephir_preg_match(zval *return_value, zval *regex, zval *subject, zval *matches, int global, long flags, long offset TSRMLS_DC);
 
 /** Base64 */
 void zephir_base64_encode(zval *return_value, zval *data);
@@ -107,13 +107,6 @@ void zephir_addslashes(zval *return_value, zval *str TSRMLS_DC);
 void zephir_stripslashes(zval *return_value, zval *str TSRMLS_DC);
 void zephir_stripcslashes(zval *return_value, zval *str TSRMLS_DC);
 
-#if PHP_VERSION_ID < 50400
-
-const char* zend_new_interned_string(const char *arKey, int nKeyLength, int free_src TSRMLS_DC);
-#define ZEPHIR_ZVAL_MAYBE_INTERNED_STRING(pz, string)  ZVAL_STRING(pz, string, 1);
-
-#else
-
 #define ZEPHIR_ZVAL_MAYBE_INTERNED_STRING(pz, string) \
 	do { \
 		if (IS_INTERNED(string)) { \
@@ -123,7 +116,5 @@ const char* zend_new_interned_string(const char *arKey, int nKeyLength, int free
 			ZVAL_STRING(pz, string, 1); \
 		} \
 	} while (0)
-
-#endif /* PHP_VERSION_ID < 50400 */
 
 #endif /* ZEPHIR_KERNEL_STRING_H */

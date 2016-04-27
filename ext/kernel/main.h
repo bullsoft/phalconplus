@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -20,9 +20,9 @@
 #ifndef ZEPHIR_KERNEL_MAIN_H
 #define ZEPHIR_KERNEL_MAIN_H
 
-#include "Zend/zend_interfaces.h"
-#include "ext/spl/spl_exceptions.h"
-#include "ext/spl/spl_iterators.h"
+#include <Zend/zend_interfaces.h>
+#include <ext/spl/spl_exceptions.h>
+#include <ext/spl/spl_iterators.h>
 
 /** Main macros */
 #define PH_DEBUG 0
@@ -38,12 +38,16 @@
 #define PH_COPY 1024
 #define PH_CTOR 4096
 
+#ifndef zend_uint
+ #define zend_uint uint
+#endif
+
 #define SL(str) ZEND_STRL(str)
 #define SS(str) ZEND_STRS(str)
 #define ISL(str) (zephir_interned_##str), (sizeof(#str)-1)
 #define ISS(str) (zephir_interned_##str), (sizeof(#str))
 
-#include "Zend/zend_constants.h"
+#include <Zend/zend_constants.h>
 #include "kernel/exception.h"
 
 /* Compatibility with PHP 5.3 */
@@ -67,6 +71,7 @@ int zephir_init_global(char *global, unsigned int global_length TSRMLS_DC);
 int zephir_get_global(zval **arr, const char *global, unsigned int global_length TSRMLS_DC);
 
 int zephir_is_callable(zval *var TSRMLS_DC);
+int zephir_is_scalar(zval *var);
 int zephir_function_exists(const zval *function_name TSRMLS_DC);
 int zephir_function_exists_ex(const char *func_name, unsigned int func_len TSRMLS_DC);
 int zephir_function_quick_exists_ex(const char *func_name, unsigned int func_len, unsigned long key TSRMLS_DC);
@@ -465,6 +470,18 @@ static inline char *_str_erealloc(char *str, size_t new_len, size_t old_len) {
 		lower_ns## _ ##lcname## _ce->ce_flags |= flags;  \
 	}
 
+#define ZEPHIR_CREATE_OBJECT(obj_ptr, class_type) \
+	{ \
+		zend_object *object; \
+		ZEPHIR_INIT_ZVAL_NREF(obj_ptr); \
+		Z_TYPE_P(obj_ptr) = IS_OBJECT; \
+		Z_OBJVAL_P(obj_ptr) = zend_objects_new(&object, class_type TSRMLS_CC); \
+		object_properties_init(object, class_type); \
+	}
+
+#define ZEPHIR_MAKE_REF(obj) Z_SET_ISREF_P(obj);
+#define ZEPHIR_UNREF(obj) Z_UNSET_ISREF_P(obj);
+
 #define ZEPHIR_REGISTER_INTERFACE(ns, classname, lower_ns, name, methods) \
 	{ \
 		zend_class_entry ce; \
@@ -548,6 +565,6 @@ static inline char *_str_erealloc(char *str, size_t new_len, size_t old_len) {
 
 #define ZEPHIR_CHECK_POINTER(v) if (!v) fprintf(stderr, "%s:%d\n", __PRETTY_FUNCTION__, __LINE__);
 
-#define zephir_is_php_version(id) ((PHP_VERSION_ID >= id && PHP_VERSION_ID <= (id + 10000)) ?  1 : 0)
+#define zephir_is_php_version(id) (PHP_VERSION_ID / 10 == id / 10 ?  1 : 0)
 
 #endif /* ZEPHIR_KERNEL_MAIN_H */

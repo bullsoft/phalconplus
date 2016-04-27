@@ -1,0 +1,164 @@
+<html>
+
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/style.css" />
+
+
+        <script src="../../../asset/static/jquery.min.js"></script>
+        <script src="../../../asset/static/prettify.js"></script>
+        <script src="../../../asset/api_definition.js"></script>
+
+        <script>var ZepCurrentPath = '../../../'</script>
+
+        <script src="../../../asset/static/script.js"></script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                Zephir Documentation <span class="version">v0.0.5-dev</span>
+            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Base/Exception.html">PhalconPlus\Base\Exception</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Base/Exception.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Base.html">Base</a>
+        </span>
+                <h1 class="class-name">Exception</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Base;
+
+/**
+ * throw new Exception("error message");
+ * throw new Exception(["error message", ["foo", "bar"]]);
+ *
+ */
+class Exception extends \Exception
+{
+    protected message = "";
+    protected level = \Phalcon\Logger::DEBUG;
+    protected code = 0;
+
+    public function __construct(var info = "", <\Phalcon\Logger\Adapter> logger = null)
+    {
+        var message = "", args = [];
+        let message = "An exception created: " . get_called_class();
+        if empty info {
+            // nothing to do here ...
+        } else {
+            if is_array(info) {
+                let message = message . ", message: " . strval(info[0]);
+                if fetch args, info[1] {
+                    let args = is_array(info[1]) ? info[1] : [strval(info[1])];
+                }
+            } elseif is_string(info) {
+                let message = message . ", message: " . info;
+            }
+        }
+
+        if !is_null(logger) {
+            logger->log(message . ", args: ". json_encode(args, JSON_UNESCAPED_UNICODE), this->getLevel());
+        }
+
+        if empty this->message {
+            let this->message = message;
+        }
+
+        var cnt, argsCnt;
+        let cnt = substr_count(this->message, "%s");
+        let argsCnt = count(args);
+        
+        if argsCnt >= cnt {
+            let this->message = vsprintf(this->message, args);
+        }
+    }
+
+    public function getLevel()
+    {
+        return this->level;
+    }
+
+    public function setCode(var code)
+    {
+        let this->code = code;
+        return this;
+    }
+
+    public function setLevel(var level)
+    {
+        let this->level = level;
+        return this;
+    }
+
+    public function setMessage(var msg)
+    {
+        let this->message = msg;
+        return this;
+    }
+}</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

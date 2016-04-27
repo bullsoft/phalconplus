@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -221,7 +221,7 @@ void zephir_deinitialize_memory(TSRMLS_D);
 
 #define ZEPHIR_OBSERVE_OR_NULLIFY_PPZV(ppzv) \
 	do { \
-		zval **tmp_ = (ppzv); \
+		zval ** restrict tmp_ = (ppzv); \
 		if (tmp_ != NULL) { \
 			if (*tmp_) { \
 				zephir_ptr_dtor(tmp_); \

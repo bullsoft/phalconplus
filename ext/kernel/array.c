@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -971,7 +971,8 @@ int zephir_array_fetch_long(zval **return_value, zval *arr, unsigned long index,
 /**
  * Appends every element of an array at the end of the left array
  */
-void zephir_merge_append(zval *left, zval *values){
+void zephir_merge_append(zval *left, zval *values)
+{
 
 	zval         **tmp;
 	HashTable      *arr_values;
@@ -1136,22 +1137,24 @@ void zephir_array_unshift(zval *arr, zval *arg TSRMLS_DC)
 {
 	if (likely(Z_TYPE_P(arr) == IS_ARRAY)) {
 
-		HashTable  oldhash;
 		zval** args[1]      = { &arg };
 
-		HashTable *newhash = Z_ARRVAL_P(arr);
-
 		#if PHP_VERSION_ID < 50600
+			HashTable  oldhash;
+			HashTable *newhash = Z_ARRVAL_P(arr);
 			newhash = php_splice(newhash, 0, 0, args, 1, NULL);
+
+			oldhash = *Z_ARRVAL_P(arr);
+			if (Z_ARRVAL_P(arr) == &EG(symbol_table)) {
+				zend_reset_all_cv(&EG(symbol_table) TSRMLS_CC);
+			}
+			*Z_ARRVAL_P(arr)   = *newhash;
+
+			FREE_HASHTABLE(newhash);
+			zend_hash_destroy(&oldhash);
 		#else
-			php_splice(newhash, 0, 0, args, 1, NULL TSRMLS_CC);
+			php_splice(Z_ARRVAL_P(arr), 0, 0, args, 1, NULL TSRMLS_CC);
 		#endif
-
-		oldhash = *Z_ARRVAL_P(arr);
-		*Z_ARRVAL_P(arr)   = *newhash;
-
-		FREE_HASHTABLE(newhash);
-		zend_hash_destroy(&oldhash);
 	}
 }
 

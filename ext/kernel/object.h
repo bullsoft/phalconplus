@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -23,7 +23,9 @@
 
 #include <php.h>
 #include <Zend/zend.h>
+
 #include "kernel/globals.h"
+#include "kernel/main.h"
 
 /** Class Retrieving/Checking */
 int zephir_class_exists(const zval *class_name, int autoload TSRMLS_DC);

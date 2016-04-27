@@ -13,5 +13,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(phalconplus_logger_processor_uid_method_entry) {
 	PHP_ME(PhalconPlus_Logger_Processor_Uid, __construct, arginfo_phalconplus_logger_processor_uid___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Logger_Processor_Uid, __toString, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

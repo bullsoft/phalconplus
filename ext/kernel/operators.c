@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -22,9 +22,10 @@
 #include "config.h"
 #endif
 
-#include "php.h"
-#include "ext/standard/php_string.h"
-#include "ext/standard/php_math.h"
+#include <php.h>
+#include <ext/standard/php_string.h>
+#include <ext/standard/php_math.h>
+
 #include "php_ext.h"
 #include "kernel/main.h"
 #include "kernel/memory.h"
@@ -371,7 +372,8 @@ int zephir_add_function_ex(zval *result, zval *op1, zval *op2 TSRMLS_DC) {
 	int status;
 	int ref_count = Z_REFCOUNT_P(result);
 	int is_ref = Z_ISREF_P(result);
-	status = add_function(result, op1, op2 TSRMLS_CC);
+
+	status = fast_add_function(result, op1, op2 TSRMLS_CC);
 	Z_SET_REFCOUNT_P(result, ref_count);
 	Z_SET_ISREF_TO_P(result, is_ref);
 	return status;
@@ -443,9 +445,7 @@ long zephir_get_intval_ex(const zval *op) {
             return zend_hash_num_elements(Z_ARRVAL_P(op)) ? 1 : 0;
             break;
 
-#if PHP_VERSION_ID > 50400
 	    case IS_CALLABLE:
-#endif
 	    case IS_RESOURCE:
 	    case IS_OBJECT:
 	        return 1;
@@ -492,9 +492,8 @@ double zephir_get_doubleval_ex(const zval *op) {
         case IS_ARRAY:
             return zend_hash_num_elements(Z_ARRVAL_P(op)) ? (double) 1 : 0;
             break;
-#if PHP_VERSION_ID > 50400
+
 	    case IS_CALLABLE:
-#endif
 	    case IS_RESOURCE:
 	    case IS_OBJECT:
 	        return (double) 1;
@@ -534,9 +533,8 @@ zend_bool zephir_get_boolval_ex(const zval *op) {
         case IS_ARRAY:
             return zend_hash_num_elements(Z_ARRVAL_P(op)) ? (zend_bool) 1 : 0;
             break;
-#if PHP_VERSION_ID > 50400
+
 	    case IS_CALLABLE:
-#endif
 	    case IS_RESOURCE:
 	    case IS_OBJECT:
 	        return (zend_bool) 1;
@@ -593,12 +591,7 @@ int zephir_is_numeric_ex(const zval *op) {
  */
 int zephir_is_equal(zval *op1, zval *op2 TSRMLS_DC) {
 	zval result;
-	#if PHP_VERSION_ID < 50400
-	is_equal_function(&result, op1, op2 TSRMLS_CC);
-	return Z_BVAL(result);
-	#else
 	return fast_equal_function(&result, op1, op2 TSRMLS_CC);
-	#endif
 }
 
 /**
@@ -606,12 +599,7 @@ int zephir_is_equal(zval *op1, zval *op2 TSRMLS_DC) {
  */
 int zephir_less(zval *op1, zval *op2 TSRMLS_DC) {
 	zval result;
-	#if PHP_VERSION_ID < 50400
-	is_smaller_function(&result, op1, op2 TSRMLS_CC);
-	return Z_BVAL(result);
-	#else
 	return fast_is_smaller_function(&result, op1, op2 TSRMLS_CC);
-	#endif
 }
 
 /**
@@ -893,19 +881,6 @@ double zephir_safe_div_double_zval(double op1, zval *op2 TSRMLS_DC) {
 	return op1 / ((double) zephir_get_numberval(op2));
 }
 
-double zephir_floor(zval *op1 TSRMLS_DC)
-{
-	convert_scalar_to_number_ex(&op1);
-
-	if (Z_TYPE_PP(&op1) == IS_DOUBLE) {
-		return floor(Z_DVAL_PP(&op1));
-	} else if (Z_TYPE_PP(&op1) == IS_LONG) {
-		convert_to_double_ex(&op1);
-		return Z_DVAL_PP(&op1);
-	}
-	return 0;
-}
-
 /**
  * Do safe divisions between two longs
  */
@@ -1021,97 +996,3 @@ long zephir_safe_mod_double_zval(double op1, zval *op2 TSRMLS_DC) {
 	}
 	return (long) op1 % ((long) zephir_get_numberval(op2));
 }
-
-void zephir_ceil(zval *return_value, zval *op1 TSRMLS_DC)
-{
-	convert_scalar_to_number_ex(&op1);
-
-	if (Z_TYPE_PP(&op1) == IS_DOUBLE) {
-		RETURN_DOUBLE(ceil(Z_DVAL_PP(&op1)));
-	} else if (Z_TYPE_PP(&op1) == IS_LONG) {
-		convert_to_double_ex(&op1);
-		RETURN_DOUBLE(Z_DVAL_PP(&op1));
-	}
-	RETURN_FALSE;
-}
-
-extern double _php_math_round(double value, int places, int mode);
-
-void zephir_round(zval *return_value, zval *op1, zval *op2, zval *op3 TSRMLS_DC)
-{
-	int places = 0;
-	long mode = PHP_ROUND_HALF_UP;
-	double return_val;
-
-	convert_scalar_to_number_ex(&op1);
-
-	if (op2) {
-		places = zephir_get_intval_ex(op2);
-	}
-	if (op3) {
-		mode = zephir_get_intval_ex(op3);
-	}
-
-	switch (Z_TYPE_PP(&op1)) {
-		case IS_LONG:
-			/* Simple case - long that doesn't need to be rounded. */
-			if (places >= 0) {
-				RETURN_DOUBLE((double) Z_LVAL_PP(&op1));
-			}
-			/* break omitted intentionally */
-
-		case IS_DOUBLE:
-			return_val = (Z_TYPE_PP(&op1) == IS_LONG) ? (double)Z_LVAL_PP(&op1) : Z_DVAL_PP(&op1);
-			return_val = _php_math_round(return_val, places, mode);
-			RETURN_DOUBLE(return_val);
-			break;
-
-		default:
-			RETURN_FALSE;
-			break;
-	}
-}
-
-#if PHP_VERSION_ID < 50600
-#include "Zend/zend_multiply.h"
-void zephir_pow_function_ex(zval *return_value, zval *zbase, zval *zexp TSRMLS_DC)
-{
-	/* make sure we're dealing with numbers */
-	convert_scalar_to_number(zbase TSRMLS_CC);
-	convert_scalar_to_number(zexp TSRMLS_CC);
-
-	/* if both base and exponent were longs, we'll try to get a long out */
-	if (Z_TYPE_P(zbase) == IS_LONG && Z_TYPE_P(zexp) == IS_LONG && Z_LVAL_P(zexp) >= 0) {
-		long l1 = 1, l2 = Z_LVAL_P(zbase), i = Z_LVAL_P(zexp);
-
-		if (i == 0) {
-			RETURN_LONG(1L);
-		} else if (l2 == 0) {
-			RETURN_LONG(0);
-		}
-
-		/* calculate pow(long,long) in O(log exp) operations, bail if overflow */
-		while (i >= 1) {
-			int overflow;
-			double dval = 0.0;
-
-			if (i % 2) {
-				--i;
-				ZEND_SIGNED_MULTIPLY_LONG(l1, l2, l1, dval, overflow);
-				if (overflow) RETURN_DOUBLE(dval * pow(l2, i));
-			} else {
-				i /= 2;
-				ZEND_SIGNED_MULTIPLY_LONG(l2, l2, l2, dval,overflow);
-				if (overflow) RETURN_DOUBLE((double)l1 * pow(dval, i));
-			}
-			if (i == 0) {
-				RETURN_LONG(l1);
-			}
-		}
-	}
-	convert_to_double(zbase);
-	convert_to_double(zexp);
-
-	RETURN_DOUBLE(pow(Z_DVAL_P(zbase), Z_DVAL_P(zexp)));
-}
-#endif

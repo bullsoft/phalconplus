@@ -31,5 +31,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_protoorderby_method_entry) {
 	PHP_ME(PhalconPlus_Base_ProtoOrderBy, getAlias, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ProtoOrderBy, setAlias, arginfo_phalconplus_base_protoorderby_setalias, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ProtoOrderBy, __toString, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

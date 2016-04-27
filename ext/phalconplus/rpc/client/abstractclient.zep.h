@@ -11,5 +11,5 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_rpc_client_abstractclient_method_entry) {
 	PHP_ME(PhalconPlus_RPC_Client_AbstractClient, callByObject, arginfo_phalconplus_rpc_client_abstractclient_callbyobject, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

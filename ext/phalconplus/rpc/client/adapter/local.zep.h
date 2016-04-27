@@ -25,5 +25,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_rpc_client_adapter_local_method_entry) {
 	PHP_ME(PhalconPlus_RPC_Client_Adapter_Local, __construct, arginfo_phalconplus_rpc_client_adapter_local___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_RPC_Client_Adapter_Local, callByParams, arginfo_phalconplus_rpc_client_adapter_local_callbyparams, ZEND_ACC_PRIVATE)
 	PHP_ME(PhalconPlus_RPC_Client_Adapter_Local, callByObject, arginfo_phalconplus_rpc_client_adapter_local_callbyobject, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

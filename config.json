@@ -16,6 +16,15 @@
             }
         }
     },
+    "info": [
+        {
+            "header": ["Directive", "Value"],
+            "rows": [
+                ["phalconplus.env", "Your environment, such as: dev, test etc."]
+            ]
+                
+        }
+    ],
     "warnings": {
         "unused-variable": true,
         "unused-variable-external": false,
@@ -54,10 +63,10 @@
     "namespace": "phalconplus",
     "name": "phalconplus",
     "description": "Phalcon+ is a new framework based on Phalcon.",
-    "author": "Gu Weigang<guweigang@outlook.com> and NetCredit Group",
-    "version": "0.0.4-stable",
+    "author": "Gu Weigang<guweigang@outlook.com> and NCF Group",
+    "version": "0.0.5-dev",
     "verbose": false,
     "requires": {
-        "extensions": ["phalcon"]
+        "extensions": ["phalcon", "yar"]
     }
 }

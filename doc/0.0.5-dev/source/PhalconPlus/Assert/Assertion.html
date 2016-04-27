@@ -1,0 +1,205 @@
+<html>
+
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/style.css" />
+
+
+        <script src="../../../asset/static/jquery.min.js"></script>
+        <script src="../../../asset/static/prettify.js"></script>
+        <script src="../../../asset/api_definition.js"></script>
+
+        <script>var ZepCurrentPath = '../../../'</script>
+
+        <script src="../../../asset/static/script.js"></script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                Zephir Documentation <span class="version">v0.0.5-dev</span>
+            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Assert/Assertion.html">PhalconPlus\Assert\Assertion</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Assert/Assertion.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Assert.html">Assert</a>
+        </span>
+                <h1 class="class-name">Assertion</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Assert;
+use PhalconPlus\Enum\AssertionCode;
+
+/**
+ *
+ * @ref https://github.com/beberlei/assert
+ */
+class Assertion
+{
+    // static protected exceptionClass = "\\PhalconPlus\\Assert\\InvalidArgumentException";
+    
+    protected static function createException(value, message, code, propertyPath, array constraints = [])
+    {
+        return new \PhalconPlus\Assert\InvalidArgumentException(message, code, propertyPath, value, constraints);
+    }
+    
+    public static function eq(var value, var value2, var message = null, var propertyPath = null)
+    {
+        if value != value2 {
+            var v1, v2;
+            let v1 = self::stringify(value);
+            let v2 = self::stringify(value2);
+
+            if message === null {
+                let message = "Value " . v1 . " does not equal expected value " . v2 . ".";
+            }
+
+            throw static::createException(value, message, AssertionCode::INVALID_SAME, propertyPath, ["expected": value2]);
+        }
+    }
+
+    public static function same(var value, var value2, var message = null, var propertyPath = null)
+    {
+        if value !== value2 {
+            var v1, v2;
+            let v1 = self::stringify(value);
+            let v2 = self::stringify(value2);
+
+            if message === null {
+                let message = "Value " . v1 . " does not equal expected value " . v2 . ".";
+            }
+
+            throw static::createException(value, message, AssertionCode::INVALID_EQ, propertyPath, ["expected": value2]);
+        }
+    }
+
+    public static function notEmpty(var value, var message = null, var propertyPath = null)
+    {
+        if empty value {
+            var v1;
+            let v1 = self::stringify(value);
+            if message === null {
+                let message = "Value " . v1 . " is empty, but non empty value was expected.";
+            }
+            
+            throw static::createException(value, message, AssertionCode::VALUE_EMPTY, propertyPath);
+        }
+    }
+
+    public static function notNull(var value, var message = null, var propertyPath = null)
+    {
+        if value === null {
+            var v1;
+            let v1 = self::stringify(value);
+            if message === null {
+                let message = "Value " . v1 . " is null, but non null value was expected.";
+            }
+            throw static::createException(value, message, AssertionCode::VALUE_NULL, propertyPath);
+        }
+    }
+
+    public static function numeric(var value, var message = null, var propertyPath = null)
+    {
+        if !is_numeric(value) {
+            var v1;
+            let v1 = self::stringify(value);
+            if message === null {
+                let message = "Value " . v1 . " is not numeric";
+            }
+            throw static::createException(value, message, AssertionCode::INVALID_NUMERIC, propertyPath);
+        }
+    }
+
+    private static function stringify(value)
+    {
+        if is_bool(value) {
+            return value ? "<TRUE>" : "<FALSE>";
+        }
+        var val;
+        if is_scalar(value) {
+            let val = (string) value;
+            if (strlen(val) > 100) {
+                let val = substr(val, 0, 97) . "...";
+            }
+            return val;
+        }
+        if is_array(value) {
+            return "<ARRAY>";
+        }
+        if is_object(value) {
+            return get_class(value);
+        }
+        if is_resource(value) {
+            return "<RESOURCE>";
+        }
+        if value === NULL {
+            return "<NULL>";
+        }
+        return "unknown";
+    }
+}</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

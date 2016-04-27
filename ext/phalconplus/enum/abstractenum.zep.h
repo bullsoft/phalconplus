@@ -35,5 +35,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_enum_abstractenum_method_entry) {
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, validValues, arginfo_phalconplus_enum_abstractenum_validvalues, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, __toString, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

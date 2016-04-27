@@ -2,13 +2,16 @@ namespace PhalconPlus\Base;
 
 class Service
 {
-    private di;
+    protected di;
     
-    public function __construct(<\Phalcon\DI> di)
+    final public function __construct(<\Phalcon\DI> di)
     {
         let this->di = di;
+        this->onConstruct();
     }
 
+    protected function onConstruct() {}
+    
     protected function getDI() -> <\Phalcon\DI>
     {
         return this->di;

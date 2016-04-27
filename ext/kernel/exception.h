@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -21,7 +21,8 @@
 #ifndef ZEPHIR_KERNEL_EXCEPTIONS_H
 #define ZEPHIR_KERNEL_EXCEPTIONS_H
 
-#include "Zend/zend.h"
+#include <Zend/zend.h>
+#include "kernel/main.h"
 
 /** Exceptions */
 #define ZEPHIR_THROW_EXCEPTION_STR(class_entry, message) \

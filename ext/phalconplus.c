@@ -20,6 +20,7 @@
 #include <Zend/zend_exceptions.h>
 #include <Zend/zend_interfaces.h>
 
+#include "kernel/globals.h"
 #include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
@@ -31,6 +32,7 @@ zend_class_entry *phalconplus_base_protobuffer_ce;
 zend_class_entry *phalconplus_enum_abstractenum_ce;
 zend_class_entry *phalconplus_logger_processor_abstractprocessor_ce;
 zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
+zend_class_entry *phalconplus_base_response_ce;
 zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 zend_class_entry *phalconplus_assert_assertion_ce;
 zend_class_entry *phalconplus_assert_invalidargumentexception_ce;
@@ -42,11 +44,12 @@ zend_class_entry *phalconplus_base_model_ce;
 zend_class_entry *phalconplus_base_pagable_ce;
 zend_class_entry *phalconplus_base_page_ce;
 zend_class_entry *phalconplus_base_protoorderby_ce;
-zend_class_entry *phalconplus_base_response_ce;
 zend_class_entry *phalconplus_base_service_ce;
 zend_class_entry *phalconplus_base_simplerequest_ce;
+zend_class_entry *phalconplus_base_simpleresponse_ce;
 zend_class_entry *phalconplus_bootstrap_ce;
 zend_class_entry *phalconplus_db_mysql_ce;
+zend_class_entry *phalconplus_db_unitofwork_ce;
 zend_class_entry *phalconplus_enum_assertioncode_ce;
 zend_class_entry *phalconplus_enum_exception_ce;
 zend_class_entry *phalconplus_enum_orderbydirection_ce;
@@ -59,6 +62,10 @@ zend_class_entry *phalconplus_rpc_client_adapter_remote_ce;
 zend_class_entry *phalconplus_volt_extension_phpfunction_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(phalconplus)
+
+PHP_INI_BEGIN()
+	
+PHP_INI_END()
 
 static PHP_MINIT_FUNCTION(phalconplus)
 {
@@ -77,12 +84,13 @@ static PHP_MINIT_FUNCTION(phalconplus)
 
 	setlocale(LC_ALL, "C");
 #endif
-
+	REGISTER_INI_ENTRIES();
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
 	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_AbstractProcessor);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_AbstractClient);
+	ZEPHIR_INIT(PhalconPlus_Base_Response);
 	ZEPHIR_INIT(PhalconPlus_RPC_Server_AbstractServer);
 	ZEPHIR_INIT(PhalconPlus_Assert_Assertion);
 	ZEPHIR_INIT(PhalconPlus_Assert_InvalidArgumentException);
@@ -94,11 +102,12 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Base_Pagable);
 	ZEPHIR_INIT(PhalconPlus_Base_Page);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoOrderBy);
-	ZEPHIR_INIT(PhalconPlus_Base_Response);
 	ZEPHIR_INIT(PhalconPlus_Base_Service);
 	ZEPHIR_INIT(PhalconPlus_Base_SimpleRequest);
+	ZEPHIR_INIT(PhalconPlus_Base_SimpleResponse);
 	ZEPHIR_INIT(PhalconPlus_Bootstrap);
 	ZEPHIR_INIT(PhalconPlus_Db_Mysql);
+	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork);
 	ZEPHIR_INIT(PhalconPlus_Enum_AssertionCode);
 	ZEPHIR_INIT(PhalconPlus_Enum_Exception);
 	ZEPHIR_INIT(PhalconPlus_Enum_OrderByDirection);
@@ -122,7 +131,7 @@ static PHP_MSHUTDOWN_FUNCTION(phalconplus)
 {
 
 	zephir_deinitialize_memory(TSRMLS_C);
-
+	UNREGISTER_INI_ENTRIES();
 	return SUCCESS;
 }
 #endif
@@ -130,21 +139,24 @@ static PHP_MSHUTDOWN_FUNCTION(phalconplus)
 /**
  * Initialize globals on each request or each thread started
  */
-static void php_zephir_init_globals(zend_phalconplus_globals *zephir_globals TSRMLS_DC)
+static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_globals TSRMLS_DC)
 {
-	zephir_globals->initialized = 0;
+	phalconplus_globals->initialized = 0;
 
 	/* Memory options */
-	zephir_globals->active_memory = NULL;
+	phalconplus_globals->active_memory = NULL;
 
 	/* Virtual Symbol Tables */
-	zephir_globals->active_symbol_table = NULL;
+	phalconplus_globals->active_symbol_table = NULL;
 
 	/* Cache Enabled */
-	zephir_globals->cache_enabled = 1;
+	phalconplus_globals->cache_enabled = 1;
 
 	/* Recursive Lock */
-	zephir_globals->recursive_lock = 0;
+	phalconplus_globals->recursive_lock = 0;
+
+	/* Static cache */
+	memset(phalconplus_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
 
 
 }
@@ -152,12 +164,13 @@ static void php_zephir_init_globals(zend_phalconplus_globals *zephir_globals TSR
 static PHP_RINIT_FUNCTION(phalconplus)
 {
 
-	zend_phalconplus_globals *zephir_globals_ptr = ZEPHIR_VGLOBAL;
+	zend_phalconplus_globals *phalconplus_globals_ptr = ZEPHIR_VGLOBAL;
 
-	php_zephir_init_globals(zephir_globals_ptr TSRMLS_CC);
+	php_zephir_init_globals(phalconplus_globals_ptr TSRMLS_CC);
 	//zephir_init_interned_strings(TSRMLS_C);
 
-	zephir_initialize_memory(zephir_globals_ptr TSRMLS_CC);
+	zephir_initialize_memory(phalconplus_globals_ptr TSRMLS_CC);
+
 
 	return SUCCESS;
 }
@@ -181,10 +194,15 @@ static PHP_MINFO_FUNCTION(phalconplus)
 	php_info_print_table_header(2, PHP_PHALCONPLUS_NAME, "enabled");
 	php_info_print_table_row(2, "Author", PHP_PHALCONPLUS_AUTHOR);
 	php_info_print_table_row(2, "Version", PHP_PHALCONPLUS_VERSION);
+	php_info_print_table_row(2, "Build Date", __DATE__ " " __TIME__ );
 	php_info_print_table_row(2, "Powered by Zephir", "Version " PHP_PHALCONPLUS_ZEPVERSION);
 	php_info_print_table_end();
+	php_info_print_table_start();
+	php_info_print_table_header(2, "Directive", "Value");
+	php_info_print_table_row(2, "phalconplus.env", "Your environment, such as: dev, test etc.");
+	php_info_print_table_end();
 
-
+	DISPLAY_INI_ENTRIES();
 }
 
 static PHP_GINIT_FUNCTION(phalconplus)

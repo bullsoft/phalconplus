@@ -21,5 +21,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_assert_invalidargumentexception_method_entry) {
 	PHP_ME(PhalconPlus_Assert_InvalidArgumentException, getPropertyPath, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Assert_InvalidArgumentException, getValue, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Assert_InvalidArgumentException, getConstraints, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

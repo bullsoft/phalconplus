@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -24,6 +24,7 @@
 #include <php.h>
 
 #define ZEPHIR_MAX_MEMORY_STACK 48
+#define ZEPHIR_MAX_CACHE_SLOTS 512
 
 /** Memory frame */
 typedef struct _zephir_memory_entry {
@@ -53,11 +54,20 @@ typedef struct _zephir_function_cache {
 	zend_function *func;
 } zephir_function_cache;
 
-#if PHP_VERSION_ID >= 50400
-	#define ZEPHIR_INIT_FUNCS(class_functions) static const zend_function_entry class_functions[] =
+#ifndef ZEPHIR_RELEASE
+
+typedef struct _zephir_fcall_cache_entry {
+	zend_function *f;
+	zend_uint times;
+} zephir_fcall_cache_entry;
+
 #else
-	#define ZEPHIR_INIT_FUNCS(class_functions) static const function_entry class_functions[] =
+
+typedef zend_function zephir_fcall_cache_entry;
+
 #endif
+
+#define ZEPHIR_INIT_FUNCS(class_functions) static const zend_function_entry class_functions[] =
 
 #ifndef PHP_FE_END
 	#define PHP_FE_END { NULL, NULL, NULL, 0, 0 }
@@ -144,22 +154,14 @@ typedef struct _zephir_function_cache {
 # define __func__ __FUNCTION__
 #endif
 
-/*#if PHP_VERSION_ID > 50399
-# define ZLK_DC , const struct _zend_literal* key
-# define ZLK_CC , key
-# define ZLK_NULL_CC , NULL
+#if defined(__GNUC__)
+# define ZEPHIR_NO_OPT __attribute__((optimize("O0")))
 #else
-# define ZLK_DC
-# define ZLK_CC
-# define ZLK_NULL_CC
-#endif*/
+# define ZEPHIR_NO_OPT
+#endif
 
-#if PHP_VERSION_ID < 50600
 #ifdef ZTS
 #define zephir_nts_static
-#else
-#define zephir_nts_static static
-#endif
 #else
 #define zephir_nts_static
 #endif
