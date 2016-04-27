@@ -33,3 +33,5 @@
 
 .temp/*
 *.log
+
+ext/autom4te.cache/
