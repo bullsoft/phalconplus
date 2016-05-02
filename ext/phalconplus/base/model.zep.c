@@ -45,8 +45,10 @@ PHP_METHOD(PhalconPlus_Base_Model, initialize) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(_0);
-	zephir_create_array(_0, 1, 0 TSRMLS_CC);
+	zephir_create_array(_0, 3, 0 TSRMLS_CC);
 	zephir_array_update_string(&_0, SL("notNullValidations"), &ZEPHIR_GLOBAL(global_false), PH_COPY | PH_SEPARATE);
+	zephir_array_update_string(&_0, SL("castOnHydrate"), &ZEPHIR_GLOBAL(global_true), PH_COPY | PH_SEPARATE);
+	zephir_array_update_string(&_0, SL("forceCasting"), &ZEPHIR_GLOBAL(global_true), PH_COPY | PH_SEPARATE);
 	ZEPHIR_CALL_SELF(NULL, "setup", NULL, 0, _0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
@@ -236,15 +238,15 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(&columnMap, "array_flip", NULL, 26, _2$$3);
 		zephir_check_call_status();
-		zephir_is_iterable(columns, &_4$$3, &_3$$3, 0, 0, "phalconplus/Base/Model.zep", 84);
+		zephir_is_iterable(columns, &_4$$3, &_3$$3, 0, 0, "phalconplus/Base/Model.zep", 86);
 		for (
 		  ; zephir_hash_get_current_data_ex(_4$$3, (void**) &_5$$3, &_3$$3) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_4$$3, &_3$$3)
 		) {
 			ZEPHIR_GET_HVALUE(val$$3, _5$$3);
 			if (zephir_array_isset(columnMap, val$$3)) {
-				zephir_array_fetch(&_6$$5, columnMap, val$$3, PH_NOISY | PH_READONLY, "phalconplus/Base/Model.zep", 81 TSRMLS_CC);
-				zephir_array_append(&newColumns, _6$$5, PH_SEPARATE, "phalconplus/Base/Model.zep", 81);
+				zephir_array_fetch(&_6$$5, columnMap, val$$3, PH_NOISY | PH_READONLY, "phalconplus/Base/Model.zep", 83 TSRMLS_CC);
+				zephir_array_append(&newColumns, _6$$5, PH_SEPARATE, "phalconplus/Base/Model.zep", 83);
 			}
 		}
 	} else {
@@ -257,7 +259,7 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 
 		ZEPHIR_CALL_METHOD(NULL, conn, "begin", NULL, 0);
 		zephir_check_call_status_or_jump(try_end_1);
-		zephir_is_iterable(rows, &_8$$7, &_7$$7, 0, 0, "phalconplus/Base/Model.zep", 93);
+		zephir_is_iterable(rows, &_8$$7, &_7$$7, 0, 0, "phalconplus/Base/Model.zep", 95);
 		for (
 		  ; zephir_hash_get_current_data_ex(_8$$7, (void**) &_9$$7, &_7$$7) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_8$$7, &_7$$7)
@@ -279,7 +281,7 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 			zend_clear_exception(TSRMLS_C);
 			ZEPHIR_CALL_METHOD(NULL, conn, "rollback", NULL, 0);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(e, "phalconplus/Base/Model.zep", 96 TSRMLS_CC);
+			zephir_throw_exception_debug(e, "phalconplus/Base/Model.zep", 98 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -489,7 +491,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 		ZEPHIR_CALL_METHOD(NULL, proto, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_is_iterable(toArray, &_1, &_0, 0, 0, "phalconplus/Base/Model.zep", 207);
+	zephir_is_iterable(toArray, &_1, &_0, 0, 0, "phalconplus/Base/Model.zep", 209);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)

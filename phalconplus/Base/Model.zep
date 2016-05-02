@@ -21,7 +21,7 @@ class Model extends \Phalcon\Mvc\Model
         self::setUp([
             "notNullValidations" : false,
             "castOnHydrate" : true,
-            "forceCasting" : true,
+            "forceCasting" : true
         ]);
         this->useDynamicUpdate(true);
         this->keepSnapshots(true);
