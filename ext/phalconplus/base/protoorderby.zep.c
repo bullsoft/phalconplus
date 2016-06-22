@@ -139,10 +139,10 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString) {
 	ZEPHIR_MM_GROW();
 
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("property"), PH_NOISY_CC);
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 32, _1);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 33, _1);
 	zephir_check_call_status();
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("direction"), PH_NOISY_CC);
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 32, _2);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 33, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(orderBy);
 	ZVAL_STRING(orderBy, "", 1);

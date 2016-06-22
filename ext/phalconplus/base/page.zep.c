@@ -204,3 +204,18 @@ PHP_METHOD(PhalconPlus_Base_Page, isEmpty) {
 
 }
 
+PHP_METHOD(PhalconPlus_Base_Page, data2Array) {
+
+	zval *_0, *_1 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&_1, _0, "toarray", NULL, 0);
+	zephir_check_call_status();
+	zephir_update_property_this(this_ptr, SL("data"), _1 TSRMLS_CC);
+	RETURN_THIS();
+
+}
+

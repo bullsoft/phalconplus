@@ -469,11 +469,11 @@ PHP_METHOD(PhalconPlus_Base_Model, exists) {
 
 PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 
-	HashTable *_1;
-	HashPosition _0;
-	zephir_fcall_cache_entry *_4 = NULL;
+	HashTable *_1, *_6;
+	HashPosition _0, _5;
+	zephir_fcall_cache_entry *_4 = NULL, *_8 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *columns = NULL, *proto = NULL, *toArray = NULL, *key = NULL, *val = NULL, **_2, *_3$$3 = NULL;
+	zval *columns = NULL, *proto = NULL, *toArray = NULL, *key = NULL, *val = NULL, **_2, *modelName = NULL, *manager = NULL, *relations = NULL, *referenceModel = NULL, *referencedEntity = NULL, *options = NULL, *alias = NULL, *lowerAlias = NULL, **_7, *_3$$3 = NULL, *method$$4 = NULL, *property$$4 = NULL, *_9$$4 = NULL, *_10$$4 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &columns);
@@ -506,6 +506,45 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 			zephir_check_call_status();
 		}
 		zephir_update_property_zval_zval(proto, key, _3$$3 TSRMLS_CC);
+	}
+	ZEPHIR_INIT_VAR(modelName);
+	zephir_get_class(modelName, this_ptr, 0 TSRMLS_CC);
+	ZEPHIR_CALL_METHOD(&manager, this_ptr, "getmodelsmanager", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&relations, manager, "getrelations", NULL, 0, modelName);
+	zephir_check_call_status();
+	zephir_is_iterable(relations, &_6, &_5, 0, 0, "phalconplus/Base/Model.zep", 230);
+	for (
+	  ; zephir_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_6, &_5)
+	) {
+		ZEPHIR_GET_HVALUE(val, _7);
+		ZEPHIR_CALL_METHOD(&referenceModel, val, "getreferencedmodel", NULL, 0);
+		zephir_check_call_status();
+		ZEPHIR_INIT_NVAR(referencedEntity);
+		zephir_fast_strtolower(referencedEntity, referenceModel);
+		ZEPHIR_CALL_METHOD(&options, val, "getoptions", NULL, 0);
+		zephir_check_call_status();
+		ZEPHIR_OBS_NVAR(alias);
+		if (zephir_array_isset_string_fetch(&alias, options, SS("alias"), 0 TSRMLS_CC)) {
+			if (Z_TYPE_P(alias) != IS_STRING) {
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Relation alias must be a string", "phalconplus/Base/Model.zep", 219);
+				return;
+			}
+			ZEPHIR_INIT_NVAR(lowerAlias);
+			zephir_fast_strtolower(lowerAlias, alias);
+		} else {
+			ZEPHIR_CPY_WRT(lowerAlias, referencedEntity);
+		}
+		ZEPHIR_INIT_NVAR(method$$4);
+		ZEPHIR_CONCAT_SV(method$$4, "get", alias);
+		ZEPHIR_CALL_FUNCTION(&property$$4, "lcfirst", &_8, 31, alias);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD_ZVAL(&_9$$4, this_ptr, method$$4, NULL, 0);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(&_10$$4, _9$$4, "toarray", NULL, 0);
+		zephir_check_call_status();
+		zephir_update_property_zval_zval(proto, property$$4, _10$$4 TSRMLS_CC);
 	}
 	RETURN_CCTOR(proto);
 

@@ -31,7 +31,7 @@ abstract class AbstractServer
         } else {
             throw new \Exception("Your input is not allowed. Request: " . json_encode(request));
         }
-        
+
         var serviceObj, response, e;
         let serviceObj = new {serviceClass}(this->di);
 

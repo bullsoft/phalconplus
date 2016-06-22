@@ -151,7 +151,7 @@ class Model extends \Phalcon\Mvc\Model
         if fetch val, params["bind"] {
             let bind = val;
         }
-        
+
         if fetch val, params["conditions"] {
             if empty bind {
                 builder->where(val);
@@ -165,7 +165,7 @@ class Model extends \Phalcon\Mvc\Model
             "limit":pagable->getPageSize(),
             "page":pagable->getPageNo()
         ]);
-        
+
         let page = queryBuilder->getPaginate();
         // error_log(var_export(pagable->toArray(), true));
 
@@ -205,6 +205,27 @@ class Model extends \Phalcon\Mvc\Model
         let proto = new ProtoBuffer();
         for key, val in toArray {
             let proto->{key} = is_scalar(val)?val:strval(val);
+        }
+        var modelName, manager, relations, referenceModel, referencedEntity, options, alias, lowerAlias;
+
+		let modelName = get_class(this), manager = this->getModelsManager();
+        let relations = manager->getRelations(modelName);
+        for val in relations {
+            let referenceModel = val->getReferencedModel();
+            let referencedEntity = strtolower(referenceModel);
+            let options = val->getOptions();
+            if fetch alias, options["alias"] {
+                if typeof alias != "string" {
+                    throw new \Exception("Relation alias must be a string");
+                }
+                let lowerAlias = strtolower(alias);
+            } else {
+                let lowerAlias = referencedEntity;
+            }
+            var method, property;
+            let method = "get".alias;
+            let property = lcfirst(alias);
+            let proto->{property} = this->{method}()->toArray();
         }
         return proto;
     }

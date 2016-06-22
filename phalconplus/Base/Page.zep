@@ -4,15 +4,15 @@ use PhalconPlus\Assert\Assertion as Assert;
 class Page extends ProtoBuffer
 {
     private pagable;
-    
+
     private data;
-    
+
     private totalSize;
-    
+
     private pageNo;
-    
+
     private pageSize;
-    
+
     private totalPage;
 
     public function __construct(<Pagable> pagable, totalSize, <\Phalcon\Mvc\Model\Resultset> data)
@@ -45,7 +45,7 @@ class Page extends ProtoBuffer
         let this->totalPage = ceil(this->totalSize / this->pageSize);
         return this;
     }
-    
+
     public function getPageNo()
     {
         return this->pageNo;
@@ -75,7 +75,7 @@ class Page extends ProtoBuffer
     {
         return !this->hasNextPage();
     }
-    
+
     public function hasNextPage()
     {
         return this->getPageNo() < this->getTotalPage();
@@ -89,5 +89,11 @@ class Page extends ProtoBuffer
     public function isEmpty()
     {
         return count(this->data) == 0;
+    }
+
+    public function data2Array()
+    {
+        let this->data = this->data->toArray();
+        return this;
     }
 }

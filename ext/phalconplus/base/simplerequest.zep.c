@@ -57,26 +57,41 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParams) {
 
 
 	zephir_update_property_this(this_ptr, SL("params"), params TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
 PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *val, *_0;
+	zval *val, *key = NULL, *_0$$4;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &val);
+	zephir_fetch_params(1, 1, 1, &val, &key);
+
+	if (!key) {
+		key = ZEPHIR_GLOBAL(global_null);
+	}
 
 
+	if (!(Z_TYPE_P(key) == IS_NULL)) {
+		zephir_update_property_array(this_ptr, SL("params"), key, val TSRMLS_CC);
+	} else {
+		_0$$4 = zephir_fetch_nproperty_this(this_ptr, SL("params"), PH_NOISY_CC);
+		ZEPHIR_MAKE_REF(_0$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 32, _0$$4, val);
+		ZEPHIR_UNREF(_0$$4);
+		zephir_check_call_status();
+	}
+	RETURN_THIS();
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("params"), PH_NOISY_CC);
-	ZEPHIR_MAKE_REF(_0);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 31, _0, val);
-	ZEPHIR_UNREF(_0);
-	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParams) {
+
+	
+
+	RETURN_MEMBER(this_ptr, "params");
 
 }
 

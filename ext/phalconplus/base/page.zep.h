@@ -16,6 +16,7 @@ PHP_METHOD(PhalconPlus_Base_Page, isLastPage);
 PHP_METHOD(PhalconPlus_Base_Page, hasNextPage);
 PHP_METHOD(PhalconPlus_Base_Page, getData);
 PHP_METHOD(PhalconPlus_Base_Page, isEmpty);
+PHP_METHOD(PhalconPlus_Base_Page, data2Array);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_page___construct, 0, 0, 3)
 	ZEND_ARG_OBJ_INFO(0, pagable, PhalconPlus\\Base\\Pagable, 0)
@@ -37,5 +38,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_page_method_entry) {
 	PHP_ME(PhalconPlus_Base_Page, hasNextPage, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Page, getData, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Page, isEmpty, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Page, data2Array, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

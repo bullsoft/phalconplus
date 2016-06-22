@@ -2,27 +2,45 @@ namespace PhalconPlus\Base;
 
 final class SimpleResponse extends Response
 {
+    /**
+     * @var array
+     */
     private result = [];
-    
+
+    /**
+     * @deprecated
+     */
     public function getResult()
     {
-        return this->result;
+        return (array) this->result;
     }
 
-    public function setResult(array result)
+    public function setResult(array result = [])
     {
         let this->result = result;
         return this;
     }
 
-    public function pushItem(var val)
+    public function pushItem(var val, var key = null)
     {
-        array_push(this->result, val);
+        if !is_null(key) {
+            let this->result[key] = val;
+        } else {
+            array_push(this->result, val);
+        }
         return this;
     }
 
-    public function popItem()
+    public function getItem(var key = null)
     {
-        return array_pop(this->result);
+        if !is_null(key) {
+            var val;
+            if fetch val, this->result[key] {
+                return val;
+            }
+        } else {
+            return reset(this->result);
+        }
     }
+
 }

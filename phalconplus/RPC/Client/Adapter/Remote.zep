@@ -5,7 +5,7 @@ class Remote extends AbstractClient
 {
     private remoteServerUrl;
     private client;
-    
+
     public function __construct(array remoteServerUrl, array opts = [])
     {
         if empty remoteServerUrl {

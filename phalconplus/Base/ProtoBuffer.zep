@@ -37,9 +37,9 @@ class ProtoBuffer implements \JsonSerializable
             }
             return this->{method}(val);
         }
-        
+
         // rule break: hard code
-        if is_scalar(val) {
+        if is_scalar(val) || is_array(val) {
             let this->{key} = val;
             return this;
         } else {
@@ -67,7 +67,7 @@ class ProtoBuffer implements \JsonSerializable
         if property_exists(this, key) {
             return this->{key};
         }
-        
+
         return null;
     }
 
@@ -75,7 +75,7 @@ class ProtoBuffer implements \JsonSerializable
     {
         var objReflection = null;
         var vars = [], pros = [], pro = null;
-        
+
         let objReflection = new \ReflectionObject(this);
         let pros = objReflection->getProperties();
 
@@ -94,7 +94,7 @@ class ProtoBuffer implements \JsonSerializable
     public function toArray(bool isArray = false, array data = [])
     {
         var pros = [], newPros = [];
-        
+
         if isArray == false {
             let pros = this->getSelfVars();
         } else {
@@ -102,7 +102,7 @@ class ProtoBuffer implements \JsonSerializable
         }
 
         var key, val;
-        
+
         for key, val in pros {
             if is_array(val) {
                 let newPros[key] = this->toArray(true, val);
@@ -111,17 +111,17 @@ class ProtoBuffer implements \JsonSerializable
             } elseif is_object(val) && method_exists(val, "__toString") {
                 let newPros[key] = val->__toString();
             } else {
-                let newPros[key] = val;                
+                let newPros[key] = val;
             }
         }
-        
+
         return newPros;
-            
+
         /* Zephir 暂时不支持 引用传递
         array_walk_recursive(pros, function(&property, key){
             if is_object(property) {
                 let property = property->toArray();
-            } 
+            }
         });
         return pros;
         */

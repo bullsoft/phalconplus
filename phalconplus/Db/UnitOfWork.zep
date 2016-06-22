@@ -87,18 +87,18 @@ class UnitOfWork
         let this->updated = new SplObjectStorage();
 
         var txManager, transaction, e;
-        
+
         let txManager = new TxManager();
         txManager->setDbService(this->dbServiceName);
         let transaction = txManager->get();
-        
+
         var obj, info;
         this->objects->rewind();
         try {
             while(this->objects->valid()) {
                 let obj = this->objects->current();
                 let info = this->objects->getInfo();
-                
+
                 var method, name;
                 let method = info["method"];
                 let name = info["name"];
@@ -129,6 +129,12 @@ class UnitOfWork
         var initial_data, result, last_insert_id;
         let initial_data = info["initial_data"];
         if !empty(initial_data) {
+            var col, val;
+            for col, val in initial_data {
+                if is_callable(val) {
+                    let initial_data[col] = {val}();
+                }
+            }
             let result = model->create(initial_data);
         } else {
             let result = model->create();
@@ -147,6 +153,12 @@ class UnitOfWork
         var result, initial_data;
         let initial_data = info["initial_data"];
         if(!empty(initial_data)) {
+            var col, val;
+            for col, val in initial_data {
+                if is_callable(val) {
+                    let initial_data[col] = {val}();
+                }
+            }
             let result = model->update(initial_data);
         } else {
             let result = model->update();
