@@ -337,6 +337,7 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeSave) {
  *    - params["columns"]
  *    - params["conditions"]
  *    - params["bind"]
+ *    - params["hydration"]: \Phalcon\Mvc\Model\Resultset::HYDRATE_OBJECTS | HYDRATE_ARRAYS | HYDRATE_RECORDS
  *
  */
 PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
@@ -345,7 +346,7 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *params = NULL, *_6;
-	zval *pagable, *params_param = NULL, *builder = NULL, *val = NULL, *orderBys = NULL, *_2 = NULL, _3, *bind = NULL, *queryBuilder = NULL, *page = NULL, *_7 = NULL, *_8, *_9, *_4$$3, *_5$$5;
+	zval *pagable, *params_param = NULL, *builder = NULL, *val = NULL, *orderBys = NULL, *_2 = NULL, _3, *bind = NULL, *queryBuilder = NULL, *page = NULL, *_7 = NULL, *_8, *_10, *_11, *_4$$3, *_5$$5, *hydration$$10 = NULL, *_9$$11;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &pagable, &params_param);
@@ -420,12 +421,23 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&page, queryBuilder, "getpaginate", NULL, 0);
 	zephir_check_call_status();
-	object_init_ex(return_value, phalconplus_base_page_ce);
 	ZEPHIR_OBS_VAR(_8);
-	zephir_read_property(&_8, page, SL("total_items"), PH_NOISY_CC);
-	ZEPHIR_OBS_VAR(_9);
-	zephir_read_property(&_9, page, SL("items"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 30, pagable, _8, _9);
+	zephir_read_property(&_8, page, SL("items"), PH_NOISY_CC);
+	if (Z_TYPE_P(_8) == IS_OBJECT) {
+		ZEPHIR_OBS_VAR(hydration$$10);
+		if (zephir_array_isset_string_fetch(&hydration$$10, params, SS("hydration"), 0 TSRMLS_CC)) {
+			ZEPHIR_OBS_VAR(_9$$11);
+			zephir_read_property(&_9$$11, page, SL("items"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(NULL, _9$$11, "sethydratemode", NULL, 0, hydration$$10);
+			zephir_check_call_status();
+		}
+	}
+	object_init_ex(return_value, phalconplus_base_page_ce);
+	ZEPHIR_OBS_VAR(_10);
+	zephir_read_property(&_10, page, SL("total_items"), PH_NOISY_CC);
+	ZEPHIR_OBS_VAR(_11);
+	zephir_read_property(&_11, page, SL("items"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 30, pagable, _10, _11);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -491,7 +503,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 		ZEPHIR_CALL_METHOD(NULL, proto, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_is_iterable(toArray, &_1, &_0, 0, 0, "phalconplus/Base/Model.zep", 209);
+	zephir_is_iterable(toArray, &_1, &_0, 0, 0, "phalconplus/Base/Model.zep", 216);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -513,7 +525,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&relations, manager, "getrelations", NULL, 0, modelName);
 	zephir_check_call_status();
-	zephir_is_iterable(relations, &_6, &_5, 0, 0, "phalconplus/Base/Model.zep", 230);
+	zephir_is_iterable(relations, &_6, &_5, 0, 0, "phalconplus/Base/Model.zep", 237);
 	for (
 	  ; zephir_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_6, &_5)
@@ -528,7 +540,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 		ZEPHIR_OBS_NVAR(alias);
 		if (zephir_array_isset_string_fetch(&alias, options, SS("alias"), 0 TSRMLS_CC)) {
 			if (Z_TYPE_P(alias) != IS_STRING) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Relation alias must be a string", "phalconplus/Base/Model.zep", 219);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Relation alias must be a string", "phalconplus/Base/Model.zep", 226);
 				return;
 			}
 			ZEPHIR_INIT_NVAR(lowerAlias);

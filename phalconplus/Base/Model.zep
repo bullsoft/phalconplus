@@ -124,15 +124,16 @@ class Model extends \Phalcon\Mvc\Model
      *    - params["columns"]
      *    - params["conditions"]
      *    - params["bind"]
+     *    - params["hydration"]: \Phalcon\Mvc\Model\Resultset::HYDRATE_OBJECTS | HYDRATE_ARRAYS | HYDRATE_RECORDS
      *
      */
     public function findByPagable(<Pagable> pagable, array params = [])
     {
         Assert::notNull(pagable, __CLASS__."::".__METHOD__ .": Pagable can not be null");
-        
+
         var builder;
         let builder = this->createBuilder();
-        
+
         var val, orderBys = [];
 
         let orderBys = array_map("strval", pagable->getOrderBys());
@@ -167,7 +168,13 @@ class Model extends \Phalcon\Mvc\Model
         ]);
 
         let page = queryBuilder->getPaginate();
-        // error_log(var_export(pagable->toArray(), true));
+
+        if typeof page->items == "object" {
+            var hydration;
+            if fetch hydration, params["hydration"] {
+                page->items->setHydrateMode(hydration);
+            }
+        }
 
         return new Page(pagable, page->total_items, page->items);
     }

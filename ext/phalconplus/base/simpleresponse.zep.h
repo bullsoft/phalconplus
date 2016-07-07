@@ -7,7 +7,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult);
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult);
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem);
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem);
-static zend_object_value zephir_init_properties_PhalconPlus_Base_SimpleResponse(zend_class_entry *class_type TSRMLS_DC);
+zend_object_value zephir_init_properties_PhalconPlus_Base_SimpleResponse(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simpleresponse_setresult, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, result, 1)

@@ -221,7 +221,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get) {
 
 }
 
-static zend_object_value zephir_init_properties_PhalconPlus_Logger_Formatter_LinePlus(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_PhalconPlus_Logger_Formatter_LinePlus(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1$$3;
 

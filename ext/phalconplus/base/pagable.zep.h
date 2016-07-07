@@ -9,7 +9,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, getOrderBys);
 PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy);
 PHP_METHOD(PhalconPlus_Base_Pagable, setPageNo);
 PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize);
-static zend_object_value zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type TSRMLS_DC);
+zend_object_value zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_pagable_setorderby, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, orderBy, PhalconPlus\\Base\\ProtoOrderBy, 0)

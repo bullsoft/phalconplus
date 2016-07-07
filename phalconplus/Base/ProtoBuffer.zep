@@ -42,6 +42,9 @@ class ProtoBuffer implements \JsonSerializable
         if is_scalar(val) || is_array(val) {
             let this->{key} = val;
             return this;
+        } elseif is_object(val) && val instanceof "\PhalconPlus\Base\ProtoBuffer" {
+            let this->{key} = val;
+            return this;
         } else {
             throw new \Exception("Please add " . method . " in your class, complex-type vars are not allowed to assign directly");
         }

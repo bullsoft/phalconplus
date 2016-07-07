@@ -95,7 +95,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParams) {
 
 }
 
-static zend_object_value zephir_init_properties_PhalconPlus_Base_SimpleRequest(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_PhalconPlus_Base_SimpleRequest(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1$$3;
 

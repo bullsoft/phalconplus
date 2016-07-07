@@ -1,5 +1,6 @@
 namespace PhalconPlus\Base;
 use PhalconPlus\Assert\Assertion as Assert;
+use Phalcon\Mvc\Model\Resultset;
 
 class Page extends ProtoBuffer
 {
@@ -19,7 +20,7 @@ class Page extends ProtoBuffer
     {
         Assert::notNull(pagable);
         let this->pagable = pagable;
-        let this->data = data;
+        let this->data = data->toArray();
         let this->totalSize = totalSize;
 
         // initialize
@@ -89,11 +90,5 @@ class Page extends ProtoBuffer
     public function isEmpty()
     {
         return count(this->data) == 0;
-    }
-
-    public function data2Array()
-    {
-        let this->data = this->data->toArray();
-        return this;
     }
 }

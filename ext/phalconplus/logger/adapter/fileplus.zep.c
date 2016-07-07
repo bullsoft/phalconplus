@@ -314,7 +314,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 
 }
 
-static zend_object_value zephir_init_properties_PhalconPlus_Logger_Adapter_FilePlus(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_PhalconPlus_Logger_Adapter_FilePlus(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_2, *_1$$3, *_3$$4;
 

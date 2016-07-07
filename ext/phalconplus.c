@@ -161,6 +161,14 @@ static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_global
 
 }
 
+/**
+ * Initialize globals only on each thread started
+ */
+static void php_zephir_init_module_globals(zend_phalconplus_globals *phalconplus_globals TSRMLS_DC)
+{
+
+}
+
 static PHP_RINIT_FUNCTION(phalconplus)
 {
 
@@ -208,6 +216,7 @@ static PHP_MINFO_FUNCTION(phalconplus)
 static PHP_GINIT_FUNCTION(phalconplus)
 {
 	php_zephir_init_globals(phalconplus_globals TSRMLS_CC);
+	php_zephir_init_module_globals(phalconplus_globals TSRMLS_CC);
 }
 
 static PHP_GSHUTDOWN_FUNCTION(phalconplus)

@@ -16,7 +16,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getConfig);
 PHP_METHOD(PhalconPlus_Bootstrap, setConfig);
 PHP_METHOD(PhalconPlus_Bootstrap, getDI);
 PHP_METHOD(PhalconPlus_Bootstrap, load);
-static zend_object_value zephir_init_properties_PhalconPlus_Bootstrap(zend_class_entry *class_type TSRMLS_DC);
+zend_object_value zephir_init_properties_PhalconPlus_Bootstrap(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, modulePath)
