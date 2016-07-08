@@ -73,7 +73,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("orderBys"), PH_NOISY_CC);
 	ZEPHIR_MAKE_REF(_0);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 32, _0, orderBy);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 33, _0, orderBy);
 	ZEPHIR_UNREF(_0);
 	zephir_check_call_status();
 	RETURN_THIS();

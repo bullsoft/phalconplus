@@ -3,7 +3,8 @@ use PhalconPlus\Base\Pagable;
 use PhalconPlus\Assert\Assertion as Assert;
 use Phalcon\Db\AdapterInterface;
 use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
-
+use Phalcon\Mvc\Model\MetaDataInterface;
+use Phalcon\Db\AdapterInterface;
 
 // use Phalcon\Mvc\Model;
 // use Phalcon\Mvc\ModelMessage;
@@ -15,6 +16,8 @@ class Model extends \Phalcon\Mvc\Model
     public ctime;
     // 记录更新时间
     public mtime;
+
+    protected __p_UK = [];
 
     public function initialize()
     {
@@ -112,6 +115,12 @@ class Model extends \Phalcon\Mvc\Model
         // nothing
     }
 
+    public function beforeCreate()
+    {
+        let this->ctime = date("Y-m-d H:i:s");
+        let this->mtime = this->ctime;
+    }
+
     public function beforeSave()
     {
         let this->mtime = date("Y-m-d H:i:s");
@@ -198,11 +207,82 @@ class Model extends \Phalcon\Mvc\Model
             let table = source;
         }
 
+        if !empty this->__p_UK {
+            this->_p_buildUkCond(metaData, readConnection);
+        }
+
         if this->_exists(metaData, readConnection, table) {
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * columnMap field
+     */
+    public function setUqKeys(array whereUk = [])
+    {
+        /**
+         * field 数据库字段
+         * attributeField columnMap之后的字段
+         */
+        var field, attributeField, type, metaData, columnMap, bindDataTypes;
+
+        let metaData = this->getModelsMetaData();
+        let columnMap = metaData->getColumnMap(this);
+        let bindDataTypes = metaData->getBindTypes(this);
+
+        for attributeField in whereUk {
+            if typeof columnMap == "array" {
+                var tmp;
+                let tmp = array_flip(columnMap);
+                if !fetch field, tmp[attributeField] {
+                    throw new \Exception("Model::setUpKeys: Column '" . attributeField . "' isn't part of the column map");
+                }                
+            } else {
+                let field = attributeField;
+            }
+
+            let this->__p_UK[attributeField]["field"] = field;
+
+            if !fetch type, bindDataTypes[field] {
+                throw new \Exception("Model::setUpKeys: Column '" . field . "' isn't part of the table columns");
+            }
+            let this->__p_UK[attributeField]["type"] = type;
+        }
+        return this;
+    }
+
+    protected function _p_buildUkCond(<MetaDataInterface> metaData, <AdapterInterface> connection)
+    {
+        var value, type, info, field, whereUk, bindDataTypes, columnMap, uniqueParams, uniqueTypes, attributeField;
+
+        let whereUk = [], 
+        uniqueParams = [],
+        uniqueTypes = [];
+        
+        for attributeField, info in this->__p_UK {
+            let type = info["type"],
+            field = info["field"],
+            value = null;
+            if fetch value, this->{attributeField} {
+                let uniqueParams[] = value;
+            } else {
+                let uniqueParams[] = null;
+            }
+            let uniqueTypes[] = type,
+                whereUk[] = connection->escapeIdentifier(field) . " = ?";
+        }
+
+        if empty array_filter(uniqueParams) {
+            return false;
+        }
+        
+        let this->_uniqueKey = join(" AND ", whereUk),
+        this->_uniqueParams = uniqueParams,
+        this->_uniqueTypes = uniqueTypes;
+        return true;
     }
 
     public function toProtoBuffer(columns = null) -> <ProtoBuffer>

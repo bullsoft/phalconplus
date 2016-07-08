@@ -32,15 +32,21 @@ class UnitOfWork
 
     public function save(var name, <\PhalconPlus\Base\Model> model, array initial_data = [])
     {
+        if !empty initial_data {
+            model->assign(initial_data);
+        }
         if !model->exists() {
-            this->insert(name, model, initial_data);
+            this->insert(name, model, initial_data, false);
         } else {
-            this->update(name, model, initial_data);
+            this->update(name, model, initial_data, false);
         } 
     }
     
-    public function insert(var name, <\Phalcon\Mvc\Model> model, array initial_data = [])
-    {
+    public function insert(var name, <\Phalcon\Mvc\Model> model, array initial_data = [], boolean assign = true)
+    {      
+        if !empty initial_data && assign == true {
+            model->assign(initial_data);
+        }
         this->detach(model);
         this->attach(model, [
             "method" : "insert",
@@ -49,8 +55,11 @@ class UnitOfWork
         ]);
     }
 
-    public function update(var name, <\Phalcon\Mvc\Model> model, array initial_data = [])
-    {
+    public function update(var name, <\Phalcon\Mvc\Model> model, array initial_data = [], boolean assign = true)
+    {    
+        if !empty initial_data && assign == true {
+            model->assign(initial_data);
+        }  
         this->detach(model);
         this->attach(model, [
             "method" : "update",
@@ -120,7 +129,6 @@ class UnitOfWork
             let this->exception = e;
             return false;
         }
-
         return true;
     }
 

@@ -12,11 +12,15 @@ PHP_METHOD(PhalconPlus_Base_Model, getInstance);
 PHP_METHOD(PhalconPlus_Base_Model, batchInsert);
 PHP_METHOD(PhalconPlus_Base_Model, beforeValidationOnCreate);
 PHP_METHOD(PhalconPlus_Base_Model, afterFetch);
+PHP_METHOD(PhalconPlus_Base_Model, beforeCreate);
 PHP_METHOD(PhalconPlus_Base_Model, beforeSave);
 PHP_METHOD(PhalconPlus_Base_Model, findByPagable);
 PHP_METHOD(PhalconPlus_Base_Model, exists);
+PHP_METHOD(PhalconPlus_Base_Model, setUqKeys);
+PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond);
 PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
 PHP_METHOD(PhalconPlus_Base_Model, selectReadConnection);
+zend_object_value zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, 0)
 	ZEND_ARG_INFO(0, alias)
@@ -30,6 +34,15 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findbypagable, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, pagable, PhalconPlus\\Base\\Pagable, 0)
 	ZEND_ARG_ARRAY_INFO(0, params, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_setuqkeys, 0, 0, 0)
+	ZEND_ARG_ARRAY_INFO(0, whereUk, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model__p_buildukcond, 0, 0, 2)
+	ZEND_ARG_OBJ_INFO(0, metaData, Phalcon\\Mvc\\Model\\MetaDataInterface, 0)
+	ZEND_ARG_OBJ_INFO(0, connection, Phalcon\\Db\\AdapterInterface, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_toprotobuffer, 0, 0, 0)
@@ -46,9 +59,12 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, batchInsert, arginfo_phalconplus_base_model_batchinsert, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Base_Model, beforeValidationOnCreate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, afterFetch, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, beforeCreate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, beforeSave, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, findByPagable, arginfo_phalconplus_base_model_findbypagable, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, exists, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, setUqKeys, arginfo_phalconplus_base_model_setuqkeys, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, _p_buildUkCond, arginfo_phalconplus_base_model__p_buildukcond, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Base_Model, toProtoBuffer, arginfo_phalconplus_base_model_toprotobuffer, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, selectReadConnection, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
