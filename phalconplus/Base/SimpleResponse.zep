@@ -31,6 +31,19 @@ final class SimpleResponse extends Response
         return this;
     }
 
+   /**
+    * @deprecated
+    */
+    public function setItem(var val, var key = null)
+    {
+        if !is_null(key) {
+            let this->result[key] = val;
+        } else {
+            array_push(this->result, val);
+        }
+        return this;
+    }
+
     public function getItem(var key = null)
     {
         if !is_null(key) {

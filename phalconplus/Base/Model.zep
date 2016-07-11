@@ -275,10 +275,10 @@ class Model extends \Phalcon\Mvc\Model
                 whereUk[] = connection->escapeIdentifier(field) . " = ?";
         }
 
-        if empty array_filter(uniqueParams) {
+        if empty array_filter(uniqueParams, "isset") {  // if no ukField is defined
             return false;
         }
-        
+
         let this->_uniqueKey = join(" AND ", whereUk),
         this->_uniqueParams = uniqueParams,
         this->_uniqueTypes = uniqueTypes;

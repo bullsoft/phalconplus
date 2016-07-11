@@ -367,9 +367,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 
 
 	ZEPHIR_OBS_VAR(initial_data);
-	zephir_array_fetch_string(&initial_data, info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 139 TSRMLS_CC);
+	zephir_array_fetch_string(&initial_data, info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 138 TSRMLS_CC);
 	if (!(ZEPHIR_IS_EMPTY(initial_data))) {
-		zephir_is_iterable(initial_data, &_1$$3, &_0$$3, 1, 0, "phalconplus/Db/UnitOfWork.zep", 147);
+		zephir_is_iterable(initial_data, &_1$$3, &_0$$3, 1, 0, "phalconplus/Db/UnitOfWork.zep", 146);
 		for (
 		  ; zephir_hash_get_current_data_ex(_1$$3, (void**) &_2$$3, &_0$$3) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_1$$3, &_0$$3)
@@ -426,9 +426,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 
 
 	ZEPHIR_OBS_VAR(initial_data);
-	zephir_array_fetch_string(&initial_data, info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 163 TSRMLS_CC);
+	zephir_array_fetch_string(&initial_data, info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 162 TSRMLS_CC);
 	if (!(ZEPHIR_IS_EMPTY(initial_data))) {
-		zephir_is_iterable(initial_data, &_1$$3, &_0$$3, 1, 0, "phalconplus/Db/UnitOfWork.zep", 171);
+		zephir_is_iterable(initial_data, &_1$$3, &_0$$3, 1, 0, "phalconplus/Db/UnitOfWork.zep", 170);
 		for (
 		  ; zephir_hash_get_current_data_ex(_1$$3, (void**) &_2$$3, &_0$$3) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_1$$3, &_0$$3)

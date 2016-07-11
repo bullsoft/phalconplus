@@ -583,7 +583,7 @@ PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond) {
 	HashPosition _1;
 	zephir_fcall_cache_entry *_5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *metaData, *connection, *value = NULL, *type = NULL, *info = NULL, *field = NULL, *whereUk = NULL, *uniqueParams = NULL, *uniqueTypes = NULL, *attributeField = NULL, *_0, **_3, *_7 = NULL, *_8, *_4$$3 = NULL, *_6$$3 = NULL;
+	zval *metaData, *connection, *value = NULL, *type = NULL, *info = NULL, *field = NULL, *whereUk = NULL, *uniqueParams = NULL, *uniqueTypes = NULL, *attributeField = NULL, *_0, **_3, _7, *_8 = NULL, *_9, *_4$$3 = NULL, *_6$$3 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &metaData, &connection);
@@ -623,14 +623,16 @@ PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond) {
 		ZEPHIR_CONCAT_VS(_6$$3, _4$$3, " = ?");
 		zephir_array_append(&whereUk, _6$$3, PH_SEPARATE, "phalconplus/Base/Model.zep", 275);
 	}
-	ZEPHIR_CALL_FUNCTION(&_7, "array_filter", NULL, 31, uniqueParams);
+	ZEPHIR_SINIT_VAR(_7);
+	ZVAL_STRING(&_7, "isset", 0);
+	ZEPHIR_CALL_FUNCTION(&_8, "array_filter", NULL, 31, uniqueParams, &_7);
 	zephir_check_call_status();
-	if (ZEPHIR_IS_EMPTY(_7)) {
+	if (ZEPHIR_IS_EMPTY(_8)) {
 		RETURN_MM_BOOL(0);
 	}
-	ZEPHIR_INIT_VAR(_8);
-	zephir_fast_join_str(_8, SL(" AND "), whereUk TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("_uniqueKey"), _8 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_9);
+	zephir_fast_join_str(_9, SL(" AND "), whereUk TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_uniqueKey"), _9 TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_uniqueParams"), uniqueParams TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_uniqueTypes"), uniqueTypes TSRMLS_CC);
 	RETURN_MM_BOOL(1);
