@@ -12,7 +12,7 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/exception.h"
+#include "kernel/operators.h"
 #include "kernel/memory.h"
 
 
@@ -26,14 +26,13 @@ ZEPHIR_INIT_CLASS(phalconplus_0__closure) {
 
 PHP_METHOD(phalconplus_0__closure, __invoke) {
 
-	zval *file, *line, *code, *desc;
+	zval *elem;
 
-	zephir_fetch_params(0, 4, 0, &file, &line, &code, &desc);
+	zephir_fetch_params(0, 1, 0, &elem);
 
 
 
-	ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_exception_get_default(TSRMLS_C), "fdfadf", "phalconplus/Assertion.zep", 20);
-	return;
+	RETURN_BOOL(!(ZEPHIR_IS_EMPTY(elem)));
 
 }
 

@@ -97,6 +97,35 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
 }
 
+/**
+ * @deprecated
+ */
+PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *val, *key = NULL, *_0$$4;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &val, &key);
+
+	if (!key) {
+		key = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	if (!(Z_TYPE_P(key) == IS_NULL)) {
+		zephir_update_property_array(this_ptr, SL("result"), key, val TSRMLS_CC);
+	} else {
+		_0$$4 = zephir_fetch_nproperty_this(this_ptr, SL("result"), PH_NOISY_CC);
+		ZEPHIR_MAKE_REF(_0$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 33, _0$$4, val);
+		ZEPHIR_UNREF(_0$$4);
+		zephir_check_call_status();
+	}
+	RETURN_THIS();
+
+}
+
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

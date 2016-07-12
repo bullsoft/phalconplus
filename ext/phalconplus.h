@@ -37,5 +37,6 @@
 #include "phalconplus/rpc/client/adapter/local.zep.h"
 #include "phalconplus/rpc/client/adapter/remote.zep.h"
 #include "phalconplus/volt/extension/phpfunction.zep.h"
+#include "phalconplus/0__closure.zep.h"
 
 #endif

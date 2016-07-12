@@ -110,6 +110,8 @@ phalconplus/rpc/client/adapter/remote.lo: /Users/guweigang/tmp/phalconplus/ext/p
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/rpc/client/adapter/remote.zep.c -o phalconplus/rpc/client/adapter/remote.lo 
 phalconplus/volt/extension/phpfunction.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c -o phalconplus/volt/extension/phpfunction.lo 
+phalconplus/0__closure.lo: /Users/guweigang/tmp/phalconplus/ext/phalconplus/0__closure.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/phalconplus/0__closure.zep.c -o phalconplus/0__closure.lo 
 $(phplibdir)/phalconplus.la: ./phalconplus.la
 	$(LIBTOOL) --mode=install cp ./phalconplus.la $(phplibdir)
 
