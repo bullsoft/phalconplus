@@ -158,13 +158,32 @@ class UnitOfWork
 
     public function execUpdate(<\Phalcon\Mvc\Model> model, array info = [])
     {
-        var result, initial_data;
+        var result, initial_data, metaData, columnMap, whiteList, attrField, field;
+        let whiteList = [];
+
+        // 过滤所有不需要更新（值为NULL）的字段，
+        // 通过欺骗Model->_doLowUpdate()来达到此目的，要求必须useDynamicUpdate()和keepSnapshot()
+        let metaData = model->getModelsMetaData();
+        let columnMap = metaData->getColumnMap(model);
+        if typeof columnMap == "array" {
+            for field, attrField in columnMap {
+                if empty this->{attrField} {
+                    let whiteList[attrField] = null;
+                }
+            }
+        }
+        model->setSnapshotData(whiteList); // 实际上我们用了columnMap之后的字段作为data
+
         let initial_data = info["initial_data"];
+
         if(!empty(initial_data)) {
             var col, val;
             for col, val in initial_data {
                 if is_callable(val) {
                     let initial_data[col] = {val}();
+                }
+                if is_null(val) {
+                    unset(initial_data[col]);
                 }
             }
             let result = model->update(initial_data);
