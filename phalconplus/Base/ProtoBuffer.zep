@@ -39,7 +39,7 @@ class ProtoBuffer implements \JsonSerializable
         }
 
         // rule break: hard code
-        if is_scalar(val) || is_array(val) {
+        if is_scalar(val) || is_null(val) || is_array(val) {
             let this->{key} = val;
             return this;
         } elseif is_object(val) && val instanceof "\PhalconPlus\Base\ProtoBuffer" {
