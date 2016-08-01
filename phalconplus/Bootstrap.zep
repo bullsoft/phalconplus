@@ -8,8 +8,10 @@ final class Bootstrap
     // 全局DI容器
     protected di;
     protected application;
-    // 自动加载器
-    protected loader;
+    
+    // 自动加载器, 不需要了...
+    // protected loader;
+
     // 模块属性
     protected module = [
         "classPath" : "",
@@ -23,7 +25,8 @@ final class Bootstrap
         "Srv"     : "Srv",
         "Micro"   : "Micro"
     ];
-    // 运行环境
+
+    // 默认运行环境
     protected env = "dev";
 
     // 定义类常量
@@ -126,7 +129,7 @@ final class Bootstrap
             this->initConf();
         }
         // 应用初始化
-        let this->loader = new \Phalcon\Loader();
+        // let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
         let this->application = new \Phalcon\Mvc\Application();
         this->application->setDI(this->di);
@@ -165,8 +168,8 @@ final class Bootstrap
         if !needHandle {
             this->initConf();
         }
-        
-        let this->loader = new \Phalcon\Loader();
+        // no need to get `loader` here
+        // let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
 
         this->di->setShared("bootstrap", this);
@@ -192,7 +195,8 @@ final class Bootstrap
 
         this->initConf();
         
-        let this->loader = new \Phalcon\Loader();
+        // no need to get `loader` here
+        // let this->loader = new \Phalcon\Loader();
 
         if is_null(di) || ! (di instanceof \Phalcon\DI\FactoryDefault\CLI) {
             let this->di = new \Phalcon\DI\FactoryDefault\CLI();
@@ -228,10 +232,12 @@ final class Bootstrap
         let moduleConf = new \Phalcon\Config(this->load(moduleConfPath));
         let moduleRunMode = moduleConf->application->mode;
 
-        // @TODO: check if mode exists
-
+        // 获取模块类名
         let moduleClassName = moduleConf->application->ns . this->modeMap[moduleRunMode];
         let moduleClassPath = APP_ROOT_DIR . moduleName . "/app/" . this->modeMap[moduleRunMode] . ".php";
+        if !is_file(moduleClassPath) {
+            throw new \Exception("Module init file not exists, file position: " . moduleClassPath);
+        }
 
         // 全局配置文件优先级高于被依赖的模块
         moduleConf->merge(this->config);
@@ -272,8 +278,11 @@ final class Bootstrap
     
     public function load(var filePath)
     {
+        if !is_file(filePath) {
+            throw new \Exception("The file you try to load is not exists. file position: " . filePath);
+        }
         extract(["rootPath": APP_ROOT_DIR,
-                 "loader": this->loader,
+                 "loader": new \Phalcon\Loader(),
                  "config": this->config,
                  "application": this->application,
                  "bootstrap": this,

@@ -14,7 +14,7 @@
 #define PHP_PHALCONPLUS_VERSION     "1.0.0-dev"
 #define PHP_PHALCONPLUS_EXTNAME     "phalconplus"
 #define PHP_PHALCONPLUS_AUTHOR      "Gu Weigang<guweigang@outlook.com> and NCF Group"
-#define PHP_PHALCONPLUS_ZEPVERSION  "0.9.3a-dev"
+#define PHP_PHALCONPLUS_ZEPVERSION  "0.9.3a-dev-e716dbe641"
 #define PHP_PHALCONPLUS_DESCRIPTION "Phalcon+ is a new framework based on Phalcon."
 
 

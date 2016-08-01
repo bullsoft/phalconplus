@@ -71,6 +71,9 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
 
 }
 
+/**
+ * @deprecated
+ */
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -97,9 +100,6 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
 }
 
-/**
- * @deprecated
- */
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

@@ -21,6 +21,9 @@ final class SimpleResponse extends Response
         return this;
     }
 
+   /**
+    * @deprecated
+    */
     public function pushItem(var val, var key = null)
     {
         if !is_null(key) {
@@ -30,10 +33,7 @@ final class SimpleResponse extends Response
         }
         return this;
     }
-
-   /**
-    * @deprecated
-    */
+   
     public function setItem(var val, var key = null)
     {
         if !is_null(key) {
