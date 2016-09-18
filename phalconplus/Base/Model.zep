@@ -5,6 +5,7 @@ use Phalcon\Db\AdapterInterface;
 use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\MetaDataInterface;
 use Phalcon\Db\AdapterInterface;
+use Phalcon\Mvc\Model\Resultset;
 
 // use Phalcon\Mvc\Model;
 // use Phalcon\Mvc\ModelMessage;
@@ -62,7 +63,17 @@ class Model extends \Phalcon\Mvc\Model
         return this->getModelsManager()->createBuilder()->from(source);
     }
 
+    /**
+     *@deprecated
+     */
     public static function getInstance() -> <\Phalcon\Mvc\Model>
+    {
+        var className;
+        let className = get_called_class();
+        return new {className}();
+    }
+
+    public static function newInstance() -> <\Phalcon\Mvc\Model>
     {
         var className;
         let className = get_called_class();
@@ -77,7 +88,7 @@ class Model extends \Phalcon\Mvc\Model
         var className;
         let className = get_called_class();
         let model = new {className}();
-        
+
         if method_exists(model, "columnMap") {
             let columnMap = array_flip(model->columnMap());
             var val;
@@ -100,7 +111,7 @@ class Model extends \Phalcon\Mvc\Model
             conn->rollback();
             throw e;
         }
-        
+
         return true;
     }
 
@@ -219,9 +230,111 @@ class Model extends \Phalcon\Mvc\Model
     }
 
     /**
+     * 如果想在更新某条记录的时候额外加入其他条件，可以使用此方法
+     * where = [
+         'id > ?',  // 占位符仅支持?形式，不支持:placeHolder这种形式
+         'bind' => [
+             14
+         ]
+     ];
+     */
+    public function setUpdateCond(array params)
+    {
+        var metaData, writeConnection, columnMap, bindDataTypes, primaryKeys, attributeField;
+        var pk, value, type;
+        var whereUk = [], uniqueParams = [], uniqueTypes = [];
+
+        let metaData = this->getModelsMetaData(),
+            writeConnection = this->getWriteConnection(),
+            columnMap = metaData->getColumnMap(this),
+            bindDataTypes = metaData->getBindTypes(this);
+
+        let primaryKeys = metaData->getPrimaryKeyAttributes(this);
+        for pk in primaryKeys {
+            /**
+             * Check if the model has a column map
+             */
+            if typeof columnMap == "array" {
+                if !fetch attributeField, columnMap[pk] {
+                    throw new Exception("Model::setUpdateCond: Column '" . pk . "' isn't part of the column map");
+                }
+            } else {
+                let attributeField = pk;
+            }
+
+            if !fetch type, bindDataTypes[pk] {
+                throw new \Exception("Model::setupdateCond: Column '" . pk . "' isn't part of the table columns");
+            }
+
+            if fetch value, this->{attributeField} {
+                let uniqueParams[] = value;
+            } else {
+                let uniqueParams[] = null;
+            }
+
+            let whereUk[] = writeConnection->escapeIdentifier(pk) . " = ?";
+            let uniqueTypes[] = type;
+        }
+
+        /**
+         * Process conditions
+         */
+        var conditions, bind, bindTypes;
+        if fetch conditions, params[0] {
+        } else {
+            if fetch conditions, params["conditions"] {
+            }
+        }
+
+        if !empty this->_uniqueKey {
+            let this->_uniqueKey .= " AND ";
+        }
+        if typeof conditions == "array" {
+            merge_append(whereUk, conditions);
+            let this->_uniqueKey .= join(" AND ", whereUk);
+        } elseif typeof conditions == "string" {
+            let conditions = join(" AND ", whereUk) . " AND " . conditions;
+            let this->_uniqueKey .= conditions;
+        }
+
+        let this->_uniqueKey = str_replace(array_values(columnMap), array_keys(columnMap), this->_uniqueKey);
+
+        /**
+         * Assign bind types
+         */
+        if fetch bind, params["bind"] {
+            merge_append(uniqueParams, bind);   
+        }
+
+        if this->_uniqueParams == null {
+            let this->_uniqueParams = [];
+        }
+        merge_append(this->_uniqueParams, uniqueParams);
+
+        if fetch bindTypes, params["bindTypes"] {
+            merge_append(uniqueTypes, bindTypes);
+        }
+
+        if this->_uniqueTypes == null {
+            let this->_uniqueTypes = [];
+        }
+        merge_append(this->_uniqueTypes, uniqueTypes);
+
+        return true;
+    }
+
+    /**
+     * @alias setUqKeys
+     */
+    public function setUniqueKeys(array whereUk)
+    {
+        return $this->setUqKeys(whereUk);
+    }
+
+    /**
      * columnMap field
      */
-    public function setUqKeys(array whereUk = [])
+    public function setUqKeys(array whereUk)
     {
         /**
          * field 数据库字段
@@ -238,7 +351,7 @@ class Model extends \Phalcon\Mvc\Model
                 var tmp;
                 let tmp = array_flip(columnMap);
                 if !fetch field, tmp[attributeField] {
-                    throw new \Exception("Model::setUpKeys: Column '" . attributeField . "' isn't part of the column map");
+                    throw new \Exception("Model::setUqKeys: Column '" . attributeField . "' isn't part of the column map");
                 }                
             } else {
                 let field = attributeField;
@@ -247,9 +360,10 @@ class Model extends \Phalcon\Mvc\Model
             let this->__p_UK[attributeField]["field"] = field;
 
             if !fetch type, bindDataTypes[field] {
-                throw new \Exception("Model::setUpKeys: Column '" . field . "' isn't part of the table columns");
+                throw new \Exception("Model::setUqKeys: Column '" . field . "' isn't part of the table columns");
             }
             let this->__p_UK[attributeField]["type"] = type;
+            let this->__p_UK[attributeField]["op"] = "=";
         }
         return this;
     }
@@ -267,12 +381,17 @@ class Model extends \Phalcon\Mvc\Model
             field = info["field"],
             value = null;
             if fetch value, this->{attributeField} {
-                let uniqueParams[] = value;
+                var selfVal;
+                if fetch selfVal, info["value"] {
+                    let uniqueParams[] = selfVal;
+                } else {
+                    let uniqueParams[] = value;
+                }
             } else {
                 let uniqueParams[] = null;
             }
             let uniqueTypes[] = type,
-                whereUk[] = connection->escapeIdentifier(field) . " = ?";
+                whereUk[] = connection->escapeIdentifier(field) . " ".info["op"]." ?";
         }
 
         var usefuleParams = [];

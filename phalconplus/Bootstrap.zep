@@ -8,7 +8,7 @@ final class Bootstrap
     // 全局DI容器
     protected di;
     protected application;
-    
+
     // 自动加载器, 不需要了...
     // protected loader;
 
@@ -270,12 +270,12 @@ final class Bootstrap
         this->di->set("config", this->config);
         return this;
     }
-    
+
     public function getDI() -> <\Phalcon\DI>
     {
         return this->di;
     }
-    
+
     public function load(var filePath)
     {
         if !is_file(filePath) {

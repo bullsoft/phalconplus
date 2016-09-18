@@ -14,9 +14,12 @@
 #include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
-#include "kernel/memory.h"
-#include "kernel/math.h"
 #include "kernel/operators.h"
+#include "kernel/memory.h"
+#include "ext/spl/spl_array.h"
+#include "kernel/iterator.h"
+#include "kernel/array.h"
+#include "kernel/math.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page) {
@@ -41,9 +44,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page) {
 
 PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
+	zend_object_iterator *_5$$3, *_8$$5;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL;
-	zval *pagable, *totalSize, *data, *_1 = NULL, *_2 = NULL, *_3 = NULL;
+	zephir_fcall_cache_entry *_0 = NULL, *_7 = NULL;
+	zval *pagable, *totalSize, *data, *hydrateMode = NULL, *tmpData = NULL, *item = NULL, *_9 = NULL, *_10 = NULL, *_1$$3, *_2$$3 = NULL, *_3$$3 = NULL, *_4$$3 = NULL, *_6$$4 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &pagable, &totalSize, &data);
@@ -53,15 +57,63 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 28, pagable);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("pagable"), pagable TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_1, data, "toarray", NULL, 0);
+	ZEPHIR_CALL_METHOD(&hydrateMode, data, "gethydratemode", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("data"), _1 TSRMLS_CC);
+	do {
+		if (ZEPHIR_IS_LONG(hydrateMode, 0)) {
+			ZEPHIR_INIT_VAR(tmpData);
+			object_init_ex(tmpData, spl_ce_ArrayObject);
+			ZEPHIR_CALL_METHOD(NULL, tmpData, "__construct", NULL, 35);
+			zephir_check_call_status();
+			ZEPHIR_INIT_VAR(_1$$3);
+			ZEPHIR_CALL_METHOD(&_2$$3, data, "getfirst", NULL, 0);
+			zephir_check_call_status();
+			zephir_get_class(_1$$3, _2$$3, 0 TSRMLS_CC);
+			zephir_update_property_zval(tmpData, SL("modelName"), _1$$3 TSRMLS_CC);
+			ZEPHIR_CALL_METHOD(&_3$$3, data, "getfirst", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&_4$$3, _3$$3, "columnmap", NULL, 0);
+			zephir_check_call_status();
+			zephir_update_property_zval(tmpData, SL("columnMap"), _4$$3 TSRMLS_CC);
+			_5$$3 = zephir_get_iterator(data TSRMLS_CC);
+			_5$$3->funcs->rewind(_5$$3 TSRMLS_CC);
+			for (;_5$$3->funcs->valid(_5$$3 TSRMLS_CC) == SUCCESS && !EG(exception); _5$$3->funcs->move_forward(_5$$3 TSRMLS_CC)) {
+				{
+					zval **ZEPHIR_TMP_ITERATOR_PTR;
+					_5$$3->funcs->get_current_data(_5$$3, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
+					ZEPHIR_CPY_WRT(item, (*ZEPHIR_TMP_ITERATOR_PTR));
+				}
+				ZEPHIR_CALL_METHOD(&_6$$4, item, "toarray", NULL, 0);
+				zephir_check_call_status();
+				ZEPHIR_CALL_METHOD(NULL, tmpData, "append", &_7, 36, _6$$4);
+				zephir_check_call_status();
+			}
+			_5$$3->funcs->dtor(_5$$3 TSRMLS_CC);
+			break;
+		}
+		ZEPHIR_INIT_NVAR(tmpData);
+		array_init(tmpData);
+		_8$$5 = zephir_get_iterator(data TSRMLS_CC);
+		_8$$5->funcs->rewind(_8$$5 TSRMLS_CC);
+		for (;_8$$5->funcs->valid(_8$$5 TSRMLS_CC) == SUCCESS && !EG(exception); _8$$5->funcs->move_forward(_8$$5 TSRMLS_CC)) {
+			{
+				zval **ZEPHIR_TMP_ITERATOR_PTR;
+				_8$$5->funcs->get_current_data(_8$$5, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
+				ZEPHIR_CPY_WRT(item, (*ZEPHIR_TMP_ITERATOR_PTR));
+			}
+			zephir_array_append(&tmpData, item, PH_SEPARATE, "phalconplus/Base/Page.zep", 41);
+		}
+		_8$$5->funcs->dtor(_8$$5 TSRMLS_CC);
+		break;
+	} while(0);
+
+	zephir_update_property_this(this_ptr, SL("data"), tmpData TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("totalSize"), totalSize TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "setpageno", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_9, this_ptr, "setpageno", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_3, _2, "setpagesize", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_10, _9, "setpagesize", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, _3, "settotalpage", NULL, 0);
+	ZEPHIR_CALL_METHOD(NULL, _10, "settotalpage", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
