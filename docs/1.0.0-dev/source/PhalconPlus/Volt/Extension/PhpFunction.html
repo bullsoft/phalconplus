@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+
+<script src="../../../../asset/static/prettify.js"></script>
+<script src="../../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../asset/api_definition.js"></script>
+                    <script src="../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../asset/static/zephir-doc.js"></script>
+                <script>var ZepCurrentPath = '../../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.0.0-dev</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../class/PhalconPlus/Volt/Extension/PhpFunction.html">PhalconPlus\Volt\Extension\PhpFunction</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../class/PhalconPlus/Volt/Extension/PhpFunction.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/Volt.html">Volt</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/Volt/Extension.html">Extension</a>
+        </span>
+                <h1 class="class-name">PhpFunction</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">//<?php
+namespace PhalconPlus\Volt\Extension;
+
+class PhpFunction
+{
+    private ns = "";
+
+    private func = "__invoke__";
+
+    public function setCustNamespace(string! ns)
+    {
+        let this->ns = ns;
+    }
+
+    public function setCustFuncName(string! func)
+    {
+        if !empty func {
+            let this->func = func;
+        }
+    }
+
+    public function compileFunction()
+    {
+        var params = [];
+        var name, args, code;
+        let params = func_get_args();
+        let name = array_shift(params);
+        array_pop(params);
+
+        let args = join(",", params);
+
+        // 当你在Volt模板中使用 {{ __invoke__("Volt::output", "foo", "bar") }} 时，
+        // 下面这段逻辑会帮你把上面的调用解析成 $NS\Volt::output("foo", "bar")
+        // 让自定义Volt函数更加方便
+        if name == this->func {
+            var pos;
+            let pos = strpos(args, ",");
+            if pos === false {
+                // call without params
+                let name = trim(args, "'\"");
+                let args = "";
+            } else {
+                // call with params
+                let name = trim(substr(args, 0, pos), "'\"");
+                let args = substr(args, pos+1);
+            }
+            let code = this->ns . name . "(" . args . ")";
+            return code;
+        }
+
+        if function_exists(name) {
+            let code = name . "(" . args . ")";
+            return code;
+        }
+    }
+}
+</pre>                </div>
+            </div>
+        </div>
+    </body>
+</html>

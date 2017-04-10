@@ -1,0 +1,165 @@
+<html>
+
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="../../../asset/static/style.css" />
+
+
+        <script src="../../../asset/static/jquery.min.js"></script>
+        <script src="../../../asset/static/prettify.js"></script>
+        <script src="../../../asset/api_definition.js"></script>
+
+        <script>var ZepCurrentPath = '../../../'</script>
+
+        <script src="../../../asset/static/script.js"></script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                Zephir Documentation <span class="version">v0.0.5-dev</span>
+            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Enum/AbstractEnum.html">PhalconPlus\Enum\AbstractEnum</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Enum/AbstractEnum.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Enum.html">Enum</a>
+        </span>
+                <h1 class="class-name">AbstractEnum</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Enum;
+
+abstract class AbstractEnum implements \JsonSerializable
+{
+    protected val;
+
+    public function __construct(var val = "__PhalconPlus_AbstractEnum_DefaultValue__")
+    {
+        var reflection, defaultVal;
+
+        let reflection = new \ReflectionClass(get_called_class());
+        if(reflection->hasConstant("__default")) {
+            let defaultVal = reflection->getConstant("__default");
+            if !static::isValid(defaultVal) {
+                throw new \OutOfRangeException(sprintf("Invalid __default enumeration %s for Enum %s", defaultVal, get_class(this)));
+            }
+        }
+        
+        if val == "__PhalconPlus_AbstractEnum_DefaultValue__" {
+            this->setValue(defaultVal);
+        } else {
+            this->setValue(val);
+        }
+    }
+
+    protected function setValue(var val)
+    {
+        if !static::isValid(val) {
+            throw new \InvalidArgumentException(sprintf("Invalid enumeration %s for Enum %s", val, get_class(this)));
+        }
+        let this->val = val;
+    }
+
+    public function getValue()
+    {
+        return this->val;
+    }
+
+    public static function isValid(val)
+    {
+        if !in_array(val, static::validValues(), true) {
+            return false;
+        }
+        return true;
+    }
+
+    public static function validValues(bool assoc = false)
+    {
+        var reflection, consts;
+        
+        let reflection = new \ReflectionClass(get_called_class());
+        let consts = reflection->getConstants();
+        unset(consts["__default"]);
+        
+        if assoc == true {
+            return consts;
+        } else {
+            return array_values(consts);
+        }
+    }
+
+    public function jsonSerialize()
+    {
+        return this->getValue();
+    }
+
+    public function __toString()
+    {
+        return (string) this->getValue();
+    }
+}</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>

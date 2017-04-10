@@ -1,0 +1,163 @@
+<html>
+
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../../../../asset/static/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../../asset/static/style.css" />
+
+
+        <script src="../../../../../asset/static/jquery.min.js"></script>
+        <script src="../../../../../asset/static/prettify.js"></script>
+        <script src="../../../../../asset/api_definition.js"></script>
+
+        <script>var ZepCurrentPath = '../../../../../'</script>
+
+        <script src="../../../../../asset/static/script.js"></script>
+
+        
+    </head>
+
+
+    <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                Zephir Documentation <span class="version">v0.0.5-dev</span>
+            </div>
+            <div id="top-right">
+
+            </div>
+        </div>
+
+        <div id="body">
+
+            <div id="body-left">
+
+                <div class="header-search">
+
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+
+                    <div id="menu-wrapper">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../../class/PhalconPlus/RPC/Client/Adapter/Local.html">PhalconPlus\RPC\Client\Adapter\Local</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../../class/PhalconPlus/RPC/Client/Adapter/Local.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/RPC.html">RPC</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/RPC/Client.html">Client</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/RPC/Client/Adapter.html">Adapter</a>
+        </span>
+                <h1 class="class-name">Local</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\RPC\Client\Adapter;
+use PhalconPlus\RPC\Client\AbstractClient;
+use PhalconPlus\Base\ProtoBuffer;
+
+class Local extends AbstractClient
+{
+    private config;
+    
+    private di;
+
+    public function __construct(<\Phalcon\DI> di)
+    {
+        let this->di = di;
+        let this->config = di->get("config");
+    }
+
+    private function callByParams(string! service, string! method, <ProtoBuffer> request) -> <ProtoBuffer>
+    {
+        var serviceClass, serviceObj, response;
+        let serviceClass = service->upperfirst() . "Service";
+        let serviceObj = new {serviceClass}(this->di);
+        if is_callable([serviceObj, method]) {
+            error_log("ServerClass: " . serviceClass);
+            error_log("InvokeMethod: " . method);
+            error_log("InputParma: " . var_export(request, true));
+            let response = call_user_func_array([serviceObj, method], [request]);
+            return response;
+        } else {
+            throw new \Exception("No service is found");
+        }
+    }
+
+    public function callByObject(array rawData)
+    {
+        var service, method, request;
+        // log
+        error_log("Local callByObject: " . var_export(rawData, true));
+
+        if !fetch service, rawData["service"] {
+            throw new \Exception("service " . service . " not exists");
+        }
+
+        if !fetch method, rawData["method"] {
+            throw new \Exception("method " . method . " not exists");
+        }
+
+        if !fetch request, rawData["args"] {
+            throw new \Exception("args not exists");
+        }
+
+        let service = trim(service);
+        let method = trim(method);
+
+        if empty service || empty method {
+            throw new \Exception("service:method(args) must exists. All of them!!!");
+        }
+
+        error_log("Invoke callByParams");
+        return this->callByParams(service, method, request);
+    }        
+}
+
+</pre>                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+</html>
