@@ -7,6 +7,7 @@ final class Bootstrap
     protected config;
     // 全局DI容器
     protected di;
+    // 应用实例
     protected application;
 
     // 自动加载器, 不需要了...
@@ -26,7 +27,7 @@ final class Bootstrap
         "Micro"   : "Micro"
     ];
 
-    // 默认运行环境
+    // 默认运行环境, Enum: ['dev', 'test', 'pre-production', 'production']
     protected env = "dev";
 
     // 定义类常量
@@ -35,6 +36,11 @@ final class Bootstrap
     const COMMON_LOAD_DIR_NAME = "load";
     const ROOT_PUB_DIR_NAME    = "public";
     const MODULE_APP_DIR_NAME  = "app";
+
+    // 约定
+    const DS = "/";
+    const PHP_EXT = ".php";
+    const ENV_NAME = "phalconplus.env";
 
     public function __construct(string! modulePath)
     {
@@ -45,12 +51,12 @@ final class Bootstrap
 
         // 获取并初始化运行环境
         var env;
-        let env = get_cfg_var("phalconplus.env");
+        let env = get_cfg_var(self::ENV_NAME);
         if !empty(env) {
             let this->env = env;
         }
         // 如果不是生产环境，打开Debug
-        if substr(PHP_SAPI, 0, 3) != "cli" && this->env != "product"{
+        if substr(PHP_SAPI, 0, 3) != "cli" && substr(this->env, 0, 7) != "product"{
             var debug;
             let debug = new \Phalcon\Debug();
             debug->listen();
@@ -60,8 +66,6 @@ final class Bootstrap
         define("APP_ENV", this->env, true);
         define("APP_MODULE_DIR", rtrim(modulePath, "/") . "/", true);
         define("APP_ROOT_DIR", rtrim(dirname(modulePath), "/") . "/", true);
-        // 不需要的常量定义
-        // define("APP_ROOT_PUB_DIR", APP_ROOT_DIR . self::ROOT_PUB_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . self::COMMON_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . self::COMMON_CONF_DIR_NAME . "/", true);
         define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . self::COMMON_LOAD_DIR_NAME . "/", true);
@@ -72,7 +76,7 @@ final class Bootstrap
         var diff = [];
         let diff = array_diff_key(this->module, module);
         if !empty diff {
-            throw new \Exception("Module is is not a legal module");
+            throw new \Exception("Module is not a legal module, details: " .  json_encode(module));
         }
         let this->module = module;
     }
@@ -83,24 +87,24 @@ final class Bootstrap
         var moduleConf;
 
         // 全局配置
-        let globalConfPath = APP_ROOT_COMMON_CONF_DIR . "config.php";
+        let globalConfPath = APP_ROOT_COMMON_CONF_DIR . "config" . self::PHP_EXT;
         if !is_file(globalConfPath) {
             throw new \Phalcon\Config\Exception("Global config file not exist, file position: " . globalConfPath);
         }
         let this->config = new \Phalcon\Config(this->load(globalConfPath));
-        
+
         // 模块配置
-        let moduleConfPath = APP_MODULE_DIR . "/app/config/" . APP_ENV . ".php";
+        let moduleConfPath = APP_MODULE_DIR . "/app/config/" . APP_ENV . self::PHP_EXT;
         if !is_file(moduleConfPath) {
             throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
         }
         let moduleConf  = new \Phalcon\Config(this->load(moduleConfPath));
-        
+
         // 初始化模块三要素
         var module = [];
         let module["mode"] = ucfirst(strtolower(moduleConf->application->mode));
         let module["className"] = moduleConf->application->ns . this->modeMap[module["mode"]];
-        let module["classPath"] = APP_MODULE_DIR . "app/" . this->modeMap[$module["mode"]] . ".php";
+        let module["classPath"] = APP_MODULE_DIR . "app/" . this->modeMap[$module["mode"]] . self::PHP_EXT;
 
         // 定义工作模式
         define("APP_RUN_MODE", module["mode"], true);
@@ -120,7 +124,7 @@ final class Bootstrap
         let params = func_get_args();
         return call_user_func_array([this, handleMethod], params);
     }
-    
+
     public function execModule(var uri = null, bool needHandle = true)
     {
         var moduleClass, module;
@@ -148,7 +152,7 @@ final class Bootstrap
         if !needHandle {
             return true;
         }
-        
+
         // 执行
         try {
             echo this->application->handle(uri)->getContent();
@@ -182,19 +186,19 @@ final class Bootstrap
         if !needHandle {
             return true;
         }
-        
+
         let backendSrv = new \PhalconPlus\Base\BackendServer(this->di);
         let this->application = new \Yar_Server($backendSrv);
 
         this->application->handle();
     }
-    
+
     public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null, var needHandle = true)
     {
         var moduleClass, module;
 
         this->initConf();
-        
+
         // no need to get `loader` here
         // let this->loader = new \Phalcon\Loader();
 
@@ -225,7 +229,7 @@ final class Bootstrap
     public function dependModule(string! moduleName)
     {
         var moduleConfPath, moduleConf, moduleClassName, moduleClassPath, moduleRunMode;
-        let moduleConfPath = APP_ROOT_DIR . "/" . moduleName . "/app/config/" . APP_ENV . ".php";
+        let moduleConfPath = APP_ROOT_DIR . "/" . moduleName . "/app/config/" . APP_ENV . self::PHP_EXT;
         if !is_file(moduleConfPath) {
             throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
         }
@@ -234,11 +238,13 @@ final class Bootstrap
 
         // 获取模块类名
         let moduleClassName = moduleConf->application->ns . this->modeMap[moduleRunMode];
-        let moduleClassPath = APP_ROOT_DIR . moduleName . "/app/" . this->modeMap[moduleRunMode] . ".php";
+        let moduleClassPath = APP_ROOT_DIR . moduleName . "/app/" . this->modeMap[moduleRunMode] . self::PHP_EXT;
         if !is_file(moduleClassPath) {
             throw new \Exception("Module init file not exists, file position: " . moduleClassPath);
         }
 
+        // 保留被依赖的模块的配置
+        this->di->set("moduleConfig", moduleConf);
         // 全局配置文件优先级高于被依赖的模块
         moduleConf->merge(this->config);
         this->setConfig(moduleConf);
@@ -257,6 +263,7 @@ final class Bootstrap
         return this->config;
     }
 
+    // 传入的 Config 优先级更高
     public function setConfig(<\Phalcon\Config> config)
     {
         var globalConf;

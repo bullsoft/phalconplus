@@ -2563,14 +2563,14 @@ EOF
   fi
   for arg in $ac_configure_args; do
     if test `expr -- $arg : "'.*"` = 0; then
-      if test `expr -- $arg : "--.*"` = 0; then
-        break;
+      if test `expr -- $arg : "-.*"` = 0 && test `expr -- $arg : ".*=.*"` = 0; then
+        continue;
       fi
       echo "'$arg' \\" >> config.nice
       CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS '$arg'"
     else
-      if test `expr -- $arg : "'--.*"` = 0; then
-        break;
+      if test `expr -- $arg : "'-.*"` = 0 && test `expr -- $arg : "'.*=.*"` = 0; then
+        continue;
       fi
       echo "$arg \\" >> config.nice
       CONFIGURE_OPTIONS="$CONFIGURE_OPTIONS $arg"
@@ -4238,7 +4238,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 
 $as_echo "#define HAVE_PHALCONPLUS 1" >>confdefs.h
 
-	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/base/protobuffer.zep.c
+	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/base/protobuffer.zep.c
 	phalconplus/enum/abstractenum.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
@@ -8456,7 +8456,7 @@ freebsd* | dragonfly*)
     objformat=`/usr/bin/objformat`
   else
     case $host_os in
-    freebsd[123]*) objformat=aout ;;
+    freebsd[123].*) objformat=aout ;;
     *) objformat=elf ;;
     esac
   fi
@@ -10536,7 +10536,7 @@ if test -z "$aix_libpath"; then aix_libpath="/usr/lib:/lib"; fi
 	;;
     esac
     ;;
-  freebsd[12]*)
+  freebsd[12].*)
     # C++ shared libraries reported to be fairly broken before switch to ELF
     ld_shlibs_CXX=no
     ;;
@@ -12089,7 +12089,7 @@ freebsd* | dragonfly*)
     objformat=`/usr/bin/objformat`
   else
     case $host_os in
-    freebsd[123]*) objformat=aout ;;
+    freebsd[123].*) objformat=aout ;;
     *) objformat=elf ;;
     esac
   fi

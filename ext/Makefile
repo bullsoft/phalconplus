@@ -4,14 +4,14 @@ top_srcdir = /Users/guweigang/tmp/phalconplus/ext
 top_builddir = /Users/guweigang/tmp/phalconplus/ext
 EGREP = /usr/bin/grep -E
 SED = /usr/bin/sed
-CONFIGURE_COMMAND = './configure' '--enable-phalconplus'
-CONFIGURE_OPTIONS = '--enable-phalconplus'
+CONFIGURE_COMMAND = './configure' '--enable-phalconplus' 'CC=gcc' 'CFLAGS=-O2 '-fvisibility=hidden' '-Wparentheses' '-flto' '-DZEPHIR_RELEASE=1''
+CONFIGURE_OPTIONS = '--enable-phalconplus' 'CC=gcc' 'CFLAGS=-O2 '-fvisibility=hidden' '-Wparentheses' '-flto' '-DZEPHIR_RELEASE=1''
 SHLIB_SUFFIX_NAME = dylib
 SHLIB_DL_SUFFIX_NAME = so
 ZEND_EXT_TYPE = zend_extension
 RE2C = re2c
-AWK = gawk
-shared_objects_phalconplus = phalconplus.lo kernel/main.lo kernel/memory.lo kernel/exception.lo kernel/hash.lo kernel/debug.lo kernel/backtrace.lo kernel/object.lo kernel/array.lo kernel/extended/array.lo kernel/string.lo kernel/fcall.lo kernel/extended/fcall.lo kernel/require.lo kernel/file.lo kernel/operators.lo kernel/math.lo kernel/concat.lo kernel/variables.lo kernel/filter.lo kernel/iterator.lo kernel/time.lo kernel/exit.lo phalconplus/base/protobuffer.lo phalconplus/enum/abstractenum.lo phalconplus/logger/processor/abstractprocessor.lo phalconplus/rpc/client/abstractclient.lo phalconplus/assert/assertionfailedexception.lo phalconplus/base/response.lo phalconplus/rpc/server/abstractserver.lo phalconplus/assert/assertion.lo phalconplus/assert/invalidargumentexception.lo phalconplus/base/abstractmodule.lo phalconplus/base/abstractrequest.lo phalconplus/base/backendserver.lo phalconplus/base/exception.lo phalconplus/base/model.lo phalconplus/base/pagable.lo phalconplus/base/page.lo phalconplus/base/protoorderby.lo phalconplus/base/service.lo phalconplus/base/simplerequest.lo phalconplus/base/simpleresponse.lo phalconplus/bootstrap.lo phalconplus/db/mysql.lo phalconplus/db/unitofwork.lo phalconplus/enum/assertioncode.lo phalconplus/enum/exception.lo phalconplus/enum/orderbydirection.lo phalconplus/logger/adapter/fileplus.lo phalconplus/logger/formatter/lineplus.lo phalconplus/logger/processor/trace.lo phalconplus/logger/processor/uid.lo phalconplus/rpc/client/adapter/local.lo phalconplus/rpc/client/adapter/remote.lo phalconplus/volt/extension/phpfunction.lo phalconplus/0__closure.lo
+AWK = awk
+shared_objects_phalconplus = phalconplus.lo kernel/main.lo kernel/memory.lo kernel/exception.lo kernel/debug.lo kernel/backtrace.lo kernel/object.lo kernel/array.lo kernel/string.lo kernel/fcall.lo kernel/extended/fcall.lo kernel/require.lo kernel/file.lo kernel/operators.lo kernel/math.lo kernel/concat.lo kernel/variables.lo kernel/filter.lo kernel/iterator.lo kernel/time.lo kernel/exit.lo phalconplus/base/protobuffer.lo phalconplus/enum/abstractenum.lo phalconplus/logger/processor/abstractprocessor.lo phalconplus/rpc/client/abstractclient.lo phalconplus/assert/assertionfailedexception.lo phalconplus/base/response.lo phalconplus/rpc/server/abstractserver.lo phalconplus/assert/assertion.lo phalconplus/assert/invalidargumentexception.lo phalconplus/base/abstractmodule.lo phalconplus/base/abstractrequest.lo phalconplus/base/backendserver.lo phalconplus/base/exception.lo phalconplus/base/model.lo phalconplus/base/pagable.lo phalconplus/base/page.lo phalconplus/base/protoorderby.lo phalconplus/base/service.lo phalconplus/base/simplerequest.lo phalconplus/base/simpleresponse.lo phalconplus/bootstrap.lo phalconplus/db/mysql.lo phalconplus/db/unitofwork.lo phalconplus/enum/assertioncode.lo phalconplus/enum/exception.lo phalconplus/enum/orderbydirection.lo phalconplus/logger/adapter/fileplus.lo phalconplus/logger/formatter/lineplus.lo phalconplus/logger/processor/trace.lo phalconplus/logger/processor/uid.lo phalconplus/rpc/client/adapter/local.lo phalconplus/rpc/client/adapter/remote.lo phalconplus/volt/extension/phpfunction.lo phalconplus/0__closure.lo
 PHP_PECL_EXTENSION = phalconplus
 PHALCONPLUS_SHARED_LIBADD =
 PHP_MODULES = $(phplibdir)/phalconplus.la
@@ -32,7 +32,7 @@ CPPFLAGS = -DHAVE_CONFIG_H
 CXX =
 CXXFLAGS =
 CXXFLAGS_CLEAN = $(CXXFLAGS)
-EXTENSION_DIR = /usr/lib/php/extensions/no-debug-non-zts-20121212
+EXTENSION_DIR = /usr/lib/php/extensions/no-debug-non-zts-20131226
 PHP_EXECUTABLE = /usr/bin/php
 EXTRA_LDFLAGS =
 EXTRA_LIBS =
@@ -98,7 +98,7 @@ install-headers:
 			paths="$$paths $(INSTALL_ROOT)$(phpincludedir)/$$i"; \
 		done; \
 		$(mkinstalldirs) $$paths && \
-		echo "Installing header files:          $(INSTALL_ROOT)$(phpincludedir)/" && \
+		echo "Installing header files:           $(INSTALL_ROOT)$(phpincludedir)/" && \
 		for i in `echo $(INSTALL_HEADERS)`; do \
 			if test "$(PHP_PECL_EXTENSION)"; then \
 				src=`echo $$i | $(SED) -e "s#ext/$(PHP_PECL_EXTENSION)/##g"`; \
@@ -165,7 +165,7 @@ clean:
 distclean: clean
 	rm -f Makefile config.cache config.log config.status Makefile.objects Makefile.fragments libtool main/php_config.h main/internal_functions_cli.c main/internal_functions.c stamp-h sapi/apache/libphp$(PHP_MAJOR_VERSION).module sapi/apache_hooks/libphp$(PHP_MAJOR_VERSION).module buildmk.stamp Zend/zend_dtrace_gen.h Zend/zend_dtrace_gen.h.bak Zend/zend_config.h TSRM/tsrm_config.h
 	rm -f php5.spec main/build-defs.h scripts/phpize
-	rm -f ext/date/lib/timelib_config.h ext/mbstring/oniguruma/config.h ext/mbstring/libmbfl/config.h ext/mysqlnd/php_mysqlnd_config.h
+	rm -f ext/date/lib/timelib_config.h ext/mbstring/oniguruma/config.h ext/mbstring/libmbfl/config.h ext/oci8/oci8_dtrace_gen.h ext/oci8/oci8_dtrace_gen.h.bak
 	rm -f scripts/man1/phpize.1 scripts/php-config scripts/man1/php-config.1 sapi/cli/php.1 sapi/cgi/php-cgi.1 ext/phar/phar.1 ext/phar/phar.phar.1
 	rm -f sapi/fpm/php-fpm.conf sapi/fpm/init.d.php-fpm sapi/fpm/php-fpm.service sapi/fpm/php-fpm.8 sapi/fpm/status.html
 	rm -f ext/iconv/php_have_bsd_iconv.h ext/iconv/php_have_glibc_iconv.h ext/iconv/php_have_ibm_iconv.h ext/iconv/php_have_iconv.h ext/iconv/php_have_libiconv.h ext/iconv/php_iconv_aliased_libiconv.h ext/iconv/php_iconv_supports_errno.h ext/iconv/php_php_iconv_h_path.h ext/iconv/php_php_iconv_impl.h
@@ -185,8 +185,6 @@ kernel/memory.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/memory.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/memory.c -o kernel/memory.lo 
 kernel/exception.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/exception.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/exception.c -o kernel/exception.lo 
-kernel/hash.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/hash.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/hash.c -o kernel/hash.lo 
 kernel/debug.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/debug.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/debug.c -o kernel/debug.lo 
 kernel/backtrace.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/backtrace.c
@@ -195,8 +193,6 @@ kernel/object.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/object.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/object.c -o kernel/object.lo 
 kernel/array.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/array.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/array.c -o kernel/array.lo 
-kernel/extended/array.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/extended/array.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/extended/array.c -o kernel/extended/array.lo 
 kernel/string.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/string.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/string.c -o kernel/string.lo 
 kernel/fcall.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/fcall.c

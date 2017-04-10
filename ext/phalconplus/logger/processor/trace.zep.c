@@ -17,7 +17,6 @@
 #include "kernel/operators.h"
 #include "kernel/array.h"
 #include "kernel/fcall.h"
-#include "kernel/hash.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
 
@@ -89,14 +88,14 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 56);
+	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 55);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 57, trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 56, trace);
 	ZEPHIR_UNREF(trace);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 57, trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 56, trace);
 	ZEPHIR_UNREF(trace);
 	zephir_check_call_status();
 	i = 0;
@@ -109,8 +108,8 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 		_2$$3 = zephir_fetch_nproperty_this(this_ptr, SL("skipClassesPartials"), PH_NOISY_CC);
 		zephir_is_iterable(_2$$3, &_4$$3, &_3$$3, 0, 0, "phalconplus/Logger/Processor/Trace.zep", 41);
 		for (
-		  ; zephir_hash_get_current_data_ex(_4$$3, (void**) &_5$$3, &_3$$3) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_4$$3, &_3$$3)
+		  ; zend_hash_get_current_data_ex(_4$$3, (void**) &_5$$3, &_3$$3) == SUCCESS
+		  ; zend_hash_move_forward_ex(_4$$3, &_3$$3)
 		) {
 			ZEPHIR_GET_HVALUE(part, _5$$3);
 			zephir_array_fetch_long(&_6$$4, trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 36 TSRMLS_CC);

@@ -4,7 +4,7 @@ class Mysql
 {
     const RETRY_TIMES = 5;  // 5 times
     const RETRY_INTERVAL = 100000; // 100 ms
-    
+
     private di = null;
     private descriptor = [];
 
@@ -29,7 +29,7 @@ class Mysql
         if isset(dbConfig->retryInterval) {
             let this->retryInterval = dbConfig->retryInterval;
         }
-        
+
         let this->descriptor = [
             "host" : dbConfig->host,
             "port" : dbConfig->port,
@@ -48,7 +48,7 @@ class Mysql
     {
         var tryTimes, e;
         let tryTimes = this->retryTimes;
-        
+
         while !this->connected {
             try {
                 let this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql(this->descriptor);

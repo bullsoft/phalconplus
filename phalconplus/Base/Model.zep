@@ -441,28 +441,4 @@ class Model extends \Phalcon\Mvc\Model
         return proto;
     }
 
-    /**
-     *
-     * Once in a transaction, a read-sql should always use the write connection for the data consistency.
-     * But, if you do not like this, you can rewrite this method Or use <\PhalconPlus\Db\UnitOfWork>
-     *
-     */
-    public function selectReadConnection() -> <AdapterInterface>
-    {
-        var txm, transaction;
-        if !this->getDI()->has("txm") {
-            return this->getReadConnection();
-        }
-        let txm = this->getDI()->get("txm");
-        if !(txm instanceof TxManager) {
-            return this->getReadConnection();
-        }
-        txm->setDbService(this->getWriteConnectionService());
-        let transaction = txm->get(false); // just get an instance, not begin a transaction really
-        if(transaction->isValid()) {
-            return this->getWriteConnection();
-        } else {
-            return this->getReadConnection();
-        }
-    }
 }

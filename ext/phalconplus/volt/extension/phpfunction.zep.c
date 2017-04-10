@@ -17,6 +17,7 @@
 #include "kernel/exception.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
@@ -42,11 +43,11 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &ns_param);
 
-	if (unlikely(Z_TYPE_P(ns_param) != IS_STRING && Z_TYPE_P(ns_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(ns_param) != IS_STRING && Z_TYPE_P(ns_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'ns' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(ns_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(ns_param) == IS_STRING)) {
 		zephir_get_strval(ns, ns_param);
 	} else {
 		ZEPHIR_INIT_VAR(ns);
@@ -67,11 +68,11 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &func_param);
 
-	if (unlikely(Z_TYPE_P(func_param) != IS_STRING && Z_TYPE_P(func_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(func_param) != IS_STRING && Z_TYPE_P(func_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'func' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(func_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(func_param) == IS_STRING)) {
 		zephir_get_strval(func, func_param);
 	} else {
 		ZEPHIR_INIT_VAR(func);
@@ -95,14 +96,14 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 
 	ZEPHIR_INIT_VAR(params);
 	array_init(params);
-	ZEPHIR_CALL_FUNCTION(&params, "func_get_args", NULL, 48);
-	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(params);
+	zephir_get_args(params TSRMLS_CC);
 	ZEPHIR_MAKE_REF(params);
-	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 57, params);
+	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 56, params);
 	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(params);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 62, params);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 61, params);
 	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(args);

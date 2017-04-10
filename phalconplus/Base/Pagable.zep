@@ -23,7 +23,7 @@ class Pagable extends ProtoBuffer
     {
         return this->orderBys;
     }
-    
+
     public function setOrderBy(<\PhalconPlus\Base\ProtoOrderBy> orderBy)
     {
         array_push(this->orderBys, orderBy);
@@ -41,5 +41,5 @@ class Pagable extends ProtoBuffer
         let this->pageSize = pageSize;
         return this;
     }
-    
+
 }

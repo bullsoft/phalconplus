@@ -49,27 +49,27 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 	zend_class_entry *_16, *_8$$5;
 	zend_bool _2;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *service_param = NULL, *method_param = NULL, *request = NULL, *serviceClass = NULL, *_0 = NULL, *_1, *serviceObj = NULL, *response = NULL, *e = NULL, *_15 = NULL, *_17, *tmp$$4 = NULL, *param$$4 = NULL, *paramClass$$4 = NULL, *_4$$4, *_5$$4 = NULL, *_6$$5 = NULL, *_7$$5 = NULL, *_9$$6, *_10$$6, *_11$$6, *_12$$7, *_13$$7, *_14$$7, *_19$$8, *_21$$8 = NULL, *_25$$8, *_27$$8, *_22$$9, *_28$$11;
-	zval *service = NULL, *method = NULL, *_29$$11;
+	zval *service_param = NULL, *method_param = NULL, *request = NULL, *serviceClass = NULL, *_0 = NULL, *_1, *serviceObj = NULL, *response = NULL, *e = NULL, *_15 = NULL, *_17, *tmp$$4 = NULL, *param$$4 = NULL, *paramClass$$4 = NULL, *_4$$4, *_5$$4 = NULL, *_6$$5 = NULL, *_7$$5 = NULL, *_9$$6, *_10$$6, *_11$$6, *_12$$7, *_13$$7, *_14$$7, *_19$$8, *_21$$8 = NULL, *_25$$8, *_27$$8 = NULL, *_28$$8, *_22$$9, *_29$$11;
+	zval *service = NULL, *method = NULL, *_30$$11;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &service_param, &method_param, &request);
 
-	if (unlikely(Z_TYPE_P(service_param) != IS_STRING && Z_TYPE_P(service_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(service_param) != IS_STRING && Z_TYPE_P(service_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'service' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(service_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(service_param) == IS_STRING)) {
 		zephir_get_strval(service, service_param);
 	} else {
 		ZEPHIR_INIT_VAR(service);
 		ZVAL_EMPTY_STRING(service);
 	}
-	if (unlikely(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(method_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
 		zephir_get_strval(method, method_param);
 	} else {
 		ZEPHIR_INIT_VAR(method);
@@ -193,9 +193,11 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 		try_end_1:
 
 		if (EG(exception)) {
-			ZEPHIR_CPY_WRT(e, EG(exception));
-			if (zephir_instance_of_ev(e, zend_exception_get_default(TSRMLS_C) TSRMLS_CC)) {
+			ZEPHIR_INIT_NVAR(_21$$8);
+			ZEPHIR_CPY_WRT(_21$$8, EG(exception));
+			if (zephir_instance_of_ev(_21$$8, zend_exception_get_default(TSRMLS_C) TSRMLS_CC)) {
 				zend_clear_exception(TSRMLS_C);
+				ZEPHIR_CPY_WRT(e, _21$$8);
 				zephir_throw_exception_debug(e, "phalconplus/RPC/Server/AbstractServer.zep", 43 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
 				return;
@@ -207,28 +209,28 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 		zephir_array_fast_append(_26$$8, service);
 		zephir_array_fast_append(_26$$8, method);
 		zephir_array_fast_append(_26$$8, request);
-		ZEPHIR_INIT_NVAR(_21$$8);
-		ZVAL_STRING(_21$$8, "backend-server:afterExecute", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(NULL, _25$$8, "fire", NULL, 0, _21$$8, this_ptr, _26$$8);
-		zephir_check_temp_parameter(_21$$8);
+		ZEPHIR_INIT_VAR(_27$$8);
+		ZVAL_STRING(_27$$8, "backend-server:afterExecute", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, _25$$8, "fire", NULL, 0, _27$$8, this_ptr, _26$$8);
+		zephir_check_temp_parameter(_27$$8);
 		zephir_check_call_status();
-		ZEPHIR_INIT_NVAR(_21$$8);
-		_27$$8 = zephir_fetch_nproperty_this(this_ptr, SL("phpOnly"), PH_NOISY_CC);
-		if (ZEPHIR_IS_TRUE(_27$$8)) {
-			ZEPHIR_CPY_WRT(_21$$8, response);
+		ZEPHIR_INIT_NVAR(_27$$8);
+		_28$$8 = zephir_fetch_nproperty_this(this_ptr, SL("phpOnly"), PH_NOISY_CC);
+		if (ZEPHIR_IS_TRUE(_28$$8)) {
+			ZEPHIR_CPY_WRT(_27$$8, response);
 		} else {
-			ZEPHIR_CALL_METHOD(&_21$$8, response, "toarray", NULL, 0);
+			ZEPHIR_CALL_METHOD(&_27$$8, response, "toarray", NULL, 0);
 			zephir_check_call_status();
 		}
-		RETURN_CCTOR(_21$$8);
+		RETURN_CCTOR(_27$$8);
 	} else {
-		ZEPHIR_INIT_VAR(_28$$11);
-		object_init_ex(_28$$11, zend_exception_get_default(TSRMLS_C));
 		ZEPHIR_INIT_VAR(_29$$11);
-		ZEPHIR_CONCAT_SVSV(_29$$11, "Service:method not found. Detail: ", service, " : ", method);
-		ZEPHIR_CALL_METHOD(NULL, _28$$11, "__construct", NULL, 7, _29$$11);
+		object_init_ex(_29$$11, zend_exception_get_default(TSRMLS_C));
+		ZEPHIR_INIT_VAR(_30$$11);
+		ZEPHIR_CONCAT_SVSV(_30$$11, "Service:method not found. Detail: ", service, " : ", method);
+		ZEPHIR_CALL_METHOD(NULL, _29$$11, "__construct", NULL, 7, _30$$11);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_28$$11, "phalconplus/RPC/Server/AbstractServer.zep", 48 TSRMLS_CC);
+		zephir_throw_exception_debug(_29$$11, "phalconplus/RPC/Server/AbstractServer.zep", 48 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

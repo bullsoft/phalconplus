@@ -6,4 +6,10 @@ CFLAGS='-O2 -fvisibility=hidden -Wparentheses -flto -DZEPHIR_RELEASE=1' \
 CC='gcc' \
 './configure' \
 '--enable-phalconplus' \
+'CC=gcc' \
+'CFLAGS=-O2 \
+'-fvisibility=hidden' \
+'-Wparentheses' \
+'-flto' \
+'-DZEPHIR_RELEASE=1'' \
 "$@"

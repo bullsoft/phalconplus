@@ -18,7 +18,6 @@
 #include "kernel/array.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
-#include "kernel/hash.h"
 #include "ext/spl/spl_exceptions.h"
 
 
@@ -58,7 +57,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "server url can not be empty", "phalconplus/RPC/Client/Adapter/Remote.zep", 12);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 61, remoteServerUrl);
+	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 60, remoteServerUrl);
 	zephir_check_call_status();
 	zephir_array_fetch(&_0, remoteServerUrl, key, PH_NOISY | PH_READONLY, "phalconplus/RPC/Client/Adapter/Remote.zep", 16 TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("remoteServerUrl"), _0 TSRMLS_CC);
@@ -71,8 +70,8 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 	if (!(ZEPHIR_IS_EMPTY(opts))) {
 		zephir_is_iterable(opts, &_4$$4, &_3$$4, 0, 0, "phalconplus/RPC/Client/Adapter/Remote.zep", 24);
 		for (
-		  ; zephir_hash_get_current_data_ex(_4$$4, (void**) &_5$$4, &_3$$4) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_4$$4, &_3$$4)
+		  ; zend_hash_get_current_data_ex(_4$$4, (void**) &_5$$4, &_3$$4) == SUCCESS
+		  ; zend_hash_move_forward_ex(_4$$4, &_3$$4)
 		) {
 			ZEPHIR_GET_HMKEY(optKey$$4, _4$$4, _3$$4);
 			ZEPHIR_GET_HVALUE(optVal$$4, _5$$4);
@@ -114,11 +113,11 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __call) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &method_param, &args_param);
 
-	if (unlikely(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(method_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
 		zephir_get_strval(method, method_param);
 	} else {
 		ZEPHIR_INIT_VAR(method);

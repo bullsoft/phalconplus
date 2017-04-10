@@ -9,6 +9,7 @@ PHP_METHOD(PhalconPlus_Base_Model, getFirstMessage);
 PHP_METHOD(PhalconPlus_Base_Model, getLastMessage);
 PHP_METHOD(PhalconPlus_Base_Model, createBuilder);
 PHP_METHOD(PhalconPlus_Base_Model, getInstance);
+PHP_METHOD(PhalconPlus_Base_Model, newInstance);
 PHP_METHOD(PhalconPlus_Base_Model, batchInsert);
 PHP_METHOD(PhalconPlus_Base_Model, beforeValidationOnCreate);
 PHP_METHOD(PhalconPlus_Base_Model, afterFetch);
@@ -21,7 +22,6 @@ PHP_METHOD(PhalconPlus_Base_Model, setUniqueKeys);
 PHP_METHOD(PhalconPlus_Base_Model, setUqKeys);
 PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond);
 PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
-PHP_METHOD(PhalconPlus_Base_Model, selectReadConnection);
 zend_object_value zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, 0)
@@ -66,6 +66,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, getLastMessage, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, createBuilder, arginfo_phalconplus_base_model_createbuilder, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, getInstance, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Base_Model, newInstance, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Base_Model, batchInsert, arginfo_phalconplus_base_model_batchinsert, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Base_Model, beforeValidationOnCreate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, afterFetch, NULL, ZEND_ACC_PUBLIC)
@@ -78,6 +79,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, setUqKeys, arginfo_phalconplus_base_model_setuqkeys, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, _p_buildUkCond, arginfo_phalconplus_base_model__p_buildukcond, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Base_Model, toProtoBuffer, arginfo_phalconplus_base_model_toprotobuffer, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Base_Model, selectReadConnection, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

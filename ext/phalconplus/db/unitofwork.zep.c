@@ -19,7 +19,6 @@
 #include "kernel/array.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
-#include "kernel/hash.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork) {
@@ -254,7 +253,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, detach) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 
-	zval *_0, *_1, *_2, *txManager = NULL, *transaction = NULL, *e = NULL, *_3, *obj = NULL, *info = NULL, *_4, *_5$$3, *_6$$3 = NULL, *_7$$4, *_8$$4, *method$$4 = NULL, *name$$4 = NULL, *newMethod$$4 = NULL, *_9$$4 = NULL, *_10$$4 = NULL, *_12$$4, *_11$$5 = NULL;
+	zval *_0, *_1, *_2, *txManager = NULL, *transaction = NULL, *e = NULL, *_3, *obj = NULL, *info = NULL, *_4, *_13, *_5$$3, *_6$$3 = NULL, *_7$$4, *_8$$4, *method$$4 = NULL, *name$$4 = NULL, *newMethod$$4 = NULL, *_9$$4 = NULL, *_10$$4 = NULL, *_12$$4, *_11$$5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
@@ -340,9 +339,11 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 	try_end_1:
 
 	if (EG(exception)) {
-		ZEPHIR_CPY_WRT(e, EG(exception));
-		if (zephir_instance_of_ev(e, zephir_get_internal_ce(SS("phalcon\\mvc\\model\\transaction\\failed") TSRMLS_CC) TSRMLS_CC)) {
+		ZEPHIR_INIT_VAR(_13);
+		ZEPHIR_CPY_WRT(_13, EG(exception));
+		if (zephir_instance_of_ev(_13, zephir_get_internal_ce(SS("phalcon\\mvc\\model\\transaction\\failed") TSRMLS_CC) TSRMLS_CC)) {
 			zend_clear_exception(TSRMLS_C);
+			ZEPHIR_CPY_WRT(e, _13);
 			zephir_update_property_this(this_ptr, SL("failed"), obj TSRMLS_CC);
 			zephir_update_property_this(this_ptr, SL("exception"), e TSRMLS_CC);
 			RETURN_MM_BOOL(0);
@@ -371,8 +372,8 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 	if (!(ZEPHIR_IS_EMPTY(initial_data))) {
 		zephir_is_iterable(initial_data, &_1$$3, &_0$$3, 1, 0, "phalconplus/Db/UnitOfWork.zep", 146);
 		for (
-		  ; zephir_hash_get_current_data_ex(_1$$3, (void**) &_2$$3, &_0$$3) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_1$$3, &_0$$3)
+		  ; zend_hash_get_current_data_ex(_1$$3, (void**) &_2$$3, &_0$$3) == SUCCESS
+		  ; zend_hash_move_forward_ex(_1$$3, &_0$$3)
 		) {
 			ZEPHIR_GET_HMKEY(col$$3, _1$$3, _0$$3);
 			ZEPHIR_GET_HVALUE(val$$3, _2$$3);
@@ -434,8 +435,8 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 	if (Z_TYPE_P(columnMap) == IS_ARRAY) {
 		zephir_is_iterable(columnMap, &_1$$3, &_0$$3, 0, 0, "phalconplus/Db/UnitOfWork.zep", 174);
 		for (
-		  ; zephir_hash_get_current_data_ex(_1$$3, (void**) &_2$$3, &_0$$3) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_1$$3, &_0$$3)
+		  ; zend_hash_get_current_data_ex(_1$$3, (void**) &_2$$3, &_0$$3) == SUCCESS
+		  ; zend_hash_move_forward_ex(_1$$3, &_0$$3)
 		) {
 			ZEPHIR_GET_HMKEY(field, _1$$3, _0$$3);
 			ZEPHIR_GET_HVALUE(attrField, _2$$3);
@@ -453,8 +454,8 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 	if (!(ZEPHIR_IS_EMPTY(initial_data))) {
 		zephir_is_iterable(initial_data, &_5$$6, &_4$$6, 1, 0, "phalconplus/Db/UnitOfWork.zep", 189);
 		for (
-		  ; zephir_hash_get_current_data_ex(_5$$6, (void**) &_6$$6, &_4$$6) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_5$$6, &_4$$6)
+		  ; zend_hash_get_current_data_ex(_5$$6, (void**) &_6$$6, &_4$$6) == SUCCESS
+		  ; zend_hash_move_forward_ex(_5$$6, &_4$$6)
 		) {
 			ZEPHIR_GET_HMKEY(col$$6, _5$$6, _4$$6);
 			ZEPHIR_GET_HVALUE(val$$6, _6$$6);

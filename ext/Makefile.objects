@@ -6,8 +6,6 @@ kernel/memory.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/memory.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/memory.c -o kernel/memory.lo 
 kernel/exception.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/exception.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/exception.c -o kernel/exception.lo 
-kernel/hash.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/hash.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/hash.c -o kernel/hash.lo 
 kernel/debug.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/debug.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/debug.c -o kernel/debug.lo 
 kernel/backtrace.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/backtrace.c
@@ -16,8 +14,6 @@ kernel/object.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/object.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/object.c -o kernel/object.lo 
 kernel/array.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/array.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/array.c -o kernel/array.lo 
-kernel/extended/array.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/extended/array.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/extended/array.c -o kernel/extended/array.lo 
 kernel/string.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/string.c
 	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/guweigang/tmp/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/guweigang/tmp/phalconplus/ext/kernel/string.c -o kernel/string.lo 
 kernel/fcall.lo: /Users/guweigang/tmp/phalconplus/ext/kernel/fcall.c

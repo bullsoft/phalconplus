@@ -65,14 +65,14 @@ allow_libtool_libs_with_static_runtimes=no
 fast_install=needless
 
 # The host system.
-host_alias=x86_64-apple-darwin15.6.0
-host=x86_64-apple-darwin15.6.0
-host_os=darwin15.6.0
+host_alias=x86_64-apple-darwin16.5.0
+host=x86_64-apple-darwin16.5.0
+host_os=darwin16.5.0
 
 # The build system.
 build_alias=
-build=x86_64-apple-darwin15.6.0
-build_os=darwin15.6.0
+build=x86_64-apple-darwin16.5.0
+build_os=darwin16.5.0
 
 # An echo program that does not interpret backslashes.
 echo="/bin/echo"
@@ -326,7 +326,7 @@ variables_saved_for_relink="PATH DYLD_LIBRARY_PATH  GCC_EXEC_PREFIX COMPILER_PAT
 link_all_deplibs=yes
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0 /usr/local/lib"
+sys_lib_search_path_spec="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0 /usr/local/lib"
 
 # Run-time system search path for libraries
 sys_lib_dlsearch_path_spec="/usr/local/lib /lib /usr/lib"
