@@ -94,10 +94,14 @@ final class Bootstrap
         let this->config = new \Phalcon\Config(this->load(globalConfPath));
 
         // 模块配置
-        let moduleConfPath = APP_MODULE_DIR . "/app/config/" . APP_ENV . self::PHP_EXT;
+        let moduleConfPath = APP_MODULE_DIR . "app/config/" . APP_ENV . self::PHP_EXT;
         if !is_file(moduleConfPath) {
-            throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
+            let moduleConfPath = APP_MODULE_DIR . "app/config"  . self::PHP_EXT;
+            if !is_file(moduleConfPath) {
+                throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
+            }
         }
+
         let moduleConf  = new \Phalcon\Config(this->load(moduleConfPath));
 
         // 初始化模块三要素
