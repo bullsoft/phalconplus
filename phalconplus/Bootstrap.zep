@@ -93,7 +93,7 @@ final class Bootstrap
         }
         let this->config = new \Phalcon\Config(this->load(globalConfPath));
 
-        // 模块配置
+        // 模块配置, 如果找不到"app/config/{APP_ENV}.php"，则去找"app/config.php"
         let moduleConfPath = APP_MODULE_DIR . "app/config/" . APP_ENV . self::PHP_EXT;
         if !is_file(moduleConfPath) {
             let moduleConfPath = APP_MODULE_DIR . "app/config"  . self::PHP_EXT;
@@ -233,11 +233,17 @@ final class Bootstrap
     public function dependModule(string! moduleName)
     {
         var moduleConfPath, moduleConf, moduleClassName, moduleClassPath, moduleRunMode;
-        let moduleConfPath = APP_ROOT_DIR . "/" . moduleName . "/app/config/" . APP_ENV . self::PHP_EXT;
+        let moduleConfPath = APP_ROOT_DIR . moduleName . "/app/config/" . APP_ENV . self::PHP_EXT;
         if !is_file(moduleConfPath) {
-            throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
+            let moduleConfPath = APP_ROOT_DIR . moduleName . "/app/config"  . self::PHP_EXT;
+            if !is_file(moduleConfPath) {
+                throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
+            }
         }
+        var reservedModuleConf;
         let moduleConf = new \Phalcon\Config(this->load(moduleConfPath));
+        let reservedModuleConf = new \Phalcon\Config(this->load(moduleConfPath));
+
         let moduleRunMode = moduleConf->application->mode;
 
         // 获取模块类名
@@ -248,7 +254,7 @@ final class Bootstrap
         }
 
         // 保留被依赖的模块的配置
-        this->di->set("moduleConfig", moduleConf);
+        this->di->set("moduleConfig", reservedModuleConf);
         // 全局配置文件优先级高于被依赖的模块
         moduleConf->merge(this->config);
         this->setConfig(moduleConf);
