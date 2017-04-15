@@ -64,7 +64,7 @@
     "name": "phalconplus",
     "description": "Phalcon+ is a new framework based on Phalcon.",
     "author": "Gu Weigang<guweigang@outlook.com> and NCF Group",
-    "version": "1.0.0-dev",
+    "version": "1.0.0-alpha",
     "verbose": false,
     "requires": {
         "extensions": ["phalcon", "yar"]
