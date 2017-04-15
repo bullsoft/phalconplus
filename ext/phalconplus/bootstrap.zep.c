@@ -268,7 +268,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf) {
 		ZEPHIR_INIT_VAR(_13$$4);
 		ZEPHIR_GET_CONSTANT(_13$$4, "APP_MODULE_DIR");
 		ZEPHIR_INIT_NVAR(moduleConfPath);
-		ZEPHIR_CONCAT_VSS(moduleConfPath, _13$$4, "app/config", ".php");
+		ZEPHIR_CONCAT_VSS(moduleConfPath, _13$$4, "app/config/config", ".php");
 		ZEPHIR_CALL_FUNCTION(&_14$$4, "is_file", &_2, 44, moduleConfPath);
 		zephir_check_call_status();
 		if (!(zephir_is_true(_14$$4))) {
@@ -672,7 +672,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, dependModule) {
 		ZEPHIR_INIT_VAR(_4$$3);
 		ZEPHIR_GET_CONSTANT(_4$$3, "APP_ROOT_DIR");
 		ZEPHIR_INIT_NVAR(moduleConfPath);
-		ZEPHIR_CONCAT_VVSS(moduleConfPath, _4$$3, moduleName, "/app/config", ".php");
+		ZEPHIR_CONCAT_VVSS(moduleConfPath, _4$$3, moduleName, "/app/config/config", ".php");
 		ZEPHIR_CALL_FUNCTION(&_5$$3, "is_file", &_3, 44, moduleConfPath);
 		zephir_check_call_status();
 		if (!(zephir_is_true(_5$$3))) {

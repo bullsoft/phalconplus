@@ -93,10 +93,10 @@ final class Bootstrap
         }
         let this->config = new \Phalcon\Config(this->load(globalConfPath));
 
-        // 模块配置, 如果找不到"app/config/{APP_ENV}.php"，则去找"app/config.php"
+        // 模块配置, 如果找不到"app/config/{APP_ENV}.php"，则去找"app/config/config.php"
         let moduleConfPath = APP_MODULE_DIR . "app/config/" . APP_ENV . self::PHP_EXT;
         if !is_file(moduleConfPath) {
-            let moduleConfPath = APP_MODULE_DIR . "app/config"  . self::PHP_EXT;
+            let moduleConfPath = APP_MODULE_DIR . "app/config/config"  . self::PHP_EXT;
             if !is_file(moduleConfPath) {
                 throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
             }
@@ -235,7 +235,7 @@ final class Bootstrap
         var moduleConfPath, moduleConf, moduleClassName, moduleClassPath, moduleRunMode;
         let moduleConfPath = APP_ROOT_DIR . moduleName . "/app/config/" . APP_ENV . self::PHP_EXT;
         if !is_file(moduleConfPath) {
-            let moduleConfPath = APP_ROOT_DIR . moduleName . "/app/config"  . self::PHP_EXT;
+            let moduleConfPath = APP_ROOT_DIR . moduleName . "/app/config/config"  . self::PHP_EXT;
             if !is_file(moduleConfPath) {
                 throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
             }
