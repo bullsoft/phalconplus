@@ -1,0 +1,114 @@
+phalconplus.lo: /home/guweigang/github/phalconplus/ext/phalconplus.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus.c -o phalconplus.lo 
+kernel/main.lo: /home/guweigang/github/phalconplus/ext/kernel/main.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/main.c -o kernel/main.lo 
+kernel/memory.lo: /home/guweigang/github/phalconplus/ext/kernel/memory.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/memory.c -o kernel/memory.lo 
+kernel/exception.lo: /home/guweigang/github/phalconplus/ext/kernel/exception.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/exception.c -o kernel/exception.lo 
+kernel/debug.lo: /home/guweigang/github/phalconplus/ext/kernel/debug.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/debug.c -o kernel/debug.lo 
+kernel/backtrace.lo: /home/guweigang/github/phalconplus/ext/kernel/backtrace.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/backtrace.c -o kernel/backtrace.lo 
+kernel/object.lo: /home/guweigang/github/phalconplus/ext/kernel/object.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/object.c -o kernel/object.lo 
+kernel/array.lo: /home/guweigang/github/phalconplus/ext/kernel/array.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/array.c -o kernel/array.lo 
+kernel/string.lo: /home/guweigang/github/phalconplus/ext/kernel/string.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/string.c -o kernel/string.lo 
+kernel/fcall.lo: /home/guweigang/github/phalconplus/ext/kernel/fcall.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/fcall.c -o kernel/fcall.lo 
+kernel/require.lo: /home/guweigang/github/phalconplus/ext/kernel/require.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/require.c -o kernel/require.lo 
+kernel/file.lo: /home/guweigang/github/phalconplus/ext/kernel/file.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/file.c -o kernel/file.lo 
+kernel/operators.lo: /home/guweigang/github/phalconplus/ext/kernel/operators.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/operators.c -o kernel/operators.lo 
+kernel/math.lo: /home/guweigang/github/phalconplus/ext/kernel/math.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/math.c -o kernel/math.lo 
+kernel/concat.lo: /home/guweigang/github/phalconplus/ext/kernel/concat.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/concat.c -o kernel/concat.lo 
+kernel/variables.lo: /home/guweigang/github/phalconplus/ext/kernel/variables.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/variables.c -o kernel/variables.lo 
+kernel/filter.lo: /home/guweigang/github/phalconplus/ext/kernel/filter.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/filter.c -o kernel/filter.lo 
+kernel/iterator.lo: /home/guweigang/github/phalconplus/ext/kernel/iterator.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/iterator.c -o kernel/iterator.lo 
+kernel/time.lo: /home/guweigang/github/phalconplus/ext/kernel/time.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/time.c -o kernel/time.lo 
+kernel/exit.lo: /home/guweigang/github/phalconplus/ext/kernel/exit.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/kernel/exit.c -o kernel/exit.lo 
+phalconplus/base/protobuffer.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/protobuffer.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/protobuffer.zep.c -o phalconplus/base/protobuffer.lo 
+phalconplus/enum/abstractenum.lo: /home/guweigang/github/phalconplus/ext/phalconplus/enum/abstractenum.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/enum/abstractenum.zep.c -o phalconplus/enum/abstractenum.lo 
+phalconplus/logger/processor/abstractprocessor.lo: /home/guweigang/github/phalconplus/ext/phalconplus/logger/processor/abstractprocessor.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/logger/processor/abstractprocessor.zep.c -o phalconplus/logger/processor/abstractprocessor.lo 
+phalconplus/rpc/client/abstractclient.lo: /home/guweigang/github/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/rpc/client/abstractclient.zep.c -o phalconplus/rpc/client/abstractclient.lo 
+phalconplus/assert/assertionfailedexception.lo: /home/guweigang/github/phalconplus/ext/phalconplus/assert/assertionfailedexception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/assert/assertionfailedexception.zep.c -o phalconplus/assert/assertionfailedexception.lo 
+phalconplus/base/response.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/response.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/response.zep.c -o phalconplus/base/response.lo 
+phalconplus/rpc/server/abstractserver.lo: /home/guweigang/github/phalconplus/ext/phalconplus/rpc/server/abstractserver.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/rpc/server/abstractserver.zep.c -o phalconplus/rpc/server/abstractserver.lo 
+phalconplus/assert/assertion.lo: /home/guweigang/github/phalconplus/ext/phalconplus/assert/assertion.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/assert/assertion.zep.c -o phalconplus/assert/assertion.lo 
+phalconplus/assert/invalidargumentexception.lo: /home/guweigang/github/phalconplus/ext/phalconplus/assert/invalidargumentexception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/assert/invalidargumentexception.zep.c -o phalconplus/assert/invalidargumentexception.lo 
+phalconplus/base/abstractmodule.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/abstractmodule.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/abstractmodule.zep.c -o phalconplus/base/abstractmodule.lo 
+phalconplus/base/abstractrequest.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/abstractrequest.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/abstractrequest.zep.c -o phalconplus/base/abstractrequest.lo 
+phalconplus/base/backendserver.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/backendserver.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/backendserver.zep.c -o phalconplus/base/backendserver.lo 
+phalconplus/base/exception.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/exception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/exception.zep.c -o phalconplus/base/exception.lo 
+phalconplus/base/model.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/model.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/model.zep.c -o phalconplus/base/model.lo 
+phalconplus/base/pagable.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/pagable.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/pagable.zep.c -o phalconplus/base/pagable.lo 
+phalconplus/base/page.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/page.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/page.zep.c -o phalconplus/base/page.lo 
+phalconplus/base/protoorderby.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/protoorderby.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/protoorderby.zep.c -o phalconplus/base/protoorderby.lo 
+phalconplus/base/service.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/service.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/service.zep.c -o phalconplus/base/service.lo 
+phalconplus/base/simplerequest.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/simplerequest.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/simplerequest.zep.c -o phalconplus/base/simplerequest.lo 
+phalconplus/base/simpleresponse.lo: /home/guweigang/github/phalconplus/ext/phalconplus/base/simpleresponse.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/base/simpleresponse.zep.c -o phalconplus/base/simpleresponse.lo 
+phalconplus/bootstrap.lo: /home/guweigang/github/phalconplus/ext/phalconplus/bootstrap.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/bootstrap.zep.c -o phalconplus/bootstrap.lo 
+phalconplus/db/mysql.lo: /home/guweigang/github/phalconplus/ext/phalconplus/db/mysql.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/db/mysql.zep.c -o phalconplus/db/mysql.lo 
+phalconplus/db/unitofwork.lo: /home/guweigang/github/phalconplus/ext/phalconplus/db/unitofwork.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/db/unitofwork.zep.c -o phalconplus/db/unitofwork.lo 
+phalconplus/enum/assertioncode.lo: /home/guweigang/github/phalconplus/ext/phalconplus/enum/assertioncode.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/enum/assertioncode.zep.c -o phalconplus/enum/assertioncode.lo 
+phalconplus/enum/exception.lo: /home/guweigang/github/phalconplus/ext/phalconplus/enum/exception.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/enum/exception.zep.c -o phalconplus/enum/exception.lo 
+phalconplus/enum/orderbydirection.lo: /home/guweigang/github/phalconplus/ext/phalconplus/enum/orderbydirection.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/enum/orderbydirection.zep.c -o phalconplus/enum/orderbydirection.lo 
+phalconplus/logger/adapter/fileplus.lo: /home/guweigang/github/phalconplus/ext/phalconplus/logger/adapter/fileplus.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/logger/adapter/fileplus.zep.c -o phalconplus/logger/adapter/fileplus.lo 
+phalconplus/logger/formatter/lineplus.lo: /home/guweigang/github/phalconplus/ext/phalconplus/logger/formatter/lineplus.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/logger/formatter/lineplus.zep.c -o phalconplus/logger/formatter/lineplus.lo 
+phalconplus/logger/processor/trace.lo: /home/guweigang/github/phalconplus/ext/phalconplus/logger/processor/trace.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/logger/processor/trace.zep.c -o phalconplus/logger/processor/trace.lo 
+phalconplus/logger/processor/uid.lo: /home/guweigang/github/phalconplus/ext/phalconplus/logger/processor/uid.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/logger/processor/uid.zep.c -o phalconplus/logger/processor/uid.lo 
+phalconplus/rpc/client/adapter/local.lo: /home/guweigang/github/phalconplus/ext/phalconplus/rpc/client/adapter/local.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/rpc/client/adapter/local.zep.c -o phalconplus/rpc/client/adapter/local.lo 
+phalconplus/rpc/client/adapter/remote.lo: /home/guweigang/github/phalconplus/ext/phalconplus/rpc/client/adapter/remote.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/rpc/client/adapter/remote.zep.c -o phalconplus/rpc/client/adapter/remote.lo 
+phalconplus/volt/extension/phpfunction.lo: /home/guweigang/github/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/volt/extension/phpfunction.zep.c -o phalconplus/volt/extension/phpfunction.lo 
+phalconplus/0__closure.lo: /home/guweigang/github/phalconplus/ext/phalconplus/0__closure.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/guweigang/github/phalconplus/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/guweigang/github/phalconplus/ext/phalconplus/0__closure.zep.c -o phalconplus/0__closure.lo 
+$(phplibdir)/phalconplus.la: ./phalconplus.la
+	$(LIBTOOL) --mode=install cp ./phalconplus.la $(phplibdir)
+
+./phalconplus.la: $(shared_objects_phalconplus) $(PHALCONPLUS_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_phalconplus) $(PHALCONPLUS_SHARED_LIBADD)
+
