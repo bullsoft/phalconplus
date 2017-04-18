@@ -4,7 +4,7 @@ use PhalconPlus\Enum\AbstractEnum;
 class Exception extends AbstractEnum
 {
     protected static details;
-    
+
     protected static function has(var eCode)
     {
         var code = null, details = [], className, val;
@@ -14,14 +14,14 @@ class Exception extends AbstractEnum
         %{
             zephir_read_static_property(&details, Z_STRVAL_P(className), Z_STRLEN_P(className), SL("details") TSRMLS_CC);
         }%
-             
+
         if fetch val, details[code->__toString()] {
             return val;
         } else {
             return [];
         }
     }
-    
+
     public static function getByCode(var eCode)
     {
         var detail = [];
@@ -37,22 +37,22 @@ class Exception extends AbstractEnum
         var code, eCode, eName, map2Name, className;
         let map2Name = array_flip(static::validValues(true));
         let eCode = e->getCode();
-        
+
         // e.g. USER_NOT_EXISTS -> UserNotExists
         let eName = \Phalcon\Text::camelize(map2Name[eCode]);
 
         var eClassName, exception;
         let eClassName = static::exceptionClassPrefix() . eName;
-        
+
         let className = get_called_class();
         let code = new {className}(eCode);
-        
+
         let exception = new {eClassName}(code->getMessage(), logger);
-        
+
         exception->setCode(code->getCode());
         exception->setLevel(code->getLevel());
         exception->setMessage(e->getMessage());
-        
+
         return exception;
     }
 
@@ -60,7 +60,7 @@ class Exception extends AbstractEnum
     {
         return __NAMESPACE__ . "\\Exception\\";
     }
-    
+
     public function getMessage()
     {
         var detail, val;

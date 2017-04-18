@@ -15,7 +15,7 @@ abstract class AbstractEnum implements \JsonSerializable
                 throw new \OutOfRangeException(sprintf("Invalid __default enumeration %s for Enum %s", defaultVal, get_class(this)));
             }
         }
-        
+
         if val == "__PhalconPlus_AbstractEnum_DefaultValue__" {
             this->setValue(defaultVal);
         } else {
@@ -47,11 +47,22 @@ abstract class AbstractEnum implements \JsonSerializable
     public static function validValues(bool assoc = false)
     {
         var reflection, consts;
-        
+
         let reflection = new \ReflectionClass(get_called_class());
         let consts = reflection->getConstants();
         unset(consts["__default"]);
-        
+
+        var countValues;
+        let countValues = array_count_values(consts);
+
+        if count(consts) !== count(countValues) {
+            var duplicated = [];
+            let duplicated = array_filter(countValues, function(freq) {
+                return freq > 1;
+            });
+            throw new \RuntimeException("Duplicated values were found in Enum Class: " . get_called_class(). " with values in " . json_encode(array_keys(duplicated)));
+        }
+
         if assoc == true {
             return consts;
         } else {
