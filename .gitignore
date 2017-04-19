@@ -36,6 +36,7 @@
 *~
 
 ext/ltmain.sh
+ext/.libs/
 ext/.deps
 ext/Makefile
 ext/Makefile.fragments

@@ -48,10 +48,10 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 	zval _18, _3$$4, _20$$8, _26$$8, _23$$9, _24$$9;
 	zend_class_entry *_16, *_8$$5;
 	zend_bool _2;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *service_param = NULL, *method_param = NULL, *request = NULL, request_sub, __$true, __$false, serviceClass, _0, _1, serviceObj, response, e, _15, _17, tmp$$4, param$$4, paramClass$$4, _4$$4, _5$$4, _6$$5, _7$$5, _9$$6, _10$$6, _11$$6, _12$$7, _13$$7, _14$$7, _19$$8, _21$$8, _25$$8, _27$$8, _28$$8, _22$$9, _29$$11;
 	zval service, method, _30$$11;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&service);
 	ZVAL_UNDEF(&method);
@@ -290,10 +290,10 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByObject) {
 
 	zend_bool _7;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *rawData_param = NULL, service, method, request, response, logId, message, _4, _6, _8, _9, _14, _16, _18, _19, _0$$3, _1$$3, _2$$4, _3$$4, _10$$7, _11$$7, _12$$7, _13$$7, _20$$8, _21$$8, _22$$8, _23$$8;
 	zval rawData, _5, _15, _17;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&rawData);
 	ZVAL_UNDEF(&_5);

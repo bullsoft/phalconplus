@@ -31,9 +31,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Uid) {
 
 PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __construct) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *len = NULL, len_sub, __$true, _0, _1, _2, _3;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&len_sub);
 	ZVAL_BOOL(&__$true, 1);
@@ -54,11 +54,11 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __construct) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "");
-	ZEPHIR_CALL_FUNCTION(&_1, "uniqid", NULL, 55, &_0, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_1, "uniqid", NULL, 57, &_0, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "md5");
-	ZEPHIR_CALL_FUNCTION(&_2, "hash", NULL, 56, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "hash", NULL, 58, &_0, &_1);
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, 0);
 	ZEPHIR_INIT_NVAR(&_0);
@@ -70,10 +70,10 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __construct) {
 
 PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __toString) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "uid");
+	RETURN_MEMBER(this_ptr, "uid");
 
 }
 

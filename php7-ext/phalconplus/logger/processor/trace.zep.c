@@ -42,8 +42,8 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 
 	zval skipClassesPartials, _1$$3;
 	zval *mode_param = NULL, *skipClassesPartials_param = NULL, _0, _2$$3;
-	zend_long mode;
-	zval *this_ptr = getThis();
+	int mode;
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2$$3);
@@ -88,8 +88,8 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 
 	zval trace, part, _1, trace1, trace2, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _2$$3, *_3$$3, _4$$4, _5$$4, _6$$4, _18$$7, _19$$7;
 	zephir_fcall_cache_entry *_0 = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS, i, j = 0, _17;
-	zval *this_ptr = getThis();
+	int ZEPHIR_LAST_CALL_STATUS, i, j = 0, _17;
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&trace);
 	ZVAL_UNDEF(&part);
@@ -115,14 +115,14 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 53);
+	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 55);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 54, &trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 56, &trace);
 	ZEPHIR_UNREF(&trace);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 54, &trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 56, &trace);
 	ZEPHIR_UNREF(&trace);
 	zephir_check_call_status();
 	i = 0;

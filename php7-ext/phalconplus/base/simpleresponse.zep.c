@@ -40,7 +40,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult) {
 
 	zval _1;
 	zval _0;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -58,7 +58,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
 
 	zval *result_param = NULL;
 	zval result;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&result);
 
@@ -83,9 +83,9 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
  */
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_UNDEF(&key_sub);
@@ -106,7 +106,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 33, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 35, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}
@@ -116,9 +116,9 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_UNDEF(&key_sub);
@@ -139,7 +139,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 33, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 35, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}
@@ -149,9 +149,9 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *key = NULL, key_sub, __$null, val$$3, _0$$3, _1$$5;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_NULL(&__$null);
@@ -177,7 +177,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 	} else {
 		zephir_read_property(&_1$$5, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_1$$5);
-		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 36, &_1$$5);
+		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 38, &_1$$5);
 		ZEPHIR_UNREF(&_1$$5);
 		zephir_check_call_status();
 		RETURN_MM();

@@ -16,26 +16,26 @@
 #include "kernel/memory.h"
 
 
-ZEPHIR_INIT_CLASS(phalconplus_0__closure) {
+ZEPHIR_INIT_CLASS(phalconplus_1__closure) {
 
-	ZEPHIR_REGISTER_CLASS(phalconplus, 0__closure, phalconplus, 0__closure, phalconplus_0__closure_method_entry, ZEND_ACC_FINAL_CLASS);
+	ZEPHIR_REGISTER_CLASS(phalconplus, 1__closure, phalconplus, 1__closure, phalconplus_1__closure_method_entry, ZEND_ACC_FINAL_CLASS);
 
 	return SUCCESS;
 
 }
 
-PHP_METHOD(phalconplus_0__closure, __invoke) {
+PHP_METHOD(phalconplus_1__closure, __invoke) {
 
-	zval *freq, freq_sub;
+	zval *elem, elem_sub;
 	ZEPHIR_INIT_THIS();
 
-	ZVAL_UNDEF(&freq_sub);
+	ZVAL_UNDEF(&elem_sub);
 
-	zephir_fetch_params(0, 1, 0, &freq);
+	zephir_fetch_params(0, 1, 0, &elem);
 
 
 
-	RETURN_BOOL(ZEPHIR_GT_LONG(freq, 1));
+	RETURN_BOOL(!(ZEPHIR_IS_EMPTY(elem)));
 
 }
 

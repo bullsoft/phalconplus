@@ -37,10 +37,10 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 
 	zend_string *_5$$4;
 	zend_ulong _4$$4;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *remoteServerUrl_param = NULL, *opts_param = NULL, key, _0, _1, _2, optKey$$4, optVal$$4, *_3$$4, _6$$5;
 	zval remoteServerUrl, opts;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&remoteServerUrl);
 	ZVAL_UNDEF(&opts);
@@ -68,7 +68,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "server url can not be empty", "phalconplus/RPC/Client/Adapter/Remote.zep", 12);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 58, &remoteServerUrl);
+	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 60, &remoteServerUrl);
 	zephir_check_call_status();
 	zephir_array_fetch(&_0, &remoteServerUrl, &key, PH_NOISY | PH_READONLY, "phalconplus/RPC/Client/Adapter/Remote.zep", 16 TSRMLS_CC);
 	zephir_update_property_zval(this_ptr, SL("remoteServerUrl"), &_0);
@@ -103,10 +103,10 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 
 PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, callByObject) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *rawData_param = NULL, _0;
 	zval rawData;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&rawData);
 	ZVAL_UNDEF(&_0);
@@ -126,11 +126,11 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, callByObject) {
 
 PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __call) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval args, _1$$3;
 	zval *method_param = NULL, *args_param = NULL, _0, _2$$3;
 	zval method;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&_0);

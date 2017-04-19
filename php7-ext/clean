@@ -1,3 +1,11 @@
-find . -name \*.lo -o -name \*.o -o -name \*.gch | xargs rm -f
+for i in `find . -name "*.o"`; do
+ rm -f $i
+done
+for i in `find . -name "*.lo"`; do
+ rm -f $i
+done
+for i in `find . -name "*.gch"`; do
+ rm -f $i
+done
 make clean
 phpize --clean

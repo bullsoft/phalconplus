@@ -36,10 +36,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Assert_Assertion) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval constraints;
 	zval *value, value_sub, *message, message_sub, *code, code_sub, *propertyPath, propertyPath_sub, *constraints_param = NULL;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&message_sub);
@@ -59,7 +59,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 
 
 	object_init_ex(return_value, phalconplus_assert_invalidargumentexception_ce);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 19, message, code, propertyPath, value, &constraints);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 22, message, code, propertyPath, value, &constraints);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -68,10 +68,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 
 	zval _2$$3;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, value_sub, *value2, value2_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, v2$$3, _1$$3, _3$$3;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&value2_sub);
@@ -100,9 +100,9 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 
 
 	if (!ZEPHIR_IS_EQUAL(value, value2)) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 20, value);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
 		zephir_check_call_status();
-		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 20, value2);
+		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 23, value2);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -125,10 +125,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 
 	zval _2$$3;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, value_sub, *value2, value2_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, v2$$3, _1$$3, _3$$3;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&value2_sub);
@@ -157,9 +157,9 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 
 
 	if (!ZEPHIR_IS_IDENTICAL(value, value2)) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 20, value);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
 		zephir_check_call_status();
-		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 20, value2);
+		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 23, value2);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -181,10 +181,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, value_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, _1$$3, _2$$3;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&message_sub);
@@ -210,7 +210,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 
 
 	if (ZEPHIR_IS_EMPTY(value)) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 20, value);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -229,10 +229,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, value_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, _1$$3, _2$$3;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&message_sub);
@@ -258,7 +258,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 
 
 	if (Z_TYPE_P(value) == IS_NULL) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 20, value);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -277,10 +277,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, value_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, _1$$3, _2$$3;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&message_sub);
@@ -306,7 +306,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 
 
 	if (!(zephir_is_numeric(value))) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 20, value);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -327,7 +327,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, stringify) {
 
 	zval _1$$4;
 	zval *value, value_sub, _0$$3, val, _2$$5, _3$$5, _4$$5, _5$$5;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&_0$$3);

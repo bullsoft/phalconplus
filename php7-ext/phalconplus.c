@@ -31,6 +31,7 @@ zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
 zend_class_entry *phalconplus_base_response_ce;
 zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 zend_class_entry *phalconplus_0__closure_ce;
+zend_class_entry *phalconplus_1__closure_ce;
 zend_class_entry *phalconplus_assert_assertion_ce;
 zend_class_entry *phalconplus_assert_invalidargumentexception_ce;
 zend_class_entry *phalconplus_base_abstractmodule_ce;
@@ -101,6 +102,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_Adapter_Remote);
 	ZEPHIR_INIT(PhalconPlus_Volt_Extension_PhpFunction);
 	ZEPHIR_INIT(phalconplus_0__closure);
+	ZEPHIR_INIT(phalconplus_1__closure);
 	return SUCCESS;
 }
 

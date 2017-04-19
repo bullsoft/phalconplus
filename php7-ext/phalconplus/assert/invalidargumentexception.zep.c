@@ -36,10 +36,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Assert_InvalidArgumentException) {
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval constraints;
 	zval *message, message_sub, *code, code_sub, *propertyPath = NULL, propertyPath_sub, *value, value_sub, *constraints_param = NULL, __$null;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&message_sub);
 	ZVAL_UNDEF(&code_sub);
@@ -63,7 +63,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, phalconplus_assert_invalidargumentexception_ce, getThis(), "__construct", NULL, 0, message, code);
+	ZEPHIR_CALL_PARENT(NULL, phalconplus_assert_invalidargumentexception_ce, this_ptr, "__construct", NULL, 0, message, code);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("propertyPath"), propertyPath);
 	zephir_update_property_zval(this_ptr, SL("value"), value);
@@ -74,28 +74,28 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getPropertyPath) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "propertyPath");
+	RETURN_MEMBER(this_ptr, "propertyPath");
 
 }
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getValue) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "value");
+	RETURN_MEMBER(this_ptr, "value");
 
 }
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getConstraints) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "constraints");
+	RETURN_MEMBER(this_ptr, "constraints");
 
 }
 

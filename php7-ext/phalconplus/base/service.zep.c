@@ -32,9 +32,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
 
 PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&di_sub);
 
@@ -52,7 +52,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 PHP_METHOD(PhalconPlus_Base_Service, onConstruct) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
 
@@ -60,19 +60,19 @@ PHP_METHOD(PhalconPlus_Base_Service, onConstruct) {
 
 PHP_METHOD(PhalconPlus_Base_Service, getDI) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "di");
+	RETURN_MEMBER(this_ptr, "di");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Service, __get) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, _0, _1$$3, _2$$4;
 	zval key;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_0);

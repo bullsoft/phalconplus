@@ -19,6 +19,8 @@
 #include "kernel/exception.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/array.h"
+#include "kernel/concat.h"
+#include "kernel/string.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AbstractEnum) {
@@ -35,9 +37,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AbstractEnum) {
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 
 	zephir_fcall_cache_entry *_9 = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *val = NULL, val_sub, reflection, defaultVal, _0, _1, _2, _3$$3, _4$$3, _5$$4, _6$$4, _7$$4, _8$$4;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_UNDEF(&reflection);
@@ -108,9 +110,9 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, _0, _1$$3, _2$$3, _3$$3, _4$$3;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_UNDEF(&_0);
@@ -148,18 +150,18 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValue) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "val");
+	RETURN_MEMBER(this_ptr, "val");
 
 }
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, __$true, _0, _1;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_BOOL(&__$true, 1);
@@ -184,14 +186,22 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *assoc_param = NULL, reflection, consts, _0;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *assoc_param = NULL, reflection, consts, _0, countValues, duplicated$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3;
 	zend_bool assoc;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&reflection);
 	ZVAL_UNDEF(&consts);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&countValues);
+	ZVAL_UNDEF(&duplicated$$3);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_2$$3);
+	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_6$$3);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &assoc_param);
@@ -212,10 +222,36 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 	ZEPHIR_CALL_METHOD(&consts, &reflection, "getconstants", NULL, 17);
 	zephir_check_call_status();
 	zephir_array_unset_string(&consts, SL("__default"), PH_SEPARATE);
+	ZEPHIR_CALL_FUNCTION(&countValues, "array_count_values", NULL, 18, &consts);
+	zephir_check_call_status();
+	if (zephir_fast_count_int(&consts TSRMLS_CC) != zephir_fast_count_int(&countValues TSRMLS_CC)) {
+		ZEPHIR_INIT_VAR(&duplicated$$3);
+		array_init(&duplicated$$3);
+		ZEPHIR_INIT_VAR(&_1$$3);
+		ZEPHIR_INIT_NVAR(&_1$$3);
+		zephir_create_closure_ex(&_1$$3, NULL, phalconplus_0__closure_ce, SL("__invoke"));
+		ZEPHIR_CALL_FUNCTION(&duplicated$$3, "array_filter", NULL, 19, &countValues, &_1$$3);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(&_2$$3);
+		object_init_ex(&_2$$3, spl_ce_RuntimeException);
+		ZEPHIR_INIT_VAR(&_3$$3);
+		zephir_get_called_class(&_3$$3 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_4$$3);
+		ZEPHIR_INIT_VAR(&_5$$3);
+		zephir_array_keys(&_5$$3, &duplicated$$3 TSRMLS_CC);
+		zephir_json_encode(&_4$$3, &_5$$3, 0 );
+		ZEPHIR_INIT_VAR(&_6$$3);
+		ZEPHIR_CONCAT_SVSV(&_6$$3, "Duplicated values were found in Enum Class: ", &_3$$3, " with values in ", &_4$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "__construct", NULL, 20, &_6$$3);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_2$$3, "phalconplus/Enum/AbstractEnum.zep", 63 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
 	if (assoc == 1) {
 		RETURN_CCTOR(consts);
 	} else {
-		ZEPHIR_RETURN_CALL_FUNCTION("array_values", NULL, 18, &consts);
+		ZEPHIR_RETURN_CALL_FUNCTION("array_values", NULL, 21, &consts);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
@@ -224,8 +260,8 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, jsonSerialize) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
+	int ZEPHIR_LAST_CALL_STATUS;
+	ZEPHIR_INIT_THIS();
 
 
 	ZEPHIR_MM_GROW();
@@ -240,8 +276,8 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __toString) {
 
 	zval _1;
 	zval _0;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
+	int ZEPHIR_LAST_CALL_STATUS;
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);

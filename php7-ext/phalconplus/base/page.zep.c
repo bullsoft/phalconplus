@@ -45,10 +45,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page) {
 PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 	zend_object_iterator *_5$$3, *_8$$5;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_7 = NULL;
 	zval *pagable, pagable_sub, *totalSize, totalSize_sub, *data, data_sub, hydrateMode, tmpData, item, _9, _10, _1$$3, _2$$3, _3$$3, _4$$3, _6$$4;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&pagable_sub);
 	ZVAL_UNDEF(&totalSize_sub);
@@ -78,7 +78,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 		if (ZEPHIR_IS_LONG(&hydrateMode, 0)) {
 			ZEPHIR_INIT_VAR(&tmpData);
 			object_init_ex(&tmpData, spl_ce_ArrayObject);
-			ZEPHIR_CALL_METHOD(NULL, &tmpData, "__construct", NULL, 34);
+			ZEPHIR_CALL_METHOD(NULL, &tmpData, "__construct", NULL, 36);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_1$$3);
 			ZEPHIR_CALL_METHOD(&_2$$3, data, "getfirst", NULL, 0);
@@ -98,7 +98,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 				}
 				ZEPHIR_CALL_METHOD(&_6$$4, &item, "toarray", NULL, 0);
 				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, &tmpData, "append", &_7, 35, &_6$$4);
+				ZEPHIR_CALL_METHOD(NULL, &tmpData, "append", &_7, 37, &_6$$4);
 				zephir_check_call_status();
 			}
 			zend_iterator_dtor(_5$$3);
@@ -133,8 +133,8 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 
 	zval _0, _1;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
+	int ZEPHIR_LAST_CALL_STATUS;
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -152,8 +152,8 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 
 	zval _0, _1;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
+	int ZEPHIR_LAST_CALL_STATUS;
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -171,7 +171,7 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 
 	zval _0, _1, _2;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -191,35 +191,35 @@ PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 
 PHP_METHOD(PhalconPlus_Base_Page, getPageNo) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "pageNo");
+	RETURN_MEMBER(this_ptr, "pageNo");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Page, getTotalPage) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "totalPage");
+	RETURN_MEMBER(this_ptr, "totalPage");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Page, getTotalSize) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "totalSize");
+	RETURN_MEMBER(this_ptr, "totalSize");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Page, hasPreviousPage) {
 
 	zval _0;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 
@@ -232,8 +232,8 @@ PHP_METHOD(PhalconPlus_Base_Page, hasPreviousPage) {
 PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
 
 	zval _0;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
+	int ZEPHIR_LAST_CALL_STATUS;
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 
@@ -248,8 +248,8 @@ PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
 PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 
 	zval _0;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
+	int ZEPHIR_LAST_CALL_STATUS;
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 
@@ -264,8 +264,8 @@ PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
 
 	zval _0, _1;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
+	int ZEPHIR_LAST_CALL_STATUS;
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -282,17 +282,17 @@ PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
 
 PHP_METHOD(PhalconPlus_Base_Page, getData) {
 
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 
-	RETURN_MEMBER(getThis(), "data");
+	RETURN_MEMBER(this_ptr, "data");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Page, isEmpty) {
 
 	zval _0;
-	zval *this_ptr = getThis();
+	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 

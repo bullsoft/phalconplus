@@ -89,7 +89,11 @@ static ulong zephir_make_fcall_key(char **result, size_t *length, const zend_cla
 		}
 	}
 	else if (type == zephir_fcall_static) {
+#if PHP_VERSION_ID >= 70100
 		calling_scope = zend_get_called_scope(EG(current_execute_data));
+#else
+		calling_scope = EG(current_execute_data)->called_scope;
+#endif
 		if (UNEXPECTED(!calling_scope)) {
 			return 0;
 		}
@@ -175,12 +179,17 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 	zephir_fcall_cache_entry *temp_cache_entry = NULL;
 	int reload_cache = 1, i;
 
+#if PHP_VERSION_ID < 70100
+	zend_class_entry *old_scope;
+	old_scope = EG(scope);
+#endif
+
 	assert(obj_ce || !object_pp);
 	ZVAL_UNDEF(&local_retval_ptr);
 
 	if (retval_ptr) {
 		zval_ptr_dtor(retval_ptr);
-		ZVAL_NULL(retval_ptr);
+		ZVAL_UNDEF(retval_ptr);
 	}
 
 	++zephir_globals_ptr->recursive_lock;
@@ -188,6 +197,12 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 	if (UNEXPECTED(zephir_globals_ptr->recursive_lock > 2048)) {
 		zend_error(E_ERROR, "Maximum recursion depth exceeded");
 		return FAILURE;
+	}
+
+	if (obj_ce) {
+#if PHP_VERSION_ID < 70100
+		EG(scope) = obj_ce;
+#endif
 	}
 
 	if ((!cache_entry || !*cache_entry) && zephir_globals_ptr->cache_enabled) {
@@ -294,6 +309,10 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 	efree(p);
 #endif
 
+#if PHP_VERSION_ID < 70100
+	EG(scope) = old_scope;
+#endif
+
 	/* Skip caching IF:
 	 * call failed OR there was an exception (to be safe) OR cache key is not defined OR
 	 * fcall cache was deinitialized OR we have a slot cache
@@ -308,32 +327,23 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 		zephir_fcall_cache_entry *cache_entry_temp = fcic.function_handler;
 #endif
 
-		if (cache_entry) {
-			if (cache_slot > 0) {
-#ifndef ZEPHIR_RELEASE
-				zephir_fcall_cache_entry *t;
-				if (zephir_globals_ptr->scache[cache_slot]) {
-					free(zephir_globals_ptr->scache[cache_slot]);
-				}
-#endif
-				*cache_entry = cache_entry_temp;
-				zephir_globals_ptr->scache[cache_slot] = *cache_entry;
-#ifndef ZEPHIR_RELEASE
-				t = malloc(sizeof(zephir_fcall_cache_entry));
-				t->f     = fcic.function_handler;
-				t->times = 0;
-				cache_entry_temp = t;
-#endif
-			}
-		}
-
 		if (zephir_globals_ptr->cache_enabled) {
 			/** TODO: maybe construct zend_string (we do have a valid fcall_key) to avoid hash recalculation */
 			if (NULL == zend_hash_str_add_ptr(zephir_globals_ptr->fcache, fcall_key, fcall_key_len, cache_entry_temp)) {
-#ifndef ZEPHIR_RELEASE
-				free(cache_entry_temp);
-#endif
+				add_failed = 1;
 			}
+		}
+
+		if (cache_entry) {
+			if (cache_slot > 0) {
+				*cache_entry = cache_entry_temp;
+				zephir_globals_ptr->scache[cache_slot] = *cache_entry;
+			}
+		}
+		else if (add_failed) {
+#ifndef ZEPHIR_RELEASE
+			free(cache_entry_temp);
+#endif
 		}
 	}
 
@@ -343,9 +353,6 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 
 	if (!retval_ptr) {
 		zval_ptr_dtor(&local_retval_ptr);
-	}
-	else if (FAILURE == status || EG(exception)) {
-		ZVAL_NULL(retval_ptr);
 	}
 
 	--zephir_globals_ptr->recursive_lock;
@@ -376,8 +383,18 @@ int zephir_call_func_aparams(zval *return_value_ptr, const char *func_name, uint
 
 	if (status == FAILURE && !EG(exception)) {
 		zephir_throw_exception_format(spl_ce_RuntimeException, "Call to undefined function %s()", func_name);
-	} else if (EG(exception)) {
-		status = FAILURE;
+		if (return_value_ptr) {
+			zval_ptr_dtor(return_value_ptr);
+			ZVAL_UNDEF(return_value_ptr);
+		}
+	} else {
+		if (EG(exception)) {
+			status = FAILURE;
+			if (return_value_ptr) {
+				zval_ptr_dtor(return_value_ptr);
+				ZVAL_UNDEF(return_value_ptr);
+			}
+		}
 	}
 
 	if (!return_value_ptr) {
@@ -408,8 +425,18 @@ int zephir_call_zval_func_aparams(zval *return_value_ptr, zval *func_name,
 
 	if (status == FAILURE && !EG(exception)) {
 		zephir_throw_exception_format(spl_ce_RuntimeException, "Call to undefined function %s()", Z_TYPE_P(func_name) ? Z_STRVAL_P(func_name) : "undefined");
-	} else if (EG(exception)) {
-		status = FAILURE;
+		if (return_value_ptr) {
+			zval_ptr_dtor(return_value_ptr);
+			ZVAL_NULL(return_value_ptr);
+		}
+	} else {
+		if (EG(exception)) {
+			status = FAILURE;
+			if (return_value_ptr) {
+				zval_ptr_dtor(return_value_ptr);
+				ZVAL_NULL(return_value_ptr);
+			}
+		}
 	}
 
 	if (!return_value_ptr) {
@@ -441,7 +468,8 @@ int zephir_call_class_method_aparams(zval *return_value_ptr, zend_class_entry *c
 		if (Z_TYPE_P(object) != IS_OBJECT) {
 			zephir_throw_exception_format(spl_ce_RuntimeException, "Trying to call method %s on a non-object", method_name);
 			if (return_value_ptr) {
-				ZVAL_NULL(return_value_ptr);
+				zval_ptr_dtor(return_value_ptr);
+				ZVAL_UNDEF(return_value_ptr);
 			}
 			return FAILURE;
 		}
@@ -506,8 +534,19 @@ int zephir_call_class_method_aparams(zval *return_value_ptr, zend_class_entry *c
 			default:
 				zephir_throw_exception_format(spl_ce_RuntimeException, "Call to undefined method ?::%s()", method_name);
 		}
-	} else if (EG(exception)) {
-		status = FAILURE;
+
+		if (return_value_ptr) {
+			zval_ptr_dtor(return_value_ptr);
+			ZVAL_UNDEF(return_value_ptr);
+		}
+	} else {
+		if (EG(exception)) {
+			status = FAILURE;
+			if (return_value_ptr) {
+				zval_ptr_dtor(return_value_ptr);
+				ZVAL_UNDEF(return_value_ptr);
+			}
+		}
 	}
 
 	if (!return_value_ptr) {
