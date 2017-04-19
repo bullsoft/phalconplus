@@ -36,3 +36,4 @@
 
 ext/autom4te.cache/
 php7-ext/autom4te.cache/
+php7-ext/.libs/
