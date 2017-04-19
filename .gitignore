@@ -33,6 +33,7 @@
 
 .temp/*
 *.log
+*~
 
 ext/ltmain.sh
 ext/.deps
@@ -62,5 +63,32 @@ ext/modules/
 ext/phalcon.la
 ext/run-tests.php
 
-php7-ext/autom4te.cache/
+php7-ext/ltmain.sh
+php7-ext/.deps
+php7-ext/Makefile
+php7-ext/Makefile.fragments
+php7-ext/Makefile.global
+php7-ext/Makefile.objects
+php7-ext/acinclude.m4
+php7-ext/aclocal.m4
 php7-ext/.libs/
+php7-ext/autom4te.cache/
+php7-ext/build/
+php7-ext/config.guess
+php7-ext/config.h
+php7-ext/config.h.in
+php7-ext/config.nice
+php7-ext/config.status
+php7-ext/config.sub
+php7-ext/config/.libs/
+php7-ext/config/adapter/.libs/
+php7-ext/configure
+php7-ext/configure.in
+php7-ext/install-sh
+php7-ext/libtool
+php7-ext/missing
+php7-ext/mkinstalldirs
+php7-ext/modules/
+php7-ext/phalcon.la
+php7-ext/run-tests.php
+
