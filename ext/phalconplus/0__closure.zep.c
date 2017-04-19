@@ -26,13 +26,13 @@ ZEPHIR_INIT_CLASS(phalconplus_0__closure) {
 
 PHP_METHOD(phalconplus_0__closure, __invoke) {
 
-	zval *elem;
+	zval *freq;
 
-	zephir_fetch_params(0, 1, 0, &elem);
+	zephir_fetch_params(0, 1, 0, &freq);
 
 
 
-	RETURN_BOOL(!(ZEPHIR_IS_EMPTY(elem)));
+	RETURN_BOOL(ZEPHIR_GT_LONG(freq, 1));
 
 }
 

@@ -92,7 +92,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 	} else {
 		_0$$4 = zephir_fetch_nproperty_this(this_ptr, SL("result"), PH_NOISY_CC);
 		ZEPHIR_MAKE_REF(_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 34, _0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 36, _0$$4, val);
 		ZEPHIR_UNREF(_0$$4);
 		zephir_check_call_status();
 	}
@@ -118,7 +118,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 	} else {
 		_0$$4 = zephir_fetch_nproperty_this(this_ptr, SL("result"), PH_NOISY_CC);
 		ZEPHIR_MAKE_REF(_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 34, _0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 36, _0$$4, val);
 		ZEPHIR_UNREF(_0$$4);
 		zephir_check_call_status();
 	}
@@ -148,7 +148,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 	} else {
 		_1$$5 = zephir_fetch_nproperty_this(this_ptr, SL("result"), PH_NOISY_CC);
 		ZEPHIR_MAKE_REF(_1$$5);
-		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 38, _1$$5);
+		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 40, _1$$5);
 		ZEPHIR_UNREF(_1$$5);
 		zephir_check_call_status();
 		RETURN_MM();
