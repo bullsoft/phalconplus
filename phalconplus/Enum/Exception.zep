@@ -12,7 +12,11 @@ class Exception extends AbstractEnum
         let code = new {className}(eCode);
 
         %{
+            #if PHP_VERSION_ID >= 70000
+            zephir_read_static_property(&details, Z_STRVAL(className), Z_STRLEN(className), SL("details") TSRMLS_CC);
+            #else
             zephir_read_static_property(&details, Z_STRVAL_P(className), Z_STRLEN_P(className), SL("details") TSRMLS_CC);
+            #endif
         }%
 
         if fetch val, details[code->__toString()] {
