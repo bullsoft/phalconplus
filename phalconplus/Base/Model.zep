@@ -303,7 +303,7 @@ class Model extends \Phalcon\Mvc\Model
          * Assign bind types
          */
         if fetch bind, params["bind"] {
-            merge_append(uniqueParams, bind);   
+            merge_append(uniqueParams, bind);
         }
 
         if this->_uniqueParams == null {
@@ -352,7 +352,7 @@ class Model extends \Phalcon\Mvc\Model
                 let tmp = array_flip(columnMap);
                 if !fetch field, tmp[attributeField] {
                     throw new \Exception("Model::setUqKeys: Column '" . attributeField . "' isn't part of the column map");
-                }                
+                }
             } else {
                 let field = attributeField;
             }
