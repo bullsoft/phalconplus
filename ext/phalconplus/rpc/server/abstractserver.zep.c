@@ -48,7 +48,7 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 	zval *_18, *_3$$4, *_20$$8, *_26$$8, *_23$$9, *_24$$9;
 	zend_class_entry *_16, *_8$$5;
 	zend_bool _2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *service_param = NULL, *method_param = NULL, *request = NULL, *serviceClass = NULL, *_0 = NULL, *_1, *serviceObj = NULL, *response = NULL, *e = NULL, *_15 = NULL, *_17, *tmp$$4 = NULL, *param$$4 = NULL, *paramClass$$4 = NULL, *_4$$4, *_5$$4 = NULL, *_6$$5 = NULL, *_7$$5 = NULL, *_9$$6, *_10$$6, *_11$$6, *_12$$7, *_13$$7, *_14$$7, *_19$$8, *_21$$8 = NULL, *_25$$8, *_27$$8 = NULL, *_28$$8, *_22$$9, *_29$$11;
 	zval *service = NULL, *method = NULL, *_30$$11;
 
@@ -89,9 +89,9 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 	}
 	if (_2) {
 		if (1) {
-			zephir_update_property_this(this_ptr, SL("phpOnly"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("phpOnly"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
 		} else {
-			zephir_update_property_this(this_ptr, SL("phpOnly"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("phpOnly"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 		}
 	} else if (Z_TYPE_P(request) == IS_ARRAY) {
 		ZEPHIR_INIT_VAR(tmp$$4);
@@ -250,7 +250,7 @@ PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByParams) {
 PHP_METHOD(PhalconPlus_RPC_Server_AbstractServer, callByObject) {
 
 	zend_bool _7;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *rawData_param = NULL, *service = NULL, *method = NULL, *request = NULL, *response = NULL, *logId = NULL, *message = NULL, *_4, *_6 = NULL, *_8, *_9 = NULL, *_14, *_16, *_18, *_19 = NULL, *_0$$3, *_1$$3, *_2$$4, *_3$$4, *_10$$7, *_11$$7, *_12$$7 = NULL, *_13$$7, *_20$$8, *_21$$8, *_22$$8 = NULL, *_23$$8;
 	zval *rawData = NULL, *_5, *_15, *_17;
 

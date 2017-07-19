@@ -38,7 +38,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_RPC_Client_Adapter_Local) {
 
 PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, *_0 = NULL, *_1;
 
 	ZEPHIR_MM_GROW();
@@ -46,13 +46,13 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, __construct) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("di"), di TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "config", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(&_0, di, "get", NULL, 0, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("config"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("config"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -62,7 +62,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByParams) {
 	zval *_5, *_11$$3, *_12$$3;
 	zend_class_entry *_3;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *service_param = NULL, *method_param = NULL, *request, *serviceClass = NULL, *serviceObj = NULL, *response = NULL, *_0 = NULL, *_1, *_2 = NULL, *_4, *_6$$3, *_9$$3 = NULL, *_10$$3;
 	zval *service = NULL, *method = NULL, *_8$$3;
 
@@ -111,18 +111,18 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByParams) {
 	if (zephir_is_callable(_5 TSRMLS_CC)) {
 		ZEPHIR_INIT_VAR(_6$$3);
 		ZEPHIR_CONCAT_SV(_6$$3, "ServerClass: ", serviceClass);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 53, _6$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 52, _6$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_8$$3);
 		ZEPHIR_CONCAT_SV(_8$$3, "InvokeMethod: ", method);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 53, _8$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 52, _8$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_9$$3);
 		ZEPHIR_INIT_NVAR(_9$$3);
 		zephir_var_export_ex(_9$$3, &request TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_10$$3);
 		ZEPHIR_CONCAT_SV(_10$$3, "InputParma: ", _9$$3);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 53, _10$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_7, 52, _10$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_11$$3);
 		zephir_create_array(_11$$3, 2, 0 TSRMLS_CC);
@@ -145,7 +145,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByParams) {
 PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByObject) {
 
 	zend_bool _8;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_2 = NULL;
 	zval *rawData_param = NULL, *service = NULL, *method = NULL, *request = NULL, *_0 = NULL, *_1, *_7 = NULL, _9, *_3$$3, *_4$$3, *_5$$4, *_6$$4;
 	zval *rawData = NULL;
@@ -161,7 +161,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByObject) {
 	zephir_var_export_ex(_0, &rawData TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZEPHIR_CONCAT_SV(_1, "Local callByObject: ", _0);
-	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 53, _1);
+	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 52, _1);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(service);
 	if (!(zephir_array_isset_string_fetch(&service, rawData, SS("service"), 0 TSRMLS_CC))) {
@@ -208,9 +208,9 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByObject) {
 	}
 	ZEPHIR_SINIT_VAR(_9);
 	ZVAL_STRING(&_9, "Invoke callByParams", 0);
-	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 53, &_9);
+	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 52, &_9);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 61, service, method, request);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 60, service, method, request);
 	zephir_check_call_status();
 	RETURN_MM();
 

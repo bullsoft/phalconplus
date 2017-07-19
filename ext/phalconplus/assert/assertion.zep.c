@@ -36,7 +36,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Assert_Assertion) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *constraints = NULL;
 	zval *value, *message, *code, *propertyPath, *constraints_param = NULL;
 
@@ -61,7 +61,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 
 	zval *_2$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, *value2, *message = NULL, *propertyPath = NULL, *v1$$3 = NULL, *v2$$3 = NULL, *_1$$3 = NULL, *_3$$3;
 
@@ -105,7 +105,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 
 	zval *_2$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, *value2, *message = NULL, *propertyPath = NULL, *v1$$3 = NULL, *v2$$3 = NULL, *_1$$3 = NULL, *_3$$3;
 
@@ -148,7 +148,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, *message = NULL, *propertyPath = NULL, *v1$$3 = NULL, *_1$$3 = NULL, *_2$$3;
 
@@ -186,7 +186,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, *message = NULL, *propertyPath = NULL, *v1$$3 = NULL, *_1$$3 = NULL, *_2$$3;
 
@@ -224,7 +224,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *value, *message = NULL, *propertyPath = NULL, *v1$$3 = NULL, *_1$$3 = NULL, *_2$$3;
 

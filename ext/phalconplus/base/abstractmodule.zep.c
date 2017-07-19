@@ -29,7 +29,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractModule) {
 
 PHP_METHOD(PhalconPlus_Base_AbstractModule, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di;
 
 	ZEPHIR_MM_GROW();
@@ -37,7 +37,7 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, __construct) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("di"), di TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerautoloaders", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerservices", NULL, 0);

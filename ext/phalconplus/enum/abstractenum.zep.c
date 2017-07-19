@@ -37,7 +37,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AbstractEnum) {
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 
 	zephir_fcall_cache_entry *_9 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val = NULL, *reflection = NULL, *defaultVal = NULL, *_0, *_1 = NULL, *_2, *_3$$3, *_4$$3 = NULL, *_5$$4, *_6$$4, _7$$4, *_8$$4 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -97,7 +97,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, *_0 = NULL, *_1$$3, *_2$$3, _3$$3, *_4$$3 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -122,7 +122,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	zephir_update_property_this(this_ptr, SL("val"), val TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("val"), val TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -131,13 +131,13 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValue) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "val");
+	RETURN_MEMBER(getThis(), "val");
 
 }
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, *_0 = NULL, *_1 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -158,7 +158,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *assoc_param = NULL, *reflection = NULL, *consts = NULL, *_0, *countValues = NULL, *duplicated$$3 = NULL, *_1$$3 = NULL, *_2$$3, *_3$$3, *_4$$3, *_5$$3, *_6$$3;
 	zend_bool assoc;
 
@@ -219,7 +219,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, jsonSerialize) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -233,7 +233,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __toString) {
 
 	zval *_1 = NULL;
 	zval *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

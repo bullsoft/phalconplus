@@ -42,7 +42,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 
 	zval *skipClassesPartials = NULL, *_1$$3;
 	zval *mode_param = NULL, *skipClassesPartials_param = NULL, *_0, *_2$$3 = NULL;
-	int mode;
+	zend_long mode;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &mode_param, &skipClassesPartials_param);
@@ -62,7 +62,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(_0, mode);
-	zephir_update_property_this(this_ptr, SL("mode"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("mode"), _0 TSRMLS_CC);
 	if (ZEPHIR_IS_EMPTY(skipClassesPartials)) {
 		ZEPHIR_INIT_VAR(_1$$3);
 		zephir_create_array(_1$$3, 2, 0 TSRMLS_CC);
@@ -72,7 +72,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 		ZEPHIR_INIT_NVAR(_2$$3);
 		ZVAL_STRING(_2$$3, "Phalcon\\", 1);
 		zephir_array_fast_append(_1$$3, _2$$3);
-		zephir_update_property_this(this_ptr, SL("skipClassesPartials"), _1$$3 TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("skipClassesPartials"), _1$$3 TSRMLS_CC);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -84,18 +84,18 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	HashPosition _3$$3;
 	zval *trace = NULL, *part = NULL, *_1, *trace1 = NULL, *trace2 = NULL, *_9 = NULL, *_10, *_11, *_12, *_13, *_14, *_15, *_16, *_17, *_18, *_2$$3, **_5$$3, *_6$$4, *_7$$4, *_8$$4 = NULL, *_20$$7, *_21$$7;
 	zephir_fcall_cache_entry *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS, i, j = 0, _19;
+	zend_long ZEPHIR_LAST_CALL_STATUS, i, j = 0, _19;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 57);
+	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 56);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 58, trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 57, trace);
 	ZEPHIR_UNREF(trace);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 58, trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 57, trace);
 	ZEPHIR_UNREF(trace);
 	zephir_check_call_status();
 	i = 0;
@@ -206,16 +206,27 @@ zend_object_value zephir_init_properties_PhalconPlus_Logger_Processor_Trace(zend
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("skipClassesPartials"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
 			array_init(_1$$3);
-			zephir_update_property_this(this_ptr, SL("skipClassesPartials"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("skipClassesPartials"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }

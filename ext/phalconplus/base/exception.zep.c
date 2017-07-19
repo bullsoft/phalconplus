@@ -42,7 +42,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Exception) {
 
 PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *info = NULL, *logger = NULL, *message = NULL, *args = NULL, *_0, *_12, *cnt = NULL, *argsCnt = NULL, *_13, _14, *_1$$4, *_2$$4 = NULL, *_3$$4, *_4$$5, *_5$$5, *_6$$5 = NULL, *_7$$6, *_8$$7, _9$$7, *_10$$7, *_11$$7 = NULL, *_15$$9, *_16$$9 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -109,7 +109,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	}
 	_12 = zephir_fetch_nproperty_this(this_ptr, SL("message"), PH_NOISY_CC);
 	if (ZEPHIR_IS_EMPTY(_12)) {
-		zephir_update_property_this(this_ptr, SL("message"), message TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("message"), message TSRMLS_CC);
 	}
 	_13 = zephir_fetch_nproperty_this(this_ptr, SL("message"), PH_NOISY_CC);
 	ZEPHIR_SINIT_VAR(_14);
@@ -122,7 +122,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 		_15$$9 = zephir_fetch_nproperty_this(this_ptr, SL("message"), PH_NOISY_CC);
 		ZEPHIR_CALL_FUNCTION(&_16$$9, "vsprintf", NULL, 26, _15$$9, args);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("message"), _16$$9 TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("message"), _16$$9 TSRMLS_CC);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -132,7 +132,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, getLevel) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "level");
+	RETURN_MEMBER(getThis(), "level");
 
 }
 
@@ -144,7 +144,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setCode) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("code"), code TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("code"), code TSRMLS_CC);
 	RETURN_THISW();
 
 }
@@ -157,7 +157,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setLevel) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("level"), level TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("level"), level TSRMLS_CC);
 	RETURN_THISW();
 
 }
@@ -170,7 +170,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setMessage) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("message"), msg TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("message"), msg TSRMLS_CC);
 	RETURN_THISW();
 
 }

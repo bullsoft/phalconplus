@@ -48,7 +48,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getProperty) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "property");
+	RETURN_MEMBER(getThis(), "property");
 
 }
 
@@ -72,7 +72,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("property"), property TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("property"), property TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -85,7 +85,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setDirection) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("direction"), orderBy TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("direction"), orderBy TSRMLS_CC);
 
 }
 
@@ -93,7 +93,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getDirection) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "direction");
+	RETURN_MEMBER(getThis(), "direction");
 
 }
 
@@ -101,7 +101,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getAlias) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "alias");
+	RETURN_MEMBER(getThis(), "alias");
 
 }
 
@@ -125,7 +125,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("alias"), alias TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("alias"), alias TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -133,7 +133,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString) {
 
 	zval *_1, *_2, *orderBy = NULL, *_3, *_6, *_7, *_4$$3, *_5$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 
 	ZEPHIR_MM_GROW();

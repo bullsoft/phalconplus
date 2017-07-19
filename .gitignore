@@ -93,3 +93,4 @@ php7-ext/modules/
 php7-ext/phalcon.la
 php7-ext/run-tests.php
 
+.vscode

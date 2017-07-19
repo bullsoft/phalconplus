@@ -33,7 +33,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Exception) {
 PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 
 	zend_class_entry *_1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *eCode, *code = NULL, *details = NULL, *className = NULL, *val = NULL, *_0 = NULL, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -75,7 +75,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 
 PHP_METHOD(PhalconPlus_Enum_Exception, getByCode) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *eCode, *detail = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -97,7 +97,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getByCode) {
 PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 
 	zend_class_entry *_2, *_6, *_8;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *e, *logger = NULL, *code = NULL, *eCode = NULL, *eName = NULL, *map2Name = NULL, *className = NULL, *_0 = NULL, *_1, *_3, *eClassName = NULL, *exception = NULL, *_4 = NULL, *_5 = NULL, *_7 = NULL, *_9 = NULL, *_10 = NULL, *_11 = NULL, *_12 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -172,7 +172,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, exceptionClassPrefix) {
 PHP_METHOD(PhalconPlus_Enum_Exception, getMessage) {
 
 	zval *detail = NULL, *val = NULL, *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -191,7 +191,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getMessage) {
 PHP_METHOD(PhalconPlus_Enum_Exception, getLevel) {
 
 	zval *detail = NULL, *val = NULL, *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -209,7 +209,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getLevel) {
 
 PHP_METHOD(PhalconPlus_Enum_Exception, getCode) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

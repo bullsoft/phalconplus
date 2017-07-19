@@ -37,7 +37,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 
 	HashTable *_4$$4;
 	HashPosition _3$$4;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *remoteServerUrl_param = NULL, *opts_param = NULL, *key = NULL, *_0, *_1, *_2, *optKey$$4 = NULL, *optVal$$4 = NULL, **_5$$4, *_6$$5;
 	zval *remoteServerUrl = NULL, *opts = NULL;
 
@@ -57,16 +57,16 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "server url can not be empty", "phalconplus/RPC/Client/Adapter/Remote.zep", 12);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 62, remoteServerUrl);
+	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 61, remoteServerUrl);
 	zephir_check_call_status();
 	zephir_array_fetch(&_0, remoteServerUrl, key, PH_NOISY | PH_READONLY, "phalconplus/RPC/Client/Adapter/Remote.zep", 16 TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("remoteServerUrl"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("remoteServerUrl"), _0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	object_init_ex(_1, zephir_get_internal_ce(SS("yar_client") TSRMLS_CC));
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("remoteServerUrl"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 0, _2);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("client"), _1 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("client"), _1 TSRMLS_CC);
 	if (!(ZEPHIR_IS_EMPTY(opts))) {
 		zephir_is_iterable(opts, &_4$$4, &_3$$4, 0, 0, "phalconplus/RPC/Client/Adapter/Remote.zep", 24);
 		for (
@@ -86,7 +86,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 
 PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, callByObject) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *rawData_param = NULL, *_0;
 	zval *rawData = NULL;
 
@@ -105,7 +105,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, callByObject) {
 
 PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __call) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *args = NULL, *_1$$3;
 	zval *method_param = NULL, *args_param = NULL, *_0, *_2$$3;
 	zval *method = NULL;

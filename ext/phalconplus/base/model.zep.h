@@ -22,6 +22,7 @@ PHP_METHOD(PhalconPlus_Base_Model, setUniqueKeys);
 PHP_METHOD(PhalconPlus_Base_Model, setUqKeys);
 PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond);
 PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
+PHP_METHOD(PhalconPlus_Base_Model, getReadConnection);
 zend_object_value zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, 0)
@@ -79,5 +80,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, setUqKeys, arginfo_phalconplus_base_model_setuqkeys, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, _p_buildUkCond, arginfo_phalconplus_base_model__p_buildukcond, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Base_Model, toProtoBuffer, arginfo_phalconplus_base_model_toprotobuffer, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, getReadConnection, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

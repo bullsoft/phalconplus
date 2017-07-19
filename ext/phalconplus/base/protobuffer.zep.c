@@ -36,7 +36,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone) {
 
 	HashTable *_1;
 	HashPosition _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_4 = NULL, *_5 = NULL;
 	zval *data_param = NULL, *key = NULL, *val = NULL, **_2, *_3$$3 = NULL;
 	zval *data = NULL;
@@ -69,7 +69,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 
 	zval *_2$$3;
 	zend_bool _8, _9, _10;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *val = NULL, *method = NULL, *param = NULL, *paramClass = NULL, *paramClassRef = NULL, *paramObj = NULL, *_0 = NULL, *_1, *_3$$3, *_4$$3 = NULL, *_5$$4 = NULL, *_6$$4 = NULL, *_7$$4, *_11$$9, *_12$$9;
 	zval *key = NULL;
 
@@ -149,10 +149,10 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 		_10 = zephir_instance_of_ev(val, phalconplus_base_protobuffer_ce TSRMLS_CC);
 	}
 	if (_9) {
-		zephir_update_property_zval_zval(this_ptr, key, val TSRMLS_CC);
+		zephir_update_property_zval_zval(getThis(), key, val TSRMLS_CC);
 		RETURN_THIS();
 	} else if (_10) {
-		zephir_update_property_zval_zval(this_ptr, key, val TSRMLS_CC);
+		zephir_update_property_zval_zval(getThis(), key, val TSRMLS_CC);
 		RETURN_THIS();
 	} else {
 		ZEPHIR_INIT_VAR(_11$$9);
@@ -170,7 +170,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __isset) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *_0 = NULL;
 	zval *key = NULL;
 
@@ -200,7 +200,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __isset) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *method = NULL, *_0 = NULL, *_1, *_2 = NULL, *_3$$4;
 	zval *key = NULL;
 
@@ -244,7 +244,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars) {
 	HashTable *_1;
 	HashPosition _0;
 	zval *objReflection = NULL, *vars = NULL, *pros = NULL, *pro = NULL, **_2, *_3$$3 = NULL, *_4$$3 = NULL, *_5$$3 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -284,7 +284,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, jsonSerialize) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -299,7 +299,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 	HashTable *_1;
 	HashPosition _0;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
 	zval *isArray_param = NULL, *data_param = NULL, *pros = NULL, *newPros = NULL, *key = NULL, *val = NULL, **_2, *_5$$6 = NULL, *_6$$6 = NULL, *_8$$7 = NULL, *_9$$8 = NULL;
 	zend_bool isArray, _3$$5, _4$$5;

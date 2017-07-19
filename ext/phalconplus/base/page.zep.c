@@ -45,7 +45,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page) {
 PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 	zend_object_iterator *_5$$3, *_8$$5;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_7 = NULL;
 	zval *pagable, *totalSize, *data, *hydrateMode = NULL, *tmpData = NULL, *item = NULL, *_9 = NULL, *_10 = NULL, *_1$$3, *_2$$3 = NULL, *_3$$3 = NULL, *_4$$3 = NULL, *_6$$4 = NULL;
 
@@ -56,7 +56,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 31, pagable);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("pagable"), pagable TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("pagable"), pagable TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(&hydrateMode, data, "gethydratemode", NULL, 0);
 	zephir_check_call_status();
 	do {
@@ -107,8 +107,8 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 		break;
 	} while(0);
 
-	zephir_update_property_this(this_ptr, SL("data"), tmpData TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("totalSize"), totalSize TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("data"), tmpData TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("totalSize"), totalSize TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(&_9, this_ptr, "setpageno", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_10, _9, "setpagesize", NULL, 0);
@@ -122,14 +122,14 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 
 	zval *_0, *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("pagable"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&_1, _0, "getpageno", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("pageNo"), _1 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("pageNo"), _1 TSRMLS_CC);
 	RETURN_THIS();
 
 }
@@ -137,14 +137,14 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 
 	zval *_0, *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("pagable"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&_1, _0, "getpagesize", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("pageSize"), _1 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("pageSize"), _1 TSRMLS_CC);
 	RETURN_THIS();
 
 }
@@ -160,7 +160,7 @@ PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 	div_function(&_2, _0, _1 TSRMLS_CC);
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_DOUBLE(_0, zephir_ceil(&_2 TSRMLS_CC));
-	zephir_update_property_this(this_ptr, SL("totalPage"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("totalPage"), _0 TSRMLS_CC);
 	RETURN_THISW();
 
 }
@@ -169,7 +169,7 @@ PHP_METHOD(PhalconPlus_Base_Page, getPageNo) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "pageNo");
+	RETURN_MEMBER(getThis(), "pageNo");
 
 }
 
@@ -177,7 +177,7 @@ PHP_METHOD(PhalconPlus_Base_Page, getTotalPage) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "totalPage");
+	RETURN_MEMBER(getThis(), "totalPage");
 
 }
 
@@ -185,7 +185,7 @@ PHP_METHOD(PhalconPlus_Base_Page, getTotalSize) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "totalSize");
+	RETURN_MEMBER(getThis(), "totalSize");
 
 }
 
@@ -202,7 +202,7 @@ PHP_METHOD(PhalconPlus_Base_Page, hasPreviousPage) {
 PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
 
 	zval *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -215,7 +215,7 @@ PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
 PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 
 	zval *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -228,7 +228,7 @@ PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
 
 	zval *_0 = NULL, *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -244,7 +244,7 @@ PHP_METHOD(PhalconPlus_Base_Page, getData) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "data");
+	RETURN_MEMBER(getThis(), "data");
 
 }
 

@@ -36,7 +36,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Assert_InvalidArgumentException) {
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *constraints = NULL;
 	zval *message, *code, *propertyPath = NULL, *value, *constraints_param = NULL;
 
@@ -54,11 +54,11 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, phalconplus_assert_invalidargumentexception_ce, this_ptr, "__construct", NULL, 0, message, code);
+	ZEPHIR_CALL_PARENT(NULL, phalconplus_assert_invalidargumentexception_ce, getThis(), "__construct", NULL, 0, message, code);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("propertyPath"), propertyPath TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("value"), value TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("constraints"), constraints TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("propertyPath"), propertyPath TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("value"), value TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("constraints"), constraints TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -67,7 +67,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getPropertyPath) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "propertyPath");
+	RETURN_MEMBER(getThis(), "propertyPath");
 
 }
 
@@ -75,7 +75,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getValue) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "value");
+	RETURN_MEMBER(getThis(), "value");
 
 }
 
@@ -83,7 +83,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getConstraints) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "constraints");
+	RETURN_MEMBER(getThis(), "constraints");
 
 }
 

@@ -441,4 +441,19 @@ class Model extends \Phalcon\Mvc\Model
         return proto;
     }
 
+    /**
+     * Gets the connection used to read data for the model
+     *
+     * Check transaction in writeConnection before `_transaction`
+     */
+    public function getReadConnection() -> <AdapterInterface>
+    {
+        var dbConn;
+        let dbConn = this->getWriteConnection();
+        if dbConn->isUnderTransaction() {
+            return dbConn;
+        } else {
+            return parent::getReadConnection();
+        }
+    }
 }

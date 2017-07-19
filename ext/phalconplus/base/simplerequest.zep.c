@@ -56,14 +56,14 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParams) {
 	zephir_get_arrval(params, params_param);
 
 
-	zephir_update_property_this(this_ptr, SL("params"), params TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("params"), params TSRMLS_CC);
 	RETURN_THIS();
 
 }
 
 PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, *key = NULL, *_0$$4;
 
 	ZEPHIR_MM_GROW();
@@ -91,7 +91,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParams) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "params");
+	RETURN_MEMBER(getThis(), "params");
 
 }
 
@@ -102,16 +102,27 @@ zend_object_value zephir_init_properties_PhalconPlus_Base_SimpleRequest(zend_cla
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("params"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
 			array_init(_1$$3);
-			zephir_update_property_this(this_ptr, SL("params"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("params"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }
