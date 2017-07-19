@@ -39,7 +39,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace) {
 
 	zval *ns_param = NULL;
 	zval ns;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&ns);
 
@@ -67,7 +67,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 
 	zval *func_param = NULL;
 	zval func;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&func);
 
@@ -96,8 +96,8 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 
 	zval params, name, args, code, _0, pos$$3, _1$$3, _8$$3, _2$$4, _3$$5, _4$$5, _5$$5, _6$$5, _7$$5;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&params);
 	ZVAL_UNDEF(&name);
@@ -121,11 +121,11 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 	ZEPHIR_INIT_NVAR(&params);
 	zephir_get_args(&params);
 	ZEPHIR_MAKE_REF(&params);
-	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 56, &params);
+	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 55, &params);
 	ZEPHIR_UNREF(&params);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&params);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 61, &params);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 60, &params);
 	ZEPHIR_UNREF(&params);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&args);
@@ -159,12 +159,12 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 		zephir_read_property(&_8$$3, this_ptr, SL("ns"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&code);
 		ZEPHIR_CONCAT_VVSVS(&code, &_8$$3, &name, "(", &args, ")");
-		RETURN_CCTOR(code);
+		RETURN_CCTOR(&code);
 	}
 	if ((zephir_function_exists(&name TSRMLS_CC)  == SUCCESS)) {
 		ZEPHIR_INIT_NVAR(&code);
 		ZEPHIR_CONCAT_VSVS(&code, &name, "(", &args, ")");
-		RETURN_CCTOR(code);
+		RETURN_CCTOR(&code);
 	}
 	ZEPHIR_MM_RESTORE();
 

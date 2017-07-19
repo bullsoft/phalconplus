@@ -39,36 +39,36 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Pagable) {
 
 PHP_METHOD(PhalconPlus_Base_Pagable, getPageNo) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "pageNo");
+	RETURN_MEMBER(getThis(), "pageNo");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Pagable, getPageSize) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "pageSize");
+	RETURN_MEMBER(getThis(), "pageSize");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Pagable, getOrderBys) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "orderBys");
+	RETURN_MEMBER(getThis(), "orderBys");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *orderBy, orderBy_sub, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&orderBy_sub);
 	ZVAL_UNDEF(&_0);
@@ -90,7 +90,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 PHP_METHOD(PhalconPlus_Base_Pagable, setPageNo) {
 
 	zval *pageNo, pageNo_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&pageNo_sub);
 
@@ -106,7 +106,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setPageNo) {
 PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize) {
 
 	zval *pageSize, pageSize_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&pageSize_sub);
 

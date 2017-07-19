@@ -29,9 +29,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractModule) {
 
 PHP_METHOD(PhalconPlus_Base_AbstractModule, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&di_sub);
 

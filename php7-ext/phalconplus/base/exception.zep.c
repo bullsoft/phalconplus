@@ -42,9 +42,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Exception) {
 
 PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *info = NULL, info_sub, *logger = NULL, logger_sub, __$null, message, args, _0, _12, cnt, argsCnt, _13, _14, _1$$4, _2$$4, _3$$4, _4$$5, _5$$5, _6$$5, _7$$6, _8$$7, _9$$7, _10$$7, _11$$7, _15$$9, _16$$9;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&info_sub);
 	ZVAL_UNDEF(&logger_sub);
@@ -157,17 +157,17 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 
 PHP_METHOD(PhalconPlus_Base_Exception, getLevel) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "level");
+	RETURN_MEMBER(getThis(), "level");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Exception, setCode) {
 
 	zval *code, code_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&code_sub);
 
@@ -183,7 +183,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setCode) {
 PHP_METHOD(PhalconPlus_Base_Exception, setLevel) {
 
 	zval *level, level_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&level_sub);
 
@@ -199,7 +199,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setLevel) {
 PHP_METHOD(PhalconPlus_Base_Exception, setMessage) {
 
 	zval *msg, msg_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&msg_sub);
 

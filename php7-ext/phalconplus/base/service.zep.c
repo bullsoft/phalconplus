@@ -32,9 +32,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
 
 PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&di_sub);
 
@@ -52,7 +52,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 PHP_METHOD(PhalconPlus_Base_Service, onConstruct) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
 
@@ -60,19 +60,19 @@ PHP_METHOD(PhalconPlus_Base_Service, onConstruct) {
 
 PHP_METHOD(PhalconPlus_Base_Service, getDI) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "di");
+	RETURN_MEMBER(getThis(), "di");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Service, __get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, _0, _1$$3, _2$$4;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_0);
@@ -99,7 +99,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 	if (zephir_is_true(&_0)) {
 		ZEPHIR_OBS_VAR(&_1$$3);
 		zephir_read_property_zval(&_1$$3, this_ptr, &key, PH_NOISY_CC);
-		RETURN_CCTOR(_1$$3);
+		RETURN_CCTOR(&_1$$3);
 	} else {
 		zephir_read_property(&_2$$4, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_RETURN_CALL_METHOD(&_2$$4, "get", NULL, 0, &key);

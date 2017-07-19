@@ -33,7 +33,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleRequest) {
 PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParam) {
 
 	zval *idx, idx_sub, val, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&idx_sub);
 	ZVAL_UNDEF(&val);
@@ -45,7 +45,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParam) {
 
 	zephir_read_property(&_0, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&val, &_0, idx, 1 TSRMLS_CC)) {
-		RETURN_CTORW(val);
+		RETURN_CTORW(&val);
 	}
 
 }
@@ -54,7 +54,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParams) {
 
 	zval *params_param = NULL;
 	zval params;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&params);
 
@@ -71,9 +71,9 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParams) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_UNDEF(&key_sub);
@@ -104,10 +104,10 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParams) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "params");
+	RETURN_MEMBER(getThis(), "params");
 
 }
 

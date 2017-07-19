@@ -46,10 +46,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_ProtoOrderBy) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getProperty) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "property");
+	RETURN_MEMBER(getThis(), "property");
 
 }
 
@@ -57,7 +57,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 
 	zval *property_param = NULL;
 	zval property;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&property);
 
@@ -84,7 +84,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setDirection) {
 
 	zval *orderBy, orderBy_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&orderBy_sub);
 
@@ -98,19 +98,19 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setDirection) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getDirection) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "direction");
+	RETURN_MEMBER(getThis(), "direction");
 
 }
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getAlias) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "alias");
+	RETURN_MEMBER(getThis(), "alias");
 
 }
 
@@ -118,7 +118,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 
 	zval *alias_param = NULL;
 	zval alias;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&alias);
 
@@ -145,9 +145,9 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString) {
 
 	zval _1, _2, orderBy, _3, _6, _7, _4$$3, _5$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);

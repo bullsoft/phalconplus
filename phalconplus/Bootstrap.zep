@@ -298,12 +298,23 @@ final class Bootstrap
         if !is_file(filePath) {
             throw new \Exception("The file you try to load is not exists. file position: " . filePath);
         }
-        let {"rootPath"} = APP_ROOT_DIR;
-        let {"loader"} = new \Phalcon\Loader();
-        let {"config"} = this->config;
-        let {"application"} = this->application;
-        let {"bootstrap"} = this;
-        let {"di"} = this->di;
+        var rootPath, loader, config, application, bootstrap, di;
+
+        let
+          rootPath = "rootPath",
+          loader = "loader",
+          config = "config",
+          application = "application",
+          bootstrap = "bootstrap",
+          di = "di";
+
+        let {rootPath} = APP_ROOT_DIR;
+        let {loader} = new \Phalcon\Loader();
+        let {config} = this->config;
+        let {application} = this->application;
+        let {bootstrap} = this;
+        let {di} = this->di;
+
         /*
         extract(["rootPath": APP_ROOT_DIR,
                  "loader": new \Phalcon\Loader(),

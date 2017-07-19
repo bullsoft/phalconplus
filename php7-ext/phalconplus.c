@@ -68,6 +68,7 @@ PHP_INI_END()
 static PHP_MINIT_FUNCTION(phalconplus)
 {
 	REGISTER_INI_ENTRIES();
+	zephir_module_init();
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
 	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);

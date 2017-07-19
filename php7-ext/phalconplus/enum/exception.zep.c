@@ -33,9 +33,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Exception) {
 PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 
 	zend_class_entry *_1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *eCode, eCode_sub, code, details, className, val, _0, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&eCode_sub);
 	ZVAL_UNDEF(&code);
@@ -74,7 +74,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 	ZEPHIR_CALL_METHOD(&_2, &code, "__tostring", NULL, 0);
 	zephir_check_call_status();
 	if (zephir_array_isset_fetch(&val, &details, &_2, 1 TSRMLS_CC)) {
-		RETURN_CTOR(val);
+		RETURN_CTOR(&val);
 	} else {
 		array_init(return_value);
 		RETURN_MM();
@@ -84,9 +84,9 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 
 PHP_METHOD(PhalconPlus_Enum_Exception, getByCode) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *eCode, eCode_sub, detail;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&eCode_sub);
 	ZVAL_UNDEF(&detail);
@@ -103,16 +103,16 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getByCode) {
 	if (!(ZEPHIR_IS_EMPTY(&detail))) {
 		zephir_array_update_string(&detail, SL("code"), eCode, PH_COPY | PH_SEPARATE);
 	}
-	RETURN_CCTOR(detail);
+	RETURN_CCTOR(&detail);
 
 }
 
 PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 
 	zend_class_entry *_2, *_6, *_8;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *e, e_sub, *logger = NULL, logger_sub, __$null, code, eCode, eName, map2Name, className, _0, _1, _3, eClassName, exception, _4, _5, _7, _9, _10, _11, _12;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&e_sub);
 	ZVAL_UNDEF(&logger_sub);
@@ -191,13 +191,13 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, &exception, "setmessage", NULL, 0, &_12);
 	zephir_check_call_status();
-	RETURN_CCTOR(exception);
+	RETURN_CCTOR(&exception);
 
 }
 
 PHP_METHOD(PhalconPlus_Enum_Exception, exceptionClassPrefix) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
 	ZEPHIR_CONCAT_SS(return_value, "PhalconPlus\\Enum", "\\Exception\\");
@@ -208,8 +208,8 @@ PHP_METHOD(PhalconPlus_Enum_Exception, exceptionClassPrefix) {
 PHP_METHOD(PhalconPlus_Enum_Exception, getMessage) {
 
 	zval detail, val, _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&detail);
 	ZVAL_UNDEF(&val);
@@ -222,7 +222,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getMessage) {
 	ZEPHIR_CALL_STATIC(&detail, "getbycode", NULL, 0, &_0);
 	zephir_check_call_status();
 	if (zephir_array_isset_string_fetch(&val, &detail, SL("message"), 1)) {
-		RETURN_CTOR(val);
+		RETURN_CTOR(&val);
 	} else {
 		RETURN_MM_STRING("");
 	}
@@ -232,8 +232,8 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getMessage) {
 PHP_METHOD(PhalconPlus_Enum_Exception, getLevel) {
 
 	zval detail, val, _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&detail);
 	ZVAL_UNDEF(&val);
@@ -246,7 +246,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getLevel) {
 	ZEPHIR_CALL_STATIC(&detail, "getbycode", NULL, 0, &_0);
 	zephir_check_call_status();
 	if (zephir_array_isset_string_fetch(&val, &detail, SL("level"), 1)) {
-		RETURN_CTOR(val);
+		RETURN_CTOR(&val);
 	} else {
 		RETURN_MM_LONG(7);
 	}
@@ -255,8 +255,8 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getLevel) {
 
 PHP_METHOD(PhalconPlus_Enum_Exception, getCode) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 
 	ZEPHIR_MM_GROW();

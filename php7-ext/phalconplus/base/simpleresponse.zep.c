@@ -40,7 +40,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult) {
 
 	zval _1;
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -50,7 +50,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult) {
 	ZEPHIR_OBS_VAR(&_0);
 	zephir_read_property(&_0, this_ptr, SL("result"), PH_NOISY_CC);
 	zephir_get_arrval(&_1, &_0);
-	RETURN_CTOR(_1);
+	RETURN_CTOR(&_1);
 
 }
 
@@ -58,7 +58,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
 
 	zval *result_param = NULL;
 	zval result;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&result);
 
@@ -83,9 +83,9 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
  */
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_UNDEF(&key_sub);
@@ -116,9 +116,9 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_UNDEF(&key_sub);
@@ -149,9 +149,9 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key = NULL, key_sub, __$null, val$$3, _0$$3, _1$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_NULL(&__$null);
@@ -172,7 +172,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 		ZEPHIR_OBS_VAR(&val$$3);
 		zephir_read_property(&_0$$3, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		if (zephir_array_isset_fetch(&val$$3, &_0$$3, key, 0 TSRMLS_CC)) {
-			RETURN_CCTOR(val$$3);
+			RETURN_CCTOR(&val$$3);
 		}
 	} else {
 		zephir_read_property(&_1$$5, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);

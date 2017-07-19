@@ -41,9 +41,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Model) {
 PHP_METHOD(PhalconPlus_Base_Model, initialize) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval __$false, __$true, _1;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$false, 0);
 	ZVAL_BOOL(&__$true, 1);
@@ -71,8 +71,8 @@ PHP_METHOD(PhalconPlus_Base_Model, initialize) {
 
 PHP_METHOD(PhalconPlus_Base_Model, getMessage) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 
 	ZEPHIR_MM_GROW();
@@ -87,8 +87,8 @@ PHP_METHOD(PhalconPlus_Base_Model, getFirstMessage) {
 
 	zval _5$$3;
 	zval _0, _1, _2$$3, _3$$3, _4$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -111,7 +111,7 @@ PHP_METHOD(PhalconPlus_Base_Model, getFirstMessage) {
 		ZEPHIR_CALL_FUNCTION(&_4$$3, "current", NULL, 27, &_2$$3);
 		zephir_check_call_status();
 		zephir_get_strval(&_5$$3, &_4$$3);
-		RETURN_CTOR(_5$$3);
+		RETURN_CTOR(&_5$$3);
 	}
 	RETURN_MM_BOOL(0);
 
@@ -121,8 +121,8 @@ PHP_METHOD(PhalconPlus_Base_Model, getLastMessage) {
 
 	zval _5$$3;
 	zval _0, _1, _2$$3, _3$$3, _4$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -147,7 +147,7 @@ PHP_METHOD(PhalconPlus_Base_Model, getLastMessage) {
 		ZEPHIR_UNREF(&_2$$3);
 		zephir_check_call_status();
 		zephir_get_strval(&_5$$3, &_4$$3);
-		RETURN_CTOR(_5$$3);
+		RETURN_CTOR(&_5$$3);
 	}
 	RETURN_MM_BOOL(0);
 
@@ -155,10 +155,10 @@ PHP_METHOD(PhalconPlus_Base_Model, getLastMessage) {
 
 PHP_METHOD(PhalconPlus_Base_Model, createBuilder) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *alias_param = NULL, source, _1, _2, _0$$3;
 	zval alias;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&alias);
 	ZVAL_UNDEF(&source);
@@ -213,8 +213,8 @@ PHP_METHOD(PhalconPlus_Base_Model, getInstance) {
 
 	zend_class_entry *_1;
 	zval className, _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&className);
 	ZVAL_UNDEF(&_0);
@@ -238,8 +238,8 @@ PHP_METHOD(PhalconPlus_Base_Model, newInstance) {
 
 	zend_class_entry *_1;
 	zval className, _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&className);
 	ZVAL_UNDEF(&_0);
@@ -263,10 +263,10 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 
 	zend_class_entry *_1;
 	zephir_fcall_cache_entry *_7 = NULL, *_8 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *columns_param = NULL, *rows_param = NULL, model, conn, e, row, columnMap, newColumns, className, _0, _9, _2$$3, val$$3, *_3$$3, _4$$5, *_5$$7, _6$$8;
 	zval columns, rows;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&columns);
 	ZVAL_UNDEF(&rows);
@@ -368,8 +368,8 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 PHP_METHOD(PhalconPlus_Base_Model, beforeValidationOnCreate) {
 
 	zval _0, _1, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -390,7 +390,7 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeValidationOnCreate) {
 
 PHP_METHOD(PhalconPlus_Base_Model, afterFetch) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
 
@@ -399,8 +399,8 @@ PHP_METHOD(PhalconPlus_Base_Model, afterFetch) {
 PHP_METHOD(PhalconPlus_Base_Model, beforeCreate) {
 
 	zval _0, _1, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -422,8 +422,8 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeCreate) {
 PHP_METHOD(PhalconPlus_Base_Model, beforeSave) {
 
 	zval _0, _1;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -451,11 +451,11 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeSave) {
 PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 
 	zval _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval params, _6;
 	zval *pagable, pagable_sub, *params_param = NULL, builder, val, orderBys, _2, _3, bind, queryBuilder, page, _7, _8, _10, _11, _4$$3, _5$$5, hydration$$10, _9$$11;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&pagable_sub);
 	ZVAL_UNDEF(&builder);
@@ -575,8 +575,8 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 PHP_METHOD(PhalconPlus_Base_Model, exists) {
 
 	zval metaData, readConnection, schema, source, table, _0, _1;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&metaData);
 	ZVAL_UNDEF(&readConnection);
@@ -631,10 +631,10 @@ PHP_METHOD(PhalconPlus_Base_Model, exists) {
 PHP_METHOD(PhalconPlus_Base_Model, setUpdateCond) {
 
 	zephir_fcall_cache_entry *_3 = NULL, *_6 = NULL, *_8 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *params_param = NULL, __$null, metaData, writeConnection, columnMap, bindDataTypes, primaryKeys, attributeField, pk, value, type, whereUk, uniqueParams, uniqueTypes, *_0, conditions, bind, bindTypes, _10, _15, _16, _17, _18, _19, _21, _22, _24, _1$$5, _2$$5, _4$$7, _5$$7, _7$$3, _9$$3, _11$$11, _12$$12, _13$$13, _14$$13, _20$$15, _23$$17;
 	zval params;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&params);
 	ZVAL_NULL(&__$null);
@@ -811,10 +811,10 @@ PHP_METHOD(PhalconPlus_Base_Model, setUpdateCond) {
  */
 PHP_METHOD(PhalconPlus_Base_Model, setUniqueKeys) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *whereUk_param = NULL;
 	zval whereUk;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&whereUk);
 
@@ -836,10 +836,10 @@ PHP_METHOD(PhalconPlus_Base_Model, setUniqueKeys) {
 PHP_METHOD(PhalconPlus_Base_Model, setUqKeys) {
 
 	zephir_fcall_cache_entry *_1 = NULL, *_4 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *whereUk_param = NULL, field, attributeField, type, metaData, columnMap, bindDataTypes, *_0, tmp$$4, _2$$5, _3$$5, _5$$7, _6$$7, _7$$3;
 	zval whereUk;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&whereUk);
 	ZVAL_UNDEF(&field);
@@ -918,9 +918,9 @@ PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond) {
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_fcall_cache_entry *_5 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *metaData, metaData_sub, *connection, connection_sub, __$null, value, type, info, field, whereUk, uniqueParams, uniqueTypes, attributeField, _0, *_1, usefuleParams, _8, _9, selfVal$$4, _4$$3, _6$$3, _7$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&metaData_sub);
 	ZVAL_UNDEF(&connection_sub);
@@ -1016,9 +1016,9 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 	zend_string *_2;
 	zend_ulong _1;
 	zephir_fcall_cache_entry *_4 = NULL, *_6 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *columns = NULL, columns_sub, __$null, proto, toArray, key, val, *_0, modelName, manager, relations, referenceModel, referencedEntity, options, alias, lowerAlias, *_5, _3$$3, method$$4, property$$4, _7$$4, _8$$4;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&columns_sub);
 	ZVAL_NULL(&__$null);
@@ -1118,7 +1118,37 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 		zephir_update_property_zval_zval(&proto, &property$$4, &_8$$4 TSRMLS_CC);
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&val);
-	RETURN_CCTOR(proto);
+	RETURN_CCTOR(&proto);
+
+}
+
+/**
+ * Gets the connection used to read data for the model
+ *
+ * Check transaction in writeConnection before `_transaction`
+ */
+PHP_METHOD(PhalconPlus_Base_Model, getReadConnection) {
+
+	zval dbConn, _0;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&dbConn);
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_CALL_METHOD(&dbConn, this_ptr, "getwriteconnection", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_0, &dbConn, "isundertransaction", NULL, 0);
+	zephir_check_call_status();
+	if (zephir_is_true(&_0)) {
+		RETURN_CCTOR(&dbConn);
+	} else {
+		ZEPHIR_RETURN_CALL_PARENT(phalconplus_base_model_ce, getThis(), "getreadconnection", NULL, 0);
+		zephir_check_call_status();
+		RETURN_MM();
+	}
 
 }
 
