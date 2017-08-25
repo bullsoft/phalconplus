@@ -1,5 +1,6 @@
 namespace PhalconPlus\Logger\Adapter;
 use PhalconPlus\Assert\Assertion as Assert;
+use Phalcon\Logger\AdapterInterface;
 
 class FilePlus extends \Phalcon\Logger\Adapter\File
 {
@@ -7,7 +8,7 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
     private type2Ext = [];
 
     private mode; // file open mode
-    
+
     private _path;
     private _options;
     private _fileHandler;
@@ -42,11 +43,39 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
         let handler = fopen(filePath, this->mode);
         if handler == false {
             throw new \Exception("Cannot open log file " . filePath);
-        } 
+        }
         return handler;
     }
 
-    // Not compatible with PSR-3
+    // Compatible with PSR-3
+    public function log(var type, var message = null, array! context = null) -> <AdapterInterface>
+	{
+		var handler, toggledType;
+
+		if typeof type == "string" && typeof message == "integer" {
+			let toggledType = message;
+		} else {
+			if typeof type == "string" && typeof message == "null" {
+				let toggledType = message;
+			} else {
+				let toggledType = type;
+			}
+		}
+
+		if typeof toggledType == "null" {
+			let toggledType = \Phalcon\Logger::DEBUG;
+		}
+
+        if fetch handler, this->type2Handler[toggledType] {
+            let this->_fileHandler = handler;
+        } else {
+            let this->_fileHandler = this->type2Handler[-1];
+        }
+
+        return parent::log(type, message, context);
+    }
+
+    /* Not compatibility for PSR3
     public function log(string! message, int type = \Phalcon\Logger::DEBUG, array context = null)
     {
         var handler;
@@ -57,12 +86,14 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
         }
         parent::logInternal(message, type, time(), context);
     }
+    */
+
 
     public function registerExtension(string! ext, array types)
     {
         Assert::notEmpty(ext);
         Assert::notEmpty(types);
-        
+
         var filePath, type, fileHandler;
         let filePath  = this->_path . ext;
         let fileHandler = this->open(filePath);
@@ -74,10 +105,16 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
 
     public function close()
     {
-        var handler;
-        for handler in this->type2Handler {
+        var type, handler;
+        for type, handler in this->type2Handler {
             fclose(handler);
+            unset(this->type2Handler[type]);
         }
+    }
+
+    public function __destruct()
+    {
+        this->close();
     }
 
     public function __wakeup()

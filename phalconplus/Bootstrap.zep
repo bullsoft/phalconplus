@@ -298,6 +298,7 @@ final class Bootstrap
         if !is_file(filePath) {
             throw new \Exception("The file you try to load is not exists. file position: " . filePath);
         }
+
         var rootPath, loader, config, application, bootstrap, di;
 
         let
@@ -315,7 +316,7 @@ final class Bootstrap
         let {bootstrap} = this;
         let {di} = this->di;
 
-        /*
+        /* PHP 7.1 forbid dynamic calls to scope introspection functions
         extract(["rootPath": APP_ROOT_DIR,
                  "loader": new \Phalcon\Loader(),
                  "config": this->config,

@@ -823,7 +823,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getDI) {
 PHP_METHOD(PhalconPlus_Bootstrap, load) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *filePath, *_0 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6, *_7 = NULL, *_8 = NULL, *_9 = NULL, *_10 = NULL, *_11 = NULL, *_1$$3, *_2$$3;
+	zval *filePath, *_0 = NULL, *rootPath = NULL, *loader = NULL, *config = NULL, *application = NULL, *bootstrap = NULL, *di = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6, *_7 = NULL, *_8 = NULL, *_9 = NULL, *_10 = NULL, *_11 = NULL, *_1$$3, *_2$$3;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &filePath);
@@ -843,11 +843,23 @@ PHP_METHOD(PhalconPlus_Bootstrap, load) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
+	ZEPHIR_INIT_VAR(rootPath);
+	ZVAL_STRING(rootPath, "rootPath", 1);
+	ZEPHIR_INIT_VAR(loader);
+	ZVAL_STRING(loader, "loader", 1);
+	ZEPHIR_INIT_VAR(config);
+	ZVAL_STRING(config, "config", 1);
+	ZEPHIR_INIT_VAR(application);
+	ZVAL_STRING(application, "application", 1);
+	ZEPHIR_INIT_VAR(bootstrap);
+	ZVAL_STRING(bootstrap, "bootstrap", 1);
+	ZEPHIR_INIT_VAR(di);
+	ZVAL_STRING(di, "di", 1);
 	ZEPHIR_INIT_VAR(_3);
 	ZEPHIR_GET_CONSTANT(_3, "APP_ROOT_DIR");
 	ZEPHIR_CPY_WRT(_4, _3);
-	if (zephir_set_symbol_str(SS("rootPath"), _4 TSRMLS_CC) == FAILURE) {
-	  return;
+	if (zephir_set_symbol(rootPath, _4 TSRMLS_CC) == FAILURE) {
+		return;
 	}
 	ZEPHIR_INIT_NVAR(_3);
 	object_init_ex(_3, zephir_get_internal_ce(SS("phalcon\\loader") TSRMLS_CC));
@@ -856,27 +868,27 @@ PHP_METHOD(PhalconPlus_Bootstrap, load) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_CPY_WRT(_5, _3);
-	if (zephir_set_symbol_str(SS("loader"), _5 TSRMLS_CC) == FAILURE) {
-	  return;
+	if (zephir_set_symbol(loader, _5 TSRMLS_CC) == FAILURE) {
+		return;
 	}
 	_6 = zephir_fetch_nproperty_this(this_ptr, SL("config"), PH_NOISY_CC);
 	ZEPHIR_CPY_WRT(_7, _6);
-	if (zephir_set_symbol_str(SS("config"), _7 TSRMLS_CC) == FAILURE) {
-	  return;
+	if (zephir_set_symbol(config, _7 TSRMLS_CC) == FAILURE) {
+		return;
 	}
 	_6 = zephir_fetch_nproperty_this(this_ptr, SL("application"), PH_NOISY_CC);
 	ZEPHIR_CPY_WRT(_8, _6);
-	if (zephir_set_symbol_str(SS("application"), _8 TSRMLS_CC) == FAILURE) {
-	  return;
+	if (zephir_set_symbol(application, _8 TSRMLS_CC) == FAILURE) {
+		return;
 	}
 	ZEPHIR_CPY_WRT(_9, this_ptr);
-	if (zephir_set_symbol_str(SS("bootstrap"), _9 TSRMLS_CC) == FAILURE) {
-	  return;
+	if (zephir_set_symbol(bootstrap, _9 TSRMLS_CC) == FAILURE) {
+		return;
 	}
 	_6 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_CPY_WRT(_10, _6);
-	if (zephir_set_symbol_str(SS("di"), _10 TSRMLS_CC) == FAILURE) {
-	  return;
+	if (zephir_set_symbol(di, _10 TSRMLS_CC) == FAILURE) {
+		return;
 	}
 	ZEPHIR_OBSERVE_OR_NULLIFY_PPZV(&_11);
 	if (zephir_require_zval_ret(&_11, filePath TSRMLS_CC) == FAILURE) {

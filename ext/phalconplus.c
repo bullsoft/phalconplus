@@ -7,6 +7,7 @@
 
 #include <php.h>
 
+// TODO: Deprecated. Will be removed in future
 #if PHP_VERSION_ID < 50500
 #include <locale.h>
 #endif
@@ -71,6 +72,7 @@ PHP_INI_END()
 
 static PHP_MINIT_FUNCTION(phalconplus)
 {
+// TODO: Deprecated. Will be removed in future
 #if PHP_VERSION_ID < 50500
 	char* old_lc_all = setlocale(LC_ALL, NULL);
 	if (old_lc_all) {
@@ -123,6 +125,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(phalconplus_0__closure);
 	ZEPHIR_INIT(phalconplus_1__closure);
 
+// TODO: Deprecated. Will be removed in future
 #if PHP_VERSION_ID < 50500
 	setlocale(LC_ALL, old_lc_all);
 	free(old_lc_all);
