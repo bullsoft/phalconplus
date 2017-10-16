@@ -39,7 +39,7 @@ class Exception extends \Exception
         var cnt, argsCnt;
         let cnt = substr_count(this->message, "%s");
         let argsCnt = count(args);
-        
+
         if argsCnt >= cnt {
             let this->message = vsprintf(this->message, args);
         }

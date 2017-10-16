@@ -39,11 +39,11 @@ class UnitOfWork
             this->insert(name, model, initial_data, false);
         } else {
             this->update(name, model, initial_data, false);
-        } 
+        }
     }
-    
+
     public function insert(var name, <\Phalcon\Mvc\Model> model, array initial_data = [], boolean assign = true)
-    {      
+    {
         if !empty initial_data && assign == true {
             model->assign(initial_data);
         }
@@ -56,10 +56,10 @@ class UnitOfWork
     }
 
     public function update(var name, <\Phalcon\Mvc\Model> model, array initial_data = [], boolean assign = true)
-    {    
+    {
         if !empty initial_data && assign == true {
             model->assign(initial_data);
-        }  
+        }
         this->detach(model);
         this->attach(model, [
             "method" : "update",
