@@ -18,11 +18,11 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_OrderByDirection) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Enum, OrderByDirection, phalconplus, enum_orderbydirection, phalconplus_enum_abstractenum_ce, NULL, 0);
 
-	zend_declare_class_constant_string(phalconplus_enum_orderbydirection_ce, SL("__default"), "ASC" TSRMLS_CC);
+	zephir_declare_class_constant_string(phalconplus_enum_orderbydirection_ce, SL("__default"), "ASC");
 
-	zend_declare_class_constant_string(phalconplus_enum_orderbydirection_ce, SL("ASC"), "ASC" TSRMLS_CC);
+	zephir_declare_class_constant_string(phalconplus_enum_orderbydirection_ce, SL("ASC"), "ASC");
 
-	zend_declare_class_constant_string(phalconplus_enum_orderbydirection_ce, SL("DESC"), "DESC" TSRMLS_CC);
+	zephir_declare_class_constant_string(phalconplus_enum_orderbydirection_ce, SL("DESC"), "DESC");
 
 	return SUCCESS;
 

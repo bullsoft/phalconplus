@@ -46,7 +46,8 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_ProtoOrderBy) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getProperty) {
 
-	
+	zval *this_ptr = getThis();
+
 
 	RETURN_MEMBER(getThis(), "property");
 
@@ -55,7 +56,10 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getProperty) {
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 
 	zval *property_param = NULL;
-	zval *property = NULL;
+	zval property;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&property);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &property_param);
@@ -65,33 +69,37 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(property_param) == IS_STRING)) {
-		zephir_get_strval(property, property_param);
+		zephir_get_strval(&property, property_param);
 	} else {
-		ZEPHIR_INIT_VAR(property);
-		ZVAL_EMPTY_STRING(property);
+		ZEPHIR_INIT_VAR(&property);
+		ZVAL_EMPTY_STRING(&property);
 	}
 
 
-	zephir_update_property_this(getThis(), SL("property"), property TSRMLS_CC);
+	zephir_update_property_zval(this_ptr, SL("property"), &property);
 	ZEPHIR_MM_RESTORE();
 
 }
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setDirection) {
 
-	zval *orderBy;
+	zval *orderBy, orderBy_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&orderBy_sub);
 
 	zephir_fetch_params(0, 1, 0, &orderBy);
 
 
 
-	zephir_update_property_this(getThis(), SL("direction"), orderBy TSRMLS_CC);
+	zephir_update_property_zval(this_ptr, SL("direction"), orderBy);
 
 }
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getDirection) {
 
-	
+	zval *this_ptr = getThis();
+
 
 	RETURN_MEMBER(getThis(), "direction");
 
@@ -99,7 +107,8 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getDirection) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getAlias) {
 
-	
+	zval *this_ptr = getThis();
+
 
 	RETURN_MEMBER(getThis(), "alias");
 
@@ -108,7 +117,10 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getAlias) {
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 
 	zval *alias_param = NULL;
-	zval *alias = NULL;
+	zval alias;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&alias);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &alias_param);
@@ -118,44 +130,54 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(alias_param) == IS_STRING)) {
-		zephir_get_strval(alias, alias_param);
+		zephir_get_strval(&alias, alias_param);
 	} else {
-		ZEPHIR_INIT_VAR(alias);
-		ZVAL_EMPTY_STRING(alias);
+		ZEPHIR_INIT_VAR(&alias);
+		ZVAL_EMPTY_STRING(&alias);
 	}
 
 
-	zephir_update_property_this(getThis(), SL("alias"), alias TSRMLS_CC);
+	zephir_update_property_zval(this_ptr, SL("alias"), &alias);
 	ZEPHIR_MM_RESTORE();
 
 }
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString) {
 
-	zval *_1, *_2, *orderBy = NULL, *_3, *_6, *_7, *_4$$3, *_5$$3;
+	zval _1, _2, orderBy, _3, _6, _7, _4$$3, _5$$3;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&orderBy);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_6);
+	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_5$$3);
 
 	ZEPHIR_MM_GROW();
 
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("property"), PH_NOISY_CC);
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 39, _1);
+	zephir_read_property(&_1, this_ptr, SL("property"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 0, &_1);
 	zephir_check_call_status();
-	_2 = zephir_fetch_nproperty_this(this_ptr, SL("direction"), PH_NOISY_CC);
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 39, _2);
+	zephir_read_property(&_2, this_ptr, SL("direction"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 0, &_2);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(orderBy);
-	ZVAL_STRING(orderBy, "", 1);
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("alias"), PH_NOISY_CC);
-	if (!(ZEPHIR_IS_EMPTY(_3))) {
-		_4$$3 = zephir_fetch_nproperty_this(this_ptr, SL("alias"), PH_NOISY_CC);
-		ZEPHIR_INIT_VAR(_5$$3);
-		ZEPHIR_CONCAT_VVS(_5$$3, orderBy, _4$$3, ".");
-		ZEPHIR_CPY_WRT(orderBy, _5$$3);
+	ZEPHIR_INIT_VAR(&orderBy);
+	ZVAL_STRING(&orderBy, "");
+	zephir_read_property(&_3, this_ptr, SL("alias"), PH_NOISY_CC | PH_READONLY);
+	if (!(ZEPHIR_IS_EMPTY(&_3))) {
+		zephir_read_property(&_4$$3, this_ptr, SL("alias"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_INIT_VAR(&_5$$3);
+		ZEPHIR_CONCAT_VVS(&_5$$3, &orderBy, &_4$$3, ".");
+		ZEPHIR_CPY_WRT(&orderBy, &_5$$3);
 	}
-	_6 = zephir_fetch_nproperty_this(this_ptr, SL("property"), PH_NOISY_CC);
-	_7 = zephir_fetch_nproperty_this(this_ptr, SL("direction"), PH_NOISY_CC);
-	ZEPHIR_CONCAT_VVSV(return_value, orderBy, _6, " ", _7);
+	zephir_read_property(&_6, this_ptr, SL("property"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_7, this_ptr, SL("direction"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CONCAT_VVSV(return_value, &orderBy, &_6, " ", &_7);
 	RETURN_MM();
 
 }

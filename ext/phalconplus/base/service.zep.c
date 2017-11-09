@@ -33,14 +33,17 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
 PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *di;
+	zval *di, di_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&di_sub);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &di);
 
 
 
-	zephir_update_property_this(getThis(), SL("di"), di TSRMLS_CC);
+	zephir_update_property_zval(this_ptr, SL("di"), di);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -49,14 +52,16 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 PHP_METHOD(PhalconPlus_Base_Service, onConstruct) {
 
-	
+	zval *this_ptr = getThis();
+
 
 
 }
 
 PHP_METHOD(PhalconPlus_Base_Service, getDI) {
 
-	
+	zval *this_ptr = getThis();
+
 
 	RETURN_MEMBER(getThis(), "di");
 
@@ -65,8 +70,14 @@ PHP_METHOD(PhalconPlus_Base_Service, getDI) {
 PHP_METHOD(PhalconPlus_Base_Service, __get) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *_0 = NULL, *_1$$3, *_2$$4;
-	zval *key = NULL;
+	zval *key_param = NULL, _0, _1$$3, _2$$4;
+	zval key;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_2$$4);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key_param);
@@ -76,22 +87,22 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
-		zephir_get_strval(key, key_param);
+		zephir_get_strval(&key, key_param);
 	} else {
-		ZEPHIR_INIT_VAR(key);
-		ZVAL_EMPTY_STRING(key);
+		ZEPHIR_INIT_VAR(&key);
+		ZVAL_EMPTY_STRING(&key);
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", NULL, 1, this_ptr, key);
+	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", NULL, 1, this_ptr, &key);
 	zephir_check_call_status();
-	if (zephir_is_true(_0)) {
-		ZEPHIR_OBS_VAR(_1$$3);
-		zephir_read_property_zval(&_1$$3, this_ptr, key, PH_NOISY_CC);
-		RETURN_CCTOR(_1$$3);
+	if (zephir_is_true(&_0)) {
+		ZEPHIR_OBS_VAR(&_1$$3);
+		zephir_read_property_zval(&_1$$3, this_ptr, &key, PH_NOISY_CC);
+		RETURN_CCTOR(&_1$$3);
 	} else {
-		_2$$4 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
-		ZEPHIR_RETURN_CALL_METHOD(_2$$4, "get", NULL, 0, key);
+		zephir_read_property(&_2$$4, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_RETURN_CALL_METHOD(&_2$$4, "get", NULL, 0, &key);
 		zephir_check_call_status();
 		RETURN_MM();
 	}

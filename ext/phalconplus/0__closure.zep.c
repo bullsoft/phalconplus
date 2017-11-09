@@ -26,7 +26,10 @@ ZEPHIR_INIT_CLASS(phalconplus_0__closure) {
 
 PHP_METHOD(phalconplus_0__closure, __invoke) {
 
-	zval *freq;
+	zval *freq, freq_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&freq_sub);
 
 	zephir_fetch_params(0, 1, 0, &freq);
 

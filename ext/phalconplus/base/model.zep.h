@@ -23,7 +23,7 @@ PHP_METHOD(PhalconPlus_Base_Model, setUqKeys);
 PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond);
 PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
 PHP_METHOD(PhalconPlus_Base_Model, getReadConnection);
-zend_object_value zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type TSRMLS_DC);
+zend_object *zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, 0)
 	ZEND_ARG_INFO(0, alias)

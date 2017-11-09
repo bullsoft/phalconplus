@@ -10,7 +10,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, registerExtension);
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, close);
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __destruct);
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup);
-zend_object_value zephir_init_properties_PhalconPlus_Logger_Adapter_FilePlus(zend_class_entry *class_type TSRMLS_DC);
+zend_object *zephir_init_properties_PhalconPlus_Logger_Adapter_FilePlus(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_adapter_fileplus___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, filePath)

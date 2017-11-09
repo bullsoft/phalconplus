@@ -7,7 +7,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParam);
 PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParams);
 PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam);
 PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParams);
-zend_object_value zephir_init_properties_PhalconPlus_Base_SimpleRequest(zend_class_entry *class_type TSRMLS_DC);
+zend_object *zephir_init_properties_PhalconPlus_Base_SimpleRequest(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simplerequest_getparam, 0, 0, 1)
 	ZEND_ARG_INFO(0, idx)

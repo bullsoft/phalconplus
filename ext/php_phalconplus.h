@@ -42,10 +42,6 @@ ZEND_BEGIN_MODULE_GLOBALS(phalconplus)
 	/* Max recursion control */
 	unsigned int recursive_lock;
 
-	/* Global constants */
-	zval *global_true;
-	zval *global_false;
-	zval *global_null;
 	
 ZEND_END_MODULE_GLOBALS(phalconplus)
 
@@ -56,13 +52,14 @@ ZEND_END_MODULE_GLOBALS(phalconplus)
 ZEND_EXTERN_MODULE_GLOBALS(phalconplus)
 
 #ifdef ZTS
-	#define ZEPHIR_GLOBAL(v) TSRMG(phalconplus_globals_id, zend_phalconplus_globals *, v)
+	#define ZEPHIR_GLOBAL(v) ZEND_MODULE_GLOBALS_ACCESSOR(phalconplus, v)
 #else
 	#define ZEPHIR_GLOBAL(v) (phalconplus_globals.v)
 #endif
 
 #ifdef ZTS
-	#define ZEPHIR_VGLOBAL ((zend_phalconplus_globals *) (*((void ***) tsrm_ls))[TSRM_UNSHUFFLE_RSRC_ID(phalconplus_globals_id)])
+	void ***tsrm_ls;
+	#define ZEPHIR_VGLOBAL ((zend_phalconplus_globals *) (*((void ***) tsrm_get_ls_cache()))[TSRM_UNSHUFFLE_RSRC_ID(phalconplus_globals_id)])
 #else
 	#define ZEPHIR_VGLOBAL &(phalconplus_globals)
 #endif
