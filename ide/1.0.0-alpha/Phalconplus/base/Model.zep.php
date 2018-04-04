@@ -121,4 +121,13 @@ class Model extends Phalcon\Mvc\Model
      */
     public function toProtoBuffer($columns = null) {}
 
+    /**
+     * Gets the connection used to read data for the model
+     *
+     * Check transaction in writeConnection before `_transaction`
+     *
+     * @return \Phalcon\Db\AdapterInterface
+     */
+    public function getReadConnection() {}
+
 }

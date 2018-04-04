@@ -36,11 +36,12 @@ class FilePlus extends Phalcon\Logger\Adapter\File
     private function open($filePath) {}
 
     /**
-     * @param string $message
-     * @param int $type
+     * @param mixed $type
+     * @param mixed $message
      * @param array $context
+     * @return \Phalcon\Logger\AdapterInterface
      */
-    public function log($message, $type = \Phalcon\Logger::DEBUG, array $context = null) {}
+    public function log($type, $message = null, array $context = null) {}
 
     /**
      * @param string $ext
@@ -50,6 +51,9 @@ class FilePlus extends Phalcon\Logger\Adapter\File
 
 
     public function close() {}
+
+
+    public function __destruct() {}
 
 
     public function __wakeup() {}

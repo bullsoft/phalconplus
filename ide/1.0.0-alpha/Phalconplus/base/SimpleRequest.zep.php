@@ -10,6 +10,11 @@ class SimpleRequest extends \PhalconPlus\Base\ProtoBuffer
 
 
     /**
+     * @param array $data
+     */
+    public function softClone(array $data) {}
+
+    /**
      * @param mixed $idx
      */
     public function getParam($idx) {}

@@ -12,8 +12,11 @@ final class SimpleResponse extends \PhalconPlus\Base\Response
 
 
     /**
-     * @deprecated
+     * @param array $data
      */
+    public function softClone(array $data) {}
+
+
     public function getResult() {}
 
     /**
