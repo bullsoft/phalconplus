@@ -7,9 +7,18 @@ final class SimpleResponse extends Response
      */
     private result = [];
 
-    /**
-     * @deprecated
-     */
+    public function softClone(array data)
+    {
+        var key, val;
+        for key, val in data {
+            if property_exists(this, key) {
+                this->__set(key, val);
+            } else {
+                let this->result[key] = val;
+            }
+        }
+    }
+
     public function getResult()
     {
         return (array) this->result;
@@ -33,7 +42,7 @@ final class SimpleResponse extends Response
         }
         return this;
     }
-   
+
     public function setItem(var val, var key = null)
     {
         if !is_null(key) {

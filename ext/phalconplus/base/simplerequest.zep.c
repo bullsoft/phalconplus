@@ -12,11 +12,11 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/array.h"
-#include "kernel/object.h"
 #include "kernel/memory.h"
-#include "kernel/operators.h"
 #include "kernel/fcall.h"
+#include "kernel/operators.h"
+#include "kernel/object.h"
+#include "kernel/array.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleRequest) {
@@ -27,6 +27,53 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleRequest) {
 
 	phalconplus_base_simplerequest_ce->create_object = zephir_init_properties_PhalconPlus_Base_SimpleRequest;
 	return SUCCESS;
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
+
+	zend_string *_2;
+	zend_ulong _1;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_4 = NULL, *_5 = NULL;
+	zval *data_param = NULL, key, val, *_0, _3$$3;
+	zval data;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&data);
+	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&val);
+	ZVAL_UNDEF(&_3$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &data_param);
+
+	zephir_get_arrval(&data, data_param);
+
+
+	zephir_is_iterable(&data, 0, "phalconplus/Base/SimpleRequest.zep", 17);
+	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _1, _2, _0)
+	{
+		ZEPHIR_INIT_NVAR(&key);
+		if (_2 != NULL) { 
+			ZVAL_STR_COPY(&key, _2);
+		} else {
+			ZVAL_LONG(&key, _1);
+		}
+		ZEPHIR_INIT_NVAR(&val);
+		ZVAL_COPY(&val, _0);
+		ZEPHIR_CALL_FUNCTION(&_3$$3, "property_exists", &_4, 1, this_ptr, &key);
+		zephir_check_call_status();
+		if (zephir_is_true(&_3$$3)) {
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_5, 0, &key, &val);
+			zephir_check_call_status();
+		} else {
+			zephir_update_property_array(this_ptr, SL("params"), &key, &val TSRMLS_CC);
+		}
+	} ZEND_HASH_FOREACH_END();
+	ZEPHIR_INIT_NVAR(&val);
+	ZEPHIR_INIT_NVAR(&key);
+	ZEPHIR_MM_RESTORE();
 
 }
 

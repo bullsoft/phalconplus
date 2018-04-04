@@ -4,6 +4,18 @@ class SimpleRequest extends ProtoBuffer
 {
     private params = [];
 
+    public function softClone(array data)
+    {
+        var key, val;
+        for key, val in data {
+            if property_exists(this, key) {
+                this->__set(key, val);
+            } else {
+                let this->params[key] = val;
+            }
+        }
+    }
+
     public function getParam(var idx)
     {
         var val;
