@@ -112,6 +112,17 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
         }
     }
 
+    public function getProcessorVar(string! key) -> string
+    {
+        var processor;
+        try {
+            let processor = this->getFormatter()->getProcessor(key);
+            return (string) processor;
+        } catch \Exception {
+        }
+        return "undefined";
+    }
+
     public function __destruct()
     {
         this->close();

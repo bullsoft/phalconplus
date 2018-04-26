@@ -158,7 +158,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		return;
 	}
 	ZEPHIR_MAKE_REF(&matches);
-	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 38, &matches);
+	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 40, &matches);
 	ZEPHIR_UNREF(&matches);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&matches);
@@ -226,16 +226,64 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, addProcessor) {
 
 }
 
+PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, getProcessor) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *name_param = NULL, _0, _3, _4, _1$$3;
+	zval name, _2$$3;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name);
+	ZVAL_UNDEF(&_2$$3);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_1$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &name_param);
+
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+
+
+	zephir_read_property(&_0, this_ptr, SL("processors"), PH_NOISY_CC | PH_READONLY);
+	if (!(zephir_array_isset(&_0, &name))) {
+		ZEPHIR_INIT_VAR(&_1$$3);
+		object_init_ex(&_1$$3, spl_ce_InvalidArgumentException);
+		ZEPHIR_INIT_VAR(&_2$$3);
+		ZEPHIR_CONCAT_SV(&_2$$3, "Processor name is not valid: ", &name);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 15, &_2$$3);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/Logger/Formatter/LinePlus.zep", 59 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	zephir_read_property(&_3, this_ptr, SL("processors"), PH_NOISY_CC | PH_READONLY);
+	zephir_array_fetch(&_4, &_3, &name, PH_NOISY | PH_READONLY, "phalconplus/Logger/Formatter/LinePlus.zep", 61 TSRMLS_CC);
+	RETURN_CTOR(&_4);
+
+}
+
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get) {
 
-	zval *key_param = NULL, _0, _1;
-	zval key, _2;
+	zval *key_param = NULL, _0, _1, _2;
+	zval key, _3;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
-	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key_param);
@@ -253,10 +301,14 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("processors"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_OBS_VAR(&_1);
-	zephir_array_fetch(&_1, &_0, &key, PH_NOISY, "phalconplus/Logger/Formatter/LinePlus.zep", 58 TSRMLS_CC);
-	zephir_get_strval(&_2, &_1);
-	RETURN_CTOR(&_2);
+	if (!(zephir_array_isset(&_0, &key))) {
+		RETURN_MM_STRING("undefined");
+	}
+	zephir_read_property(&_1, this_ptr, SL("processors"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_OBS_VAR(&_2);
+	zephir_array_fetch(&_2, &_1, &key, PH_NOISY, "phalconplus/Logger/Formatter/LinePlus.zep", 69 TSRMLS_CC);
+	zephir_get_strval(&_3, &_2);
+	RETURN_CTOR(&_3);
 
 }
 

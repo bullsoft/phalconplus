@@ -370,10 +370,10 @@ class Model extends \Phalcon\Mvc\Model
 
     protected function _p_buildUkCond(<MetaDataInterface> metaData, <AdapterInterface> connection)
     {
-        var value, type, info, field, whereUk, columnMap, uniqueParams, uniqueTypes, attributeField;
-        //var bindDataTypes;
+        var value, type, info, field, whereUk, uniqueParams, uniqueTypes, attributeField;
+        //var bindDataTypes, columnMap;
 
-        let whereUk = [], 
+        let whereUk = [],
         uniqueParams = [],
         uniqueTypes = [];
 

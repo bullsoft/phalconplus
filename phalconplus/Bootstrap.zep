@@ -3,15 +3,12 @@ namespace PhalconPlus;
 
 final class Bootstrap
 {
-    // 全局配置文件
-    protected config;
+    // 全局配置
+    protected config = null;
     // 全局DI容器
-    protected di;
+    protected di = null;
     // 应用实例
-    protected application;
-
-    // 自动加载器, 不需要了...
-    // protected loader;
+    protected application = null;
 
     // 模块属性
     protected module = [
@@ -38,8 +35,8 @@ final class Bootstrap
     const MODULE_APP_DIR_NAME  = "app";
 
     // 约定
-    const DS = "/";
-    const PHP_EXT = ".php";
+    const DS = DIRECTORY_SEPARATOR;
+    const EXT = ".php";
     const ENV_NAME = "phalconplus.env";
 
     public function __construct(string! modulePath)
@@ -51,12 +48,15 @@ final class Bootstrap
 
         // 获取并初始化运行环境
         var env;
-        let env = get_cfg_var(self::ENV_NAME);
+        let env = trim(get_cfg_var(self::ENV_NAME));
+        // 这里不能强约束env的值为枚举中的一个
+        // 你可能会有非常多的环境，只要env值和配置文件名能对应上就行
         if !empty(env) {
             let this->env = env;
         }
         // 如果不是生产环境，打开Debug
-        if substr(PHP_SAPI, 0, 3) != "cli" && substr(this->env, 0, 7) != "product"{
+        // 这里我们假设生产环境的env值会以"product"开头
+        if substr(PHP_SAPI, 0, 3) != "cli" && !\PhalconPlus\Enum\RunEnv::isInProd(this->env) {
             var debug;
             let debug = new \Phalcon\Debug();
             debug->listen();
@@ -64,11 +64,11 @@ final class Bootstrap
 
         // 定义全局常量
         define("APP_ENV", this->env, true);
-        define("APP_MODULE_DIR", rtrim(modulePath, "/") . "/", true);
-        define("APP_ROOT_DIR", rtrim(dirname(modulePath), "/") . "/", true);
-        define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . self::COMMON_DIR_NAME . "/", true);
-        define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . self::COMMON_CONF_DIR_NAME . "/", true);
-        define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . self::COMMON_LOAD_DIR_NAME . "/", true);
+        define("APP_MODULE_DIR", rtrim(modulePath, self::DS) . self::DS, true);
+        define("APP_ROOT_DIR", rtrim(dirname(modulePath), self::DS) . self::DS, true);
+        define("APP_ROOT_COMMON_DIR", APP_ROOT_DIR . self::COMMON_DIR_NAME . self::DS, true);
+        define("APP_ROOT_COMMON_CONF_DIR", APP_ROOT_COMMON_DIR . self::COMMON_CONF_DIR_NAME . self::DS, true);
+        define("APP_ROOT_COMMON_LOAD_DIR", APP_ROOT_COMMON_DIR . self::COMMON_LOAD_DIR_NAME . self::DS, true);
     }
 
     private function setModule(array module)
@@ -87,30 +87,35 @@ final class Bootstrap
         var moduleConf;
 
         // 全局配置
-        let globalConfPath = APP_ROOT_COMMON_CONF_DIR . "config" . self::PHP_EXT;
+        let globalConfPath = APP_ROOT_COMMON_CONF_DIR . "config" . self::EXT;
         if !is_file(globalConfPath) {
             throw new \Phalcon\Config\Exception("Global config file not exist, file position: " . globalConfPath);
         }
         let this->config = new \Phalcon\Config(this->load(globalConfPath));
 
         // 模块配置, 如果找不到"app/config/{APP_ENV}.php"，则去找"app/config/config.php"
-        let moduleConfPath = APP_MODULE_DIR . "app/config/" . APP_ENV . self::PHP_EXT;
+        let moduleConfPath = APP_MODULE_DIR . "app" . self::DS . "config" . self::DS . APP_ENV . self::EXT;
         if !is_file(moduleConfPath) {
-            let moduleConfPath = APP_MODULE_DIR . "app/config/config"  . self::PHP_EXT;
+            // TODO: 是否需要打WARNING日志？
+            let moduleConfPath = APP_MODULE_DIR . "app" . self::DS . "config" . self::DS . "config" . self::EXT;
             if !is_file(moduleConfPath) {
                 throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
             }
         }
-
         let moduleConf  = new \Phalcon\Config(this->load(moduleConfPath));
 
-        // 初始化模块三要素
+        // 初始化模块三要素（运行模式，类名，类文件路径）
         var module = [];
         let module["mode"] = ucfirst(strtolower(moduleConf->application->mode));
         let module["className"] = moduleConf->application->ns . this->modeMap[module["mode"]];
-        let module["classPath"] = APP_MODULE_DIR . "app/" . this->modeMap[$module["mode"]] . self::PHP_EXT;
+        let module["classPath"] = APP_MODULE_DIR . "app" . self::DS . this->modeMap[$module["mode"]] . self::EXT;
+
+        if !is_file((module["classPath"])) {
+            throw new \Exception("Module class file not exists: " . module["classPath"]);
+        }
 
         // 定义工作模式
+        // TODO: 移到setModule()中更合适?
         define("APP_RUN_MODE", module["mode"], true);
 
         this->setModule(module);
@@ -121,8 +126,9 @@ final class Bootstrap
 
     public function exec()
     {
-        var handleMethod;
+        // 初始化配置
         this->initConf();
+        var handleMethod;
         let handleMethod = "exec" . this->modeMap[APP_RUN_MODE];
         var params = [];
         let params = func_get_args();
@@ -133,11 +139,10 @@ final class Bootstrap
     {
         var moduleClass, module;
         // 如果不需要handle，需要自己加载配置
-        if !needHandle {
+        if empty(this->config) {
             this->initConf();
         }
         // 应用初始化
-        // let this->loader = new \Phalcon\Loader();
         let this->di = new \Phalcon\DI\FactoryDefault();
         let this->application = new \Phalcon\Mvc\Application();
         this->application->setDI(this->di);
@@ -173,7 +178,7 @@ final class Bootstrap
         var backendSrv = null;
         var moduleClass, moduleObj;
 
-        if !needHandle {
+        if empty(this->config) {
             this->initConf();
         }
         // no need to get `loader` here
@@ -200,11 +205,9 @@ final class Bootstrap
     public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null, var needHandle = true)
     {
         var moduleClass, module;
-
-        this->initConf();
-
-        // no need to get `loader` here
-        // let this->loader = new \Phalcon\Loader();
+        if empty(this->config) {
+            this->initConf();
+        }
 
         if is_null(di) || ! (di instanceof \Phalcon\DI\FactoryDefault\CLI) {
             let this->di = new \Phalcon\DI\FactoryDefault\CLI();
@@ -233,9 +236,9 @@ final class Bootstrap
     public function dependModule(string! moduleName)
     {
         var moduleConfPath, moduleConf, moduleClassName, moduleClassPath, moduleRunMode;
-        let moduleConfPath = APP_ROOT_DIR . moduleName . "/app/config/" . APP_ENV . self::PHP_EXT;
+        let moduleConfPath = APP_ROOT_DIR . moduleName . self::DS . "app" . self::DS . "config" . self::DS . APP_ENV . self::EXT;
         if !is_file(moduleConfPath) {
-            let moduleConfPath = APP_ROOT_DIR . moduleName . "/app/config/config"  . self::PHP_EXT;
+            let moduleConfPath = APP_ROOT_DIR . moduleName . self::DS . "app" . self::DS . "config" . self::DS . "config"  . self::EXT;
             if !is_file(moduleConfPath) {
                 throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . moduleConfPath);
             }
@@ -248,7 +251,7 @@ final class Bootstrap
 
         // 获取模块类名
         let moduleClassName = moduleConf->application->ns . this->modeMap[moduleRunMode];
-        let moduleClassPath = APP_ROOT_DIR . moduleName . "/app/" . this->modeMap[moduleRunMode] . self::PHP_EXT;
+        let moduleClassPath = APP_ROOT_DIR . moduleName . self::DS . "app" . self::DS . this->modeMap[moduleRunMode] . self::EXT;
         if !is_file(moduleClassPath) {
             throw new \Exception("Module init file not exists, file position: " . moduleClassPath);
         }
@@ -316,7 +319,7 @@ final class Bootstrap
         let {bootstrap} = this;
         let {di} = this->di;
 
-        /* PHP 7.1 forbid dynamic calls to scope introspection functions
+        /* PHP 7.1 and later version, forbid dynamic calls to scope introspection functions
         extract(["rootPath": APP_ROOT_DIR,
                  "loader": new \Phalcon\Loader(),
                  "config": this->config,

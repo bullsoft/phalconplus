@@ -158,7 +158,7 @@ class UnitOfWork
 
     public function execUpdate(<\Phalcon\Mvc\Model> model, array info = [])
     {
-        var result, initial_data, metaData, columnMap, whiteList, attrField, field;
+        var result, initial_data, metaData, columnMap, whiteList, attrField;
         let whiteList = [];
 
         // 过滤所有不需要更新（值为NULL）的字段，
@@ -166,7 +166,7 @@ class UnitOfWork
         let metaData = model->getModelsMetaData();
         let columnMap = metaData->getColumnMap(model);
         if typeof columnMap == "array" {
-            for field, attrField in columnMap {
+            for _, attrField in columnMap {
                 if empty this->{attrField} {
                     let whiteList[attrField] = null;
                 }

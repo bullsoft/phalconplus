@@ -40,7 +40,7 @@
         "non-array-append": true,
         "invalid-return-type": true,
         "unreachable-code": true,
-        "nonexistent-constant": true,
+        "nonexistent-constant": false,
         "not-supported-magic-constant": true,
         "non-valid-decrement": true,
         "non-valid-increment": true,
@@ -63,7 +63,7 @@
     "namespace": "phalconplus",
     "name": "phalconplus",
     "description": "Phalcon+ is a new framework based on Phalcon.",
-    "author": "Gu Weigang<guweigang@outlook.com> and NCF Group",
+    "author": "Gu Weigang<guweigang@outlook.com> and BullSoft<support@bullsoft.org>",
     "version": "1.0.0-alpha",
     "verbose": false,
     "requires": {

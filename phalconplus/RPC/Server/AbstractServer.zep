@@ -43,7 +43,17 @@ abstract class AbstractServer
                 throw e;
             }
             this->eventsManager->fire("backend-server:afterExecute", $this, [service, method, request]);
-            return this->phpOnly == true ? response : response->toArray();
+            // We do not allow to return #Resource type. And if an object returned, we expected type <ProtoBuffer>
+            if is_object(response) && !(response instanceof ProtoBuffer) {
+                throw new \Exception("Your output is not allowed. Response: " . get_class(response) . ". We expect scalar type or <ProtoBuffer>");
+            } elseif is_resource(response) {
+                throw new \Exception("Your output is not allowed. Response: #Resource.");
+            }
+            // Distinguish object/scalar types when there are non-php clients
+            if this->phpOnly == false && is_object(response) {
+                return response->toArray();
+            }
+            return response;
         } else {
             throw new \Exception("Service:method not found. Detail: " . service . " : " . method);
         }
@@ -52,7 +62,7 @@ abstract class AbstractServer
     /**
      *
      * @param array rawData
-     * <code> 
+     * <code>
      *     rawData = ["service":"Demo", "method":"demo", "args": <ProtoBuffer>, "logId": "234fdfaf3334"]
      * </code>
      * @return <ProtoBuffer>
@@ -62,7 +72,7 @@ abstract class AbstractServer
     public function callByObject(array rawData)
     {
         var service, method, request, response, logId = "", message = "";
-        
+
         if !fetch service, rawData["service"] {
             throw new \Exception("service " . service . " not exists");
         }

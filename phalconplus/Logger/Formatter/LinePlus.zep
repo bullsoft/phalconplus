@@ -53,8 +53,19 @@ class LinePlus extends \Phalcon\Logger\Formatter implements \Phalcon\Logger\Form
         let this->processors[name] = processor;
     }
 
+    public function getProcessor(string! name)
+    {
+        if !isset this->processors[name] {
+            throw new \InvalidArgumentException("Processor name is not valid: " . name);
+        }
+        return this->processors[name];
+    }
+
     public function __get(string! key)
     {
+        if !isset this->processors[key] {
+            return "undefined";
+        }
         return (string) this->processors[key];
     }
 }
