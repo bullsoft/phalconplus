@@ -27,7 +27,7 @@ class Exception extends AbstractEnum
     public static function getByCode(var eCode)
     {
         var detail = [];
-        let detail = static::has(eCode); 
+        let detail = static::has(eCode);
         if !empty detail {
             let detail["code"] = eCode;
         }

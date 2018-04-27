@@ -59,16 +59,6 @@
 #define ZEPHIR_SCONCAT_VSS(result, op1, op2, op3) \
 	 zephir_concat_vss(result, op1, op2, sizeof(op2)-1, op3, sizeof(op3)-1, 1);
 
-#define ZEPHIR_CONCAT_VSSSSSS(result, op1, op2, op3, op4, op5, op6, op7) \
-	 zephir_concat_vssssss(result, op1, op2, sizeof(op2)-1, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, sizeof(op6)-1, op7, sizeof(op7)-1, 0);
-#define ZEPHIR_SCONCAT_VSSSSSS(result, op1, op2, op3, op4, op5, op6, op7) \
-	 zephir_concat_vssssss(result, op1, op2, sizeof(op2)-1, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, sizeof(op6)-1, op7, sizeof(op7)-1, 1);
-
-#define ZEPHIR_CONCAT_VSSSSVS(result, op1, op2, op3, op4, op5, op6, op7) \
-	 zephir_concat_vssssvs(result, op1, op2, sizeof(op2)-1, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, op7, sizeof(op7)-1, 0);
-#define ZEPHIR_SCONCAT_VSSSSVS(result, op1, op2, op3, op4, op5, op6, op7) \
-	 zephir_concat_vssssvs(result, op1, op2, sizeof(op2)-1, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, op7, sizeof(op7)-1, 1);
-
 #define ZEPHIR_CONCAT_VSSVS(result, op1, op2, op3, op4, op5) \
 	 zephir_concat_vssvs(result, op1, op2, sizeof(op2)-1, op3, sizeof(op3)-1, op4, op5, sizeof(op5)-1, 0);
 #define ZEPHIR_SCONCAT_VSSVS(result, op1, op2, op3, op4, op5) \
@@ -94,21 +84,6 @@
 #define ZEPHIR_SCONCAT_VVS(result, op1, op2, op3) \
 	 zephir_concat_vvs(result, op1, op2, op3, sizeof(op3)-1, 1);
 
-#define ZEPHIR_CONCAT_VVSSSSSSS(result, op1, op2, op3, op4, op5, op6, op7, op8, op9) \
-	 zephir_concat_vvsssssss(result, op1, op2, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, sizeof(op6)-1, op7, sizeof(op7)-1, op8, sizeof(op8)-1, op9, sizeof(op9)-1, 0);
-#define ZEPHIR_SCONCAT_VVSSSSSSS(result, op1, op2, op3, op4, op5, op6, op7, op8, op9) \
-	 zephir_concat_vvsssssss(result, op1, op2, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, sizeof(op6)-1, op7, sizeof(op7)-1, op8, sizeof(op8)-1, op9, sizeof(op9)-1, 1);
-
-#define ZEPHIR_CONCAT_VVSSSSSVS(result, op1, op2, op3, op4, op5, op6, op7, op8, op9) \
-	 zephir_concat_vvsssssvs(result, op1, op2, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, sizeof(op6)-1, op7, sizeof(op7)-1, op8, op9, sizeof(op9)-1, 0);
-#define ZEPHIR_SCONCAT_VVSSSSSVS(result, op1, op2, op3, op4, op5, op6, op7, op8, op9) \
-	 zephir_concat_vvsssssvs(result, op1, op2, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, sizeof(op6)-1, op7, sizeof(op7)-1, op8, op9, sizeof(op9)-1, 1);
-
-#define ZEPHIR_CONCAT_VVSSSVS(result, op1, op2, op3, op4, op5, op6, op7) \
-	 zephir_concat_vvsssvs(result, op1, op2, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, op7, sizeof(op7)-1, 0);
-#define ZEPHIR_SCONCAT_VVSSSVS(result, op1, op2, op3, op4, op5, op6, op7) \
-	 zephir_concat_vvsssvs(result, op1, op2, op3, sizeof(op3)-1, op4, sizeof(op4)-1, op5, sizeof(op5)-1, op6, op7, sizeof(op7)-1, 1);
-
 #define ZEPHIR_CONCAT_VVSV(result, op1, op2, op3, op4) \
 	 zephir_concat_vvsv(result, op1, op2, op3, sizeof(op3)-1, op4, 0);
 #define ZEPHIR_SCONCAT_VVSV(result, op1, op2, op3, op4) \
@@ -131,16 +106,11 @@ void zephir_concat_svsvsvsv(zval *result, const char *op1, zend_uint op1_len, zv
 void zephir_concat_svv(zval *result, const char *op1, zend_uint op1_len, zval *op2, zval *op3, int self_var);
 void zephir_concat_vs(zval *result, zval *op1, const char *op2, zend_uint op2_len, int self_var);
 void zephir_concat_vss(zval *result, zval *op1, const char *op2, zend_uint op2_len, const char *op3, zend_uint op3_len, int self_var);
-void zephir_concat_vssssss(zval *result, zval *op1, const char *op2, zend_uint op2_len, const char *op3, zend_uint op3_len, const char *op4, zend_uint op4_len, const char *op5, zend_uint op5_len, const char *op6, zend_uint op6_len, const char *op7, zend_uint op7_len, int self_var);
-void zephir_concat_vssssvs(zval *result, zval *op1, const char *op2, zend_uint op2_len, const char *op3, zend_uint op3_len, const char *op4, zend_uint op4_len, const char *op5, zend_uint op5_len, zval *op6, const char *op7, zend_uint op7_len, int self_var);
 void zephir_concat_vssvs(zval *result, zval *op1, const char *op2, zend_uint op2_len, const char *op3, zend_uint op3_len, zval *op4, const char *op5, zend_uint op5_len, int self_var);
 void zephir_concat_vsv(zval *result, zval *op1, const char *op2, zend_uint op2_len, zval *op3, int self_var);
 void zephir_concat_vsvs(zval *result, zval *op1, const char *op2, zend_uint op2_len, zval *op3, const char *op4, zend_uint op4_len, int self_var);
 void zephir_concat_vv(zval *result, zval *op1, zval *op2, int self_var);
 void zephir_concat_vvs(zval *result, zval *op1, zval *op2, const char *op3, zend_uint op3_len, int self_var);
-void zephir_concat_vvsssssss(zval *result, zval *op1, zval *op2, const char *op3, zend_uint op3_len, const char *op4, zend_uint op4_len, const char *op5, zend_uint op5_len, const char *op6, zend_uint op6_len, const char *op7, zend_uint op7_len, const char *op8, zend_uint op8_len, const char *op9, zend_uint op9_len, int self_var);
-void zephir_concat_vvsssssvs(zval *result, zval *op1, zval *op2, const char *op3, zend_uint op3_len, const char *op4, zend_uint op4_len, const char *op5, zend_uint op5_len, const char *op6, zend_uint op6_len, const char *op7, zend_uint op7_len, zval *op8, const char *op9, zend_uint op9_len, int self_var);
-void zephir_concat_vvsssvs(zval *result, zval *op1, zval *op2, const char *op3, zend_uint op3_len, const char *op4, zend_uint op4_len, const char *op5, zend_uint op5_len, zval *op6, const char *op7, zend_uint op7_len, int self_var);
 void zephir_concat_vvsv(zval *result, zval *op1, zval *op2, const char *op3, zend_uint op3_len, zval *op4, int self_var);
 void zephir_concat_vvsvs(zval *result, zval *op1, zval *op2, const char *op3, zend_uint op3_len, zval *op4, const char *op5, zend_uint op5_len, int self_var);
 void zephir_concat_function(zval *result, zval *op1, zval *op2);

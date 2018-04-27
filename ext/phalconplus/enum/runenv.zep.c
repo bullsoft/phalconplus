@@ -15,6 +15,7 @@
 #include "kernel/memory.h"
 #include "kernel/string.h"
 #include "kernel/operators.h"
+#include "kernel/object.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunEnv) {
@@ -28,6 +29,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunEnv) {
 	zephir_declare_class_constant_string(phalconplus_enum_runenv_ce, SL("TEST"), "test");
 
 	zephir_declare_class_constant_string(phalconplus_enum_runenv_ce, SL("UAT"), "uat");
+
+	zephir_declare_class_constant_string(phalconplus_enum_runenv_ce, SL("PRE_PRODUCTION"), "pre_production");
+
+	zephir_declare_class_constant_string(phalconplus_enum_runenv_ce, SL("AB_TEST"), "ab_test");
 
 	zephir_declare_class_constant_string(phalconplus_enum_runenv_ce, SL("PRODUCTION"), "production");
 
@@ -69,6 +74,22 @@ PHP_METHOD(PhalconPlus_Enum_RunEnv, isInProd) {
 	ZEPHIR_INIT_VAR(&_6);
 	zephir_substr(&_6, &_3, 0 , 7 , 0);
 	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(&_2, &_6));
+
+}
+
+PHP_METHOD(PhalconPlus_Enum_RunEnv, isInAbTest) {
+
+	zval _0, _1;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+
+
+	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_SINIT_VAR(_1);
+	ZVAL_STRING(&_1, "ab_test");
+	RETURN_BOOL(ZEPHIR_IS_EQUAL(&_1, &_0));
 
 }
 

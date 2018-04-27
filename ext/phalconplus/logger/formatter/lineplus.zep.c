@@ -158,7 +158,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		return;
 	}
 	ZEPHIR_MAKE_REF(&matches);
-	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 40, &matches);
+	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 42, &matches);
 	ZEPHIR_UNREF(&matches);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&matches);

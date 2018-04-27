@@ -32,6 +32,7 @@
 #include "phalconplus/enum/exception.zep.h"
 #include "phalconplus/enum/orderbydirection.zep.h"
 #include "phalconplus/enum/runenv.zep.h"
+#include "phalconplus/enum/runmode.zep.h"
 #include "phalconplus/logger/adapter/fileplus.zep.h"
 #include "phalconplus/logger/formatter/lineplus.zep.h"
 #include "phalconplus/logger/processor/trace.zep.h"
