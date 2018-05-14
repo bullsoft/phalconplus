@@ -24,7 +24,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id: 4a412f6f458ff57f1abab3e1b2aff1e5f53f77ba $ */
+/* $Id: c7fcadeab27632c218b62b1ed589057783c601ab $ */
 
 /* Sanity check to ensure that pcre extension needed by this script is available.
  * In the event it is not, print a nice error message indicating that this script will
@@ -671,7 +671,7 @@ if (isset($argc) && $argc > 1) {
 					$html_output = is_resource($html_file);
 					break;
 				case '--version':
-					echo '$Id: 4a412f6f458ff57f1abab3e1b2aff1e5f53f77ba $' . "\n";
+					echo '$Id: c7fcadeab27632c218b62b1ed589057783c601ab $' . "\n";
 					exit(1);
 
 				default:
@@ -841,7 +841,9 @@ HELP;
 
 		junit_save_xml();
 
-		if (getenv('REPORT_EXIT_STATUS') == 1 && ($sum_results['FAILED'] || $sum_results['BORKED'])) {
+		if (getenv('REPORT_EXIT_STATUS') !== '0' &&
+			getenv('REPORT_EXIT_STATUS') !== 'no' &&
+			($sum_results['FAILED'] || $sum_results['BORKED'])) {
 			exit(1);
 		}
 
@@ -977,7 +979,9 @@ save_or_mail_results();
 
 junit_save_xml();
 
-if (getenv('REPORT_EXIT_STATUS') == 1 && ($sum_results['FAILED'] || $sum_results['BORKED'])) {
+if (getenv('REPORT_EXIT_STATUS') !== '0' &&
+	getenv('REPORT_EXIT_STATUS') !== 'no' &&
+	($sum_results['FAILED'] || $sum_results['BORKED'])) {
 	exit(1);
 }
 exit(0);

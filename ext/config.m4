@@ -38,6 +38,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/orderbydirection.zep.c
 	phalconplus/enum/runenv.zep.c
 	phalconplus/enum/runmode.zep.c
+	phalconplus/enum/sys.zep.c
 	phalconplus/logger/adapter/fileplus.zep.c
 	phalconplus/logger/formatter/lineplus.zep.c
 	phalconplus/logger/processor/trace.zep.c
