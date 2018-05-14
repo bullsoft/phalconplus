@@ -1,6 +1,7 @@
 //<?php
 namespace PhalconPlus\Base;
 use PhalconPlus\Bootstrap as Bs;
+use PhalconPlus\Enum\Sys as Sys;
 
 /* Module Structure for mode "Web"
     .
@@ -25,42 +26,24 @@ class ModuleDef
     protected className = "";
     protected name = "";
     protected configPath = "";
+    protected dir = "";
 
     // <\Phalcon\Config>
     protected config = null;
     // <\PhalconPlus\Enum\RunMode>
     protected runMode = null;
 
-    public function __construct(<\PhalconPlus\Bootstrap> boot, const string! modulePath)
+    public function __construct(<\PhalconPlus\Bootstrap> boot, const string! moduleDir)
     {
-        if !is_dir(modulePath) {
-            throw new \Exception("Module directory not exists or not a dir, file positon: " . modulePath);
+        if !is_dir(moduleDir) {
+            throw new \Exception("Module directory not exists or not a dir, file positon: " . moduleDir);
         }
+        let this->dir = moduleDir;
 
-        // 模块配置, 如果找不到"app/config/{APP_ENV}.php"，则去找"app/config/config.php"
-        var confPath, confPrefix;
-        let confPrefix =  implode(Bs::DS, [
-            Bs::APP_DIR_NAME,
-            Bs::CONF_DIR_NAME,
-            APP_ENV
-        ]);
-        let confPath = modulePath . confPrefix . Bs::EXT;
-        if !is_file(confPath) {
-            // TODO: 是否需要打WARNING日志？
-            let confPrefix = implode(Bs::DS, [
-                Bs::APP_DIR_NAME,
-                Bs::CONF_DIR_NAME,
-                Bs::CONF_FILE_NAME
-            ]);
-            let confPath = modulePath . confPrefix . Bs::EXT;
-            if !is_file(confPath) {
-                throw new \Phalcon\Config\Exception("Module config file not exist, file position: " . confPath);
-            }
-        }
-        let this->configPath = confPath;
+        let this->configPath = Sys::getModuleConfigPath(moduleDir);
 
         // 模块配置
-        let this->config = new \Phalcon\Config(boot->load(confPath));
+        let this->config = new \Phalcon\Config(boot->load(this->configPath));
 
         var appConfig = this->config->application;
 
@@ -68,29 +51,30 @@ class ModuleDef
         let this->runMode = new \PhalconPlus\Enum\RunMode(ucfirst(strtolower(appConfig->mode)));
 
         let this->className = appConfig->ns . this->runMode->getMapClassName();
-        let this->classPath = modulePath . Bs::APP_DIR_NAME . Bs::DS . this->runMode->getMapClassName() . Bs::EXT;
+
+        let this->classPath = Sys::getModuleClassPath(moduleDir, this->runMode);
 
         if !is_file(this->classPath) {
             throw new \Exception("Module class file not exists: " . this->classPath);
         }
     }
 
-    public function mount(<\Phalcon\Di> di)
+    public function impl(<\Phalcon\Di> di) -> <\PhalconPlus\Base\AbstractModule>
     {
         require this->classPath;
         if !class_exists(this->className) {
             throw new \Exception("Module class not exists: ". this->className);
         }
         var className = this->className;
-        return new {className}(di);
+        return new {className}(di, this);
     }
 
-    public function getClassPath()
+    public function getClassPath() -> string
     {
         return this->classPath;
     }
 
-    public function getClassName()
+    public function getClassName() -> string
     {
         return this->className;
     }
@@ -100,22 +84,22 @@ class ModuleDef
         return this->runMode;
     }
 
-    public function getMapClassName()
+    public function getMapClassName() -> string
     {
         return this->runMode->getMapClassName();
     }
 
-    public function getMode()
+    public function getMode() -> string
     {
         return this->runMode->getValue();
     }
 
-    public function getName()
+    public function getName() -> string
     {
         return this->name;
     }
 
-    public function getConfigPath()
+    public function getConfigPath() -> string
     {
         return this->configPath;
     }
@@ -123,5 +107,10 @@ class ModuleDef
     public function getConfig() -> <\Phalcon\Config>
     {
         return this->config;
+    }
+
+    public function getDir() -> string
+    {
+        return this->dir;
     }
 }

@@ -13,7 +13,6 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/fcall.h"
 #include "kernel/memory.h"
 
 
@@ -23,29 +22,40 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractModule) {
 
 	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("def"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	return SUCCESS;
 
 }
 
 PHP_METHOD(PhalconPlus_Base_AbstractModule, __construct) {
 
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *di, di_sub;
+	zval *di, di_sub, *def = NULL, def_sub, __$null;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&di_sub);
+	ZVAL_UNDEF(&def_sub);
+	ZVAL_NULL(&__$null);
 
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &di);
+	zephir_fetch_params(0, 1, 1, &di, &def);
 
+	if (!def) {
+		def = &def_sub;
+		def = &__$null;
+	}
 
 
 	zephir_update_property_zval(this_ptr, SL("di"), di);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerautoloaders", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerservices", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	zephir_update_property_zval(this_ptr, SL("def"), def);
+
+}
+
+PHP_METHOD(PhalconPlus_Base_AbstractModule, getDef) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "def");
 
 }
 
