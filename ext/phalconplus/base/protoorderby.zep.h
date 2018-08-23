@@ -12,7 +12,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias);
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_protoorderby_setproperty, 0, 0, 1)
-	ZEND_ARG_INFO(0, property)
+	ZEND_ARG_TYPE_INFO(0, property, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_protoorderby_setdirection, 0, 0, 1)
@@ -20,7 +20,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_protoorderby_setdirection, 0, 0,
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_protoorderby_setalias, 0, 0, 1)
-	ZEND_ARG_INFO(0, alias)
+	ZEND_ARG_TYPE_INFO(0, alias, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_base_protoorderby_method_entry) {

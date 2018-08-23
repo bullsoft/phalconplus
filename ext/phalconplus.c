@@ -112,12 +112,14 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Volt_Extension_PhpFunction);
 	ZEPHIR_INIT(phalconplus_0__closure);
 	ZEPHIR_INIT(phalconplus_1__closure);
+	
 	return SUCCESS;
 }
 
 #ifndef ZEPHIR_RELEASE
 static PHP_MSHUTDOWN_FUNCTION(phalconplus)
 {
+	
 	zephir_deinitialize_memory(TSRMLS_C);
 	UNREGISTER_INI_ENTRIES();
 	return SUCCESS;
@@ -146,7 +148,8 @@ static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_global
 	/* Static cache */
 	memset(phalconplus_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
 
-
+	
+	
 }
 
 /**
@@ -154,12 +157,11 @@ static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_global
  */
 static void php_zephir_init_module_globals(zend_phalconplus_globals *phalconplus_globals TSRMLS_DC)
 {
-
+	
 }
 
 static PHP_RINIT_FUNCTION(phalconplus)
 {
-
 	zend_phalconplus_globals *phalconplus_globals_ptr;
 #ifdef ZTS
 	tsrm_ls = ts_resource(0);
@@ -169,7 +171,7 @@ static PHP_RINIT_FUNCTION(phalconplus)
 	php_zephir_init_globals(phalconplus_globals_ptr TSRMLS_CC);
 	zephir_initialize_memory(phalconplus_globals_ptr TSRMLS_CC);
 
-
+	
 	return SUCCESS;
 }
 
@@ -179,6 +181,8 @@ static PHP_RSHUTDOWN_FUNCTION(phalconplus)
 	zephir_deinitialize_memory(TSRMLS_C);
 	return SUCCESS;
 }
+
+
 
 static PHP_MINFO_FUNCTION(phalconplus)
 {
@@ -193,7 +197,7 @@ static PHP_MINFO_FUNCTION(phalconplus)
 	php_info_print_table_row(2, "Build Date", __DATE__ " " __TIME__ );
 	php_info_print_table_row(2, "Powered by Zephir", "Version " PHP_PHALCONPLUS_ZEPVERSION);
 	php_info_print_table_end();
-	php_info_print_table_start();
+		php_info_print_table_start();
 	php_info_print_table_header(2, "Directive", "Value");
 	php_info_print_table_row(2, "phalconplus.env", "Your environment, such as: dev, test, production etc.");
 	php_info_print_table_end();
@@ -209,12 +213,12 @@ static PHP_GINIT_FUNCTION(phalconplus)
 
 static PHP_GSHUTDOWN_FUNCTION(phalconplus)
 {
-
+	
 }
 
 
 zend_function_entry php_phalconplus_functions[] = {
-ZEND_FE_END
+	ZEND_FE_END
 
 };
 
@@ -237,7 +241,11 @@ zend_module_entry phalconplus_module_entry = {
 	ZEND_MODULE_GLOBALS(phalconplus),
 	PHP_GINIT(phalconplus),
 	PHP_GSHUTDOWN(phalconplus),
+#ifdef ZEPHIR_POST_REQUEST
+	PHP_PRSHUTDOWN(phalconplus),
+#else
 	NULL,
+#endif
 	STANDARD_MODULE_PROPERTIES_EX
 };
 

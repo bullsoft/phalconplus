@@ -14,6 +14,8 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
+#include "kernel/fcall.h"
+#include "kernel/operators.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractModule) {
@@ -56,6 +58,24 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, getDef) {
 
 
 	RETURN_MEMBER(getThis(), "def");
+
+}
+
+PHP_METHOD(PhalconPlus_Base_AbstractModule, isPrimary) {
+
+	zval _0, _1;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+
+	ZEPHIR_MM_GROW();
+
+	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&_1, &_0, "getisprimary", NULL, 0);
+	zephir_check_call_status();
+	RETURN_MM_BOOL(ZEPHIR_IS_TRUE(&_1));
 
 }
 

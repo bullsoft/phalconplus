@@ -11,27 +11,27 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get);
 zend_object *zephir_init_properties_PhalconPlus_Logger_Formatter_LinePlus(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, formatString)
+	ZEND_ARG_TYPE_INFO(0, formatString, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus_format, 0, 0, 3)
-	ZEND_ARG_INFO(0, message)
+	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
 	ZEND_ARG_INFO(0, type)
 	ZEND_ARG_INFO(0, date)
 	ZEND_ARG_INFO(0, context)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus_addprocessor, 0, 0, 2)
-	ZEND_ARG_INFO(0, name)
+	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
 	ZEND_ARG_OBJ_INFO(0, processor, PhalconPlus\\Logger\\Processor\\AbstractProcessor, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus_getprocessor, 0, 0, 1)
-	ZEND_ARG_INFO(0, name)
+	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus___get, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_logger_formatter_lineplus_method_entry) {

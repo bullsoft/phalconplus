@@ -12,8 +12,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver___construct
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyparams, 0, 0, 3)
-	ZEND_ARG_INFO(0, service)
-	ZEND_ARG_INFO(0, method)
+	ZEND_ARG_TYPE_INFO(0, service, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
 	ZEND_ARG_INFO(0, request)
 ZEND_END_ARG_INFO()
 

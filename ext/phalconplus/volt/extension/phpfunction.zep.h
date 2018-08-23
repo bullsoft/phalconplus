@@ -8,11 +8,11 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName);
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_volt_extension_phpfunction_setcustnamespace, 0, 0, 1)
-	ZEND_ARG_INFO(0, ns)
+	ZEND_ARG_TYPE_INFO(0, ns, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_volt_extension_phpfunction_setcustfuncname, 0, 0, 1)
-	ZEND_ARG_INFO(0, func)
+	ZEND_ARG_TYPE_INFO(0, func, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_volt_extension_phpfunction_method_entry) {
