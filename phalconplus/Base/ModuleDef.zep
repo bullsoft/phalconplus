@@ -33,7 +33,10 @@ class ModuleDef
     // <\PhalconPlus\Enum\RunMode>
     protected runMode = null;
 
-    public function __construct(<\PhalconPlus\Bootstrap> boot, const string! moduleDir)
+    // Is this a primary-module? false for default
+    protected isPrimary = false;
+
+    public function __construct(<\PhalconPlus\Bootstrap> boot, const string! moduleDir, boolean isPrimary = false)
     {
         if !is_dir(moduleDir) {
             throw new \Exception("Module directory not exists or not a dir, file positon: " . moduleDir);
@@ -57,6 +60,8 @@ class ModuleDef
         if !is_file(this->classPath) {
             throw new \Exception("Module class file not exists: " . this->classPath);
         }
+
+        let this->isPrimary = isPrimary;
     }
 
     public function impl(<\Phalcon\Di> di) -> <\PhalconPlus\Base\AbstractModule>
@@ -67,6 +72,11 @@ class ModuleDef
         }
         var className = this->className;
         return new {className}(di, this);
+    }
+
+    public function getIsPrimary()
+    {
+        return this->isPrimary;
     }
 
     public function getClassPath() -> string

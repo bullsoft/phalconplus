@@ -27,8 +27,7 @@ final class Bootstrap
         Sys::init(moduleDir);
 
         // 获取并初始化运行环境
-        var env;
-        let env = trim(get_cfg_var(Sys::ENV_NAME));
+        var env = trim(get_cfg_var(Sys::ENV_NAME));
         // 这里不能强约束env的值为枚举中的一个
         // 你可能会有非常多的环境，只要env值和配置文件名能对应上就行
         if !empty(env) {
@@ -52,7 +51,7 @@ final class Bootstrap
         define("APP_ROOT_COMMON_CONF_DIR", Sys::getGlobalConfigDir(), true);
     }
 
-    private function regModule(<\PhalconPlus\Base\ModuleDef> moduleDef) -> <\PhalconPlus\Base\AbstractModule>
+    private function registerModule(<\PhalconPlus\Base\ModuleDef> moduleDef) -> <\PhalconPlus\Base\AbstractModule>
     {
         if isset(this->activeModules[moduleDef->getName()]) {
             throw new \Exception("Module already loaded: " . moduleDef->getName());
@@ -84,7 +83,7 @@ final class Bootstrap
         let this->config = new \Phalcon\Config(this->load(globalConfPath));
 
         // 初始化主模块
-        let this->primaryModuleDef = new \PhalconPlus\Base\ModuleDef(this, APP_MODULE_DIR);
+        let this->primaryModuleDef = new \PhalconPlus\Base\ModuleDef(this, APP_MODULE_DIR, true);
         // 定义工作模式
         define("APP_RUN_MODE", this->primaryModuleDef->getMode(), true);
         // 获取模块配置
@@ -120,7 +119,7 @@ final class Bootstrap
         // 把自己注入di
         this->di->setShared("bootstrap", this);
         // 注册模块
-        this->regModule(this->primaryModuleDef);
+        this->registerModule(this->primaryModuleDef);
 
         // 如果不需要handle，则直接返回
         if !needHandle { return true; }
@@ -149,7 +148,7 @@ final class Bootstrap
         this->load(APP_ROOT_COMMON_LOAD_DIR . "default-web.php");
 
         // 注册模块
-        this->regModule(this->primaryModuleDef);
+        this->registerModule(this->primaryModuleDef);
 
         if !needHandle { return true; }
 
@@ -180,7 +179,7 @@ final class Bootstrap
         this->di->setShared("bootstrap", this);
 
         // 注册模块
-        this->regModule(this->primaryModuleDef);
+        this->registerModule(this->primaryModuleDef);
 
         if !needHandle { return true; }
 
@@ -224,7 +223,7 @@ final class Bootstrap
         let moduleDir = Sys::getModuleDirByName(moduleName);
         let moduleDef = new \PhalconPlus\Base\ModuleDef(this, moduleDir);
         // 注册模块
-        let module = this->regModule(moduleDef);
+        let module = this->registerModule(moduleDef);
 
         // 保留被依赖的模块的配置, @deprecated
         // Use `$bootstrap->getModuleDef($moduleName)->getConfig()` instead
