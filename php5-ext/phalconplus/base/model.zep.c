@@ -789,7 +789,7 @@ PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond) {
 	ZEPHIR_INIT_VAR(uniqueTypes);
 	array_init(uniqueTypes);
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("__p_UK"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "phalconplus/Base/Model.zep", 397);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "phalconplus/Base/Model.zep", 398);
 	for (
 	  ; zend_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zend_hash_move_forward_ex(_2, &_1)
@@ -797,29 +797,29 @@ PHP_METHOD(PhalconPlus_Base_Model, _p_buildUkCond) {
 		ZEPHIR_GET_HMKEY(attributeField, _2, _1);
 		ZEPHIR_GET_HVALUE(info, _3);
 		ZEPHIR_OBS_NVAR(type);
-		zephir_array_fetch_string(&type, info, SL("type"), PH_NOISY, "phalconplus/Base/Model.zep", 380 TSRMLS_CC);
+		zephir_array_fetch_string(&type, info, SL("type"), PH_NOISY, "phalconplus/Base/Model.zep", 381 TSRMLS_CC);
 		ZEPHIR_OBS_NVAR(field);
-		zephir_array_fetch_string(&field, info, SL("field"), PH_NOISY, "phalconplus/Base/Model.zep", 381 TSRMLS_CC);
+		zephir_array_fetch_string(&field, info, SL("field"), PH_NOISY, "phalconplus/Base/Model.zep", 382 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(value);
 		ZVAL_NULL(value);
 		ZEPHIR_OBS_NVAR(value);
 		if (zephir_fetch_property_zval(&value, this_ptr, attributeField, PH_SILENT_CC)) {
 			ZEPHIR_OBS_NVAR(selfVal$$4);
 			if (zephir_array_isset_string_fetch(&selfVal$$4, info, SS("value"), 0 TSRMLS_CC)) {
-				zephir_array_append(&uniqueParams, selfVal$$4, PH_SEPARATE, "phalconplus/Base/Model.zep", 386);
+				zephir_array_append(&uniqueParams, selfVal$$4, PH_SEPARATE, "phalconplus/Base/Model.zep", 387);
 			} else {
-				zephir_array_append(&uniqueParams, value, PH_SEPARATE, "phalconplus/Base/Model.zep", 388);
+				zephir_array_append(&uniqueParams, value, PH_SEPARATE, "phalconplus/Base/Model.zep", 389);
 			}
 		} else {
-			zephir_array_append(&uniqueParams, ZEPHIR_GLOBAL(global_null), PH_SEPARATE, "phalconplus/Base/Model.zep", 391);
+			zephir_array_append(&uniqueParams, ZEPHIR_GLOBAL(global_null), PH_SEPARATE, "phalconplus/Base/Model.zep", 392);
 		}
-		zephir_array_append(&uniqueTypes, type, PH_SEPARATE, "phalconplus/Base/Model.zep", 393);
+		zephir_array_append(&uniqueTypes, type, PH_SEPARATE, "phalconplus/Base/Model.zep", 394);
 		ZEPHIR_CALL_METHOD(&_4$$3, connection, "escapeidentifier", &_5, 0, field);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_6$$3, info, SL("op"), PH_NOISY | PH_READONLY, "phalconplus/Base/Model.zep", 394 TSRMLS_CC);
+		zephir_array_fetch_string(&_6$$3, info, SL("op"), PH_NOISY | PH_READONLY, "phalconplus/Base/Model.zep", 395 TSRMLS_CC);
 		ZEPHIR_INIT_LNVAR(_7$$3);
 		ZEPHIR_CONCAT_VSVS(_7$$3, _4$$3, " ", _6$$3, " ?");
-		zephir_array_append(&whereUk, _7$$3, PH_SEPARATE, "phalconplus/Base/Model.zep", 394);
+		zephir_array_append(&whereUk, _7$$3, PH_SEPARATE, "phalconplus/Base/Model.zep", 395);
 	}
 	ZEPHIR_INIT_VAR(usefuleParams);
 	array_init(usefuleParams);
@@ -864,7 +864,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 		ZEPHIR_CALL_METHOD(NULL, proto, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_is_iterable(toArray, &_1, &_0, 0, 0, "phalconplus/Base/Model.zep", 420);
+	zephir_is_iterable(toArray, &_1, &_0, 0, 0, "phalconplus/Base/Model.zep", 421);
 	for (
 	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zend_hash_move_forward_ex(_1, &_0)
@@ -886,7 +886,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&relations, manager, "getrelations", NULL, 0, modelName);
 	zephir_check_call_status();
-	zephir_is_iterable(relations, &_6, &_5, 0, 0, "phalconplus/Base/Model.zep", 441);
+	zephir_is_iterable(relations, &_6, &_5, 0, 0, "phalconplus/Base/Model.zep", 442);
 	for (
 	  ; zend_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
 	  ; zend_hash_move_forward_ex(_6, &_5)
@@ -901,7 +901,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 		ZEPHIR_OBS_NVAR(alias);
 		if (zephir_array_isset_string_fetch(&alias, options, SS("alias"), 0 TSRMLS_CC)) {
 			if (Z_TYPE_P(alias) != IS_STRING) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Relation alias must be a string", "phalconplus/Base/Model.zep", 430);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Relation alias must be a string", "phalconplus/Base/Model.zep", 431);
 				return;
 			}
 			ZEPHIR_INIT_NVAR(lowerAlias);

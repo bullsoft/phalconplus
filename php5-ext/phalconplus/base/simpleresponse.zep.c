@@ -13,9 +13,9 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
-#include "kernel/object.h"
-#include "kernel/operators.h"
 #include "kernel/fcall.h"
+#include "kernel/operators.h"
+#include "kernel/object.h"
 #include "kernel/array.h"
 
 
@@ -33,9 +33,41 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleResponse) {
 
 }
 
-/**
- * @deprecated
- */
+PHP_METHOD(PhalconPlus_Base_SimpleResponse, softClone) {
+
+	HashTable *_1;
+	HashPosition _0;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_4 = NULL, *_5 = NULL;
+	zval *data_param = NULL, *key = NULL, *val = NULL, **_2, *_3$$3 = NULL;
+	zval *data = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &data_param);
+
+	zephir_get_arrval(data, data_param);
+
+
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "phalconplus/Base/SimpleResponse.zep", 20);
+	for (
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
+	) {
+		ZEPHIR_GET_HMKEY(key, _1, _0);
+		ZEPHIR_GET_HVALUE(val, _2);
+		ZEPHIR_CALL_FUNCTION(&_3$$3, "property_exists", &_4, 1, this_ptr, key);
+		zephir_check_call_status();
+		if (zephir_is_true(_3$$3)) {
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_5, 0, key, val);
+			zephir_check_call_status();
+		} else {
+			zephir_update_property_array(this_ptr, SL("result"), key, val TSRMLS_CC);
+		}
+	}
+	ZEPHIR_MM_RESTORE();
+
+}
+
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult) {
 
 	zval *_1 = NULL;
@@ -92,7 +124,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 	} else {
 		_0$$4 = zephir_fetch_nproperty_this(this_ptr, SL("result"), PH_NOISY_CC);
 		ZEPHIR_MAKE_REF(_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 36, _0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 42, _0$$4, val);
 		ZEPHIR_UNREF(_0$$4);
 		zephir_check_call_status();
 	}
@@ -118,7 +150,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 	} else {
 		_0$$4 = zephir_fetch_nproperty_this(this_ptr, SL("result"), PH_NOISY_CC);
 		ZEPHIR_MAKE_REF(_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 36, _0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 42, _0$$4, val);
 		ZEPHIR_UNREF(_0$$4);
 		zephir_check_call_status();
 	}
@@ -148,7 +180,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 	} else {
 		_1$$5 = zephir_fetch_nproperty_this(this_ptr, SL("result"), PH_NOISY_CC);
 		ZEPHIR_MAKE_REF(_1$$5);
-		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 40, _1$$5);
+		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 46, _1$$5);
 		ZEPHIR_UNREF(_1$$5);
 		zephir_check_call_status();
 		RETURN_MM();

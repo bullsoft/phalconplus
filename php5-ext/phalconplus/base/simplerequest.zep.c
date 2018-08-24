@@ -12,11 +12,11 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/array.h"
-#include "kernel/object.h"
 #include "kernel/memory.h"
-#include "kernel/operators.h"
 #include "kernel/fcall.h"
+#include "kernel/operators.h"
+#include "kernel/object.h"
+#include "kernel/array.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleRequest) {
@@ -27,6 +27,41 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleRequest) {
 
 	phalconplus_base_simplerequest_ce->create_object = zephir_init_properties_PhalconPlus_Base_SimpleRequest;
 	return SUCCESS;
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
+
+	HashTable *_1;
+	HashPosition _0;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_4 = NULL, *_5 = NULL;
+	zval *data_param = NULL, *key = NULL, *val = NULL, **_2, *_3$$3 = NULL;
+	zval *data = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &data_param);
+
+	zephir_get_arrval(data, data_param);
+
+
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "phalconplus/Base/SimpleRequest.zep", 17);
+	for (
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
+	) {
+		ZEPHIR_GET_HMKEY(key, _1, _0);
+		ZEPHIR_GET_HVALUE(val, _2);
+		ZEPHIR_CALL_FUNCTION(&_3$$3, "property_exists", &_4, 1, this_ptr, key);
+		zephir_check_call_status();
+		if (zephir_is_true(_3$$3)) {
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_5, 0, key, val);
+			zephir_check_call_status();
+		} else {
+			zephir_update_property_array(this_ptr, SL("params"), key, val TSRMLS_CC);
+		}
+	}
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -79,7 +114,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 	} else {
 		_0$$4 = zephir_fetch_nproperty_this(this_ptr, SL("params"), PH_NOISY_CC);
 		ZEPHIR_MAKE_REF(_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 36, _0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 42, _0$$4, val);
 		ZEPHIR_UNREF(_0$$4);
 		zephir_check_call_status();
 	}

@@ -24,7 +24,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id$ */
+/* $Id: 0949d50c885af3ee6c38c8939de3a99985fa1660 $ */
 
 /* Sanity check to ensure that pcre extension needed by this script is available.
  * In the event it is not, print a nice error message indicating that this script will
@@ -663,7 +663,7 @@ if (isset($argc) && $argc > 1) {
 					$html_output = is_resource($html_file);
 					break;
 				case '--version':
-					echo '$Id$' . "\n";
+					echo '$Id: 0949d50c885af3ee6c38c8939de3a99985fa1660 $' . "\n";
 					exit(1);
 
 				default:

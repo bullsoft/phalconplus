@@ -29,6 +29,8 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AbstractEnum) {
 
 	zend_declare_property_null(phalconplus_enum_abstractenum_ce, SL("val"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_declare_class_constant_string(phalconplus_enum_abstractenum_ce, SL("DEFAULT_VALUE"), "__PhalconPlus_AbstractEnum_DefaultValue__" TSRMLS_CC);
+
 	zend_class_implements(phalconplus_enum_abstractenum_ce TSRMLS_CC, 1, zephir_get_internal_ce(SS("jsonserializable") TSRMLS_CC));
 	return SUCCESS;
 
@@ -79,7 +81,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, _5$$4, "__construct", NULL, 14, _8$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_5$$4, "phalconplus/Enum/AbstractEnum.zep", 15 TSRMLS_CC);
+			zephir_throw_exception_debug(_5$$4, "phalconplus/Enum/AbstractEnum.zep", 17 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -118,7 +120,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 15, _4$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1$$3, "phalconplus/Enum/AbstractEnum.zep", 29 TSRMLS_CC);
+		zephir_throw_exception_debug(_1$$3, "phalconplus/Enum/AbstractEnum.zep", 31 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -203,7 +205,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 		ZEPHIR_CONCAT_SVSV(_6$$3, "Duplicated values were found in Enum Class: ", _3$$3, " with values in ", _4$$3);
 		ZEPHIR_CALL_METHOD(NULL, _2$$3, "__construct", NULL, 20, _6$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_2$$3, "phalconplus/Enum/AbstractEnum.zep", 63 TSRMLS_CC);
+		zephir_throw_exception_debug(_2$$3, "phalconplus/Enum/AbstractEnum.zep", 65 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

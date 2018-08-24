@@ -23,6 +23,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/backendserver.zep.c
 	phalconplus/base/exception.zep.c
 	phalconplus/base/model.zep.c
+	phalconplus/base/moduledef.zep.c
 	phalconplus/base/pagable.zep.c
 	phalconplus/base/page.zep.c
 	phalconplus/base/protoorderby.zep.c
@@ -35,6 +36,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/assertioncode.zep.c
 	phalconplus/enum/exception.zep.c
 	phalconplus/enum/orderbydirection.zep.c
+	phalconplus/enum/runenv.zep.c
+	phalconplus/enum/runmode.zep.c
+	phalconplus/enum/sys.zep.c
 	phalconplus/logger/adapter/fileplus.zep.c
 	phalconplus/logger/formatter/lineplus.zep.c
 	phalconplus/logger/processor/trace.zep.c
