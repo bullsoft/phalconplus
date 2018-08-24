@@ -64,7 +64,7 @@
     "name": "phalconplus",
     "description": "Phalcon+ is a new framework based on Phalcon.",
     "author": "Gu Weigang<guweigang@outlook.com> and BullSoft<support@bullsoft.org>",
-    "version": "1.0.0-alpha",
+    "version": "1.0.0-beta",
     "verbose": false,
     "requires": {
         "extensions": ["phalcon", "yar"]
