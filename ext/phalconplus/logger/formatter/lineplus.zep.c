@@ -72,14 +72,14 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 
 	zephir_fcall_cache_entry *_12 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *message_param = NULL, *type, type_sub, *date, date_sub, *context = NULL, context_sub, _0, _1, _2, _3, matches, result, _4, _5, replace0, replace1, val1, val2, processors, *_9, logStr, _14, _15, _6$$3, _7$$3, _8$$3, _10$$4, _11$$5, _13$$6;
-	zval message;
+	zval *message, message_sub, *type, type_sub, *timestamp, timestamp_sub, *context = NULL, context_sub, __$null, _0, _1, _2, _3, matches, result, _4, _5, replace0, replace1, val1, val2, processors, *_9, logStr, _14, _15, _6$$3, _7$$3, _8$$3, _10$$4, _11$$5, _13$$6;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&message);
+	ZVAL_UNDEF(&message_sub);
 	ZVAL_UNDEF(&type_sub);
-	ZVAL_UNDEF(&date_sub);
+	ZVAL_UNDEF(&timestamp_sub);
 	ZVAL_UNDEF(&context_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -104,31 +104,20 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	ZVAL_UNDEF(&_13$$6);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 3, 1, &message_param, &type, &date, &context);
+	zephir_fetch_params(1, 3, 1, &message, &type, &timestamp, &context);
 
-	if (UNEXPECTED(Z_TYPE_P(message_param) != IS_STRING && Z_TYPE_P(message_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'message' must be a string") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-	if (EXPECTED(Z_TYPE_P(message_param) == IS_STRING)) {
-		zephir_get_strval(&message, message_param);
-	} else {
-		ZEPHIR_INIT_VAR(&message);
-		ZVAL_EMPTY_STRING(&message);
-	}
 	if (!context) {
 		context = &context_sub;
-		ZEPHIR_INIT_VAR(context);
-		array_init(context);
+		context = &__$null;
 	}
 
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "message");
-	zephir_update_property_array(this_ptr, SL("processors"), &_0, &message TSRMLS_CC);
+	zephir_update_property_array(this_ptr, SL("processors"), &_0, message TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "Y-m-d H:i:s");
-	ZEPHIR_CALL_FUNCTION(&_2, "date", NULL, 30, &_1, date);
+	ZEPHIR_CALL_FUNCTION(&_2, "date", NULL, 30, &_1, timestamp);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "date");

@@ -14,10 +14,14 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus___construct
 	ZEND_ARG_TYPE_INFO(0, formatString, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus_format, 0, 0, 3)
-	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus_format, 0, 3, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus_format, 0, 3, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_INFO(0, message)
 	ZEND_ARG_INFO(0, type)
-	ZEND_ARG_INFO(0, date)
+	ZEND_ARG_INFO(0, timestamp)
 	ZEND_ARG_INFO(0, context)
 ZEND_END_ARG_INFO()
 

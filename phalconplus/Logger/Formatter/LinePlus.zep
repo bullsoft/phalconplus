@@ -16,10 +16,10 @@ class LinePlus extends \Phalcon\Logger\Formatter implements \Phalcon\Logger\Form
         //let this->logLevel = array_flip(reflection->getConstants());
     }
 
-    public function format (string! message, type, date, context = [])
+    public function format(message, type, timestamp, var context = null) -> string|array
     {
         let this->processors["message"] = message;
-        let this->processors["date"] = date("Y-m-d H:i:s", date);
+        let this->processors["date"] = date("Y-m-d H:i:s", timestamp);
         let this->processors["type"] = this->getTypeString(type);
 
         var matches = [], result;

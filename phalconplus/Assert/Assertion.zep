@@ -7,13 +7,11 @@ use PhalconPlus\Enum\AssertionCode;
  */
 class Assertion
 {
-    // static protected exceptionClass = "\\PhalconPlus\\Assert\\InvalidArgumentException";
-    
     protected static function createException(value, message, code, propertyPath, array constraints = [])
     {
         return new \PhalconPlus\Assert\InvalidArgumentException(message, code, propertyPath, value, constraints);
     }
-    
+
     public static function eq(var value, var value2, var message = null, var propertyPath = null)
     {
         if value != value2 {
@@ -52,7 +50,6 @@ class Assertion
             if message === null {
                 let message = "Value " . v1 . " is empty, but non empty value was expected.";
             }
-            
             throw static::createException(value, message, AssertionCode::VALUE_EMPTY, propertyPath);
         }
     }
@@ -67,9 +64,10 @@ class Assertion
             }
             throw static::createException(value, message, AssertionCode::VALUE_NULL, propertyPath);
         }
+        return true;
     }
 
-    public static function numeric(var value, var message = null, var propertyPath = null)
+    public static function numeric(var value, var message = null, var propertyPath = null) -> boolean
     {
         if !is_numeric(value) {
             var v1;
@@ -79,13 +77,28 @@ class Assertion
             }
             throw static::createException(value, message, AssertionCode::INVALID_NUMERIC, propertyPath);
         }
+        return true;
+    }
+
+    public static function str(var value, var message = null, var propertyPath = null) -> boolean
+    {
+        if !is_string(value) {
+            let message = sprintf(
+                message ? message : "Value \"%s\" expected to be string, type %s given.",
+                static::stringify(value),
+                gettype(value)
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_STRING, propertyPath);
+        }
+        return true;
     }
 
     private static function stringify(value)
     {
         if is_bool(value) {
-            return value ? "<TRUE>" : "<FALSE>";
+            return value == true ? "#TRUE#" : "#FALSE#";
         }
+
         var val;
         if is_scalar(value) {
             let val = (string) value;
@@ -95,16 +108,16 @@ class Assertion
             return val;
         }
         if is_array(value) {
-            return "<ARRAY>";
+            return "#ARRAY#";
         }
         if is_object(value) {
             return get_class(value);
         }
         if is_resource(value) {
-            return "<RESOURCE>";
+            return "#RESOURCE#";
         }
         if value === NULL {
-            return "<NULL>";
+            return "#NULL#";
         }
         return "unknown";
     }

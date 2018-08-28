@@ -9,6 +9,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same);
 PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty);
 PHP_METHOD(PhalconPlus_Assert_Assertion, notNull);
 PHP_METHOD(PhalconPlus_Assert_Assertion, numeric);
+PHP_METHOD(PhalconPlus_Assert_Assertion, str);
 PHP_METHOD(PhalconPlus_Assert_Assertion, stringify);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_assert_assertion_createexception, 0, 0, 4)
@@ -45,7 +46,21 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_assert_assertion_notnull, 0, 0, 1)
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_assert_assertion_numeric, 0, 0, 1)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_numeric, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_numeric, 0, 1, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_INFO(0, value)
+	ZEND_ARG_INFO(0, message)
+	ZEND_ARG_INFO(0, propertyPath)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_str, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_str, 0, 1, _IS_BOOL, NULL, 0)
+#endif
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, message)
 	ZEND_ARG_INFO(0, propertyPath)
@@ -62,6 +77,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_assert_assertion_method_entry) {
 	PHP_ME(PhalconPlus_Assert_Assertion, notEmpty, arginfo_phalconplus_assert_assertion_notempty, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, notNull, arginfo_phalconplus_assert_assertion_notnull, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, numeric, arginfo_phalconplus_assert_assertion_numeric, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Assert_Assertion, str, arginfo_phalconplus_assert_assertion_str, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, stringify, arginfo_phalconplus_assert_assertion_stringify, ZEND_ACC_PRIVATE|ZEND_ACC_STATIC)
 	PHP_FE_END
 };
