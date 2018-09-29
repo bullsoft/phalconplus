@@ -1,7 +1,10 @@
 namespace PhalconPlus\Base;
 
-class SimpleRequest extends ProtoBuffer
+final class SimpleRequest extends AbstractRequest
 {
+    /**
+     * @var array
+     */
     private params = [];
 
     public function softClone(array data)
@@ -24,13 +27,13 @@ class SimpleRequest extends ProtoBuffer
         }
     }
 
-    public function setParams(array params)
+    public function setParams(array params) -> <\PhalconPlus\Base\SimpleRequest>
     {
         let this->params = params;
         return this;
     }
 
-    public function setParam(var val, var key = null)
+    public function setParam(var val, var key = null) -> <\PhalconPlus\Base\SimpleRequest>
     {
         if !is_null(key) {
             let this->params[key] = val;
@@ -40,7 +43,7 @@ class SimpleRequest extends ProtoBuffer
         return this;
     }
 
-    public function getParams()
+    public function getParams() -> array
     {
         return this->params;
     }

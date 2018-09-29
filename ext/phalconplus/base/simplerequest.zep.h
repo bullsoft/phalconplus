@@ -18,13 +18,28 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simplerequest_getparam, 0, 0, 1)
 	ZEND_ARG_INFO(0, idx)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simplerequest_setparams, 0, 0, 1)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_simplerequest_setparams, 0, 1, PhalconPlus\\Base\\SimpleRequest, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_simplerequest_setparams, 0, 1, NULL, "PhalconPlus\\Base\\SimpleRequest", 0)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, params, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simplerequest_setparam, 0, 0, 1)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_simplerequest_setparam, 0, 1, PhalconPlus\\Base\\SimpleRequest, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_simplerequest_setparam, 0, 1, NULL, "PhalconPlus\\Base\\SimpleRequest", 0)
+#endif
 	ZEND_ARG_INFO(0, val)
 	ZEND_ARG_INFO(0, key)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_simplerequest_getparams, 0, 0, IS_NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_simplerequest_getparams, 0, 0, IS_NULL, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_base_simplerequest_method_entry) {
@@ -32,6 +47,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_simplerequest_method_entry) {
 	PHP_ME(PhalconPlus_Base_SimpleRequest, getParam, arginfo_phalconplus_base_simplerequest_getparam, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_SimpleRequest, setParams, arginfo_phalconplus_base_simplerequest_setparams, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_SimpleRequest, setParam, arginfo_phalconplus_base_simplerequest_setparam, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Base_SimpleRequest, getParams, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_SimpleRequest, getParams, arginfo_phalconplus_base_simplerequest_getparams, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

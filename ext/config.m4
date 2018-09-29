@@ -14,13 +14,12 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
-	phalconplus/base/response.zep.c
+	phalconplus/base/abstractrequest.zep.c
+	phalconplus/base/abstractresponse.zep.c
 	phalconplus/rpc/server/abstractserver.zep.c
 	phalconplus/assert/assertion.zep.c
 	phalconplus/assert/invalidargumentexception.zep.c
 	phalconplus/base/abstractmodule.zep.c
-	phalconplus/base/abstractrequest.zep.c
-	phalconplus/base/backendserver.zep.c
 	phalconplus/base/exception.zep.c
 	phalconplus/base/model.zep.c
 	phalconplus/base/moduledef.zep.c
@@ -30,6 +29,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/service.zep.c
 	phalconplus/base/simplerequest.zep.c
 	phalconplus/base/simpleresponse.zep.c
+	phalconplus/base/simpleserver.zep.c
 	phalconplus/bootstrap.zep.c
 	phalconplus/db/mysql.zep.c
 	phalconplus/db/unitofwork.zep.c

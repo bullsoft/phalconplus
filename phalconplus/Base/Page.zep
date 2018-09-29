@@ -4,17 +4,23 @@ use Phalcon\Mvc\Model\Resultset;
 
 class Page extends ProtoBuffer
 {
-    private pagable;
+    /**
+     * @var <\Phalcon\Base\Pagable>
+     */
+    private pagable = null;
 
-    private data;
+    /**
+     * @var mixed array | <ArrayObject>
+     */ 
+    private data = null;
 
-    private totalSize;
+    private totalSize = 0;
 
-    private pageNo;
+    private pageNo = 0;
 
-    private pageSize;
+    private pageSize = 0;
 
-    private totalPage;
+    private totalPage = 0;
 
     public function __construct(<Pagable> pagable, totalSize, <\Phalcon\Mvc\Model\Resultset> data)
     {

@@ -64,7 +64,7 @@ class Model extends \Phalcon\Mvc\Model
     }
 
     /**
-     *@deprecated
+     * @deprecated 非单例，不建议用此方法名称，将在以后移除
      */
     public static function getInstance() -> <\Phalcon\Mvc\Model>
     {

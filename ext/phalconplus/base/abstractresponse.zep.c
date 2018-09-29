@@ -14,9 +14,9 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractRequest) {
+ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractResponse) {
 
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, AbstractRequest, phalconplus, base_abstractrequest, phalconplus_base_protobuffer_ce, NULL, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, AbstractResponse, phalconplus, base_abstractresponse, phalconplus_base_protobuffer_ce, NULL, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	return SUCCESS;
 

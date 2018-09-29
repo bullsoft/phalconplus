@@ -1,6 +1,6 @@
 namespace PhalconPlus\Base;
 
-abstract class AbstractRequest
+abstract class AbstractRequest extends ProtoBuffer
 {
 
 }

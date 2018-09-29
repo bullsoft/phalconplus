@@ -1,6 +1,6 @@
 namespace PhalconPlus\Base;
 
-final class SimpleResponse extends Response
+final class SimpleResponse extends AbstractResponse
 {
     /**
      * @var array

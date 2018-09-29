@@ -41,10 +41,10 @@ final class Bootstrap
         }
 
         // 定义全局常量
-        define("APP_ENV", this->env, true); // 为了兼容
+        define("APP_ENV", this->env, true); // 为了兼容, 同下
         define("APP_RUN_ENV", this->env, true);
         define("APP_ROOT_DIR", Sys::getRootDir(), true);
-        define("APP_MODULE_DIR", Sys::getPrimaryModuleDir(), true); // 为了兼容
+        define("APP_MODULE_DIR", Sys::getPrimaryModuleDir(), true); // 为了兼容, 同下
         define("APP_PRI_MODULE_DIR", Sys::getPrimaryModuleDir(), true);
         define("APP_ROOT_COMMON_DIR", Sys::getCommonDir(), true);
         define("APP_ROOT_COMMON_LOAD_DIR", Sys::getGlobalLoadDir(), true);
@@ -78,9 +78,13 @@ final class Bootstrap
         // 全局配置
         let globalConfPath = Sys::getGlobalConfigPath();
         if !is_file(globalConfPath) {
-            throw new \Phalcon\Config\Exception("Global config file not exist, file position: " . globalConfPath);
+            // throw new \Phalcon\Config\Exception("Global config file not exist, file position: " . globalConfPath);
+            // Make a warning here
+            error_log("PHP Notice:  PhalconPlus\\Bootstrap Global config file not exists: " . globalConfPath);
+            let this->config = new \Phalcon\Config([]); 
+        } else {
+            let this->config = new \Phalcon\Config(this->load(globalConfPath));
         }
-        let this->config = new \Phalcon\Config(this->load(globalConfPath));
 
         // 初始化主模块
         let this->primaryModuleDef = new \PhalconPlus\Base\ModuleDef(this, APP_MODULE_DIR, true);
@@ -96,10 +100,10 @@ final class Bootstrap
 
     public function exec()
     {
-        var handleMethod;
+        var handleMethod = "exec";
         // 初始化配置
         this->initConf();
-        let handleMethod = "exec" . this->primaryModuleDef->getMapClassName();
+        let handleMethod .= this->primaryModuleDef->getMapClassName();
         return call_user_func_array([this, handleMethod], func_get_args());
     }
 
@@ -115,7 +119,14 @@ final class Bootstrap
         this->application->setDI(this->di);
 
         // 加载Web模式依赖
-        this->load(APP_ROOT_COMMON_LOAD_DIR . "default-web.php");
+        var globalScript;
+        let globalScript = APP_ROOT_COMMON_LOAD_DIR . "default-web.php";
+        if is_file(globalScript) {
+            this->load(globalScript);
+        } else {
+            error_log("PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: " . globalScript);
+        }
+
         // 把自己注入di
         this->di->setShared("bootstrap", this);
         // 注册模块
@@ -145,15 +156,31 @@ final class Bootstrap
 
         let this->di = new \Phalcon\DI\FactoryDefault();
         this->di->setShared("bootstrap", this);
-        this->load(APP_ROOT_COMMON_LOAD_DIR . "default-web.php");
+
+        var globalScript;
+        let globalScript = APP_ROOT_COMMON_LOAD_DIR . "default-web.php";
+        if is_file(globalScript) {
+            this->load(globalScript);
+        } else {
+            error_log("PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: " . globalScript);
+        }
 
         // 注册模块
         this->registerModule(this->primaryModuleDef);
 
         if !needHandle { return true; }
 
+        // Backend Server, Default is SimpleServer 
+        if this->di->has("backendSrv") {
+            let backendSrv = this->di->get("backendSrv");
+            if ! (backendSrv instanceof \PhalconPlus\RPC\Server\AbstractServer) {
+                throw new \Exception("Service object(DI[\"backendSrv\"]) must be type of \\PhalconPlus\\RPC\\Server\\AbstractServer");
+            }
+        } else {
+            let backendSrv = new \PhalconPlus\Base\SimpleServer(this->di);
+        }
+
         // Yar Server
-        let backendSrv = new \PhalconPlus\Base\BackendServer(this->di);
         let this->application = new \Yar_Server(backendSrv);
 
         // 运行
@@ -175,7 +202,14 @@ final class Bootstrap
         let this->application = new \Phalcon\CLI\Console();
         this->application->setDI(this->di);
 
-        this->load(APP_ROOT_COMMON_LOAD_DIR . "default-cli.php");
+        var globalScript;
+        let globalScript = APP_ROOT_COMMON_LOAD_DIR . "default-cli.php";
+        if is_file(globalScript) {
+            this->load(globalScript);
+        } else {
+            error_log("PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: " . globalScript);
+        }
+        
         this->di->setShared("bootstrap", this);
 
         // 注册模块
@@ -225,10 +259,10 @@ final class Bootstrap
         // 注册模块
         let module = this->registerModule(moduleDef);
 
-        // 保留被依赖的模块的配置, @deprecated
+        // 保留被依赖的模块的配置, 已经移除
+        // this->di->set("moduleConfig", moduleDef->getConfig());
         // Use `$bootstrap->getModuleDef($moduleName)->getConfig()` instead
-        this->di->set("moduleConfig", moduleDef->getConfig());
-
+        
         // 参与合并的模块配置
         let moduleConf = new \Phalcon\Config(this->load(moduleDef->getConfigPath()));
         // 全局配置文件优先级高于被依赖的模块

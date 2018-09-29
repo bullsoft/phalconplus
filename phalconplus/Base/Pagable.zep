@@ -5,8 +5,8 @@ class Pagable extends ProtoBuffer
     const DEFAULT_PAGE_NO = 1;
     const DEFAULT_PAGE_SIZE = 15;
 
-    private pageNo;
-    private pageSize;
+    private pageNo = 0;
+    private pageSize = 0;
     private orderBys = [];
 
     public function getPageNo()

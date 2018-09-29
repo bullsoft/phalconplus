@@ -19,7 +19,6 @@
 #include "kernel/exception.h"
 #include "kernel/array.h"
 #include "kernel/string.h"
-#include "kernel/object.h"
 
 
 /**
@@ -70,10 +69,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 	zval _2$$3;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
-	zval *value, value_sub, *value2, value2_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, v2$$3, _1$$3, _3$$3;
+	zval *value1, value1_sub, *value2, value2_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, v2$$3, _1$$3, _3$$3;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&value1_sub);
 	ZVAL_UNDEF(&value2_sub);
 	ZVAL_UNDEF(&message_sub);
 	ZVAL_UNDEF(&propertyPath_sub);
@@ -85,7 +84,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 	ZVAL_UNDEF(&_2$$3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 2, &value, &value2, &message, &propertyPath);
+	zephir_fetch_params(1, 2, 2, &value1, &value2, &message, &propertyPath);
 
 	if (!message) {
 		message = &message_sub;
@@ -99,8 +98,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 	}
 
 
-	if (!ZEPHIR_IS_EQUAL(value, value2)) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
+	if (!ZEPHIR_IS_EQUAL(value1, value2)) {
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value1);
 		zephir_check_call_status();
 		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 23, value2);
 		zephir_check_call_status();
@@ -112,37 +111,38 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 		zephir_create_array(&_2$$3, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&_2$$3, SL("expected"), value2, PH_COPY | PH_SEPARATE);
 		ZVAL_LONG(&_3$$3, 34);
-		ZEPHIR_CALL_STATIC(&_1$$3, "createexception", NULL, 0, value, message, &_3$$3, propertyPath, &_2$$3);
+		ZEPHIR_CALL_STATIC(&_1$$3, "createexception", NULL, 0, value1, message, &_3$$3, propertyPath, &_2$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 26 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM_BOOL(1);
 
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
+PHP_METHOD(PhalconPlus_Assert_Assertion, notEq) {
 
-	zval _2$$3;
+	zval _5$$3;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL;
-	zval *value, value_sub, *value2, value2_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, v2$$3, _1$$3, _3$$3;
+	zephir_fcall_cache_entry *_2 = NULL;
+	zval *value1, value1_sub, *value2, value2_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, _0$$3, _1$$3, _3$$3, _4$$3, _6$$3;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&value1_sub);
 	ZVAL_UNDEF(&value2_sub);
 	ZVAL_UNDEF(&message_sub);
 	ZVAL_UNDEF(&propertyPath_sub);
 	ZVAL_NULL(&__$null);
-	ZVAL_UNDEF(&v1$$3);
-	ZVAL_UNDEF(&v2$$3);
+	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_2$$3);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_6$$3);
+	ZVAL_UNDEF(&_5$$3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 2, &value, &value2, &message, &propertyPath);
+	zephir_fetch_params(1, 2, 2, &value1, &value2, &message, &propertyPath);
 
 	if (!message) {
 		message = &message_sub;
@@ -156,8 +156,70 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 	}
 
 
-	if (!ZEPHIR_IS_IDENTICAL(value, value2)) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
+	if (ZEPHIR_IS_EQUAL(value1, value2)) {
+		ZEPHIR_INIT_VAR(&_0$$3);
+		if (zephir_is_true(message)) {
+			ZEPHIR_CPY_WRT(&_0$$3, message);
+		} else {
+			ZEPHIR_INIT_NVAR(&_0$$3);
+			ZVAL_STRING(&_0$$3, "Value \"%s\" is equal to expected value \"%s\".");
+		}
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value1);
+		zephir_check_call_status();
+		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 23, value2);
+		zephir_check_call_status();
+		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3, &_3$$3);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(&_5$$3);
+		zephir_create_array(&_5$$3, 1, 0 TSRMLS_CC);
+		zephir_array_update_string(&_5$$3, SL("expected"), value2, PH_COPY | PH_SEPARATE);
+		ZVAL_LONG(&_6$$3, 42);
+		ZEPHIR_CALL_STATIC(&_4$$3, "createexception", NULL, 0, value1, message, &_6$$3, propertyPath, &_5$$3);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_4$$3, "phalconplus/Assert/Assertion.zep", 41 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	RETURN_MM_BOOL(1);
+
+}
+
+PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
+
+	zval _2$$3;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_0 = NULL;
+	zval *value1, value1_sub, *value2, value2_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, v1$$3, v2$$3, _1$$3, _3$$3;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&value1_sub);
+	ZVAL_UNDEF(&value2_sub);
+	ZVAL_UNDEF(&message_sub);
+	ZVAL_UNDEF(&propertyPath_sub);
+	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&v1$$3);
+	ZVAL_UNDEF(&v2$$3);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_2$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 2, &value1, &value2, &message, &propertyPath);
+
+	if (!message) {
+		message = &message_sub;
+		ZEPHIR_CPY_WRT(message, &__$null);
+	} else {
+		ZEPHIR_SEPARATE_PARAM(message);
+	}
+	if (!propertyPath) {
+		propertyPath = &propertyPath_sub;
+		propertyPath = &__$null;
+	}
+
+
+	if (!ZEPHIR_IS_IDENTICAL(value1, value2)) {
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value1);
 		zephir_check_call_status();
 		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 23, value2);
 		zephir_check_call_status();
@@ -169,13 +231,13 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 		zephir_create_array(&_2$$3, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&_2$$3, SL("expected"), value2, PH_COPY | PH_SEPARATE);
 		ZVAL_LONG(&_3$$3, 33);
-		ZEPHIR_CALL_STATIC(&_1$$3, "createexception", NULL, 0, value, message, &_3$$3, propertyPath, &_2$$3);
+		ZEPHIR_CALL_STATIC(&_1$$3, "createexception", NULL, 0, value1, message, &_3$$3, propertyPath, &_2$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 41 TSRMLS_CC);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 59 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM_BOOL(1);
 
 }
 
@@ -219,11 +281,11 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 		ZVAL_LONG(&_2$$3, 14);
 		ZEPHIR_CALL_STATIC(&_1$$3, "createexception", NULL, 0, value, message, &_2$$3, propertyPath);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 53 TSRMLS_CC);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 73 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM_BOOL(1);
 
 }
 
@@ -267,7 +329,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 		ZVAL_LONG(&_2$$3, 15);
 		ZEPHIR_CALL_STATIC(&_1$$3, "createexception", NULL, 0, value, message, &_2$$3, propertyPath);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 65 TSRMLS_CC);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 87 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -310,12 +372,12 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
-			ZEPHIR_CONCAT_SVS(message, "Value ", &v1$$3, " is not numeric");
+			ZEPHIR_CONCAT_SVS(message, "Value ", &v1$$3, " is not numeric.");
 		}
 		ZVAL_LONG(&_2$$3, 23);
 		ZEPHIR_CALL_STATIC(&_1$$3, "createexception", NULL, 0, value, message, &_2$$3, propertyPath);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 78 TSRMLS_CC);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/Assert/Assertion.zep", 100 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -323,7 +385,227 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, str) {
+PHP_METHOD(PhalconPlus_Assert_Assertion, range) {
+
+	zval _8$$3;
+	zend_bool _0;
+	zephir_fcall_cache_entry *_3 = NULL;
+	zend_long minValue, maxValue, ZEPHIR_LAST_CALL_STATUS;
+	zval *value, value_sub, *minValue_param = NULL, *maxValue_param = NULL, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, _1$$3, _2$$3, _4$$3, _5$$3, _6$$3, _7$$3, _9$$3;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&message_sub);
+	ZVAL_UNDEF(&propertyPath_sub);
+	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_2$$3);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_6$$3);
+	ZVAL_UNDEF(&_7$$3);
+	ZVAL_UNDEF(&_9$$3);
+	ZVAL_UNDEF(&_8$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 3, 2, &value, &minValue_param, &maxValue_param, &message, &propertyPath);
+
+	minValue = zephir_get_intval(minValue_param);
+	maxValue = zephir_get_intval(maxValue_param);
+	if (!message) {
+		message = &message_sub;
+		ZEPHIR_CPY_WRT(message, &__$null);
+	} else {
+		ZEPHIR_SEPARATE_PARAM(message);
+	}
+	if (!propertyPath) {
+		propertyPath = &propertyPath_sub;
+		propertyPath = &__$null;
+	}
+
+
+	ZEPHIR_CALL_STATIC(NULL, "numeric", NULL, 0, value, message, propertyPath);
+	zephir_check_call_status();
+	_0 = ZEPHIR_LT_LONG(value, minValue);
+	if (!(_0)) {
+		_0 = ZEPHIR_GT_LONG(value, maxValue);
+	}
+	if (_0) {
+		ZEPHIR_INIT_VAR(&_1$$3);
+		if (zephir_is_true(message)) {
+			ZEPHIR_CPY_WRT(&_1$$3, message);
+		} else {
+			ZEPHIR_INIT_NVAR(&_1$$3);
+			ZVAL_STRING(&_1$$3, "Number \"%s\" was expected to be at least \"%d\" and at most \"%d\".");
+		}
+		ZEPHIR_CALL_STATIC(&_2$$3, "stringify", &_3, 23, value);
+		zephir_check_call_status();
+		ZVAL_LONG(&_5$$3, minValue);
+		ZEPHIR_CALL_STATIC(&_4$$3, "stringify", &_3, 23, &_5$$3);
+		zephir_check_call_status();
+		ZVAL_LONG(&_5$$3, maxValue);
+		ZEPHIR_CALL_STATIC(&_6$$3, "stringify", &_3, 23, &_5$$3);
+		zephir_check_call_status();
+		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_1$$3, &_2$$3, &_4$$3, &_6$$3);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(&_8$$3);
+		zephir_create_array(&_8$$3, 2, 0 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_9$$3);
+		ZVAL_LONG(&_9$$3, minValue);
+		zephir_array_update_string(&_8$$3, SL("min"), &_9$$3, PH_COPY | PH_SEPARATE);
+		ZEPHIR_INIT_NVAR(&_9$$3);
+		ZVAL_LONG(&_9$$3, maxValue);
+		zephir_array_update_string(&_8$$3, SL("max"), &_9$$3, PH_COPY | PH_SEPARATE);
+		ZVAL_LONG(&_5$$3, 30);
+		ZEPHIR_CALL_STATIC(&_7$$3, "createexception", NULL, 0, value, message, &_5$$3, propertyPath, &_8$$3);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_7$$3, "phalconplus/Assert/Assertion.zep", 117 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	RETURN_MM_BOOL(1);
+
+}
+
+PHP_METHOD(PhalconPlus_Assert_Assertion, min) {
+
+	zval _6$$3;
+	zephir_fcall_cache_entry *_2 = NULL;
+	zend_long minValue, ZEPHIR_LAST_CALL_STATUS;
+	zval *value, value_sub, *minValue_param = NULL, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, _0$$3, _1$$3, _3$$3, _4$$3, _5$$3, _7$$3;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&message_sub);
+	ZVAL_UNDEF(&propertyPath_sub);
+	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&_0$$3);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_7$$3);
+	ZVAL_UNDEF(&_6$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 2, &value, &minValue_param, &message, &propertyPath);
+
+	minValue = zephir_get_intval(minValue_param);
+	if (!message) {
+		message = &message_sub;
+		ZEPHIR_CPY_WRT(message, &__$null);
+	} else {
+		ZEPHIR_SEPARATE_PARAM(message);
+	}
+	if (!propertyPath) {
+		propertyPath = &propertyPath_sub;
+		propertyPath = &__$null;
+	}
+
+
+	ZEPHIR_CALL_STATIC(NULL, "numeric", NULL, 0, value, message, propertyPath);
+	zephir_check_call_status();
+	if (ZEPHIR_LT_LONG(value, minValue)) {
+		ZEPHIR_INIT_VAR(&_0$$3);
+		if (zephir_is_true(message)) {
+			ZEPHIR_CPY_WRT(&_0$$3, message);
+		} else {
+			ZEPHIR_INIT_NVAR(&_0$$3);
+			ZVAL_STRING(&_0$$3, "Number \"%s\" was expected to be at least \"%s\".");
+		}
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value);
+		zephir_check_call_status();
+		ZVAL_LONG(&_4$$3, minValue);
+		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 23, &_4$$3);
+		zephir_check_call_status();
+		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3, &_3$$3);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(&_6$$3);
+		zephir_create_array(&_6$$3, 1, 0 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_7$$3);
+		ZVAL_LONG(&_7$$3, minValue);
+		zephir_array_update_string(&_6$$3, SL("min"), &_7$$3, PH_COPY | PH_SEPARATE);
+		ZVAL_LONG(&_4$$3, 35);
+		ZEPHIR_CALL_STATIC(&_5$$3, "createexception", NULL, 0, value, message, &_4$$3, propertyPath, &_6$$3);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_5$$3, "phalconplus/Assert/Assertion.zep", 134 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	RETURN_MM_BOOL(1);
+
+}
+
+PHP_METHOD(PhalconPlus_Assert_Assertion, max) {
+
+	zval _6$$3;
+	zephir_fcall_cache_entry *_2 = NULL;
+	zend_long maxValue, ZEPHIR_LAST_CALL_STATUS;
+	zval *value, value_sub, *maxValue_param = NULL, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, _0$$3, _1$$3, _3$$3, _4$$3, _5$$3, _7$$3;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&message_sub);
+	ZVAL_UNDEF(&propertyPath_sub);
+	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&_0$$3);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_7$$3);
+	ZVAL_UNDEF(&_6$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 2, &value, &maxValue_param, &message, &propertyPath);
+
+	maxValue = zephir_get_intval(maxValue_param);
+	if (!message) {
+		message = &message_sub;
+		ZEPHIR_CPY_WRT(message, &__$null);
+	} else {
+		ZEPHIR_SEPARATE_PARAM(message);
+	}
+	if (!propertyPath) {
+		propertyPath = &propertyPath_sub;
+		propertyPath = &__$null;
+	}
+
+
+	ZEPHIR_CALL_STATIC(NULL, "numeric", NULL, 0, value, message, propertyPath);
+	zephir_check_call_status();
+	if (ZEPHIR_GT_LONG(value, maxValue)) {
+		ZEPHIR_INIT_VAR(&_0$$3);
+		if (zephir_is_true(message)) {
+			ZEPHIR_CPY_WRT(&_0$$3, message);
+		} else {
+			ZEPHIR_INIT_NVAR(&_0$$3);
+			ZVAL_STRING(&_0$$3, "Number \"%s\" was expected to be at most \"%s\".");
+		}
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value);
+		zephir_check_call_status();
+		ZVAL_LONG(&_4$$3, maxValue);
+		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 23, &_4$$3);
+		zephir_check_call_status();
+		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3, &_3$$3);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(&_6$$3);
+		zephir_create_array(&_6$$3, 1, 0 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_7$$3);
+		ZVAL_LONG(&_7$$3, maxValue);
+		zephir_array_update_string(&_6$$3, SL("max"), &_7$$3, PH_COPY | PH_SEPARATE);
+		ZVAL_LONG(&_4$$3, 36);
+		ZEPHIR_CALL_STATIC(&_5$$3, "createexception", NULL, 0, value, message, &_4$$3, propertyPath, &_6$$3);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_5$$3, "phalconplus/Assert/Assertion.zep", 151 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	RETURN_MM_BOOL(1);
+
+}
+
+PHP_METHOD(PhalconPlus_Assert_Assertion, isString) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_2 = NULL;
@@ -372,7 +654,128 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, str) {
 		ZVAL_LONG(&_5$$3, 16);
 		ZEPHIR_CALL_STATIC(&_4$$3, "createexception", NULL, 0, value, message, &_5$$3, propertyPath);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_4$$3, "phalconplus/Assert/Assertion.zep", 91 TSRMLS_CC);
+		zephir_throw_exception_debug(&_4$$3, "phalconplus/Assert/Assertion.zep", 165 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	RETURN_MM_BOOL(1);
+
+}
+
+PHP_METHOD(PhalconPlus_Assert_Assertion, isArray) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_2 = NULL;
+	zval *value, value_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, _0$$3, _1$$3, _3$$3, _4$$3;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&message_sub);
+	ZVAL_UNDEF(&propertyPath_sub);
+	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&_0$$3);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_4$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
+
+	if (!message) {
+		message = &message_sub;
+		ZEPHIR_CPY_WRT(message, &__$null);
+	} else {
+		ZEPHIR_SEPARATE_PARAM(message);
+	}
+	if (!propertyPath) {
+		propertyPath = &propertyPath_sub;
+		propertyPath = &__$null;
+	}
+
+
+	if (!(Z_TYPE_P(value) == IS_ARRAY)) {
+		ZEPHIR_INIT_VAR(&_0$$3);
+		if (zephir_is_true(message)) {
+			ZEPHIR_CPY_WRT(&_0$$3, message);
+		} else {
+			ZEPHIR_INIT_NVAR(&_0$$3);
+			ZVAL_STRING(&_0$$3, "Value \"%s\" is not an array.");
+		}
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value);
+		zephir_check_call_status();
+		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3);
+		zephir_check_call_status();
+		ZVAL_LONG(&_4$$3, 24);
+		ZEPHIR_CALL_STATIC(&_3$$3, "createexception", NULL, 0, value, message, &_4$$3, propertyPath);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_3$$3, "phalconplus/Assert/Assertion.zep", 178 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	RETURN_MM_BOOL(1);
+
+}
+
+PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString) {
+
+	zend_bool _1;
+	zephir_fcall_cache_entry *_5 = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *value, value_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, _0, _2, _3$$3, _4$$3, _6$$3, _7$$3;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&message_sub);
+	ZVAL_UNDEF(&propertyPath_sub);
+	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_6$$3);
+	ZVAL_UNDEF(&_7$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
+
+	if (!message) {
+		message = &message_sub;
+		ZEPHIR_CPY_WRT(message, &__$null);
+	} else {
+		ZEPHIR_SEPARATE_PARAM(message);
+	}
+	if (!propertyPath) {
+		propertyPath = &propertyPath_sub;
+		propertyPath = &__$null;
+	}
+
+
+	ZEPHIR_CALL_STATIC(NULL, "isstring", NULL, 0, value, message, propertyPath);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&_0);
+	zephir_json_decode(&_0, value, 0 );
+	_1 = Z_TYPE_P(&_0) == IS_NULL;
+	if (_1) {
+		ZEPHIR_CALL_FUNCTION(&_2, "json_last_error", NULL, 24);
+		zephir_check_call_status();
+		_1 = !ZEPHIR_IS_LONG(&_2, 0);
+	}
+	if (_1) {
+		ZEPHIR_INIT_VAR(&_3$$3);
+		if (zephir_is_true(message)) {
+			ZEPHIR_CPY_WRT(&_3$$3, message);
+		} else {
+			ZEPHIR_INIT_NVAR(&_3$$3);
+			ZVAL_STRING(&_3$$3, "Value \"%s\" is not a valid JSON string.");
+		}
+		ZEPHIR_CALL_STATIC(&_4$$3, "stringify", &_5, 23, value);
+		zephir_check_call_status();
+		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_3$$3, &_4$$3);
+		zephir_check_call_status();
+		ZVAL_LONG(&_7$$3, 206);
+		ZEPHIR_CALL_STATIC(&_6$$3, "createexception", NULL, 0, value, message, &_7$$3, propertyPath);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_6$$3, "phalconplus/Assert/Assertion.zep", 192 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -382,18 +785,27 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, str) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, stringify) {
 
-	zval _1$$4;
-	zval *value, value_sub, _0$$3, val, _2$$5, _3$$5, _4$$5, _5$$5;
+	zval _1$$5;
+	zend_bool _6, _7;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *value, value_sub, __$true, _0$$3, val, _2$$6, _3$$6, _4$$6, _5$$6, _8$$7, _9$$7, _10$$7, _11$$8, _12$$8, _13$$8;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value_sub);
+	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&val);
-	ZVAL_UNDEF(&_2$$5);
-	ZVAL_UNDEF(&_3$$5);
-	ZVAL_UNDEF(&_4$$5);
-	ZVAL_UNDEF(&_5$$5);
-	ZVAL_UNDEF(&_1$$4);
+	ZVAL_UNDEF(&_2$$6);
+	ZVAL_UNDEF(&_3$$6);
+	ZVAL_UNDEF(&_4$$6);
+	ZVAL_UNDEF(&_5$$6);
+	ZVAL_UNDEF(&_8$$7);
+	ZVAL_UNDEF(&_9$$7);
+	ZVAL_UNDEF(&_10$$7);
+	ZVAL_UNDEF(&_11$$8);
+	ZVAL_UNDEF(&_12$$8);
+	ZVAL_UNDEF(&_13$$8);
+	ZVAL_UNDEF(&_1$$5);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &value);
@@ -403,38 +815,56 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, stringify) {
 	if ((Z_TYPE_P(value) == IS_TRUE || Z_TYPE_P(value) == IS_FALSE)) {
 		ZEPHIR_INIT_VAR(&_0$$3);
 		if (ZEPHIR_IS_TRUE(value)) {
-			ZVAL_STRING(&_0$$3, "#TRUE#");
+			ZVAL_STRING(&_0$$3, "TRUE");
 		} else {
-			ZVAL_STRING(&_0$$3, "#FALSE#");
+			ZVAL_STRING(&_0$$3, "FALSE");
 		}
 		RETURN_CCTOR(&_0$$3);
 	}
+	if (Z_TYPE_P(value) == IS_NULL) {
+		RETURN_MM_STRING("NULL");
+	}
 	if (zephir_is_scalar(value)) {
-		zephir_get_strval(&_1$$4, value);
-		ZEPHIR_CPY_WRT(&val, &_1$$4);
+		zephir_get_strval(&_1$$5, value);
+		ZEPHIR_CPY_WRT(&val, &_1$$5);
 		if (zephir_fast_strlen_ev(&val) > 100) {
-			ZVAL_LONG(&_2$$5, 0);
-			ZVAL_LONG(&_3$$5, 97);
-			ZEPHIR_INIT_VAR(&_4$$5);
-			zephir_substr(&_4$$5, &val, 0 , 97 , 0);
-			ZEPHIR_INIT_VAR(&_5$$5);
-			ZEPHIR_CONCAT_VS(&_5$$5, &_4$$5, "...");
-			ZEPHIR_CPY_WRT(&val, &_5$$5);
+			ZVAL_LONG(&_2$$6, 0);
+			ZVAL_LONG(&_3$$6, 96);
+			ZEPHIR_INIT_VAR(&_4$$6);
+			zephir_substr(&_4$$6, &val, 0 , 96 , 0);
+			ZEPHIR_INIT_VAR(&_5$$6);
+			ZEPHIR_CONCAT_VS(&_5$$6, &_4$$6, " ...");
+			ZEPHIR_CPY_WRT(&val, &_5$$6);
 		}
 		RETURN_CCTOR(&val);
 	}
-	if (Z_TYPE_P(value) == IS_ARRAY) {
-		RETURN_MM_STRING("#ARRAY#");
+	_6 = Z_TYPE_P(value) == IS_ARRAY;
+	if (!(_6)) {
+		_6 = Z_TYPE_P(value) == IS_OBJECT;
 	}
-	if (Z_TYPE_P(value) == IS_OBJECT) {
-		zephir_get_class(return_value, value, 0 TSRMLS_CC);
-		RETURN_MM();
+	_7 = _6;
+	if (!(_7)) {
+		_7 = Z_TYPE_P(value) == IS_RESOURCE;
 	}
-	if (Z_TYPE_P(value) == IS_RESOURCE) {
-		RETURN_MM_STRING("#RESOURCE#");
-	}
-	if (Z_TYPE_P(value) == IS_NULL) {
-		RETURN_MM_STRING("#NULL#");
+	if (_7) {
+		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 25, value, &__$true);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(&_8$$7);
+		ZVAL_STRING(&_8$$7, "/\\s+/");
+		ZEPHIR_INIT_VAR(&_9$$7);
+		ZVAL_STRING(&_9$$7, " ");
+		ZEPHIR_CALL_FUNCTION(&_10$$7, "preg_replace", NULL, 26, &_8$$7, &_9$$7, &val);
+		zephir_check_call_status();
+		ZEPHIR_CPY_WRT(&val, &_10$$7);
+		if (zephir_fast_strlen_ev(&val) > 160) {
+			ZVAL_LONG(&_11$$8, 0);
+			ZVAL_LONG(&_12$$8, 156);
+			ZEPHIR_INIT_VAR(&_13$$8);
+			zephir_substr(&_13$$8, &val, 0 , 156 , 0);
+			ZEPHIR_CONCAT_VS(return_value, &_13$$8, " ...");
+			RETURN_MM();
+		}
+		RETURN_CCTOR(&val);
 	}
 	RETURN_MM_STRING("unknown");
 

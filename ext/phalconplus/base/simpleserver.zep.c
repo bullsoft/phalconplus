@@ -17,15 +17,15 @@
 #include "kernel/fcall.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Base_BackendServer) {
+ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleServer) {
 
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, BackendServer, phalconplus, base_backendserver, phalconplus_rpc_server_abstractserver_ce, phalconplus_base_backendserver_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, SimpleServer, phalconplus, base_simpleserver, phalconplus_rpc_server_abstractserver_ce, phalconplus_base_simpleserver_method_entry, 0);
 
 	return SUCCESS;
 
 }
 
-PHP_METHOD(PhalconPlus_Base_BackendServer, __construct) {
+PHP_METHOD(PhalconPlus_Base_SimpleServer, __construct) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub, _0, _1, _2;
@@ -44,7 +44,7 @@ PHP_METHOD(PhalconPlus_Base_BackendServer, __construct) {
 	zephir_update_property_zval(this_ptr, SL("di"), di);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "config");
-	ZEPHIR_CALL_METHOD(&_0, di, "get", NULL, 0, &_1);
+	ZEPHIR_CALL_METHOD(&_0, di, "getshared", NULL, 0, &_1);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("config"), &_0);
 	ZEPHIR_INIT_NVAR(&_1);
@@ -52,17 +52,17 @@ PHP_METHOD(PhalconPlus_Base_BackendServer, __construct) {
 	ZEPHIR_CALL_METHOD(&_2, di, "getshared", NULL, 0, &_1);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("eventsManager"), &_2);
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 27);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 45);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 28);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 46);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
 }
 
-PHP_METHOD(PhalconPlus_Base_BackendServer, onConstruct) {
+PHP_METHOD(PhalconPlus_Base_SimpleServer, onConstruct) {
 
 	zval *this_ptr = getThis();
 
