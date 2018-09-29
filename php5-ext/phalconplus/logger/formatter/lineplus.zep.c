@@ -71,25 +71,13 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	HashPosition _9;
 	zephir_fcall_cache_entry *_14 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *message_param = NULL, *type, *date, *context = NULL, *_0, _1 = zval_used_for_init, *_2 = NULL, *_3, *_4, *matches = NULL, *result = NULL, *_5, *replace0 = NULL, *replace1 = NULL, *val1 = NULL, *val2 = NULL, *processors = NULL, **_11, *logStr = NULL, *_16, *_17, *_6$$3, *_7$$3, *_8$$3, *_12$$4, *_13$$5 = NULL, *_15$$6 = NULL;
-	zval *message = NULL;
+	zval *message, *type, *timestamp, *context = NULL, *_0, _1 = zval_used_for_init, *_2 = NULL, *_3, *_4, *matches = NULL, *result = NULL, *_5, *replace0 = NULL, *replace1 = NULL, *val1 = NULL, *val2 = NULL, *processors = NULL, **_11, *logStr = NULL, *_16, *_17, *_6$$3, *_7$$3, *_8$$3, *_12$$4, *_13$$5 = NULL, *_15$$6 = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 3, 1, &message_param, &type, &date, &context);
+	zephir_fetch_params(1, 3, 1, &message, &type, &timestamp, &context);
 
-	if (UNEXPECTED(Z_TYPE_P(message_param) != IS_STRING && Z_TYPE_P(message_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'message' must be a string") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-	if (EXPECTED(Z_TYPE_P(message_param) == IS_STRING)) {
-		zephir_get_strval(message, message_param);
-	} else {
-		ZEPHIR_INIT_VAR(message);
-		ZVAL_EMPTY_STRING(message);
-	}
 	if (!context) {
-		ZEPHIR_INIT_VAR(context);
-		array_init(context);
+		context = ZEPHIR_GLOBAL(global_null);
 	}
 
 
@@ -98,7 +86,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	zephir_update_property_array(this_ptr, SL("processors"), _0, message TSRMLS_CC);
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_STRING(&_1, "Y-m-d H:i:s", 0);
-	ZEPHIR_CALL_FUNCTION(&_2, "date", NULL, 30, &_1, date);
+	ZEPHIR_CALL_FUNCTION(&_2, "date", NULL, 33, &_1, timestamp);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_STRING(_3, "date", 1);
@@ -128,11 +116,11 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		return;
 	}
 	ZEPHIR_MAKE_REF(matches);
-	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 46, matches);
+	ZEPHIR_CALL_FUNCTION(&replace0, "reset", NULL, 51, matches);
 	ZEPHIR_UNREF(matches);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(matches);
-	ZEPHIR_CALL_FUNCTION(&replace1, "end", NULL, 28, matches);
+	ZEPHIR_CALL_FUNCTION(&replace1, "end", NULL, 31, matches);
 	ZEPHIR_UNREF(matches);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(processors);
@@ -146,7 +134,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 		ZEPHIR_OBS_NVAR(val2);
 		_12$$4 = zephir_fetch_nproperty_this(this_ptr, SL("processors"), PH_NOISY_CC);
 		if (zephir_array_isset_fetch(&val2, _12$$4, val1, 0 TSRMLS_CC)) {
-			ZEPHIR_CALL_FUNCTION(&_13$$5, "strval", &_14, 24, val2);
+			ZEPHIR_CALL_FUNCTION(&_13$$5, "strval", &_14, 27, val2);
 			zephir_check_call_status();
 			zephir_array_update_zval(&processors, val1, &_13$$5, PH_COPY | PH_SEPARATE);
 		} else {

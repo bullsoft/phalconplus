@@ -17,7 +17,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_formatter_lineplus_format, 0, 0, 3)
 	ZEND_ARG_INFO(0, message)
 	ZEND_ARG_INFO(0, type)
-	ZEND_ARG_INFO(0, date)
+	ZEND_ARG_INFO(0, timestamp)
 	ZEND_ARG_INFO(0, context)
 ZEND_END_ARG_INFO()
 

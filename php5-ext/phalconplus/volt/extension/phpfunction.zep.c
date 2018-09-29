@@ -99,11 +99,11 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 	ZEPHIR_INIT_NVAR(params);
 	zephir_get_args(params TSRMLS_CC);
 	ZEPHIR_MAKE_REF(params);
-	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 72, params);
+	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 76, params);
 	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(params);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 77, params);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 81, params);
 	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(args);

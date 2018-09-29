@@ -21,8 +21,11 @@
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleRequest) {
 
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, SimpleRequest, phalconplus, base_simplerequest, phalconplus_base_protobuffer_ce, phalconplus_base_simplerequest_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, SimpleRequest, phalconplus, base_simplerequest, phalconplus_base_abstractrequest_ce, phalconplus_base_simplerequest_method_entry, ZEND_ACC_FINAL_CLASS);
 
+	/**
+	 * @var array
+	 */
 	zend_declare_property_null(phalconplus_base_simplerequest_ce, SL("params"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	phalconplus_base_simplerequest_ce->create_object = zephir_init_properties_PhalconPlus_Base_SimpleRequest;
@@ -45,7 +48,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
 	zephir_get_arrval(data, data_param);
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0, "phalconplus/Base/SimpleRequest.zep", 17);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "phalconplus/Base/SimpleRequest.zep", 20);
 	for (
 	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zend_hash_move_forward_ex(_1, &_0)
@@ -114,7 +117,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 	} else {
 		_0$$4 = zephir_fetch_nproperty_this(this_ptr, SL("params"), PH_NOISY_CC);
 		ZEPHIR_MAKE_REF(_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 42, _0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 45, _0$$4, val);
 		ZEPHIR_UNREF(_0$$4);
 		zephir_check_call_status();
 	}

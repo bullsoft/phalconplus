@@ -26,17 +26,23 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, Page, phalconplus, base_page, phalconplus_base_protobuffer_ce, phalconplus_base_page_method_entry, 0);
 
+	/**
+	 * @var <\Phalcon\Base\Pagable>
+	 */
 	zend_declare_property_null(phalconplus_base_page_ce, SL("pagable"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
+	/**
+	 * @var mixed array | <ArrayObject>
+	 */
 	zend_declare_property_null(phalconplus_base_page_ce, SL("data"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
-	zend_declare_property_null(phalconplus_base_page_ce, SL("totalSize"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_long(phalconplus_base_page_ce, SL("totalSize"), 0, ZEND_ACC_PRIVATE TSRMLS_CC);
 
-	zend_declare_property_null(phalconplus_base_page_ce, SL("pageNo"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_long(phalconplus_base_page_ce, SL("pageNo"), 0, ZEND_ACC_PRIVATE TSRMLS_CC);
 
-	zend_declare_property_null(phalconplus_base_page_ce, SL("pageSize"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_long(phalconplus_base_page_ce, SL("pageSize"), 0, ZEND_ACC_PRIVATE TSRMLS_CC);
 
-	zend_declare_property_null(phalconplus_base_page_ce, SL("totalPage"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_long(phalconplus_base_page_ce, SL("totalPage"), 0, ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -54,7 +60,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 
 
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 31, pagable);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 34, pagable);
 	zephir_check_call_status();
 	zephir_update_property_this(getThis(), SL("pagable"), pagable TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(&hydrateMode, data, "gethydratemode", NULL, 0);
@@ -63,7 +69,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 		if (ZEPHIR_IS_LONG(hydrateMode, 0)) {
 			ZEPHIR_INIT_VAR(tmpData);
 			object_init_ex(tmpData, spl_ce_ArrayObject);
-			ZEPHIR_CALL_METHOD(NULL, tmpData, "__construct", NULL, 43);
+			ZEPHIR_CALL_METHOD(NULL, tmpData, "__construct", NULL, 46);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(_1$$3);
 			ZEPHIR_CALL_METHOD(&_2$$3, data, "getfirst", NULL, 0);
@@ -85,7 +91,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 				}
 				ZEPHIR_CALL_METHOD(&_6$$4, item, "toarray", NULL, 0);
 				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, tmpData, "append", &_7, 44, _6$$4);
+				ZEPHIR_CALL_METHOD(NULL, tmpData, "append", &_7, 47, _6$$4);
 				zephir_check_call_status();
 			}
 			_5$$3->funcs->dtor(_5$$3 TSRMLS_CC);
@@ -101,7 +107,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 				_8$$5->funcs->get_current_data(_8$$5, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
 				ZEPHIR_CPY_WRT(item, (*ZEPHIR_TMP_ITERATOR_PTR));
 			}
-			zephir_array_append(&tmpData, item, PH_SEPARATE, "phalconplus/Base/Page.zep", 41);
+			zephir_array_append(&tmpData, item, PH_SEPARATE, "phalconplus/Base/Page.zep", 47);
 		}
 		_8$$5->funcs->dtor(_8$$5 TSRMLS_CC);
 		break;

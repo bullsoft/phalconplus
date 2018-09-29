@@ -75,7 +75,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "is_dir", NULL, 36, moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_0, "is_dir", NULL, 39, moduleDir);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1$$3);
@@ -89,13 +89,13 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 		return;
 	}
 	zephir_update_property_this(getThis(), SL("dir"), moduleDir TSRMLS_CC);
-	ZEPHIR_CALL_CE_STATIC(&_3, phalconplus_enum_sys_ce, "getmoduleconfigpath", &_4, 37, moduleDir);
+	ZEPHIR_CALL_CE_STATIC(&_3, phalconplus_enum_sys_ce, "getmoduleconfigpath", &_4, 40, moduleDir);
 	zephir_check_call_status();
 	zephir_update_property_this(getThis(), SL("configPath"), _3 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_5);
 	object_init_ex(_5, zephir_get_internal_ce(SS("phalcon\\config") TSRMLS_CC));
 	_7 = zephir_fetch_nproperty_this(this_ptr, SL("configPath"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_6, boot, "load", NULL, 38, _7);
+	ZEPHIR_CALL_METHOD(&_6, boot, "load", NULL, 41, _7);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, 0, _6);
 	zephir_check_call_status();
@@ -114,7 +114,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 	zephir_read_property(&_13, appConfig, SL("mode"), PH_NOISY_CC);
 	zephir_fast_strtolower(_12, _13);
 	zephir_ucfirst(_11, _12);
-	ZEPHIR_CALL_METHOD(NULL, _10, "__construct", NULL, 39, _11);
+	ZEPHIR_CALL_METHOD(NULL, _10, "__construct", NULL, 42, _11);
 	zephir_check_call_status();
 	zephir_update_property_this(getThis(), SL("runMode"), _10 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(_14);
@@ -126,11 +126,11 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 	ZEPHIR_CONCAT_VV(_17, _14, _16);
 	zephir_update_property_this(getThis(), SL("className"), _17 TSRMLS_CC);
 	_20 = zephir_fetch_nproperty_this(this_ptr, SL("runMode"), PH_NOISY_CC);
-	ZEPHIR_CALL_CE_STATIC(&_18, phalconplus_enum_sys_ce, "getmoduleclasspath", &_19, 40, moduleDir, _20);
+	ZEPHIR_CALL_CE_STATIC(&_18, phalconplus_enum_sys_ce, "getmoduleclasspath", &_19, 43, moduleDir, _20);
 	zephir_check_call_status();
 	zephir_update_property_this(getThis(), SL("classPath"), _18 TSRMLS_CC);
 	_21 = zephir_fetch_nproperty_this(this_ptr, SL("classPath"), PH_NOISY_CC);
-	ZEPHIR_CALL_FUNCTION(&_22, "is_file", NULL, 41, _21);
+	ZEPHIR_CALL_FUNCTION(&_22, "is_file", NULL, 44, _21);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_22))) {
 		ZEPHIR_INIT_VAR(_23$$4);

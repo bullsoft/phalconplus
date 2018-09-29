@@ -22,9 +22,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Pagable) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, Pagable, phalconplus, base_pagable, phalconplus_base_protobuffer_ce, phalconplus_base_pagable_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_base_pagable_ce, SL("pageNo"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_long(phalconplus_base_pagable_ce, SL("pageNo"), 0, ZEND_ACC_PRIVATE TSRMLS_CC);
 
-	zend_declare_property_null(phalconplus_base_pagable_ce, SL("pageSize"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_long(phalconplus_base_pagable_ce, SL("pageSize"), 0, ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	zend_declare_property_null(phalconplus_base_pagable_ce, SL("orderBys"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
@@ -73,7 +73,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("orderBys"), PH_NOISY_CC);
 	ZEPHIR_MAKE_REF(_0);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 42, _0, orderBy);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 45, _0, orderBy);
 	ZEPHIR_UNREF(_0);
 	zephir_check_call_status();
 	RETURN_THIS();

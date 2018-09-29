@@ -24,6 +24,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, Service, phalconplus, base_service, phalconplus_base_service_method_entry, 0);
 
+	/**
+	 * @var <\Phalcon\DI>
+	 */
 	zend_declare_property_null(phalconplus_base_service_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
@@ -41,7 +44,11 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 
 	zephir_update_property_this(getThis(), SL("di"), di TSRMLS_CC);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 49);
+	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 50);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

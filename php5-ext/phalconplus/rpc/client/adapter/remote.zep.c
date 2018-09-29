@@ -57,7 +57,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "server url can not be empty", "phalconplus/RPC/Client/Adapter/Remote.zep", 12);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 76, remoteServerUrl);
+	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 80, remoteServerUrl);
 	zephir_check_call_status();
 	zephir_array_fetch(&_0, remoteServerUrl, key, PH_NOISY | PH_READONLY, "phalconplus/RPC/Client/Adapter/Remote.zep", 16 TSRMLS_CC);
 	zephir_update_property_this(getThis(), SL("remoteServerUrl"), _0 TSRMLS_CC);

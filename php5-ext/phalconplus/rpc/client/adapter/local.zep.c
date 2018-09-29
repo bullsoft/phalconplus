@@ -123,18 +123,18 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByParams) {
 	if (zephir_is_callable(_7 TSRMLS_CC)) {
 		ZEPHIR_INIT_VAR(_8$$4);
 		ZEPHIR_CONCAT_SV(_8$$4, "ServerClass: ", serviceClass);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 65, _8$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 62, _8$$4);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_10$$4);
 		ZEPHIR_CONCAT_SV(_10$$4, "InvokeMethod: ", method);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 65, _10$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 62, _10$$4);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_11$$4);
 		ZEPHIR_INIT_NVAR(_11$$4);
 		zephir_var_export_ex(_11$$4, &request TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_12$$4);
 		ZEPHIR_CONCAT_SV(_12$$4, "InputParam: ", _11$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 65, _12$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 62, _12$$4);
 		zephir_check_call_status();
 		_13$$4 = !(Z_TYPE_P(request) == IS_OBJECT);
 		if (_13$$4) {
@@ -219,7 +219,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByParams) {
 		zephir_var_export_ex(_30$$4, &request TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_31$$4);
 		ZEPHIR_CONCAT_SV(_31$$4, "Finally InputParam: ", _30$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 65, _31$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_9, 62, _31$$4);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_32$$4);
 		zephir_create_array(_32$$4, 2, 0 TSRMLS_CC);
@@ -265,7 +265,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByObject) {
 	zephir_var_export_ex(_0, &rawData TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZEPHIR_CONCAT_SV(_1, "Local callByObject: ", _0);
-	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 65, _1);
+	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 62, _1);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(service);
 	if (!(zephir_array_isset_string_fetch(&service, rawData, SS("service"), 0 TSRMLS_CC))) {
@@ -312,9 +312,9 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByObject) {
 	}
 	ZEPHIR_INIT_VAR(_9);
 	ZEPHIR_CONCAT_SVSVS(_9, "Invoke callByParams with (", service, ", ", method, ")");
-	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 65, _9);
+	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 62, _9);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 75, service, method, request);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 79, service, method, request);
 	zephir_check_call_status();
 	RETURN_MM();
 
