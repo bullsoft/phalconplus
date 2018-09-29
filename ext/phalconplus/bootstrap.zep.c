@@ -689,7 +689,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, execTask) {
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_INIT_VAR(&_8$$7);
-		ZEPHIR_CONCAT_SV(&_8$$7, "PHP Notice:  PhalconPlus\\Bootstrap Global  load file not exists: ", &globalScript);
+		ZEPHIR_CONCAT_SV(&_8$$7, "PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: ", &globalScript);
 		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 50, &_8$$7);
 		zephir_check_call_status();
 	}
