@@ -10,8 +10,8 @@ So feel free and safe to use it :blush:
 
 ## Which version to use?
     * for phalcon 2.0.9 and below, please use phalconplus-v0.0.5
-    * for phalcon 2.1.0 and above, please use phalconplus-v1.0.0 and above
-    
+    * for phalcon 2.1.0 - 3.4.3, please use phalconplus-v1.0.0 and above
+    * for phalcon 4.0.0 -  , please use phalconplus-v2.x 
 ## Demos
   * 雪品应用：[http://shopbigbang.com](http://shopbigbang.com)
   * Phalcon+: [http://phalconphp.org](http://phalconphp.org)
