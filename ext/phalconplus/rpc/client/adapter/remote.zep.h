@@ -9,7 +9,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Remote, __call);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_adapter_remote___construct, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, remoteServerUrl, 0)
-	ZEND_ARG_ARRAY_INFO(0, opts, 1)
+	ZEND_ARG_ARRAY_INFO(0, opts, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_adapter_remote_callbyobject, 0, 0, 1)
@@ -17,7 +17,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_adapter_remote_callbyobjec
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_adapter_remote___call, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, method)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, args, 0)
 ZEND_END_ARG_INFO()
 

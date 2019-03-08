@@ -29,26 +29,24 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_save, 0, 0, 2)
 	ZEND_ARG_INFO(0, name)
 	ZEND_ARG_OBJ_INFO(0, model, PhalconPlus\\Base\\Model, 0)
-	ZEND_ARG_ARRAY_INFO(0, initial_data, 1)
+	ZEND_ARG_ARRAY_INFO(0, initial_data, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_insert, 0, 0, 2)
 	ZEND_ARG_INFO(0, name)
-	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
-	ZEND_ARG_ARRAY_INFO(0, initial_data, 1)
-	ZEND_ARG_TYPE_INFO(0, assign, _IS_BOOL, 1)
+	ZEND_ARG_OBJ_INFO(0, model, PhalconPlus\\Base\\Model, 0)
+	ZEND_ARG_ARRAY_INFO(0, initial_data, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_update, 0, 0, 2)
 	ZEND_ARG_INFO(0, name)
-	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
-	ZEND_ARG_ARRAY_INFO(0, initial_data, 1)
-	ZEND_ARG_TYPE_INFO(0, assign, _IS_BOOL, 1)
+	ZEND_ARG_INFO(0, model)
+	ZEND_ARG_ARRAY_INFO(0, initial_data, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_delete, 0, 0, 2)
 	ZEND_ARG_INFO(0, name)
-	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
+	ZEND_ARG_INFO(0, model)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_attach, 0, 0, 2)
@@ -60,19 +58,26 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_detach, 0, 0, 1)
 	ZEND_ARG_INFO(0, model)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_unitofwork_exec, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_unitofwork_exec, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_execinsert, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
 	ZEND_ARG_ARRAY_INFO(0, info, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_execupdate, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
-	ZEND_ARG_ARRAY_INFO(0, info, 1)
+	ZEND_ARG_INFO(0, model)
+	ZEND_ARG_ARRAY_INFO(0, info, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_execdelete, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
-	ZEND_ARG_ARRAY_INFO(0, info, 1)
+	ZEND_ARG_INFO(0, model)
+	ZEND_ARG_ARRAY_INFO(0, info, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_db_unitofwork_method_entry) {
@@ -83,7 +88,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_db_unitofwork_method_entry) {
 	PHP_ME(PhalconPlus_Db_UnitOfWork, delete, arginfo_phalconplus_db_unitofwork_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Db_UnitOfWork, attach, arginfo_phalconplus_db_unitofwork_attach, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Db_UnitOfWork, detach, arginfo_phalconplus_db_unitofwork_detach, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Db_UnitOfWork, exec, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Db_UnitOfWork, exec, arginfo_phalconplus_db_unitofwork_exec, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Db_UnitOfWork, execInsert, arginfo_phalconplus_db_unitofwork_execinsert, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Db_UnitOfWork, execUpdate, arginfo_phalconplus_db_unitofwork_execupdate, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Db_UnitOfWork, execDelete, arginfo_phalconplus_db_unitofwork_execdelete, ZEND_ACC_PUBLIC)

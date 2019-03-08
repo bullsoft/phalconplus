@@ -6,6 +6,7 @@
 
 #include "phalconplus/base/protobuffer.zep.h"
 #include "phalconplus/enum/abstractenum.zep.h"
+#include "phalconplus/db/unitofwork/abstractvalue.zep.h"
 #include "phalconplus/logger/processor/abstractprocessor.zep.h"
 #include "phalconplus/rpc/client/abstractclient.zep.h"
 #include "phalconplus/assert/assertionfailedexception.zep.h"
@@ -28,6 +29,8 @@
 #include "phalconplus/bootstrap.zep.h"
 #include "phalconplus/db/mysql.zep.h"
 #include "phalconplus/db/unitofwork.zep.h"
+#include "phalconplus/db/unitofwork/field.zep.h"
+#include "phalconplus/db/unitofwork/lastinsertid.zep.h"
 #include "phalconplus/enum/assertioncode.zep.h"
 #include "phalconplus/enum/exception.zep.h"
 #include "phalconplus/enum/orderbydirection.zep.h"
@@ -43,5 +46,6 @@
 #include "phalconplus/volt/extension/phpfunction.zep.h"
 #include "phalconplus/0__closure.zep.h"
 #include "phalconplus/1__closure.zep.h"
+#include "phalconplus/2__closure.zep.h"
 
 #endif

@@ -117,7 +117,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByParams) {
 	zephir_fetch_params(1, 3, 0, &service_param, &method_param, &request);
 
 	if (UNEXPECTED(Z_TYPE_P(service_param) != IS_STRING && Z_TYPE_P(service_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'service' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'service' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(service_param) == IS_STRING)) {
@@ -127,7 +127,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByParams) {
 		ZVAL_EMPTY_STRING(&service);
 	}
 	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
@@ -373,7 +373,7 @@ PHP_METHOD(PhalconPlus_RPC_Client_Adapter_Local, callByObject) {
 	ZEPHIR_CONCAT_SVSVS(&_9, "Invoke callByParams with (", &service, ", ", &method, ")");
 	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 50, &_9);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 66, &service, &method, &request);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 68, &service, &method, &request);
 	zephir_check_call_status();
 	RETURN_MM();
 

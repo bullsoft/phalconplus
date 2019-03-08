@@ -24,7 +24,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_abstractenum_isvalid, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_abstractenum_validvalues, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, assoc, _IS_BOOL, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, assoc, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, assoc)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_enum_abstractenum_method_entry) {

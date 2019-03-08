@@ -7,6 +7,7 @@ class Mysql
 
     private di = null;
     private descriptor = [];
+    private options = [];
 
     private retryTimes = self::RETRY_TIMES;
     private retryInterval = self::RETRY_INTERVAL;
@@ -30,17 +31,25 @@ class Mysql
             let this->retryInterval = dbConfig->retryInterval;
         }
 
+        // Build options...
+        var options = [
+            \PDO::MYSQL_ATTR_INIT_COMMAND : "SET NAMES " . dbConfig->charset,
+            \PDO::ATTR_TIMEOUT : dbConfig->timeout, // seconds
+            \PDO::ATTR_ERRMODE : \PDO::ERRMODE_EXCEPTION
+        ];
+        if isset(dbConfig->options) {
+            let this->options = dbConfig->options->toArray() + options;
+        } else {
+            let this->options = options;
+        }
+
         let this->descriptor = [
             "host" : dbConfig->host,
             "port" : dbConfig->port,
             "username" : dbConfig->username,
             "password" : dbConfig->password,
             "dbname" : dbConfig->dbname,
-            "options" : [
-                \PDO::MYSQL_ATTR_INIT_COMMAND : "SET NAMES " . dbConfig->charset,
-                \PDO::ATTR_TIMEOUT : dbConfig->timeout, // seconds
-                \PDO::ATTR_ERRMODE : \PDO::ERRMODE_EXCEPTION
-            ]
+            "options" : this->options
         ];
     }
 

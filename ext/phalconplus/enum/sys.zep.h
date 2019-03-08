@@ -16,74 +16,94 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleClassPath);
 PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_init, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, moduleDir, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, moduleDir)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getprimarymoduledir, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getprimarymoduledir, 0, 0, IS_STRING, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getrootdir, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getrootdir, 0, 0, IS_STRING, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getcommondir, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getcommondir, 0, 0, IS_STRING, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getglobalconfigdir, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getglobalconfigdir, 0, 0, IS_STRING, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getglobalconfigpath, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getglobalconfigpath, 0, 0, IS_STRING, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getgloballoaddir, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getgloballoaddir, 0, 0, IS_STRING, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getmoduledirbyname, 0, 1, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getmoduledirbyname, 0, 1, IS_STRING, NULL, 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, moduleName, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, moduleName)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getmodulenamebydir, 0, 1, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_getmodulenamebydir, 0, 1, IS_STRING, NULL, 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, moduleDir, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, moduleDir)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_getmoduleclasspath, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, moduleDir, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, moduleDir)
+#endif
 	ZEND_ARG_OBJ_INFO(0, runMode, PhalconPlus\\Enum\\RunMode, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_getmoduleconfigpath, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, moduleDir, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, moduleDir)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_enum_sys_method_entry) {

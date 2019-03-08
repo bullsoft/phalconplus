@@ -90,7 +90,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 	zephir_fetch_params(1, 2, 1, &boot, &moduleDir_param, &isPrimary_param);
 
 	if (UNEXPECTED(Z_TYPE_P(moduleDir_param) != IS_STRING && Z_TYPE_P(moduleDir_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'moduleDir' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'moduleDir' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(moduleDir_param) == IS_STRING)) {

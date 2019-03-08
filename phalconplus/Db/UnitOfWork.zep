@@ -5,6 +5,9 @@ use SplObjectStorage;
 use Exception;
 use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\Transaction\Failed as TxFailed;
+use PhalconPlus\Db\UnitOfWork\AbstractValue;
+use Phalcon\Mvc\Model as Model;
+use Phalcon\Mvc\Model\Resultset as Resultset;
 
 class UnitOfWork
 {
@@ -36,17 +39,14 @@ class UnitOfWork
             model->assign(initial_data);
         }
         if !model->exists() {
-            this->insert(name, model, initial_data, false);
+            this->insert(name, model, initial_data);
         } else {
-            this->update(name, model, initial_data, false);
+            this->update(name, model, initial_data);
         }
     }
 
-    public function insert(var name, <\Phalcon\Mvc\Model> model, array initial_data = [], boolean assign = true)
+    public function insert(var name, <\PhalconPlus\Base\Model> model, array initial_data = [])
     {
-        if !empty initial_data && assign == true {
-            model->assign(initial_data);
-        }
         this->detach(model);
         this->attach(model, [
             "method" : "insert",
@@ -55,26 +55,37 @@ class UnitOfWork
         ]);
     }
 
-    public function update(var name, <\Phalcon\Mvc\Model> model, array initial_data = [], boolean assign = true)
+    /**
+     * @param \Phalcon\Mvc\Model | \Phalcon\Mvc\Model\Resultset model
+     */
+    public function update(var name, var model, array initial_data = [])
     {
-        if !empty initial_data && assign == true {
-            model->assign(initial_data);
+        if (model instanceof Model) || (model instanceof Resultset) {
+            this->detach(model);
+            this->attach(model, [
+                "method" : "update",
+                "name" : name,
+                "initial_data" : initial_data
+            ]);
+        } else {
+            throw new Exception("UnitOfWork: Accept <Model> & <Resultset> only");
         }
-        this->detach(model);
-        this->attach(model, [
-            "method" : "update",
-            "name" : name,
-            "initial_data" : initial_data
-        ]);
     }
 
-    public function delete(var name, <\Phalcon\Mvc\Model> model)
+    /**
+     * @param \Phalcon\Mvc\Model | \Phalcon\Mvc\Model\Resultset model
+     */
+    public function delete(var name, object model)
     {
-        this->detach(model);
-        this->attach(model, [
-            "method" : "delete",
-            "name" : name
-        ]);
+        if (model instanceof Model) || (model instanceof Resultset) {
+            this->detach(model);
+            this->attach(model, [
+                "method" : "delete",
+                "name" : name
+            ]);
+        } else {
+            throw new Exception("UnitOfWork: Accept <Model> & <Resultset> only");
+        }
     }
 
     protected function attach(var model, var info)
@@ -87,7 +98,7 @@ class UnitOfWork
         this->objects->detach(model);
     }
 
-    public function exec()
+    public function exec() -> boolean
     {
         let this->exception = null;
         let this->failed = null;
@@ -101,26 +112,36 @@ class UnitOfWork
         txManager->setDbService(this->dbServiceName);
         let transaction = txManager->get();
 
-        var obj, info;
+        var obj, info, newMethod;
         this->objects->rewind();
+
         try {
             while(this->objects->valid()) {
                 let obj = this->objects->current();
                 let info = this->objects->getInfo();
+                var hash = spl_object_hash(obj);
 
-                var method, name;
-                let method = info["method"];
-                let name = info["name"];
+                var method = info["method"]; unset(info["method"]);
+                var name = info["name"]; unset(info["name"]);
 
-                unset(info["method"]); unset(info["name"]);
-
-                obj->setTransaction(transaction);
-
-                var newMethod;
-                let newMethod = "exec".ucfirst(method);
-                if (this->{newMethod}(obj, info) == false) {
-                    transaction->rollback("Model exec failed: " . name . ":" . method);
+                if obj instanceof \Phalcon\Mvc\Model {
+                    obj->setTransaction(transaction);
+                } elseif obj instanceof \Phalcon\Mvc\Model\Resultset {
+                    iterator_apply(obj, function(<\Iterator> iterator, transaction) {
+                        iterator->current()->setTransaction(transaction);
+                    }, [obj, transaction]);
                 }
+
+                if !isset this->modelLocator[hash] {
+                    let newMethod = "exec".ucfirst(method);
+                    if this->{newMethod}(obj, info) == false {
+                        transaction->rollback("Model exec failed: " . name . ":" . newMethod .
+                                              ". Model Exception: " . json_encode(obj->getMessages())
+                                             );
+                    }
+                    let this->modelLocator[hash] = obj;
+                }
+                // echo "Key: " . this->objects->key() . " Name: " . name . " Obj: " . get_class(obj) . PHP_EOL;
                 this->objects->next();
             }
             transaction->commit();
@@ -136,11 +157,16 @@ class UnitOfWork
     {
         var initial_data, result, last_insert_id;
         let initial_data = info["initial_data"];
+
         if !empty(initial_data) {
             var col, val;
             for col, val in initial_data {
-                if is_callable(val) {
-                    let initial_data[col] = {val}();
+                if is_object(val) && val instanceof AbstractValue {
+                    if val instanceof \PhalconPlus\Db\UnitOfWork\LastInsertId {
+                        let initial_data[col] = val->getValue(this);
+                    } elseif val instanceof \PhalconPlus\Db\UnitOfWork\Field {
+                        let initial_data[col] = val->getField(this);
+                    }
                 }
             }
             let result = model->create(initial_data);
@@ -156,34 +182,16 @@ class UnitOfWork
         return result;
     }
 
-    public function execUpdate(<\Phalcon\Mvc\Model> model, array info = [])
+    public function execUpdate(var model, array info = [])
     {
-        var result, initial_data, metaData, columnMap, whiteList, attrField;
-        let whiteList = [];
-
-        // 过滤所有不需要更新（值为NULL）的字段，
-        // 通过欺骗Model->_doLowUpdate()来达到此目的，要求必须useDynamicUpdate()和keepSnapshot()
-        let metaData = model->getModelsMetaData();
-        let columnMap = metaData->getColumnMap(model);
-        if typeof columnMap == "array" {
-            for _, attrField in columnMap {
-                if empty this->{attrField} {
-                    let whiteList[attrField] = null;
-                }
-            }
-        }
-        model->setSnapshotData(whiteList); // 实际上我们用了columnMap之后的字段作为data
+        var result, initial_data;
 
         let initial_data = info["initial_data"];
-
-        if(!empty(initial_data)) {
+        if !empty(initial_data) {
             var col, val;
             for col, val in initial_data {
-                if is_callable(val) {
-                    let initial_data[col] = {val}();
-                }
-                if is_null(val) {
-                    unset(initial_data[col]);
+                if is_object(val) && val instanceof AbstractValue {
+                    let initial_data[col] = val->getValue(this);;
                 }
             }
             let result = model->update(initial_data);
@@ -191,15 +199,16 @@ class UnitOfWork
             let result = model->update();
         }
         if result == true {
-            this->updated->attach(model);
+            this->updated->attach(model, [
+                "updated_data": initial_data
+            ]);
         }
         return result;
     }
 
-    public function execDelete(<\Phalcon\Mvc\Model> model, array info = [])
+    public function execDelete(var model, array info = [])
     {
-        var result;
-        let result = model->delete();
+        var result = model->delete();
         if result == true {
             this->deleted->attach(model);
         }
@@ -236,4 +245,3 @@ class UnitOfWork
         return this->failed;
     }
 }
-

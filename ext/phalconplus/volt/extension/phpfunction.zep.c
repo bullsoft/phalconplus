@@ -47,7 +47,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace) {
 	zephir_fetch_params(1, 1, 0, &ns_param);
 
 	if (UNEXPECTED(Z_TYPE_P(ns_param) != IS_STRING && Z_TYPE_P(ns_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'ns' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'ns' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(ns_param) == IS_STRING)) {
@@ -75,7 +75,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 	zephir_fetch_params(1, 1, 0, &func_param);
 
 	if (UNEXPECTED(Z_TYPE_P(func_param) != IS_STRING && Z_TYPE_P(func_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'func' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'func' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(func_param) == IS_STRING)) {
@@ -121,11 +121,11 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 	ZEPHIR_INIT_NVAR(&params);
 	zephir_get_args(&params);
 	ZEPHIR_MAKE_REF(&params);
-	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 63, &params);
+	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 65, &params);
 	ZEPHIR_UNREF(&params);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&params);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 68, &params);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 70, &params);
 	ZEPHIR_UNREF(&params);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&args);

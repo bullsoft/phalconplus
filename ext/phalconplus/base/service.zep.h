@@ -12,15 +12,19 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_service___construct, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_service_getdi, 0, 0, Phalcon\\DI, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_service_getdi, 0, 0, NULL, "Phalcon\\DI", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_service_getdi, 0, 0, IS_OBJECT, "Phalcon\\DI", 0)
 #endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_service___get, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, key)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_base_service_method_entry) {

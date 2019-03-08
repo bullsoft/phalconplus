@@ -14,10 +14,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_abstractmodule___construct, 0, 0
 	ZEND_ARG_OBJ_INFO(0, def, PhalconPlus\\Base\\ModuleDef, 1)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_abstractmodule_getdef, 0, 0, PhalconPlus\\Base\\ModuleDef, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_abstractmodule_getdef, 0, 0, NULL, "PhalconPlus\\Base\\ModuleDef", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_abstractmodule_getdef, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\ModuleDef", 0)
 #endif
 ZEND_END_ARG_INFO()
 

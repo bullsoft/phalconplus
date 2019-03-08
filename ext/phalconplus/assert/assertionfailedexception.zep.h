@@ -8,7 +8,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_assert_assertionfailedexception___con
 	ZEND_ARG_INFO(0, code)
 	ZEND_ARG_INFO(0, propertyPath)
 	ZEND_ARG_INFO(0, value)
-	ZEND_ARG_ARRAY_INFO(0, constraints, 1)
+	ZEND_ARG_ARRAY_INFO(0, constraints, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_assert_assertionfailedexception_method_entry) {

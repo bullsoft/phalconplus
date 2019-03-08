@@ -25,31 +25,43 @@ PHP_METHOD(PhalconPlus_Bootstrap, load);
 zend_object *zephir_init_properties_PhalconPlus_Bootstrap(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap___construct, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, moduleDir, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, moduleDir)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_registermodule, 0, 1, PhalconPlus\\Base\\AbstractModule, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_registermodule, 0, 1, NULL, "PhalconPlus\\Base\\AbstractModule", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_registermodule, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
 #endif
 	ZEND_ARG_OBJ_INFO(0, moduleDef, PhalconPlus\\Base\\ModuleDef, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_initconf, 0, 0, PhalconPlus\\Bootstrap, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_initconf, 0, 0, NULL, "PhalconPlus\\Bootstrap", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_initconf, 0, 0, IS_OBJECT, "PhalconPlus\\Bootstrap", 0)
 #endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_execmodule, 0, 0, 0)
 	ZEND_ARG_INFO(0, uri)
-	ZEND_ARG_TYPE_INFO(0, needHandle, _IS_BOOL, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, needHandle, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, needHandle)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_execsrv, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, needHandle, _IS_BOOL, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, needHandle, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, needHandle)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_exectask, 0, 0, 1)
@@ -58,69 +70,81 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_exectask, 0, 0, 1)
 	ZEND_ARG_INFO(0, needHandle)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymoduledef, 0, 0, PhalconPlus\\Base\\ModuleDef, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymoduledef, 0, 0, NULL, "PhalconPlus\\Base\\ModuleDef", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymoduledef, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\ModuleDef", 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymodule, 0, 0, PhalconPlus\\Base\\AbstractModule, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymodule, 0, 0, NULL, "PhalconPlus\\Base\\AbstractModule", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymodule, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getmodule, 0, 1, PhalconPlus\\Base\\AbstractModule, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getmodule, 0, 1, NULL, "PhalconPlus\\Base\\AbstractModule", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getmodule, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, name)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getmoduledef, 0, 1, PhalconPlus\\Base\\ModuleDef, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getmoduledef, 0, 1, NULL, "PhalconPlus\\Base\\ModuleDef", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getmoduledef, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\ModuleDef", 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, name)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_dependmodule, 0, 1, PhalconPlus\\Base\\AbstractModule, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_dependmodule, 0, 1, NULL, "PhalconPlus\\Base\\AbstractModule", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_dependmodule, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, moduleName, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, moduleName)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_isdebug, 0, 0, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_isdebug, 0, 0, _IS_BOOL, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getdebug, 0, 0, Phalcon\\Debug, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getdebug, 0, 0, NULL, "Phalcon\\Debug", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getdebug, 0, 0, IS_OBJECT, "Phalcon\\Debug", 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getenv, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getenv, 0, 0, IS_STRING, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getconfig, 0, 0, Phalcon\\Config, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getconfig, 0, 0, NULL, "Phalcon\\Config", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getconfig, 0, 0, IS_OBJECT, "Phalcon\\Config", 0)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -128,10 +152,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_setconfig, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, config, Phalcon\\Config, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getdi, 0, 0, Phalcon\\DI, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getdi, 0, 0, NULL, "Phalcon\\DI", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getdi, 0, 0, IS_OBJECT, "Phalcon\\DI", 0)
 #endif
 ZEND_END_ARG_INFO()
 

@@ -71,7 +71,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 	zephir_fetch_params(1, 1, 0, &moduleDir_param);
 
 	if (UNEXPECTED(Z_TYPE_P(moduleDir_param) != IS_STRING && Z_TYPE_P(moduleDir_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'moduleDir' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'moduleDir' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(moduleDir_param) == IS_STRING)) {
@@ -106,7 +106,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 		return;
 	}
 	zend_update_static_property(phalconplus_enum_sys_ce, ZEND_STRL("primaryModuleDir"), &moduleDir);
-	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 58, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 60, &moduleDir);
 	zephir_check_call_status();
 	zend_update_static_property(phalconplus_enum_sys_ce, ZEND_STRL("rootDir"), &_6);
 	RETURN_MM_NULL();
@@ -326,7 +326,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleNameByDir) {
 
 
 	ZVAL_LONG(&_0, 8);
-	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 59, &moduleDir, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 61, &moduleDir, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 

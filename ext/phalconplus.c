@@ -26,6 +26,7 @@
 zend_class_entry *phalconplus_assert_assertionfailedexception_ce;
 zend_class_entry *phalconplus_base_protobuffer_ce;
 zend_class_entry *phalconplus_enum_abstractenum_ce;
+zend_class_entry *phalconplus_db_unitofwork_abstractvalue_ce;
 zend_class_entry *phalconplus_logger_processor_abstractprocessor_ce;
 zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
 zend_class_entry *phalconplus_base_abstractrequest_ce;
@@ -33,6 +34,7 @@ zend_class_entry *phalconplus_base_abstractresponse_ce;
 zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 zend_class_entry *phalconplus_0__closure_ce;
 zend_class_entry *phalconplus_1__closure_ce;
+zend_class_entry *phalconplus_2__closure_ce;
 zend_class_entry *phalconplus_assert_assertion_ce;
 zend_class_entry *phalconplus_assert_invalidargumentexception_ce;
 zend_class_entry *phalconplus_base_abstractmodule_ce;
@@ -49,6 +51,8 @@ zend_class_entry *phalconplus_base_simpleserver_ce;
 zend_class_entry *phalconplus_bootstrap_ce;
 zend_class_entry *phalconplus_db_mysql_ce;
 zend_class_entry *phalconplus_db_unitofwork_ce;
+zend_class_entry *phalconplus_db_unitofwork_field_ce;
+zend_class_entry *phalconplus_db_unitofwork_lastinsertid_ce;
 zend_class_entry *phalconplus_enum_assertioncode_ce;
 zend_class_entry *phalconplus_enum_exception_ce;
 zend_class_entry *phalconplus_enum_orderbydirection_ce;
@@ -76,6 +80,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
 	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);
+	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork_AbstractValue);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_AbstractProcessor);
 	ZEPHIR_INIT(PhalconPlus_RPC_Client_AbstractClient);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractRequest);
@@ -97,6 +102,8 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Bootstrap);
 	ZEPHIR_INIT(PhalconPlus_Db_Mysql);
 	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork);
+	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork_Field);
+	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork_LastInsertId);
 	ZEPHIR_INIT(PhalconPlus_Enum_AssertionCode);
 	ZEPHIR_INIT(PhalconPlus_Enum_Exception);
 	ZEPHIR_INIT(PhalconPlus_Enum_OrderByDirection);
@@ -112,6 +119,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Volt_Extension_PhpFunction);
 	ZEPHIR_INIT(phalconplus_0__closure);
 	ZEPHIR_INIT(phalconplus_1__closure);
+	ZEPHIR_INIT(phalconplus_2__closure);
 	
 	return SUCCESS;
 }

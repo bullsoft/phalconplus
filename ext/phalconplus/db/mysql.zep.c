@@ -17,9 +17,9 @@
 #include "kernel/object.h"
 #include "kernel/array.h"
 #include "kernel/concat.h"
+#include "kernel/operators.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
-#include "kernel/operators.h"
 #include "kernel/string.h"
 
 
@@ -30,6 +30,8 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_Mysql) {
 	zend_declare_property_null(phalconplus_db_mysql_ce, SL("di"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	zend_declare_property_null(phalconplus_db_mysql_ce, SL("descriptor"), ZEND_ACC_PRIVATE TSRMLS_CC);
+
+	zend_declare_property_null(phalconplus_db_mysql_ce, SL("options"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	zend_declare_property_long(phalconplus_db_mysql_ce, SL("retryTimes"), 5, ZEND_ACC_PRIVATE TSRMLS_CC);
 
@@ -52,30 +54,33 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_Mysql) {
 
 PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
 
-	zval _3, _5;
+	zval _9;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval name;
-	zval *di, di_sub, *name_param = NULL, config, dbConfig, _0, _4, _6, _7, _1$$3, _2$$4;
+	zval *di, di_sub, *name_param = NULL, config, dbConfig, _0, options, _3, _4, _5, _1$$3, _2$$4, _6$$5, _7$$5, _8$$5;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&di_sub);
 	ZVAL_UNDEF(&config);
 	ZVAL_UNDEF(&dbConfig);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&options);
+	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&_6);
-	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$4);
+	ZVAL_UNDEF(&_6$$5);
+	ZVAL_UNDEF(&_7$$5);
+	ZVAL_UNDEF(&_8$$5);
 	ZVAL_UNDEF(&name);
-	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_5);
+	ZVAL_UNDEF(&_9);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &di, &name_param);
 
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
@@ -102,35 +107,47 @@ PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
 		zephir_read_property(&_2$$4, &dbConfig, SL("retryInterval"), PH_NOISY_CC | PH_READONLY);
 		zephir_update_property_zval(this_ptr, SL("retryInterval"), &_2$$4);
 	}
-	ZEPHIR_INIT_VAR(&_3);
-	zephir_create_array(&_3, 6, 0 TSRMLS_CC);
-	ZEPHIR_OBS_VAR(&_4);
-	zephir_read_property(&_4, &dbConfig, SL("host"), PH_NOISY_CC);
-	zephir_array_update_string(&_3, SL("host"), &_4, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_4);
-	zephir_read_property(&_4, &dbConfig, SL("port"), PH_NOISY_CC);
-	zephir_array_update_string(&_3, SL("port"), &_4, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_4);
-	zephir_read_property(&_4, &dbConfig, SL("username"), PH_NOISY_CC);
-	zephir_array_update_string(&_3, SL("username"), &_4, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_4);
-	zephir_read_property(&_4, &dbConfig, SL("password"), PH_NOISY_CC);
-	zephir_array_update_string(&_3, SL("password"), &_4, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_4);
-	zephir_read_property(&_4, &dbConfig, SL("dbname"), PH_NOISY_CC);
-	zephir_array_update_string(&_3, SL("dbname"), &_4, PH_COPY | PH_SEPARATE);
-	ZEPHIR_INIT_VAR(&_5);
-	zephir_create_array(&_5, 3, 0 TSRMLS_CC);
-	zephir_read_property(&_6, &dbConfig, SL("charset"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_VAR(&_7);
-	ZEPHIR_CONCAT_SV(&_7, "SET NAMES ", &_6);
-	zephir_array_update_long(&_5, 1002, &_7, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
-	ZEPHIR_OBS_NVAR(&_4);
-	zephir_read_property(&_4, &dbConfig, SL("timeout"), PH_NOISY_CC);
-	zephir_array_update_long(&_5, 2, &_4, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
-	add_index_long(&_5, 3, 2);
-	zephir_array_update_string(&_3, SL("options"), &_5, PH_COPY | PH_SEPARATE);
-	zephir_update_property_zval(this_ptr, SL("descriptor"), &_3);
+	ZEPHIR_INIT_VAR(&options);
+	zephir_create_array(&options, 3, 0 TSRMLS_CC);
+	zephir_read_property(&_3, &dbConfig, SL("charset"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_4);
+	ZEPHIR_CONCAT_SV(&_4, "SET NAMES ", &_3);
+	zephir_array_update_long(&options, 1002, &_4, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
+	ZEPHIR_OBS_VAR(&_5);
+	zephir_read_property(&_5, &dbConfig, SL("timeout"), PH_NOISY_CC);
+	zephir_array_update_long(&options, 2, &_5, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
+	add_index_long(&options, 3, 2);
+	if (zephir_isset_property(&dbConfig, SL("options"))) {
+		zephir_read_property(&_6$$5, &dbConfig, SL("options"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_METHOD(&_7$$5, &_6$$5, "toarray", NULL, 0);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(&_8$$5);
+		zephir_add_function(&_8$$5, &_7$$5, &options);
+		zephir_update_property_zval(this_ptr, SL("options"), &_8$$5);
+	} else {
+		zephir_update_property_zval(this_ptr, SL("options"), &options);
+	}
+	ZEPHIR_INIT_VAR(&_9);
+	zephir_create_array(&_9, 6, 0 TSRMLS_CC);
+	ZEPHIR_OBS_NVAR(&_5);
+	zephir_read_property(&_5, &dbConfig, SL("host"), PH_NOISY_CC);
+	zephir_array_update_string(&_9, SL("host"), &_5, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_NVAR(&_5);
+	zephir_read_property(&_5, &dbConfig, SL("port"), PH_NOISY_CC);
+	zephir_array_update_string(&_9, SL("port"), &_5, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_NVAR(&_5);
+	zephir_read_property(&_5, &dbConfig, SL("username"), PH_NOISY_CC);
+	zephir_array_update_string(&_9, SL("username"), &_5, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_NVAR(&_5);
+	zephir_read_property(&_5, &dbConfig, SL("password"), PH_NOISY_CC);
+	zephir_array_update_string(&_9, SL("password"), &_5, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_NVAR(&_5);
+	zephir_read_property(&_5, &dbConfig, SL("dbname"), PH_NOISY_CC);
+	zephir_array_update_string(&_9, SL("dbname"), &_5, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_NVAR(&_5);
+	zephir_read_property(&_5, this_ptr, SL("options"), PH_NOISY_CC);
+	zephir_array_update_string(&_9, SL("options"), &_5, PH_COPY | PH_SEPARATE);
+	zephir_update_property_zval(this_ptr, SL("descriptor"), &_9);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -229,7 +246,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 					ZEPHIR_CONCAT_SV(&_20$$7, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: ", &_18$$7);
 					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_10, 50, &_20$$7);
 					zephir_check_call_status();
-					zephir_throw_exception_debug(&e, "phalconplus/Db/Mysql.zep", 68 TSRMLS_CC);
+					zephir_throw_exception_debug(&e, "phalconplus/Db/Mysql.zep", 77 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();
 					return;
 				}
@@ -242,20 +259,28 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 
 zend_object *zephir_init_properties_PhalconPlus_Db_Mysql(zend_class_entry *class_type TSRMLS_DC) {
 
-		zval _0, _1$$3;
+		zval _0, _2, _1$$3, _3$$4;
 		ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_3$$4);
 
 		ZEPHIR_MM_GROW();
 	
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("descriptor"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zephir_update_property_zval(this_ptr, SL("descriptor"), &_1$$3);
+			zephir_update_property_zval(this_ptr, SL("options"), &_1$$3);
+		}
+		zephir_read_property(&_2, this_ptr, SL("descriptor"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_2) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_3$$4);
+			array_init(&_3$$4);
+			zephir_update_property_zval(this_ptr, SL("descriptor"), &_3$$4);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

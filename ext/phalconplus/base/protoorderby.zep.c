@@ -65,7 +65,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 	zephir_fetch_params(1, 1, 0, &property_param);
 
 	if (UNEXPECTED(Z_TYPE_P(property_param) != IS_STRING && Z_TYPE_P(property_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(property_param) == IS_STRING)) {
@@ -126,7 +126,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 	zephir_fetch_params(1, 1, 0, &alias_param);
 
 	if (UNEXPECTED(Z_TYPE_P(alias_param) != IS_STRING && Z_TYPE_P(alias_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'alias' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'alias' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(alias_param) == IS_STRING)) {

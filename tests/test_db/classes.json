@@ -1,0 +1,10 @@
+{
+    "title": "Classes",
+    "type": "object",
+    "properties" : {
+        "grade": {
+            "type": "integer",
+            "minimum": 1
+        }
+    }
+}

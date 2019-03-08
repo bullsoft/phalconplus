@@ -262,7 +262,7 @@ final class Bootstrap
         // 保留被依赖的模块的配置, 已经移除
         // this->di->set("moduleConfig", moduleDef->getConfig());
         // Use `$bootstrap->getModuleDef($moduleName)->getConfig()` instead
-        
+
         // 参与合并的模块配置
         let moduleConf = new \Phalcon\Config(this->load(moduleDef->getConfigPath()));
         // 全局配置文件优先级高于被依赖的模块

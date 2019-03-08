@@ -23,10 +23,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_assert_assertion_createexception, 0, 
 	ZEND_ARG_INFO(0, message)
 	ZEND_ARG_INFO(0, code)
 	ZEND_ARG_INFO(0, propertyPath)
-	ZEND_ARG_ARRAY_INFO(0, constraints, 1)
+	ZEND_ARG_ARRAY_INFO(0, constraints, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_eq, 0, 2, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_eq, 0, 2, _IS_BOOL, NULL, 0)
@@ -37,7 +37,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_eq,
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_noteq, 0, 2, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_noteq, 0, 2, _IS_BOOL, NULL, 0)
@@ -48,7 +48,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_not
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_same, 0, 2, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_same, 0, 2, _IS_BOOL, NULL, 0)
@@ -59,7 +59,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_sam
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_notempty, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_notempty, 0, 1, _IS_BOOL, NULL, 0)
@@ -69,7 +69,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_not
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_notnull, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_notnull, 0, 1, _IS_BOOL, NULL, 0)
@@ -79,7 +79,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_not
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_numeric, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_numeric, 0, 1, _IS_BOOL, NULL, 0)
@@ -89,41 +89,57 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_num
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_range, 0, 3, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_range, 0, 3, _IS_BOOL, NULL, 0)
 #endif
 	ZEND_ARG_INFO(0, value)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, minValue, IS_LONG, 0)
+#else
+	ZEND_ARG_INFO(0, minValue)
+#endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, maxValue, IS_LONG, 0)
+#else
+	ZEND_ARG_INFO(0, maxValue)
+#endif
 	ZEND_ARG_INFO(0, message)
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_min, 0, 2, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_min, 0, 2, _IS_BOOL, NULL, 0)
 #endif
 	ZEND_ARG_INFO(0, value)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, minValue, IS_LONG, 0)
+#else
+	ZEND_ARG_INFO(0, minValue)
+#endif
 	ZEND_ARG_INFO(0, message)
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_max, 0, 2, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_max, 0, 2, _IS_BOOL, NULL, 0)
 #endif
 	ZEND_ARG_INFO(0, value)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, maxValue, IS_LONG, 0)
+#else
+	ZEND_ARG_INFO(0, maxValue)
+#endif
 	ZEND_ARG_INFO(0, message)
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isstring, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isstring, 0, 1, _IS_BOOL, NULL, 0)
@@ -133,7 +149,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_iss
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isarray, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isarray, 0, 1, _IS_BOOL, NULL, 0)
@@ -143,7 +159,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isa
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isjsonstring, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isjsonstring, 0, 1, _IS_BOOL, NULL, 0)

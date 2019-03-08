@@ -16,7 +16,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simpleresponse_softclone, 0, 0, 
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simpleresponse_setresult, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, result, 1)
+	ZEND_ARG_ARRAY_INFO(0, result, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simpleresponse_pushitem, 0, 0, 1)

@@ -9,13 +9,17 @@ zend_object *zephir_init_properties_PhalconPlus_Db_Mysql(zend_class_entry *class
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_mysql___construct, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, name)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_db_mysql_getconnection, 0, 0, Phalcon\\Db\\Adapter\\Pdo\\Mysql, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_mysql_getconnection, 0, 0, NULL, "Phalcon\\Db\\Adapter\\Pdo\\Mysql", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_mysql_getconnection, 0, 0, IS_OBJECT, "Phalcon\\Db\\Adapter\\Pdo\\Mysql", 0)
 #endif
 ZEND_END_ARG_INFO()
 

@@ -24,7 +24,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id: c7fcadeab27632c218b62b1ed589057783c601ab $ */
+/* $Id: cff12fd083801699b4798f22344968acfe731b10 $ */
 
 /* Sanity check to ensure that pcre extension needed by this script is available.
  * In the event it is not, print a nice error message indicating that this script will
@@ -671,7 +671,7 @@ if (isset($argc) && $argc > 1) {
 					$html_output = is_resource($html_file);
 					break;
 				case '--version':
-					echo '$Id: c7fcadeab27632c218b62b1ed589057783c601ab $' . "\n";
+					echo '$Id: cff12fd083801699b4798f22344968acfe731b10 $' . "\n";
 					exit(1);
 
 				default:
@@ -1313,7 +1313,7 @@ TEST $file
 				unset($section_text['FILEEOF']);
 			}
 
-			foreach (array( 'FILE', 'EXPECT', 'EXPECTF', 'EXPECTREGEX' ) as $prefix) {            
+			foreach (array( 'FILE', 'EXPECT', 'EXPECTF', 'EXPECTREGEX' ) as $prefix) {
 				$key = $prefix . '_EXTERNAL';
 
 				if (@count($section_text[$key]) == 1) {
@@ -1611,9 +1611,9 @@ TEST $file
 			}
 		}
 	}
-	
+
 	if (!extension_loaded("zlib")
-	&& (	array_key_exists("GZIP_POST", $section_text) 
+	&& (	array_key_exists("GZIP_POST", $section_text)
 		||	array_key_exists("DEFLATE_POST", $section_text))
 	) {
 		$message = "ext/zlib required";
@@ -2202,7 +2202,7 @@ $output
 	if (isset($old_php)) {
 		$php = $old_php;
 	}
-	
+
 	$diff = empty($diff) ? '' : preg_replace('/\e/', '<esc>', $diff);
 
 	junit_mark_test_as($restype, str_replace($cwd . '/', '', $tested_file), $tested, null, $info, $diff);

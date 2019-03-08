@@ -11,6 +11,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
 	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/base/protobuffer.zep.c
 	phalconplus/enum/abstractenum.zep.c
+	phalconplus/db/unitofwork/abstractvalue.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
@@ -33,6 +34,8 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/bootstrap.zep.c
 	phalconplus/db/mysql.zep.c
 	phalconplus/db/unitofwork.zep.c
+	phalconplus/db/unitofwork/field.zep.c
+	phalconplus/db/unitofwork/lastinsertid.zep.c
 	phalconplus/enum/assertioncode.zep.c
 	phalconplus/enum/exception.zep.c
 	phalconplus/enum/orderbydirection.zep.c
@@ -47,7 +50,8 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/rpc/client/adapter/remote.zep.c
 	phalconplus/volt/extension/phpfunction.zep.c
 	phalconplus/0__closure.zep.c
-	phalconplus/1__closure.zep.c "
+	phalconplus/1__closure.zep.c
+	phalconplus/2__closure.zep.c "
 	PHP_NEW_EXTENSION(phalconplus, $phalconplus_sources, $ext_shared,, )
 	PHP_SUBST(PHALCONPLUS_SHARED_LIBADD)
 

@@ -1,21 +1,13 @@
-
 /*
-  +------------------------------------------------------------------------+
-  | Zephir Language                                                        |
-  +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2017 Zephir Team (https://www.zephir-lang.com)      |
-  +------------------------------------------------------------------------+
-  | This source file is subject to the New BSD License that is bundled     |
-  | with this package in the file docs/LICENSE.txt.                        |
-  |                                                                        |
-  | If you did not receive a copy of the license and are unable to         |
-  | obtain it through the world-wide-web, please send an email             |
-  | to license@zephir-lang.com so we can send you a copy immediately.      |
-  +------------------------------------------------------------------------+
-  | Authors: Andres Gutierrez <andres@zephir-lang.com>                     |
-  |          Eduar Carvajal <eduar@zephir-lang.com>                        |
-  +------------------------------------------------------------------------+
-*/
+ * This file is part of the Zephir.
+ *
+ * (c) Zephir Team <team@zephir-lang.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code. If you did not receive
+ * a copy of the license it is available through the world-wide-web at the
+ * following url: https://docs.zephir-lang.com/en/latest/license
+ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -90,9 +82,10 @@ int zephir_fetch_parameters(int num_args, int required_args, int optional_args, 
 /**
  * Gets the global zval into PG macro
  */
-int zephir_get_global(zval **arr, const char *global, unsigned int global_length)
+int zephir_get_global(zval *arr, const char *global, unsigned int global_length)
 {
 	zval *gv;
+	zend_array *symbol_table;
 	zend_bool jit_initialization = PG(auto_globals_jit);
 	zend_string *str = zend_string_init(global, global_length, 0);
 
@@ -104,14 +97,27 @@ int zephir_get_global(zval **arr, const char *global, unsigned int global_length
 		if ((gv = zend_hash_find_ind(&EG(symbol_table), str)) != NULL) {
 			ZVAL_DEREF(gv);
 			if (Z_TYPE_P(gv) == IS_ARRAY) {
-				*arr = gv;
+				if (Z_REFCOUNTED_P(gv)) {
+					ZVAL_COPY_VALUE(arr, gv);
+					Z_SET_REFCOUNT_P(arr, 1);
+				} else {
+					ZVAL_DUP(arr, gv);
+					zend_hash_update(&EG(symbol_table), str, arr);
+				}
 				zend_string_release(str);
 				return SUCCESS;
 			}
 		}
 	}
 
-	*arr = NULL;
+	array_init(arr);
+	if (!(&EG(symbol_table))) {
+		symbol_table = zend_rebuild_symbol_table();
+	} else {
+		symbol_table = &EG(symbol_table);
+	}
+	zend_hash_update(symbol_table, str, arr);
+
 	zend_string_release(str);
 	return FAILURE;
 }
@@ -483,7 +489,8 @@ int zephir_is_php_version(unsigned int id)
 	return ((php_major + php_minor + php_release) == id ? 1 : 0);
 }
 
-void zephir_get_args(zval *return_value)
+void
+zephir_get_args(zval *return_value)
 {
 	zend_execute_data *ex = EG(current_execute_data);
 	uint32_t arg_count    = ZEND_CALL_NUM_ARGS(ex);
@@ -508,7 +515,7 @@ void zephir_get_args(zval *return_value)
 				++i;
 			}
 
-			p = ZEND_CALL_VAR_NUM(ex, ex->func->op_array.last_var + ex->func->op_array.T);
+			p = ZEND_CALL_VAR_NUM(ex, i);
 		}
 
 		while (i < arg_count) {
@@ -526,30 +533,31 @@ void zephir_get_args(zval *return_value)
 	}
 }
 
-void zephir_get_arg(zval *return_value, zend_long idx)
+void
+zephir_get_arg(zval *return_value, zend_long idx)
 {
 	zend_execute_data *ex = EG(current_execute_data);
-	uint32_t arg_count    = ZEND_CALL_NUM_ARGS(ex);
+	uint32_t arg_count;
 	zval *arg;
-	uint32_t first_extra_arg;
 
 	if (UNEXPECTED(idx < 0)) {
-		zend_error(E_WARNING, "zephir_get_arg():  The argument number should be >= 0");
+		zend_error(E_WARNING, "func_get_arg():  The argument number should be >= 0");
 		RETURN_FALSE;
 	}
+
+	arg_count = ZEND_CALL_NUM_ARGS(ex);
+#if PHP_VERSION_ID >= 70100
+	if (zend_forbid_dynamic_call("func_get_arg()") == FAILURE) {
+		RETURN_FALSE;
+	}
+#endif
 
 	if (UNEXPECTED((zend_ulong)idx >= arg_count)) {
-		zend_error(E_WARNING, "zephir_get_arg():  Argument " ZEND_LONG_FMT " not passed to function", idx);
+		zend_error(E_WARNING, "func_get_arg():  Argument " ZEND_LONG_FMT " not passed to function", idx);
 		RETURN_FALSE;
 	}
 
-	first_extra_arg = ex->func->op_array.num_args;
-	if ((zend_ulong)idx >= first_extra_arg && (arg_count > first_extra_arg)) {
-		arg = ZEND_CALL_VAR_NUM(ex, ex->func->op_array.last_var + ex->func->op_array.T) + (idx - first_extra_arg);
-	}
-	else {
-		arg = ZEND_CALL_VAR_NUM(ex, idx);
-	}
+	arg = ZEND_CALL_VAR_NUM(ex, idx);
 
 	if (EXPECTED(!Z_ISUNDEF_P(arg))) {
 		ZVAL_DEREF(arg);

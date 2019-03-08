@@ -11,10 +11,10 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setPageNo);
 PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize);
 zend_object *zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type TSRMLS_DC);
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_pagable_getorderbys, 0, 0, PhalconPlus\\Base\\ProtoOrderBy, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getorderbys, 0, 0, NULL, "PhalconPlus\\Base\\ProtoOrderBy", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getorderbys, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\ProtoOrderBy", 0)
 #endif
 ZEND_END_ARG_INFO()
 

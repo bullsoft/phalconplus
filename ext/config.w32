@@ -12,11 +12,12 @@ if (PHP_PHALCONPLUS != "no") {
   
   ADD_SOURCES(configure_module_dirname + "/phalconplus/base", "protobuffer.zep.c abstractrequest.zep.c abstractresponse.zep.c abstractmodule.zep.c exception.zep.c model.zep.c moduledef.zep.c pagable.zep.c page.zep.c protoorderby.zep.c service.zep.c simplerequest.zep.c simpleresponse.zep.c simpleserver.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/enum", "abstractenum.zep.c assertioncode.zep.c exception.zep.c orderbydirection.zep.c runenv.zep.c runmode.zep.c sys.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/db/unitofwork", "abstractvalue.zep.c field.zep.c lastinsertid.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/processor", "abstractprocessor.zep.c trace.zep.c uid.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/client", "abstractclient.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/assert", "assertionfailedexception.zep.c assertion.zep.c invalidargumentexception.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/server", "abstractserver.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus", "bootstrap.zep.c 0__closure.zep.c 1__closure.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus", "bootstrap.zep.c 0__closure.zep.c 1__closure.zep.c 2__closure.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/db", "mysql.zep.c unitofwork.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/adapter", "fileplus.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/formatter", "lineplus.zep.c", "phalconplus");

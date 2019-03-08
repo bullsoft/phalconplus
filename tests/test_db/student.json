@@ -1,0 +1,31 @@
+{
+    "definitions": {
+        "Classes" : {
+            "$ref": "file:./classes.json"
+        }
+    },
+    "title": "Student",
+    "type": "object",
+    "properties": {
+        "firstName": {
+            "description": "名",
+            "type": "string"
+        },
+        "lastName": {
+            "description": "姓",
+            "type": "string"
+        },
+        "age": {
+            "description": "年龄",
+            "type": "integer",
+            "minimum": 1
+        },
+        "classes": {
+            "$ref":"#/definitions/Classes"
+        }
+    },
+    "required": [
+        "firstName",
+        "lastName"
+    ]
+}

@@ -25,25 +25,29 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
 PHP_METHOD(PhalconPlus_Base_Model, getReadConnection);
 zend_object *zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type TSRMLS_DC);
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, Phalcon\\Mvc\\Model\\Query\\BuilderInterface, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, NULL, "Phalcon\\Mvc\\Model\\Query\\BuilderInterface", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, IS_OBJECT, "Phalcon\\Mvc\\Model\\Query\\BuilderInterface", 0)
 #endif
-	ZEND_ARG_TYPE_INFO(0, alias, IS_STRING, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, alias, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, alias)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_model_getinstance, 0, 0, Phalcon\\Mvc\\Model, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getinstance, 0, 0, NULL, "Phalcon\\Mvc\\Model", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getinstance, 0, 0, IS_OBJECT, "Phalcon\\Mvc\\Model", 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_model_newinstance, 0, 0, Phalcon\\Mvc\\Model, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_newinstance, 0, 0, NULL, "Phalcon\\Mvc\\Model", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_newinstance, 0, 0, IS_OBJECT, "Phalcon\\Mvc\\Model", 0)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -54,10 +58,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findbypagable, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, pagable, PhalconPlus\\Base\\Pagable, 0)
-	ZEND_ARG_ARRAY_INFO(0, params, 1)
+	ZEND_ARG_ARRAY_INFO(0, params, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_exists, 0, 0, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_exists, 0, 0, _IS_BOOL, NULL, 0)
@@ -81,18 +85,18 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model__p_buildukcond, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, connection, Phalcon\\Db\\AdapterInterface, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_model_toprotobuffer, 0, 0, PhalconPlus\\Base\\ProtoBuffer, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_toprotobuffer, 0, 0, NULL, "PhalconPlus\\Base\\ProtoBuffer", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_toprotobuffer, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\ProtoBuffer", 0)
 #endif
 	ZEND_ARG_INFO(0, columns)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_model_getreadconnection, 0, 0, Phalcon\\Db\\AdapterInterface, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getreadconnection, 0, 0, NULL, "Phalcon\\Db\\AdapterInterface", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getreadconnection, 0, 0, IS_OBJECT, "Phalcon\\Db\\AdapterInterface", 0)
 #endif
 ZEND_END_ARG_INFO()
 

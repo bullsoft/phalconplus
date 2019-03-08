@@ -14,4 +14,9 @@ class HelpTask extends \Phalcon\CLI\Task
     {
         echo "^ ^ Help Task is Default Task ^ ^" . PHP_EOL;
     }
+
+    public function return1Action()
+    {
+        return 1;
+    }
 }

@@ -12,8 +12,16 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver___construct
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyparams, 0, 0, 3)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, service, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, service)
+#endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, method)
+#endif
 	ZEND_ARG_INFO(0, request)
 ZEND_END_ARG_INFO()
 
