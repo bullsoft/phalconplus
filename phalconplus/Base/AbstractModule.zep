@@ -20,9 +20,19 @@ abstract class AbstractModule
         return this->def;
     }
 
+    public function getDi() -> <\Phalcon\Di>
+    {
+        return this->di;
+    }
+
     public function isPrimary()
     {
         return this->def->getIsPrimary() == true; // Report is primary or not
+    }
+
+    public function getBootstrap()
+    {
+        return this->def->getBootstrap();
     }
 
     abstract public function registerAutoloaders();

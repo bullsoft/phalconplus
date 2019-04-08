@@ -7,6 +7,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, impl);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getIsPrimary);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getClassPath);
+PHP_METHOD(PhalconPlus_Base_ModuleDef, getBootstrap);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getClassName);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getRunMode);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getMapClassName);
@@ -42,6 +43,13 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_moduledef_getclasspath, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_moduledef_getclasspath, 0, 0, IS_STRING, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_moduledef_getbootstrap, 0, 0, PhalconPlus\\Bootstrap, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_moduledef_getbootstrap, 0, 0, IS_OBJECT, "PhalconPlus\\Bootstrap", 0)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -106,6 +114,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_moduledef_method_entry) {
 	PHP_ME(PhalconPlus_Base_ModuleDef, impl, arginfo_phalconplus_base_moduledef_impl, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ModuleDef, getIsPrimary, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ModuleDef, getClassPath, arginfo_phalconplus_base_moduledef_getclasspath, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_ModuleDef, getBootstrap, arginfo_phalconplus_base_moduledef_getbootstrap, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ModuleDef, getClassName, arginfo_phalconplus_base_moduledef_getclassname, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ModuleDef, getRunMode, arginfo_phalconplus_base_moduledef_getrunmode, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ModuleDef, getMapClassName, arginfo_phalconplus_base_moduledef_getmapclassname, ZEND_ACC_PUBLIC)

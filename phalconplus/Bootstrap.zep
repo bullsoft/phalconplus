@@ -74,14 +74,16 @@ final class Bootstrap
 
     public function initConf() -> <\PhalconPlus\Bootstrap>
     {
-        var globalConfPath = "", moduleConf = null;
+        // 模块配置
+        var moduleConf = null;
         // 全局配置
-        let globalConfPath = Sys::getGlobalConfigPath();
+        var globalConfPath = Sys::getGlobalConfigPath();
+
         if !is_file(globalConfPath) {
             // throw new \Phalcon\Config\Exception("Global config file not exist, file position: " . globalConfPath);
             // Make a warning here
             error_log("PHP Notice:  PhalconPlus\\Bootstrap Global config file not exists: " . globalConfPath);
-            let this->config = new \Phalcon\Config([]); 
+            let this->config = new \Phalcon\Config([]);
         } else {
             let this->config = new \Phalcon\Config(this->load(globalConfPath));
         }
@@ -209,7 +211,7 @@ final class Bootstrap
         } else {
             error_log("PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: " . globalScript);
         }
-        
+
         this->di->setShared("bootstrap", this);
 
         // 注册模块

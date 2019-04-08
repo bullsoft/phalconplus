@@ -32,6 +32,8 @@ class ModuleDef
     protected config = null;
     // <\PhalconPlus\Enum\RunMode>
     protected runMode = null;
+    // <\PhalconPlus\Bootstrap>
+    protected bootstrap = null;
 
     // Is this a primary-module? false for default
     protected isPrimary = false;
@@ -60,7 +62,7 @@ class ModuleDef
         if !is_file(this->classPath) {
             throw new \Exception("Module class file not exists: " . this->classPath);
         }
-
+        let this->bootstrap = boot;
         let this->isPrimary = isPrimary;
     }
 
@@ -82,6 +84,11 @@ class ModuleDef
     public function getClassPath() -> string
     {
         return this->classPath;
+    }
+
+    public function getBootstrap() -> <\PhalconPlus\Bootstrap>
+    {
+        return this->bootstrap;
     }
 
     public function getClassName() -> string

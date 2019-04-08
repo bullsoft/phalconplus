@@ -1,4 +1,3 @@
-//<?php
 namespace PhalconPlus\Db;
 
 use SplObjectStorage;
@@ -141,7 +140,7 @@ class UnitOfWork
                     }
                     let this->modelLocator[hash] = obj;
                 }
-                // echo "Key: " . this->objects->key() . " Name: " . name . " Obj: " . get_class(obj) . PHP_EOL;
+                //echo "Key: " . this->objects->key() . " Name: " . name . " Obj: " . get_class(obj) . PHP_EOL;
                 this->objects->next();
             }
             transaction->commit();

@@ -61,6 +61,15 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, getDef) {
 
 }
 
+PHP_METHOD(PhalconPlus_Base_AbstractModule, getDi) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "di");
+
+}
+
 PHP_METHOD(PhalconPlus_Base_AbstractModule, isPrimary) {
 
 	zval _0, _1;
@@ -76,6 +85,23 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, isPrimary) {
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getisprimary", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_TRUE(&_1));
+
+}
+
+PHP_METHOD(PhalconPlus_Base_AbstractModule, getBootstrap) {
+
+	zval _0;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+
+	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_RETURN_CALL_METHOD(&_0, "getbootstrap", NULL, 0);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

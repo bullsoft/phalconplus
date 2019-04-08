@@ -115,12 +115,14 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __construct) {
 	zephir_read_property(&_5, this_ptr, SL("_fileHandler"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_6);
 	ZVAL_LONG(&_6, -1);
-	zephir_update_property_array(this_ptr, SL("type2Handler"), &_6, &_5 TSRMLS_CC);
+	zephir_update_property_array(this_ptr, SL("type2Handler"), &_6, &_5);
+	ZEPHIR_INIT_VAR(&_5);
 	ZEPHIR_INIT_VAR(&_7);
 	ZVAL_LONG(&_7, -1);
 	ZEPHIR_INIT_VAR(&_8);
 	ZVAL_STRING(&_8, "");
-	zephir_update_property_array(this_ptr, SL("type2Ext"), &_7, &_8 TSRMLS_CC);
+	zephir_update_property_array(this_ptr, SL("type2Ext"), &_7, &_8);
+	ZEPHIR_INIT_NVAR(&_8);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -247,7 +249,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, registerExtension) {
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval types;
-	zval *ext_param = NULL, *types_param = NULL, filePath, type, fileHandler, _1, *_2;
+	zval *ext_param = NULL, *types_param = NULL, filePath, type, fileHandler, _1, *_2, _3;
 	zval ext;
 	zval *this_ptr = getThis();
 
@@ -256,6 +258,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, registerExtension) {
 	ZVAL_UNDEF(&type);
 	ZVAL_UNDEF(&fileHandler);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&types);
 
 	ZEPHIR_MM_GROW();
@@ -284,13 +287,31 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, registerExtension) {
 	ZEPHIR_CALL_METHOD(&fileHandler, this_ptr, "open", NULL, 62, &filePath);
 	zephir_check_call_status();
 	zephir_is_iterable(&types, 0, "phalconplus/Logger/Adapter/FilePlus.zep", 104);
-	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&types), _2)
-	{
-		ZEPHIR_INIT_NVAR(&type);
-		ZVAL_COPY(&type, _2);
-		zephir_update_property_array(this_ptr, SL("type2Handler"), &type, &fileHandler TSRMLS_CC);
-		zephir_update_property_array(this_ptr, SL("type2Ext"), &type, &ext TSRMLS_CC);
-	} ZEND_HASH_FOREACH_END();
+	if (Z_TYPE_P(&types) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&types), _2)
+		{
+			ZEPHIR_INIT_NVAR(&type);
+			ZVAL_COPY(&type, _2);
+			zephir_update_property_array(this_ptr, SL("type2Handler"), &type, &fileHandler);
+			zephir_update_property_array(this_ptr, SL("type2Ext"), &type, &ext);
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, &types, "rewind", NULL, 0);
+		zephir_check_call_status();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_3, &types, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_3)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&type, &types, "current", NULL, 0);
+			zephir_check_call_status();
+				zephir_update_property_array(this_ptr, SL("type2Handler"), &type, &fileHandler);
+				zephir_update_property_array(this_ptr, SL("type2Ext"), &type, &ext);
+			ZEPHIR_CALL_METHOD(NULL, &types, "next", NULL, 0);
+			zephir_check_call_status();
+		}
+	}
 	ZEPHIR_INIT_NVAR(&type);
 	ZEPHIR_MM_RESTORE();
 
@@ -298,34 +319,58 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, registerExtension) {
 
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, close) {
 
-	zend_string *_3;
-	zend_ulong _2;
-	zval type, handler, _0, *_1, _4$$3;
+	zend_string *_4;
+	zend_ulong _3;
+	zval type, handler, _0, *_1, _2, _5$$3, _6$$4;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&type);
 	ZVAL_UNDEF(&handler);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_6$$4);
 
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, SL("type2Handler"), PH_NOISY_CC | PH_READONLY);
 	zephir_is_iterable(&_0, 0, "phalconplus/Logger/Adapter/FilePlus.zep", 113);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _2, _3, _1)
-	{
-		ZEPHIR_INIT_NVAR(&type);
-		if (_3 != NULL) { 
-			ZVAL_STR_COPY(&type, _3);
-		} else {
-			ZVAL_LONG(&type, _2);
+	if (Z_TYPE_P(&_0) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _3, _4, _1)
+		{
+			ZEPHIR_INIT_NVAR(&type);
+			if (_4 != NULL) { 
+				ZVAL_STR_COPY(&type, _4);
+			} else {
+				ZVAL_LONG(&type, _3);
+			}
+			ZEPHIR_INIT_NVAR(&handler);
+			ZVAL_COPY(&handler, _1);
+			zephir_fclose(&handler TSRMLS_CC);
+			zephir_read_property(&_5$$3, this_ptr, SL("type2Handler"), PH_NOISY_CC | PH_READONLY);
+			zephir_array_unset(&_5$$3, &type, PH_SEPARATE);
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, &_0, "rewind", NULL, 0);
+		zephir_check_call_status();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_2, &_0, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_2)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&type, &_0, "key", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&handler, &_0, "current", NULL, 0);
+			zephir_check_call_status();
+				zephir_fclose(&handler TSRMLS_CC);
+				zephir_read_property(&_6$$4, this_ptr, SL("type2Handler"), PH_NOISY_CC | PH_READONLY);
+				zephir_array_unset(&_6$$4, &type, PH_SEPARATE);
+			ZEPHIR_CALL_METHOD(NULL, &_0, "next", NULL, 0);
+			zephir_check_call_status();
 		}
-		ZEPHIR_INIT_NVAR(&handler);
-		ZVAL_COPY(&handler, _1);
-		zephir_fclose(&handler TSRMLS_CC);
-		zephir_read_property(&_4$$3, this_ptr, SL("type2Handler"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_unset(&_4$$3, &type, PH_SEPARATE);
-	} ZEND_HASH_FOREACH_END();
+	}
 	ZEPHIR_INIT_NVAR(&handler);
 	ZEPHIR_INIT_NVAR(&type);
 	ZEPHIR_MM_RESTORE();
@@ -403,10 +448,10 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __destruct) {
 
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 
-	zend_string *_3;
-	zend_ulong _2;
-	zval type, ext, handler, ext2Handler, _0, *_1, _7, _8, _4$$4, _5$$4;
-	zephir_fcall_cache_entry *_6 = NULL;
+	zend_string *_4;
+	zend_ulong _3;
+	zval type, ext, handler, ext2Handler, _0, *_1, _2, _10, _11, _5$$4, _6$$4, _8$$6, _9$$6;
+	zephir_fcall_cache_entry *_7 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -415,10 +460,13 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 	ZVAL_UNDEF(&handler);
 	ZVAL_UNDEF(&ext2Handler);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_8);
-	ZVAL_UNDEF(&_4$$4);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_10);
+	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_5$$4);
+	ZVAL_UNDEF(&_6$$4);
+	ZVAL_UNDEF(&_8$$6);
+	ZVAL_UNDEF(&_9$$6);
 
 	ZEPHIR_MM_GROW();
 
@@ -426,33 +474,62 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 	array_init(&ext2Handler);
 	zephir_read_property(&_0, this_ptr, SL("type2Ext"), PH_NOISY_CC | PH_READONLY);
 	zephir_is_iterable(&_0, 0, "phalconplus/Logger/Adapter/FilePlus.zep", 143);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _2, _3, _1)
-	{
-		ZEPHIR_INIT_NVAR(&type);
-		if (_3 != NULL) { 
-			ZVAL_STR_COPY(&type, _3);
-		} else {
-			ZVAL_LONG(&type, _2);
-		}
-		ZEPHIR_INIT_NVAR(&ext);
-		ZVAL_COPY(&ext, _1);
-		ZEPHIR_OBS_NVAR(&handler);
-		if (zephir_array_isset_string_fetch(&handler, &ext2Handler, SL("ext"), 0)) {
-		} else {
-			zephir_read_property(&_4$$4, this_ptr, SL("_path"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_INIT_LNVAR(_5$$4);
-			ZEPHIR_CONCAT_VV(&_5$$4, &_4$$4, &ext);
-			ZEPHIR_CALL_METHOD(&handler, this_ptr, "open", &_6, 62, &_5$$4);
+	if (Z_TYPE_P(&_0) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _3, _4, _1)
+		{
+			ZEPHIR_INIT_NVAR(&type);
+			if (_4 != NULL) { 
+				ZVAL_STR_COPY(&type, _4);
+			} else {
+				ZVAL_LONG(&type, _3);
+			}
+			ZEPHIR_INIT_NVAR(&ext);
+			ZVAL_COPY(&ext, _1);
+			ZEPHIR_OBS_NVAR(&handler);
+			if (zephir_array_isset_string_fetch(&handler, &ext2Handler, SL("ext"), 0)) {
+			} else {
+				zephir_read_property(&_5$$4, this_ptr, SL("_path"), PH_NOISY_CC | PH_READONLY);
+				ZEPHIR_INIT_LNVAR(_6$$4);
+				ZEPHIR_CONCAT_VV(&_6$$4, &_5$$4, &ext);
+				ZEPHIR_CALL_METHOD(&handler, this_ptr, "open", &_7, 62, &_6$$4);
+				zephir_check_call_status();
+				zephir_array_update_zval(&ext2Handler, &ext, &handler, PH_COPY | PH_SEPARATE);
+			}
+			zephir_update_property_array(this_ptr, SL("type2Handler"), &type, &handler);
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, &_0, "rewind", NULL, 0);
+		zephir_check_call_status();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_2, &_0, "valid", NULL, 0);
 			zephir_check_call_status();
-			zephir_array_update_zval(&ext2Handler, &ext, &handler, PH_COPY | PH_SEPARATE);
+			if (!zend_is_true(&_2)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&type, &_0, "key", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&ext, &_0, "current", NULL, 0);
+			zephir_check_call_status();
+				ZEPHIR_OBS_NVAR(&handler);
+				if (zephir_array_isset_string_fetch(&handler, &ext2Handler, SL("ext"), 0)) {
+				} else {
+					zephir_read_property(&_8$$6, this_ptr, SL("_path"), PH_NOISY_CC | PH_READONLY);
+					ZEPHIR_INIT_LNVAR(_9$$6);
+					ZEPHIR_CONCAT_VV(&_9$$6, &_8$$6, &ext);
+					ZEPHIR_CALL_METHOD(&handler, this_ptr, "open", &_7, 62, &_9$$6);
+					zephir_check_call_status();
+					zephir_array_update_zval(&ext2Handler, &ext, &handler, PH_COPY | PH_SEPARATE);
+				}
+				zephir_update_property_array(this_ptr, SL("type2Handler"), &type, &handler);
+			ZEPHIR_CALL_METHOD(NULL, &_0, "next", NULL, 0);
+			zephir_check_call_status();
 		}
-		zephir_update_property_array(this_ptr, SL("type2Handler"), &type, &handler TSRMLS_CC);
-	} ZEND_HASH_FOREACH_END();
+	}
 	ZEPHIR_INIT_NVAR(&ext);
 	ZEPHIR_INIT_NVAR(&type);
-	zephir_read_property(&_7, this_ptr, SL("type2Handler"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_long(&_8, &_7, -1, PH_NOISY | PH_READONLY, "phalconplus/Logger/Adapter/FilePlus.zep", 143 TSRMLS_CC);
-	zephir_update_property_zval(this_ptr, SL("_fileHandler"), &_8);
+	zephir_read_property(&_10, this_ptr, SL("type2Handler"), PH_NOISY_CC | PH_READONLY);
+	zephir_array_fetch_long(&_11, &_10, -1, PH_NOISY | PH_READONLY, "phalconplus/Logger/Adapter/FilePlus.zep", 143 TSRMLS_CC);
+	zephir_update_property_zval(this_ptr, SL("_fileHandler"), &_11);
 	ZEPHIR_MM_RESTORE();
 
 }
