@@ -41,14 +41,14 @@ final class Bootstrap
         }
 
         // 定义全局常量
-        define("APP_ENV", this->env, true); // 为了兼容, 同下
-        define("APP_RUN_ENV", this->env, true);
-        define("APP_ROOT_DIR", Sys::getRootDir(), true);
-        define("APP_MODULE_DIR", Sys::getPrimaryModuleDir(), true); // 为了兼容, 同下
-        define("APP_PRI_MODULE_DIR", Sys::getPrimaryModuleDir(), true);
-        define("APP_ROOT_COMMON_DIR", Sys::getCommonDir(), true);
-        define("APP_ROOT_COMMON_LOAD_DIR", Sys::getGlobalLoadDir(), true);
-        define("APP_ROOT_COMMON_CONF_DIR", Sys::getGlobalConfigDir(), true);
+        define("APP_ENV", this->env, false); // 为了兼容, 同下
+        define("APP_RUN_ENV", this->env, false);
+        define("APP_ROOT_DIR", Sys::getRootDir(), false);
+        define("APP_MODULE_DIR", Sys::getPrimaryModuleDir(), false); // 为了兼容, 同下
+        define("APP_PRI_MODULE_DIR", Sys::getPrimaryModuleDir(), false);
+        define("APP_ROOT_COMMON_DIR", Sys::getCommonDir(), false);
+        define("APP_ROOT_COMMON_LOAD_DIR", Sys::getGlobalLoadDir(), false);
+        define("APP_ROOT_COMMON_CONF_DIR", Sys::getGlobalConfigDir(), false);
     }
 
     private function registerModule(<\PhalconPlus\Base\ModuleDef> moduleDef) -> <\PhalconPlus\Base\AbstractModule>
@@ -91,7 +91,7 @@ final class Bootstrap
         // 初始化主模块
         let this->primaryModuleDef = new \PhalconPlus\Base\ModuleDef(this, APP_MODULE_DIR, true);
         // 定义工作模式
-        define("APP_RUN_MODE", this->primaryModuleDef->getMode(), true);
+        define("APP_RUN_MODE", this->primaryModuleDef->getMode(), false);
         // 获取模块配置
         let moduleConf = this->primaryModuleDef->getConfig();
         // 合并配置，Module配置优先级更高
