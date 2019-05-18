@@ -21,6 +21,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getEnv);
 PHP_METHOD(PhalconPlus_Bootstrap, getConfig);
 PHP_METHOD(PhalconPlus_Bootstrap, setConfig);
 PHP_METHOD(PhalconPlus_Bootstrap, getDI);
+PHP_METHOD(PhalconPlus_Bootstrap, getApplication);
 PHP_METHOD(PhalconPlus_Bootstrap, load);
 zend_object *zephir_init_properties_PhalconPlus_Bootstrap(zend_class_entry *class_type TSRMLS_DC);
 
@@ -182,6 +183,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_bootstrap_method_entry) {
 	PHP_ME(PhalconPlus_Bootstrap, getConfig, arginfo_phalconplus_bootstrap_getconfig, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, setConfig, arginfo_phalconplus_bootstrap_setconfig, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, getDI, arginfo_phalconplus_bootstrap_getdi, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, getApplication, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, load, arginfo_phalconplus_bootstrap_load, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

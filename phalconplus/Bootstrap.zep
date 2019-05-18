@@ -54,10 +54,10 @@ final class Bootstrap
     private function registerModule(<\PhalconPlus\Base\ModuleDef> moduleDef) -> <\PhalconPlus\Base\AbstractModule>
     {
         if isset(this->activeModules[moduleDef->getName()]) {
-            throw new \Exception("Module already loaded: " . moduleDef->getName());
+            throw new \PhalconPlus\Base\Exception("Module already loaded: " . moduleDef->getName());
         }
         if is_null(this->di) {
-            throw new \Exception("DI doesn't load yet, failed to register module " . moduleDef->getName());
+            throw new \PhalconPlus\Base\Exception("DI doesn't load yet, failed to register module " . moduleDef->getName());
         }
         // Implement a module from it's defintion
         var module = moduleDef->impl(this->di);
@@ -170,9 +170,7 @@ final class Bootstrap
         // 注册模块
         this->registerModule(this->primaryModuleDef);
 
-        if !needHandle { return true; }
-
-        // Backend Server, Default is SimpleServer 
+        // Backend Server, Default is SimpleServer
         if this->di->has("backendSrv") {
             let backendSrv = this->di->get("backendSrv");
             if ! (backendSrv instanceof \PhalconPlus\RPC\Server\AbstractServer) {
@@ -184,6 +182,8 @@ final class Bootstrap
 
         // Yar Server
         let this->application = new \Yar_Server(backendSrv);
+
+        if !needHandle { return true; }
 
         // 运行
         this->application->handle();
@@ -232,7 +232,7 @@ final class Bootstrap
     {
         var name = this->primaryModuleDef->getName();
         if !isset(this->activeModules[name]) {
-            throw new \Exception("Module not exists: " . name);
+            throw new \PhalconPlus\Base\Exception("Module not exists: " . name);
         }
         return this->activeModules[name];
     }
@@ -240,7 +240,7 @@ final class Bootstrap
     public function getModule(string! name) -> <\PhalconPlus\Base\AbstractModule>
     {
         if !isset(this->activeModules[name]) {
-            throw new \Exception("Module not exists: " . name);
+            throw new \PhalconPlus\Base\Exception("Module not exists: " . name);
         }
         return this->activeModules[name];
     }
@@ -248,7 +248,7 @@ final class Bootstrap
     public function getModuleDef(string! name) -> <\PhalconPlus\Base\ModuleDef>
     {
         if !isset(this->activeModules[name]) {
-            throw new \Exception("Module not exists: " . name);
+            throw new \PhalconPlus\Base\Exception("Module not exists: " . name);
         }
         return this->activeModules[name]->getDef();
     }
@@ -313,10 +313,15 @@ final class Bootstrap
         return this->di;
     }
 
+    public function getApplication()
+    {
+        return this->application;
+    }
+
     public function load(var filePath)
     {
         if !is_file(filePath) {
-            throw new \Exception("The file you try to load is not exists. file position: " . filePath);
+            throw new \PhalconPlus\Base\Exception("The file you try to load is not exists. file position: " . filePath);
         }
 
         var rootPath, loader, config, application, bootstrap, di;

@@ -96,10 +96,10 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_3))) {
 		ZEPHIR_INIT_VAR(&_4$$4);
-		object_init_ex(&_4$$4, zend_exception_get_default(TSRMLS_C));
+		object_init_ex(&_4$$4, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_5$$4);
 		ZEPHIR_CONCAT_SV(&_5$$4, "Module directory not exists or not a dir, file positon: ", &moduleDir);
-		ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", NULL, 7, &_5$$4);
+		ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", NULL, 22, &_5$$4);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_4$$4, "phalconplus/Enum/Sys.zep", 28 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -457,12 +457,12 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_9))) {
 		ZEPHIR_INIT_VAR(&_10$$4);
-		object_init_ex(&_10$$4, zend_exception_get_default(TSRMLS_C));
+		object_init_ex(&_10$$4, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_11$$4);
 		ZEPHIR_GET_CONSTANT(&_11$$4, "APP_RUN_ENV");
 		ZEPHIR_INIT_VAR(&_12$$4);
 		ZEPHIR_CONCAT_SVSVS(&_12$$4, "Module Config file not exists: ", &confPath, " & ", &_11$$4, ".php");
-		ZEPHIR_CALL_METHOD(NULL, &_10$$4, "__construct", NULL, 7, &_12$$4);
+		ZEPHIR_CALL_METHOD(NULL, &_10$$4, "__construct", NULL, 22, &_12$$4);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_10$$4, "phalconplus/Enum/Sys.zep", 143 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();

@@ -58,7 +58,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 
 
 	object_init_ex(return_value, phalconplus_assert_invalidargumentexception_ce);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 22, message, code, propertyPath, value, &constraints);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 23, message, code, propertyPath, value, &constraints);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -99,9 +99,9 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 
 
 	if (!ZEPHIR_IS_EQUAL(value1, value2)) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value1);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 24, value1);
 		zephir_check_call_status();
-		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 23, value2);
+		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 24, value2);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -164,9 +164,9 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEq) {
 			ZEPHIR_INIT_NVAR(&_0$$3);
 			ZVAL_STRING(&_0$$3, "Value \"%s\" is equal to expected value \"%s\".");
 		}
-		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value1);
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 24, value1);
 		zephir_check_call_status();
-		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 23, value2);
+		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 24, value2);
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3, &_3$$3);
 		zephir_check_call_status();
@@ -219,9 +219,9 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 
 
 	if (!ZEPHIR_IS_IDENTICAL(value1, value2)) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value1);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 24, value1);
 		zephir_check_call_status();
-		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 23, value2);
+		ZEPHIR_CALL_SELF(&v2$$3, "stringify", &_0, 24, value2);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -272,7 +272,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 
 
 	if (ZEPHIR_IS_EMPTY(value)) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 24, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -320,7 +320,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 
 
 	if (Z_TYPE_P(value) == IS_NULL) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 24, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -368,7 +368,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 
 
 	if (!(zephir_is_numeric(value))) {
-		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 23, value);
+		ZEPHIR_CALL_SELF(&v1$$3, "stringify", &_0, 24, value);
 		zephir_check_call_status();
 		if (Z_TYPE_P(message) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(message);
@@ -438,13 +438,13 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, range) {
 			ZEPHIR_INIT_NVAR(&_1$$3);
 			ZVAL_STRING(&_1$$3, "Number \"%s\" was expected to be at least \"%d\" and at most \"%d\".");
 		}
-		ZEPHIR_CALL_STATIC(&_2$$3, "stringify", &_3, 23, value);
+		ZEPHIR_CALL_STATIC(&_2$$3, "stringify", &_3, 24, value);
 		zephir_check_call_status();
 		ZVAL_LONG(&_5$$3, minValue);
-		ZEPHIR_CALL_STATIC(&_4$$3, "stringify", &_3, 23, &_5$$3);
+		ZEPHIR_CALL_STATIC(&_4$$3, "stringify", &_3, 24, &_5$$3);
 		zephir_check_call_status();
 		ZVAL_LONG(&_5$$3, maxValue);
-		ZEPHIR_CALL_STATIC(&_6$$3, "stringify", &_3, 23, &_5$$3);
+		ZEPHIR_CALL_STATIC(&_6$$3, "stringify", &_3, 24, &_5$$3);
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_1$$3, &_2$$3, &_4$$3, &_6$$3);
 		zephir_check_call_status();
@@ -513,10 +513,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, min) {
 			ZEPHIR_INIT_NVAR(&_0$$3);
 			ZVAL_STRING(&_0$$3, "Number \"%s\" was expected to be at least \"%s\".");
 		}
-		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value);
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 24, value);
 		zephir_check_call_status();
 		ZVAL_LONG(&_4$$3, minValue);
-		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 23, &_4$$3);
+		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 24, &_4$$3);
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3, &_3$$3);
 		zephir_check_call_status();
@@ -582,10 +582,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, max) {
 			ZEPHIR_INIT_NVAR(&_0$$3);
 			ZVAL_STRING(&_0$$3, "Number \"%s\" was expected to be at most \"%s\".");
 		}
-		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value);
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 24, value);
 		zephir_check_call_status();
 		ZVAL_LONG(&_4$$3, maxValue);
-		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 23, &_4$$3);
+		ZEPHIR_CALL_STATIC(&_3$$3, "stringify", &_2, 24, &_4$$3);
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3, &_3$$3);
 		zephir_check_call_status();
@@ -645,7 +645,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isString) {
 			ZEPHIR_INIT_NVAR(&_0$$3);
 			ZVAL_STRING(&_0$$3, "Value \"%s\" expected to be string, type %s given.");
 		}
-		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value);
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 24, value);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_3$$3);
 		zephir_gettype(&_3$$3, value TSRMLS_CC);
@@ -701,7 +701,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArray) {
 			ZEPHIR_INIT_NVAR(&_0$$3);
 			ZVAL_STRING(&_0$$3, "Value \"%s\" is not an array.");
 		}
-		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 23, value);
+		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 24, value);
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3);
 		zephir_check_call_status();
@@ -756,7 +756,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString) {
 	zephir_json_decode(&_0, value, 0 );
 	_1 = Z_TYPE_P(&_0) == IS_NULL;
 	if (_1) {
-		ZEPHIR_CALL_FUNCTION(&_2, "json_last_error", NULL, 24);
+		ZEPHIR_CALL_FUNCTION(&_2, "json_last_error", NULL, 25);
 		zephir_check_call_status();
 		_1 = !ZEPHIR_IS_LONG(&_2, 0);
 	}
@@ -768,7 +768,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString) {
 			ZEPHIR_INIT_NVAR(&_3$$3);
 			ZVAL_STRING(&_3$$3, "Value \"%s\" is not a valid JSON string.");
 		}
-		ZEPHIR_CALL_STATIC(&_4$$3, "stringify", &_5, 23, value);
+		ZEPHIR_CALL_STATIC(&_4$$3, "stringify", &_5, 24, value);
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_3$$3, &_4$$3);
 		zephir_check_call_status();
@@ -847,13 +847,13 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, stringify) {
 		_7 = Z_TYPE_P(value) == IS_RESOURCE;
 	}
 	if (_7) {
-		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 25, value, &__$true);
+		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 26, value, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_8$$7);
 		ZVAL_STRING(&_8$$7, "/\\s+/");
 		ZEPHIR_INIT_VAR(&_9$$7);
 		ZVAL_STRING(&_9$$7, " ");
-		ZEPHIR_CALL_FUNCTION(&_10$$7, "preg_replace", NULL, 26, &_8$$7, &_9$$7, &val);
+		ZEPHIR_CALL_FUNCTION(&_10$$7, "preg_replace", NULL, 27, &_8$$7, &_9$$7, &val);
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(&val, &_10$$7);
 		if (zephir_fast_strlen_ev(&val) > 160) {

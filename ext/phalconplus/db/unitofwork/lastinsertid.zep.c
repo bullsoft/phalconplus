@@ -102,10 +102,10 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_INIT_VAR(&_9);
-	object_init_ex(&_9, zend_exception_get_default(TSRMLS_C));
+	object_init_ex(&_9, phalconplus_base_exception_ce);
 	ZEPHIR_INIT_VAR(&_10);
 	ZEPHIR_CONCAT_SVSVS(&_10, "Object(", &modelHash, ") instance of ", &modelClass, " not in SplObjectStorage");
-	ZEPHIR_CALL_METHOD(NULL, &_9, "__construct", NULL, 7, &_10);
+	ZEPHIR_CALL_METHOD(NULL, &_9, "__construct", NULL, 22, &_10);
 	zephir_check_call_status();
 	zephir_throw_exception_debug(&_9, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 27 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
