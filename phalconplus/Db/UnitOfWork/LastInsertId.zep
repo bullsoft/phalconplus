@@ -24,7 +24,7 @@ class LastInsertId extends AbstractValue
             }
             inserted->next();
         }
-        throw new \Exception("Object(".modelHash.") instance of ".modelClass." not in SplObjectStorage");
+        throw new \PhalconPlus\Base\Exception("Object(".modelHash.") instance of ".modelClass." not in SplObjectStorage");
     }
 
     public function __toString()

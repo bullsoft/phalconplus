@@ -1,7 +1,7 @@
 namespace PhalconPlus\Db;
 
 use SplObjectStorage;
-use Exception;
+use PhalconPlus\Base\Exception;
 use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\Transaction\Failed as TxFailed;
 use PhalconPlus\Db\UnitOfWork\AbstractValue;

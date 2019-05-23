@@ -5,7 +5,7 @@ class InvalidArgumentException extends \InvalidArgumentException implements Asse
     private propertyPath;
     private value;
     private constraints;
-    
+
     public function __construct(message, code, propertyPath = null, value, array constraints = [])
     {
         parent::__construct(message, code);

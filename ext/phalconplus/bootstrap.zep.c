@@ -287,7 +287,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, registerModule) {
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_8$$4);
 		ZEPHIR_CONCAT_SV(&_8$$4, "DI doesn't load yet, failed to register module ", &_7$$4);
-		ZEPHIR_CALL_METHOD(NULL, &_6$$4, "__construct", NULL, 36, &_8$$4);
+		ZEPHIR_CALL_METHOD(NULL, &_6$$4, "__construct", NULL, 22, &_8$$4);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_6$$4, "phalconplus/Bootstrap.zep", 78 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -814,7 +814,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getPrimaryModule) {
 		object_init_ex(&_2$$3, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZEPHIR_CONCAT_SV(&_3$$3, "Module not exists: ", &name);
-		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "__construct", NULL, 36, &_3$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "__construct", NULL, 22, &_3$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_2$$3, "phalconplus/Bootstrap.zep", 269 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -861,7 +861,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getModule) {
 		object_init_ex(&_1$$3, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_CONCAT_SV(&_2$$3, "Module not exists: ", &name);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 36, &_2$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 22, &_2$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_1$$3, "phalconplus/Bootstrap.zep", 277 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -908,7 +908,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getModuleDef) {
 		object_init_ex(&_1$$3, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_CONCAT_SV(&_2$$3, "Module not exists: ", &name);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 36, &_2$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 22, &_2$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_1$$3, "phalconplus/Bootstrap.zep", 285 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -1116,7 +1116,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, load) {
 		object_init_ex(&_1$$3, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_CONCAT_SV(&_2$$3, "The file you try to load is not exists. file position: ", filePath);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 36, &_2$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 22, &_2$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_1$$3, "phalconplus/Bootstrap.zep", 353 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
