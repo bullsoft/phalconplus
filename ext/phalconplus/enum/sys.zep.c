@@ -472,3 +472,33 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 
 }
 
+PHP_METHOD(PhalconPlus_Enum_Sys, getComposerAutoloadPath) {
+
+	zval _1, _2;
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_INIT_VAR(&_0);
+	zephir_create_array(&_0, 3, 0 TSRMLS_CC);
+	ZEPHIR_OBS_VAR(&_1);
+	zephir_read_static_property_ce(&_1, phalconplus_enum_sys_ce, SL("rootDir"), PH_NOISY_CC);
+	zephir_array_fast_append(&_0, &_1);
+	ZEPHIR_INIT_VAR(&_2);
+	ZVAL_STRING(&_2, "vendor");
+	zephir_array_fast_append(&_0, &_2);
+	ZEPHIR_INIT_NVAR(&_2);
+	ZVAL_STRING(&_2, "autoload.php");
+	zephir_array_fast_append(&_0, &_2);
+	ZEPHIR_INIT_NVAR(&_2);
+	ZVAL_STRING(&_2, "/");
+	zephir_fast_join(return_value, &_2, &_0 TSRMLS_CC);
+	RETURN_MM();
+
+}
+

@@ -13,15 +13,33 @@ class RunMode extends AbstractEnum
 
     // mode -> className
     // eg: mode "Web" has a module initial className in app/Module.php
-    protected map = [
+    protected mapClasses = [
         "Web"     : "Module",
         "Cli"     : "Task",
         "Srv"     : "Srv",
         "Micro"   : "Micro"
     ];
 
+    // 全局服务加载脚本定义
+    protected scripts = [
+        "Web"   : "default-web.php", 
+        "Cli"   : "default-cli.php", 
+        "Srv"   : "default-web.php", 
+        "Micro" : "default-web.php"
+    ];
+
+    public function getScriptPath()
+    {
+        var script;
+        let script = APP_ROOT_COMMON_LOAD_DIR . this->scripts[this->val];
+        if !is_file(script) {
+            error_log("PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: " . script);
+        }
+        return script;
+    }
+
     public function getMapClassName()
     {
-        return this->map[this->val];
+        return this->mapClasses[this->val];
     }
 }

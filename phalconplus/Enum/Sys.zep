@@ -145,4 +145,14 @@ class Sys extends AbstractEnum
 
         return confPath;
     }
+
+    // -> {APP_ROOT_DIR}/vendor/autoload.php
+    public static function getComposerAutoloadPath()
+    {
+        return implode(self::DS, [
+            self::rootDir,
+            "vendor",
+            "autoload.php"
+        ]);
+    }
 }
