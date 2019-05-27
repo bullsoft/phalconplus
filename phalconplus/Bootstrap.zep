@@ -8,7 +8,9 @@ final class Bootstrap
     // 全局配置 <\Phalcon\Config>
     protected config = null;
     // 全局DI容器 <\Phalcon\Di>
-    protected di = null;
+    protected di = null {
+        set, get
+    };
     // 应用实例 <\Phalcon\Application> | <\Yar_Server>
     protected application = null;
     // 模块实例 <\PhalconPlus\Base\ModuleDef>
@@ -72,10 +74,23 @@ final class Bootstrap
     {
         if unlikely isset(this->activeModules[moduleDef->getName()]) {
             return this->activeModules[moduleDef->getName()];
-            // throw new \PhalconPlus\Base\Exception("Module already loaded: " . moduleDef->getName());
         }
         if unlikely is_null(this->di) {
             throw new \PhalconPlus\Base\Exception("DI doesn't load yet, failed to register module " . moduleDef->getName());
+        }
+        if unlikely is_null(this->config) {
+            throw new \PhalconPlus\Base\Exception("Config doesn't initial yet, failed to register module " . moduleDef->getName());
+        }
+        // Load PrimaryModule-Related Config and Global-Script
+        if moduleDef->getIsPrimary() {
+            // 定义工作模式
+            if !defined("APP_RUN_MODE") { define("APP_RUN_MODE", moduleDef->getMode(), false); }
+            // 获取模块配置
+            var moduleConf = moduleDef->getConfig();
+            // 合并配置，Module配置优先级更高
+            this->config->merge(moduleConf);
+            // 装载全局服务初始化文件
+            this->load(moduleDef->getRunMode()->getScriptPath());
         }
         // Implement a module from it's defintion
         var module = moduleDef->impl(this->di);
@@ -86,17 +101,13 @@ final class Bootstrap
 
         // Maintain a list of loaded modules
         let this->activeModules[moduleDef->getName()] = module;
-
         return module;
     }
 
     public function initConf() -> <\PhalconPlus\Bootstrap>
     {
-        // 模块配置
-        var moduleConf = null;
         // 全局配置
         var globalConfPath = Sys::getGlobalConfigPath();
-
         if unlikely !is_file(globalConfPath) {
             // throw new \Phalcon\Config\Exception("Global config file not exist, file position: " . globalConfPath);
             // Make a warning here
@@ -108,13 +119,7 @@ final class Bootstrap
         // 初始化主模块
         if empty this->primaryModuleDef { 
             let this->primaryModuleDef = new \PhalconPlus\Base\ModuleDef(this, APP_MODULE_DIR, true);
-            // 定义工作模式
-            define("APP_RUN_MODE", this->primaryModuleDef->getMode(), false);
         }
-        // 获取模块配置
-        let moduleConf = this->primaryModuleDef->getConfig();
-        // 合并配置，Module配置优先级更高
-        this->config->merge(moduleConf);
         // 返回对象本身
         return this;
     }
@@ -152,6 +157,30 @@ final class Bootstrap
         return call_user_func_array([this, handleMethod], func_get_args());
     }
 
+    public function terminate()
+    {
+        if session_status() == PHP_SESSION_ACTIVE {
+            session_write_close();
+        }
+        if !headers_sent() {
+            session_id(""); 
+        }
+        session_unset();
+        let _SESSION = [];
+
+        let this->di = null;
+        let this->config = null;
+        let this->application = null;
+        let this->loadedFiles = [];
+        let this->primaryModuleDef = null;
+        let this->activeModules = [];
+    }
+
+    public function __destruct()
+    {
+        this->terminate();
+    }
+
     /**
      * @request a uri string (for \Phalcon\Mvc\Application) or Psr\Http\Message\Request
      */
@@ -160,7 +189,7 @@ final class Bootstrap
         // 如果此方法被直接调用需要自己加载配置
         if empty this->config { this->initConf(); }
         // 初始化容器
-        if empty this->di { 
+        if empty this->di {
             let this->di = new \Phalcon\DI\FactoryDefault(); 
             // 把自己注入di
             this->di->setShared("bootstrap", this);
@@ -171,7 +200,6 @@ final class Bootstrap
             let this->application = new \Phalcon\Mvc\Application();
         }
         this->application->setDI(this->di);
-        this->load(this->primaryModuleDef->getRunMode()->getScriptPath());
 
         // 注册模块
         this->registerModule(this->primaryModuleDef);
@@ -192,14 +220,6 @@ final class Bootstrap
             this->di->setShared("bootstrap", this);
         }
 
-        // var globalScript;
-        // let globalScript = APP_ROOT_COMMON_LOAD_DIR . "default-web.php";
-        // if likely is_file(globalScript) {
-        //     this->load(globalScript);
-        // } else {
-        //     error_log("PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: " . globalScript);
-        // }
-        this->load(this->primaryModuleDef->getRunMode()->getScriptPath());
         // 注册模块
         this->registerModule(this->primaryModuleDef);
 
@@ -245,7 +265,6 @@ final class Bootstrap
             let this->application = new \Phalcon\CLI\Console();
         }
         this->application->setDI(this->di);
-        this->load(this->primaryModuleDef->getRunMode()->getScriptPath());
 
         // 注册模块
         this->registerModule(this->primaryModuleDef);
@@ -342,23 +361,27 @@ final class Bootstrap
         return this;
     }
 
-    public function getDI() -> <\Phalcon\DI>
-    {
-        return this->di;
-    }
+    // public function getDI() -> <\Phalcon\DI>
+    // {
+    //     return this->di;
+    // }
 
     public function load(var filePath)
     {
+        if unlikely !is_string(filePath) {
+            return false;
+        }
+
         if unlikely !is_file(filePath) {
             throw new \PhalconPlus\Base\Exception("The file you try to load is not exists. file position: " . filePath);
         }
 
-        var fileRet;
+        var loader, config, application, di;
+        var bootstrap, rootPath, fileRet;
+
         if fetch fileRet, this->loadedFiles[filePath] {
             return fileRet;
         }
-
-        var rootPath, loader, config, application, bootstrap, di;
 
         let
           rootPath = "rootPath",
@@ -368,7 +391,7 @@ final class Bootstrap
           bootstrap = "bootstrap",
           di = "di";
 
-        let {rootPath} = APP_ROOT_DIR;
+        let {rootPath} = Sys::getRootDir();
         let {loader} = new \Phalcon\Loader();
         let {config} = this->config;
         let {application} = this->application;
@@ -384,6 +407,7 @@ final class Bootstrap
                  "di": this->di
         ]);
         */
+
         let fileRet = require filePath;
         let this->loadedFiles[filePath] = fileRet;
         return fileRet;

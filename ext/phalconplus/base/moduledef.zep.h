@@ -16,6 +16,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, getName);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getConfigPath);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getConfig);
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getDir);
+void zephir_init_static_properties_PhalconPlus_Base_ModuleDef(TSRMLS_D);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_moduledef___construct, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, boot, PhalconPlus\\Bootstrap, 0)

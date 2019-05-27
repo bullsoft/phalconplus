@@ -28,6 +28,8 @@ class ModuleDef
     protected configPath = "";
     protected dir = "";
 
+    protected static loadedClasses = [];
+
     // <\Phalcon\Config>
     protected config = null;
     // <\PhalconPlus\Enum\RunMode>
@@ -68,10 +70,13 @@ class ModuleDef
 
     public function impl(<\Phalcon\Di> di) -> <\PhalconPlus\Base\AbstractModule>
     {
-        require this->classPath;
+        if !isset(self::loadedClasses[this->className]) {
+            require this->classPath;
+        }
         if !class_exists(this->className) {
             throw new \Exception("Module class not exists: ". this->className);
         }
+        let self::loadedClasses[this->className] = 1;
         var className = this->className;
         return new {className}(di, this);
     }

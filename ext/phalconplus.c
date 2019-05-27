@@ -45,6 +45,7 @@ zend_class_entry *phalconplus_base_pagable_ce;
 zend_class_entry *phalconplus_base_page_ce;
 zend_class_entry *phalconplus_base_protoorderby_ce;
 zend_class_entry *phalconplus_base_psrapplication_ce;
+zend_class_entry *phalconplus_base_psrrequest_ce;
 zend_class_entry *phalconplus_base_service_ce;
 zend_class_entry *phalconplus_base_simplerequest_ce;
 zend_class_entry *phalconplus_base_simpleresponse_ce;
@@ -97,6 +98,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Base_Page);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoOrderBy);
 	ZEPHIR_INIT(PhalconPlus_Base_PsrApplication);
+	ZEPHIR_INIT(PhalconPlus_Base_PsrRequest);
 	ZEPHIR_INIT(PhalconPlus_Base_Service);
 	ZEPHIR_INIT(PhalconPlus_Base_SimpleRequest);
 	ZEPHIR_INIT(PhalconPlus_Base_SimpleResponse);
@@ -181,6 +183,7 @@ static PHP_RINIT_FUNCTION(phalconplus)
 	php_zephir_init_globals(phalconplus_globals_ptr TSRMLS_CC);
 	zephir_initialize_memory(phalconplus_globals_ptr TSRMLS_CC);
 
+		zephir_init_static_properties_PhalconPlus_Base_ModuleDef(TSRMLS_C);
 	
 	return SUCCESS;
 }

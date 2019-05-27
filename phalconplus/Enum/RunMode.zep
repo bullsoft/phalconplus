@@ -1,6 +1,7 @@
 // <?php
 namespace PhalconPlus\Enum;
 use PhalconPlus\Enum\AbstractEnum;
+use PhalconPlus\Enum\Sys as Sys;
 
 class RunMode extends AbstractEnum
 {
@@ -25,20 +26,21 @@ class RunMode extends AbstractEnum
         "Web"   : "default-web.php", 
         "Cli"   : "default-cli.php", 
         "Srv"   : "default-web.php", 
-        "Micro" : "default-web.php"
+        "Micro" : "default-micro.php"
     ];
 
-    public function getScriptPath()
+    public function getScriptPath() -> string | null
     {
         var script;
-        let script = APP_ROOT_COMMON_LOAD_DIR . this->scripts[this->val];
+        let script = Sys::getGlobalLoadDir() . this->scripts[this->val];
         if !is_file(script) {
             error_log("PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: " . script);
+            return null;
         }
         return script;
     }
 
-    public function getMapClassName()
+    public function getMapClassName() -> string
     {
         return this->mapClasses[this->val];
     }

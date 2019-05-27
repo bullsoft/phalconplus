@@ -106,7 +106,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 		return;
 	}
 	zend_update_static_property(phalconplus_enum_sys_ce, ZEND_STRL("primaryModuleDir"), &moduleDir);
-	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 60, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 77, &moduleDir);
 	zephir_check_call_status();
 	zend_update_static_property(phalconplus_enum_sys_ce, ZEND_STRL("rootDir"), &_6);
 	RETURN_MM_NULL();
@@ -326,7 +326,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleNameByDir) {
 
 
 	ZVAL_LONG(&_0, 8);
-	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 61, &moduleDir, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 78, &moduleDir, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 

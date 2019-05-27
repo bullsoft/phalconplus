@@ -47,11 +47,11 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 
 	zephir_update_property_zval(this_ptr, SL("di"), di);
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 45);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 57);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 46);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 58);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
