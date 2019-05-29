@@ -10,6 +10,7 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, getPsrRequest);
 PHP_METHOD(PhalconPlus_Base_PsrRequest, __construct);
 PHP_METHOD(PhalconPlus_Base_PsrRequest, getRequestTarget);
 PHP_METHOD(PhalconPlus_Base_PsrRequest, mapFiles);
+PHP_METHOD(PhalconPlus_Base_PsrRequest, removeTmpFiles);
 PHP_METHOD(PhalconPlus_Base_PsrRequest, get);
 PHP_METHOD(PhalconPlus_Base_PsrRequest, getPost);
 PHP_METHOD(PhalconPlus_Base_PsrRequest, getQuery);
@@ -273,6 +274,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_psrrequest_method_entry) {
 	PHP_ME(PhalconPlus_Base_PsrRequest, __construct, arginfo_phalconplus_base_psrrequest___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Base_PsrRequest, getRequestTarget, arginfo_phalconplus_base_psrrequest_getrequesttarget, ZEND_ACC_PROTECTED|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Base_PsrRequest, mapFiles, arginfo_phalconplus_base_psrrequest_mapfiles, ZEND_ACC_PRIVATE)
+	PHP_ME(PhalconPlus_Base_PsrRequest, removeTmpFiles, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_PsrRequest, get, arginfo_phalconplus_base_psrrequest_get, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_PsrRequest, getPost, arginfo_phalconplus_base_psrrequest_getpost, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_PsrRequest, getQuery, arginfo_phalconplus_base_psrrequest_getquery, ZEND_ACC_PUBLIC)

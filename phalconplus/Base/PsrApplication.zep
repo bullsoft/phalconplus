@@ -13,18 +13,23 @@ class PsrApplication extends BaseApplication
         set, get
     };
 
-    protected post = [] {
-        set, get
-    };
-
-    protected tempFiles = [] {
+    protected nativeRequest = null {
         get
     };
 
     public function __construct(<DiInterface> dependencyInjector = null, <ServerRequestInterface> request = null)
     {
         parent::__construct(dependencyInjector);
+        let this->_sendHeaders = false;
+        let this->_sendCookies = false;
         let this->request = request;
+    }
+
+    public function __destruct()
+    {
+        if this->nativeRequest {
+            this->nativeRequest->removeTmpFiles();
+        }
     }
 
     public function handle(string uri = null) -> <ResponseInterface> | boolean
@@ -38,84 +43,74 @@ class PsrApplication extends BaseApplication
         }
 
         // Phalcon\Http\Request
-        var nativeRequest;
-        let nativeRequest = new \PhalconPlus\Base\PsrRequest(request);
-        this->getDI()->setShared("request", nativeRequest);
+        let this->nativeRequest = new \PhalconPlus\Base\PsrRequest(request);
+        this->getDI()->setShared("request", this->nativeRequest);
 
         if !class_exists("\\GuzzleHttp\\Psr7\\Response") {
             throw new \PhalconPlus\Base\Exception("PsrApplication depends on GuzzleHttp\\Psr7\\Response");
         }
-
-        var cookies = [], cookie;
-
-        let cookies = nativeRequest->getCookies();
-        var nativeHeaders = nativeRequest->getHeaders();
-        
-        if !empty cookies {
-            if isset cookies[session_name()] {
-                session_id(cookies[session_name()]);
-            }
-        }
-
+        // get request uri-path
         let uri = request->getUri()->getPath();
         // get Phalcon\Http\Response
         var response;
-        let response = <\Phalcon\Http\Response> parent::handle(uri);
 
-        // convert to Psr7
-        var content = call_user_func([response, "getContent"]); // @TODO: parse error when invoke getContent through "->"
-        var headers = response->getHeaders()->toArray();
+        ob_start();
+        let response = <\Phalcon\Http\Response> parent::handle(uri);
+        var stdout = ob_get_clean();
+
+        var headers = this->mapHeaders(response);
         var status = response->getStatusCode();
         var reason = response->getReasonPhrase();
+
+        ob_start();
+        response->send();
+        var content = ob_get_clean();
+
+        if !empty stdout {
+            let content = stdout . content;
+        }
         
-        if session_status() == PHP_SESSION_ACTIVE  {
-            if !isset(cookies[session_name()]) {
-                let cookie = new Cookie(session_name(), session_id(), time() + 3600, "/", nativeRequest->getHttpHost());
-                var cookieHeader = sprintf("%s=%s", cookie->getName(), cookie->getValue());
-                if cookie->getPath() {
-                    let cookieHeader .= "; Path=" . cookie->getPath();
+        var psrResponse;
+        let psrResponse = new \GuzzleHttp\Psr7\Response(status?status:200, headers, content, request->getProtocolVersion(), reason?reason:"OK");
+
+        if !isset(headers["Content-Length"]) {
+            let psrResponse = psrResponse->withAddedHeader("Content-Length", strlen(content));
+        }
+
+        return psrResponse;
+    }
+
+    protected function mapHeaders(<\Phalcon\Http\Response> response)
+    {
+        var headers = response->getHeaders()->toArray();
+        
+        var rawHeaders = headers_list();
+        var h, pos, nativeHeaders = [];
+        for h in rawHeaders {
+            let pos = strpos(h, ":");
+            if false !== pos {
+                var name = substr(h, 0, pos);
+                var value = trim(substr(h, pos + 1));
+                if isset(nativeHeaders[name]) {
+                    if !is_array(nativeHeaders[name]) {
+                        let nativeHeaders[name] = [nativeHeaders[name]];
+                    }
+                    let nativeHeaders[name][] = value;
+                } else {
+                    let nativeHeaders[name] = value;
                 }
-                if cookie->getDomain() {
-                    let cookieHeader .= "; Domain=" . cookie->getDomain();
-                }
-                if cookie->getExpiration() {
-                    let cookieHeader .= "; Expires=" . gmdate("D, d-M-Y H:i:s", cookie->getExpiration() + date("Z")). " ". date("T");
-                }
-                let headers["Set-Cookie"][] = cookieHeader;
             }
         }
-    
         // after reading all headers we need to reset it, so next request
         // operates on a clean header.
-        // header_remove();
-        // for cookie in response->getCookies() {
-        //     var cookieHeader = sprintf("%s=%s", cookie->getName(), cookie->getValue());
-        //     if cookie->getPath() {
-        //         let cookieHeader .= "; Path=" . cookie->getPath();
-        //     }
-        //     if cookie->getDomain() {
-        //         let cookieHeader .= "; Domain=" . cookie->getDomain();
-        //     }
-        //     if cookie->getExpiresTime() {
-        //         let cookieHeader .= "; Expires=" . gmdate("D, d-M-Y H:i:s", cookie->getExpiresTime()). " GMT";
-        //     }
-        //     if cookie->getMaxAge() {
-        //         let cookieHeader .= "; Max-Age=" . cookie->getMaxAge();
-        //     }
-        //     if cookie->isSecure() {
-        //         let cookieHeader .= "; Secure";
-        //     }
-        //     if $cookie->isHttpOnly() {
-        //         let cookieHeader .= "; HttpOnly";
-        //     }
-        //     let cookies[] = cookieHeader;
-        // }
-        // if isset(nativeHeaders["Set-Cookie"]) {
-        //     let headers["Set-Cookie"] = array_merge((array)nativeHeaders["Set-Cookie"], cookies);
-        // } else {
-        //     let headers["Set-Cookie"] = cookies;
-        // }
+        header_remove();
+        let headers = array_merge(nativeHeaders, headers);
         
-        return new \GuzzleHttp\Psr7\Response(status?status:200, headers, content, request->getProtocolVersion(), reason?reason:"OK");
+        if isset(nativeHeaders["Set-Cookie"]) {
+            let headers["Set-Cookie"] = is_array(nativeHeaders["Set-Cookie"])?nativeHeaders["Set-Cookie"]:[nativeHeaders["Set-Cookie"]];
+        } else {
+            let headers["Set-Cookie"] = [];
+        }
+        return headers;
     }
 }

@@ -54,6 +54,12 @@ class PsrRequest extends BaseRequest
             let k = strtoupper(str_replace("-", "_", k));
             let _SERVER["HTTP_".k] = v;
         }
+        // 设置SessionId
+        if !empty this->cookies {
+            if isset this->cookies[session_name()] {
+                session_id(this->cookies[session_name()]);
+            }
+        }
 
         let this->psrRequest = request;
     }
@@ -91,6 +97,16 @@ class PsrRequest extends BaseRequest
                     "tmp_name" : tmpname,
                     "type"     : file->getClientMediaType()
                 ];
+            }
+        }
+    }
+
+    public function removeTmpFiles()
+    {
+        var file;
+        for file in this->files {
+            if file_exists(file["tmp_name"]) {
+                unlink(file["tmp_name"]);
             }
         }
     }
