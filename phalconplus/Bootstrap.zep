@@ -159,15 +159,19 @@ final class Bootstrap
 
     public function terminate()
     {
-        if session_status() == PHP_SESSION_ACTIVE {
-            session_write_close();
-        }
-        if !headers_sent() {
-            session_id(""); 
-        }
-        session_unset();
-        let _SESSION = [];
+        if session_status() == PHP_SESSION_ACTIVE { session_write_close(); }
+        if !headers_sent() { session_id(""); }
 
+        session_unset();
+
+        let _SESSION = [];
+        let _POST = [];
+        let _GET = [];
+        let _SERVER = [];
+        let _REQUEST = [];
+        let _FILES = [];
+
+        \Phalcon\Di::reset();
         let this->di = null;
         let this->config = null;
         let this->application = null;
@@ -360,11 +364,6 @@ final class Bootstrap
         this->di->set("config", this->config);
         return this;
     }
-
-    // public function getDI() -> <\Phalcon\DI>
-    // {
-    //     return this->di;
-    // }
 
     public function load(var filePath)
     {

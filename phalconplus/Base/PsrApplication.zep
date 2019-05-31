@@ -23,6 +23,8 @@ class PsrApplication extends BaseApplication
         let this->_sendHeaders = false;
         let this->_sendCookies = false;
         let this->request = request;
+        // Phalcon\Http\Request
+        let this->nativeRequest = new \PhalconPlus\Base\PsrRequest(request);
     }
 
     public function __destruct()
@@ -36,19 +38,22 @@ class PsrApplication extends BaseApplication
     {
         var uri, request;
 
+        if empty this->_dependencyInjector {
+            throw new \PhalconPlus\Base\Exception("there is no di(dependency injector) in PsrAppliction");
+        }
+
         if !empty this->request {
             let request = this->request;
         } else {
             throw new \PhalconPlus\Base\Exception("request in PsrApplication must instance of \\Psr\\Http\\Message\\ServerRequestInterface");
         }
-
-        // Phalcon\Http\Request
-        let this->nativeRequest = new \PhalconPlus\Base\PsrRequest(request);
-        this->getDI()->setShared("request", this->nativeRequest);
-
+        
         if !class_exists("\\GuzzleHttp\\Psr7\\Response") {
             throw new \PhalconPlus\Base\Exception("PsrApplication depends on GuzzleHttp\\Psr7\\Response");
         }
+
+        this->_dependencyInjector->setShared("request", this->nativeRequest);
+
         // get request uri-path
         let uri = request->getUri()->getPath();
         // get Phalcon\Http\Response

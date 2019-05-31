@@ -399,38 +399,31 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, jsonSerialize) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 
+	zend_bool _4$$5, _5$$5, _6$$5, _11$$10, _12$$10, _13$$10;
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *data_param = NULL, pros, newPros, key, val, *_0, _1, _7$$6, _9$$7, _10$$8, _14$$11, _15$$12, _16$$13;
 	zval data;
-	zval *isArray_param = NULL, *data_param = NULL, pros, newPros, key, val, *_0, _1, _6$$6, _7$$6, _9$$7, _10$$8, _13$$11, _14$$11, _15$$12, _16$$13;
-	zend_bool isArray, _4$$5, _5$$5, _11$$10, _12$$10;
 	zval *this_ptr = getThis();
 
+	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&pros);
 	ZVAL_UNDEF(&newPros);
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&val);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_6$$6);
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&_9$$7);
 	ZVAL_UNDEF(&_10$$8);
-	ZVAL_UNDEF(&_13$$11);
 	ZVAL_UNDEF(&_14$$11);
 	ZVAL_UNDEF(&_15$$12);
 	ZVAL_UNDEF(&_16$$13);
-	ZVAL_UNDEF(&data);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 2, &isArray_param, &data_param);
+	zephir_fetch_params(1, 0, 1, &data_param);
 
-	if (!isArray_param) {
-		isArray = 0;
-	} else {
-		isArray = zephir_get_boolval(isArray_param);
-	}
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
@@ -443,13 +436,13 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 	array_init(&pros);
 	ZEPHIR_INIT_VAR(&newPros);
 	array_init(&newPros);
-	if (isArray == 0) {
+	if (ZEPHIR_IS_EMPTY(&data)) {
 		ZEPHIR_CALL_METHOD(&pros, this_ptr, "getselfvars", NULL, 0);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_CPY_WRT(&pros, &data);
 	}
-	zephir_is_iterable(&pros, 0, "phalconplus/Base/ProtoBuffer.zep", 121);
+	zephir_is_iterable(&pros, 0, "phalconplus/Base/ProtoBuffer.zep", 120);
 	if (Z_TYPE_P(&pros) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&pros), _2, _3, _0)
 		{
@@ -461,24 +454,27 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 			}
 			ZEPHIR_INIT_NVAR(&val);
 			ZVAL_COPY(&val, _0);
-			_4$$5 = Z_TYPE_P(&val) == IS_OBJECT;
+			_4$$5 = Z_TYPE_P(&val) == IS_ARRAY;
 			if (_4$$5) {
-				_4$$5 = (zephir_method_exists_ex(&val, SL("toarray") TSRMLS_CC) == SUCCESS);
+				_4$$5 = !(ZEPHIR_IS_EMPTY(&val));
 			}
 			_5$$5 = Z_TYPE_P(&val) == IS_OBJECT;
 			if (_5$$5) {
-				_5$$5 = (zephir_method_exists_ex(&val, SL("__tostring") TSRMLS_CC) == SUCCESS);
+				_5$$5 = (zephir_method_exists_ex(&val, SL("toarray") TSRMLS_CC) == SUCCESS);
 			}
-			if (Z_TYPE_P(&val) == IS_ARRAY) {
-				ZVAL_BOOL(&_7$$6, 1);
-				ZEPHIR_CALL_METHOD(&_6$$6, this_ptr, "toarray", &_8, 10, &_7$$6, &val);
+			_6$$5 = Z_TYPE_P(&val) == IS_OBJECT;
+			if (_6$$5) {
+				_6$$5 = (zephir_method_exists_ex(&val, SL("__tostring") TSRMLS_CC) == SUCCESS);
+			}
+			if (_4$$5) {
+				ZEPHIR_CALL_METHOD(&_7$$6, this_ptr, "toarray", &_8, 10, &val);
 				zephir_check_call_status();
-				zephir_array_update_zval(&newPros, &key, &_6$$6, PH_COPY | PH_SEPARATE);
-			} else if (_4$$5) {
+				zephir_array_update_zval(&newPros, &key, &_7$$6, PH_COPY | PH_SEPARATE);
+			} else if (_5$$5) {
 				ZEPHIR_CALL_METHOD(&_9$$7, &val, "toarray", NULL, 0);
 				zephir_check_call_status();
 				zephir_array_update_zval(&newPros, &key, &_9$$7, PH_COPY | PH_SEPARATE);
-			} else if (_5$$5) {
+			} else if (_6$$5) {
 				ZEPHIR_CALL_METHOD(&_10$$8, &val, "__tostring", NULL, 0);
 				zephir_check_call_status();
 				zephir_array_update_zval(&newPros, &key, &_10$$8, PH_COPY | PH_SEPARATE);
@@ -499,24 +495,27 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&val, &pros, "current", NULL, 0);
 			zephir_check_call_status();
-				_11$$10 = Z_TYPE_P(&val) == IS_OBJECT;
+				_11$$10 = Z_TYPE_P(&val) == IS_ARRAY;
 				if (_11$$10) {
-					_11$$10 = (zephir_method_exists_ex(&val, SL("toarray") TSRMLS_CC) == SUCCESS);
+					_11$$10 = !(ZEPHIR_IS_EMPTY(&val));
 				}
 				_12$$10 = Z_TYPE_P(&val) == IS_OBJECT;
 				if (_12$$10) {
-					_12$$10 = (zephir_method_exists_ex(&val, SL("__tostring") TSRMLS_CC) == SUCCESS);
+					_12$$10 = (zephir_method_exists_ex(&val, SL("toarray") TSRMLS_CC) == SUCCESS);
 				}
-				if (Z_TYPE_P(&val) == IS_ARRAY) {
-					ZVAL_BOOL(&_14$$11, 1);
-					ZEPHIR_CALL_METHOD(&_13$$11, this_ptr, "toarray", &_8, 10, &_14$$11, &val);
+				_13$$10 = Z_TYPE_P(&val) == IS_OBJECT;
+				if (_13$$10) {
+					_13$$10 = (zephir_method_exists_ex(&val, SL("__tostring") TSRMLS_CC) == SUCCESS);
+				}
+				if (_11$$10) {
+					ZEPHIR_CALL_METHOD(&_14$$11, this_ptr, "toarray", &_8, 10, &val);
 					zephir_check_call_status();
-					zephir_array_update_zval(&newPros, &key, &_13$$11, PH_COPY | PH_SEPARATE);
-				} else if (_11$$10) {
+					zephir_array_update_zval(&newPros, &key, &_14$$11, PH_COPY | PH_SEPARATE);
+				} else if (_12$$10) {
 					ZEPHIR_CALL_METHOD(&_15$$12, &val, "toarray", NULL, 0);
 					zephir_check_call_status();
 					zephir_array_update_zval(&newPros, &key, &_15$$12, PH_COPY | PH_SEPARATE);
-				} else if (_12$$10) {
+				} else if (_13$$10) {
 					ZEPHIR_CALL_METHOD(&_16$$13, &val, "__tostring", NULL, 0);
 					zephir_check_call_status();
 					zephir_array_update_zval(&newPros, &key, &_16$$13, PH_COPY | PH_SEPARATE);

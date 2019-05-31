@@ -504,7 +504,7 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, get) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool notAllowEmpty, noRecursive;
-	zval *name_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *notAllowEmpty_param = NULL, *noRecursive_param = NULL, _POST, _GET, __$null, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9;
+	zval *name_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *notAllowEmpty_param = NULL, *noRecursive_param = NULL, _POST, _GET, __$null, post, _0, get, _1, request, _2, _3;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -514,16 +514,13 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, get) {
 	ZVAL_UNDEF(&_POST);
 	ZVAL_UNDEF(&_GET);
 	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&post);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&get);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&request);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&_5);
-	ZVAL_UNDEF(&_6);
-	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_8);
-	ZVAL_UNDEF(&_9);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SL("_GET"));
@@ -565,31 +562,25 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, get) {
 	}
 
 
-	ZEPHIR_INIT_VAR(&_0);
-	zephir_read_property(&_1, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
-	zephir_fast_array_merge(&_0, &_1, &_POST TSRMLS_CC);
-	zephir_update_property_zval(this_ptr, SL("post"), &_0);
-	ZEPHIR_INIT_VAR(&_2);
-	zephir_read_property(&_3, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
-	zephir_fast_array_merge(&_2, &_3, &_GET TSRMLS_CC);
-	zephir_update_property_zval(this_ptr, SL("get"), &_2);
-	ZEPHIR_INIT_VAR(&_4);
-	zephir_read_property(&_5, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
-	zephir_read_property(&_6, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
-	zephir_fast_array_merge(&_4, &_5, &_6 TSRMLS_CC);
-	zephir_update_property_zval(this_ptr, SL("request"), &_4);
-	zephir_read_property(&_7, this_ptr, SL("request"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&post);
+	zephir_fast_array_merge(&post, &_0, &_POST TSRMLS_CC);
+	zephir_read_property(&_1, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&get);
+	zephir_fast_array_merge(&get, &_1, &_GET TSRMLS_CC);
+	ZEPHIR_INIT_VAR(&request);
+	zephir_fast_array_merge(&request, &get, &post TSRMLS_CC);
 	if (notAllowEmpty) {
-		ZVAL_BOOL(&_8, 1);
+		ZVAL_BOOL(&_2, 1);
 	} else {
-		ZVAL_BOOL(&_8, 0);
+		ZVAL_BOOL(&_2, 0);
 	}
 	if (noRecursive) {
-		ZVAL_BOOL(&_9, 1);
+		ZVAL_BOOL(&_3, 1);
 	} else {
-		ZVAL_BOOL(&_9, 0);
+		ZVAL_BOOL(&_3, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "gethelper", NULL, 0, &_7, &name, filters, defaultValue, &_8, &_9);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "gethelper", NULL, 0, &request, &name, filters, defaultValue, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -599,7 +590,7 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, getPost) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool notAllowEmpty, noRecursive;
-	zval *name_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *notAllowEmpty_param = NULL, *noRecursive_param = NULL, _POST, __$null, _0, _1, _2, _3, _4;
+	zval *name_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *notAllowEmpty_param = NULL, *noRecursive_param = NULL, _POST, __$null, post, _0, _1, _2;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -608,11 +599,10 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, getPost) {
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_UNDEF(&_POST);
 	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&post);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
-	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_4);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_POST, SL("_POST"));
@@ -653,22 +643,20 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, getPost) {
 	}
 
 
-	ZEPHIR_INIT_VAR(&_0);
-	zephir_read_property(&_1, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
-	zephir_fast_array_merge(&_0, &_1, &_POST TSRMLS_CC);
-	zephir_update_property_zval(this_ptr, SL("post"), &_0);
-	zephir_read_property(&_2, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&post);
+	zephir_fast_array_merge(&post, &_0, &_POST TSRMLS_CC);
 	if (notAllowEmpty) {
-		ZVAL_BOOL(&_3, 1);
+		ZVAL_BOOL(&_1, 1);
 	} else {
-		ZVAL_BOOL(&_3, 0);
+		ZVAL_BOOL(&_1, 0);
 	}
 	if (noRecursive) {
-		ZVAL_BOOL(&_4, 1);
+		ZVAL_BOOL(&_2, 1);
 	} else {
-		ZVAL_BOOL(&_4, 0);
+		ZVAL_BOOL(&_2, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "gethelper", NULL, 0, &_2, &name, filters, defaultValue, &_3, &_4);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "gethelper", NULL, 0, &post, &name, filters, defaultValue, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -678,7 +666,7 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, getQuery) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool notAllowEmpty, noRecursive;
-	zval *name_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *notAllowEmpty_param = NULL, *noRecursive_param = NULL, _GET, __$null, _0, _1, _2, _3, _4;
+	zval *name_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *notAllowEmpty_param = NULL, *noRecursive_param = NULL, _GET, __$null, get, _0, _1, _2;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -687,11 +675,10 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, getQuery) {
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_UNDEF(&_GET);
 	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&get);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
-	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_4);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SL("_GET"));
@@ -732,22 +719,20 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, getQuery) {
 	}
 
 
-	ZEPHIR_INIT_VAR(&_0);
-	zephir_read_property(&_1, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
-	zephir_fast_array_merge(&_0, &_1, &_GET TSRMLS_CC);
-	zephir_update_property_zval(this_ptr, SL("get"), &_0);
-	zephir_read_property(&_2, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&get);
+	zephir_fast_array_merge(&get, &_0, &_GET TSRMLS_CC);
 	if (notAllowEmpty) {
-		ZVAL_BOOL(&_3, 1);
+		ZVAL_BOOL(&_1, 1);
 	} else {
-		ZVAL_BOOL(&_3, 0);
+		ZVAL_BOOL(&_1, 0);
 	}
 	if (noRecursive) {
-		ZVAL_BOOL(&_4, 1);
+		ZVAL_BOOL(&_2, 1);
 	} else {
-		ZVAL_BOOL(&_4, 0);
+		ZVAL_BOOL(&_2, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "gethelper", NULL, 0, &_2, &name, filters, defaultValue, &_3, &_4);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "gethelper", NULL, 0, &get, &name, filters, defaultValue, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -755,12 +740,14 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, getQuery) {
 
 PHP_METHOD(PhalconPlus_Base_PsrRequest, has) {
 
-	zval *name_param = NULL, _0;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *name_param = NULL, _0, _1;
 	zval name;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
@@ -777,13 +764,17 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, has) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("request"), PH_NOISY_CC | PH_READONLY);
-	RETURN_MM_BOOL(zephir_array_isset(&_0, &name));
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "get", NULL, 0, &name);
+	zephir_check_call_status();
+	ZEPHIR_CALL_FUNCTION(&_1, "emtpy", NULL, 0, &_0);
+	zephir_check_call_status();
+	RETURN_MM_BOOL(!zephir_is_true(&_1));
 
 }
 
 PHP_METHOD(PhalconPlus_Base_PsrRequest, hasPost) {
 
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
 	zval name;
 	zval *this_ptr = getThis();
@@ -806,19 +797,22 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, hasPost) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
-	RETURN_MM_BOOL(zephir_array_isset(&_0, &name));
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getpost", NULL, 0, &name);
+	zephir_check_call_status();
+	RETURN_MM_BOOL(!(ZEPHIR_IS_EMPTY(&_0)));
 
 }
 
 PHP_METHOD(PhalconPlus_Base_PsrRequest, hasQuery) {
 
-	zval *name_param = NULL, _0;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *name_param = NULL, _0, _1;
 	zval name;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
@@ -835,8 +829,11 @@ PHP_METHOD(PhalconPlus_Base_PsrRequest, hasQuery) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
-	RETURN_MM_BOOL(zephir_array_isset(&_0, &name));
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getquery", NULL, 0, &name);
+	zephir_check_call_status();
+	ZEPHIR_CALL_FUNCTION(&_1, "emtpy", NULL, 0, &_0);
+	zephir_check_call_status();
+	RETURN_MM_BOOL(!zephir_is_true(&_1));
 
 }
 

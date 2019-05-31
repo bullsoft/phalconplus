@@ -113,37 +113,37 @@ class PsrRequest extends BaseRequest
 
     public function get(string! name = null, var filters = null, var defaultValue = null, boolean notAllowEmpty = false, boolean noRecursive = false) -> var
     {
-        let this->post = array_merge(this->post, _POST);
-        let this->get = array_merge(this->get, _GET);
-        let this->request = array_merge(this->get, this->post);
-        return this->getHelper(this->request, name, filters, defaultValue, notAllowEmpty, noRecursive);
+        var post = array_merge(this->post, _POST);
+        var get = array_merge(this->get, _GET);
+        var request = array_merge(get, post);
+        return this->getHelper(request, name, filters, defaultValue, notAllowEmpty, noRecursive);
     }
 
     public function getPost(string! name = null, var filters = null, var defaultValue = null, boolean notAllowEmpty = false, boolean noRecursive = false) -> var
     {
-        let this->post = array_merge(this->post, _POST);
-        return this->getHelper(this->post, name, filters, defaultValue, notAllowEmpty, noRecursive);
+        var post = array_merge(this->post, _POST);
+        return this->getHelper(post, name, filters, defaultValue, notAllowEmpty, noRecursive);
     }
 
     public function getQuery(string! name = null, var filters = null, var defaultValue = null, boolean notAllowEmpty = false, boolean noRecursive = false) -> var
     {
-        let this->get = array_merge(this->get, _GET);
-        return this->getHelper(this->get, name, filters, defaultValue, notAllowEmpty, noRecursive);
+        var get = array_merge(this->get, _GET);
+        return this->getHelper(get, name, filters, defaultValue, notAllowEmpty, noRecursive);
     }
 
     public function has(string! name) -> boolean
     {
-        return isset this->request[name];
+        return ! emtpy(this->get(name));
     }
 
     public function hasPost(string! name) -> boolean
     {
-        return isset this->post[name];
+        return ! empty(this->getPost(name));
     }
 
     public function hasQuery(string! name) -> boolean
     {
-        return isset this->get[name];
+        return ! emtpy(this->getQuery(name));
     }
 
 
