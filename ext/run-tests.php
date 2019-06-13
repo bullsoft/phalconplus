@@ -24,7 +24,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id: 2801959f10f4e09ef49cf8f1abbef8e2ce0992ab $ */
+/* $Id: 1e07509506084059121aa4624a5d7112ad742f7c $ */
 
 /* Sanity check to ensure that pcre extension needed by this script is available.
  * In the event it is not, print a nice error message indicating that this script will
@@ -697,7 +697,7 @@ if (isset($argc) && $argc > 1) {
 					$html_output = is_resource($html_file);
 					break;
 				case '--version':
-					echo '$Id: 2801959f10f4e09ef49cf8f1abbef8e2ce0992ab $' . "\n";
+					echo '$Id: 1e07509506084059121aa4624a5d7112ad742f7c $' . "\n";
 					exit(1);
 
 				default:
@@ -1604,9 +1604,8 @@ TEST $file
 	// Any special ini settings
 	// these may overwrite the test defaults...
 	if (array_key_exists('INI', $section_text)) {
-		if (strpos($section_text['INI'], '{PWD}') !== false) {
-			$section_text['INI'] = str_replace('{PWD}', dirname($file), $section_text['INI']);
-		}
+		$section_text['INI'] = str_replace('{PWD}', dirname($file), $section_text['INI']);
+		$section_text['INI'] = str_replace('{TMP}', sys_get_temp_dir(), $section_text['INI']);
 		settings2array(preg_split( "/[\n\r]+/", $section_text['INI']), $ini_settings);
 	}
 

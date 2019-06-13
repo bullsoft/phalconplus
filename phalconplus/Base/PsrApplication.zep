@@ -9,7 +9,7 @@ use Phalcon\Http\Cookie;
 
 class PsrApplication extends BaseApplication
 {
-    protected request = null {
+    protected psrRequest = null {
         set, get
     };
 
@@ -17,14 +17,14 @@ class PsrApplication extends BaseApplication
         get
     };
 
-    public function __construct(<DiInterface> dependencyInjector = null, <ServerRequestInterface> request = null)
+    public function __construct(<DiInterface> dependencyInjector = null, <ServerRequestInterface> psrRequest = null)
     {
         parent::__construct(dependencyInjector);
         let this->_sendHeaders = false;
         let this->_sendCookies = false;
-        let this->request = request;
+        let this->psrRequest = psrRequest;
         // Phalcon\Http\Request
-        let this->nativeRequest = new \PhalconPlus\Base\PsrRequest(request);
+        let this->nativeRequest = new \PhalconPlus\Base\PsrRequest(psrRequest);
     }
 
     public function __destruct()
@@ -36,14 +36,14 @@ class PsrApplication extends BaseApplication
 
     public function handle(string uri = null) -> <ResponseInterface> | boolean
     {
-        var uri, request;
+        var uri, psrRequest;
 
         if empty this->_dependencyInjector {
             throw new \PhalconPlus\Base\Exception("there is no di(dependency injector) in PsrAppliction");
         }
 
-        if !empty this->request {
-            let request = this->request;
+        if !empty this->psrRequest {
+            let psrRequest = this->psrRequest;
         } else {
             throw new \PhalconPlus\Base\Exception("request in PsrApplication must instance of \\Psr\\Http\\Message\\ServerRequestInterface");
         }
@@ -55,7 +55,7 @@ class PsrApplication extends BaseApplication
         this->_dependencyInjector->setShared("request", this->nativeRequest);
 
         // get request uri-path
-        let uri = request->getUri()->getPath();
+        let uri = psrRequest->getUri()->getPath();
         // get Phalcon\Http\Response
         var response;
 
@@ -76,7 +76,7 @@ class PsrApplication extends BaseApplication
         }
         
         var psrResponse;
-        let psrResponse = new \GuzzleHttp\Psr7\Response(status?status:200, headers, content, request->getProtocolVersion(), reason?reason:"OK");
+        let psrResponse = new \GuzzleHttp\Psr7\Response(status?status:200, headers, content, psrRequest->getProtocolVersion(), reason?reason:"OK");
 
         if !isset(headers["Content-Length"]) {
             let psrResponse = psrResponse->withAddedHeader("Content-Length", strlen(content));

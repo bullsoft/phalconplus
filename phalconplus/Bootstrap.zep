@@ -169,6 +169,7 @@ final class Bootstrap
         let _GET = [];
         let _SERVER = [];
         let _REQUEST = [];
+        let _COOKIE = [];
         let _FILES = [];
 
         \Phalcon\Di::reset();

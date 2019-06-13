@@ -26,7 +26,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_PsrApplication) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, PsrApplication, phalconplus, base_psrapplication, zephir_get_internal_ce(SL("phalcon\\mvc\\application")), phalconplus_base_psrapplication_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_base_psrapplication_ce, SL("request"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_psrapplication_ce, SL("psrRequest"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(phalconplus_base_psrapplication_ce, SL("nativeRequest"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -34,28 +34,28 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_PsrApplication) {
 
 }
 
-PHP_METHOD(PhalconPlus_Base_PsrApplication, setRequest) {
+PHP_METHOD(PhalconPlus_Base_PsrApplication, setPsrRequest) {
 
-	zval *request, request_sub;
+	zval *psrRequest, psrRequest_sub;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&request_sub);
+	ZVAL_UNDEF(&psrRequest_sub);
 
-	zephir_fetch_params(0, 1, 0, &request);
+	zephir_fetch_params(0, 1, 0, &psrRequest);
 
 
 
-	zephir_update_property_zval(this_ptr, SL("request"), request);
+	zephir_update_property_zval(this_ptr, SL("psrRequest"), psrRequest);
 	RETURN_THISW();
 
 }
 
-PHP_METHOD(PhalconPlus_Base_PsrApplication, getRequest) {
+PHP_METHOD(PhalconPlus_Base_PsrApplication, getPsrRequest) {
 
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "request");
+	RETURN_MEMBER(getThis(), "psrRequest");
 
 }
 
@@ -71,26 +71,26 @@ PHP_METHOD(PhalconPlus_Base_PsrApplication, getNativeRequest) {
 PHP_METHOD(PhalconPlus_Base_PsrApplication, __construct) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *dependencyInjector = NULL, dependencyInjector_sub, *request = NULL, request_sub, __$true, __$false, __$null, _0;
+	zval *dependencyInjector = NULL, dependencyInjector_sub, *psrRequest = NULL, psrRequest_sub, __$true, __$false, __$null, _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&dependencyInjector_sub);
-	ZVAL_UNDEF(&request_sub);
+	ZVAL_UNDEF(&psrRequest_sub);
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 2, &dependencyInjector, &request);
+	zephir_fetch_params(1, 0, 2, &dependencyInjector, &psrRequest);
 
 	if (!dependencyInjector) {
 		dependencyInjector = &dependencyInjector_sub;
 		dependencyInjector = &__$null;
 	}
-	if (!request) {
-		request = &request_sub;
-		request = &__$null;
+	if (!psrRequest) {
+		psrRequest = &psrRequest_sub;
+		psrRequest = &__$null;
 	}
 
 
@@ -106,10 +106,10 @@ PHP_METHOD(PhalconPlus_Base_PsrApplication, __construct) {
 	} else {
 		zephir_update_property_zval(this_ptr, SL("_sendCookies"), &__$false);
 	}
-	zephir_update_property_zval(this_ptr, SL("request"), request);
+	zephir_update_property_zval(this_ptr, SL("psrRequest"), psrRequest);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, phalconplus_base_psrrequest_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 45, request);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 45, psrRequest);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("nativeRequest"), &_0);
 	ZEPHIR_MM_RESTORE();
@@ -142,11 +142,11 @@ PHP_METHOD(PhalconPlus_Base_PsrApplication, handle) {
 	zend_class_entry *_11 = NULL;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval uri, *uri_param = NULL, request, _0, _1, _3, _4, _5, _6, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
+	zval uri, *uri_param = NULL, psrRequest, _0, _1, _3, _4, _5, _6, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&uri);
-	ZVAL_UNDEF(&request);
+	ZVAL_UNDEF(&psrRequest);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_3);
@@ -186,10 +186,10 @@ PHP_METHOD(PhalconPlus_Base_PsrApplication, handle) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "there is no di(dependency injector) in PsrAppliction", "phalconplus/Base/PsrApplication.zep", 42);
 		return;
 	}
-	zephir_read_property(&_1, this_ptr, SL("request"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, SL("psrRequest"), PH_NOISY_CC | PH_READONLY);
 	if (!(ZEPHIR_IS_EMPTY(&_1))) {
-		zephir_read_property(&_2$$4, this_ptr, SL("request"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CPY_WRT(&request, &_2$$4);
+		zephir_read_property(&_2$$4, this_ptr, SL("psrRequest"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CPY_WRT(&psrRequest, &_2$$4);
 	} else {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "request in PsrApplication must instance of \\Psr\\Http\\Message\\ServerRequestInterface", "phalconplus/Base/PsrApplication.zep", 48);
 		return;
@@ -206,7 +206,7 @@ PHP_METHOD(PhalconPlus_Base_PsrApplication, handle) {
 	ZVAL_STRING(&_6, "request");
 	ZEPHIR_CALL_METHOD(NULL, &_4, "setshared", NULL, 0, &_6, &_5);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_7, &request, "geturi", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_7, &psrRequest, "geturi", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&uri, &_7, "getpath", NULL, 0);
 	zephir_check_call_status();
@@ -247,7 +247,7 @@ PHP_METHOD(PhalconPlus_Base_PsrApplication, handle) {
 			ZEPHIR_INIT_NVAR(&_12);
 			ZVAL_LONG(&_12, 200);
 		}
-		ZEPHIR_CALL_METHOD(&_9, &request, "getprotocolversion", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_9, &psrRequest, "getprotocolversion", NULL, 0);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_13);
 		if (zephir_is_true(&reason)) {
