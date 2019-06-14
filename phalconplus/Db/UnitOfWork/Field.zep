@@ -27,10 +27,10 @@ class Field extends AbstractValue
             }
             objs->next();
         }
-        throw new \Exception("Object(".hash.") instance of ".className." not in SplObjectStorage");
+        throw new \PhalconPlus\Base\Exception("Object(".hash.") instance of ".className." not in SplObjectStorage");
     }
 
-    public function getField(<UnitOfWork> unitwork) 
+    public function getField(<UnitOfWork> unitwork)
     {
         return this->getValue(unitwork);
     }

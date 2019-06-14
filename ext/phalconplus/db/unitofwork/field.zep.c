@@ -94,7 +94,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 	ZEPHIR_INIT_VAR(&className);
 	zephir_get_class(&className, &_0, 0 TSRMLS_CC);
 	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 58, &_1);
+	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 74, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&objs, unitwork, "getobjects", NULL, 0);
 	zephir_check_call_status();
@@ -121,10 +121,10 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_INIT_VAR(&_9);
-	object_init_ex(&_9, zend_exception_get_default(TSRMLS_C));
+	object_init_ex(&_9, phalconplus_base_exception_ce);
 	ZEPHIR_INIT_VAR(&_10);
 	ZEPHIR_CONCAT_SVSVS(&_10, "Object(", &hash, ") instance of ", &className, " not in SplObjectStorage");
-	ZEPHIR_CALL_METHOD(NULL, &_9, "__construct", NULL, 7, &_10);
+	ZEPHIR_CALL_METHOD(NULL, &_9, "__construct", NULL, 22, &_10);
 	zephir_check_call_status();
 	zephir_throw_exception_debug(&_9, "phalconplus/Db/UnitOfWork/Field.zep", 30 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -163,7 +163,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_1, "spl_object_hash", NULL, 58, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "spl_object_hash", NULL, 74, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SV(return_value, "Field", &_1);
 	RETURN_MM();

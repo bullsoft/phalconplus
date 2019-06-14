@@ -25,7 +25,7 @@ class Sys extends AbstractEnum
         }
         let moduleDir = rtrim(moduleDir, self::DS);
         if !is_dir(moduleDir) {
-            throw new \Exception("Module directory not exists or not a dir, file positon: " . moduleDir);
+            throw new \PhalconPlus\Base\Exception("Module directory not exists or not a dir, file positon: " . moduleDir);
         }
         let self::primaryModuleDir = moduleDir;
         let self::rootDir = dirname(moduleDir);
@@ -140,9 +140,19 @@ class Sys extends AbstractEnum
         }
 
         if !is_file(confPath) {
-            throw new \Exception("Module Config file not exists: " . confPath . " & " . APP_RUN_ENV . self::EXT);
+            throw new \PhalconPlus\Base\Exception("Module Config file not exists: " . confPath . " & " . APP_RUN_ENV . self::EXT);
         }
 
         return confPath;
+    }
+
+    // -> {APP_ROOT_DIR}/vendor/autoload.php
+    public static function getComposerAutoloadPath()
+    {
+        return implode(self::DS, [
+            self::rootDir,
+            "vendor",
+            "autoload.php"
+        ]);
     }
 }

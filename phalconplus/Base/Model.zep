@@ -394,12 +394,12 @@ class Model extends \Phalcon\Mvc\Model
                 whereUk[] = connection->escapeIdentifier(field) . " ".info["op"]." ?";
         }
 
-        var usefuleParams = [];
-        let usefuleParams = array_filter(uniqueParams, function(elem){
+        var usefulParams = [];
+        let usefulParams = array_filter(uniqueParams, function(elem){
             return !empty elem; // in zephir, empty means `null`, `empty string` and `empty array` 
         });
 
-        if empty usefuleParams {  // if no ukField is defined
+        if empty usefulParams {  // if no ukField is defined
             return false;
         }
 

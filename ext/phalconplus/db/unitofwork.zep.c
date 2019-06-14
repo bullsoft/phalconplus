@@ -191,7 +191,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, update) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "attach", NULL, 0, model, &_1$$3);
 		zephir_check_call_status();
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "UnitOfWork: Accept <Model> & <Resultset> only", "phalconplus/Db/UnitOfWork.zep", 71);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "UnitOfWork: Accept <Model> & <Resultset> only", "phalconplus/Db/UnitOfWork.zep", 70);
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
@@ -232,7 +232,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, delete) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "attach", NULL, 0, model, &_1$$3);
 		zephir_check_call_status();
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "UnitOfWork: Accept <Model> & <Resultset> only", "phalconplus/Db/UnitOfWork.zep", 87);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "UnitOfWork: Accept <Model> & <Resultset> only", "phalconplus/Db/UnitOfWork.zep", 86);
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
@@ -373,13 +373,13 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 			zephir_read_property(&_8$$4, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(&info, &_8$$4, "getinfo", NULL, 0);
 			zephir_check_call_status_or_jump(try_end_1);
-			ZEPHIR_CALL_FUNCTION(&hash$$4, "spl_object_hash", &_9, 58, &obj);
+			ZEPHIR_CALL_FUNCTION(&hash$$4, "spl_object_hash", &_9, 74, &obj);
 			zephir_check_call_status_or_jump(try_end_1);
 			ZEPHIR_OBS_NVAR(&method$$4);
-			zephir_array_fetch_string(&method$$4, &info, SL("method"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 124 TSRMLS_CC);
+			zephir_array_fetch_string(&method$$4, &info, SL("method"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 123 TSRMLS_CC);
 			zephir_array_unset_string(&info, SL("method"), PH_SEPARATE);
 			ZEPHIR_OBS_NVAR(&name$$4);
-			zephir_array_fetch_string(&name$$4, &info, SL("name"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 125 TSRMLS_CC);
+			zephir_array_fetch_string(&name$$4, &info, SL("name"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 124 TSRMLS_CC);
 			zephir_array_unset_string(&info, SL("name"), PH_SEPARATE);
 			if (zephir_instance_of_ev(&obj, zephir_get_internal_ce(SL("phalcon\\mvc\\model")) TSRMLS_CC)) {
 				ZEPHIR_CALL_METHOD(NULL, &obj, "settransaction", NULL, 0, &transaction);
@@ -392,7 +392,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 				zephir_create_array(&_11$$6, 2, 0 TSRMLS_CC);
 				zephir_array_fast_append(&_11$$6, &obj);
 				zephir_array_fast_append(&_11$$6, &transaction);
-				ZEPHIR_CALL_FUNCTION(NULL, "iterator_apply", &_12, 59, &obj, &_10$$6, &_11$$6);
+				ZEPHIR_CALL_FUNCTION(NULL, "iterator_apply", &_12, 75, &obj, &_10$$6, &_11$$6);
 				zephir_check_call_status_or_jump(try_end_1);
 			}
 			zephir_read_property(&_13$$4, this_ptr, SL("modelLocator"), PH_NOISY_CC | PH_READONLY);
@@ -413,7 +413,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 					ZEPHIR_CALL_METHOD(NULL, &transaction, "rollback", NULL, 0, &_18$$8);
 					zephir_check_call_status_or_jump(try_end_1);
 				}
-				zephir_update_property_array(this_ptr, SL("modelLocator"), &hash$$4, &obj TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("modelLocator"), &hash$$4, &obj);
 			}
 			zephir_read_property(&_19$$4, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(NULL, &_19$$4, "next", NULL, 0);
@@ -442,13 +442,13 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 
-	zend_bool _3$$4;
-	zend_string *_2$$3;
-	zend_ulong _1$$3;
-	zephir_fcall_cache_entry *_5 = NULL, *_7 = NULL;
+	zend_bool _4$$4, _9$$8;
+	zend_string *_3$$3;
+	zend_ulong _2$$3;
+	zephir_fcall_cache_entry *_6 = NULL, *_8 = NULL, *_11 = NULL, *_13 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval info, _10$$9;
-	zval *model, model_sub, *info_param = NULL, initial_data, result, last_insert_id, col$$3, val$$3, *_0$$3, _4$$6, _6$$7, _8$$9, _9$$9;
+	zval info, _16$$13;
+	zval *model, model_sub, *info_param = NULL, initial_data, result, last_insert_id, col$$3, val$$3, *_0$$3, _1$$3, _5$$6, _7$$7, _10$$10, _12$$11, _14$$13, _15$$13;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&model_sub);
@@ -457,12 +457,15 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 	ZVAL_UNDEF(&last_insert_id);
 	ZVAL_UNDEF(&col$$3);
 	ZVAL_UNDEF(&val$$3);
-	ZVAL_UNDEF(&_4$$6);
-	ZVAL_UNDEF(&_6$$7);
-	ZVAL_UNDEF(&_8$$9);
-	ZVAL_UNDEF(&_9$$9);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_5$$6);
+	ZVAL_UNDEF(&_7$$7);
+	ZVAL_UNDEF(&_10$$10);
+	ZVAL_UNDEF(&_12$$11);
+	ZVAL_UNDEF(&_14$$13);
+	ZVAL_UNDEF(&_15$$13);
 	ZVAL_UNDEF(&info);
-	ZVAL_UNDEF(&_10$$9);
+	ZVAL_UNDEF(&_16$$13);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &model, &info_param);
@@ -471,35 +474,68 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 
 
 	ZEPHIR_OBS_VAR(&initial_data);
-	zephir_array_fetch_string(&initial_data, &info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 159 TSRMLS_CC);
+	zephir_array_fetch_string(&initial_data, &info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 158 TSRMLS_CC);
 	if (!(ZEPHIR_IS_EMPTY(&initial_data))) {
-		zephir_is_iterable(&initial_data, 1, "phalconplus/Db/UnitOfWork.zep", 172);
-		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&initial_data), _1$$3, _2$$3, _0$$3)
-		{
-			ZEPHIR_INIT_NVAR(&col$$3);
-			if (_2$$3 != NULL) { 
-				ZVAL_STR_COPY(&col$$3, _2$$3);
-			} else {
-				ZVAL_LONG(&col$$3, _1$$3);
-			}
-			ZEPHIR_INIT_NVAR(&val$$3);
-			ZVAL_COPY(&val$$3, _0$$3);
-			_3$$4 = Z_TYPE_P(&val$$3) == IS_OBJECT;
-			if (_3$$4) {
-				_3$$4 = zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_abstractvalue_ce TSRMLS_CC);
-			}
-			if (_3$$4) {
-				if (zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_lastinsertid_ce TSRMLS_CC)) {
-					ZEPHIR_CALL_METHOD(&_4$$6, &val$$3, "getvalue", &_5, 0, this_ptr);
-					zephir_check_call_status();
-					zephir_array_update_zval(&initial_data, &col$$3, &_4$$6, PH_COPY | PH_SEPARATE);
-				} else if (zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_field_ce TSRMLS_CC)) {
-					ZEPHIR_CALL_METHOD(&_6$$7, &val$$3, "getfield", &_7, 0, this_ptr);
-					zephir_check_call_status();
-					zephir_array_update_zval(&initial_data, &col$$3, &_6$$7, PH_COPY | PH_SEPARATE);
+		zephir_is_iterable(&initial_data, 1, "phalconplus/Db/UnitOfWork.zep", 171);
+		if (Z_TYPE_P(&initial_data) == IS_ARRAY) {
+			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&initial_data), _2$$3, _3$$3, _0$$3)
+			{
+				ZEPHIR_INIT_NVAR(&col$$3);
+				if (_3$$3 != NULL) { 
+					ZVAL_STR_COPY(&col$$3, _3$$3);
+				} else {
+					ZVAL_LONG(&col$$3, _2$$3);
 				}
+				ZEPHIR_INIT_NVAR(&val$$3);
+				ZVAL_COPY(&val$$3, _0$$3);
+				_4$$4 = Z_TYPE_P(&val$$3) == IS_OBJECT;
+				if (_4$$4) {
+					_4$$4 = zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_abstractvalue_ce TSRMLS_CC);
+				}
+				if (_4$$4) {
+					if (zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_lastinsertid_ce TSRMLS_CC)) {
+						ZEPHIR_CALL_METHOD(&_5$$6, &val$$3, "getvalue", &_6, 0, this_ptr);
+						zephir_check_call_status();
+						zephir_array_update_zval(&initial_data, &col$$3, &_5$$6, PH_COPY | PH_SEPARATE);
+					} else if (zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_field_ce TSRMLS_CC)) {
+						ZEPHIR_CALL_METHOD(&_7$$7, &val$$3, "getfield", &_8, 0, this_ptr);
+						zephir_check_call_status();
+						zephir_array_update_zval(&initial_data, &col$$3, &_7$$7, PH_COPY | PH_SEPARATE);
+					}
+				}
+			} ZEND_HASH_FOREACH_END();
+		} else {
+			ZEPHIR_CALL_METHOD(NULL, &initial_data, "rewind", NULL, 0);
+			zephir_check_call_status();
+			while (1) {
+				ZEPHIR_CALL_METHOD(&_1$$3, &initial_data, "valid", NULL, 0);
+				zephir_check_call_status();
+				if (!zend_is_true(&_1$$3)) {
+					break;
+				}
+				ZEPHIR_CALL_METHOD(&col$$3, &initial_data, "key", NULL, 0);
+				zephir_check_call_status();
+				ZEPHIR_CALL_METHOD(&val$$3, &initial_data, "current", NULL, 0);
+				zephir_check_call_status();
+					_9$$8 = Z_TYPE_P(&val$$3) == IS_OBJECT;
+					if (_9$$8) {
+						_9$$8 = zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_abstractvalue_ce TSRMLS_CC);
+					}
+					if (_9$$8) {
+						if (zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_lastinsertid_ce TSRMLS_CC)) {
+							ZEPHIR_CALL_METHOD(&_10$$10, &val$$3, "getvalue", &_11, 0, this_ptr);
+							zephir_check_call_status();
+							zephir_array_update_zval(&initial_data, &col$$3, &_10$$10, PH_COPY | PH_SEPARATE);
+						} else if (zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_field_ce TSRMLS_CC)) {
+							ZEPHIR_CALL_METHOD(&_12$$11, &val$$3, "getfield", &_13, 0, this_ptr);
+							zephir_check_call_status();
+							zephir_array_update_zval(&initial_data, &col$$3, &_12$$11, PH_COPY | PH_SEPARATE);
+						}
+					}
+				ZEPHIR_CALL_METHOD(NULL, &initial_data, "next", NULL, 0);
+				zephir_check_call_status();
 			}
-		} ZEND_HASH_FOREACH_END();
+		}
 		ZEPHIR_INIT_NVAR(&val$$3);
 		ZEPHIR_INIT_NVAR(&col$$3);
 		ZEPHIR_CALL_METHOD(&result, model, "create", NULL, 0, &initial_data);
@@ -509,15 +545,15 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 		zephir_check_call_status();
 	}
 	if (ZEPHIR_IS_TRUE(&result)) {
-		ZEPHIR_CALL_METHOD(&_8$$9, model, "getwriteconnection", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_14$$13, model, "getwriteconnection", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&last_insert_id, &_8$$9, "lastinsertid", NULL, 0);
+		ZEPHIR_CALL_METHOD(&last_insert_id, &_14$$13, "lastinsertid", NULL, 0);
 		zephir_check_call_status();
-		zephir_read_property(&_9$$9, this_ptr, SL("inserted"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_10$$9);
-		zephir_create_array(&_10$$9, 1, 0 TSRMLS_CC);
-		zephir_array_update_string(&_10$$9, SL("last_insert_id"), &last_insert_id, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(NULL, &_9$$9, "attach", NULL, 0, model, &_10$$9);
+		zephir_read_property(&_15$$13, this_ptr, SL("inserted"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_INIT_VAR(&_16$$13);
+		zephir_create_array(&_16$$13, 1, 0 TSRMLS_CC);
+		zephir_array_update_string(&_16$$13, SL("last_insert_id"), &last_insert_id, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(NULL, &_15$$13, "attach", NULL, 0, model, &_16$$13);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&result);
@@ -526,13 +562,13 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 
-	zend_bool _3$$4;
-	zend_string *_2$$3;
-	zend_ulong _1$$3;
-	zephir_fcall_cache_entry *_5 = NULL;
+	zend_bool _4$$4, _7$$6;
+	zend_string *_3$$3;
+	zend_ulong _2$$3;
+	zephir_fcall_cache_entry *_6 = NULL, *_9 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval info, _7$$7;
-	zval *model, model_sub, *info_param = NULL, result, initial_data, col$$3, val$$3, *_0$$3, _4$$5, _6$$7;
+	zval info, _11$$9;
+	zval *model, model_sub, *info_param = NULL, result, initial_data, col$$3, val$$3, *_0$$3, _1$$3, _5$$5, _8$$7, _10$$9;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&model_sub);
@@ -540,10 +576,12 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 	ZVAL_UNDEF(&initial_data);
 	ZVAL_UNDEF(&col$$3);
 	ZVAL_UNDEF(&val$$3);
-	ZVAL_UNDEF(&_4$$5);
-	ZVAL_UNDEF(&_6$$7);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_5$$5);
+	ZVAL_UNDEF(&_8$$7);
+	ZVAL_UNDEF(&_10$$9);
 	ZVAL_UNDEF(&info);
-	ZVAL_UNDEF(&_7$$7);
+	ZVAL_UNDEF(&_11$$9);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &model, &info_param);
@@ -557,29 +595,56 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 
 
 	ZEPHIR_OBS_VAR(&initial_data);
-	zephir_array_fetch_string(&initial_data, &info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 189 TSRMLS_CC);
+	zephir_array_fetch_string(&initial_data, &info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 188 TSRMLS_CC);
 	if (!(ZEPHIR_IS_EMPTY(&initial_data))) {
-		zephir_is_iterable(&initial_data, 1, "phalconplus/Db/UnitOfWork.zep", 197);
-		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&initial_data), _1$$3, _2$$3, _0$$3)
-		{
-			ZEPHIR_INIT_NVAR(&col$$3);
-			if (_2$$3 != NULL) { 
-				ZVAL_STR_COPY(&col$$3, _2$$3);
-			} else {
-				ZVAL_LONG(&col$$3, _1$$3);
-			}
-			ZEPHIR_INIT_NVAR(&val$$3);
-			ZVAL_COPY(&val$$3, _0$$3);
-			_3$$4 = Z_TYPE_P(&val$$3) == IS_OBJECT;
-			if (_3$$4) {
-				_3$$4 = zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_abstractvalue_ce TSRMLS_CC);
-			}
-			if (_3$$4) {
-				ZEPHIR_CALL_METHOD(&_4$$5, &val$$3, "getvalue", &_5, 0, this_ptr);
+		zephir_is_iterable(&initial_data, 1, "phalconplus/Db/UnitOfWork.zep", 196);
+		if (Z_TYPE_P(&initial_data) == IS_ARRAY) {
+			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&initial_data), _2$$3, _3$$3, _0$$3)
+			{
+				ZEPHIR_INIT_NVAR(&col$$3);
+				if (_3$$3 != NULL) { 
+					ZVAL_STR_COPY(&col$$3, _3$$3);
+				} else {
+					ZVAL_LONG(&col$$3, _2$$3);
+				}
+				ZEPHIR_INIT_NVAR(&val$$3);
+				ZVAL_COPY(&val$$3, _0$$3);
+				_4$$4 = Z_TYPE_P(&val$$3) == IS_OBJECT;
+				if (_4$$4) {
+					_4$$4 = zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_abstractvalue_ce TSRMLS_CC);
+				}
+				if (_4$$4) {
+					ZEPHIR_CALL_METHOD(&_5$$5, &val$$3, "getvalue", &_6, 0, this_ptr);
+					zephir_check_call_status();
+					zephir_array_update_zval(&initial_data, &col$$3, &_5$$5, PH_COPY | PH_SEPARATE);
+				}
+			} ZEND_HASH_FOREACH_END();
+		} else {
+			ZEPHIR_CALL_METHOD(NULL, &initial_data, "rewind", NULL, 0);
+			zephir_check_call_status();
+			while (1) {
+				ZEPHIR_CALL_METHOD(&_1$$3, &initial_data, "valid", NULL, 0);
 				zephir_check_call_status();
-				zephir_array_update_zval(&initial_data, &col$$3, &_4$$5, PH_COPY | PH_SEPARATE);
+				if (!zend_is_true(&_1$$3)) {
+					break;
+				}
+				ZEPHIR_CALL_METHOD(&col$$3, &initial_data, "key", NULL, 0);
+				zephir_check_call_status();
+				ZEPHIR_CALL_METHOD(&val$$3, &initial_data, "current", NULL, 0);
+				zephir_check_call_status();
+					_7$$6 = Z_TYPE_P(&val$$3) == IS_OBJECT;
+					if (_7$$6) {
+						_7$$6 = zephir_instance_of_ev(&val$$3, phalconplus_db_unitofwork_abstractvalue_ce TSRMLS_CC);
+					}
+					if (_7$$6) {
+						ZEPHIR_CALL_METHOD(&_8$$7, &val$$3, "getvalue", &_9, 0, this_ptr);
+						zephir_check_call_status();
+						zephir_array_update_zval(&initial_data, &col$$3, &_8$$7, PH_COPY | PH_SEPARATE);
+					}
+				ZEPHIR_CALL_METHOD(NULL, &initial_data, "next", NULL, 0);
+				zephir_check_call_status();
 			}
-		} ZEND_HASH_FOREACH_END();
+		}
 		ZEPHIR_INIT_NVAR(&val$$3);
 		ZEPHIR_INIT_NVAR(&col$$3);
 		ZEPHIR_CALL_METHOD(&result, model, "update", NULL, 0, &initial_data);
@@ -589,11 +654,11 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 		zephir_check_call_status();
 	}
 	if (ZEPHIR_IS_TRUE(&result)) {
-		zephir_read_property(&_6$$7, this_ptr, SL("updated"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_7$$7);
-		zephir_create_array(&_7$$7, 1, 0 TSRMLS_CC);
-		zephir_array_update_string(&_7$$7, SL("updated_data"), &initial_data, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(NULL, &_6$$7, "attach", NULL, 0, model, &_7$$7);
+		zephir_read_property(&_10$$9, this_ptr, SL("updated"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_INIT_VAR(&_11$$9);
+		zephir_create_array(&_11$$9, 1, 0 TSRMLS_CC);
+		zephir_array_update_string(&_11$$9, SL("updated_data"), &initial_data, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(NULL, &_10$$9, "attach", NULL, 0, model, &_11$$9);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&result);

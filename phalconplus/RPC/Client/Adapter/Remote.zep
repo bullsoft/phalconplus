@@ -9,7 +9,7 @@ class Remote extends AbstractClient
     public function __construct(array remoteServerUrl, array opts = [])
     {
         if empty remoteServerUrl {
-            throw new \Exception("server url can not be empty");
+            throw new \PhalconPlus\Base\Exception("server url can not be empty");
         }
         var key;
         let key = array_rand(remoteServerUrl);
@@ -35,7 +35,7 @@ class Remote extends AbstractClient
             // error_log("Remote RPC set Opts: " . method . " args: " . var_export(args, true));
             return call_user_func_array([this->client, method], args);
         } else {
-            throw new \Exception("method not exists");
+            throw new \PhalconPlus\Base\Exception("method not exists");
         }
     }
 

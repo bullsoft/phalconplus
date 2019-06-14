@@ -16,7 +16,6 @@ return [
         "timeout" => 3, // 3 秒
         "retryInterval" => 200000, // 失败重试间隔200ms
         "retryTimes" => 5, //失败重试次数
-        
     ],
     'version' => "1.0.0",
 ];

@@ -22,6 +22,8 @@
 #include "phalconplus/base/pagable.zep.h"
 #include "phalconplus/base/page.zep.h"
 #include "phalconplus/base/protoorderby.zep.h"
+#include "phalconplus/base/psrapplication.zep.h"
+#include "phalconplus/base/psrrequest.zep.h"
 #include "phalconplus/base/service.zep.h"
 #include "phalconplus/base/simplerequest.zep.h"
 #include "phalconplus/base/simpleresponse.zep.h"

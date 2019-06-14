@@ -28,10 +28,14 @@ class ModuleDef
     protected configPath = "";
     protected dir = "";
 
+    protected static loadedClasses = [];
+
     // <\Phalcon\Config>
     protected config = null;
     // <\PhalconPlus\Enum\RunMode>
     protected runMode = null;
+    // <\PhalconPlus\Bootstrap>
+    protected bootstrap = null;
 
     // Is this a primary-module? false for default
     protected isPrimary = false;
@@ -60,16 +64,19 @@ class ModuleDef
         if !is_file(this->classPath) {
             throw new \Exception("Module class file not exists: " . this->classPath);
         }
-
+        let this->bootstrap = boot;
         let this->isPrimary = isPrimary;
     }
 
     public function impl(<\Phalcon\Di> di) -> <\PhalconPlus\Base\AbstractModule>
     {
-        require this->classPath;
+        if !isset(self::loadedClasses[this->className]) {
+            require this->classPath;
+        }
         if !class_exists(this->className) {
             throw new \Exception("Module class not exists: ". this->className);
         }
+        let self::loadedClasses[this->className] = 1;
         var className = this->className;
         return new {className}(di, this);
     }
@@ -82,6 +89,11 @@ class ModuleDef
     public function getClassPath() -> string
     {
         return this->classPath;
+    }
+
+    public function getBootstrap() -> <\PhalconPlus\Bootstrap>
+    {
+        return this->bootstrap;
     }
 
     public function getClassName() -> string

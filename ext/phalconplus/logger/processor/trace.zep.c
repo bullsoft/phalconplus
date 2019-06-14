@@ -86,9 +86,9 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 
 PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 
-	zval trace, part, _1, trace1, trace2, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _2$$3, *_3$$3, _4$$4, _5$$4, _6$$4, _18$$7, _19$$7;
+	zval trace, part, _1, trace1, trace2, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _2$$3, *_3$$3, _4$$3, _5$$4, _6$$4, _7$$4, _8$$6, _9$$6, _10$$6, _24$$9, _25$$9;
 	zephir_fcall_cache_entry *_0 = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS, i, j = 0, _17;
+	zend_long ZEPHIR_LAST_CALL_STATUS, i, j = 0, _23;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&trace);
@@ -96,33 +96,39 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&trace1);
 	ZVAL_UNDEF(&trace2);
-	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_8);
-	ZVAL_UNDEF(&_9);
-	ZVAL_UNDEF(&_10);
 	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_14);
 	ZVAL_UNDEF(&_15);
 	ZVAL_UNDEF(&_16);
+	ZVAL_UNDEF(&_17);
+	ZVAL_UNDEF(&_18);
+	ZVAL_UNDEF(&_19);
+	ZVAL_UNDEF(&_20);
+	ZVAL_UNDEF(&_21);
+	ZVAL_UNDEF(&_22);
 	ZVAL_UNDEF(&_2$$3);
-	ZVAL_UNDEF(&_4$$4);
+	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_6$$4);
-	ZVAL_UNDEF(&_18$$7);
-	ZVAL_UNDEF(&_19$$7);
+	ZVAL_UNDEF(&_7$$4);
+	ZVAL_UNDEF(&_8$$6);
+	ZVAL_UNDEF(&_9$$6);
+	ZVAL_UNDEF(&_10$$6);
+	ZVAL_UNDEF(&_24$$9);
+	ZVAL_UNDEF(&_25$$9);
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 64);
+	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 80);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 65, &trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 81, &trace);
 	ZEPHIR_UNREF(&trace);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 65, &trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_0, 81, &trace);
 	ZEPHIR_UNREF(&trace);
 	zephir_check_call_status();
 	i = 0;
@@ -134,19 +140,43 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 		}
 		zephir_read_property(&_2$$3, this_ptr, SL("skipClassesPartials"), PH_NOISY_CC | PH_READONLY);
 		zephir_is_iterable(&_2$$3, 0, "phalconplus/Logger/Processor/Trace.zep", 41);
-		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_2$$3), _3$$3)
-		{
-			ZEPHIR_INIT_NVAR(&part);
-			ZVAL_COPY(&part, _3$$3);
-			zephir_array_fetch_long(&_4$$4, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 36 TSRMLS_CC);
-			zephir_array_fetch_string(&_5$$4, &_4$$4, SL("class"), PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 36 TSRMLS_CC);
-			ZEPHIR_INIT_NVAR(&_6$$4);
-			zephir_fast_strpos(&_6$$4, &_5$$4, &part, 0 );
-			if (!ZEPHIR_IS_FALSE_IDENTICAL(&_6$$4)) {
-				i = (i + 1);
-				goto CHECK;
+		if (Z_TYPE_P(&_2$$3) == IS_ARRAY) {
+			ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_2$$3), _3$$3)
+			{
+				ZEPHIR_INIT_NVAR(&part);
+				ZVAL_COPY(&part, _3$$3);
+				zephir_array_fetch_long(&_5$$4, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 36 TSRMLS_CC);
+				zephir_array_fetch_string(&_6$$4, &_5$$4, SL("class"), PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 36 TSRMLS_CC);
+				ZEPHIR_INIT_NVAR(&_7$$4);
+				zephir_fast_strpos(&_7$$4, &_6$$4, &part, 0 );
+				if (!ZEPHIR_IS_FALSE_IDENTICAL(&_7$$4)) {
+					i = (i + 1);
+					goto CHECK;
+				}
+			} ZEND_HASH_FOREACH_END();
+		} else {
+			ZEPHIR_CALL_METHOD(NULL, &_2$$3, "rewind", NULL, 0);
+			zephir_check_call_status();
+			while (1) {
+				ZEPHIR_CALL_METHOD(&_4$$3, &_2$$3, "valid", NULL, 0);
+				zephir_check_call_status();
+				if (!zend_is_true(&_4$$3)) {
+					break;
+				}
+				ZEPHIR_CALL_METHOD(&part, &_2$$3, "current", NULL, 0);
+				zephir_check_call_status();
+					zephir_array_fetch_long(&_8$$6, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 36 TSRMLS_CC);
+					zephir_array_fetch_string(&_9$$6, &_8$$6, SL("class"), PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 36 TSRMLS_CC);
+					ZEPHIR_INIT_NVAR(&_10$$6);
+					zephir_fast_strpos(&_10$$6, &_9$$6, &part, 0 );
+					if (!ZEPHIR_IS_FALSE_IDENTICAL(&_10$$6)) {
+						i = (i + 1);
+						goto CHECK;
+					}
+				ZEPHIR_CALL_METHOD(NULL, &_2$$3, "next", NULL, 0);
+				zephir_check_call_status();
 			}
-		} ZEND_HASH_FOREACH_END();
+		}
 		ZEPHIR_INIT_NVAR(&part);
 		break;
 	}
@@ -155,67 +185,69 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	ZEPHIR_INIT_VAR(&trace2);
 	array_init(&trace2);
 	j = (i - 1);
-	ZEPHIR_INIT_NVAR(&trace1);
-	zephir_create_array(&trace1, 2, 0 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(&_7);
-	zephir_array_fetch_long(&_8, &trace, j, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 48 TSRMLS_CC);
-	if (zephir_array_isset_string(&_8, SL("file"))) {
-		zephir_array_fetch_long(&_9, &trace, j, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 48 TSRMLS_CC);
-		ZEPHIR_OBS_NVAR(&_7);
-		zephir_array_fetch_string(&_7, &_9, SL("file"), PH_NOISY, "phalconplus/Logger/Processor/Trace.zep", 48 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(&_11);
+	zephir_create_array(&_11, 2, 0 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(&_12);
+	zephir_array_fetch_long(&_13, &trace, j, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 48 TSRMLS_CC);
+	if (zephir_array_isset_string(&_13, SL("file"))) {
+		zephir_array_fetch_long(&_14, &trace, j, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 48 TSRMLS_CC);
+		ZEPHIR_OBS_NVAR(&_12);
+		zephir_array_fetch_string(&_12, &_14, SL("file"), PH_NOISY, "phalconplus/Logger/Processor/Trace.zep", 48 TSRMLS_CC);
 	} else {
-		ZEPHIR_INIT_NVAR(&_7);
-		ZVAL_STRING(&_7, "Nil");
+		ZEPHIR_INIT_NVAR(&_12);
+		ZVAL_STRING(&_12, "Nil");
 	}
-	zephir_array_update_string(&trace1, SL("file"), &_7, PH_COPY | PH_SEPARATE);
-	ZEPHIR_INIT_LNVAR(_7);
-	zephir_array_fetch_long(&_10, &trace, j, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 49 TSRMLS_CC);
-	if (zephir_array_isset_string(&_10, SL("line"))) {
-		zephir_array_fetch_long(&_11, &trace, j, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 49 TSRMLS_CC);
-		ZEPHIR_OBS_NVAR(&_7);
-		zephir_array_fetch_string(&_7, &_11, SL("line"), PH_NOISY, "phalconplus/Logger/Processor/Trace.zep", 49 TSRMLS_CC);
+	zephir_array_update_string(&_11, SL("file"), &_12, PH_COPY | PH_SEPARATE);
+	ZEPHIR_INIT_LNVAR(_12);
+	zephir_array_fetch_long(&_15, &trace, j, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 49 TSRMLS_CC);
+	if (zephir_array_isset_string(&_15, SL("line"))) {
+		zephir_array_fetch_long(&_16, &trace, j, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 49 TSRMLS_CC);
+		ZEPHIR_OBS_NVAR(&_12);
+		zephir_array_fetch_string(&_12, &_16, SL("line"), PH_NOISY, "phalconplus/Logger/Processor/Trace.zep", 49 TSRMLS_CC);
 	} else {
-		ZEPHIR_INIT_NVAR(&_7);
-		ZVAL_LONG(&_7, -1);
+		ZEPHIR_INIT_NVAR(&_12);
+		ZVAL_LONG(&_12, -1);
 	}
-	zephir_array_update_string(&trace1, SL("line"), &_7, PH_COPY | PH_SEPARATE);
-	ZEPHIR_INIT_NVAR(&trace2);
-	zephir_create_array(&trace2, 2, 0 TSRMLS_CC);
-	ZEPHIR_INIT_LNVAR(_7);
-	zephir_array_fetch_long(&_12, &trace, i, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 53 TSRMLS_CC);
-	if (zephir_array_isset_string(&_12, SL("class"))) {
-		zephir_array_fetch_long(&_13, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 53 TSRMLS_CC);
-		ZEPHIR_OBS_NVAR(&_7);
-		zephir_array_fetch_string(&_7, &_13, SL("class"), PH_NOISY, "phalconplus/Logger/Processor/Trace.zep", 53 TSRMLS_CC);
+	zephir_array_update_string(&_11, SL("line"), &_12, PH_COPY | PH_SEPARATE);
+	ZEPHIR_CPY_WRT(&trace1, &_11);
+	ZEPHIR_INIT_VAR(&_17);
+	zephir_create_array(&_17, 2, 0 TSRMLS_CC);
+	ZEPHIR_INIT_LNVAR(_12);
+	zephir_array_fetch_long(&_18, &trace, i, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 53 TSRMLS_CC);
+	if (zephir_array_isset_string(&_18, SL("class"))) {
+		zephir_array_fetch_long(&_19, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 53 TSRMLS_CC);
+		ZEPHIR_OBS_NVAR(&_12);
+		zephir_array_fetch_string(&_12, &_19, SL("class"), PH_NOISY, "phalconplus/Logger/Processor/Trace.zep", 53 TSRMLS_CC);
 	} else {
-		ZEPHIR_INIT_NVAR(&_7);
-		ZVAL_STRING(&_7, "Nil");
+		ZEPHIR_INIT_NVAR(&_12);
+		ZVAL_STRING(&_12, "Nil");
 	}
-	zephir_array_update_string(&trace2, SL("class"), &_7, PH_COPY | PH_SEPARATE);
-	ZEPHIR_INIT_LNVAR(_7);
-	zephir_array_fetch_long(&_14, &trace, i, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 54 TSRMLS_CC);
-	if (zephir_array_isset_string(&_14, SL("function"))) {
-		zephir_array_fetch_long(&_15, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 54 TSRMLS_CC);
-		ZEPHIR_OBS_NVAR(&_7);
-		zephir_array_fetch_string(&_7, &_15, SL("function"), PH_NOISY, "phalconplus/Logger/Processor/Trace.zep", 54 TSRMLS_CC);
+	zephir_array_update_string(&_17, SL("class"), &_12, PH_COPY | PH_SEPARATE);
+	ZEPHIR_INIT_LNVAR(_12);
+	zephir_array_fetch_long(&_20, &trace, i, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 54 TSRMLS_CC);
+	if (zephir_array_isset_string(&_20, SL("function"))) {
+		zephir_array_fetch_long(&_21, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 54 TSRMLS_CC);
+		ZEPHIR_OBS_NVAR(&_12);
+		zephir_array_fetch_string(&_12, &_21, SL("function"), PH_NOISY, "phalconplus/Logger/Processor/Trace.zep", 54 TSRMLS_CC);
 	} else {
-		ZEPHIR_INIT_NVAR(&_7);
-		ZVAL_STRING(&_7, "Nil");
+		ZEPHIR_INIT_NVAR(&_12);
+		ZVAL_STRING(&_12, "Nil");
 	}
-	zephir_array_update_string(&trace2, SL("function"), &_7, PH_COPY | PH_SEPARATE);
-	zephir_read_property(&_16, this_ptr, SL("mode"), PH_NOISY_CC | PH_READONLY);
+	zephir_array_update_string(&_17, SL("function"), &_12, PH_COPY | PH_SEPARATE);
+	ZEPHIR_CPY_WRT(&trace2, &_17);
+	zephir_read_property(&_22, this_ptr, SL("mode"), PH_NOISY_CC | PH_READONLY);
 	do {
-		_17 = ((int) (zephir_get_numberval(&_16)) & 0x0011);
-		if (_17 == 0x0010) {
+		_23 = ((int) (zephir_get_numberval(&_22)) & 0x0011);
+		if (_23 == 0x0010) {
 			zephir_fast_join_str(return_value, SL(":"), &trace2 TSRMLS_CC);
 			RETURN_MM();
 		}
-		if (_17 == 0x11) {
-			ZEPHIR_INIT_VAR(&_18$$7);
-			zephir_fast_join_str(&_18$$7, SL(":"), &trace1 TSRMLS_CC);
-			ZEPHIR_INIT_VAR(&_19$$7);
-			zephir_fast_join_str(&_19$$7, SL(":"), &trace2 TSRMLS_CC);
-			ZEPHIR_CONCAT_VSV(return_value, &_18$$7, "][", &_19$$7);
+		if (_23 == 0x11) {
+			ZEPHIR_INIT_VAR(&_24$$9);
+			zephir_fast_join_str(&_24$$9, SL(":"), &trace1 TSRMLS_CC);
+			ZEPHIR_INIT_VAR(&_25$$9);
+			zephir_fast_join_str(&_25$$9, SL(":"), &trace2 TSRMLS_CC);
+			ZEPHIR_CONCAT_VSV(return_value, &_24$$9, "][", &_25$$9);
 			RETURN_MM();
 		}
 		zephir_fast_join_str(return_value, SL(":"), &trace1 TSRMLS_CC);

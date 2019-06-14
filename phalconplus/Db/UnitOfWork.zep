@@ -1,8 +1,7 @@
-//<?php
 namespace PhalconPlus\Db;
 
 use SplObjectStorage;
-use Exception;
+use PhalconPlus\Base\Exception;
 use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\Transaction\Failed as TxFailed;
 use PhalconPlus\Db\UnitOfWork\AbstractValue;
@@ -141,7 +140,7 @@ class UnitOfWork
                     }
                     let this->modelLocator[hash] = obj;
                 }
-                // echo "Key: " . this->objects->key() . " Name: " . name . " Obj: " . get_class(obj) . PHP_EOL;
+                //echo "Key: " . this->objects->key() . " Name: " . name . " Obj: " . get_class(obj) . PHP_EOL;
                 this->objects->next();
             }
             transaction->commit();

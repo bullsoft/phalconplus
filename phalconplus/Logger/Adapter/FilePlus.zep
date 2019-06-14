@@ -103,13 +103,18 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
         }
     }
 
-    public function close()
+    public function close() -> boolean
     {
-        var type, handler;
+        var type, handler ,result;
+        let result = true;
         for type, handler in this->type2Handler {
-            fclose(handler);
+            if fclose(handler) == false {
+                let result = false;
+                break;
+            }
             unset(this->type2Handler[type]);
         }
+        return result;
     }
 
     public function getProcessorVar(string! key) -> string
