@@ -1,11 +1,11 @@
 
 #ifdef HAVE_CONFIG_H
-#include "../../ext_config.h"
+#include "../../../ext_config.h"
 #endif
 
 #include <php.h>
-#include "../../php_ext.h"
-#include "../../ext.h"
+#include "../../../php_ext.h"
+#include "../../../ext.h"
 
 #include <Zend/zend_operators.h>
 #include <Zend/zend_exceptions.h>
@@ -17,15 +17,15 @@
 #include "kernel/fcall.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleServer) {
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Server_SimpleServer) {
 
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, SimpleServer, phalconplus, base_simpleserver, phalconplus_rpc_server_abstractserver_ce, phalconplus_base_simpleserver_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc\\Server, SimpleServer, phalconplus, rpc_server_simpleserver, phalconplus_rpc_server_abstractserver_ce, phalconplus_rpc_server_simpleserver_method_entry, 0);
 
 	return SUCCESS;
 
 }
 
-PHP_METHOD(PhalconPlus_Base_SimpleServer, __construct) {
+PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __construct) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub, _0, _1, _2;
@@ -62,7 +62,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleServer, __construct) {
 
 }
 
-PHP_METHOD(PhalconPlus_Base_SimpleServer, onConstruct) {
+PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, onConstruct) {
 
 	zval *this_ptr = getThis();
 

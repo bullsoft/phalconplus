@@ -220,14 +220,14 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 				zephir_check_call_status();
 				ZEPHIR_INIT_LNVAR(_9$$5);
 				ZEPHIR_CONCAT_SVSVS(&_9$$5, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() failed to connect to MySQL. Detail: ", &_5$$5, ". We will try ", &_7$$5, " times for you.");
-				ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_10, 61, &_9$$5);
+				ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_10, 51, &_9$$5);
 				zephir_check_call_status();
 				_11$$5 = (zephir_get_numberval(&tryTimes) - 1);
 				ZEPHIR_INIT_NVAR(&tryTimes);
 				ZVAL_LONG(&tryTimes, _11$$5);
 				if (ZEPHIR_GT_LONG(&tryTimes, 0)) {
 					zephir_read_property(&_12$$6, this_ptr, SL("retryInterval"), PH_NOISY_CC | PH_READONLY);
-					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_13, 73, &_12$$6);
+					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_13, 64, &_12$$6);
 					zephir_check_call_status();
 					zephir_read_property(&_14$$6, this_ptr, SL("retryTimes"), PH_NOISY_CC | PH_READONLY);
 					ZEPHIR_SINIT_NVAR(_15$$6);
@@ -236,7 +236,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 					zephir_check_call_status();
 					ZEPHIR_INIT_LNVAR(_17$$6);
 					ZEPHIR_CONCAT_SVS(&_17$$6, "PHP Notice:  PhalconPlus::Db::MySQL::connnect() retry to connect to MySQL for the ", &_16$$6, " time ... ");
-					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_10, 61, &_17$$6);
+					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_10, 51, &_17$$6);
 					zephir_check_call_status();
 				} else {
 					ZEPHIR_INIT_NVAR(&_18$$7);
@@ -244,7 +244,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 					zephir_json_encode(&_18$$7, &_19$$7, 0 );
 					ZEPHIR_INIT_LNVAR(_20$$7);
 					ZEPHIR_CONCAT_SV(&_20$$7, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: ", &_18$$7);
-					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_10, 61, &_20$$7);
+					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_10, 51, &_20$$7);
 					zephir_check_call_status();
 					zephir_throw_exception_debug(&e, "phalconplus/Db/Mysql.zep", 77 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();

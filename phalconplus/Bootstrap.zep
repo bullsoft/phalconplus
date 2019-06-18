@@ -232,11 +232,11 @@ final class Bootstrap
         // Backend Server, Default is SimpleServer 
         if unlikely this->di->has("backendSrv") {
             let backendSrv = this->di->get("backendSrv");
-            if ! (backendSrv instanceof \PhalconPlus\RPC\Server\AbstractServer) {
-                throw new \PhalconPlus\Base\Exception("Service object(DI[\"backendSrv\"]) must be type of \\PhalconPlus\\RPC\\Server\\AbstractServer");
+            if ! (backendSrv instanceof \PhalconPlus\Rpc\Server\AbstractServer) {
+                throw new \PhalconPlus\Base\Exception("Service object(DI[\"backendSrv\"]) must be type of \\PhalconPlus\\Rpc\\Server\\AbstractServer");
             }
         } else {
-            let backendSrv = new \PhalconPlus\Base\SimpleServer(this->di);
+            let backendSrv = new \PhalconPlus\Rpc\Server\SimpleServer(this->di);
             this->di->set("backendSrv", backendSrv);
         }
 

@@ -373,7 +373,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 			zephir_read_property(&_8$$4, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(&info, &_8$$4, "getinfo", NULL, 0);
 			zephir_check_call_status_or_jump(try_end_1);
-			ZEPHIR_CALL_FUNCTION(&hash$$4, "spl_object_hash", &_9, 74, &obj);
+			ZEPHIR_CALL_FUNCTION(&hash$$4, "spl_object_hash", &_9, 65, &obj);
 			zephir_check_call_status_or_jump(try_end_1);
 			ZEPHIR_OBS_NVAR(&method$$4);
 			zephir_array_fetch_string(&method$$4, &info, SL("method"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 123 TSRMLS_CC);
@@ -392,7 +392,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 				zephir_create_array(&_11$$6, 2, 0 TSRMLS_CC);
 				zephir_array_fast_append(&_11$$6, &obj);
 				zephir_array_fast_append(&_11$$6, &transaction);
-				ZEPHIR_CALL_FUNCTION(NULL, "iterator_apply", &_12, 75, &obj, &_10$$6, &_11$$6);
+				ZEPHIR_CALL_FUNCTION(NULL, "iterator_apply", &_12, 66, &obj, &_10$$6, &_11$$6);
 				zephir_check_call_status_or_jump(try_end_1);
 			}
 			zephir_read_property(&_13$$4, this_ptr, SL("modelLocator"), PH_NOISY_CC | PH_READONLY);

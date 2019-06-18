@@ -27,12 +27,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/pagable.zep.c
 	phalconplus/base/page.zep.c
 	phalconplus/base/protoorderby.zep.c
-	phalconplus/base/psrapplication.zep.c
-	phalconplus/base/psrrequest.zep.c
 	phalconplus/base/service.zep.c
 	phalconplus/base/simplerequest.zep.c
 	phalconplus/base/simpleresponse.zep.c
-	phalconplus/base/simpleserver.zep.c
 	phalconplus/bootstrap.zep.c
 	phalconplus/db/mysql.zep.c
 	phalconplus/db/unitofwork.zep.c
@@ -44,12 +41,15 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/runenv.zep.c
 	phalconplus/enum/runmode.zep.c
 	phalconplus/enum/sys.zep.c
+	phalconplus/http/psrrequest.zep.c
 	phalconplus/logger/adapter/fileplus.zep.c
 	phalconplus/logger/formatter/lineplus.zep.c
 	phalconplus/logger/processor/trace.zep.c
 	phalconplus/logger/processor/uid.zep.c
+	phalconplus/mvc/psrapplication.zep.c
 	phalconplus/rpc/client/adapter/local.zep.c
 	phalconplus/rpc/client/adapter/remote.zep.c
+	phalconplus/rpc/server/simpleserver.zep.c
 	phalconplus/volt/extension/phpfunction.zep.c
 	phalconplus/0__closure.zep.c
 	phalconplus/1__closure.zep.c
