@@ -120,6 +120,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AssertionCode) {
 
 	zephir_declare_class_constant_long(phalconplus_enum_assertioncode_ce, SL("INVALID_SCALAR"), 209);
 
+	zephir_declare_class_constant_long(phalconplus_enum_assertioncode_ce, SL("INVALID_RESOURCE"), 225);
+
+	zephir_declare_class_constant_long(phalconplus_enum_assertioncode_ce, SL("INVALID_STRING_NOT_CONTAINS"), 229);
+
 	return SUCCESS;
 
 }

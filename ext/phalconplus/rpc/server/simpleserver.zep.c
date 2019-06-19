@@ -52,11 +52,11 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __construct) {
 	ZEPHIR_CALL_METHOD(&_2, di, "getshared", NULL, 0, &_1);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("eventsManager"), &_2);
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 45);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 47);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 46);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 48);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
