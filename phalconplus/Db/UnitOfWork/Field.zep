@@ -37,6 +37,6 @@ class Field extends AbstractValue
 
     public function __toString()
     {
-        return "Field" . spl_object_hash(this->model);
+        return "Field: " . spl_object_hash(this->model);
     }
 }

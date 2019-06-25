@@ -29,6 +29,6 @@ class LastInsertId extends AbstractValue
 
     public function __toString()
     {
-        return "LastInsertId" . spl_object_hash(this->model);
+        return "LastInsertId: " . spl_object_hash(this->model);
     }
 }
