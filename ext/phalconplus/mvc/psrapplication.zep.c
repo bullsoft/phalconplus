@@ -109,7 +109,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
 	zephir_update_property_zval(this_ptr, SL("psrRequest"), psrRequest);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, phalconplus_http_psrrequest_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 82, psrRequest);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 90, psrRequest);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("nativeRequest"), &_0);
 	ZEPHIR_MM_RESTORE();
@@ -215,7 +215,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZEPHIR_CALL_PARENT(&_9, phalconplus_mvc_psrapplication_ce, getThis(), "handle", NULL, 0, &uri);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&response, &_9);
-	ZEPHIR_CALL_FUNCTION(&stdout, "ob_get_clean", NULL, 83);
+	ZEPHIR_CALL_FUNCTION(&stdout, "ob_get_clean", NULL, 91);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&headers, this_ptr, "mapheaders", NULL, 0, &response);
 	zephir_check_call_status();
@@ -227,7 +227,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, &response, "send", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&content, "ob_get_clean", NULL, 83);
+	ZEPHIR_CALL_FUNCTION(&content, "ob_get_clean", NULL, 91);
 	zephir_check_call_status();
 	if (!(ZEPHIR_IS_EMPTY(&stdout))) {
 		ZEPHIR_INIT_VAR(&_10$$7);
@@ -320,7 +320,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&headers, &_0, "toarray", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&rawHeaders, "headers_list", NULL, 84);
+	ZEPHIR_CALL_FUNCTION(&rawHeaders, "headers_list", NULL, 92);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&nativeHeaders);
 	array_init(&nativeHeaders);
@@ -403,7 +403,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 		}
 	}
 	ZEPHIR_INIT_NVAR(&h);
-	ZEPHIR_CALL_FUNCTION(NULL, "header_remove", NULL, 85);
+	ZEPHIR_CALL_FUNCTION(NULL, "header_remove", NULL, 93);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_17);
 	zephir_fast_array_merge(&_17, &nativeHeaders, &headers TSRMLS_CC);

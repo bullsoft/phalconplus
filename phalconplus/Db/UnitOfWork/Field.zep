@@ -16,17 +16,13 @@ class Field extends AbstractValue
     {
         var className = get_class(this->model);
         var hash = spl_object_hash(this->model);
-
         var objs = unitwork->getObjects();
-        objs->rewind();
-        while(objs->valid()) {
-            var obj = objs->current();
-            if objs->getHash(obj) == hash {
-                var attr = this->attr;
-                return obj->{attr};
-            }
-            objs->next();
+
+        if objs->contains(this->model) {
+            var attr = this->attr;
+            return this->model->{attr};
         }
+
         throw new \PhalconPlus\Base\Exception("Object(".hash.") instance of ".className." not in SplObjectStorage");
     }
 

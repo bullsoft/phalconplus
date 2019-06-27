@@ -60,6 +60,7 @@ zend_class_entry *phalconplus_enum_orderbydirection_ce;
 zend_class_entry *phalconplus_enum_runenv_ce;
 zend_class_entry *phalconplus_enum_runmode_ce;
 zend_class_entry *phalconplus_enum_sys_ce;
+zend_class_entry *phalconplus_featuretest_splobjectstoragetest_ce;
 zend_class_entry *phalconplus_http_psrrequest_ce;
 zend_class_entry *phalconplus_logger_adapter_fileplus_ce;
 zend_class_entry *phalconplus_logger_formatter_lineplus_ce;
@@ -115,6 +116,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Enum_RunEnv);
 	ZEPHIR_INIT(PhalconPlus_Enum_RunMode);
 	ZEPHIR_INIT(PhalconPlus_Enum_Sys);
+	ZEPHIR_INIT(PhalconPlus_FeatureTest_SplObjectStorageTest);
 	ZEPHIR_INIT(PhalconPlus_Http_PsrRequest);
 	ZEPHIR_INIT(PhalconPlus_Logger_Adapter_FilePlus);
 	ZEPHIR_INIT(PhalconPlus_Logger_Formatter_LinePlus);

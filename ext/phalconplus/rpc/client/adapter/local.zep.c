@@ -373,7 +373,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByObject) {
 	ZEPHIR_CONCAT_SVSVS(&_10, "Invoke callByParams with (", &service, ", ", &method, ")");
 	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 53, &_10);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 86, &service, &method, &request);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 94, &service, &method, &request);
 	zephir_check_call_status();
 	RETURN_MM();
 

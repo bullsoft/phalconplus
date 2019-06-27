@@ -63,9 +63,6 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 
 
 	if (autoConnect) {
-		
-                add_property_null_ex(this_ptr, SL("_pdo") TSRMLS_CC);
-            
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, 0, &descriptor);
 		zephir_check_call_status();
 		if (1) {
@@ -113,7 +110,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *prop_param = NULL, __$true, __$false, _0$$3, _1$$3;
+	zval *prop_param = NULL, __$true, __$false, _0$$3;
 	zval prop;
 	zval *this_ptr = getThis();
 
@@ -121,7 +118,6 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
 	ZVAL_UNDEF(&_0$$3);
-	ZVAL_UNDEF(&_1$$3);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &prop_param);
@@ -139,15 +135,11 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 
 
 	if (ZEPHIR_IS_STRING(&prop, "_pdo")) {
-		ZEPHIR_INIT_VAR(&_0$$3);
-		ZVAL_STRING(&_0$$3, "get _pdo again...");
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 53, &_0$$3);
-		zephir_check_call_status();
 		
                 add_property_null_ex(this_ptr, SL("_pdo") TSRMLS_CC);
             
-		zephir_read_property(&_1$$3, this_ptr, SL("_descriptor"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, 0, &_1$$3);
+		zephir_read_property(&_0$$3, this_ptr, SL("_descriptor"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, 0, &_0$$3);
 		zephir_check_call_status();
 		if (1) {
 			zephir_update_property_zval(this_ptr, SL("_isConnected"), &__$true);

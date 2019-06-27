@@ -5,7 +5,7 @@ include dirname(__DIR__) . "/bootstrap.php";
 use PhalconPlus\Test\Models\Classicmodels\EmployeesModel;
 use Phalcon\Mvc\Model\Resultset;
 
-//$di->getDbRead()->getInternalHandler()->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+di()->getDbRead()->getInternalHandler()->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
 $a = EmployeesModel::findFirst(
     ['hydration' => Resultset::HYDRATE_ARRAYS]

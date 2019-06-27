@@ -127,13 +127,11 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "date");
 	zephir_update_property_array(this_ptr, SL("processors"), &_1, &_2);
-	ZEPHIR_INIT_NVAR(&_2);
 	ZEPHIR_CALL_METHOD(&_2, this_ptr, "gettypestring", NULL, 0, type);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZVAL_STRING(&_3, "type");
 	zephir_update_property_array(this_ptr, SL("processors"), &_3, &_2);
-	ZEPHIR_INIT_NVAR(&_2);
 	ZEPHIR_INIT_VAR(&matches);
 	array_init(&matches);
 	zephir_read_property(&_4, this_ptr, SL("formatString"), PH_NOISY_CC | PH_READONLY);
