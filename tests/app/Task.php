@@ -53,7 +53,7 @@ class Task extends \PhalconPlus\Base\AbstractModule
         // register db write service
         $di->setShared('dbRead', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "db");
-            $conn = $mysql->getConnection();
+            $conn = $mysql->getConnection(false);
             return $conn;
         });
     }

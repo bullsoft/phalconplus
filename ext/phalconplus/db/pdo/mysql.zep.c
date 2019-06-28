@@ -26,8 +26,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_Pdo_Mysql) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Db\\Pdo, Mysql, phalconplus, db_pdo_mysql, phalconplus_db_pdo_abstractmysql_ce, phalconplus_db_pdo_mysql_method_entry, 0);
 
-	zend_declare_property_bool(phalconplus_db_pdo_mysql_ce, SL("_isConnected"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
-
 	return SUCCESS;
 
 }
@@ -37,13 +35,11 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 	zend_class_entry *_4$$6;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool autoConnect;
-	zval *descriptor_param = NULL, *autoConnect_param = NULL, __$true, __$false, dialectClass, connectionId, _0, _1$$5, _2$$6, _3$$6;
+	zval *descriptor_param = NULL, *autoConnect_param = NULL, dialectClass, connectionId, _0, _1$$5, _2$$6, _3$$6;
 	zval descriptor;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&descriptor);
-	ZVAL_BOOL(&__$true, 1);
-	ZVAL_BOOL(&__$false, 0);
 	ZVAL_UNDEF(&dialectClass);
 	ZVAL_UNDEF(&connectionId);
 	ZVAL_UNDEF(&_0);
@@ -65,14 +61,9 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 	if (autoConnect) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, 0, &descriptor);
 		zephir_check_call_status();
-		if (1) {
-			zephir_update_property_zval(this_ptr, SL("_isConnected"), &__$true);
-		} else {
-			zephir_update_property_zval(this_ptr, SL("_isConnected"), &__$false);
-		}
 	} else {
 		
-                zephir_unset_property(this_ptr, "_pdo");
+            zephir_unset_property(this_ptr, "_pdo");
             
 	}
 	ZEPHIR_OBS_VAR(&connectionId);
@@ -110,13 +101,11 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *prop_param = NULL, __$true, __$false, _0$$3;
+	zval *prop_param = NULL, _0$$3;
 	zval prop;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&prop);
-	ZVAL_BOOL(&__$true, 1);
-	ZVAL_BOOL(&__$false, 0);
 	ZVAL_UNDEF(&_0$$3);
 
 	ZEPHIR_MM_GROW();
@@ -136,16 +125,11 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 
 	if (ZEPHIR_IS_STRING(&prop, "_pdo")) {
 		
-                add_property_null_ex(this_ptr, SL("_pdo") TSRMLS_CC);
+            add_property_null_ex(this_ptr, SL("_pdo") TSRMLS_CC);
             
 		zephir_read_property(&_0$$3, this_ptr, SL("_descriptor"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, 0, &_0$$3);
 		zephir_check_call_status();
-		if (1) {
-			zephir_update_property_zval(this_ptr, SL("_isConnected"), &__$true);
-		} else {
-			zephir_update_property_zval(this_ptr, SL("_isConnected"), &__$false);
-		}
 		RETURN_MM_MEMBER(getThis(), "_pdo");
 	}
 	RETURN_MM_NULL();
@@ -154,41 +138,24 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 
 PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, isUnderTransaction) {
 
-	zval _0;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval prop;
+	zend_long ZEPHIR_LAST_CALL_STATUS, isPdoSet;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&prop);
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("_isConnected"), PH_NOISY_CC | PH_READONLY);
-	if (zephir_is_true(&_0)) {
-		ZEPHIR_RETURN_CALL_PARENT(phalconplus_db_pdo_mysql_ce, getThis(), "isundertransaction", NULL, 0);
-		zephir_check_call_status();
-		RETURN_MM();
+	ZEPHIR_INIT_VAR(&prop);
+	ZVAL_STRING(&prop, "_pdo");
+	isPdoSet = 0;
+	
+        isPdoSet = Z_OBJ_HT_P(this_ptr)->has_property(this_ptr, &prop, 0, NULL);
+        
+	if (isPdoSet == 0) {
+		RETURN_MM_BOOL(0);
 	}
-	RETURN_MM_BOOL(0);
-
-}
-
-PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, close) {
-
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval __$true, __$false;
-	zval *this_ptr = getThis();
-
-	ZVAL_BOOL(&__$true, 1);
-	ZVAL_BOOL(&__$false, 0);
-
-	ZEPHIR_MM_GROW();
-
-	if (0) {
-		zephir_update_property_zval(this_ptr, SL("_isConnected"), &__$true);
-	} else {
-		zephir_update_property_zval(this_ptr, SL("_isConnected"), &__$false);
-	}
-	ZEPHIR_RETURN_CALL_PARENT(phalconplus_db_pdo_mysql_ce, getThis(), "close", NULL, 0);
+	ZEPHIR_RETURN_CALL_PARENT(phalconplus_db_pdo_mysql_ce, getThis(), "isundertransaction", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
 

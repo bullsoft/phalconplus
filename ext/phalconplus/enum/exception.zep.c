@@ -66,9 +66,9 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 	}
 	
         #if PHP_VERSION_ID >= 70000
-        zephir_read_static_property_ce(&details, _1, SL("details") TSRMLS_CC, 0);
+        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC, 0);
         #else
-        zephir_read_static_property_ce(&details, _1, SL("details") TSRMLS_CC);
+        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC);
         #endif
         
 	ZEPHIR_CALL_METHOD(&_2, &code, "__tostring", NULL, 0);
