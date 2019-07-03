@@ -18,7 +18,10 @@ class LastInsertId extends AbstractValue
 
         if inserted->contains(this->model) {
             var info = inserted[this->model];
-            return info["last_insert_id"];
+            if isset(info["last_insert_id"]) && info["last_insert_id"] > 0 {
+                return intval(info["last_insert_id"]);
+            }
+            return 0;
         }
 
         throw new \PhalconPlus\Base\Exception("Object(".hash.") instance of ".className." not in SplObjectStorage");

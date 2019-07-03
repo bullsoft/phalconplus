@@ -20,7 +20,10 @@ class Field extends AbstractValue
 
         if objs->contains(this->model) {
             var attr = this->attr;
-            return this->model->{attr};
+            if property_exists(this->model, attr) {
+                return this->model->{attr};
+            }
+            return null;
         }
 
         throw new \PhalconPlus\Base\Exception("Object(".hash.") instance of ".className." not in SplObjectStorage");

@@ -151,6 +151,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, isUnderTransaction) {
 	isPdoSet = 0;
 	
         isPdoSet = Z_OBJ_HT_P(this_ptr)->has_property(this_ptr, &prop, 0, NULL);
+        // isPdoSet = zephir_isset_property(this_ptr, SL("_pdo"));
         
 	if (isPdoSet == 0) {
 		RETURN_MM_BOOL(0);

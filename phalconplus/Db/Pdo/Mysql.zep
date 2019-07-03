@@ -59,14 +59,27 @@ class Mysql extends AbstractMysql
     }
 
     public function isUnderTransaction() -> boolean
-	{
+    {
         string prop = "_pdo";        
         int isPdoSet = 0;
 
+        // var_dump(this);
+
+        /* 
+         * Used to check if a property of the object exists 
+         * https://wiki.php.net/internals/engine/objects#the_handler_table
+         *
+         * param has_set_exists:
+         * 0 (has) whether property exists and is not NULL
+         * 1 (set) whether property exists and is true
+         * 2 (exists) whether property exists
+         */
         %{
         isPdoSet = Z_OBJ_HT_P(this_ptr)->has_property(this_ptr, &prop, 0, NULL);
+        // isPdoSet = zephir_isset_property(this_ptr, SL("_pdo"));
         }%
-
+        
+        // var_dump(isPdoSet);
         if(isPdoSet == 0) {
             return false;
         }
