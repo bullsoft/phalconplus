@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script>var ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.1.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Base/Page.html">PhalconPlus\Base\Page</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Base/Page.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Base.html">Base</a>
+        </span>
+                <h1 class="class-name">Page</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Base;
+use PhalconPlus\Assert\Assertion as Assert;
+use Phalcon\Mvc\Model\Resultset;
+
+class Page extends ProtoBuffer
+{
+    /**
+     * @var <\Phalcon\Base\Pagable>
+     */
+    private pagable = null;
+
+    /**
+     * @var mixed array | <ArrayObject>
+     */ 
+    private data = null;
+
+    private totalSize = 0;
+
+    private pageNo = 0;
+
+    private pageSize = 0;
+
+    private totalPage = 0;
+
+    public function __construct(<Pagable> pagable, totalSize, <\Phalcon\Mvc\Model\Resultset> data)
+    {
+        Assert::notNull(pagable);
+
+        var hydrateMode, tmpData, item;
+
+        let this->pagable = pagable;
+
+        let hydrateMode = data->getHydrateMode();
+
+        switch(hydrateMode) {
+            case Resultset::HYDRATE_RECORDS:
+                let tmpData = new \ArrayObject();
+                let tmpData->modelName = get_class(data->getFirst());
+                let tmpData->columnMap = data->getFirst()->columnMap();
+                for item in iterator(data) {
+                    tmpData->append(item->toArray());
+                }
+                break;
+            default:
+                let tmpData = [];
+                for item in iterator(data) {
+                    let tmpData[] = item;
+                }
+                break;
+        }
+
+        let this->data = tmpData;
+        let this->totalSize = totalSize;
+
+        // initialize
+        this->setPageNo()
+            ->setPageSize()
+            ->setTotalPage();
+    }
+
+    public function setPageNo()
+    {
+        let this->pageNo = this->pagable->getPageNo();
+        return this;
+    }
+
+    public function setPageSize()
+    {
+        let this->pageSize = this->pagable->getPageSize();
+        return this;
+    }
+
+    public function setTotalPage()
+    {
+        let this->totalPage = ceil(this->totalSize / this->pageSize);
+        return this;
+    }
+
+    public function getPageNo()
+    {
+        return this->pageNo;
+    }
+
+    public function getTotalPage()
+    {
+        return this->totalPage;
+    }
+
+    public function getTotalSize()
+    {
+        return this->totalSize;
+    }
+
+    public function hasPreviousPage()
+    {
+        return this->pageNo > 1;
+    }
+
+    public function isFirstPage()
+    {
+        return !this->hasPreviousPage();
+    }
+
+    public function isLastPage()
+    {
+        return !this->hasNextPage();
+    }
+
+    public function hasNextPage()
+    {
+        return this->getPageNo() < this->getTotalPage();
+    }
+
+    public function getData()
+    {
+        return this->data;
+    }
+
+    public function isEmpty()
+    {
+        return count(this->data) == 0;
+    }
+}
+</pre>                </div>
+            </div>
+        </div>
+    </body>
+</html>
