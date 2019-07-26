@@ -1,5 +1,5 @@
 //<?php
-namespace PhalconPlus\Base;
+namespace PhalconPlus\Http;
 
 use Phalcon\Http\Request as BaseRequest;
 use Psr\Http\Message\ServerRequestInterface;

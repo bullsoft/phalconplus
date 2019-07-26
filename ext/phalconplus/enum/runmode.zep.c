@@ -68,12 +68,12 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 	zephir_array_fetch(&_3, &_2, &_4, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 35 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&script);
 	ZEPHIR_CONCAT_VV(&script, &_0, &_3);
-	ZEPHIR_CALL_FUNCTION(&_5, "is_file", NULL, 41, &script);
+	ZEPHIR_CALL_FUNCTION(&_5, "is_file", NULL, 43, &script);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_5))) {
 		ZEPHIR_INIT_VAR(&_6$$3);
-		ZEPHIR_CONCAT_SV(&_6$$3, "PHP Notice:  PhalconPlus\\Bootstrap Global load file not exists: ", &script);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 61, &_6$$3);
+		ZEPHIR_CONCAT_SV(&_6$$3, "PHP Notice:  PhalconPlus\\Enum\\RunMode Global load file not exists: ", &script);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 53, &_6$$3);
 		zephir_check_call_status();
 		RETURN_MM_NULL();
 	}

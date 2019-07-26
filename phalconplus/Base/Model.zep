@@ -228,6 +228,15 @@ class Model extends \Phalcon\Mvc\Model
             return false;
         }
     }
+   
+    /**
+     * @alias setUpdateCondition()
+     * @deprecated
+     */
+    public function setUpdateCond(array params)
+    {
+        return this->setUpdateCondition(params);
+    }
 
     /**
      * 如果想在更新某条记录的时候额外加入其他条件，可以使用此方法
@@ -238,7 +247,7 @@ class Model extends \Phalcon\Mvc\Model
          ]
      ];
      */
-    public function setUpdateCond(array params)
+    public function setUpdateCondition(array params)
     {
         var metaData, writeConnection, columnMap, bindDataTypes, primaryKeys, attributeField;
         var pk, value, type;
@@ -407,6 +416,15 @@ class Model extends \Phalcon\Mvc\Model
         this->_uniqueParams = uniqueParams,
         this->_uniqueTypes = uniqueTypes;
         return true;
+    }
+
+    public function getUniqueFields()
+    {
+        return [
+            "key" : this->_uniqueKey,
+            "params" : this->_uniqueParams,
+            "types" : this->_uniqueTypes
+        ];
     }
 
     public function toProtoBuffer(columns = null) -> <ProtoBuffer>

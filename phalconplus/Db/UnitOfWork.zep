@@ -10,7 +10,7 @@ use Phalcon\Mvc\Model\Resultset as Resultset;
 
 class UnitOfWork
 {
-    protected modelLocator = [];
+    // protected modelLocator = [];
 
     protected dbServiceName;
 
@@ -28,7 +28,11 @@ class UnitOfWork
 
     public function __construct(var dbServiceName)
     {
-        let this->objects = new SplObjectStorage();
+        let this->objects = new \SplObjectStorage();
+        let this->deleted = new \SplObjectStorage();
+        let this->inserted = new \SplObjectStorage();
+        let this->updated = new \SplObjectStorage();
+
         let this->dbServiceName = dbServiceName;
     }
 
@@ -101,24 +105,21 @@ class UnitOfWork
     {
         let this->exception = null;
         let this->failed = null;
-        let this->deleted = new SplObjectStorage();
-        let this->inserted = new SplObjectStorage();
-        let this->updated = new SplObjectStorage();
 
         var txManager, transaction, e;
-
         let txManager = new TxManager();
+
         txManager->setDbService(this->dbServiceName);
         let transaction = txManager->get();
 
-        var obj, info, newMethod;
-        this->objects->rewind();
-
+        var objects, obj, info, newMethod;
+        let objects = new \SplObjectStorage();
+        objects->addAll(this->objects);
+        objects->rewind();
         try {
-            while(this->objects->valid()) {
-                let obj = this->objects->current();
-                let info = this->objects->getInfo();
-                var hash = spl_object_hash(obj);
+            while(objects->valid()) {
+                let obj = objects->current();
+                let info = objects->getInfo();
 
                 var method = info["method"]; unset(info["method"]);
                 var name = info["name"]; unset(info["name"]);
@@ -130,25 +131,22 @@ class UnitOfWork
                         iterator->current()->setTransaction(transaction);
                     }, [obj, transaction]);
                 }
-
-                if !isset this->modelLocator[hash] {
-                    let newMethod = "exec".ucfirst(method);
-                    if this->{newMethod}(obj, info) == false {
-                        transaction->rollback("Model exec failed: " . name . ":" . newMethod .
-                                              ". Model Exception: " . json_encode(obj->getMessages())
-                                             );
-                    }
-                    let this->modelLocator[hash] = obj;
+                // echo "Key: " . objects->key() . " Name: " . name . " Obj: " . get_class(obj) . PHP_EOL;
+                let newMethod = "exec".ucfirst(method);
+                if this->{newMethod}(obj, info) == false {
+                    transaction->rollback("Model exec failed: " . name . ":" . newMethod .
+                                            ". Model Exception: " . json_encode(obj->getMessages()));
                 }
-                //echo "Key: " . this->objects->key() . " Name: " . name . " Obj: " . get_class(obj) . PHP_EOL;
-                this->objects->next();
+                objects->next();
             }
             transaction->commit();
         } catch TxFailed, e {
             let this->failed = obj;
             let this->exception = e;
+            objects->removeAll(this->objects);
             return false;
         }
+        objects->removeAll(this->objects);
         return true;
     }
 
@@ -216,22 +214,22 @@ class UnitOfWork
 
     public function getObjects()
     {
-        return this->objects;
+        return clone this->objects;
     }
 
     public function getInserted()
     {
-        return this->inserted;
+        return clone this->inserted;
     }
 
     public function getUpdated()
     {
-        return this->updated;
+        return clone this->updated;
     }
 
     public function getDeleted()
     {
-        return this->deleted;
+        return clone this->deleted;
     }
 
     public function getException()

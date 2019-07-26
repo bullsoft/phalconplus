@@ -24,7 +24,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id: 1e07509506084059121aa4624a5d7112ad742f7c $ */
+/* $Id: d5638aad996086c16f5f96ecbea6247b14e7ddbb $ */
 
 /* Sanity check to ensure that pcre extension needed by this script is available.
  * In the event it is not, print a nice error message indicating that this script will
@@ -697,7 +697,7 @@ if (isset($argc) && $argc > 1) {
 					$html_output = is_resource($html_file);
 					break;
 				case '--version':
-					echo '$Id: 1e07509506084059121aa4624a5d7112ad742f7c $' . "\n";
+					echo '$Id: d5638aad996086c16f5f96ecbea6247b14e7ddbb $' . "\n";
 					exit(1);
 
 				default:
@@ -820,7 +820,7 @@ HELP;
 		if (substr(PHP_OS, 0, 3) == "WIN") {
 			$pass_options .= " -c " . escapeshellarg($conf_passed);
 		} else {
-			$pass_options .= " -c '$conf_passed'";
+			$pass_options .= " -c '" . realpath($conf_passed) . "'";
 		}
 	}
 
@@ -1610,6 +1610,8 @@ TEST $file
 	}
 
 	settings2params($ini_settings);
+
+	$env['TEST_PHP_EXTRA_ARGS'] = $pass_options . ' ' . $ini_settings;
 
 	// Check if test should be skipped.
 	$info = '';

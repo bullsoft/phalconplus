@@ -1,5 +1,5 @@
-namespace PhalconPlus\RPC\Client\Adapter;
-use PhalconPlus\RPC\Client\AbstractClient;
+namespace PhalconPlus\Rpc\Client\Adapter;
+use PhalconPlus\Rpc\Client\AbstractClient;
 
 class Remote extends AbstractClient
 {

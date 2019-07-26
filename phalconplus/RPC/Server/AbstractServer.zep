@@ -1,4 +1,4 @@
-namespace PhalconPlus\RPC\Server;
+namespace PhalconPlus\Rpc\Server;
 use PhalconPlus\Base\ProtoBuffer;
 
 abstract class AbstractServer

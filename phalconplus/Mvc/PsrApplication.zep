@@ -1,5 +1,5 @@
 //<?php
-namespace PhalconPlus\Base;
+namespace PhalconPlus\Mvc;
 use Phalcon\Mvc\Application as BaseApplication;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -24,7 +24,7 @@ class PsrApplication extends BaseApplication
         let this->_sendCookies = false;
         let this->psrRequest = psrRequest;
         // Phalcon\Http\Request
-        let this->nativeRequest = new \PhalconPlus\Base\PsrRequest(psrRequest);
+        let this->nativeRequest = new \PhalconPlus\Http\PsrRequest(psrRequest);
     }
 
     public function __destruct()

@@ -53,14 +53,19 @@ class Mysql
         ];
     }
 
-    public function getConnection() -> <\Phalcon\Db\Adapter\Pdo\Mysql>
+    public function getConnection(boolean autoConnect = true) -> <\Phalcon\Db\Adapter\Pdo\Mysql>
     {
         var tryTimes, e;
         let tryTimes = this->retryTimes;
 
         while !this->connected {
             try {
-                let this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql(this->descriptor);
+                if autoConnect == true {
+                    let this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql(this->descriptor);
+                } else {
+                    // Lazy connection
+                    let this->connection = new \PhalconPlus\Db\Pdo\Mysql(this->descriptor, autoConnect);
+                }
                 let this->connected = true;
             } catch \Exception, e {
                 error_log("PHP Fatal error:  PhalconPlus::Db::MySQL::connect() failed to connect to MySQL. Detail: " .

@@ -66,9 +66,9 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 	}
 	
         #if PHP_VERSION_ID >= 70000
-        zephir_read_static_property_ce(&details, _1, SL("details") TSRMLS_CC, 0);
+        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC, 0);
         #else
-        zephir_read_static_property_ce(&details, _1, SL("details") TSRMLS_CC);
+        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC);
         #endif
         
 	ZEPHIR_CALL_METHOD(&_2, &code, "__tostring", NULL, 0);
@@ -147,7 +147,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 	ZVAL_BOOL(&_1, 1);
 	ZEPHIR_CALL_STATIC(&_0, "validvalues", NULL, 0, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&map2Name, "array_flip", NULL, 33, &_0);
+	ZEPHIR_CALL_FUNCTION(&map2Name, "array_flip", NULL, 36, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&eCode, e, "getcode", NULL, 0);
 	zephir_check_call_status();

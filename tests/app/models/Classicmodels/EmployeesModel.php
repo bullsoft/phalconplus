@@ -110,7 +110,7 @@ class EmployeesModel extends ModelBase
     /**
      * return related table name
      */
-    public function getSource()
+    public function getSource() : string
     {
         return 'employees';
     }

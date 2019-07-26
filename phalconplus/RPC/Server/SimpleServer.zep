@@ -1,5 +1,5 @@
-namespace PhalconPlus\Base;
-use PhalconPlus\RPC\Server\AbstractServer;
+namespace PhalconPlus\Rpc\Server;
+use PhalconPlus\Rpc\Server\AbstractServer;
 
 class SimpleServer extends AbstractServer
 {

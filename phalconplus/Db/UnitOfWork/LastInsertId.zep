@@ -12,23 +12,23 @@ class LastInsertId extends AbstractValue
 
     public function getValue(<UnitOfWork> unitwork)
     {
-        var modelClass = get_class(this->model);
-        var modelHash = spl_object_hash(this->model);
+        var className = get_class(this->model);
+        var hash = spl_object_hash(this->model);
         var inserted = unitwork->getInserted();
-        inserted->rewind();
-        while(inserted->valid()) {
-            var obj = inserted->current();
-            if inserted->getHash(obj) == modelHash {
-                var info = inserted->getInfo();
-                return info["last_insert_id"];
+
+        if inserted->contains(this->model) {
+            var info = inserted[this->model];
+            if isset(info["last_insert_id"]) && info["last_insert_id"] > 0 {
+                return intval(info["last_insert_id"]);
             }
-            inserted->next();
+            return 0;
         }
-        throw new \PhalconPlus\Base\Exception("Object(".modelHash.") instance of ".modelClass." not in SplObjectStorage");
+
+        throw new \PhalconPlus\Base\Exception("Object(".hash.") instance of ".className." not in SplObjectStorage");
     }
 
     public function __toString()
     {
-        return "LastInsertId" . spl_object_hash(this->model);
+        return "LastInsertId: " . spl_object_hash(this->model);
     }
 }
