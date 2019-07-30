@@ -46,6 +46,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *dbServiceName, dbServiceName_sub, _0, _1, _2, _3;
 	zval *this_ptr = getThis();
@@ -96,6 +97,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, __construct) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, save) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval initial_data;
 	zval *name, name_sub, *model, model_sub, *initial_data_param = NULL, _0;
@@ -136,6 +138,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, save) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, insert) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval initial_data, _0;
 	zval *name, name_sub, *model, model_sub, *initial_data_param = NULL;
@@ -176,6 +179,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, insert) {
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, update) {
 
 	zend_bool _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval initial_data, _1$$3;
 	zval *name, name_sub, *model, model_sub, *initial_data_param = NULL;
@@ -226,6 +230,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, delete) {
 
 	zval _1$$3;
 	zend_bool _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name, name_sub, *model, model_sub;
 	zval *this_ptr = getThis();
@@ -262,6 +267,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, delete) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, attach) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *model, model_sub, *info, info_sub, _0;
 	zval *this_ptr = getThis();
@@ -284,6 +290,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, attach) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, detach) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *model, model_sub, _0;
 	zval *this_ptr = getThis();
@@ -306,6 +313,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, detach) {
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 
 	zval _7$$6;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_4 = NULL, *_5 = NULL, *_8 = NULL, *_14 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval __$null, txManager, transaction, e, _0, objects, obj, info, newMethod, _1, _15, _17, _2$$3, method$$4, name$$4, _9$$4, _10$$4, _6$$6, _11$$7, _12$$7, _13$$7, _16$$8;
@@ -443,6 +451,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 	zend_bool _4$$4, _9$$8;
 	zend_string *_3$$3;
 	zend_ulong _2$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_6 = NULL, *_8 = NULL, *_11 = NULL, *_13 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval info, _16$$13;
@@ -563,6 +572,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 	zend_bool _4$$4, _7$$6;
 	zend_string *_3$$3;
 	zend_ulong _2$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_6 = NULL, *_9 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval info, _11$$9;
@@ -665,6 +675,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork, execDelete) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval info;
 	zval *model, model_sub, *info_param = NULL, result, _0$$3;

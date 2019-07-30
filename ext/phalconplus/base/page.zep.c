@@ -51,6 +51,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page) {
 PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 	zend_object_iterator *_5$$3, *_8$$5;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_7 = NULL;
 	zval *pagable, pagable_sub, *totalSize, totalSize_sub, *data, data_sub, hydrateMode, tmpData, item, _9, _10, _1$$3, _2$$3, _3$$3, _4$$3, _6$$4;
@@ -139,6 +140,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -158,6 +160,7 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -238,6 +241,7 @@ PHP_METHOD(PhalconPlus_Base_Page, hasPreviousPage) {
 PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -254,6 +258,7 @@ PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
 PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -270,6 +275,7 @@ PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 

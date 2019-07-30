@@ -31,6 +31,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Uid) {
 
 PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *len = NULL, len_sub, __$true, _0, _1, _2, _3;
 	zval *this_ptr = getThis();

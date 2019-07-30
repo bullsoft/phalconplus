@@ -42,6 +42,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Exception) {
 
 PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *info = NULL, info_sub, *logger = NULL, logger_sub, __$null, message, args, _0, _13, cnt, argsCnt, _14, _15, _1$$4, _2$$4, _3$$4, _4$$5, _5$$5, _6$$5, _7$$5, _8$$6, _9$$7, _10$$7, _11$$7, _12$$7, _16$$9, _17$$9;
 	zval *this_ptr = getThis();
@@ -173,7 +174,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setCode) {
 
 	ZVAL_UNDEF(&code_sub);
 
-	zephir_fetch_params(0, 1, 0, &code);
+	zephir_fetch_params_without_memory_grow(1, 0, &code);
 
 
 
@@ -189,7 +190,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setLevel) {
 
 	ZVAL_UNDEF(&level_sub);
 
-	zephir_fetch_params(0, 1, 0, &level);
+	zephir_fetch_params_without_memory_grow(1, 0, &level);
 
 
 
@@ -205,7 +206,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setMessage) {
 
 	ZVAL_UNDEF(&msg_sub);
 
-	zephir_fetch_params(0, 1, 0, &msg);
+	zephir_fetch_params_without_memory_grow(1, 0, &msg);
 
 
 

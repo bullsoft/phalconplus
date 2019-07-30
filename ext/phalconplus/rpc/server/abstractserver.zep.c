@@ -48,6 +48,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 	zval _19, _3$$4, _21$$8, _27$$8, _24$$9, _25$$9;
 	zend_class_entry *_17, *_8$$5;
 	zend_bool _2, _29$$8, _34$$8;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_12 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *service_param = NULL, *method_param = NULL, *request = NULL, request_sub, __$true, __$false, serviceClass, _0, _1, serviceObj, response, e, _16, _18, tmp$$4, param$$4, paramClass$$4, _4$$4, _5$$4, _6$$5, _7$$5, _9$$6, _10$$6, _11$$6, _13$$7, _14$$7, _15$$7, _20$$8, _22$$8, _26$$8, _28$$8, _33$$8, _23$$9, _30$$11, _31$$11, _32$$11, _35$$14;
@@ -162,6 +163,9 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			ZEPHIR_INIT_NVAR(request);
 			zephir_fetch_safe_class(&_7$$5, &paramClass$$4);
 			_8$$5 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_7$$5), Z_STRLEN_P(&_7$$5), ZEND_FETCH_CLASS_AUTO);
+			if(!_8$$5) {
+				RETURN_MM_NULL();
+			}
 			object_init_ex(request, _8$$5);
 			if (zephir_has_constructor(request TSRMLS_CC)) {
 				ZEPHIR_CALL_METHOD(NULL, request, "__construct", NULL, 0);
@@ -198,6 +202,9 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 	ZEPHIR_INIT_VAR(&serviceObj);
 	zephir_fetch_safe_class(&_16, &serviceClass);
 	_17 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_16), Z_STRLEN_P(&_16), ZEND_FETCH_CLASS_AUTO);
+	if(!_17) {
+		RETURN_MM_NULL();
+	}
 	object_init_ex(&serviceObj, _17);
 	if (zephir_has_constructor(&serviceObj TSRMLS_CC)) {
 		zephir_read_property(&_18, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
@@ -316,6 +323,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 
 	zend_bool _8;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_2 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *rawData_param = NULL, service, method, request, response, logId, message, _5, _7, _9, _10, _15, _17, _19, _20, _0$$3, _1$$3, _3$$4, _4$$4, _11$$7, _12$$7, _13$$7, _14$$7, _21$$8, _22$$8, _23$$8, _24$$8;

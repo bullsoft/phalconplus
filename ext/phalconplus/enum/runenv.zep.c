@@ -44,6 +44,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunEnv) {
 
 PHP_METHOD(PhalconPlus_Enum_RunEnv, isInProd) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *env_param = NULL, _0, _1, _2, _3, _4, _5, _6;
 	zval env;
 	zval *this_ptr = getThis();

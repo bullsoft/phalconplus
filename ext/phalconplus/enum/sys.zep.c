@@ -53,6 +53,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Sys) {
 
 PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *moduleDir_param = NULL, _0, _1, _2, _3, _6, _4$$4;
 	zval moduleDir, _5$$4;
@@ -116,6 +117,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 PHP_METHOD(PhalconPlus_Enum_Sys, getPrimaryModuleDir) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -132,6 +134,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getPrimaryModuleDir) {
 PHP_METHOD(PhalconPlus_Enum_Sys, getRootDir) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -149,6 +152,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getCommonDir) {
 
 	zval _1, _2;
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -180,6 +184,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalConfigDir) {
 	zval _3;
 	zval _1, _2;
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -212,6 +217,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalConfigPath) {
 	zval _3;
 	zval _1, _2;
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -246,6 +252,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalLoadDir) {
 
 	zval _1, _2;
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -278,6 +285,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalLoadDir) {
 PHP_METHOD(PhalconPlus_Enum_Sys, getModuleDirByName) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *moduleName_param = NULL, _1, _2;
 	zval moduleName;
 	zval *this_ptr = getThis();
@@ -311,6 +319,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleDirByName) {
 
 PHP_METHOD(PhalconPlus_Enum_Sys, getModuleNameByDir) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *moduleDir_param = NULL, _0;
 	zval moduleDir;
@@ -335,6 +344,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleNameByDir) {
 PHP_METHOD(PhalconPlus_Enum_Sys, getModuleClassPath) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *moduleDir_param = NULL, *runMode, runMode_sub, _1, _2;
 	zval moduleDir;
@@ -375,6 +385,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleClassPath) {
 PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 
 	zval _0, _3, _7$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_6 = NULL;
 	zval *moduleDir_param = NULL, confPrefix, confPath, _1, _2, _4, _5, _9, _8$$3, _10$$4, _11$$4, _12$$4;
@@ -431,7 +442,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 	zephir_create_array(&_3, 3, 0 TSRMLS_CC);
 	zephir_array_fast_append(&_3, &confPrefix);
 	ZEPHIR_INIT_VAR(&_4);
-	ZEPHIR_GET_CONSTANT(&_4, "APP_RUN_ENV");
+	ZEPHIR_MM_GET_CONSTANT(&_4, "APP_RUN_ENV");
 	zephir_array_fast_append(&_3, &_4);
 	ZEPHIR_INIT_NVAR(&_4);
 	ZVAL_STRING(&_4, ".php");
@@ -459,7 +470,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 		ZEPHIR_INIT_VAR(&_10$$4);
 		object_init_ex(&_10$$4, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_11$$4);
-		ZEPHIR_GET_CONSTANT(&_11$$4, "APP_RUN_ENV");
+		ZEPHIR_MM_GET_CONSTANT(&_11$$4, "APP_RUN_ENV");
 		ZEPHIR_INIT_VAR(&_12$$4);
 		ZEPHIR_CONCAT_SVSVS(&_12$$4, "Module Config file not exists: ", &confPath, " & ", &_11$$4, ".php");
 		ZEPHIR_CALL_METHOD(NULL, &_10$$4, "__construct", NULL, 22, &_12$$4);
@@ -476,6 +487,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getComposerAutoloadPath) {
 
 	zval _1, _2;
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);

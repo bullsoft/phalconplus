@@ -36,6 +36,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone) {
 
 	zend_string *_3;
 	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, key, val, *_0, _1, _4$$3, _7$$5;
@@ -107,6 +108,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 
 	zval _2$$3;
 	zend_bool _8, _9, _10;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *val = NULL, val_sub, method, param, paramClass, paramClassRef, paramObj, _0, _1, _3$$3, _4$$3, _5$$4, _6$$4, _7$$4, _11$$9, _12$$9;
 	zval key;
@@ -225,6 +227,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __isset) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, _0;
 	zval key;
@@ -259,6 +262,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __isset) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __get) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, method, _0, _1, _2, _3$$4;
 	zval key;
@@ -309,6 +313,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __get) {
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars) {
 
 	zval objReflection, vars, pros, pro, *_0, _1, _2$$3, _3$$3, _4$$3, _5$$4, _6$$4, _7$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -385,6 +390,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, jsonSerialize) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -402,6 +408,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 	zend_bool _4$$5, _5$$5, _6$$5, _11$$10, _12$$10, _13$$10;
 	zend_string *_3;
 	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, pros, newPros, key, val, *_0, _1, _7$$6, _9$$7, _10$$8, _14$$11, _15$$12, _16$$13;

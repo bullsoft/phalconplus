@@ -41,7 +41,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, setPsrRequest) {
 
 	ZVAL_UNDEF(&psrRequest_sub);
 
-	zephir_fetch_params(0, 1, 0, &psrRequest);
+	zephir_fetch_params_without_memory_grow(1, 0, &psrRequest);
 
 
 
@@ -70,6 +70,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, getNativeRequest) {
 
 PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *dependencyInjector = NULL, dependencyInjector_sub, *psrRequest = NULL, psrRequest_sub, __$true, __$false, __$null, _0;
 	zval *this_ptr = getThis();
@@ -119,6 +120,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
 PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __destruct) {
 
 	zval _0, _1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -140,6 +142,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __destruct) {
 PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 
 	zend_class_entry *_11 = NULL;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval uri, *uri_param = NULL, psrRequest, _0, _1, _3, _4, _5, _6, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
@@ -274,6 +277,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 
 	zval _8$$6, _15$$11;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *response, response_sub, headers, _0, rawHeaders, h, pos, nativeHeaders, *_1, _2, _17, _3$$3, name$$4, _4$$4, value$$4, _5$$4, _6$$4, _7$$5, _9$$6, _10$$8, name$$9, _11$$9, value$$9, _12$$9, _13$$9, _14$$10, _16$$11, _18$$13, _19$$13, _20$$13, _21$$13, _22$$14;
 	zval *this_ptr = getThis();

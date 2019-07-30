@@ -27,6 +27,7 @@ ZEPHIR_INIT_CLASS(phalconplus_2__closure) {
 
 PHP_METHOD(phalconplus_2__closure, __invoke) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *iterator, iterator_sub, *transaction, transaction_sub, _0;
 	zval *this_ptr = getThis();

@@ -151,12 +151,6 @@ static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_global
 {
 	phalconplus_globals->initialized = 0;
 
-	/* Memory options */
-	phalconplus_globals->active_memory = NULL;
-
-	/* Virtual Symbol Tables */
-	phalconplus_globals->active_symbol_table = NULL;
-
 	/* Cache Enabled */
 	phalconplus_globals->cache_enabled = 1;
 

@@ -27,6 +27,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Server_SimpleServer) {
 
 PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub, _0, _1, _2;
 	zval *this_ptr = getThis();

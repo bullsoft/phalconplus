@@ -55,6 +55,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getProperty) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *property_param = NULL;
 	zval property;
 	zval *this_ptr = getThis();
@@ -88,7 +89,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setDirection) {
 
 	ZVAL_UNDEF(&orderBy_sub);
 
-	zephir_fetch_params(0, 1, 0, &orderBy);
+	zephir_fetch_params_without_memory_grow(1, 0, &orderBy);
 
 
 
@@ -116,6 +117,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getAlias) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *alias_param = NULL;
 	zval alias;
 	zval *this_ptr = getThis();
@@ -145,6 +147,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString) {
 
 	zval _1, _2, orderBy, _3, _6, _7, _4$$3, _5$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *this_ptr = getThis();

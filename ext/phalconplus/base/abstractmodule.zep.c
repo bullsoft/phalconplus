@@ -39,7 +39,7 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, __construct) {
 	ZVAL_UNDEF(&def_sub);
 	ZVAL_NULL(&__$null);
 
-	zephir_fetch_params(0, 1, 1, &di, &def);
+	zephir_fetch_params_without_memory_grow(1, 1, &di, &def);
 
 	if (!def) {
 		def = &def_sub;
@@ -73,6 +73,7 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, getDi) {
 PHP_METHOD(PhalconPlus_Base_AbstractModule, isPrimary) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -91,6 +92,7 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, isPrimary) {
 PHP_METHOD(PhalconPlus_Base_AbstractModule, getBootstrap) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 

@@ -66,6 +66,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, getOrderBys) {
 
 PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *orderBy, orderBy_sub, _0;
 	zval *this_ptr = getThis();
@@ -94,7 +95,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setPageNo) {
 
 	ZVAL_UNDEF(&pageNo_sub);
 
-	zephir_fetch_params(0, 1, 0, &pageNo);
+	zephir_fetch_params_without_memory_grow(1, 0, &pageNo);
 
 
 
@@ -110,7 +111,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize) {
 
 	ZVAL_UNDEF(&pageSize_sub);
 
-	zephir_fetch_params(0, 1, 0, &pageSize);
+	zephir_fetch_params_without_memory_grow(1, 0, &pageSize);
 
 
 
@@ -122,6 +123,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize) {
 zend_object *zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 

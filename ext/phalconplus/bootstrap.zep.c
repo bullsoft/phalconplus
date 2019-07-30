@@ -59,7 +59,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, setDi) {
 
 	ZVAL_UNDEF(&di_sub);
 
-	zephir_fetch_params(0, 1, 0, &di);
+	zephir_fetch_params_without_memory_grow(1, 0, &di);
 
 
 
@@ -84,7 +84,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, setAutoHandle) {
 
 	ZVAL_UNDEF(&autoHandle_sub);
 
-	zephir_fetch_params(0, 1, 0, &autoHandle);
+	zephir_fetch_params_without_memory_grow(1, 0, &autoHandle);
 
 
 
@@ -114,6 +114,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getLoadedFiles) {
 PHP_METHOD(PhalconPlus_Bootstrap, __construct) {
 
 	zend_bool _7;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_9 = NULL, *_15 = NULL, *_18 = NULL, *_20 = NULL, *_23 = NULL, *_25 = NULL, *_27 = NULL, *_29 = NULL;
 	zval *moduleDir_param = NULL, *env_param = NULL, __$false, sysEnv$$3, _1$$3, _2$$3, _3, _4, _5, _6, _8, _10, _13, _14, _16, _17, _19, _21, _22, _24, _26, _28, _30, _11$$6, _12$$6, _31$$7;
@@ -184,7 +185,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, __construct) {
 		zephir_update_property_zval(this_ptr, SL("env"), &env);
 	}
 	ZEPHIR_INIT_VAR(&_3);
-	ZEPHIR_GET_CONSTANT(&_3, "PHP_SAPI");
+	ZEPHIR_MM_GET_CONSTANT(&_3, "PHP_SAPI");
 	ZVAL_LONG(&_4, 0);
 	ZVAL_LONG(&_5, 3);
 	ZEPHIR_INIT_VAR(&_6);
@@ -271,6 +272,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, __construct) {
 
 PHP_METHOD(PhalconPlus_Bootstrap, registerModule) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_9 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *moduleDef, moduleDef_sub, __$false, _0, _1, _5, _10, _14, module, _22, _23, _2$$3, _3$$3, _4$$3, _6$$4, _7$$4, _8$$4, _11$$5, _12$$5, _13$$5, _15$$6, _16$$6, moduleConf$$6, _19$$6, _20$$6, _21$$6, _17$$7, _18$$7;
@@ -391,6 +393,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, registerModule) {
 PHP_METHOD(PhalconPlus_Bootstrap, initConf) {
 
 	zval globalConfPath, _1, _8, _2$$3, _3$$3, _4$$3, _6$$4, _7$$4, _9$$5, _10$$5, _11$$5;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_5 = NULL;
 	zval *this_ptr = getThis();
@@ -439,7 +442,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf) {
 		ZEPHIR_INIT_VAR(&_9$$5);
 		object_init_ex(&_9$$5, phalconplus_base_moduledef_ce);
 		ZEPHIR_INIT_VAR(&_10$$5);
-		ZEPHIR_GET_CONSTANT(&_10$$5, "APP_MODULE_DIR");
+		ZEPHIR_MM_GET_CONSTANT(&_10$$5, "APP_MODULE_DIR");
 		ZVAL_BOOL(&_11$$5, 1);
 		ZEPHIR_CALL_METHOD(NULL, &_9$$5, "__construct", NULL, 54, this_ptr, &_10$$5, &_11$$5);
 		zephir_check_call_status();
@@ -451,6 +454,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf) {
 
 PHP_METHOD(PhalconPlus_Bootstrap, setApp) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool autoHandle, _1$$3;
 	zval *app, app_sub, *autoHandle_param = NULL, __$true, __$false, _0;
 	zval *this_ptr = getThis();
@@ -496,6 +500,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, setApp) {
 PHP_METHOD(PhalconPlus_Bootstrap, getApp) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -516,6 +521,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, exec) {
 
 	zval _2;
 	zval handleMethod, _0, _1, _3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -550,6 +556,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, exec) {
 PHP_METHOD(PhalconPlus_Bootstrap, terminate) {
 
 	zend_class_entry *_3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval _SESSION, _POST, _GET, _SERVER, _REQUEST, _COOKIE, _FILES, __$null, _0, _1, _4, _5, _2$$4;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
@@ -626,6 +633,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, terminate) {
 
 PHP_METHOD(PhalconPlus_Bootstrap, __destruct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -643,6 +651,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, __destruct) {
  */
 PHP_METHOD(PhalconPlus_Bootstrap, execModule) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *request = NULL, request_sub, __$null, _0, _1, _5, _7, _8, _9, _10, _11, _2$$4, _3$$4, _4$$4, _6$$5;
 	zval *this_ptr = getThis();
@@ -719,6 +728,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, execModule) {
 PHP_METHOD(PhalconPlus_Bootstrap, execSrv) {
 
 	zval _0, _1, _5, backendSrv, _6, _7, _8, _14, _16, _17, _2$$4, _3$$4, _4$$4, _9$$5, _10$$5, _11$$7, _12$$7, _13$$7, _15$$8;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -817,6 +827,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, execSrv) {
 PHP_METHOD(PhalconPlus_Bootstrap, execTask) {
 
 	zend_bool _2$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *argv_param = NULL, *di = NULL, di_sub, __$null, _0, _1, _6, _8, _9, _10, _11, _12, _4$$4, _5$$4, _3$$5, _7$$7;
 	zval argv;
@@ -913,6 +924,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getPrimaryModuleDef) {
 PHP_METHOD(PhalconPlus_Bootstrap, getPrimaryModule) {
 
 	zval name, _0, _1, _4, _5, _2$$3, _3$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -949,6 +961,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getPrimaryModule) {
 
 PHP_METHOD(PhalconPlus_Bootstrap, getModule) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0, _3, _4, _1$$3;
 	zval name, _2$$3;
@@ -996,6 +1009,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getModule) {
 
 PHP_METHOD(PhalconPlus_Bootstrap, getModuleDef) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0, _3, _4, _1$$3;
 	zval name, _2$$3;
@@ -1045,6 +1059,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getModuleDef) {
 
 PHP_METHOD(PhalconPlus_Bootstrap, dependModule) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *moduleName_param = NULL, module, moduleDef, moduleDir, moduleConf, _1, _2, _3;
@@ -1142,6 +1157,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, getConfig) {
 
 PHP_METHOD(PhalconPlus_Bootstrap, setConfig) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *config, config_sub, globalConf, _0, _1, _2, _4, _5, _3$$4;
 	zval *this_ptr = getThis();
@@ -1190,6 +1206,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, setConfig) {
 
 PHP_METHOD(PhalconPlus_Bootstrap, load) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *filePath, filePath_sub, _0, loader, config, application, di, bootstrap, rootPath, fileRet, _3, _4, _6, _7, _8, _9, _10, _11, _12, _13, _1$$4, _2$$4;
@@ -1303,6 +1320,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, load) {
 zend_object *zephir_init_properties_PhalconPlus_Bootstrap(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _1$$3, _3$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);

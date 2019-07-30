@@ -37,6 +37,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct) {
 
 	zend_string *_6$$4;
 	zend_ulong _5$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *remoteServerUrl_param = NULL, *opts_param = NULL, key, _0, _1, _2, optKey$$4, optVal$$4, *_3$$4, _4$$4, _7$$5, _8$$6;
 	zval remoteServerUrl, opts;
@@ -126,6 +127,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct) {
 
 PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, callByObject) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *rawData_param = NULL, _0;
 	zval rawData;
@@ -149,6 +151,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, callByObject) {
 
 PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __call) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval args, _1$$3;
 	zval *method_param = NULL, *args_param = NULL, _0, _2$$3;

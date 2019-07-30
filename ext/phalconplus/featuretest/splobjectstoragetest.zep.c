@@ -33,6 +33,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_FeatureTest_SplObjectStorageTest) {
 PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, __construct) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -53,6 +54,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, __construct) {
 
 PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, insert) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data, _2;
 	zval *name, name_sub, *obj, obj_sub, *data_param = NULL, _0, _1;
@@ -94,6 +96,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, insert) {
 PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
 
 	zval obj, info, _0, _1, _2, _3$$3, _4$$3, _5$$3, _6$$3, _7$$3, _8$$3, _9$$3, _10$$3, _11$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -137,7 +140,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
 		ZEPHIR_INIT_NVAR(&_8$$3);
 		zephir_get_class(&_8$$3, &obj, 0 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(&_9$$3);
-		ZEPHIR_GET_CONSTANT(&_9$$3, "PHP_EOL");
+		ZEPHIR_MM_GET_CONSTANT(&_9$$3, "PHP_EOL");
 		ZEPHIR_INIT_LNVAR(_10$$3);
 		ZEPHIR_CONCAT_SVSVSVV(&_10$$3, "Key: ", &_6$$3, " Name: ", &_7$$3, " Obj: ", &_8$$3, &_9$$3);
 		zend_print_zval(&_10$$3, 0);

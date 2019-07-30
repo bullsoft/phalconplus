@@ -55,6 +55,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_Mysql) {
 PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
 
 	zval _9;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval name;
 	zval *di, di_sub, *name_param = NULL, config, dbConfig, _0, options, _3, _4, _5, _1$$3, _2$$4, _6$$5, _7$$5, _8$$5;
@@ -154,6 +155,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
 
 PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_7 = NULL, *_12 = NULL, *_14 = NULL, *_17 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, _15$$7;
 	zval *autoConnect_param = NULL, __$true, __$false, tryTimes, e, _0, _1$$5, _2$$5, _4$$6, _5$$6, _6$$6, _8$$3, _9$$7, _10$$7, _11$$7, _13$$7, _16$$8, _18$$8, _19$$8, _20$$8, _21$$8, _22$$9, _23$$9, _24$$9;
@@ -286,6 +288,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 zend_object *zephir_init_properties_PhalconPlus_Db_Mysql(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _1$$3, _3$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);

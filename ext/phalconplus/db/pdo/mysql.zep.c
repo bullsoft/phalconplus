@@ -33,6 +33,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_Pdo_Mysql) {
 PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 
 	zend_class_entry *_4$$6;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool autoConnect;
 	zval *descriptor_param = NULL, *autoConnect_param = NULL, dialectClass, connectionId, _0, _1$$5, _2$$6, _3$$6;
@@ -82,6 +83,9 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 		ZEPHIR_INIT_VAR(&_2$$6);
 		zephir_fetch_safe_class(&_3$$6, &dialectClass);
 		_4$$6 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_3$$6), Z_STRLEN_P(&_3$$6), ZEND_FETCH_CLASS_AUTO);
+		if(!_4$$6) {
+			RETURN_MM_NULL();
+		}
 		object_init_ex(&_2$$6, _4$$6);
 		if (zephir_has_constructor(&_2$$6 TSRMLS_CC)) {
 			ZEPHIR_CALL_METHOD(NULL, &_2$$6, "__construct", NULL, 0);
@@ -100,6 +104,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 
 PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *prop_param = NULL, _0$$3;
 	zval prop;
@@ -139,6 +144,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, isUnderTransaction) {
 
 	zval prop;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, isPdoSet;
 	zval *this_ptr = getThis();
 

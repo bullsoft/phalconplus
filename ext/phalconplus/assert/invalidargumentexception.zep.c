@@ -36,6 +36,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Assert_InvalidArgumentException) {
 
 PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval constraints;
 	zval *message, message_sub, *code, code_sub, *propertyPath = NULL, propertyPath_sub, *value, value_sub, *constraints_param = NULL, __$null;

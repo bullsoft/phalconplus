@@ -37,6 +37,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, softClone) {
 
 	zend_string *_3;
 	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, key, val, *_0, _1, _4$$3, _7$$6;
@@ -112,6 +113,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult) {
 
 	zval _1;
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -128,6 +130,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *result_param = NULL;
 	zval result;
 	zval *this_ptr = getThis();
@@ -155,6 +158,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
  */
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
 	zval *this_ptr = getThis();
@@ -188,6 +192,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
 	zval *this_ptr = getThis();
@@ -221,6 +226,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key = NULL, key_sub, __$null, val$$3, _0$$3, _1$$5;
 	zval *this_ptr = getThis();
@@ -261,6 +267,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 zend_object *zephir_init_properties_PhalconPlus_Base_SimpleResponse(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 

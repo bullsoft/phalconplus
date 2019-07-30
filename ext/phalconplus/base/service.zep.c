@@ -35,6 +35,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
 
 PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub;
 	zval *this_ptr = getThis();
@@ -76,6 +77,7 @@ PHP_METHOD(PhalconPlus_Base_Service, getDI) {
 
 PHP_METHOD(PhalconPlus_Base_Service, __get) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, _0, _1$$3, _2$$4;
 	zval key;

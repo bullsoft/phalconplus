@@ -35,6 +35,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_Field) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval attr;
 	zval *model, model_sub, *attr_param = NULL;
 	zval *this_ptr = getThis();
@@ -65,6 +66,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *unitwork, unitwork_sub, className, _0, hash, _1, objs, _2, _3, _8, _9, attr$$3, _4$$3, _5$$3, _6$$4, _7$$4;
 	zval *this_ptr = getThis();
@@ -130,6 +132,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getField) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *unitwork, unitwork_sub;
 	zval *this_ptr = getThis();
@@ -150,6 +153,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getField) {
 PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 

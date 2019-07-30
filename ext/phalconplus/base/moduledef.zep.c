@@ -54,6 +54,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_ModuleDef) {
 
 PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL, *_19 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool isPrimary;
@@ -190,6 +191,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 PHP_METHOD(PhalconPlus_Base_ModuleDef, impl) {
 
 	zend_class_entry *_11;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub, _0, _1, _3, _7, _8, className, _9, _10, _2$$3, _4$$4, _5$$4, _6$$4;
 	zval *this_ptr = getThis();
@@ -243,6 +245,9 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, impl) {
 	ZEPHIR_CPY_WRT(&className, &_9);
 	zephir_fetch_safe_class(&_10, &className);
 	_11 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_10), Z_STRLEN_P(&_10), ZEND_FETCH_CLASS_AUTO);
+	if(!_11) {
+		RETURN_MM_NULL();
+	}
 	object_init_ex(return_value, _11);
 	if (zephir_has_constructor(return_value TSRMLS_CC)) {
 		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0, di, this_ptr);
@@ -300,6 +305,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, getRunMode) {
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getMapClassName) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -317,6 +323,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, getMapClassName) {
 PHP_METHOD(PhalconPlus_Base_ModuleDef, getMode) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -370,6 +377,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, getDir) {
 void zephir_init_static_properties_PhalconPlus_Base_ModuleDef(TSRMLS_D) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();

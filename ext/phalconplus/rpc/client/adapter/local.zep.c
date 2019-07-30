@@ -38,6 +38,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_Adapter_Local) {
 
 PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub, _0, _1;
 	zval *this_ptr = getThis();
@@ -66,6 +67,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams) {
 	zend_bool _14$$4, _18$$4;
 	zval _8, _33$$4, _34$$4, _22$$7;
 	zend_class_entry *_6, *_27$$8;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL, *_10 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *service_param = NULL, *method_param = NULL, *request = NULL, request_sub, serviceClass, serviceObj, response, _0, _1, _5, _7, _2$$3, _3$$3, _9$$4, _12$$4, _13$$4, _31$$4, _32$$4, _15$$5, _16$$5, _17$$5, _19$$6, _20$$6, _21$$6, tmp$$7, param$$7, paramClass$$7, _23$$7, _24$$7, _25$$8, _26$$8, _28$$9, _29$$9, _30$$9, _35$$10, _36$$10;
@@ -156,6 +158,9 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams) {
 	ZEPHIR_INIT_VAR(&serviceObj);
 	zephir_fetch_safe_class(&_5, &serviceClass);
 	_6 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_5), Z_STRLEN_P(&_5), ZEND_FETCH_CLASS_AUTO);
+	if(!_6) {
+		RETURN_MM_NULL();
+	}
 	object_init_ex(&serviceObj, _6);
 	if (zephir_has_constructor(&serviceObj TSRMLS_CC)) {
 		zephir_read_property(&_7, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
@@ -238,6 +243,9 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams) {
 				ZEPHIR_INIT_NVAR(request);
 				zephir_fetch_safe_class(&_26$$8, &paramClass$$7);
 				_27$$8 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_26$$8), Z_STRLEN_P(&_26$$8), ZEND_FETCH_CLASS_AUTO);
+				if(!_27$$8) {
+					RETURN_MM_NULL();
+				}
 				object_init_ex(request, _27$$8);
 				if (zephir_has_constructor(request TSRMLS_CC)) {
 					ZEPHIR_CALL_METHOD(NULL, request, "__construct", NULL, 0);
@@ -294,6 +302,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams) {
 PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByObject) {
 
 	zend_bool _9;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_2 = NULL, *_5 = NULL;
 	zval *rawData_param = NULL, service, method, request, _0, _1, _8, _10, _3$$3, _4$$3, _6$$4, _7$$4;

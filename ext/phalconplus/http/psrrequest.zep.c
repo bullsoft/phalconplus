@@ -81,6 +81,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, __construct) {
 
 	zend_string *_16, *_20, *_27, *_32, *_45;
 	zend_ulong _15, _19, _26, _31, _44;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *request, request_sub, _SERVER, _POST, _GET, _COOKIE, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, posts, gets, cookies, _10, _11, _12, k, v, *_13, _14, *_17, _18, _21, _22, _23, *_24, _25, _28, *_29, _30, _41, *_42, _43, _46, _52, _33$$21, _34$$21, _35$$21, _36$$21, _37$$22, _38$$22, _39$$22, _40$$22, _47$$25, _48$$25, _49$$26, _50$$26, _51$$26;
 	zval *this_ptr = getThis();
@@ -440,6 +441,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, __construct) {
 
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getRequestTarget) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *request, request_sub, target, _0, _1, _2, _3$$4, _4$$4, _5$$4;
 	zval *this_ptr = getThis();
@@ -486,6 +488,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, getRequestTarget) {
 PHP_METHOD(PhalconPlus_Http_PsrRequest, mapFiles) {
 
 	zval _9$$6, _16$$10;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_2 = NULL, *_4 = NULL, *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *uploads_param = NULL, file, *_0, _1, tmpname$$5, _3$$5, _5$$5, _7$$5, _11$$5, _8$$6, tmpname$$9, _12$$9, _13$$9, _14$$9, _18$$9, _15$$10;
@@ -618,6 +621,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, mapFiles) {
 PHP_METHOD(PhalconPlus_Http_PsrRequest, removeTmpFiles) {
 
 	zval item, tmp, _0, *_1, _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
@@ -674,6 +678,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, removeTmpFiles) {
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getScheme) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -722,6 +727,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, isAjax) {
 PHP_METHOD(PhalconPlus_Http_PsrRequest, isSoap) {
 
 	zval contentType, _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -747,6 +753,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, isSoap) {
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getHttpHost) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -767,6 +774,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, getHttpHost) {
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getPort) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -786,6 +794,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, getPort) {
 
 PHP_METHOD(PhalconPlus_Http_PsrRequest, hasFiles) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, numberFiles;
 	zval *onlySuccessful_param = NULL, files, file, error, _0, *_1, _2, _4$$8, _5$$8, _8$$13, _9$$13;
@@ -893,6 +902,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, getUploadedFiles) {
 
 	zend_string *_3$$3;
 	zend_ulong _2$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_10 = NULL, *_18 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *onlySuccessful_param = NULL, superFiles, prefix, input, smoothInput, file, dataFile, files, *_0$$3, _1$$3, _4$$4, _5$$5, _6$$5, _7$$5, _8$$5, _9$$5, *_11$$5, _12$$5, _14$$6, _15$$7, _16$$7, _17$$7, _20$$8, _21$$9, _22$$9, _23$$9, _24$$9, _26$$10, _27$$11, _28$$12, _29$$13, _30$$13, _31$$13, _32$$13, _33$$13, *_34$$13, _35$$13, _37$$14, _38$$15, _39$$15, _40$$15, _41$$15, _43$$16, _44$$17, _45$$17, _46$$17, _47$$17, _49$$18, _50$$19;
@@ -1226,6 +1236,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, getHeaders) {
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getContentType) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -1246,6 +1257,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, getContentType) {
 zend_object *zephir_init_properties_PhalconPlus_Http_PsrRequest(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _4, _6, _1$$3, _3$$4, _5$$5, _7$$6;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4);

@@ -47,6 +47,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Adapter_FilePlus) {
 
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval options;
@@ -127,6 +128,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __construct) {
 
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, open) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *filePath_param = NULL, handler, _0, _1$$3;
 	zval filePath, _2$$3;
@@ -176,6 +178,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, open) {
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, log) {
 
 	zend_bool _0, _1$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *type, type_sub, *message = NULL, message_sub, *context_param = NULL, __$null, handler, toggledType, _2, _3$$9, _4$$9;
@@ -244,6 +247,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, log) {
 
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, registerExtension) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval types;
@@ -321,6 +325,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, close) {
 	zend_ulong _3;
 	zend_bool result = 0;
 	zval type, handler, _0, *_1, _2, _5$$3, _6$$5;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -385,6 +390,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, close) {
 
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, getProcessorVar) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, processor, _2, _3, _0$$3;
 	zval key, _1$$3;
@@ -440,6 +446,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, getProcessorVar) {
 
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __destruct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -457,6 +464,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 	zend_string *_4;
 	zend_ulong _3;
 	zval type, ext, handler, ext2Handler, _0, *_1, _2, _10, _11, _5$$4, _6$$4, _8$$6, _9$$6;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_7 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
@@ -543,6 +551,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 zend_object *zephir_init_properties_PhalconPlus_Logger_Adapter_FilePlus(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _1$$3, _3$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);

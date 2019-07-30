@@ -37,6 +37,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Volt_Extension_PhpFunction) {
 
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *ns_param = NULL;
 	zval ns;
 	zval *this_ptr = getThis();
@@ -65,6 +66,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace) {
 
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *func_param = NULL;
 	zval func;
 	zval *this_ptr = getThis();
@@ -96,6 +98,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 
 	zval params, name, args, code, _0, pos$$3, _1$$3, _8$$3, _2$$4, _3$$5, _4$$5, _5$$5, _6$$5, _7$$5;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 

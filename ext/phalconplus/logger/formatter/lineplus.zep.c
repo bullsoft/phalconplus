@@ -40,6 +40,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Formatter_LinePlus) {
 
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *formatString_param = NULL;
 	zval formatString;
 	zval *this_ptr = getThis();
@@ -70,6 +71,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __construct) {
 
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_14 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message, message_sub, *type, type_sub, *timestamp, timestamp_sub, *context = NULL, context_sub, __$null, _0, _1, _2, _3, matches, result, _4, _5, _6, replace0, replace1, val1, val2, processors, *_10, _11, logStr, _19, _20, _7$$3, _8$$3, _9$$3, _12$$4, _13$$5, _15$$6, _16$$7, _17$$8, _18$$9;
@@ -214,7 +216,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	ZEPHIR_INIT_VAR(&logStr);
 	zephir_fast_str_replace(&logStr, &replace0, &_2, &_19 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_20);
-	ZEPHIR_GET_CONSTANT(&_20, "PHP_EOL");
+	ZEPHIR_MM_GET_CONSTANT(&_20, "PHP_EOL");
 	ZEPHIR_CONCAT_VV(return_value, &logStr, &_20);
 	RETURN_MM();
 
@@ -222,6 +224,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, addProcessor) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *name_param = NULL, *processor, processor_sub;
 	zval name;
 	zval *this_ptr = getThis();
@@ -251,6 +254,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, addProcessor) {
 
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, getProcessor) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0, _3, _4, _1$$3;
 	zval name, _2$$3;
@@ -298,6 +302,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, getProcessor) {
 
 PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, _0, _1, _2;
 	zval key, _3;
 	zval *this_ptr = getThis();
@@ -338,6 +343,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, __get) {
 zend_object *zephir_init_properties_PhalconPlus_Logger_Formatter_LinePlus(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 

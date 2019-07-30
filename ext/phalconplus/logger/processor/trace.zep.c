@@ -40,6 +40,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Trace) {
 
 PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval skipClassesPartials, _1$$3;
 	zval *mode_param = NULL, *skipClassesPartials_param = NULL, _0, _2$$3;
 	zend_long mode;
@@ -87,6 +88,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 
 	zval trace, part, _1, trace1, trace2, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _2$$3, *_3$$3, _4$$3, _5$$4, _6$$4, _7$$4, _8$$6, _9$$6, _10$$6, _24$$9, _25$$9;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, i, j = 0, _23;
 	zval *this_ptr = getThis();
@@ -261,6 +263,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 zend_object *zephir_init_properties_PhalconPlus_Logger_Processor_Trace(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 

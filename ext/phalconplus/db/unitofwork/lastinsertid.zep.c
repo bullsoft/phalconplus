@@ -38,7 +38,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __construct) {
 
 	ZVAL_UNDEF(&model_sub);
 
-	zephir_fetch_params(0, 1, 0, &model);
+	zephir_fetch_params_without_memory_grow(1, 0, &model);
 
 
 
@@ -49,6 +49,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __construct) {
 PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
 
 	zend_bool _5$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *unitwork, unitwork_sub, className, _0, hash, _1, inserted, _2, _3, _8, _9, info$$3, _4$$3, _6$$3, _7$$4;
 	zval *this_ptr = getThis();
@@ -115,6 +116,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
 PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __toString) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 

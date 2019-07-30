@@ -46,6 +46,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunMode) {
 PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 
 	zval script, _0, _2, _3, _4, _5, _6$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *this_ptr = getThis();
@@ -84,6 +85,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 PHP_METHOD(PhalconPlus_Enum_RunMode, getMapClassName) {
 
 	zval _0, _1, _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -104,6 +106,7 @@ zend_object *zephir_init_properties_PhalconPlus_Enum_RunMode(zend_class_entry *c
 
 		zval _1$$3, _3$$4;
 	zval _0, _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
