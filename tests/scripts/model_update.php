@@ -14,9 +14,6 @@ $a->setUpdateCondition([
     'bind' => [
         $a->reportsTo
     ],
-    'bindTypes' => [
-        \Phalcon\Db\Column::BIND_PARAM_INT
-    ]
 ]);
 
 $a->firstName = "Mary" . rand(11111, 9999);
@@ -25,3 +22,4 @@ var_dump($a->getUniqueFields());
 
 $a->save();
 
+//var_dump($a->getUniqueFields());

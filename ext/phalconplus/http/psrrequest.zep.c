@@ -419,20 +419,20 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, __construct) {
 	zephir_read_property(&_46, this_ptr, SL("cookies"), PH_NOISY_CC | PH_READONLY);
 	if (!(ZEPHIR_IS_EMPTY(&_46))) {
 		zephir_read_property(&_47$$25, this_ptr, SL("cookies"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_FUNCTION(&_48$$25, "session_name", NULL, 79);
+		ZEPHIR_CALL_FUNCTION(&_48$$25, "session_name", NULL, 80);
 		zephir_check_call_status();
 		if (zephir_array_isset(&_47$$25, &_48$$25)) {
 			zephir_read_property(&_49$$26, this_ptr, SL("cookies"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_CALL_FUNCTION(&_51$$26, "session_name", NULL, 79);
+			ZEPHIR_CALL_FUNCTION(&_51$$26, "session_name", NULL, 80);
 			zephir_check_call_status();
 			zephir_array_fetch(&_50$$26, &_49$$26, &_51$$26, PH_NOISY | PH_READONLY, "phalconplus/Http/PsrRequest.zep", 72 TSRMLS_CC);
-			ZEPHIR_CALL_FUNCTION(NULL, "session_id", NULL, 59, &_50$$26);
+			ZEPHIR_CALL_FUNCTION(NULL, "session_id", NULL, 60, &_50$$26);
 			zephir_check_call_status();
 		}
 	}
 	ZEPHIR_CALL_METHOD(&_52, request, "getuploadedfiles", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "mapfiles", NULL, 80, &_52);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "mapfiles", NULL, 81, &_52);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("psrRequest"), request);
 	ZEPHIR_MM_RESTORE();
@@ -528,14 +528,14 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, mapFiles) {
 			ZEPHIR_INIT_NVAR(&file);
 			ZVAL_COPY(&file, _0);
 			if (Z_TYPE_P(&file) == IS_ARRAY) {
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "mapfiles", &_2, 80, &file);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "mapfiles", &_2, 81, &file);
 				zephir_check_call_status();
 			} else if (zephir_is_instance_of(&file, SL("Psr\\Http\\Message\\UploadedFileInterface") TSRMLS_CC)) {
-				ZEPHIR_CALL_FUNCTION(&_3$$5, "sys_get_temp_dir", &_4, 81);
+				ZEPHIR_CALL_FUNCTION(&_3$$5, "sys_get_temp_dir", &_4, 82);
 				zephir_check_call_status();
 				ZEPHIR_INIT_NVAR(&_5$$5);
 				ZVAL_STRING(&_5$$5, "upload");
-				ZEPHIR_CALL_FUNCTION(&tmpname$$5, "tempnam", &_6, 82, &_3$$5, &_5$$5);
+				ZEPHIR_CALL_FUNCTION(&tmpname$$5, "tempnam", &_6, 83, &_3$$5, &_5$$5);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&_7$$5, &file, "geterror", NULL, 0);
 				zephir_check_call_status();
@@ -575,14 +575,14 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, mapFiles) {
 			ZEPHIR_CALL_METHOD(&file, &uploads, "current", NULL, 0);
 			zephir_check_call_status();
 				if (Z_TYPE_P(&file) == IS_ARRAY) {
-					ZEPHIR_CALL_METHOD(NULL, this_ptr, "mapfiles", &_2, 80, &file);
+					ZEPHIR_CALL_METHOD(NULL, this_ptr, "mapfiles", &_2, 81, &file);
 					zephir_check_call_status();
 				} else if (zephir_is_instance_of(&file, SL("Psr\\Http\\Message\\UploadedFileInterface") TSRMLS_CC)) {
-					ZEPHIR_CALL_FUNCTION(&_12$$9, "sys_get_temp_dir", &_4, 81);
+					ZEPHIR_CALL_FUNCTION(&_12$$9, "sys_get_temp_dir", &_4, 82);
 					zephir_check_call_status();
 					ZEPHIR_INIT_NVAR(&_13$$9);
 					ZVAL_STRING(&_13$$9, "upload");
-					ZEPHIR_CALL_FUNCTION(&tmpname$$9, "tempnam", &_6, 82, &_12$$9, &_13$$9);
+					ZEPHIR_CALL_FUNCTION(&tmpname$$9, "tempnam", &_6, 83, &_12$$9, &_13$$9);
 					zephir_check_call_status();
 					ZEPHIR_CALL_METHOD(&_14$$9, &file, "geterror", NULL, 0);
 					zephir_check_call_status();
@@ -643,7 +643,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, removeTmpFiles) {
 			ZEPHIR_OBS_NVAR(&tmp);
 			if (zephir_array_isset_string_fetch(&tmp, &item, SL("tmp_name"), 0)) {
 				if ((zephir_file_exists(&tmp TSRMLS_CC) == SUCCESS)) {
-					ZEPHIR_CALL_FUNCTION(NULL, "unlink", &_3, 83, &tmp);
+					ZEPHIR_CALL_FUNCTION(NULL, "unlink", &_3, 84, &tmp);
 					zephir_check_call_status();
 				}
 			}
@@ -662,7 +662,7 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, removeTmpFiles) {
 				ZEPHIR_OBS_NVAR(&tmp);
 				if (zephir_array_isset_string_fetch(&tmp, &item, SL("tmp_name"), 0)) {
 					if ((zephir_file_exists(&tmp TSRMLS_CC) == SUCCESS)) {
-						ZEPHIR_CALL_FUNCTION(NULL, "unlink", &_3, 83, &tmp);
+						ZEPHIR_CALL_FUNCTION(NULL, "unlink", &_3, 84, &tmp);
 						zephir_check_call_status();
 					}
 				}

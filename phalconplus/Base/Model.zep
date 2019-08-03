@@ -265,14 +265,14 @@ class Model extends \Phalcon\Mvc\Model
              */
             if typeof columnMap == "array" {
                 if !fetch attributeField, columnMap[pk] {
-                    throw new Exception("Model::setUpdateCond: Column '" . pk . "' isn't part of the column map");
+                    throw new \PhalconPlus\Base\Exception("Model::setUpdateCond: Column '" . pk . "' isn't part of the column map");
                 }
             } else {
                 let attributeField = pk;
             }
 
             if !fetch type, bindDataTypes[pk] {
-                throw new \Exception("Model::setupdateCond: Column '" . pk . "' isn't part of the table columns");
+                throw new \PhalconPlus\Base\Exception("Model::setupdateCond: Column '" . pk . "' isn't part of the table columns");
             }
 
             if fetch value, this->{attributeField} {
@@ -296,17 +296,19 @@ class Model extends \Phalcon\Mvc\Model
         }
 
         if !empty this->_uniqueKey {
-            let this->_uniqueKey .= " AND ";
+            let this->_uniqueKey = this->_uniqueKey . " AND ";
         }
         if typeof conditions == "array" {
             merge_append(whereUk, conditions);
-            let this->_uniqueKey .= join(" AND ", whereUk);
+            let this->_uniqueKey = this->_uniqueKey . join(" AND ", whereUk);
         } elseif typeof conditions == "string" {
             let conditions = join(" AND ", whereUk) . " AND " . conditions;
-            let this->_uniqueKey .= conditions;
+            let this->_uniqueKey = this->_uniqueKey . conditions;
         }
 
         let this->_uniqueKey = str_replace(array_values(columnMap), array_keys(columnMap), this->_uniqueKey);
+
+        var countKeys = substr_count(this->_uniqueKey, "= ?");
 
         /**
          * Assign bind types
@@ -319,6 +321,7 @@ class Model extends \Phalcon\Mvc\Model
             let this->_uniqueParams = [];
         }
         merge_append(this->_uniqueParams, uniqueParams);
+        let this->_uniqueParams = array_pad(this->_uniqueParams, countKeys, null);
 
         if fetch bindTypes, params["bindTypes"] {
             merge_append(uniqueTypes, bindTypes);
@@ -328,22 +331,23 @@ class Model extends \Phalcon\Mvc\Model
             let this->_uniqueTypes = [];
         }
         merge_append(this->_uniqueTypes, uniqueTypes);
-
+        let this->_uniqueTypes = array_pad(this->_uniqueTypes, countKeys, \Phalcon\Db\Column::BIND_SKIP);
         return true;
     }
 
     /**
-     * @alias setUqKeys
+     * @alias setUniqueKeys
+     * @deprecated
      */
-    public function setUniqueKeys(array whereUk)
+    public function setUqKeys(array whereUk)
     {
-        return $this->setUqKeys(whereUk);
+        return $this->setUniqueKeys(whereUk);
     }
 
     /**
      * columnMap field
      */
-    public function setUqKeys(array whereUk)
+    public function setUniqueKeys(array whereUk)
     {
         /**
          * field 数据库字段
@@ -360,7 +364,7 @@ class Model extends \Phalcon\Mvc\Model
                 var tmp;
                 let tmp = array_flip(columnMap);
                 if !fetch field, tmp[attributeField] {
-                    throw new \Exception("Model::setUqKeys: Column '" . attributeField . "' isn't part of the column map");
+                    throw new \PhalconPlus\Base\Exception("Model::setUqKeys: Column '" . attributeField . "' isn't part of the column map");
                 }
             } else {
                 let field = attributeField;
@@ -369,7 +373,7 @@ class Model extends \Phalcon\Mvc\Model
             let this->__p_UK[attributeField]["field"] = field;
 
             if !fetch type, bindDataTypes[field] {
-                throw new \Exception("Model::setUqKeys: Column '" . field . "' isn't part of the table columns");
+                throw new \PhalconPlus\Base\Exception("Model::setUqKeys: Column '" . field . "' isn't part of the table columns");
             }
             let this->__p_UK[attributeField]["type"] = type;
             let this->__p_UK[attributeField]["op"] = "=";
