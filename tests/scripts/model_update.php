@@ -22,4 +22,4 @@ var_dump($a->getUniqueFields());
 
 $a->save();
 
-//var_dump($a->getUniqueFields());
+var_dump($a->getUniqueFields());

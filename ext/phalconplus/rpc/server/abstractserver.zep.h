@@ -3,6 +3,8 @@ extern zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Server_AbstractServer);
 
+PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, getDi);
+PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, getPhpOnly);
 PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, __construct);
 PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams);
 PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject);
@@ -30,6 +32,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyobjec
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_rpc_server_abstractserver_method_entry) {
+	PHP_ME(PhalconPlus_Rpc_Server_AbstractServer, getDi, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Rpc_Server_AbstractServer, getPhpOnly, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Rpc_Server_AbstractServer, __construct, arginfo_phalconplus_rpc_server_abstractserver___construct, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Rpc_Server_AbstractServer, callByParams, arginfo_phalconplus_rpc_server_abstractserver_callbyparams, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Rpc_Server_AbstractServer, callByObject, arginfo_phalconplus_rpc_server_abstractserver_callbyobject, ZEND_ACC_PUBLIC)

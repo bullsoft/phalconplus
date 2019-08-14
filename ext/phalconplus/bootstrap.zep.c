@@ -801,7 +801,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, execSrv) {
 		zephir_read_property(&_12$$7, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_13$$7);
 		ZVAL_STRING(&_13$$7, "backendSrv");
-		ZEPHIR_CALL_METHOD(NULL, &_12$$7, "set", NULL, 0, &_13$$7, &backendSrv);
+		ZEPHIR_CALL_METHOD(NULL, &_12$$7, "setshared", NULL, 0, &_13$$7, &backendSrv);
 		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_VAR(&_14);

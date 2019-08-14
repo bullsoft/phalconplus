@@ -237,7 +237,7 @@ final class Bootstrap
             }
         } else {
             let backendSrv = new \PhalconPlus\Rpc\Server\SimpleServer(this->di);
-            this->di->set("backendSrv", backendSrv);
+            this->di->setShared("backendSrv", backendSrv);
         }
 
         // Yar Server

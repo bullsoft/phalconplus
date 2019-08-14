@@ -444,6 +444,37 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, getProcessorVar) {
 
 }
 
+PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __get) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *property_param = NULL;
+	zval property;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&property);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &property_param);
+
+	if (UNEXPECTED(Z_TYPE_P(property_param) != IS_STRING && Z_TYPE_P(property_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(property_param) == IS_STRING)) {
+		zephir_get_strval(&property, property_param);
+	} else {
+		ZEPHIR_INIT_VAR(&property);
+		ZVAL_EMPTY_STRING(&property);
+	}
+
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getprocessorvar", NULL, 0, &property);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
 PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __destruct) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -487,7 +518,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 	ZEPHIR_INIT_VAR(&ext2Handler);
 	array_init(&ext2Handler);
 	zephir_read_property(&_0, this_ptr, SL("type2Ext"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "phalconplus/Logger/Adapter/FilePlus.zep", 148);
+	zephir_is_iterable(&_0, 0, "phalconplus/Logger/Adapter/FilePlus.zep", 153);
 	if (Z_TYPE_P(&_0) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _3, _4, _1)
 		{
@@ -542,7 +573,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 	ZEPHIR_INIT_NVAR(&ext);
 	ZEPHIR_INIT_NVAR(&type);
 	zephir_read_property(&_10, this_ptr, SL("type2Handler"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_long(&_11, &_10, -1, PH_NOISY | PH_READONLY, "phalconplus/Logger/Adapter/FilePlus.zep", 148 TSRMLS_CC);
+	zephir_array_fetch_long(&_11, &_10, -1, PH_NOISY | PH_READONLY, "phalconplus/Logger/Adapter/FilePlus.zep", 153 TSRMLS_CC);
 	zephir_update_property_zval(this_ptr, SL("_fileHandler"), &_11);
 	ZEPHIR_MM_RESTORE();
 

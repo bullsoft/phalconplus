@@ -3,9 +3,14 @@ use PhalconPlus\Base\ProtoBuffer;
 
 abstract class AbstractServer
 {
-    protected di = null;
-    protected config = null;
-    protected phpOnly = false;
+    protected di = null {
+        get
+    };
+
+    protected phpOnly = false {
+        get
+    };
+
     protected eventsManager = null;
 
     abstract public function __construct(<\Phalcon\DI> di);
