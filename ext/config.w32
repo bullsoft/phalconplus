@@ -26,6 +26,7 @@ if (PHP_PHALCONPLUS != "no") {
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/formatter", "lineplus.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/mvc", "psrapplication.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/client/adapter", "local.zep.c remote.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc", "yar.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/volt/extension", "phpfunction.zep.c", "phalconplus");
   ADD_FLAG("CFLAGS_PHALCONPLUS", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
   ADD_FLAG("CFLAGS", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");

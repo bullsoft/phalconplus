@@ -10,8 +10,6 @@ use Phalcon\Mvc\Model\Resultset as Resultset;
 
 class UnitOfWork
 {
-    // protected modelLocator = [];
-
     protected dbServiceName;
 
     protected objects;

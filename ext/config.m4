@@ -53,6 +53,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/rpc/client/adapter/local.zep.c
 	phalconplus/rpc/client/adapter/remote.zep.c
 	phalconplus/rpc/server/simpleserver.zep.c
+	phalconplus/rpc/yar.zep.c
 	phalconplus/volt/extension/phpfunction.zep.c
 	phalconplus/0__closure.zep.c
 	phalconplus/1__closure.zep.c

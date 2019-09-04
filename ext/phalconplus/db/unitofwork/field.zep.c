@@ -152,20 +152,22 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getField) {
 
 PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
 
-	zval _0, _1;
+	zval _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_1, "spl_object_hash", NULL, 77, &_0);
+	zephir_read_property(&_0, this_ptr, SL("attr"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&_2, "spl_object_hash", NULL, 77, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CONCAT_SV(return_value, "Field: ", &_1);
+	ZEPHIR_CONCAT_SVSV(return_value, "Field: ", &_0, ", Hash: ", &_2);
 	RETURN_MM();
 
 }

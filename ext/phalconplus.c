@@ -70,6 +70,7 @@ zend_class_entry *phalconplus_mvc_psrapplication_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_local_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_remote_ce;
 zend_class_entry *phalconplus_rpc_server_simpleserver_ce;
+zend_class_entry *phalconplus_rpc_yar_ce;
 zend_class_entry *phalconplus_volt_extension_phpfunction_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(phalconplus)
@@ -126,6 +127,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_Adapter_Local);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_Adapter_Remote);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Server_SimpleServer);
+	ZEPHIR_INIT(PhalconPlus_Rpc_Yar);
 	ZEPHIR_INIT(PhalconPlus_Volt_Extension_PhpFunction);
 	ZEPHIR_INIT(phalconplus_0__closure);
 	ZEPHIR_INIT(phalconplus_1__closure);
