@@ -7,22 +7,22 @@
     <title>
                     phalconplus API Documentation
             </title>
-    <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
 
-<script src="../../../../asset/static/prettify.js"></script>
-<script src="../../../../asset/api_definition.js"></script>
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
 
 
-                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
-                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
             
     
 
-                        <script src="../../../../asset/static/prettify.js"></script>
-                                    <script src="../../../../asset/api_definition.js"></script>
-                    <script src="../../../../asset/static/jquery.min.js"></script>
-                    <script src="../../../../asset/static/zephir-doc.js"></script>
-                <script>var ZepCurrentPath = '../../../../'</script>
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script>var ZepCurrentPath = '../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -47,10 +47,10 @@
     
     <ul>
         
-        <li><a href="../../../../index.html">Home</a></li>
+        <li><a href="../../../index.html">Home</a></li>
         
-                <li><a href="../../../../classes.html">Classes</a></li>
-                <li><a >PhalconPlus\Rpc\Server\AbstractServer</a></li>
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a >PhalconPlus\Rpc\Yar</a></li>
                 
     </ul>
     
@@ -59,7 +59,7 @@
     
     
     <div class="access-buttons">
-        <a class="zep-button" href="../../../../source/PhalconPlus/Rpc/Server/AbstractServer.html">Source</a>
+        <a class="zep-button" href="../../../source/PhalconPlus/Rpc/Yar.html">Source</a>
 
             </div>
     
@@ -68,15 +68,12 @@
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
-            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
         </span>
                 <span class="namespace-piece">
-            <a href="../../../../namespace/PhalconPlus/Rpc.html">Rpc</a>
+            <a href="../../../namespace/PhalconPlus/Rpc.html">Rpc</a>
         </span>
-                <span class="namespace-piece">
-            <a href="../../../../namespace/PhalconPlus/Rpc/Server.html">Server</a>
-        </span>
-                <h1 class="class-name">AbstractServer</h1>
+                <h1 class="class-name">Yar</h1>
     </div>
 
 </div>
@@ -90,7 +87,7 @@
 <li class="class-method clearfix">
     <div class="method-summary">
         <div class="method-signature">
-            <span class="method-name"><a href="#method-details-getDi">getDi</a></span>()
+            <span class="method-name"><a href="#method-details-getServiceObj">getServiceObj</a></span>()
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
                                     void
@@ -104,7 +101,21 @@
 <li class="class-method clearfix">
     <div class="method-summary">
         <div class="method-signature">
-            <span class="method-name"><a href="#method-details-getPhpOnly">getPhpOnly</a></span>()
+            <span class="method-name"><a href="#method-details-getRequestArgs">getRequestArgs</a></span>()
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    void
+                            </span>
+        </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-getResponseBody">getResponseBody</a></span>()
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
                                     void
@@ -132,30 +143,11 @@
 <li class="class-method clearfix">
     <div class="method-summary">
         <div class="method-signature">
-            <span class="method-name"><a href="#method-details-callByParams">callByParams</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$service</span>, <span class="param-data-type">string</span> <span class="variable param-name">$method</span>, <span class="param-data-type">variable</span> <span class="variable param-name">$request</span>)
+            <span class="method-name"><a href="#method-details-handle">handle</a></span>()
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    void
-                            </span>
+                                    Phalcon\Http\Response                            </span>
         </div>
-            </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="method-summary">
-        <div class="method-signature">
-            <span class="method-name"><a href="#method-details-callByObject">callByObject</a></span>(<span class="param-data-type">array</span> <span class="variable param-name">$rawData</span>)
-            <span class="method-return">
-                &nbsp;<strong>:</strong>&nbsp;
-                                    void
-                            </span>
-        </div>
-                    <div class="method-doc">
-                <div class="summary-text">
-                                    </div>
-            </div>
             </div>
 </li>
 
@@ -167,12 +159,12 @@
     
         
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-getDi"></div>
+    <div class="hidden-anchor" id="method-details-getServiceObj"></div>
     <div class="method-details">
         <div class="method-details-details">
             <div class="method-signature">
                                     <span class="visibility-public keyword">public</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">getDi</span>()
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getServiceObj</span>()
             </div>
             <div class="method-doc">
                             </div>
@@ -183,12 +175,28 @@
     
         
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-getPhpOnly"></div>
+    <div class="hidden-anchor" id="method-details-getRequestArgs"></div>
     <div class="method-details">
         <div class="method-details-details">
             <div class="method-signature">
                                     <span class="visibility-public keyword">public</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">getPhpOnly</span>()
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getRequestArgs</span>()
+            </div>
+            <div class="method-doc">
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-getResponseBody"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getResponseBody</span>()
             </div>
             <div class="method-doc">
                             </div>
@@ -203,7 +211,6 @@
     <div class="method-details">
         <div class="method-details-details">
             <div class="method-signature">
-                                    <span class="visibility-abstract keyword">abstract</span>
                                     <span class="visibility-public keyword">public</span>
                                 <span class="keyword">function</span>&nbsp;<span class="method-name">__construct</span>(<span class="param-data-type">variable</span> <span class="variable param-name">$di</span>)
             </div>
@@ -216,36 +223,14 @@
     
         
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-callByParams"></div>
-    <div class="method-details">
-        <div class="method-details-details">
-            <div class="method-signature">
-                                    <span class="visibility-protected keyword">protected</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">callByParams</span>(<span class="param-data-type">string</span> <span class="variable param-name">$service</span>, <span class="param-data-type">string</span> <span class="variable param-name">$method</span>, <span class="param-data-type">variable</span> <span class="variable param-name">$request</span>)
-            </div>
-            <div class="method-doc">
-                            </div>
-        </div>
-    </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-callByObject"></div>
+    <div class="hidden-anchor" id="method-details-handle"></div>
     <div class="method-details">
         <div class="method-details-details">
             <div class="method-signature">
                                     <span class="visibility-public keyword">public</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">callByObject</span>(<span class="param-data-type">array</span> <span class="variable param-name">$rawData</span>)
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">handle</span>()
             </div>
             <div class="method-doc">
-                                    <div class="summary">
-                                            </div>
-                    <div class="description">
-                        <code>
-         rawData = ["service":"Demo", "method":"demo", "args": <ProtoBuffer>, "logId": "234fdfaf3334"]
-     </code>                    </div>
                             </div>
         </div>
     </div>

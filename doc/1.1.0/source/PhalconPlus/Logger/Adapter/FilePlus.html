@@ -212,6 +212,11 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
         return "undefined";
     }
 
+    public function __get(string! property)
+    {
+        return this->getProcessorVar(property);
+    }
+
     public function __destruct()
     {
         this->close();
