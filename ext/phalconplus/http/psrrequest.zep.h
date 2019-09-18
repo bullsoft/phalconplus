@@ -74,11 +74,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_hasf
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_hasfiles, 0, 0, IS_LONG, NULL, 0)
 #endif
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, onlySuccessful, _IS_BOOL, 0)
-#else
 	ZEND_ARG_INFO(0, onlySuccessful)
-#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
@@ -86,11 +82,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_getu
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_getuploadedfiles, 0, 0, IS_ARRAY, NULL, 0)
 #endif
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, onlySuccessful, _IS_BOOL, 0)
-#else
 	ZEND_ARG_INFO(0, onlySuccessful)
-#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200

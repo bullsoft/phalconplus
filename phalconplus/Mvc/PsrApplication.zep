@@ -34,9 +34,9 @@ class PsrApplication extends BaseApplication
         }
     }
 
-    public function handle(string uri = null) -> <ResponseInterface> | boolean
+    public function handle(uri = null) -> <ResponseInterface> | boolean
     {
-        var uri, psrRequest;
+        var psrRequest;
 
         if empty this->_dependencyInjector {
             throw new \PhalconPlus\Base\Exception("there is no di(dependency injector) in PsrAppliction");

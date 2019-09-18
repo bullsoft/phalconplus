@@ -1,0 +1,116 @@
+<?php
+
+namespace PhalconPlus\Db;
+
+
+class UnitOfWork
+{
+
+    protected $dbServiceName;
+
+
+    protected $objects;
+
+
+    protected $inserted;
+
+
+    protected $updated;
+
+
+    protected $deleted;
+
+
+    protected $exception;
+
+
+    protected $failed;
+
+
+    /**
+     * @param mixed $dbServiceName
+     */
+    public function __construct($dbServiceName) {}
+
+    /**
+     * @param mixed $name
+     * @param \PhalconPlus\Base\Model $model
+     * @param array $initial_data
+     */
+    public function save($name, \PhalconPlus\Base\Model $model, array $initial_data = array()) {}
+
+    /**
+     * @param mixed $name
+     * @param \PhalconPlus\Base\Model $model
+     * @param array $initial_data
+     */
+    public function insert($name, \PhalconPlus\Base\Model $model, array $initial_data = array()) {}
+
+    /**
+     * @param mixed $name
+     * @param mixed $model
+     * @param array $initial_data
+     * @param \Phalcon\Mvc\Model $| \Phalcon\Mvc\Model\Resultset model
+     */
+    public function update($name, $model, array $initial_data = array()) {}
+
+    /**
+     * @param mixed $name
+     * @param object $model
+     * @param \Phalcon\Mvc\Model $| \Phalcon\Mvc\Model\Resultset model
+     */
+    public function delete($name, $model) {}
+
+    /**
+     * @param mixed $model
+     * @param mixed $info
+     */
+    protected function attach($model, $info) {}
+
+    /**
+     * @param mixed $model
+     */
+    public function detach($model) {}
+
+    /**
+     * @return bool
+     */
+    public function exec(): bool {}
+
+    /**
+     * @param \Phalcon\Mvc\Model $model
+     * @param array $info
+     */
+    public function execInsert(\Phalcon\Mvc\Model $model, array $info) {}
+
+    /**
+     * @param mixed $model
+     * @param array $info
+     */
+    public function execUpdate($model, array $info = array()) {}
+
+    /**
+     * @param mixed $model
+     * @param array $info
+     */
+    public function execDelete($model, array $info = array()) {}
+
+
+    public function getObjects() {}
+
+
+    public function getInserted() {}
+
+
+    public function getUpdated() {}
+
+
+    public function getDeleted() {}
+
+
+    public function getException() {}
+
+
+    public function getFailed() {}
+
+}

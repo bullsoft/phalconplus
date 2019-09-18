@@ -166,7 +166,7 @@ class PsrRequest extends BaseRequest
         return this->psrRequest->getUri()->getPort();
     }
 
-    public function hasFiles(boolean onlySuccessful = false) -> long
+    public function hasFiles(onlySuccessful = false) -> long
     {
         var files, file, error;
         int numberFiles = 0;
@@ -195,7 +195,7 @@ class PsrRequest extends BaseRequest
         return numberFiles;
     }
 
-    public function getUploadedFiles(boolean onlySuccessful = false) -> <\Phalcon\Http\Request\FileInterface[]>
+    public function getUploadedFiles(onlySuccessful = false) -> <\Phalcon\Http\Request\FileInterface[]>
     {
         var superFiles, prefix, input, smoothInput, file, dataFile;     
         var files = [];
