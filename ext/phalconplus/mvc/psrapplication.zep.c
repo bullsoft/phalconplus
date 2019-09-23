@@ -145,11 +145,11 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uri = NULL, uri_sub, __$null, psrRequest, _0, _1, _3, _4, _5, _6, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
+	zval *uri_param = NULL, psrRequest, _0, _1, _3, _4, _5, _6, reqUri, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
+	zval uri;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&uri_sub);
-	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&uri);
 	ZVAL_UNDEF(&psrRequest);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -157,6 +157,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
+	ZVAL_UNDEF(&reqUri);
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&response);
 	ZVAL_UNDEF(&_9);
@@ -175,13 +176,13 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZVAL_UNDEF(&_16$$8);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &uri);
+	zephir_fetch_params(1, 0, 1, &uri_param);
 
-	if (!uri) {
-		uri = &uri_sub;
-		ZEPHIR_CPY_WRT(uri, &__$null);
+	if (!uri_param) {
+		ZEPHIR_INIT_VAR(&uri);
+		ZVAL_STRING(&uri, "");
 	} else {
-		ZEPHIR_SEPARATE_PARAM(uri);
+		zephir_get_strval(&uri, uri_param);
 	}
 
 
@@ -212,11 +213,11 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_7, &psrRequest, "geturi", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(uri, &_7, "getpath", NULL, 0);
+	ZEPHIR_CALL_METHOD(&reqUri, &_7, "getpath", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", &_8, 48);
 	zephir_check_call_status();
-	ZEPHIR_CALL_PARENT(&_9, phalconplus_mvc_psrapplication_ce, getThis(), "handle", NULL, 0, uri);
+	ZEPHIR_CALL_PARENT(&_9, phalconplus_mvc_psrapplication_ce, getThis(), "handle", NULL, 0, &reqUri);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&response, &_9);
 	ZEPHIR_CALL_FUNCTION(&stdout, "ob_get_clean", NULL, 92);

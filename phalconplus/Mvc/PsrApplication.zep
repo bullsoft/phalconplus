@@ -34,7 +34,7 @@ class PsrApplication extends BaseApplication
         }
     }
 
-    public function handle(uri = null) -> <ResponseInterface> | boolean
+    public function handle(string uri = null) -> <ResponseInterface> | boolean
     {
         var psrRequest;
 
@@ -55,12 +55,12 @@ class PsrApplication extends BaseApplication
         this->_dependencyInjector->setShared("request", this->nativeRequest);
 
         // get request uri-path
-        let uri = psrRequest->getUri()->getPath();
+        var reqUri = psrRequest->getUri()->getPath();
         // get Phalcon\Http\Response
         var response;
 
         ob_start();
-        let response = <\Phalcon\Http\Response> parent::handle(uri);
+        let response = <\Phalcon\Http\Response> parent::handle(reqUri);
         var stdout = ob_get_clean();
 
         var headers = this->mapHeaders(response);
