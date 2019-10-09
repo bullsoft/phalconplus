@@ -384,7 +384,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank) {
 	if (!(_0)) {
 		_1 = ZEPHIR_IS_EMPTY(value);
 		if (_1) {
-			ZEPHIR_SINIT_VAR(_2);
+			ZEPHIR_INIT_VAR(&_2);
 			ZVAL_STRING(&_2, "0");
 			_1 = !ZEPHIR_IS_EQUAL(&_2, value);
 		}
@@ -396,7 +396,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank) {
 		if (_4) {
 			ZEPHIR_INIT_VAR(&_5);
 			zephir_fast_trim(&_5, value, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
-			ZEPHIR_SINIT_VAR(_6);
+			ZEPHIR_INIT_VAR(&_6);
 			ZVAL_STRING(&_6, "");
 			_4 = ZEPHIR_IS_IDENTICAL(&_6, &_5);
 		}

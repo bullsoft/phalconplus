@@ -200,7 +200,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 		ZVAL_STRING(&_12, "Nil");
 	}
 	zephir_array_update_string(&_11, SL("file"), &_12, PH_COPY | PH_SEPARATE);
-	ZEPHIR_INIT_LNVAR(_12);
+	ZEPHIR_INIT_NVAR(&_12);
 	zephir_array_fetch_long(&_15, &trace, j, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 49 TSRMLS_CC);
 	if (zephir_array_isset_string(&_15, SL("line"))) {
 		zephir_array_fetch_long(&_16, &trace, j, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 49 TSRMLS_CC);
@@ -214,7 +214,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	ZEPHIR_CPY_WRT(&trace1, &_11);
 	ZEPHIR_INIT_VAR(&_17);
 	zephir_create_array(&_17, 2, 0 TSRMLS_CC);
-	ZEPHIR_INIT_LNVAR(_12);
+	ZEPHIR_INIT_NVAR(&_12);
 	zephir_array_fetch_long(&_18, &trace, i, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 53 TSRMLS_CC);
 	if (zephir_array_isset_string(&_18, SL("class"))) {
 		zephir_array_fetch_long(&_19, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 53 TSRMLS_CC);
@@ -225,7 +225,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 		ZVAL_STRING(&_12, "Nil");
 	}
 	zephir_array_update_string(&_17, SL("class"), &_12, PH_COPY | PH_SEPARATE);
-	ZEPHIR_INIT_LNVAR(_12);
+	ZEPHIR_INIT_NVAR(&_12);
 	zephir_array_fetch_long(&_20, &trace, i, PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 54 TSRMLS_CC);
 	if (zephir_array_isset_string(&_20, SL("function"))) {
 		zephir_array_fetch_long(&_21, &trace, i, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Trace.zep", 54 TSRMLS_CC);

@@ -216,7 +216,7 @@ PHP_METHOD(PhalconPlus_Logger_Formatter_LinePlus, format) {
 	ZEPHIR_INIT_VAR(&logStr);
 	zephir_fast_str_replace(&logStr, &replace0, &_2, &_19 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_20);
-	ZEPHIR_MM_GET_CONSTANT(&_20, "PHP_EOL");
+	ZEPHIR_GET_CONSTANT(&_20, "PHP_EOL");
 	ZEPHIR_CONCAT_VV(return_value, &logStr, &_20);
 	RETURN_MM();
 

@@ -72,7 +72,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 	zephir_update_property_zval(this_ptr, SL("_connectionId"), &connectionId);
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(&_0, (zephir_get_numberval(&connectionId) + 1));
-	zend_update_static_property(phalconplus_db_pdo_mysql_ce, ZEND_STRL("_connectionConsecutive"), &_0);
+	zephir_update_static_property_ce(phalconplus_db_pdo_mysql_ce, ZEND_STRL("_connectionConsecutive"), &_0);
 	ZEPHIR_OBS_VAR(&dialectClass);
 	if (!(zephir_array_isset_string_fetch(&dialectClass, &descriptor, SL("dialectClass"), 0))) {
 		zephir_read_property(&_1$$5, this_ptr, SL("_dialectType"), PH_NOISY_CC | PH_READONLY);

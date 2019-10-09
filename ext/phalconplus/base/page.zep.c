@@ -180,21 +180,23 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 
 	zval _0, _1, _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 
+	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, SL("totalSize"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_1, this_ptr, SL("pageSize"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_SINIT_VAR(_2);
+	ZEPHIR_INIT_VAR(&_2);
 	div_function(&_2, &_0, &_1 TSRMLS_CC);
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_DOUBLE(&_0, zephir_ceil(&_2 TSRMLS_CC));
 	zephir_update_property_zval(this_ptr, SL("totalPage"), &_0);
-	RETURN_THISW();
+	RETURN_THIS();
 
 }
 

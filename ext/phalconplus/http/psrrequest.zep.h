@@ -16,8 +16,6 @@ PHP_METHOD(PhalconPlus_Http_PsrRequest, isAjax);
 PHP_METHOD(PhalconPlus_Http_PsrRequest, isSoap);
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getHttpHost);
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getPort);
-PHP_METHOD(PhalconPlus_Http_PsrRequest, hasFiles);
-PHP_METHOD(PhalconPlus_Http_PsrRequest, getUploadedFiles);
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getHeaders);
 PHP_METHOD(PhalconPlus_Http_PsrRequest, getContentType);
 zend_object *zephir_init_properties_PhalconPlus_Http_PsrRequest(zend_class_entry *class_type TSRMLS_DC);
@@ -70,22 +68,6 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_getp
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_hasfiles, 0, 0, IS_LONG, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_hasfiles, 0, 0, IS_LONG, NULL, 0)
-#endif
-	ZEND_ARG_INFO(0, onlySuccessful)
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_getuploadedfiles, 0, 0, IS_ARRAY, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_getuploadedfiles, 0, 0, IS_ARRAY, NULL, 0)
-#endif
-	ZEND_ARG_INFO(0, onlySuccessful)
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_getheaders, 0, 0, IS_ARRAY, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrrequest_getheaders, 0, 0, IS_ARRAY, NULL, 0)
@@ -113,8 +95,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_http_psrrequest_method_entry) {
 	PHP_ME(PhalconPlus_Http_PsrRequest, isSoap, arginfo_phalconplus_http_psrrequest_issoap, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Http_PsrRequest, getHttpHost, arginfo_phalconplus_http_psrrequest_gethttphost, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Http_PsrRequest, getPort, arginfo_phalconplus_http_psrrequest_getport, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Http_PsrRequest, hasFiles, arginfo_phalconplus_http_psrrequest_hasfiles, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Http_PsrRequest, getUploadedFiles, arginfo_phalconplus_http_psrrequest_getuploadedfiles, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Http_PsrRequest, getHeaders, arginfo_phalconplus_http_psrrequest_getheaders, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Http_PsrRequest, getContentType, arginfo_phalconplus_http_psrrequest_getcontenttype, ZEND_ACC_PUBLIC)
 	PHP_FE_END

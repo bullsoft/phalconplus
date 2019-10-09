@@ -140,8 +140,8 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
 		ZEPHIR_INIT_NVAR(&_8$$3);
 		zephir_get_class(&_8$$3, &obj, 0 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(&_9$$3);
-		ZEPHIR_MM_GET_CONSTANT(&_9$$3, "PHP_EOL");
-		ZEPHIR_INIT_LNVAR(_10$$3);
+		ZEPHIR_GET_CONSTANT(&_9$$3, "PHP_EOL");
+		ZEPHIR_INIT_NVAR(&_10$$3);
 		ZEPHIR_CONCAT_SVSVSVV(&_10$$3, "Key: ", &_6$$3, " Name: ", &_7$$3, " Obj: ", &_8$$3, &_9$$3);
 		zend_print_zval(&_10$$3, 0);
 		zephir_read_property(&_11$$3, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);

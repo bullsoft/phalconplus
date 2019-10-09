@@ -384,7 +384,7 @@ void zephir_init_static_properties_PhalconPlus_Base_ModuleDef(TSRMLS_D) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	array_init(&_0);
-	zend_update_static_property(phalconplus_base_moduledef_ce, ZEND_STRL("loadedClasses"), &_0);
+	zephir_update_static_property_ce(phalconplus_base_moduledef_ce, ZEND_STRL("loadedClasses"), &_0);
 	ZEPHIR_MM_RESTORE();
 
 }

@@ -534,7 +534,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 			if (zephir_array_isset_string_fetch(&handler, &ext2Handler, SL("ext"), 0)) {
 			} else {
 				zephir_read_property(&_5$$4, this_ptr, SL("_path"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_INIT_LNVAR(_6$$4);
+				ZEPHIR_INIT_NVAR(&_6$$4);
 				ZEPHIR_CONCAT_VV(&_6$$4, &_5$$4, &ext);
 				ZEPHIR_CALL_METHOD(&handler, this_ptr, "open", &_7, 85, &_6$$4);
 				zephir_check_call_status();
@@ -559,7 +559,7 @@ PHP_METHOD(PhalconPlus_Logger_Adapter_FilePlus, __wakeup) {
 				if (zephir_array_isset_string_fetch(&handler, &ext2Handler, SL("ext"), 0)) {
 				} else {
 					zephir_read_property(&_8$$6, this_ptr, SL("_path"), PH_NOISY_CC | PH_READONLY);
-					ZEPHIR_INIT_LNVAR(_9$$6);
+					ZEPHIR_INIT_NVAR(&_9$$6);
 					ZEPHIR_CONCAT_VV(&_9$$6, &_8$$6, &ext);
 					ZEPHIR_CALL_METHOD(&handler, this_ptr, "open", &_7, 85, &_9$$6);
 					zephir_check_call_status();

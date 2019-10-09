@@ -411,7 +411,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 				ZEPHIR_CALL_METHOD(&_12$$7, &obj, "getmessages", NULL, 0);
 				zephir_check_call_status_or_jump(try_end_1);
 				zephir_json_encode(&_11$$7, &_12$$7, 0 );
-				ZEPHIR_INIT_LNVAR(_13$$7);
+				ZEPHIR_INIT_NVAR(&_13$$7);
 				ZEPHIR_CONCAT_SVSVSV(&_13$$7, "Model exec failed: ", &name$$4, ":", &newMethod, ". Model Exception: ", &_11$$7);
 				ZEPHIR_CALL_METHOD(NULL, &transaction, "rollback", NULL, 0, &_13$$7);
 				zephir_check_call_status_or_jump(try_end_1);

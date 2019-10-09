@@ -106,10 +106,10 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	zend_update_static_property(phalconplus_enum_sys_ce, ZEND_STRL("primaryModuleDir"), &moduleDir);
+	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("primaryModuleDir"), &moduleDir);
 	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 78, &moduleDir);
 	zephir_check_call_status();
-	zend_update_static_property(phalconplus_enum_sys_ce, ZEND_STRL("rootDir"), &_6);
+	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("rootDir"), &_6);
 	RETURN_MM_NULL();
 
 }
@@ -442,7 +442,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 	zephir_create_array(&_3, 3, 0 TSRMLS_CC);
 	zephir_array_fast_append(&_3, &confPrefix);
 	ZEPHIR_INIT_VAR(&_4);
-	ZEPHIR_MM_GET_CONSTANT(&_4, "APP_RUN_ENV");
+	ZEPHIR_GET_CONSTANT(&_4, "APP_RUN_ENV");
 	zephir_array_fast_append(&_3, &_4);
 	ZEPHIR_INIT_NVAR(&_4);
 	ZVAL_STRING(&_4, ".php");
@@ -470,7 +470,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 		ZEPHIR_INIT_VAR(&_10$$4);
 		object_init_ex(&_10$$4, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_11$$4);
-		ZEPHIR_MM_GET_CONSTANT(&_11$$4, "APP_RUN_ENV");
+		ZEPHIR_GET_CONSTANT(&_11$$4, "APP_RUN_ENV");
 		ZEPHIR_INIT_VAR(&_12$$4);
 		ZEPHIR_CONCAT_SVSVS(&_12$$4, "Module Config file not exists: ", &confPath, " & ", &_11$$4, ".php");
 		ZEPHIR_CALL_METHOD(NULL, &_10$$4, "__construct", NULL, 22, &_12$$4);

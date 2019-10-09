@@ -185,7 +185,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, __construct) {
 		zephir_update_property_zval(this_ptr, SL("env"), &env);
 	}
 	ZEPHIR_INIT_VAR(&_3);
-	ZEPHIR_MM_GET_CONSTANT(&_3, "PHP_SAPI");
+	ZEPHIR_GET_CONSTANT(&_3, "PHP_SAPI");
 	ZVAL_LONG(&_4, 0);
 	ZVAL_LONG(&_5, 3);
 	ZEPHIR_INIT_VAR(&_6);
@@ -442,7 +442,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf) {
 		ZEPHIR_INIT_VAR(&_9$$5);
 		object_init_ex(&_9$$5, phalconplus_base_moduledef_ce);
 		ZEPHIR_INIT_VAR(&_10$$5);
-		ZEPHIR_MM_GET_CONSTANT(&_10$$5, "APP_MODULE_DIR");
+		ZEPHIR_GET_CONSTANT(&_10$$5, "APP_MODULE_DIR");
 		ZVAL_BOOL(&_11$$5, 1);
 		ZEPHIR_CALL_METHOD(NULL, &_9$$5, "__construct", NULL, 55, this_ptr, &_10$$5, &_11$$5);
 		zephir_check_call_status();
