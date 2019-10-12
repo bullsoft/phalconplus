@@ -79,7 +79,7 @@ final class Bootstrap
     /**
      * @return object|null
      */
-    public function getApp(): ? {}
+    public function getApp() {}
 
 
     public function exec() {}

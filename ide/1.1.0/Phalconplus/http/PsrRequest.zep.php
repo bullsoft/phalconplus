@@ -81,18 +81,6 @@ class PsrRequest extends Phalcon\Http\Request
     public function getPort(): int {}
 
     /**
-     * @param bool $onlySuccessful
-     * @return long
-     */
-    public function hasFiles(bool $onlySuccessful = false): int {}
-
-    /**
-     * @param bool $onlySuccessful
-     * @return array|\Phalcon\Http\Request\FileInterface[]
-     */
-    public function getUploadedFiles(bool $onlySuccessful = false): array {}
-
-    /**
      * @return array
      */
     public function getHeaders(): array {}
