@@ -132,7 +132,9 @@ class ModuleDef
 
         // 模块配置
         let this->config = new \Phalcon\Config(boot->load(this->configPath));
-
+        if !isset this->config["application"] {
+            throw new \PhalconPlus\Base\Exception("Config Path: /application must exists");
+        }
         var appConfig = this->config->application;
 
         let this->name = appConfig->name;

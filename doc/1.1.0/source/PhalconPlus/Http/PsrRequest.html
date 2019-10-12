@@ -154,6 +154,11 @@ class PsrRequest extends BaseRequest
             }
         }
         this->mapFiles(request->getUploadedFiles());
+        var prefix, input;
+        for prefix, input in this->files {
+            let _FILES[prefix] = input;
+        }
+
         let this->psrRequest = request;
     }
 
@@ -245,79 +250,6 @@ class PsrRequest extends BaseRequest
     public function getPort() -> int
     {
         return this->psrRequest->getUri()->getPort();
-    }
-
-    public function hasFiles(boolean onlySuccessful = false) -> long
-    {
-        var files, file, error;
-        int numberFiles = 0;
-
-        let files = this->files;
-
-        if typeof files != "array" {
-            return 0;
-        }
-
-        for file in files {
-            if fetch error, file["error"] {
-
-                if typeof error != "array" {
-                    if !error || !onlySuccessful {
-                        let numberFiles++;
-                    }
-                }
-
-                if typeof error == "array" {
-                    let numberFiles += this->hasFileHelper(error, onlySuccessful);
-                }
-            }
-        }
-
-        return numberFiles;
-    }
-
-    public function getUploadedFiles(boolean onlySuccessful = false) -> <\Phalcon\Http\Request\FileInterface[]>
-    {
-        var superFiles, prefix, input, smoothInput, file, dataFile;     
-        var files = [];
-
-        let superFiles = this->files;
-
-        if count(superFiles) > 0 {
-
-            for prefix, input in superFiles {
-                if typeof input["name"] == "array" {
-                    let smoothInput = this->smoothFiles(
-                        input["name"],
-                        input["type"],
-                        input["tmp_name"],
-                        input["size"],
-                        input["error"],
-                        prefix
-                    );
-
-                    for file in smoothInput {
-                        if onlySuccessful == false || file["error"] == UPLOAD_ERR_OK {
-                            let dataFile = [
-                                "name": file["name"],
-                                "type": file["type"],
-                                "tmp_name": file["tmp_name"],
-                                "size": file["size"],
-                                "error": file["error"]
-                            ];
-
-                            let files[] = new File(dataFile, file["key"]);
-                        }
-                    }
-                } else {
-                    if onlySuccessful == false || input["error"] == UPLOAD_ERR_OK {
-                        let files[] = new File(input, prefix);
-                    }
-                }
-            }
-        }
-
-        return files;
     }
 
     public function getHeaders() -> array
