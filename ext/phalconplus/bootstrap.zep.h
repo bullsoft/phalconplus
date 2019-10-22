@@ -96,6 +96,13 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_execmodule
 	ZEND_ARG_INFO(0, request)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_execsrv, 0, 0, NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_execsrv, 0, 0, IS_OBJECT, "NULL", 0)
+#endif
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_exectask, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, argv, 0)
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI\\FactoryDefault, 1)
@@ -202,7 +209,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_bootstrap_method_entry) {
 	PHP_ME(PhalconPlus_Bootstrap, terminate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, __destruct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_DTOR)
 	PHP_ME(PhalconPlus_Bootstrap, execModule, arginfo_phalconplus_bootstrap_execmodule, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, execSrv, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, execSrv, arginfo_phalconplus_bootstrap_execsrv, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, execTask, arginfo_phalconplus_bootstrap_exectask, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, getPrimaryModuleDef, arginfo_phalconplus_bootstrap_getprimarymoduledef, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, getPrimaryModule, arginfo_phalconplus_bootstrap_getprimarymodule, ZEND_ACC_PUBLIC)

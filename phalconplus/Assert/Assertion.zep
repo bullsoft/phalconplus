@@ -101,6 +101,20 @@ class Assertion
         return true;
     }
 
+    public static function integer(var value, var message = null, var propertyPath = null) -> boolean
+    {
+        if !\is_int(value) {
+            if message === null {
+                let message = \sprintf(
+                    message ? message : "Value \"%s\" is not an integer.", 
+                    static::stringify(value)
+                );
+            }
+            throw static::createException(value, message, AssertionCode::INVALID_INTEGER, propertyPath);
+        }
+        return true;
+    }
+
     public static function numeric(var value, var message = null, var propertyPath = null) -> boolean
     {
         if !is_numeric(value) {

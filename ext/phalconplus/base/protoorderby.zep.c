@@ -28,12 +28,12 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_ProtoOrderBy) {
 	/**
 	 * @required
 	 */
-	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("property"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("property"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	/**
 	 * @required
 	 */
-	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("direction"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("direction"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	/**
 	 * @optional

@@ -10,6 +10,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same);
 PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty);
 PHP_METHOD(PhalconPlus_Assert_Assertion, notNull);
 PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank);
+PHP_METHOD(PhalconPlus_Assert_Assertion, integer);
 PHP_METHOD(PhalconPlus_Assert_Assertion, numeric);
 PHP_METHOD(PhalconPlus_Assert_Assertion, range);
 PHP_METHOD(PhalconPlus_Assert_Assertion, minLength);
@@ -92,6 +93,16 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_notblank, 0, 1, _IS_BOOL, 1)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_notblank, 0, 1, _IS_BOOL, NULL, 1)
+#endif
+	ZEND_ARG_INFO(0, value)
+	ZEND_ARG_INFO(0, message)
+	ZEND_ARG_INFO(0, propertyPath)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_integer, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_integer, 0, 1, _IS_BOOL, NULL, 0)
 #endif
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, message)
@@ -325,6 +336,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_assert_assertion_method_entry) {
 	PHP_ME(PhalconPlus_Assert_Assertion, notEmpty, arginfo_phalconplus_assert_assertion_notempty, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, notNull, arginfo_phalconplus_assert_assertion_notnull, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, notBlank, arginfo_phalconplus_assert_assertion_notblank, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Assert_Assertion, integer, arginfo_phalconplus_assert_assertion_integer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, numeric, arginfo_phalconplus_assert_assertion_numeric, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, range, arginfo_phalconplus_assert_assertion_range, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, minLength, arginfo_phalconplus_assert_assertion_minlength, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
