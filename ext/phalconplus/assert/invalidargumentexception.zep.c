@@ -23,13 +23,13 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Assert_InvalidArgumentException) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Assert, InvalidArgumentException, phalconplus, assert_invalidargumentexception, spl_ce_InvalidArgumentException, phalconplus_assert_invalidargumentexception_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("propertyPath"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("propertyPath"), ZEND_ACC_PRIVATE);
 
-	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("value"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("value"), ZEND_ACC_PRIVATE);
 
-	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("constraints"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("constraints"), ZEND_ACC_PRIVATE);
 
-	zend_class_implements(phalconplus_assert_invalidargumentexception_ce TSRMLS_CC, 1, phalconplus_assert_assertionfailedexception_ce);
+	zend_class_implements(phalconplus_assert_invalidargumentexception_ce, 1, phalconplus_assert_assertionfailedexception_ce);
 	return SUCCESS;
 
 }

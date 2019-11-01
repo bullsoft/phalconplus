@@ -26,9 +26,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Mvc_PsrApplication) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Mvc, PsrApplication, phalconplus, mvc_psrapplication, zephir_get_internal_ce(SL("phalcon\\mvc\\application")), phalconplus_mvc_psrapplication_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_mvc_psrapplication_ce, SL("psrRequest"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_mvc_psrapplication_ce, SL("psrRequest"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(phalconplus_mvc_psrapplication_ce, SL("nativeRequest"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_mvc_psrapplication_ce, SL("nativeRequest"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -110,7 +110,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
 	zephir_update_property_zval(this_ptr, SL("psrRequest"), psrRequest);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, phalconplus_http_psrrequest_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 96, psrRequest);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 119, psrRequest);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("nativeRequest"), &_0);
 	ZEPHIR_MM_RESTORE();
@@ -201,7 +201,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	}
 	ZEPHIR_INIT_VAR(&_3);
 	ZVAL_STRING(&_3, "\\GuzzleHttp\\Psr7\\Response");
-	if (!(zephir_class_exists(&_3, 1 TSRMLS_CC))) {
+	if (!(zephir_class_exists(&_3, 1))) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "PsrApplication depends on GuzzleHttp\\Psr7\\Response", "phalconplus/Mvc/PsrApplication.zep", 52);
 		return;
 	}
@@ -244,7 +244,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	_11 = zephir_fetch_class_str_ex(SL("GuzzleHttp\\Psr7\\Response"), ZEND_FETCH_CLASS_AUTO);
 	}
 	object_init_ex(&psrResponse, _11);
-	if (zephir_has_constructor(&psrResponse TSRMLS_CC)) {
+	if (zephir_has_constructor(&psrResponse)) {
 		ZEPHIR_INIT_VAR(&_12);
 		if (zephir_is_true(&status)) {
 			ZEPHIR_CPY_WRT(&_12, &status);
@@ -281,10 +281,11 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 	zval _8$$6, _15$$11;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *response, response_sub, headers, _0, rawHeaders, h, pos, nativeHeaders, *_1, _2, _17, _3$$3, name$$4, _4$$4, value$$4, _5$$4, _6$$4, _7$$5, _9$$6, _10$$8, name$$9, _11$$9, value$$9, _12$$9, _13$$9, _14$$10, _16$$11, _18$$13, _19$$13, _20$$13, _21$$13, _22$$14;
+	zval *response, response_sub, __$null, headers, _0, rawHeaders, h, pos, nativeHeaders, *_1, _2, _17, _3$$3, name$$4, _4$$4, value$$4, _5$$4, _6$$4, _7$$5, _9$$6, _10$$8, name$$9, _11$$9, value$$9, _12$$9, _13$$9, _14$$10, _16$$11, _18$$13, _19$$13, _20$$13, _21$$13;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&response_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&headers);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&rawHeaders);
@@ -313,7 +314,6 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 	ZVAL_UNDEF(&_19$$13);
 	ZVAL_UNDEF(&_20$$13);
 	ZVAL_UNDEF(&_21$$13);
-	ZVAL_UNDEF(&_22$$14);
 	ZVAL_UNDEF(&_8$$6);
 	ZVAL_UNDEF(&_15$$11);
 
@@ -326,7 +326,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&headers, &_0, "toarray", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&rawHeaders, "headers_list", NULL, 97);
+	ZEPHIR_CALL_FUNCTION(&rawHeaders, "headers_list", NULL, 120);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&nativeHeaders);
 	array_init(&nativeHeaders);
@@ -348,18 +348,18 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 				ZEPHIR_INIT_NVAR(&_6$$4);
 				zephir_substr(&_6$$4, &h, zephir_get_intval(&_5$$4), 0, ZEPHIR_SUBSTR_NO_LENGTH);
 				ZEPHIR_INIT_NVAR(&value$$4);
-				zephir_fast_trim(&value$$4, &_6$$4, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
+				zephir_fast_trim(&value$$4, &_6$$4, NULL , ZEPHIR_TRIM_BOTH);
 				if (zephir_array_isset(&nativeHeaders, &name$$4)) {
-					zephir_array_fetch(&_7$$5, &nativeHeaders, &name$$4, PH_NOISY | PH_READONLY, "phalconplus/Mvc/PsrApplication.zep", 100 TSRMLS_CC);
+					zephir_array_fetch(&_7$$5, &nativeHeaders, &name$$4, PH_NOISY | PH_READONLY, "phalconplus/Mvc/PsrApplication.zep", 100);
 					if (!(Z_TYPE_P(&_7$$5) == IS_ARRAY)) {
 						ZEPHIR_INIT_NVAR(&_8$$6);
-						zephir_create_array(&_8$$6, 1, 0 TSRMLS_CC);
+						zephir_create_array(&_8$$6, 1, 0);
 						ZEPHIR_OBS_NVAR(&_9$$6);
-						zephir_array_fetch(&_9$$6, &nativeHeaders, &name$$4, PH_NOISY, "phalconplus/Mvc/PsrApplication.zep", 101 TSRMLS_CC);
+						zephir_array_fetch(&_9$$6, &nativeHeaders, &name$$4, PH_NOISY, "phalconplus/Mvc/PsrApplication.zep", 101);
 						zephir_array_fast_append(&_8$$6, &_9$$6);
 						zephir_array_update_zval(&nativeHeaders, &name$$4, &_8$$6, PH_COPY | PH_SEPARATE);
 					}
-					zephir_array_update_multi(&nativeHeaders, &value$$4 TSRMLS_CC, SL("za"), 2, &name$$4);
+					zephir_array_update_multi(&nativeHeaders, &value$$4, SL("za"), 2, &name$$4);
 				} else {
 					zephir_array_update_zval(&nativeHeaders, &name$$4, &value$$4, PH_COPY | PH_SEPARATE);
 				}
@@ -388,18 +388,18 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 					ZEPHIR_INIT_NVAR(&_13$$9);
 					zephir_substr(&_13$$9, &h, zephir_get_intval(&_12$$9), 0, ZEPHIR_SUBSTR_NO_LENGTH);
 					ZEPHIR_INIT_NVAR(&value$$9);
-					zephir_fast_trim(&value$$9, &_13$$9, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
+					zephir_fast_trim(&value$$9, &_13$$9, NULL , ZEPHIR_TRIM_BOTH);
 					if (zephir_array_isset(&nativeHeaders, &name$$9)) {
-						zephir_array_fetch(&_14$$10, &nativeHeaders, &name$$9, PH_NOISY | PH_READONLY, "phalconplus/Mvc/PsrApplication.zep", 100 TSRMLS_CC);
+						zephir_array_fetch(&_14$$10, &nativeHeaders, &name$$9, PH_NOISY | PH_READONLY, "phalconplus/Mvc/PsrApplication.zep", 100);
 						if (!(Z_TYPE_P(&_14$$10) == IS_ARRAY)) {
 							ZEPHIR_INIT_NVAR(&_15$$11);
-							zephir_create_array(&_15$$11, 1, 0 TSRMLS_CC);
+							zephir_create_array(&_15$$11, 1, 0);
 							ZEPHIR_OBS_NVAR(&_16$$11);
-							zephir_array_fetch(&_16$$11, &nativeHeaders, &name$$9, PH_NOISY, "phalconplus/Mvc/PsrApplication.zep", 101 TSRMLS_CC);
+							zephir_array_fetch(&_16$$11, &nativeHeaders, &name$$9, PH_NOISY, "phalconplus/Mvc/PsrApplication.zep", 101);
 							zephir_array_fast_append(&_15$$11, &_16$$11);
 							zephir_array_update_zval(&nativeHeaders, &name$$9, &_15$$11, PH_COPY | PH_SEPARATE);
 						}
-						zephir_array_update_multi(&nativeHeaders, &value$$9 TSRMLS_CC, SL("za"), 2, &name$$9);
+						zephir_array_update_multi(&nativeHeaders, &value$$9, SL("za"), 2, &name$$9);
 					} else {
 						zephir_array_update_zval(&nativeHeaders, &name$$9, &value$$9, PH_COPY | PH_SEPARATE);
 					}
@@ -409,30 +409,28 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 		}
 	}
 	ZEPHIR_INIT_NVAR(&h);
-	ZEPHIR_CALL_FUNCTION(NULL, "header_remove", NULL, 98);
+	ZEPHIR_CALL_FUNCTION(NULL, "header_remove", NULL, 121);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_17);
-	zephir_fast_array_merge(&_17, &nativeHeaders, &headers TSRMLS_CC);
+	zephir_fast_array_merge(&_17, &nativeHeaders, &headers);
 	ZEPHIR_CPY_WRT(&headers, &_17);
 	if (zephir_array_isset_string(&nativeHeaders, SL("Set-Cookie"))) {
 		ZEPHIR_INIT_VAR(&_18$$13);
-		zephir_array_fetch_string(&_19$$13, &nativeHeaders, SL("Set-Cookie"), PH_NOISY | PH_READONLY, "phalconplus/Mvc/PsrApplication.zep", 115 TSRMLS_CC);
+		zephir_array_fetch_string(&_19$$13, &nativeHeaders, SL("Set-Cookie"), PH_NOISY | PH_READONLY, "phalconplus/Mvc/PsrApplication.zep", 115);
 		if (Z_TYPE_P(&_19$$13) == IS_ARRAY) {
 			ZEPHIR_OBS_NVAR(&_18$$13);
-			zephir_array_fetch_string(&_18$$13, &nativeHeaders, SL("Set-Cookie"), PH_NOISY, "phalconplus/Mvc/PsrApplication.zep", 115 TSRMLS_CC);
+			zephir_array_fetch_string(&_18$$13, &nativeHeaders, SL("Set-Cookie"), PH_NOISY, "phalconplus/Mvc/PsrApplication.zep", 115);
 		} else {
 			ZEPHIR_INIT_VAR(&_20$$13);
-			zephir_create_array(&_20$$13, 1, 0 TSRMLS_CC);
+			zephir_create_array(&_20$$13, 1, 0);
 			ZEPHIR_OBS_VAR(&_21$$13);
-			zephir_array_fetch_string(&_21$$13, &nativeHeaders, SL("Set-Cookie"), PH_NOISY, "phalconplus/Mvc/PsrApplication.zep", 115 TSRMLS_CC);
+			zephir_array_fetch_string(&_21$$13, &nativeHeaders, SL("Set-Cookie"), PH_NOISY, "phalconplus/Mvc/PsrApplication.zep", 115);
 			zephir_array_fast_append(&_20$$13, &_21$$13);
 			ZEPHIR_CPY_WRT(&_18$$13, &_20$$13);
 		}
 		zephir_array_update_string(&headers, SL("Set-Cookie"), &_18$$13, PH_COPY | PH_SEPARATE);
 	} else {
-		ZEPHIR_INIT_VAR(&_22$$14);
-		array_init(&_22$$14);
-		zephir_array_update_string(&headers, SL("Set-Cookie"), &_22$$14, PH_COPY | PH_SEPARATE);
+		zephir_array_update_string(&headers, SL("Set-Cookie"), &__$null, PH_COPY | PH_SEPARATE);
 	}
 	RETURN_CCTOR(&headers);
 

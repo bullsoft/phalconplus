@@ -85,7 +85,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __get) {
 	zephir_fetch_params(1, 1, 0, &property_param);
 
 	if (UNEXPECTED(Z_TYPE_P(property_param) != IS_STRING && Z_TYPE_P(property_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(property_param) == IS_STRING)) {

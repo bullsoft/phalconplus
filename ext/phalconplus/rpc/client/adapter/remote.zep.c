@@ -25,9 +25,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_Adapter_Remote) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc\\Client\\Adapter, Remote, phalconplus, rpc_client_adapter_remote, phalconplus_rpc_client_abstractclient_ce, phalconplus_rpc_client_adapter_remote_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_rpc_client_adapter_remote_ce, SL("remoteServerUrl"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_rpc_client_adapter_remote_ce, SL("remoteServerUrl"), ZEND_ACC_PRIVATE);
 
-	zend_declare_property_null(phalconplus_rpc_client_adapter_remote_ce, SL("client"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_rpc_client_adapter_remote_ce, SL("client"), ZEND_ACC_PRIVATE);
 
 	return SUCCESS;
 
@@ -71,9 +71,9 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "server url can not be empty", "phalconplus/Rpc/Client/Adapter/Remote.zep", 12);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 100, &remoteServerUrl);
+	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 122, &remoteServerUrl);
 	zephir_check_call_status();
-	zephir_array_fetch(&_0, &remoteServerUrl, &key, PH_NOISY | PH_READONLY, "phalconplus/Rpc/Client/Adapter/Remote.zep", 16 TSRMLS_CC);
+	zephir_array_fetch(&_0, &remoteServerUrl, &key, PH_NOISY | PH_READONLY, "phalconplus/Rpc/Client/Adapter/Remote.zep", 16);
 	zephir_update_property_zval(this_ptr, SL("remoteServerUrl"), &_0);
 	ZEPHIR_INIT_VAR(&_1);
 	object_init_ex(&_1, zephir_get_internal_ce(SL("yar_client")));
@@ -168,7 +168,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __call) {
 	zephir_fetch_params(1, 2, 0, &method_param, &args_param);
 
 	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
@@ -181,9 +181,9 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __call) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
-	if ((zephir_method_exists(&_0, &method TSRMLS_CC)  == SUCCESS)) {
+	if ((zephir_method_exists(&_0, &method)  == SUCCESS)) {
 		ZEPHIR_INIT_VAR(&_1$$3);
-		zephir_create_array(&_1$$3, 2, 0 TSRMLS_CC);
+		zephir_create_array(&_1$$3, 2, 0);
 		ZEPHIR_OBS_VAR(&_2$$3);
 		zephir_read_property(&_2$$3, this_ptr, SL("client"), PH_NOISY_CC);
 		zephir_array_fast_append(&_1$$3, &_2$$3);

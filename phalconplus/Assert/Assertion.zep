@@ -316,6 +316,19 @@ class Assertion
         return true;
     }
 
+    public static function isInstanceOf(object value, string className, var message = null, var propertyPath = null) -> bool
+    {
+        if !(value instanceof className) {
+            let message = sprintf(
+                message ? message : "Class \"%s\" was expected to be instanceof of \"%s\" but is not.",
+                static::stringify(value),
+                className
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_INSTANCE_OF, propertyPath, ["class" : className]);
+        }
+        return true;
+    }
+
     public static function isJsonString(var value, var message = null, var propertyPath = null) -> boolean
     {
         static::isString(value, message, propertyPath);

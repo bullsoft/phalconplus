@@ -28,17 +28,17 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_ProtoOrderBy) {
 	/**
 	 * @required
 	 */
-	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("property"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("property"), ZEND_ACC_PROTECTED);
 
 	/**
 	 * @required
 	 */
-	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("direction"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("direction"), ZEND_ACC_PROTECTED);
 
 	/**
 	 * @optional
 	 */
-	zend_declare_property_string(phalconplus_base_protoorderby_ce, SL("alias"), "", ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_string(phalconplus_base_protoorderby_ce, SL("alias"), "", ZEND_ACC_PRIVATE);
 
 	return SUCCESS;
 
@@ -66,7 +66,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 	zephir_fetch_params(1, 1, 0, &property_param);
 
 	if (UNEXPECTED(Z_TYPE_P(property_param) != IS_STRING && Z_TYPE_P(property_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(property_param) == IS_STRING)) {
@@ -128,7 +128,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 	zephir_fetch_params(1, 1, 0, &alias_param);
 
 	if (UNEXPECTED(Z_TYPE_P(alias_param) != IS_STRING && Z_TYPE_P(alias_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'alias' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'alias' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(alias_param) == IS_STRING)) {

@@ -10,6 +10,7 @@ class Exception extends \Exception
     protected message = "";
     protected level = \Phalcon\Logger::DEBUG;
     protected code = 0;
+    protected info = [] { get };
 
     public function __construct(var info = "", <\Phalcon\Logger\Adapter> logger = null)
     {
@@ -19,6 +20,7 @@ class Exception extends \Exception
             // nothing to do here ...
         } else {
             if is_array(info) {
+                let this->info = info;
                 let message = message . ", message: " . strval(info[0]);
                 if fetch args, info[1] {
                     let args = is_array(info[1]) ? info[1] : [strval(info[1])];

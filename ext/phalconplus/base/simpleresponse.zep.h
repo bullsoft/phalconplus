@@ -9,6 +9,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult);
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem);
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem);
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem);
+PHP_METHOD(PhalconPlus_Base_SimpleResponse, isEmpty);
 zend_object *zephir_init_properties_PhalconPlus_Base_SimpleResponse(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_simpleresponse_softclone, 0, 0, 1)
@@ -40,5 +41,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_simpleresponse_method_entry) {
 	PHP_ME(PhalconPlus_Base_SimpleResponse, pushItem, arginfo_phalconplus_base_simpleresponse_pushitem, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_SimpleResponse, setItem, arginfo_phalconplus_base_simpleresponse_setitem, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_SimpleResponse, getItem, arginfo_phalconplus_base_simpleresponse_getitem, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_SimpleResponse, isEmpty, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

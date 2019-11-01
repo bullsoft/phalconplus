@@ -25,9 +25,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_Field) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Db\\UnitOfWork, Field, phalconplus, db_unitofwork_field, phalconplus_db_unitofwork_abstractvalue_ce, phalconplus_db_unitofwork_field_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_db_unitofwork_field_ce, SL("model"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_db_unitofwork_field_ce, SL("model"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(phalconplus_db_unitofwork_field_ce, SL("attr"), "", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(phalconplus_db_unitofwork_field_ce, SL("attr"), "", ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -47,7 +47,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct) {
 	zephir_fetch_params(1, 2, 0, &model, &attr_param);
 
 	if (UNEXPECTED(Z_TYPE_P(attr_param) != IS_STRING && Z_TYPE_P(attr_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'attr' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'attr' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(attr_param) == IS_STRING)) {
@@ -94,9 +94,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 
 	zephir_read_property(&_0, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&className);
-	zephir_get_class(&className, &_0, 0 TSRMLS_CC);
+	zephir_get_class(&className, &_0, 0);
 	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 82, &_1);
+	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 106, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&objs, unitwork, "getobjects", NULL, 0);
 	zephir_check_call_status();
@@ -122,9 +122,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 	object_init_ex(&_8, phalconplus_base_exception_ce);
 	ZEPHIR_INIT_VAR(&_9);
 	ZEPHIR_CONCAT_SVSVS(&_9, "Object(", &hash, ") instance of ", &className, " not in SplObjectStorage");
-	ZEPHIR_CALL_METHOD(NULL, &_8, "__construct", NULL, 22, &_9);
+	ZEPHIR_CALL_METHOD(NULL, &_8, "__construct", NULL, 25, &_9);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 29 TSRMLS_CC);
+	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 29);
 	ZEPHIR_MM_RESTORE();
 	return;
 
@@ -165,7 +165,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
 
 	zephir_read_property(&_0, this_ptr, SL("attr"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_2, "spl_object_hash", NULL, 82, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "spl_object_hash", NULL, 106, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVSV(return_value, "Field: ", &_0, ", Hash: ", &_2);
 	RETURN_MM();

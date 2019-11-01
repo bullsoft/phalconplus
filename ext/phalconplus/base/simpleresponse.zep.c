@@ -26,7 +26,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleResponse) {
 	/**
 	 * @var array
 	 */
-	zend_declare_property_null(phalconplus_base_simpleresponse_ce, SL("result"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_simpleresponse_ce, SL("result"), ZEND_ACC_PRIVATE);
 
 	phalconplus_base_simpleresponse_ce->create_object = zephir_init_properties_PhalconPlus_Base_SimpleResponse;
 	return SUCCESS;
@@ -249,7 +249,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 	if (!(Z_TYPE_P(key) == IS_NULL)) {
 		ZEPHIR_OBS_VAR(&val$$3);
 		zephir_read_property(&_0$$3, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
-		if (zephir_array_isset_fetch(&val$$3, &_0$$3, key, 0 TSRMLS_CC)) {
+		if (zephir_array_isset_fetch(&val$$3, &_0$$3, key, 0)) {
 			RETURN_CCTOR(&val$$3);
 		}
 	} else {
@@ -261,6 +261,22 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 		RETURN_MM();
 	}
 	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleResponse, isEmpty) {
+
+	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_OBS_VAR(&_0);
+	zephir_read_property(&_0, this_ptr, SL("result"), PH_NOISY_CC);
+	RETURN_MM_BOOL(ZEPHIR_IS_EMPTY(&_0));
 
 }
 

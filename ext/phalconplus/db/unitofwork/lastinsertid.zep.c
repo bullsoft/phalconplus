@@ -25,7 +25,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_LastInsertId) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Db\\UnitOfWork, LastInsertId, phalconplus, db_unitofwork_lastinsertid, phalconplus_db_unitofwork_abstractvalue_ce, phalconplus_db_unitofwork_lastinsertid_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_db_unitofwork_lastinsertid_ce, SL("model"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_db_unitofwork_lastinsertid_ce, SL("model"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -76,9 +76,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
 
 	zephir_read_property(&_0, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&className);
-	zephir_get_class(&className, &_0, 0 TSRMLS_CC);
+	zephir_get_class(&className, &_0, 0);
 	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 82, &_1);
+	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 106, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&inserted, unitwork, "getinserted", NULL, 0);
 	zephir_check_call_status();
@@ -89,14 +89,14 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
 		ZEPHIR_OBS_VAR(&info$$3);
 		ZEPHIR_OBS_VAR(&_4$$3);
 		zephir_read_property(&_4$$3, this_ptr, SL("model"), PH_NOISY_CC);
-		zephir_array_fetch(&info$$3, &inserted, &_4$$3, PH_NOISY, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 20 TSRMLS_CC);
+		zephir_array_fetch(&info$$3, &inserted, &_4$$3, PH_NOISY, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 20);
 		_5$$3 = zephir_array_isset_string(&info$$3, SL("last_insert_id"));
 		if (_5$$3) {
-			zephir_array_fetch_string(&_6$$3, &info$$3, SL("last_insert_id"), PH_NOISY | PH_READONLY, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 21 TSRMLS_CC);
+			zephir_array_fetch_string(&_6$$3, &info$$3, SL("last_insert_id"), PH_NOISY | PH_READONLY, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 21);
 			_5$$3 = ZEPHIR_GT_LONG(&_6$$3, 0);
 		}
 		if (_5$$3) {
-			zephir_array_fetch_string(&_7$$4, &info$$3, SL("last_insert_id"), PH_NOISY | PH_READONLY, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 22 TSRMLS_CC);
+			zephir_array_fetch_string(&_7$$4, &info$$3, SL("last_insert_id"), PH_NOISY | PH_READONLY, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 22);
 			RETURN_MM_LONG(zephir_get_intval(&_7$$4));
 		}
 		RETURN_MM_LONG(0);
@@ -105,9 +105,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
 	object_init_ex(&_8, phalconplus_base_exception_ce);
 	ZEPHIR_INIT_VAR(&_9);
 	ZEPHIR_CONCAT_SVSVS(&_9, "Object(", &hash, ") instance of ", &className, " not in SplObjectStorage");
-	ZEPHIR_CALL_METHOD(NULL, &_8, "__construct", NULL, 22, &_9);
+	ZEPHIR_CALL_METHOD(NULL, &_8, "__construct", NULL, 25, &_9);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 27 TSRMLS_CC);
+	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 27);
 	ZEPHIR_MM_RESTORE();
 	return;
 
@@ -126,7 +126,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __toString) {
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_1, "spl_object_hash", NULL, 82, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "spl_object_hash", NULL, 106, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SV(return_value, "LastInsertId: ", &_1);
 	RETURN_MM();

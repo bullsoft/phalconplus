@@ -21,7 +21,7 @@ class Yar extends \Phalcon\Application
 		let this->requestArgs = msgpack_unpack(rawBody);
 	}
 
-	public function handle() -> <\Phalcon\Http\Response>
+	public function handle()// -> <\Phalcon\Http\Response>
 	{
 		if this->__get("request")->isGet() {
 			let this->responseBody = "<h1>Welcome to Phalcon+</h1>
@@ -32,7 +32,7 @@ class Yar extends \Phalcon\Application
 			var ret = [
 				"errorCode" : 0,
 				"errorMsg" : "",
-				"logId" : this->__get("logger")->uid,
+				"logId" : this->__get("logger")->logId,
 				"data" : []
 			];
 			try {
@@ -47,10 +47,11 @@ class Yar extends \Phalcon\Application
 			}
 			let this->responseBody = msgpack_pack(ret);
 		}
-        var response;
-        let response = new \Phalcon\Http\Response();
-		response->setStatusCode(200, "OK");
-		response->setContent(this->responseBody);
-		return response;
+		echo this->responseBody;
+        // var response;
+        // let response = new \Phalcon\Http\Response();
+		// response->setStatusCode(200, "OK");
+		// response->setContent(this->responseBody);
+		// return response;
 	}
 }

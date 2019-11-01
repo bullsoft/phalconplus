@@ -23,7 +23,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Uid) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Logger\\Processor, Uid, phalconplus, logger_processor_uid, phalconplus_logger_processor_abstractprocessor_ce, phalconplus_logger_processor_uid_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_logger_processor_uid_ce, SL("uid"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_logger_processor_uid_ce, SL("uid"), ZEND_ACC_PRIVATE);
 
 	return SUCCESS;
 
@@ -58,11 +58,11 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __construct) {
 	} else {
 		ZEPHIR_INIT_VAR(&_0$$4);
 		ZVAL_STRING(&_0$$4, "");
-		ZEPHIR_CALL_FUNCTION(&_1$$4, "uniqid", NULL, 94, &_0$$4, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_1$$4, "uniqid", NULL, 117, &_0$$4, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_0$$4);
 		ZVAL_STRING(&_0$$4, "md5");
-		ZEPHIR_CALL_FUNCTION(&_2$$4, "hash", NULL, 95, &_0$$4, &_1$$4);
+		ZEPHIR_CALL_FUNCTION(&_2$$4, "hash", NULL, 118, &_0$$4, &_1$$4);
 		zephir_check_call_status();
 		ZVAL_LONG(&_3$$4, 0);
 		ZEPHIR_INIT_NVAR(&_0$$4);

@@ -24,7 +24,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_FeatureTest_SplObjectStorageTest) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\FeatureTest, SplObjectStorageTest, phalconplus, featuretest_splobjectstoragetest, phalconplus_featuretest_splobjectstoragetest_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_featuretest_splobjectstoragetest_ce, SL("objects"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_featuretest_splobjectstoragetest_ce, SL("objects"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -43,7 +43,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, __construct) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, zephir_get_internal_ce(SL("splobjectstorage")));
-	if (zephir_has_constructor(&_0 TSRMLS_CC)) {
+	if (zephir_has_constructor(&_0)) {
 		ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
@@ -83,7 +83,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, insert) {
 	zephir_check_call_status();
 	zephir_read_property(&_1, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
-	zephir_create_array(&_2, 3, 0 TSRMLS_CC);
+	zephir_create_array(&_2, 3, 0);
 	zephir_array_update_string(&_2, SL("name"), name, PH_COPY | PH_SEPARATE);
 	add_assoc_stringl_ex(&_2, SL("method"), SL("insert"));
 	zephir_array_update_string(&_2, SL("initial_data"), &data, PH_COPY | PH_SEPARATE);
@@ -136,9 +136,9 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
 		zephir_read_property(&_5$$3, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_6$$3, &_5$$3, "key", NULL, 0);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_7$$3, &info, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/FeatureTest/SplObjectStorageTest.zep", 29 TSRMLS_CC);
+		zephir_array_fetch_string(&_7$$3, &info, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/FeatureTest/SplObjectStorageTest.zep", 29);
 		ZEPHIR_INIT_NVAR(&_8$$3);
-		zephir_get_class(&_8$$3, &obj, 0 TSRMLS_CC);
+		zephir_get_class(&_8$$3, &obj, 0);
 		ZEPHIR_INIT_NVAR(&_9$$3);
 		ZEPHIR_GET_CONSTANT(&_9$$3, "PHP_EOL");
 		ZEPHIR_INIT_NVAR(&_10$$3);

@@ -27,7 +27,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
 	/**
 	 * @var <\Phalcon\DI>
 	 */
-	zend_declare_property_null(phalconplus_base_service_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_service_ce, SL("di"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -92,7 +92,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 	zephir_fetch_params(1, 1, 0, &key_param);
 
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {

@@ -87,7 +87,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 			RETURN_MM_NULL();
 		}
 		object_init_ex(&_2$$6, _4$$6);
-		if (zephir_has_constructor(&_2$$6 TSRMLS_CC)) {
+		if (zephir_has_constructor(&_2$$6)) {
 			ZEPHIR_CALL_METHOD(NULL, &_2$$6, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
@@ -117,7 +117,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 	zephir_fetch_params(1, 1, 0, &prop_param);
 
 	if (UNEXPECTED(Z_TYPE_P(prop_param) != IS_STRING && Z_TYPE_P(prop_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'prop' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'prop' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(prop_param) == IS_STRING)) {

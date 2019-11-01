@@ -11,18 +11,18 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
 	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/base/protobuffer.zep.c
 	phalconplus/enum/abstractenum.zep.c
+	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
-	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
 	phalconplus/base/abstractrequest.zep.c
 	phalconplus/base/abstractresponse.zep.c
+	phalconplus/base/exception.zep.c
 	phalconplus/db/pdo/abstractmysql.zep.c
 	phalconplus/rpc/server/abstractserver.zep.c
 	phalconplus/assert/assertion.zep.c
 	phalconplus/assert/invalidargumentexception.zep.c
 	phalconplus/base/abstractmodule.zep.c
-	phalconplus/base/exception.zep.c
 	phalconplus/base/model.zep.c
 	phalconplus/base/moduledef.zep.c
 	phalconplus/base/pagable.zep.c
@@ -32,6 +32,10 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/simplerequest.zep.c
 	phalconplus/base/simpleresponse.zep.c
 	phalconplus/bootstrap.zep.c
+	phalconplus/curl/curl.zep.c
+	phalconplus/curl/exception.zep.c
+	phalconplus/curl/request.zep.c
+	phalconplus/curl/response.zep.c
 	phalconplus/db/mysql.zep.c
 	phalconplus/db/pdo/mysql.zep.c
 	phalconplus/db/unitofwork.zep.c
@@ -50,6 +54,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/logger/processor/trace.zep.c
 	phalconplus/logger/processor/uid.zep.c
 	phalconplus/mvc/psrapplication.zep.c
+	phalconplus/rpc/client/adapter/curl.zep.c
 	phalconplus/rpc/client/adapter/local.zep.c
 	phalconplus/rpc/client/adapter/remote.zep.c
 	phalconplus/rpc/server/simpleserver.zep.c

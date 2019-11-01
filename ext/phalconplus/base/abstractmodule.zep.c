@@ -22,9 +22,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractModule) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, AbstractModule, phalconplus, base_abstractmodule, phalconplus_base_abstractmodule_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
-	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("di"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("def"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("def"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 

@@ -10,12 +10,12 @@ class Pagable extends ProtoBuffer
     protected pageSize = self::DEFAULT_PAGE_SIZE;
     protected orderBys = [];
 
-    public function getPageNo()
+    public function getPageNo() -> int
     {
         return this->pageNo;
     }
 
-    public function getPageSize()
+    public function getPageSize() -> int
     {
         return this->pageSize;
     }
@@ -23,6 +23,16 @@ class Pagable extends ProtoBuffer
     public function getOrderBys() -> <\PhalconPlus\Base\ProtoOrderBy>
     {
         return this->orderBys;
+    }
+
+    public function getOffset() -> int
+    {
+        return (this->pageNo - 1) * this->pageSize;
+    }
+
+    public function getLimit() -> int
+    {
+        return this->pageSize;
     }
 
     public function setOrderBy(<\PhalconPlus\Base\ProtoOrderBy> orderBy)
