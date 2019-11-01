@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Logger\Processor;
 
-
 class Trace extends \PhalconPlus\Logger\Processor\AbstractProcessor
 {
 
@@ -22,9 +21,13 @@ class Trace extends \PhalconPlus\Logger\Processor\AbstractProcessor
      * @param int $mode
      * @param array $skipClassesPartials
      */
-    public function __construct(int $mode = self::T_FILE, array $skipClassesPartials = array()) {}
+    public function __construct(int $mode = self::T_FILE, array $skipClassesPartials = array())
+    {
+    }
 
 
-    public function __toString() {}
+    public function __toString()
+    {
+    }
 
 }

@@ -2,8 +2,10 @@
 
 namespace PhalconPlus\Enum;
 
+use PhalconPlus\Enum\AbstractEnum;
+use PhalconPlus\Enum\Sys;
 
-class RunMode extends \PhalconPlus\Enum\AbstractEnum
+class RunMode extends AbstractEnum
 {
 
     const WEB = 'Web';
@@ -30,11 +32,15 @@ class RunMode extends \PhalconPlus\Enum\AbstractEnum
     /**
      * @return string|null
      */
-    public function getScriptPath(): ?string {}
+    public function getScriptPath(): ?string
+    {
+    }
 
     /**
      * @return string
      */
-    public function getMapClassName(): string {}
+    public function getMapClassName(): string
+    {
+    }
 
 }

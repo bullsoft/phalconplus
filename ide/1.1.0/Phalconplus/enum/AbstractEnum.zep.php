@@ -2,12 +2,8 @@
 
 namespace PhalconPlus\Enum;
 
-
 abstract class AbstractEnum implements \JsonSerializable
 {
-
-    const DEFAULT_VALUE = '__PhalconPlus_AbstractEnum_DefaultValue__';
-
 
     protected $val;
 
@@ -15,30 +11,54 @@ abstract class AbstractEnum implements \JsonSerializable
     /**
      * @param mixed $val
      */
-    public function __construct($val = self::DEFAULT_VALUE) {}
+    public function __construct($val = '__PhalconPlus_AbstractEnum_DefaultValue__')
+    {
+    }
 
     /**
      * @param mixed $val
      */
-    protected function setValue($val) {}
+    protected function setValue($val)
+    {
+    }
 
 
-    public function getValue() {}
+    public function getValue()
+    {
+    }
 
     /**
      * @param mixed $val
      */
-    public static function isValid($val) {}
+    public static function isValid($val)
+    {
+    }
+
+
+    public static function commaString()
+    {
+    }
+
+
+    public static function getValues()
+    {
+    }
 
     /**
      * @param bool $assoc
      */
-    public static function validValues(bool $assoc = false) {}
+    public static function validValues(bool $assoc = false)
+    {
+    }
 
 
-    public function jsonSerialize() {}
+    public function jsonSerialize()
+    {
+    }
 
 
-    public function __toString() {}
+    public function __toString()
+    {
+    }
 
 }

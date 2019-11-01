@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Assert;
 
-
 interface AssertionFailedException
 {
 

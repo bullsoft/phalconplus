@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Base;
 
-
 abstract class AbstractModule
 {
 
@@ -16,23 +15,33 @@ abstract class AbstractModule
      * @param \Phalcon\DI $di
      * @param \PhalconPlus\Base\ModuleDef $def
      */
-    public function __construct(\Phalcon\DI $di, \PhalconPlus\Base\ModuleDef $def = null) {}
+    public function __construct(\Phalcon\DI $di, \PhalconPlus\Base\ModuleDef $def = null)
+    {
+    }
 
     /**
      * @return \PhalconPlus\Base\ModuleDef
      */
-    public function getDef(): \PhalconPlus\Base\ModuleDef {}
+    public function getDef(): \PhalconPlus\Base\ModuleDef
+    {
+    }
 
     /**
      * @return \Phalcon\Di
      */
-    public function getDi(): \Phalcon\Di {}
+    public function getDi(): \Phalcon\Di
+    {
+    }
 
 
-    public function isPrimary() {}
+    public function isPrimary()
+    {
+    }
 
 
-    public function getBootstrap() {}
+    public function getBootstrap()
+    {
+    }
 
 
     abstract public function registerAutoloaders();

@@ -2,6 +2,13 @@
 
 namespace PhalconPlus\Db;
 
+use SplObjectStorage;
+use PhalconPlus\Base\Exception;
+use Phalcon\Mvc\Model\Transaction\Manager;
+use Phalcon\Mvc\Model\Transaction\Failed;
+use PhalconPlus\Db\UnitOfWork\AbstractValue;
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Resultset;
 
 class UnitOfWork
 {
@@ -30,87 +37,119 @@ class UnitOfWork
     /**
      * @param mixed $dbServiceName
      */
-    public function __construct($dbServiceName) {}
+    public function __construct($dbServiceName)
+    {
+    }
 
     /**
      * @param mixed $name
      * @param \PhalconPlus\Base\Model $model
      * @param array $initial_data
      */
-    public function save($name, \PhalconPlus\Base\Model $model, array $initial_data = array()) {}
+    public function save($name, \PhalconPlus\Base\Model $model, array $initial_data = array())
+    {
+    }
 
     /**
      * @param mixed $name
      * @param \PhalconPlus\Base\Model $model
      * @param array $initial_data
      */
-    public function insert($name, \PhalconPlus\Base\Model $model, array $initial_data = array()) {}
+    public function insert($name, \PhalconPlus\Base\Model $model, array $initial_data = array())
+    {
+    }
 
     /**
+     * @param \Phalcon\Mvc\Model | \Phalcon\Mvc\Model\Resultset $model
      * @param mixed $name
-     * @param mixed $model
      * @param array $initial_data
-     * @param \Phalcon\Mvc\Model $| \Phalcon\Mvc\Model\Resultset model
      */
-    public function update($name, $model, array $initial_data = array()) {}
+    public function update($name, $model, array $initial_data = array())
+    {
+    }
 
     /**
+     * @param \Phalcon\Mvc\Model | \Phalcon\Mvc\Model\Resultset $model
      * @param mixed $name
-     * @param object $model
-     * @param \Phalcon\Mvc\Model $| \Phalcon\Mvc\Model\Resultset model
      */
-    public function delete($name, $model) {}
+    public function delete($name, $model)
+    {
+    }
 
     /**
      * @param mixed $model
      * @param mixed $info
      */
-    protected function attach($model, $info) {}
+    protected function attach($model, $info)
+    {
+    }
 
     /**
      * @param mixed $model
      */
-    public function detach($model) {}
+    public function detach($model)
+    {
+    }
 
     /**
      * @return bool
      */
-    public function exec(): bool {}
+    public function exec(): bool
+    {
+    }
 
     /**
      * @param \Phalcon\Mvc\Model $model
      * @param array $info
      */
-    public function execInsert(\Phalcon\Mvc\Model $model, array $info) {}
+    public function execInsert(\Phalcon\Mvc\Model $model, array $info)
+    {
+    }
 
     /**
      * @param mixed $model
      * @param array $info
      */
-    public function execUpdate($model, array $info = array()) {}
+    public function execUpdate($model, array $info = array())
+    {
+    }
 
     /**
      * @param mixed $model
      * @param array $info
      */
-    public function execDelete($model, array $info = array()) {}
+    public function execDelete($model, array $info = array())
+    {
+    }
 
 
-    public function getObjects() {}
+    public function getObjects()
+    {
+    }
 
 
-    public function getInserted() {}
+    public function getInserted()
+    {
+    }
 
 
-    public function getUpdated() {}
+    public function getUpdated()
+    {
+    }
 
 
-    public function getDeleted() {}
+    public function getDeleted()
+    {
+    }
 
 
-    public function getException() {}
+    public function getException()
+    {
+    }
 
 
-    public function getFailed() {}
+    public function getFailed()
+    {
+    }
 
 }

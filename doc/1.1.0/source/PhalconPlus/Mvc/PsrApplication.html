@@ -195,7 +195,7 @@ class PsrApplication extends BaseApplication
         if isset(nativeHeaders["Set-Cookie"]) {
             let headers["Set-Cookie"] = is_array(nativeHeaders["Set-Cookie"])?nativeHeaders["Set-Cookie"]:[nativeHeaders["Set-Cookie"]];
         } else {
-            let headers["Set-Cookie"] = [];
+            let headers["Set-Cookie"] = null;
         }
         return headers;
     }

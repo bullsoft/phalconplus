@@ -293,7 +293,7 @@ final class Bootstrap
         return this->application->handle(request);
     }
 
-    public function execSrv() -> boolean | <\PhalconPlus\Bootstrap>
+    public function execSrv() -> <\Phalcon\Http\Response> | <\PhalconPlus\Bootstrap>
     {
         // 如果此方法被直接调用需要自己加载配置
         if empty this->config { this->initConf(); }
@@ -327,7 +327,15 @@ final class Bootstrap
         if !this->autoHandle { return this; }
 
         // Handle
-        return this->application->handle();
+        ob_start();
+        this->application->handle();
+        var content = ob_get_clean();
+
+        var response;
+        let response = new \Phalcon\Http\Response();
+        response->setStatusCode(200, "OK");
+        response->setContent(content);
+        return response;
     }
 
     public function execTask(array argv, <\Phalcon\DI\FactoryDefault> di = null)

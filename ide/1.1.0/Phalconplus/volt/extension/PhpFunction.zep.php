@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Volt\Extension;
 
-
 class PhpFunction
 {
 
@@ -15,14 +14,20 @@ class PhpFunction
     /**
      * @param string $ns
      */
-    public function setCustNamespace(string $ns) {}
+    public function setCustNamespace(string $ns)
+    {
+    }
 
     /**
      * @param string $func
      */
-    public function setCustFuncName(string $func) {}
+    public function setCustFuncName(string $func)
+    {
+    }
 
 
-    public function compileFunction() {}
+    public function compileFunction()
+    {
+    }
 
 }

@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Db;
 
-
 class Mysql
 {
 
@@ -40,12 +39,16 @@ class Mysql
      * @param \Phalcon\DI $di
      * @param string $name
      */
-    public function __construct(\Phalcon\DI $di, string $name) {}
+    public function __construct(\Phalcon\DI $di, string $name)
+    {
+    }
 
     /**
      * @param bool $autoConnect
      * @return \Phalcon\Db\Adapter\Pdo\Mysql
      */
-    public function getConnection(bool $autoConnect = true): \Phalcon\Db\Adapter\Pdo\Mysql {}
+    public function getConnection(bool $autoConnect = true): \Phalcon\Db\Adapter\Pdo\Mysql
+    {
+    }
 
 }

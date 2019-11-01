@@ -2,6 +2,7 @@
 
 namespace PhalconPlus\Rpc\Server;
 
+use PhalconPlus\Base\ProtoBuffer;
 
 abstract class AbstractServer
 {
@@ -16,10 +17,14 @@ abstract class AbstractServer
 
 
 
-    public function getDi() {}
+    public function getDi()
+    {
+    }
 
 
-    public function getPhpOnly() {}
+    public function getPhpOnly()
+    {
+    }
 
     /**
      * @param \Phalcon\DI $di
@@ -31,18 +36,20 @@ abstract class AbstractServer
      * @param string $method
      * @param mixed $request
      */
-    protected function callByParams(string $service, string $method, $request) {}
+    protected function callByParams(string $service, string $method, $request)
+    {
+    }
 
     /**
-     * @param array rawData
-     * <code>
+     * @param array $rawData * <code>
      *     rawData = ["service":"Demo", "method":"demo", "args": <ProtoBuffer>, "logId": "234fdfaf3334"]
      * </code>
+     * @return <ProtoBuffer>
      * @throw \Exception
      *
-     * @param array $rawData
-     * @return <ProtoBuffer>
      */
-    public function callByObject(array $rawData) {}
+    public function callByObject(array $rawData)
+    {
+    }
 
 }

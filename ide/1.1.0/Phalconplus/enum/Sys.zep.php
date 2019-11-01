@@ -2,8 +2,9 @@
 
 namespace PhalconPlus\Enum;
 
+use PhalconPlus\Enum\AbstractEnum;
 
-class Sys extends \PhalconPlus\Enum\AbstractEnum
+class Sys extends AbstractEnum
 {
 
     const COMMON_NAME = 'common';
@@ -39,62 +40,86 @@ class Sys extends \PhalconPlus\Enum\AbstractEnum
     /**
      * @param string $moduleDir
      */
-    public static function init(string $moduleDir) {}
+    public static function init(string $moduleDir)
+    {
+    }
 
     /**
      * @return string
      */
-    public static function getPrimaryModuleDir(): string {}
+    public static function getPrimaryModuleDir(): string
+    {
+    }
 
     /**
      * @return string
      */
-    public static function getRootDir(): string {}
+    public static function getRootDir(): string
+    {
+    }
 
     /**
      * @return string
      */
-    public static function getCommonDir(): string {}
+    public static function getCommonDir(): string
+    {
+    }
 
     /**
      * @return string
      */
-    public static function getGlobalConfigDir(): string {}
+    public static function getGlobalConfigDir(): string
+    {
+    }
 
     /**
      * @return string
      */
-    public static function getGlobalConfigPath(): string {}
+    public static function getGlobalConfigPath(): string
+    {
+    }
 
     /**
      * @return string
      */
-    public static function getGlobalLoadDir(): string {}
+    public static function getGlobalLoadDir(): string
+    {
+    }
 
     /**
      * @param string $moduleName
      * @return string
      */
-    public static function getModuleDirByName(string $moduleName): string {}
+    public static function getModuleDirByName(string $moduleName): string
+    {
+    }
 
     /**
      * @param string $moduleDir
      * @return string
      */
-    public static function getModuleNameByDir(string $moduleDir): string {}
+    public static function getModuleNameByDir(string $moduleDir): string
+    {
+    }
 
     /**
      * @param string $moduleDir
      * @param \PhalconPlus\Enum\RunMode $runMode
      */
-    public static function getModuleClassPath(string $moduleDir, \PhalconPlus\Enum\RunMode $runMode) {}
+    public static function getModuleClassPath(string $moduleDir, \PhalconPlus\Enum\RunMode $runMode)
+    {
+    }
 
     /**
      * @param string $moduleDir
      */
-    public static function getModuleConfigPath(string $moduleDir) {}
+    public static function getModuleConfigPath(string $moduleDir)
+    {
+    }
 
 
-    public static function getComposerAutoloadPath() {}
+    public static function getComposerAutoloadPath()
+    {
+    }
 
 }

@@ -2,6 +2,7 @@
 
 namespace PhalconPlus\Rpc;
 
+use Phalcon\DiInterface;
 
 class Yar extends Phalcon\Application
 {
@@ -16,22 +17,30 @@ class Yar extends Phalcon\Application
 
 
 
-    public function getServiceObj() {}
+    public function getServiceObj()
+    {
+    }
 
 
-    public function getRequestArgs() {}
+    public function getRequestArgs()
+    {
+    }
 
 
-    public function getResponseBody() {}
+    public function getResponseBody()
+    {
+    }
 
     /**
      * @param \Phalcon\DiInterface $di
      */
-    public function __construct(\Phalcon\DiInterface $di = null) {}
+    public function __construct(\Phalcon\DiInterface $di = null)
+    {
+    }
 
-    /**
-     * @return \Phalcon\Http\Response
-     */
-    public function handle(): \Phalcon\Http\Response {}
+
+    public function handle()
+    {
+    }
 
 }

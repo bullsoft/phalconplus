@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Logger\Formatter;
 
-
 class LinePlus extends Phalcon\Logger\Formatter implements \Phalcon\Logger\FormatterInterface
 {
 
@@ -15,7 +14,9 @@ class LinePlus extends Phalcon\Logger\Formatter implements \Phalcon\Logger\Forma
     /**
      * @param string $formatString
      */
-    public function __construct(string $formatString) {}
+    public function __construct(string $formatString)
+    {
+    }
 
     /**
      * @param mixed $message
@@ -24,22 +25,30 @@ class LinePlus extends Phalcon\Logger\Formatter implements \Phalcon\Logger\Forma
      * @param mixed $context
      * @return string|array
      */
-    public function format($message, $type, $timestamp, $context = null) {}
+    public function format($message, $type, $timestamp, $context = null)
+    {
+    }
 
     /**
      * @param string $name
      * @param \PhalconPlus\Logger\Processor\AbstractProcessor $processor
      */
-    public function addProcessor(string $name, \PhalconPlus\Logger\Processor\AbstractProcessor $processor) {}
+    public function addProcessor(string $name, \PhalconPlus\Logger\Processor\AbstractProcessor $processor)
+    {
+    }
 
     /**
      * @param string $name
      */
-    public function getProcessor(string $name) {}
+    public function getProcessor(string $name)
+    {
+    }
 
     /**
      * @param string $key
      */
-    public function __get(string $key) {}
+    public function __get(string $key)
+    {
+    }
 
 }

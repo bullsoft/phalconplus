@@ -2,8 +2,9 @@
 
 namespace PhalconPlus\Enum;
 
+use PhalconPlus\Enum\AbstractEnum;
 
-class RunEnv extends \PhalconPlus\Enum\AbstractEnum
+class RunEnv extends AbstractEnum
 {
 
     const DEV = 'dev';
@@ -34,9 +35,13 @@ class RunEnv extends \PhalconPlus\Enum\AbstractEnum
      * @param string $env
      * @return bool
      */
-    public static function isInProd(string $env): bool {}
+    public static function isInProd(string $env): bool
+    {
+    }
 
 
-    public function isInAbTest() {}
+    public function isInAbTest()
+    {
+    }
 
 }

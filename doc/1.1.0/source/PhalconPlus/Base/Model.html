@@ -220,7 +220,17 @@ class Model extends \Phalcon\Mvc\Model
     }
 
     /**
+     * @alias findByPagable()
+     */
+    public function findByPageable(<Pagable> pagable, array params = [])
+    {
+        return this->findByPagable(pagable, params);
+    }
+
+    /**
      * find with paginator
+     * Sorry for the typo with method name 
+     *
      * @var array params
      *    - params["columns"]
      *    - params["conditions"]

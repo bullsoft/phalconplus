@@ -2,8 +2,7 @@
 
 namespace PhalconPlus\Assert;
 
-
-class InvalidArgumentException extends InvalidArgumentException implements \PhalconPlus\Assert\AssertionFailedException
+class InvalidArgumentException extends \InvalidArgumentException implements \PhalconPlus\Assert\AssertionFailedException
 {
 
     private $propertyPath;
@@ -22,15 +21,23 @@ class InvalidArgumentException extends InvalidArgumentException implements \Phal
      * @param mixed $value
      * @param array $constraints
      */
-    public function __construct($message, $code, $propertyPath = null, $value, array $constraints = array()) {}
+    public function __construct($message, $code, $propertyPath = null, $value, array $constraints = array())
+    {
+    }
 
 
-    public function getPropertyPath() {}
+    public function getPropertyPath()
+    {
+    }
 
 
-    public function getValue() {}
+    public function getValue()
+    {
+    }
 
 
-    public function getConstraints() {}
+    public function getConstraints()
+    {
+    }
 
 }

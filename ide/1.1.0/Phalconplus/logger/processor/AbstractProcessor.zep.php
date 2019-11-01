@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Logger\Processor;
 
-
 abstract class AbstractProcessor
 {
 

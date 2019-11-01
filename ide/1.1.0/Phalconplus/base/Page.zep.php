@@ -2,6 +2,8 @@
 
 namespace PhalconPlus\Base;
 
+use PhalconPlus\Assert\Assertion;
+use Phalcon\Mvc\Model\Resultset;
 
 class Page extends \PhalconPlus\Base\ProtoBuffer
 {
@@ -33,42 +35,68 @@ class Page extends \PhalconPlus\Base\ProtoBuffer
      * @param mixed $totalSize
      * @param \Phalcon\Mvc\Model\Resultset $data
      */
-    public function __construct(Pagable $pagable, $totalSize, \Phalcon\Mvc\Model\Resultset $data) {}
+    public function __construct(Pagable $pagable, $totalSize, \Phalcon\Mvc\Model\Resultset $data)
+    {
+    }
 
 
-    public function setPageNo() {}
+    public function setPageNo()
+    {
+    }
 
 
-    public function setPageSize() {}
+    public function setPageSize()
+    {
+    }
 
 
-    public function setTotalPage() {}
+    public function setTotalPage()
+    {
+    }
 
 
-    public function getPageNo() {}
+    public function getPageNo()
+    {
+    }
 
 
-    public function getTotalPage() {}
+    public function getTotalPage()
+    {
+    }
 
 
-    public function getTotalSize() {}
+    public function getTotalSize()
+    {
+    }
 
 
-    public function hasPreviousPage() {}
+    public function hasPreviousPage()
+    {
+    }
 
 
-    public function isFirstPage() {}
+    public function isFirstPage()
+    {
+    }
 
 
-    public function isLastPage() {}
+    public function isLastPage()
+    {
+    }
 
 
-    public function hasNextPage() {}
+    public function hasNextPage()
+    {
+    }
 
 
-    public function getData() {}
+    public function getData()
+    {
+    }
 
 
-    public function isEmpty() {}
+    public function isEmpty()
+    {
+    }
 
 }

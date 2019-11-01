@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Rpc\Client;
 
-
 abstract class AbstractClient
 {
 

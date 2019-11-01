@@ -2,6 +2,15 @@
 
 namespace PhalconPlus\Http;
 
+use Phalcon\Http\Request;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UploadedFileInterface;
+use Phalcon\DiInterface;
+use Phalcon\FilterInterface;
+use Phalcon\Http\Request\File;
+use Phalcon\Http\Request\Exception;
+use Phalcon\Events\ManagerInterface;
+use Phalcon\Di\InjectionAwareInterface;
 
 class PsrRequest extends Phalcon\Http\Request
 {
@@ -22,72 +31,102 @@ class PsrRequest extends Phalcon\Http\Request
 
 
 
-    public function getAttributes() {}
+    public function getAttributes()
+    {
+    }
 
 
-    public function getCookies() {}
+    public function getCookies()
+    {
+    }
 
 
-    public function getFiles() {}
+    public function getFiles()
+    {
+    }
 
 
-    public function getPsrRequest() {}
+    public function getPsrRequest()
+    {
+    }
 
     /**
      * @param \Psr\Http\Message\ServerRequestInterface $request
      */
-    public function __construct(\Psr\Http\Message\ServerRequestInterface $request) {}
+    public function __construct(\Psr\Http\Message\ServerRequestInterface $request)
+    {
+    }
 
     /**
      * @param \Psr\Http\Message\ServerRequestInterface $request
      */
-    protected static function getRequestTarget(\Psr\Http\Message\ServerRequestInterface $request) {}
+    protected static function getRequestTarget(\Psr\Http\Message\ServerRequestInterface $request)
+    {
+    }
 
     /**
      * @param array $uploads
      */
-    private function mapFiles(array $uploads) {}
+    private function mapFiles(array $uploads)
+    {
+    }
 
 
-    public function removeTmpFiles() {}
+    public function removeTmpFiles()
+    {
+    }
 
     /**
      * @return string
      */
-    public function getScheme(): string {}
+    public function getScheme(): string
+    {
+    }
 
     /**
      * Checks whether request has been made using ajax
      *
      * @return bool
      */
-    public function isAjax(): bool {}
+    public function isAjax(): bool
+    {
+    }
 
     /**
      * Checks whether request has been made using SOAP
      *
      * @return bool
      */
-    public function isSoap(): bool {}
+    public function isSoap(): bool
+    {
+    }
 
     /**
      * @return string
      */
-    public function getHttpHost(): string {}
+    public function getHttpHost(): string
+    {
+    }
 
     /**
      * @return int
      */
-    public function getPort(): int {}
+    public function getPort(): int
+    {
+    }
 
     /**
      * @return array
      */
-    public function getHeaders(): array {}
+    public function getHeaders(): array
+    {
+    }
 
     /**
      * @return string|null
      */
-    public function getContentType(): ?string {}
+    public function getContentType(): ?string
+    {
+    }
 
 }

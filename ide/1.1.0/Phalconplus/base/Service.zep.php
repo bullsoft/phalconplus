@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Base;
 
-
 class Service
 {
     /**
@@ -14,19 +13,27 @@ class Service
     /**
      * @param \Phalcon\DI $di
      */
-    final public function __construct(\Phalcon\DI $di) {}
+    final public function __construct(\Phalcon\DI $di)
+    {
+    }
 
 
-    protected function onConstruct() {}
+    protected function onConstruct()
+    {
+    }
 
     /**
      * @return \Phalcon\DI
      */
-    protected function getDI(): \Phalcon\DI {}
+    protected function getDI(): \Phalcon\DI
+    {
+    }
 
     /**
      * @param string $key
      */
-    protected function __get(string $key) {}
+    protected function __get(string $key)
+    {
+    }
 
 }

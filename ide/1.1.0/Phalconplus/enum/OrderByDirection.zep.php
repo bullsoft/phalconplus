@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Enum;
 
-
 class OrderByDirection extends \PhalconPlus\Enum\AbstractEnum
 {
 

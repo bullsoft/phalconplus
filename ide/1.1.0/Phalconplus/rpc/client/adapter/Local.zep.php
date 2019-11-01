@@ -2,8 +2,10 @@
 
 namespace PhalconPlus\Rpc\Client\Adapter;
 
+use PhalconPlus\Rpc\Client\AbstractClient;
+use PhalconPlus\Base\ProtoBuffer;
 
-class Local extends \PhalconPlus\Rpc\Client\AbstractClient
+class Local extends AbstractClient
 {
 
     private $config;
@@ -15,7 +17,9 @@ class Local extends \PhalconPlus\Rpc\Client\AbstractClient
     /**
      * @param \Phalcon\DI $di
      */
-    public function __construct(\Phalcon\DI $di) {}
+    public function __construct(\Phalcon\DI $di)
+    {
+    }
 
     /**
      * @param string $service
@@ -23,11 +27,15 @@ class Local extends \PhalconPlus\Rpc\Client\AbstractClient
      * @param \PhalconPlus\Base\ProtoBuffer $request
      * @return \PhalconPlus\Base\ProtoBuffer
      */
-    private function callByParams(string $service, string $method, \PhalconPlus\Base\ProtoBuffer $request): ProtoBuffer {}
+    private function callByParams(string $service, string $method, \PhalconPlus\Base\ProtoBuffer $request): ProtoBuffer
+    {
+    }
 
     /**
      * @param array $rawData
      */
-    public function callByObject(array $rawData) {}
+    public function callByObject(array $rawData)
+    {
+    }
 
 }

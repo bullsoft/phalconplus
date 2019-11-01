@@ -2,8 +2,9 @@
 
 namespace PhalconPlus\Enum;
 
+use PhalconPlus\Enum\AbstractEnum;
 
-class Exception extends \PhalconPlus\Enum\AbstractEnum
+class Exception extends AbstractEnum
 {
 
     static protected $details;
@@ -12,29 +13,43 @@ class Exception extends \PhalconPlus\Enum\AbstractEnum
     /**
      * @param mixed $eCode
      */
-    protected static function has($eCode) {}
+    protected static function has($eCode)
+    {
+    }
 
     /**
      * @param mixed $eCode
      */
-    public static function getByCode($eCode) {}
+    public static function getByCode($eCode)
+    {
+    }
 
     /**
      * @param mixed $e
      * @param \Phalcon\Logger\Adapter $logger
      */
-    public static function newException($e, \Phalcon\Logger\Adapter $logger = null) {}
+    public static function newException($e, \Phalcon\Logger\Adapter $logger = null)
+    {
+    }
 
 
-    public static function exceptionClassPrefix() {}
+    public static function exceptionClassPrefix()
+    {
+    }
 
 
-    public function getMessage() {}
+    public function getMessage()
+    {
+    }
 
 
-    public function getLevel() {}
+    public function getLevel()
+    {
+    }
 
 
-    public function getCode() {}
+    public function getCode()
+    {
+    }
 
 }

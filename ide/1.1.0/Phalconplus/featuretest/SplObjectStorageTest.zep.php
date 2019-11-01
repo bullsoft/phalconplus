@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\FeatureTest;
 
-
 class SplObjectStorageTest
 {
 
@@ -10,16 +9,22 @@ class SplObjectStorageTest
 
 
 
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     /**
      * @param mixed $name
      * @param \stdClass $obj
      * @param array $data
      */
-    public function insert($name, \stdClass $obj, array $data = array()) {}
+    public function insert($name, \stdClass $obj, array $data = array())
+    {
+    }
 
 
-    public function exec() {}
+    public function exec()
+    {
+    }
 
 }

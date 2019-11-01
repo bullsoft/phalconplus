@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Base;
 
-
 final class SimpleResponse extends \PhalconPlus\Base\AbstractResponse
 {
     /**
@@ -14,32 +13,49 @@ final class SimpleResponse extends \PhalconPlus\Base\AbstractResponse
     /**
      * @param array $data
      */
-    public function softClone(array $data) {}
+    public function softClone(array $data)
+    {
+    }
 
 
-    public function getResult() {}
+    public function getResult()
+    {
+    }
 
     /**
      * @param array $result
      */
-    public function setResult(array $result = array()) {}
+    public function setResult(array $result = array())
+    {
+    }
 
     /**
      * @deprecated
      * @param mixed $val
      * @param mixed $key
      */
-    public function pushItem($val, $key = null) {}
+    public function pushItem($val, $key = null)
+    {
+    }
 
     /**
      * @param mixed $val
      * @param mixed $key
      */
-    public function setItem($val, $key = null) {}
+    public function setItem($val, $key = null)
+    {
+    }
 
     /**
      * @param mixed $key
      */
-    public function getItem($key = null) {}
+    public function getItem($key = null)
+    {
+    }
+
+
+    public function isEmpty()
+    {
+    }
 
 }

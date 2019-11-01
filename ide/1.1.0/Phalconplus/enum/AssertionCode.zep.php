@@ -2,7 +2,6 @@
 
 namespace PhalconPlus\Enum;
 
-
 class AssertionCode extends \PhalconPlus\Enum\AbstractEnum
 {
 
