@@ -467,11 +467,11 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 			}
 			_5$$5 = Z_TYPE_P(&val) == IS_OBJECT;
 			if (_5$$5) {
-				_5$$5 = (zephir_method_exists_ex(&val, SL("toarray")) == SUCCESS);
+				_5$$5 = (zephir_method_exists_ex(&val, ZEND_STRL("toarray")) == SUCCESS);
 			}
 			_6$$5 = Z_TYPE_P(&val) == IS_OBJECT;
 			if (_6$$5) {
-				_6$$5 = (zephir_method_exists_ex(&val, SL("__tostring")) == SUCCESS);
+				_6$$5 = (zephir_method_exists_ex(&val, ZEND_STRL("__tostring")) == SUCCESS);
 			}
 			if (_4$$5) {
 				ZEPHIR_CALL_METHOD(&_7$$6, this_ptr, "toarray", &_8, 10, &val);
@@ -508,11 +508,11 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 				}
 				_12$$10 = Z_TYPE_P(&val) == IS_OBJECT;
 				if (_12$$10) {
-					_12$$10 = (zephir_method_exists_ex(&val, SL("toarray")) == SUCCESS);
+					_12$$10 = (zephir_method_exists_ex(&val, ZEND_STRL("toarray")) == SUCCESS);
 				}
 				_13$$10 = Z_TYPE_P(&val) == IS_OBJECT;
 				if (_13$$10) {
-					_13$$10 = (zephir_method_exists_ex(&val, SL("__tostring")) == SUCCESS);
+					_13$$10 = (zephir_method_exists_ex(&val, ZEND_STRL("__tostring")) == SUCCESS);
 				}
 				if (_11$$10) {
 					ZEPHIR_CALL_METHOD(&_14$$11, this_ptr, "toarray", &_8, 10, &val);

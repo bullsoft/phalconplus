@@ -145,11 +145,11 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uri_param = NULL, psrRequest, _0, _1, _3, _4, _5, _6, reqUri, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
-	zval uri;
+	zval *uri = NULL, uri_sub, __$null, psrRequest, _0, _1, _3, _4, _5, _6, reqUri, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&uri);
+	ZVAL_UNDEF(&uri_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&psrRequest);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -176,13 +176,11 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZVAL_UNDEF(&_16$$8);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &uri_param);
+	zephir_fetch_params(1, 0, 1, &uri);
 
-	if (!uri_param) {
-		ZEPHIR_INIT_VAR(&uri);
-		ZVAL_STRING(&uri, "");
-	} else {
-		zephir_get_strval(&uri, uri_param);
+	if (!uri) {
+		uri = &uri_sub;
+		uri = &__$null;
 	}
 
 

@@ -326,7 +326,7 @@ PHP_METHOD(PhalconPlus_Base_Model, batchInsert) {
 		ZEPHIR_CALL_METHOD(NULL, &model, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	if ((zephir_method_exists_ex(&model, SL("columnmap")) == SUCCESS)) {
+	if ((zephir_method_exists_ex(&model, ZEND_STRL("columnmap")) == SUCCESS)) {
 		ZEPHIR_CALL_METHOD(&_2$$3, &model, "columnmap", NULL, 0);
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(&columnMap, "array_flip", NULL, 38, &_2$$3);
