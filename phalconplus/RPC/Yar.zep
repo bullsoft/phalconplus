@@ -12,20 +12,31 @@ class Yar extends \Phalcon\Application
     };
     protected responseBody = "not supported http method" {
         get
-    };
+	};
 
-	public function __construct(<DiInterface> di = null)
+	protected formater = "msgpack";
+	protected encoder = "msgpack_pack";
+	protected decoder = "msgpack_unpack";
+
+	public function __construct(<DiInterface> di = null, string formater = "")
 	{
         parent::__construct(di);
 		var rawBody = this->__get("request")->getRawBody();
-		let this->requestArgs = msgpack_unpack(rawBody);
+		if "json" == formater {
+			let this->formater = formater;
+			let this->encoder = "json_encode";
+			let this->decoder = "json_decode";
+			let this->requestArgs = json_decode(rawBody, true);
+		} else {
+			let this->requestArgs = msgpack_unpack(rawBody);
+		}
 	}
 
 	public function handle()// -> <\Phalcon\Http\Response>
 	{
 		if this->__get("request")->isGet() {
 			let this->responseBody = "<h1>Welcome to Phalcon+</h1>
-			<p>If you see this page, the msgpack-rpc server is successfully installed and
+			<p>If you see this page, the phalcon-rpc server is successfully installed and
 			working.</p>";
 		} elseif this->__get("request")->isPost() {
             var e = null;
@@ -45,7 +56,9 @@ class Yar extends \Phalcon\Application
 				let ret["errorCode"] = max(e->getCode(), 1);
 				let ret["errorMsg"] = e->getMessage();
 			}
-			let this->responseBody = msgpack_pack(ret);
+			string encoder;
+			let encoder = this->encoder;
+			let this->responseBody = {encoder}(ret);
 		}
 		echo this->responseBody;
         // var response;

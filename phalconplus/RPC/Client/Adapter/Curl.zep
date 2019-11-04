@@ -8,8 +8,9 @@ class Curl extends AbstractClient
     private remoteServerUrl;
     private client;
     private response { get };
+    private formater = "msgpack";
 
-    public function __construct(array remoteServerUrl, array opts = [])
+    public function __construct(array remoteServerUrl, array opts = [], string formater = "")
     {
         if empty remoteServerUrl {
             throw new \PhalconPlus\Base\Exception("server url can not be empty");
@@ -21,14 +22,27 @@ class Curl extends AbstractClient
         if !empty opts {
             this->client->setDefaultOptions(opts);
         }
+        if "json" == formater {
+            let this->formater = formater;
+        }
     }
 
     public function callByObject(array rawData)
     {
-        let this->response = this->client->rawPost(this->remoteServerUrl, msgpack_pack(rawData));
+        string encoder = "msgpack_pack", 
+               decoder = "msgpack_unpack";
+        if "json" == this->formater {
+            let encoder = "json_encode",
+                decoder = "json_decode";
+        }
+        let this->response = this->client->rawPost(this->remoteServerUrl, {encoder}(rawData));
         if is_object(this->response) {
             if(this->response->statusCode == 200) {
-                return msgpack_unpack(this->response->body);
+                if "json" == this->formater { 
+                    return {decoder}(this->response->body, true);
+                } else {
+                    return {decoder}(this->response->body);
+                }
             }
             return this->response->statusText;
         }

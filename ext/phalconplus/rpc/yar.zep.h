@@ -11,6 +11,11 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_yar___construct, 0, 0, 0)
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DiInterface, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, formater, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, formater)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_rpc_yar_method_entry) {
