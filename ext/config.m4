@@ -48,7 +48,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/runmode.zep.c
 	phalconplus/enum/sys.zep.c
 	phalconplus/featuretest/splobjectstoragetest.zep.c
-	phalconplus/http/psrrequest.zep.c
+	phalconplus/http/nonpsrrequest.zep.c
 	phalconplus/logger/adapter/fileplus.zep.c
 	phalconplus/logger/formatter/lineplus.zep.c
 	phalconplus/logger/multiplefile.zep.c

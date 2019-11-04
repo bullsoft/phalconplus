@@ -24,7 +24,7 @@ class PsrApplication extends BaseApplication
         let this->_sendCookies = false;
         let this->psrRequest = psrRequest;
         // Phalcon\Http\Request
-        let this->nativeRequest = new \PhalconPlus\Http\PsrRequest(psrRequest);
+        let this->nativeRequest = new \PhalconPlus\Http\NonPsrRequest(psrRequest);
     }
 
     public function __destruct()

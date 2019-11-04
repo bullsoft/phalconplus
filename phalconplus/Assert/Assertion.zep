@@ -316,15 +316,32 @@ class Assertion
         return true;
     }
 
-    public static function isInstanceOf(object value, string className, var message = null, var propertyPath = null) -> bool
+    public static function isInstanceOf(object value, var classNames, var message = null, var propertyPath = null) -> bool
     {
-        if !(value instanceof className) {
+        string classItem;
+        bool result = false;
+        if is_string(classNames) {
+            let classItem = classNames;
+            if value instanceof classItem { 
+                let result = true;
+            }
+        } elseif is_array(classNames) { // instance of anyone of classNames
+            var tmp;
+            for tmp in classNames {
+                let classItem = (string) tmp;
+                if value instanceof classItem { 
+                    let result = true;
+                    break;
+                } 
+            }
+        }
+        if result === false {
             let message = sprintf(
                 message ? message : "Class \"%s\" was expected to be instanceof of \"%s\" but is not.",
                 static::stringify(value),
-                className
+                classItem
             );
-            throw static::createException(value, message, AssertionCode::INVALID_INSTANCE_OF, propertyPath, ["class" : className]);
+            throw static::createException(value, message, AssertionCode::INVALID_INSTANCE_OF, propertyPath, ["class" : classItem]);
         }
         return true;
     }

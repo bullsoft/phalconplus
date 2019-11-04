@@ -1435,29 +1435,34 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArray) {
 
 PHP_METHOD(PhalconPlus_Assert_Assertion, isInstanceOf) {
 
-	zval _4$$3;
+	zval _8$$10;
+	zend_bool result;
+	zval classItem, _2$$6, _3$$8;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zephir_fcall_cache_entry *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_2 = NULL;
-	zval className;
-	zval *value, value_sub, *className_param = NULL, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, _0$$3, _1$$3, _3$$3, _5$$3;
+	zval *value, value_sub, *classNames, classNames_sub, *message = NULL, message_sub, *propertyPath = NULL, propertyPath_sub, __$null, tmp$$5, *_0$$5, _1$$5, _4$$10, _5$$10, _7$$10, _9$$10;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&classNames_sub);
 	ZVAL_UNDEF(&message_sub);
 	ZVAL_UNDEF(&propertyPath_sub);
 	ZVAL_NULL(&__$null);
-	ZVAL_UNDEF(&_0$$3);
-	ZVAL_UNDEF(&_1$$3);
-	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_5$$3);
-	ZVAL_UNDEF(&className);
-	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&tmp$$5);
+	ZVAL_UNDEF(&_1$$5);
+	ZVAL_UNDEF(&_4$$10);
+	ZVAL_UNDEF(&_5$$10);
+	ZVAL_UNDEF(&_7$$10);
+	ZVAL_UNDEF(&_9$$10);
+	ZVAL_UNDEF(&classItem);
+	ZVAL_UNDEF(&_2$$6);
+	ZVAL_UNDEF(&_3$$8);
+	ZVAL_UNDEF(&_8$$10);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 2, &value, &className_param, &message, &propertyPath);
+	zephir_fetch_params(1, 2, 2, &value, &classNames, &message, &propertyPath);
 
-	zephir_get_strval(&className, className_param);
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1470,25 +1475,68 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isInstanceOf) {
 	}
 
 
-	if (!(zephir_is_instance_of(value, Z_STRVAL_P(&className), Z_STRLEN_P(&className)))) {
-		ZEPHIR_INIT_VAR(&_0$$3);
-		if (zephir_is_true(message)) {
-			ZEPHIR_CPY_WRT(&_0$$3, message);
-		} else {
-			ZEPHIR_INIT_NVAR(&_0$$3);
-			ZVAL_STRING(&_0$$3, "Class \"%s\" was expected to be instanceof of \"%s\" but is not.");
+	result = 0;
+	if (Z_TYPE_P(classNames) == IS_STRING) {
+		zephir_get_strval(&classItem, classNames);
+		if (zephir_is_instance_of(value, Z_STRVAL_P(&classItem), Z_STRLEN_P(&classItem))) {
+			result = 1;
 		}
-		ZEPHIR_CALL_STATIC(&_1$$3, "stringify", &_2, 27, value);
+	} else if (Z_TYPE_P(classNames) == IS_ARRAY) {
+		zephir_is_iterable(classNames, 0, "phalconplus/Assert/Assertion.zep", 337);
+		if (Z_TYPE_P(classNames) == IS_ARRAY) {
+			ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(classNames), _0$$5)
+			{
+				ZEPHIR_INIT_NVAR(&tmp$$5);
+				ZVAL_COPY(&tmp$$5, _0$$5);
+				zephir_get_strval(&_2$$6, &tmp$$5);
+				ZEPHIR_CPY_WRT(&classItem, &_2$$6);
+				if (zephir_is_instance_of(value, Z_STRVAL_P(&classItem), Z_STRLEN_P(&classItem))) {
+					result = 1;
+					break;
+				}
+			} ZEND_HASH_FOREACH_END();
+		} else {
+			ZEPHIR_CALL_METHOD(NULL, classNames, "rewind", NULL, 0);
+			zephir_check_call_status();
+			while (1) {
+				ZEPHIR_CALL_METHOD(&_1$$5, classNames, "valid", NULL, 0);
+				zephir_check_call_status();
+				if (!zend_is_true(&_1$$5)) {
+					break;
+				}
+				ZEPHIR_CALL_METHOD(&tmp$$5, classNames, "current", NULL, 0);
+				zephir_check_call_status();
+					zephir_get_strval(&_3$$8, &tmp$$5);
+					ZEPHIR_CPY_WRT(&classItem, &_3$$8);
+					if (zephir_is_instance_of(value, Z_STRVAL_P(&classItem), Z_STRLEN_P(&classItem))) {
+						result = 1;
+						break;
+					}
+				ZEPHIR_CALL_METHOD(NULL, classNames, "next", NULL, 0);
+				zephir_check_call_status();
+			}
+		}
+		ZEPHIR_INIT_NVAR(&tmp$$5);
+	}
+	if (result == 0) {
+		ZEPHIR_INIT_VAR(&_4$$10);
+		if (zephir_is_true(message)) {
+			ZEPHIR_CPY_WRT(&_4$$10, message);
+		} else {
+			ZEPHIR_INIT_NVAR(&_4$$10);
+			ZVAL_STRING(&_4$$10, "Class \"%s\" was expected to be instanceof of \"%s\" but is not.");
+		}
+		ZEPHIR_CALL_STATIC(&_5$$10, "stringify", &_6, 27, value);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_0$$3, &_1$$3, &className);
+		ZEPHIR_CALL_FUNCTION(message, "sprintf", NULL, 13, &_4$$10, &_5$$10, &classItem);
 		zephir_check_call_status();
-		ZEPHIR_INIT_VAR(&_4$$3);
-		zephir_create_array(&_4$$3, 1, 0);
-		zephir_array_update_string(&_4$$3, SL("class"), &className, PH_COPY | PH_SEPARATE);
-		ZVAL_LONG(&_5$$3, 28);
-		ZEPHIR_CALL_STATIC(&_3$$3, "createexception", NULL, 0, value, message, &_5$$3, propertyPath, &_4$$3);
+		ZEPHIR_INIT_VAR(&_8$$10);
+		zephir_create_array(&_8$$10, 1, 0);
+		zephir_array_update_string(&_8$$10, SL("class"), &classItem, PH_COPY | PH_SEPARATE);
+		ZVAL_LONG(&_9$$10, 28);
+		ZEPHIR_CALL_STATIC(&_7$$10, "createexception", NULL, 0, value, message, &_9$$10, propertyPath, &_8$$10);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_3$$3, "phalconplus/Assert/Assertion.zep", 327);
+		zephir_throw_exception_debug(&_7$$10, "phalconplus/Assert/Assertion.zep", 344);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -1556,7 +1604,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString) {
 		ZVAL_LONG(&_7$$3, 206);
 		ZEPHIR_CALL_STATIC(&_6$$3, "createexception", NULL, 0, value, message, &_7$$3, propertyPath);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_6$$3, "phalconplus/Assert/Assertion.zep", 341);
+		zephir_throw_exception_debug(&_6$$3, "phalconplus/Assert/Assertion.zep", 358);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

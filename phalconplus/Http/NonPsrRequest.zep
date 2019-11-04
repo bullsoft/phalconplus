@@ -12,7 +12,7 @@ use Phalcon\Http\Request\Exception;
 use Phalcon\Events\ManagerInterface;
 use Phalcon\Di\InjectionAwareInterface;
 
-class PsrRequest extends BaseRequest
+class NonPsrRequest extends BaseRequest
 {
     protected attributes = [] {
         get

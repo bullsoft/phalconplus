@@ -321,11 +321,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isi
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isinstanceof, 0, 2, _IS_BOOL, NULL, 0)
 #endif
 	ZEND_ARG_INFO(0, value)
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, className, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, className)
-#endif
+	ZEND_ARG_INFO(0, classNames)
 	ZEND_ARG_INFO(0, message)
 	ZEND_ARG_INFO(0, propertyPath)
 ZEND_END_ARG_INFO()
