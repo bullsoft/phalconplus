@@ -2,6 +2,8 @@
 
 namespace PhalconPlus\Base;
 
+use PhalconPlus\Assert\Assertion as Assert;
+
 /**
  * throw new Exception("error message");
  * throw new Exception(["error message", ["foo", "bar"]]);
@@ -28,9 +30,9 @@ class Exception extends \Exception
 
     /**
      * @param mixed $info
-     * @param \Phalcon\Logger\Adapter $logger
+     * @param mixed $logger
      */
-    public function __construct($info = '', \Phalcon\Logger\Adapter $logger = null)
+    public function __construct($info = '', $logger = null)
     {
     }
 

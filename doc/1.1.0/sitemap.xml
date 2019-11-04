@@ -568,14 +568,14 @@
         </url>
 
             <url>
-            <loc>/class/PhalconPlus/Http/PsrRequest.html</loc>
+            <loc>/class/PhalconPlus/Http/NonPsrRequest.html</loc>
             <changefreq>daily</changefreq>
             <priority>1</priority>
             <lastmod>2019-11-04</lastmod>
         </url>
 
         <url>
-            <loc>/source/PhalconPlus/Http/PsrRequest.html</loc>
+            <loc>/source/PhalconPlus/Http/NonPsrRequest.html</loc>
             <changefreq>daily</changefreq>
             <priority>1</priority>
             <lastmod>2019-11-04</lastmod>

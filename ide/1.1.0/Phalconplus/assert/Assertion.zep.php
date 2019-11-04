@@ -252,12 +252,12 @@ class Assertion
 
     /**
      * @param object $value
-     * @param string $className
+     * @param mixed $classNames
      * @param mixed $message
      * @param mixed $propertyPath
      * @return bool
      */
-    public static function isInstanceOf($value, string $className, $message = null, $propertyPath = null): bool
+    public static function isInstanceOf($value, $classNames, $message = null, $propertyPath = null): bool
     {
     }
 
