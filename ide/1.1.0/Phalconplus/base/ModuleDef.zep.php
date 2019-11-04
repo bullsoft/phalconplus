@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Base;
 
-use PhalconPlus\Bootstrap;
+use PhalconPlus\Bootstrap as Bs;
 use PhalconPlus\Enum\Sys;
 
 class ModuleDef
@@ -68,7 +68,7 @@ class ModuleDef
     }
 
     /**
-     * @return \PhalconPlus\Bootstrap
+     * @return Bs
      */
     public function getBootstrap(): \PhalconPlus\Bootstrap
     {

@@ -1,5 +1,6 @@
 namespace PhalconPlus\Rpc\Server;
 use PhalconPlus\Base\ProtoBuffer;
+use PhalconPlus\Logger\Processor\LogId;
 
 abstract class AbstractServer
 {
@@ -100,7 +101,8 @@ abstract class AbstractServer
         }
 
         if fetch logId, rawData["logId"] {
-            // ...
+            // set logId, same as request api
+            LogId::setId(logId);
         }
 
         if this->di->has("logger") {

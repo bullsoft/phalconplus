@@ -3,6 +3,7 @@
 namespace PhalconPlus\Rpc\Server;
 
 use PhalconPlus\Base\ProtoBuffer;
+use PhalconPlus\Logger\Processor\LogId;
 
 abstract class AbstractServer
 {

@@ -3,7 +3,7 @@
 namespace PhalconPlus\Rpc\Client\Adapter;
 
 use PhalconPlus\Rpc\Client\AbstractClient;
-use PhalconPlus\Curl\Curl;
+use PhalconPlus\Curl\Curl as HttpClient;
 
 class Curl extends AbstractClient
 {

@@ -3,9 +3,9 @@
 namespace PhalconPlus\Base;
 
 use PhalconPlus\Base\Pagable;
-use PhalconPlus\Assert\Assertion;
+use PhalconPlus\Assert\Assertion as Assert;
 use Phalcon\Db\AdapterInterface;
-use Phalcon\Mvc\Model\Transaction\Manager;
+use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\MetaDataInterface;
 use Phalcon\Mvc\Model\Resultset;
 
@@ -193,7 +193,7 @@ class Model extends Phalcon\Mvc\Model
      *
      * Check transaction in writeConnection before `_transaction`
      *
-     * @return \Phalcon\Db\AdapterInterface
+     * @return AdapterInterface
      */
     public function getReadConnection(): AdapterInterface
     {

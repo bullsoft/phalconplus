@@ -4,7 +4,7 @@ namespace PhalconPlus\Curl;
 
 use PhalconPlus\Curl\Request;
 use PhalconPlus\Curl\Response;
-use PhalconPlus\Curl\Exception;
+use PhalconPlus\Curl\Exception as CurlException;
 
 /**
  * @ref https://github.com/anlutro/php-curl

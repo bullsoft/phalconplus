@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Enum;
 
-abstract class AbstractEnum implements \JsonSerializable
+abstract class AbstractEnum implements JsonSerializable
 {
 
     protected $val;

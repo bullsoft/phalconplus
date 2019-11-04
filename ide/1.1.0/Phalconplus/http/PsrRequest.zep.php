@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Http;
 
-use Phalcon\Http\Request;
+use Phalcon\Http\Request as BaseRequest;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UploadedFileInterface;
 use Phalcon\DiInterface;

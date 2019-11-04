@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Base;
 
-use PhalconPlus\Assert\Assertion;
+use PhalconPlus\Assert\Assertion as Assert;
 
 class ProtoOrderBy extends \PhalconPlus\Base\ProtoBuffer
 {

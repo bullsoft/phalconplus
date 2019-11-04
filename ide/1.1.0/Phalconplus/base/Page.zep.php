@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Base;
 
-use PhalconPlus\Assert\Assertion;
+use PhalconPlus\Assert\Assertion as Assert;
 use Phalcon\Mvc\Model\Resultset;
 
 class Page extends \PhalconPlus\Base\ProtoBuffer

@@ -198,7 +198,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			ZEPHIR_CONCAT_SVSVSV(&_11$$6, "Service class:method definition is invalid. Detail: ", &service, " : ", &method, ". Request: ", &_10$$6);
 			ZEPHIR_CALL_METHOD(NULL, &_9$$6, "__construct", &_12, 25, &_11$$6);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_9$$6, "phalconplus/Rpc/Server/AbstractServer.zep", 34);
+			zephir_throw_exception_debug(&_9$$6, "phalconplus/Rpc/Server/AbstractServer.zep", 35);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -211,7 +211,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		ZEPHIR_CONCAT_SV(&_15$$7, "Your input is not allowed. Request: ", &_14$$7);
 		ZEPHIR_CALL_METHOD(NULL, &_13$$7, "__construct", &_12, 25, &_15$$7);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_13$$7, "phalconplus/Rpc/Server/AbstractServer.zep", 37);
+		zephir_throw_exception_debug(&_13$$7, "phalconplus/Rpc/Server/AbstractServer.zep", 38);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -266,7 +266,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			if (zephir_instance_of_ev(&_22$$8, zend_exception_get_default(TSRMLS_C))) {
 				zend_clear_exception(TSRMLS_C);
 				ZEPHIR_CPY_WRT(&e, &_22$$8);
-				zephir_throw_exception_debug(&e, "phalconplus/Rpc/Server/AbstractServer.zep", 48);
+				zephir_throw_exception_debug(&e, "phalconplus/Rpc/Server/AbstractServer.zep", 49);
 				ZEPHIR_MM_RESTORE();
 				return;
 			}
@@ -294,11 +294,11 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			ZEPHIR_CONCAT_SVS(&_32$$11, "Your output is not allowed. Response: ", &_31$$11, ". We expect scalar type or <ProtoBuffer>");
 			ZEPHIR_CALL_METHOD(NULL, &_30$$11, "__construct", &_12, 25, &_32$$11);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_30$$11, "phalconplus/Rpc/Server/AbstractServer.zep", 53);
+			zephir_throw_exception_debug(&_30$$11, "phalconplus/Rpc/Server/AbstractServer.zep", 54);
 			ZEPHIR_MM_RESTORE();
 			return;
 		} else if (Z_TYPE_P(&response) == IS_RESOURCE) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Your output is not allowed. Response: #Resource.", "phalconplus/Rpc/Server/AbstractServer.zep", 55);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Your output is not allowed. Response: #Resource.", "phalconplus/Rpc/Server/AbstractServer.zep", 56);
 			return;
 		}
 		zephir_read_property(&_33$$8, this_ptr, SL("phpOnly"), PH_NOISY_CC | PH_READONLY);
@@ -319,7 +319,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		ZEPHIR_CONCAT_SVSV(&_36$$14, "Service:method not found. Detail: ", &service, " : ", &method);
 		ZEPHIR_CALL_METHOD(NULL, &_35$$14, "__construct", &_12, 25, &_36$$14);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_35$$14, "phalconplus/Rpc/Server/AbstractServer.zep", 63);
+		zephir_throw_exception_debug(&_35$$14, "phalconplus/Rpc/Server/AbstractServer.zep", 64);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -340,16 +340,16 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 
 	zend_bool _8;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zephir_fcall_cache_entry *_2 = NULL;
+	zephir_fcall_cache_entry *_2 = NULL, *_9 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *rawData_param = NULL, service, method, request, response, logId, message, _5, _7, _9, _10, _15, _17, _19, _20, _0$$3, _1$$3, _3$$4, _4$$4, _11$$7, _12$$7, _13$$7, _14$$7, _21$$8, _22$$8, _23$$8, _24$$8;
-	zval rawData, _6, _16, _18;
+	zval *rawData_param = NULL, service, method, request, response, logId, message, _5, _7, _10, _11, _16, _18, _20, _21, _0$$3, _1$$3, _3$$4, _4$$4, _12$$8, _13$$8, _14$$8, _15$$8, _22$$9, _23$$9, _24$$9, _25$$9;
+	zval rawData, _6, _17, _19;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&rawData);
 	ZVAL_UNDEF(&_6);
-	ZVAL_UNDEF(&_16);
-	ZVAL_UNDEF(&_18);
+	ZVAL_UNDEF(&_17);
+	ZVAL_UNDEF(&_19);
 	ZVAL_UNDEF(&service);
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&request);
@@ -358,24 +358,24 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_9);
 	ZVAL_UNDEF(&_10);
-	ZVAL_UNDEF(&_15);
-	ZVAL_UNDEF(&_17);
-	ZVAL_UNDEF(&_19);
+	ZVAL_UNDEF(&_11);
+	ZVAL_UNDEF(&_16);
+	ZVAL_UNDEF(&_18);
 	ZVAL_UNDEF(&_20);
+	ZVAL_UNDEF(&_21);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_4$$4);
-	ZVAL_UNDEF(&_11$$7);
-	ZVAL_UNDEF(&_12$$7);
-	ZVAL_UNDEF(&_13$$7);
-	ZVAL_UNDEF(&_14$$7);
-	ZVAL_UNDEF(&_21$$8);
-	ZVAL_UNDEF(&_22$$8);
-	ZVAL_UNDEF(&_23$$8);
-	ZVAL_UNDEF(&_24$$8);
+	ZVAL_UNDEF(&_12$$8);
+	ZVAL_UNDEF(&_13$$8);
+	ZVAL_UNDEF(&_14$$8);
+	ZVAL_UNDEF(&_15$$8);
+	ZVAL_UNDEF(&_22$$9);
+	ZVAL_UNDEF(&_23$$9);
+	ZVAL_UNDEF(&_24$$9);
+	ZVAL_UNDEF(&_25$$9);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &rawData_param);
@@ -395,7 +395,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		ZEPHIR_CONCAT_SVS(&_1$$3, "service ", &service, " not exists");
 		ZEPHIR_CALL_METHOD(NULL, &_0$$3, "__construct", &_2, 25, &_1$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_0$$3, "phalconplus/Rpc/Server/AbstractServer.zep", 82);
+		zephir_throw_exception_debug(&_0$$3, "phalconplus/Rpc/Server/AbstractServer.zep", 83);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -407,13 +407,13 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		ZEPHIR_CONCAT_SVS(&_4$$4, "method ", &method, " not exists");
 		ZEPHIR_CALL_METHOD(NULL, &_3$$4, "__construct", &_2, 25, &_4$$4);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_3$$4, "phalconplus/Rpc/Server/AbstractServer.zep", 86);
+		zephir_throw_exception_debug(&_3$$4, "phalconplus/Rpc/Server/AbstractServer.zep", 87);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	ZEPHIR_OBS_VAR(&request);
 	if (!(zephir_array_isset_string_fetch(&request, &rawData, SL("args"), 0))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "args not exists", "phalconplus/Rpc/Server/AbstractServer.zep", 90);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "args not exists", "phalconplus/Rpc/Server/AbstractServer.zep", 91);
 		return;
 	}
 	zephir_read_property(&_5, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
@@ -437,69 +437,71 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		_8 = ZEPHIR_IS_EMPTY(&method);
 	}
 	if (_8) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "service:method(args) must exists. All of them!!!", "phalconplus/Rpc/Server/AbstractServer.zep", 99);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "service:method(args) must exists. All of them!!!", "phalconplus/Rpc/Server/AbstractServer.zep", 100);
 		return;
 	}
 	ZEPHIR_OBS_NVAR(&logId);
 	if (zephir_array_isset_string_fetch(&logId, &rawData, SL("logId"), 0)) {
+		ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_logger_processor_logid_ce, "setid", &_9, 0, &logId);
+		zephir_check_call_status();
 	}
-	zephir_read_property(&_9, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_10, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "logger");
-	ZEPHIR_CALL_METHOD(&_10, &_9, "has", NULL, 0, &_7);
+	ZEPHIR_CALL_METHOD(&_11, &_10, "has", NULL, 0, &_7);
 	zephir_check_call_status();
-	if (zephir_is_true(&_10)) {
-		ZEPHIR_INIT_VAR(&_11$$7);
-		zephir_json_encode(&_11$$7, &request, 0 );
+	if (zephir_is_true(&_11)) {
+		ZEPHIR_INIT_VAR(&_12$$8);
+		zephir_json_encode(&_12$$8, &request, 0 );
 		ZEPHIR_INIT_NVAR(&message);
-		ZEPHIR_CONCAT_SVSVSVSV(&message, "RPC Request - logId: ", &logId, ", invoke: ", &service, "::", &method, ", args: ", &_11$$7);
-		zephir_read_property(&_12$$7, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_14$$7);
-		ZVAL_STRING(&_14$$7, "logger");
-		ZEPHIR_CALL_METHOD(&_13$$7, &_12$$7, "get", NULL, 0, &_14$$7);
+		ZEPHIR_CONCAT_SVSVSVSV(&message, "RPC Request - logId: ", &logId, ", invoke: ", &service, "::", &method, ", args: ", &_12$$8);
+		zephir_read_property(&_13$$8, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_INIT_VAR(&_15$$8);
+		ZVAL_STRING(&_15$$8, "logger");
+		ZEPHIR_CALL_METHOD(&_14$$8, &_13$$8, "get", NULL, 0, &_15$$8);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_13$$7, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_14$$8, "log", NULL, 0, &message);
 		zephir_check_call_status();
 	}
-	zephir_read_property(&_15, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_VAR(&_16);
-	zephir_create_array(&_16, 3, 0);
-	zephir_array_fast_append(&_16, &service);
-	zephir_array_fast_append(&_16, &method);
-	zephir_array_fast_append(&_16, &request);
+	zephir_read_property(&_16, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_17);
+	zephir_create_array(&_17, 3, 0);
+	zephir_array_fast_append(&_17, &service);
+	zephir_array_fast_append(&_17, &method);
+	zephir_array_fast_append(&_17, &request);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "backend-server:beforeDispatch");
-	ZEPHIR_CALL_METHOD(NULL, &_15, "fire", NULL, 0, &_7, this_ptr, &_16);
+	ZEPHIR_CALL_METHOD(NULL, &_16, "fire", NULL, 0, &_7, this_ptr, &_17);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, this_ptr, "callbyparams", NULL, 0, &service, &method, &request);
 	zephir_check_call_status();
-	zephir_read_property(&_17, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_VAR(&_18);
-	zephir_create_array(&_18, 4, 0);
-	zephir_array_fast_append(&_18, &service);
-	zephir_array_fast_append(&_18, &method);
-	zephir_array_fast_append(&_18, &request);
-	zephir_array_fast_append(&_18, &response);
+	zephir_read_property(&_18, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_19);
+	zephir_create_array(&_19, 4, 0);
+	zephir_array_fast_append(&_19, &service);
+	zephir_array_fast_append(&_19, &method);
+	zephir_array_fast_append(&_19, &request);
+	zephir_array_fast_append(&_19, &response);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "backend-server:afterDispatch");
-	ZEPHIR_CALL_METHOD(NULL, &_17, "fire", NULL, 0, &_7, this_ptr, &_18);
+	ZEPHIR_CALL_METHOD(NULL, &_18, "fire", NULL, 0, &_7, this_ptr, &_19);
 	zephir_check_call_status();
-	zephir_read_property(&_19, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_20, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "logger");
-	ZEPHIR_CALL_METHOD(&_20, &_19, "has", NULL, 0, &_7);
+	ZEPHIR_CALL_METHOD(&_21, &_20, "has", NULL, 0, &_7);
 	zephir_check_call_status();
-	if (zephir_is_true(&_20)) {
-		ZEPHIR_INIT_VAR(&_21$$8);
-		zephir_json_encode(&_21$$8, &response, 0 );
+	if (zephir_is_true(&_21)) {
+		ZEPHIR_INIT_VAR(&_22$$9);
+		zephir_json_encode(&_22$$9, &response, 0 );
 		ZEPHIR_INIT_NVAR(&message);
-		ZEPHIR_CONCAT_SVSVSVSV(&message, "RPC Response - logId: ", &logId, ", invoke: ", &service, "::", &method, ", response: ", &_21$$8);
-		zephir_read_property(&_22$$8, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_24$$8);
-		ZVAL_STRING(&_24$$8, "logger");
-		ZEPHIR_CALL_METHOD(&_23$$8, &_22$$8, "get", NULL, 0, &_24$$8);
+		ZEPHIR_CONCAT_SVSVSVSV(&message, "RPC Response - logId: ", &logId, ", invoke: ", &service, "::", &method, ", response: ", &_22$$9);
+		zephir_read_property(&_23$$9, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_INIT_VAR(&_25$$9);
+		ZVAL_STRING(&_25$$9, "logger");
+		ZEPHIR_CALL_METHOD(&_24$$9, &_23$$9, "get", NULL, 0, &_25$$9);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_23$$8, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_24$$9, "log", NULL, 0, &message);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&response);

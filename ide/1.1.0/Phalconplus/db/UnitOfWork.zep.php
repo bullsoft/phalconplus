@@ -4,8 +4,8 @@ namespace PhalconPlus\Db;
 
 use SplObjectStorage;
 use PhalconPlus\Base\Exception;
-use Phalcon\Mvc\Model\Transaction\Manager;
-use Phalcon\Mvc\Model\Transaction\Failed;
+use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
+use Phalcon\Mvc\Model\Transaction\Failed as TxFailed;
 use PhalconPlus\Db\UnitOfWork\AbstractValue;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Resultset;

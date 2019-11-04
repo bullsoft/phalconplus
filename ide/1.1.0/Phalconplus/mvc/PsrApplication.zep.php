@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Mvc;
 
-use Phalcon\Mvc\Application;
+use Phalcon\Mvc\Application as BaseApplication;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Phalcon\DiInterface;
@@ -49,10 +49,10 @@ class PsrApplication extends Phalcon\Mvc\Application
     }
 
     /**
-     * @param string $uri
+     * @param mixed $uri
      * @return bool|\Psr\Http\Message\ResponseInterface
      */
-    public function handle(string $uri = null)
+    public function handle($uri = null)
     {
     }
 

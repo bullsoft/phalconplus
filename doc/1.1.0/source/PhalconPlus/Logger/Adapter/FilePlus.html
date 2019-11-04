@@ -22,7 +22,7 @@
                                     <script src="../../../../asset/api_definition.js"></script>
                     <script src="../../../../asset/static/jquery.min.js"></script>
                     <script src="../../../../asset/static/zephir-doc.js"></script>
-                <script>var ZepCurrentPath = '../../../../'</script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -64,7 +64,6 @@
             </div>
     
     <div class="class-full-name">
-        
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
@@ -76,13 +75,14 @@
                 <span class="namespace-piece">
             <a href="../../../../namespace/PhalconPlus/Logger/Adapter.html">Adapter</a>
         </span>
-                <h1 class="class-name">FilePlus</h1>
+        
+        <h1 class="class-name">FilePlus</h1>
     </div>
     
 </div>
 
-
-<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Logger\Adapter;
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Logger\Adapter;
 use PhalconPlus\Assert\Assertion as Assert;
 use Phalcon\Logger\AdapterInterface;
 
@@ -237,7 +237,8 @@ class FilePlus extends \Phalcon\Logger\Adapter\File
         let this->_fileHandler = this->type2Handler[-1];
     }
 }
-</pre>                </div>
+</pre>
+                </div>
             </div>
         </div>
     </body>

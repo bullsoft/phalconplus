@@ -25,7 +25,7 @@ class Local extends AbstractClient
      * @param string $service
      * @param string $method
      * @param \PhalconPlus\Base\ProtoBuffer $request
-     * @return \PhalconPlus\Base\ProtoBuffer
+     * @return ProtoBuffer
      */
     private function callByParams(string $service, string $method, \PhalconPlus\Base\ProtoBuffer $request): ProtoBuffer
     {

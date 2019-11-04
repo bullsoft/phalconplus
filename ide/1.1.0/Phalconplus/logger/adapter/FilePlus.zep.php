@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Logger\Adapter;
 
-use PhalconPlus\Assert\Assertion;
+use PhalconPlus\Assert\Assertion as Assert;
 use Phalcon\Logger\AdapterInterface;
 
 class FilePlus extends Phalcon\Logger\Adapter\File
@@ -45,7 +45,7 @@ class FilePlus extends Phalcon\Logger\Adapter\File
      * @param mixed $type
      * @param mixed $message
      * @param array $context
-     * @return \Phalcon\Logger\AdapterInterface
+     * @return AdapterInterface
      */
     public function log($type, $message = null, array $context = null): AdapterInterface
     {

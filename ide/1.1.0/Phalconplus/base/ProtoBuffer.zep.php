@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Base;
 
-class ProtoBuffer implements \JsonSerializable
+class ProtoBuffer implements JsonSerializable
 {
 
     /**

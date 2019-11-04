@@ -58,11 +58,11 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Uid, __construct) {
 	} else {
 		ZEPHIR_INIT_VAR(&_0$$4);
 		ZVAL_STRING(&_0$$4, "");
-		ZEPHIR_CALL_FUNCTION(&_1$$4, "uniqid", NULL, 117, &_0$$4, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_1$$4, "uniqid", NULL, 116, &_0$$4, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_0$$4);
 		ZVAL_STRING(&_0$$4, "md5");
-		ZEPHIR_CALL_FUNCTION(&_2$$4, "hash", NULL, 118, &_0$$4, &_1$$4);
+		ZEPHIR_CALL_FUNCTION(&_2$$4, "hash", NULL, 117, &_0$$4, &_1$$4);
 		zephir_check_call_status();
 		ZVAL_LONG(&_3$$4, 0);
 		ZEPHIR_INIT_NVAR(&_0$$4);

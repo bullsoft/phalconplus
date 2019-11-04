@@ -2,7 +2,7 @@
 
 namespace PhalconPlus\Logger\Formatter;
 
-class LinePlus extends Phalcon\Logger\Formatter implements \Phalcon\Logger\FormatterInterface
+class LinePlus extends Phalcon\Logger\Formatter implements Phalcon\Logger\FormatterInterface
 {
 
     private $processors = array();
