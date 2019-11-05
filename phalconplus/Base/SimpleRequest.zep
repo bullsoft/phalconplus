@@ -19,11 +19,21 @@ final class SimpleRequest extends AbstractRequest
         }
     }
 
-    public function getParam(var idx)
+    public function getParam(var idx, var defaultValue = null)
     {
         var val;
         if fetch val, this->params[idx] {
             return val;
+        }
+        return defaultValue;
+    }
+
+    public function hasParam(var idx) 
+    {
+        if isset this->params[idx] {
+            return true;
+        } else {
+            return false;
         }
     }
 

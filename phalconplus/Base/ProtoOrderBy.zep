@@ -6,12 +6,12 @@ class ProtoOrderBy extends ProtoBuffer
     /**
      * @required
      */
-    private property;
+    protected property;
 
     /**
      * @required
      */
-    private direction;
+    protected direction;
 
     /**
      * @optional

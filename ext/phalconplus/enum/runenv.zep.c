@@ -44,6 +44,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunEnv) {
 
 PHP_METHOD(PhalconPlus_Enum_RunEnv, isInProd) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *env_param = NULL, _0, _1, _2, _3, _4, _5, _6;
 	zval env;
 	zval *this_ptr = getThis();
@@ -80,16 +81,18 @@ PHP_METHOD(PhalconPlus_Enum_RunEnv, isInProd) {
 PHP_METHOD(PhalconPlus_Enum_RunEnv, isInAbTest) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_SINIT_VAR(_1);
+	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "ab_test");
-	RETURN_BOOL(ZEPHIR_IS_EQUAL(&_1, &_0));
+	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(&_1, &_0));
 
 }
 

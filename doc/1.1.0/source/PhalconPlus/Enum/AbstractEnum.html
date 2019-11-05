@@ -22,7 +22,7 @@
                                     <script src="../../../asset/api_definition.js"></script>
                     <script src="../../../asset/static/jquery.min.js"></script>
                     <script src="../../../asset/static/zephir-doc.js"></script>
-                <script>var ZepCurrentPath = '../../../'</script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -64,7 +64,6 @@
             </div>
     
     <div class="class-full-name">
-        
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
@@ -73,21 +72,20 @@
                 <span class="namespace-piece">
             <a href="../../../namespace/PhalconPlus/Enum.html">Enum</a>
         </span>
-                <h1 class="class-name">AbstractEnum</h1>
+        
+        <h1 class="class-name">AbstractEnum</h1>
     </div>
     
 </div>
 
-
-<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Enum;
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Enum;
 
 abstract class AbstractEnum implements \JsonSerializable
 {
-    const DEFAULT_VALUE = "__PhalconPlus_AbstractEnum_DefaultValue__";
-
     protected val;
 
-    public function __construct(var val = self::DEFAULT_VALUE)
+    public function __construct(var val = "__PhalconPlus_AbstractEnum_DefaultValue__")
     {
         var reflection, defaultVal;
 
@@ -99,7 +97,7 @@ abstract class AbstractEnum implements \JsonSerializable
             }
         }
 
-        if val == self::DEFAULT_VALUE {
+        if val == "__PhalconPlus_AbstractEnum_DefaultValue__" {
             this->setValue(defaultVal);
         } else {
             this->setValue(val);
@@ -125,6 +123,17 @@ abstract class AbstractEnum implements \JsonSerializable
             return false;
         }
         return true;
+    }
+
+    public static function commaString()
+    {
+        var vals = static::validValues(true);
+        return implode(", ", vals);
+    }
+
+    public static function getValues()
+    {
+        return static::validValues(true);
     }
 
     public static function validValues(bool assoc = false)
@@ -163,7 +172,8 @@ abstract class AbstractEnum implements \JsonSerializable
         return (string) this->getValue();
     }
 }
-</pre>                </div>
+</pre>
+                </div>
             </div>
         </div>
     </body>

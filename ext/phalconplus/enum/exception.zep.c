@@ -24,7 +24,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Exception) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Enum, Exception, phalconplus, enum_exception, phalconplus_enum_abstractenum_ce, phalconplus_enum_exception_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_enum_exception_ce, SL("details"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
+	zend_declare_property_null(phalconplus_enum_exception_ce, SL("details"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC);
 
 	return SUCCESS;
 
@@ -33,6 +33,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Exception) {
 PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 
 	zend_class_entry *_1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *eCode, eCode_sub, code, details, className, val, _0, _2;
 	zval *this_ptr = getThis();
@@ -55,12 +56,15 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 	ZEPHIR_INIT_VAR(&details);
 	array_init(&details);
 	ZEPHIR_INIT_VAR(&className);
-	zephir_get_called_class(&className TSRMLS_CC);
+	zephir_get_called_class(&className);
 	ZEPHIR_INIT_NVAR(&code);
 	zephir_fetch_safe_class(&_0, &className);
 	_1 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_0), Z_STRLEN_P(&_0), ZEND_FETCH_CLASS_AUTO);
+	if(!_1) {
+		RETURN_MM_NULL();
+	}
 	object_init_ex(&code, _1);
-	if (zephir_has_constructor(&code TSRMLS_CC)) {
+	if (zephir_has_constructor(&code)) {
 		ZEPHIR_CALL_METHOD(NULL, &code, "__construct", NULL, 0, eCode);
 		zephir_check_call_status();
 	}
@@ -73,7 +77,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
         
 	ZEPHIR_CALL_METHOD(&_2, &code, "__tostring", NULL, 0);
 	zephir_check_call_status();
-	if (zephir_array_isset_fetch(&val, &details, &_2, 1 TSRMLS_CC)) {
+	if (zephir_array_isset_fetch(&val, &details, &_2, 1)) {
 		RETURN_CTOR(&val);
 	} else {
 		array_init(return_value);
@@ -84,6 +88,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 
 PHP_METHOD(PhalconPlus_Enum_Exception, getByCode) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *eCode, eCode_sub, detail;
 	zval *this_ptr = getThis();
@@ -110,6 +115,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getByCode) {
 PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 
 	zend_class_entry *_2, *_6, *_8;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *e, e_sub, *logger = NULL, logger_sub, __$null, code, eCode, eName, map2Name, className, _0, _1, _3, eClassName, exception, _4, _5, _7, _9, _10, _11, _12;
 	zval *this_ptr = getThis();
@@ -147,12 +153,12 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 	ZVAL_BOOL(&_1, 1);
 	ZEPHIR_CALL_STATIC(&_0, "validvalues", NULL, 0, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&map2Name, "array_flip", NULL, 36, &_0);
+	ZEPHIR_CALL_FUNCTION(&map2Name, "array_flip", NULL, 38, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&eCode, e, "getcode", NULL, 0);
 	zephir_check_call_status();
 	_2 = zephir_fetch_class_str_ex(SL("Phalcon\\Text"), ZEND_FETCH_CLASS_AUTO);
-	zephir_array_fetch(&_3, &map2Name, &eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 44 TSRMLS_CC);
+	zephir_array_fetch(&_3, &map2Name, &eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 44);
 	ZEPHIR_CALL_CE_STATIC(&eName, _2, "camelize", NULL, 0, &_3);
 	zephir_check_call_status();
 	ZEPHIR_CALL_STATIC(&_4, "exceptionclassprefix", NULL, 0);
@@ -160,20 +166,26 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 	ZEPHIR_INIT_VAR(&eClassName);
 	ZEPHIR_CONCAT_VV(&eClassName, &_4, &eName);
 	ZEPHIR_INIT_VAR(&className);
-	zephir_get_called_class(&className TSRMLS_CC);
+	zephir_get_called_class(&className);
 	ZEPHIR_INIT_VAR(&code);
 	zephir_fetch_safe_class(&_5, &className);
 	_6 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_5), Z_STRLEN_P(&_5), ZEND_FETCH_CLASS_AUTO);
+	if(!_6) {
+		RETURN_MM_NULL();
+	}
 	object_init_ex(&code, _6);
-	if (zephir_has_constructor(&code TSRMLS_CC)) {
+	if (zephir_has_constructor(&code)) {
 		ZEPHIR_CALL_METHOD(NULL, &code, "__construct", NULL, 0, &eCode);
 		zephir_check_call_status();
 	}
 	ZEPHIR_INIT_VAR(&exception);
 	zephir_fetch_safe_class(&_7, &eClassName);
 	_8 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_7), Z_STRLEN_P(&_7), ZEND_FETCH_CLASS_AUTO);
+	if(!_8) {
+		RETURN_MM_NULL();
+	}
 	object_init_ex(&exception, _8);
-	if (zephir_has_constructor(&exception TSRMLS_CC)) {
+	if (zephir_has_constructor(&exception)) {
 		ZEPHIR_CALL_METHOD(&_9, &code, "getmessage", NULL, 0);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &exception, "__construct", NULL, 0, &_9, logger);
@@ -208,6 +220,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, exceptionClassPrefix) {
 PHP_METHOD(PhalconPlus_Enum_Exception, getMessage) {
 
 	zval detail, val, _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -232,6 +245,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getMessage) {
 PHP_METHOD(PhalconPlus_Enum_Exception, getLevel) {
 
 	zval detail, val, _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -255,6 +269,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getLevel) {
 
 PHP_METHOD(PhalconPlus_Enum_Exception, getCode) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 

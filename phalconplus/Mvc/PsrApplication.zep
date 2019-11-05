@@ -24,7 +24,7 @@ class PsrApplication extends BaseApplication
         let this->_sendCookies = false;
         let this->psrRequest = psrRequest;
         // Phalcon\Http\Request
-        let this->nativeRequest = new \PhalconPlus\Http\PsrRequest(psrRequest);
+        let this->nativeRequest = new \PhalconPlus\Http\NonPsrRequest(psrRequest);
     }
 
     public function __destruct()
@@ -34,9 +34,9 @@ class PsrApplication extends BaseApplication
         }
     }
 
-    public function handle(string uri = null) -> <ResponseInterface> | boolean
+    public function handle(var uri = null) -> <ResponseInterface> | boolean
     {
-        var uri, psrRequest;
+        var psrRequest;
 
         if empty this->_dependencyInjector {
             throw new \PhalconPlus\Base\Exception("there is no di(dependency injector) in PsrAppliction");
@@ -55,12 +55,12 @@ class PsrApplication extends BaseApplication
         this->_dependencyInjector->setShared("request", this->nativeRequest);
 
         // get request uri-path
-        let uri = psrRequest->getUri()->getPath();
+        var reqUri = psrRequest->getUri()->getPath();
         // get Phalcon\Http\Response
         var response;
 
         ob_start();
-        let response = <\Phalcon\Http\Response> parent::handle(uri);
+        let response = <\Phalcon\Http\Response> parent::handle(reqUri);
         var stdout = ob_get_clean();
 
         var headers = this->mapHeaders(response);
@@ -114,7 +114,7 @@ class PsrApplication extends BaseApplication
         if isset(nativeHeaders["Set-Cookie"]) {
             let headers["Set-Cookie"] = is_array(nativeHeaders["Set-Cookie"])?nativeHeaders["Set-Cookie"]:[nativeHeaders["Set-Cookie"]];
         } else {
-            let headers["Set-Cookie"] = [];
+            let headers["Set-Cookie"] = null;
         }
         return headers;
     }

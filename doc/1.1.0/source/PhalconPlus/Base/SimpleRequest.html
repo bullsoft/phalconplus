@@ -22,7 +22,7 @@
                                     <script src="../../../asset/api_definition.js"></script>
                     <script src="../../../asset/static/jquery.min.js"></script>
                     <script src="../../../asset/static/zephir-doc.js"></script>
-                <script>var ZepCurrentPath = '../../../'</script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -64,7 +64,6 @@
             </div>
     
     <div class="class-full-name">
-        
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
@@ -73,13 +72,14 @@
                 <span class="namespace-piece">
             <a href="../../../namespace/PhalconPlus/Base.html">Base</a>
         </span>
-                <h1 class="class-name">SimpleRequest</h1>
+        
+        <h1 class="class-name">SimpleRequest</h1>
     </div>
     
 </div>
 
-
-<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Base;
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Base;
 
 final class SimpleRequest extends AbstractRequest
 {
@@ -100,11 +100,21 @@ final class SimpleRequest extends AbstractRequest
         }
     }
 
-    public function getParam(var idx)
+    public function getParam(var idx, var defaultValue = null)
     {
         var val;
         if fetch val, this->params[idx] {
             return val;
+        }
+        return defaultValue;
+    }
+
+    public function hasParam(var idx) 
+    {
+        if isset this->params[idx] {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -129,7 +139,8 @@ final class SimpleRequest extends AbstractRequest
         return this->params;
     }
 }
-</pre>                </div>
+</pre>
+                </div>
             </div>
         </div>
     </body>

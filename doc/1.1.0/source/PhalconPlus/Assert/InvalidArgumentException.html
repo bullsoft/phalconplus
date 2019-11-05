@@ -22,7 +22,7 @@
                                     <script src="../../../asset/api_definition.js"></script>
                     <script src="../../../asset/static/jquery.min.js"></script>
                     <script src="../../../asset/static/zephir-doc.js"></script>
-                <script>var ZepCurrentPath = '../../../'</script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -64,7 +64,6 @@
             </div>
     
     <div class="class-full-name">
-        
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
@@ -73,13 +72,14 @@
                 <span class="namespace-piece">
             <a href="../../../namespace/PhalconPlus/Assert.html">Assert</a>
         </span>
-                <h1 class="class-name">InvalidArgumentException</h1>
+        
+        <h1 class="class-name">InvalidArgumentException</h1>
     </div>
     
 </div>
 
-
-<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Assert;
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Assert;
 
 class InvalidArgumentException extends \InvalidArgumentException implements AssertionFailedException
 {
@@ -110,7 +110,8 @@ class InvalidArgumentException extends \InvalidArgumentException implements Asse
         return this->constraints;
     }
 }
-</pre>                </div>
+</pre>
+                </div>
             </div>
         </div>
     </body>

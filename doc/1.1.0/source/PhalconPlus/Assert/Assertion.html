@@ -22,7 +22,7 @@
                                     <script src="../../../asset/api_definition.js"></script>
                     <script src="../../../asset/static/jquery.min.js"></script>
                     <script src="../../../asset/static/zephir-doc.js"></script>
-                <script>var ZepCurrentPath = '../../../'</script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -64,7 +64,6 @@
             </div>
     
     <div class="class-full-name">
-        
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
@@ -73,13 +72,14 @@
                 <span class="namespace-piece">
             <a href="../../../namespace/PhalconPlus/Assert.html">Assert</a>
         </span>
-                <h1 class="class-name">Assertion</h1>
+        
+        <h1 class="class-name">Assertion</h1>
     </div>
     
 </div>
 
-
-<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Assert;
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Assert;
 use PhalconPlus\Enum\AssertionCode;
 
 /**
@@ -178,6 +178,20 @@ class Assertion
                 static::stringify(value)
             );
             throw static::createException(value, message, AssertionCode::INVALID_NOT_BLANK, propertyPath);
+        }
+        return true;
+    }
+
+    public static function integer(var value, var message = null, var propertyPath = null) -> boolean
+    {
+        if !\is_int(value) {
+            if message === null {
+                let message = \sprintf(
+                    message ? message : "Value \"%s\" is not an integer.", 
+                    static::stringify(value)
+                );
+            }
+            throw static::createException(value, message, AssertionCode::INVALID_INTEGER, propertyPath);
         }
         return true;
     }
@@ -383,6 +397,36 @@ class Assertion
         return true;
     }
 
+    public static function isInstanceOf(object value, var classNames, var message = null, var propertyPath = null) -> bool
+    {
+        string classItem;
+        bool result = false;
+        if is_string(classNames) {
+            let classItem = classNames;
+            if value instanceof classItem { 
+                let result = true;
+            }
+        } elseif is_array(classNames) { // instance of anyone of classNames
+            var tmp;
+            for tmp in classNames {
+                let classItem = (string) tmp;
+                if value instanceof classItem { 
+                    let result = true;
+                    break;
+                } 
+            }
+        }
+        if result === false {
+            let message = sprintf(
+                message ? message : "Class \"%s\" was expected to be instanceof of \"%s\" but is not.",
+                static::stringify(value),
+                classItem
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_INSTANCE_OF, propertyPath, ["class" : classItem]);
+        }
+        return true;
+    }
+
     public static function isJsonString(var value, var message = null, var propertyPath = null) -> boolean
     {
         static::isString(value, message, propertyPath);
@@ -427,7 +471,8 @@ class Assertion
         return "unknown";
     }
 }
-</pre>                </div>
+</pre>
+                </div>
             </div>
         </div>
     </body>

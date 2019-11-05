@@ -27,7 +27,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_ProtoBuffer) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, ProtoBuffer, phalconplus, base_protobuffer, phalconplus_base_protobuffer_method_entry, 0);
 
-	zend_class_implements(phalconplus_base_protobuffer_ce TSRMLS_CC, 1, zephir_get_internal_ce(SL("jsonserializable")));
+	zend_class_implements(phalconplus_base_protobuffer_ce, 1, zephir_get_internal_ce(SL("jsonserializable")));
 	return SUCCESS;
 
 }
@@ -36,6 +36,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone) {
 
 	zend_string *_3;
 	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, key, val, *_0, _1, _4$$3, _7$$5;
@@ -107,6 +108,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 
 	zval _2$$3;
 	zend_bool _8, _9, _10;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *val = NULL, val_sub, method, param, paramClass, paramClassRef, paramObj, _0, _1, _3$$3, _4$$3, _5$$4, _6$$4, _7$$4, _11$$9, _12$$9;
 	zval key;
@@ -134,7 +136,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 	zephir_fetch_params(1, 2, 0, &key_param, &val);
 
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
@@ -150,11 +152,11 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 	zephir_ucfirst(&_1, &key);
 	ZEPHIR_INIT_VAR(&method);
 	ZEPHIR_CONCAT_SV(&method, "set", &_1);
-	if ((zephir_method_exists(this_ptr, &method TSRMLS_CC)  == SUCCESS)) {
+	if ((zephir_method_exists(this_ptr, &method)  == SUCCESS)) {
 		ZEPHIR_INIT_VAR(&param);
 		object_init_ex(&param, zephir_get_internal_ce(SL("reflectionparameter")));
 		ZEPHIR_INIT_VAR(&_2$$3);
-		zephir_create_array(&_2$$3, 2, 0 TSRMLS_CC);
+		zephir_create_array(&_2$$3, 2, 0);
 		zephir_array_fast_append(&_2$$3, this_ptr);
 		zephir_array_fast_append(&_2$$3, &method);
 		ZVAL_LONG(&_3$$3, 0);
@@ -201,13 +203,13 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 	}
 	_10 = Z_TYPE_P(val) == IS_OBJECT;
 	if (_10) {
-		_10 = zephir_instance_of_ev(val, phalconplus_base_protobuffer_ce TSRMLS_CC);
+		_10 = zephir_instance_of_ev(val, phalconplus_base_protobuffer_ce);
 	}
 	if (_9) {
-		zephir_update_property_zval_zval(this_ptr, &key, val TSRMLS_CC);
+		zephir_update_property_zval_zval(this_ptr, &key, val);
 		RETURN_THIS();
 	} else if (_10) {
-		zephir_update_property_zval_zval(this_ptr, &key, val TSRMLS_CC);
+		zephir_update_property_zval_zval(this_ptr, &key, val);
 		RETURN_THIS();
 	} else {
 		ZEPHIR_INIT_VAR(&_11$$9);
@@ -216,7 +218,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 		ZEPHIR_CONCAT_SVS(&_12$$9, "Please add ", &method, " in your class, complex-type vars are not allowed to assign directly");
 		ZEPHIR_CALL_METHOD(NULL, &_11$$9, "__construct", NULL, 7, &_12$$9);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_11$$9, "phalconplus/Base/ProtoBuffer.zep", 49 TSRMLS_CC);
+		zephir_throw_exception_debug(&_11$$9, "phalconplus/Base/ProtoBuffer.zep", 49);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -225,6 +227,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __isset) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, _0;
 	zval key;
@@ -237,7 +240,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __isset) {
 	zephir_fetch_params(1, 1, 0, &key_param);
 
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
@@ -259,6 +262,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __isset) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __get) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, method, _0, _1, _2, _3$$4;
 	zval key;
@@ -275,7 +279,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __get) {
 	zephir_fetch_params(1, 1, 0, &key_param);
 
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
@@ -290,7 +294,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __get) {
 	zephir_ucfirst(&_1, &key);
 	ZEPHIR_INIT_VAR(&method);
 	ZEPHIR_CONCAT_SV(&method, "get", &_1);
-	if ((zephir_method_exists(this_ptr, &method TSRMLS_CC)  == SUCCESS)) {
+	if ((zephir_method_exists(this_ptr, &method)  == SUCCESS)) {
 		ZEPHIR_RETURN_CALL_METHOD_ZVAL(this_ptr, &method, NULL, 0);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -309,6 +313,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __get) {
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars) {
 
 	zval objReflection, vars, pros, pro, *_0, _1, _2$$3, _3$$3, _4$$3, _5$$4, _6$$4, _7$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -385,6 +390,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, jsonSerialize) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -402,6 +408,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 	zend_bool _4$$5, _5$$5, _6$$5, _11$$10, _12$$10, _13$$10;
 	zend_string *_3;
 	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, pros, newPros, key, val, *_0, _1, _7$$6, _9$$7, _10$$8, _14$$11, _15$$12, _16$$13;
@@ -460,11 +467,11 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 			}
 			_5$$5 = Z_TYPE_P(&val) == IS_OBJECT;
 			if (_5$$5) {
-				_5$$5 = (zephir_method_exists_ex(&val, SL("toarray") TSRMLS_CC) == SUCCESS);
+				_5$$5 = (zephir_method_exists_ex(&val, ZEND_STRL("toarray")) == SUCCESS);
 			}
 			_6$$5 = Z_TYPE_P(&val) == IS_OBJECT;
 			if (_6$$5) {
-				_6$$5 = (zephir_method_exists_ex(&val, SL("__tostring") TSRMLS_CC) == SUCCESS);
+				_6$$5 = (zephir_method_exists_ex(&val, ZEND_STRL("__tostring")) == SUCCESS);
 			}
 			if (_4$$5) {
 				ZEPHIR_CALL_METHOD(&_7$$6, this_ptr, "toarray", &_8, 10, &val);
@@ -501,11 +508,11 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 				}
 				_12$$10 = Z_TYPE_P(&val) == IS_OBJECT;
 				if (_12$$10) {
-					_12$$10 = (zephir_method_exists_ex(&val, SL("toarray") TSRMLS_CC) == SUCCESS);
+					_12$$10 = (zephir_method_exists_ex(&val, ZEND_STRL("toarray")) == SUCCESS);
 				}
 				_13$$10 = Z_TYPE_P(&val) == IS_OBJECT;
 				if (_13$$10) {
-					_13$$10 = (zephir_method_exists_ex(&val, SL("__tostring") TSRMLS_CC) == SUCCESS);
+					_13$$10 = (zephir_method_exists_ex(&val, ZEND_STRL("__tostring")) == SUCCESS);
 				}
 				if (_11$$10) {
 					ZEPHIR_CALL_METHOD(&_14$$11, this_ptr, "toarray", &_8, 10, &val);

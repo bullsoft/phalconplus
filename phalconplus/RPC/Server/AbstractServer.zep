@@ -1,11 +1,17 @@
 namespace PhalconPlus\Rpc\Server;
 use PhalconPlus\Base\ProtoBuffer;
+use PhalconPlus\Logger\Processor\LogId;
 
 abstract class AbstractServer
 {
-    protected di = null;
-    protected config = null;
-    protected phpOnly = false;
+    protected di = null {
+        get
+    };
+
+    protected phpOnly = false {
+        get
+    };
+
     protected eventsManager = null;
 
     abstract public function __construct(<\Phalcon\DI> di);
@@ -95,7 +101,8 @@ abstract class AbstractServer
         }
 
         if fetch logId, rawData["logId"] {
-            // ...
+            // set logId, same as request api
+            LogId::setId(logId);
         }
 
         if this->di->has("logger") {

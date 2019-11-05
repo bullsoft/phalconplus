@@ -1,22 +1,13 @@
-
 /*
-  +------------------------------------------------------------------------+
-  | Zephir Language                                                        |
-  +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2017 Zephir Team (http://www.zephir-lang.com)       |
-  +------------------------------------------------------------------------+
-  | This source file is subject to the New BSD License that is bundled     |
-  | with this package in the file docs/LICENSE.txt.                        |
-  |                                                                        |
-  | If you did not receive a copy of the license and are unable to         |
-  | obtain it through the world-wide-web, please send an email             |
-  | to license@zephir-lang.com so we can send you a copy immediately.      |
-  +------------------------------------------------------------------------+
-  | Authors: Andres Gutierrez <andres@zephir-lang.com>                     |
-  |          Eduar Carvajal <eduar@zephir-lang.com>                        |
-  |          Vladimir Kolesnikov <vladimir@extrememember.com>              |
-  +------------------------------------------------------------------------+
-*/
+ * This file is part of the Zephir.
+ *
+ * (c) Zephir Team <team@zephir-lang.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code. If you did not receive
+ * a copy of the license it is available through the world-wide-web at the
+ * following url: https://docs.zephir-lang.com/en/latest/license
+ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -205,7 +196,7 @@ int zephir_array_isset_string_fetch(zval *fetched, const zval *arr, char *index,
 int zephir_array_isset_long_fetch(zval *fetched, const zval *arr, unsigned long index, int readonly)
 {
 	zval *zv;
-	
+
 	if (UNEXPECTED(Z_TYPE_P(arr) == IS_OBJECT && zephir_instance_of_ev((zval *)arr, (const zend_class_entry *)zend_ce_arrayaccess))) {
 		zend_long ZEPHIR_LAST_CALL_STATUS;
 		zval exist, offset;
@@ -620,14 +611,13 @@ int zephir_array_fetch_long(zval *return_value, zval *arr, unsigned long index, 
  */
 void zephir_merge_append(zval *left, zval *values)
 {
-	zval *tmp;
-
 	if (Z_TYPE_P(left) != IS_ARRAY) {
 		zend_error(E_NOTICE, "First parameter of zephir_merge_append must be an array");
 		return;
 	}
 
 	if (Z_TYPE_P(values) == IS_ARRAY) {
+		zval *tmp;
 
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(values), tmp) {
 
@@ -832,16 +822,12 @@ int zephir_array_key_exists(zval *arr, zval *key)
  */
 void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int types_length, int types_count, va_list ap)
 {
-	long old_l[ZEPHIR_MAX_ARRAY_LEVELS], old_ll[ZEPHIR_MAX_ARRAY_LEVELS];
-	char *s, *old_s[ZEPHIR_MAX_ARRAY_LEVELS], old_type[ZEPHIR_MAX_ARRAY_LEVELS];
-	zval *item, *old_item[ZEPHIR_MAX_ARRAY_LEVELS];
+	char *s;
+	zval *item;
 	zval pzv;
-	zend_array *p, *old_p[ZEPHIR_MAX_ARRAY_LEVELS];
-	zval tmp;
+	zend_array *p;
 	int i, j, l, ll, re_update, must_continue, wrap_tmp;
 
-	assert(types_length < ZEPHIR_MAX_ARRAY_LEVELS);
-	ZVAL_UNDEF(&tmp);
 	ZVAL_UNDEF(&pzv);
 
 	if (Z_TYPE_P(arr) != IS_ARRAY) {
@@ -851,6 +837,7 @@ void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int
 	p = Z_ARRVAL_P(arr);
 
 	for (i = 0; i < types_length; ++i) {
+		zval tmp;
 		zval fetched;
 		ZVAL_UNDEF(&fetched);
 
@@ -858,15 +845,12 @@ void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int
 		must_continue = 0;
 		wrap_tmp = 0;
 
-		old_p[i] = p;
 		ZVAL_ARR(&pzv, p);
 		switch (types[i]) {
 
 			case 's':
 				s = va_arg(ap, char*);
 				l = va_arg(ap, int);
-				old_s[i] = s;
-				old_l[i] = l;
 				if (zephir_array_isset_string_fetch(&fetched, &pzv, s, l, 1)) {
 					if (Z_TYPE(fetched) == IS_ARRAY) {
 						if (i == (types_length - 1)) {
@@ -874,8 +858,14 @@ void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int
 							zephir_array_update_string(&pzv, s, l, value, PH_COPY | PH_SEPARATE);
 							p = Z_ARRVAL(pzv);
 						} else {
-							p = Z_ARRVAL(fetched);
-							Z_TRY_ADDREF(fetched);
+							re_update = !Z_REFCOUNTED(fetched) || (Z_REFCOUNT(fetched) > 1 && !Z_ISREF(fetched));
+							if (re_update) {
+								ZVAL_DUP(&tmp, &fetched);
+								zephir_array_update_string(&pzv, s, l, &tmp, 0);
+								p = Z_ARRVAL(tmp);
+							} else {
+								p = Z_ARRVAL(fetched);
+							}
 						}
 						must_continue = 1;
 					}
@@ -902,7 +892,6 @@ void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int
 
 			case 'l':
 				ll = va_arg(ap, long);
-				old_ll[i] = ll;
 				if (zephir_array_isset_long_fetch(&fetched, &pzv, ll, 1)) {
 					if (Z_TYPE(fetched) == IS_ARRAY) {
 						if (i == (types_length - 1)) {
@@ -910,8 +899,14 @@ void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int
 							zephir_array_update_long(&pzv, ll, value, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
 							p = Z_ARRVAL(pzv);
 						} else {
-							p = Z_ARRVAL(fetched);
-							Z_TRY_ADDREF(fetched);
+							re_update = !Z_REFCOUNTED(fetched) || (Z_REFCOUNT(fetched) > 1 && !Z_ISREF(fetched));
+							if (re_update) {
+								ZVAL_DUP(&tmp, &fetched);
+								zephir_array_update_long(&pzv, ll, &tmp, 0 ZEPHIR_DEBUG_PARAMS_DUMMY);
+								p = Z_ARRVAL(tmp);
+							} else {
+								p = Z_ARRVAL(fetched);
+							}
 						}
 						must_continue = 1;
 					}
@@ -938,7 +933,6 @@ void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int
 
 			case 'z':
 				item = va_arg(ap, zval*);
-				old_item[i] = item;
 				if (zephir_array_isset_fetch(&fetched, &pzv, item, 1)) {
 					if (Z_TYPE(fetched) == IS_ARRAY) {
 						if (i == (types_length - 1)) {
@@ -946,8 +940,14 @@ void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int
 							zephir_array_update_zval(&pzv, item, value, PH_COPY | PH_SEPARATE);
 							p = Z_ARRVAL(pzv);
 						} else {
-							p = Z_ARRVAL(fetched);
-							Z_TRY_ADDREF(fetched);
+							re_update = !Z_REFCOUNTED(fetched) || (Z_REFCOUNT(fetched) > 1 && !Z_ISREF(fetched));
+							if (re_update) {
+								ZVAL_DUP(&tmp, &fetched);
+								zephir_array_update_zval(&pzv, item, &tmp, 0);
+								p = Z_ARRVAL(tmp);
+							} else {
+								p = Z_ARRVAL(fetched);
+							}
 						}
 						must_continue = 1;
 					}
@@ -974,50 +974,14 @@ void zephir_array_update_multi_ex(zval *arr, zval *value, const char *types, int
 
 			case 'a':
 				re_update = !Z_REFCOUNTED(pzv) || (Z_REFCOUNT(pzv) > 1 && !Z_ISREF(pzv));
-				zephir_array_append(&pzv, value, PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
+				if (re_update) {
+					zephir_array_append(&pzv, value, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
+				} else {
+					zephir_array_append(&pzv, value, PH_COPY ZEPHIR_DEBUG_PARAMS_DUMMY);
+				}
+
 				p = Z_ARRVAL(pzv);
 				break;
-		}
-
-		if (re_update) {
-			for (j = i - 1; j >= 0; j--) {
-				zval old_pzv;
-
-				if (!re_update) {
-					break;
-				}
-
-				ZVAL_ARR(&pzv, old_p[j]);
-				re_update = !Z_REFCOUNTED(pzv) || (Z_REFCOUNT(pzv) > 1 && !Z_ISREF(pzv));
-
-				if (j == i - 1) {
-					ZVAL_ARR(&old_pzv, p);
-				} else {
-					ZVAL_ARR(&old_pzv, old_p[j + 1]);
-				}
-
-				switch (old_type[j])
-				{
-					case 's':
-						zephir_array_update_string(&pzv, old_s[j], old_l[j], &old_pzv, PH_SEPARATE);
-						break;
-					case 'l':
-						zephir_array_update_long(&pzv, old_ll[j], &old_pzv, PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
-						break;
-					case 'z':
-						zephir_array_update_zval(&pzv, old_item[j], &old_pzv, PH_SEPARATE);
-						break;
-				}
-				old_p[j] = Z_ARRVAL(pzv);
-				if (wrap_tmp) {
-					p = Z_ARRVAL(tmp);
-					wrap_tmp = 0;
-				}
-			}
-		}
-
-		if (i != (types_length - 1)) {
-			old_type[i] = types[i];
 		}
 	}
 }

@@ -369,10 +369,32 @@ int zephir_clone(zval *destination, zval *obj)
 int zephir_isset_property(zval *object, const char *property_name, unsigned int property_length)
 {
 	if (Z_TYPE_P(object) == IS_OBJECT) {
+		/*
+		if (Z_OBJ_HANDLER_P(object, has_property)) {
+			zval member;
+			int retval;
+			ZVAL_STRINGL(&member, property_name, property_length);
+			retval = Z_OBJ_HT_P(object)->has_property(object, &member, 2, NULL);
+			zval_ptr_dtor(&member);
+			return retval;
+		}
+		*/
 		if (EXPECTED(zend_hash_str_exists(&Z_OBJCE_P(object)->properties_info, property_name, property_length))) {
 			return 1;
 		}
-		return zend_hash_str_exists(Z_OBJ_HT_P(object)->get_properties(object), property_name, property_length);
+#if PHP_VERSION_ID >= 80000
+		return zend_hash_str_exists(
+			Z_OBJ_HT_P(object)->get_properties(Z_OBJ_P(object)),
+			property_name,
+			property_length
+		);
+#else
+		return zend_hash_str_exists(
+			Z_OBJ_HT_P(object)->get_properties(object),
+			property_name,
+			property_length
+		);
+#endif
 	}
 
 	return 0;
@@ -385,11 +407,28 @@ int zephir_isset_property_zval(zval *object, const zval *property)
 {
 	if (Z_TYPE_P(object) == IS_OBJECT) {
 		if (Z_TYPE_P(property) == IS_STRING) {
-
+			/*
+			if (Z_OBJ_HANDLER_P(object, has_property)) {
+				return Z_OBJ_HT_P(object)->has_property(object, property, 2, NULL);
+			}
+			*/
 			if (EXPECTED(zend_hash_str_exists(&Z_OBJCE_P(object)->properties_info, Z_STRVAL_P(property), Z_STRLEN_P(property)))) {
 				return 1;
 			} else {
-				return zend_hash_str_exists(Z_OBJ_HT_P(object)->get_properties(object), Z_STRVAL_P(property), Z_STRLEN_P(property));
+
+#if PHP_VERSION_ID >= 80000
+				return zend_hash_str_exists(
+					Z_OBJ_HT_P(object)->get_properties(Z_OBJ_P(object)),
+					Z_STRVAL_P(property),
+					Z_STRLEN_P(property)
+				);
+#else
+				return zend_hash_str_exists(
+					Z_OBJ_HT_P(object)->get_properties(object),
+					Z_STRVAL_P(property),
+					Z_STRLEN_P(property)
+				);
+#endif
 			}
 		}
 	}
@@ -403,9 +442,17 @@ static inline zend_class_entry *zephir_lookup_class_ce(zend_class_entry *ce, con
 	zend_property_info *info;
 
 	while (ce) {
-		if ((info = zend_hash_str_find_ptr(&ce->properties_info, property_name, property_length)) != NULL && (info->flags & ZEND_ACC_SHADOW) != ZEND_ACC_SHADOW)  {
+		info = zend_hash_str_find_ptr(&ce->properties_info, property_name, property_length);
+
+#if PHP_VERSION_ID < 70400
+		if (info != NULL && (info->flags & ZEND_ACC_SHADOW) != ZEND_ACC_SHADOW)  {
 			return ce;
 		}
+#else
+		if (info != NULL)  {
+			return ce;
+		}
+#endif
 		ce = ce->parent;
 	}
 	return original_ce;
@@ -703,7 +750,9 @@ int zephir_update_property_array_append(zval *object, char *property, unsigned i
 				zval new_zv;
 				ZVAL_DUP(&new_zv, &tmp);
 				ZVAL_COPY_VALUE(&tmp, &new_zv);
-				Z_TRY_DELREF(new_zv);
+				if (Z_REFCOUNT(tmp) > 1) {
+				    Z_TRY_DELREF(new_zv);
+				}
 				separated = 1;
 			}
 		}
@@ -713,6 +762,23 @@ int zephir_update_property_array_append(zval *object, char *property, unsigned i
 		ZVAL_COPY_VALUE(&tmp, &new_zv);
 		Z_TRY_DELREF(new_zv);
 		separated = 1;
+
+		/**
+		 * class A {
+		 *     protected foo;
+		 *
+		 *     public function test() {
+		 *         let this->foo[] = 42;
+		 *     }
+		 * }
+		 *
+		 * In this case: Z_REFCOUNT(tmp) == 0
+		 */
+		if (Z_REFCOUNTED(tmp)) {
+			if (EXPECTED(Z_REFCOUNT(tmp) == 0)) {
+				Z_ADDREF(tmp);
+			}
+		}
 	}
 
 	/** Convert the value to array if not is an array */
@@ -953,6 +1019,31 @@ int zephir_read_static_property_ce(zval *result, zend_class_entry *ce, const cha
 		return SUCCESS;
 	}
 	return FAILURE;
+}
+
+int zephir_update_static_property_ce(zend_class_entry *ce, const char *property_name, uint32_t property_length, zval *value)
+{
+// Disabled due to:
+// https://github.com/phalcon/zephir/issues/1941#issuecomment-538654340
+//
+//#if PHP_VERSION_ID < 70300
+//	zval *property, garbage;
+//	property = zend_read_static_property(ce, property_name, property_length, (zend_bool)ZEND_FETCH_CLASS_SILENT);
+//	if (property) {
+//		if (Z_ISREF_P(property)) {
+//			ZVAL_DEREF(property);
+//		}
+//		if (Z_ISREF_P(value)) {
+//			ZVAL_DEREF(value);
+//		}
+//		ZVAL_COPY_VALUE(&garbage, property);
+//		ZVAL_COPY(property, value);
+//		zval_ptr_dtor(&garbage);
+//		return 1;
+//	}
+//#else
+	return zend_update_static_property(ce, property_name, property_length, value);
+//#endif
 }
 
 /*

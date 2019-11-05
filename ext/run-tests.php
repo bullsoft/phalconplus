@@ -24,7 +24,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id: d5638aad996086c16f5f96ecbea6247b14e7ddbb $ */
+/* $Id: c5f09fa8aac4beebf5e9a2f401a3e39cd5399798 $ */
 
 /* Sanity check to ensure that pcre extension needed by this script is available.
  * In the event it is not, print a nice error message indicating that this script will
@@ -697,7 +697,7 @@ if (isset($argc) && $argc > 1) {
 					$html_output = is_resource($html_file);
 					break;
 				case '--version':
-					echo '$Id: d5638aad996086c16f5f96ecbea6247b14e7ddbb $' . "\n";
+					echo '$Id: c5f09fa8aac4beebf5e9a2f401a3e39cd5399798 $' . "\n";
 					exit(1);
 
 				default:
@@ -1994,8 +1994,6 @@ COMMAND $cmd
 		}
 	}
 
-	@unlink($tmp_post);
-
 	$leaked = false;
 	$passed = false;
 
@@ -2205,6 +2203,10 @@ COMMAND $cmd
 
 	if ($warn) {
 		$restype[] = 'WARN';
+	}
+
+	if ($passed) {
+		@unlink($tmp_post);
 	}
 
 	if (!$passed) {

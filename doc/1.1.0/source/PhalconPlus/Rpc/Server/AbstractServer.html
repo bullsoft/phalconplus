@@ -22,7 +22,7 @@
                                     <script src="../../../../asset/api_definition.js"></script>
                     <script src="../../../../asset/static/jquery.min.js"></script>
                     <script src="../../../../asset/static/zephir-doc.js"></script>
-                <script>var ZepCurrentPath = '../../../../'</script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -64,7 +64,6 @@
             </div>
     
     <div class="class-full-name">
-        
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
@@ -76,20 +75,27 @@
                 <span class="namespace-piece">
             <a href="../../../../namespace/PhalconPlus/Rpc/Server.html">Server</a>
         </span>
-                <h1 class="class-name">AbstractServer</h1>
+        
+        <h1 class="class-name">AbstractServer</h1>
     </div>
     
 </div>
 
-
-<pre class="zephir-source-file prettyprint linenums">namespace PhalconPlus\Rpc\Server;
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Rpc\Server;
 use PhalconPlus\Base\ProtoBuffer;
+use PhalconPlus\Logger\Processor\LogId;
 
 abstract class AbstractServer
 {
-    protected di = null;
-    protected config = null;
-    protected phpOnly = false;
+    protected di = null {
+        get
+    };
+
+    protected phpOnly = false {
+        get
+    };
+
     protected eventsManager = null;
 
     abstract public function __construct(<\Phalcon\DI> di);
@@ -179,7 +185,8 @@ abstract class AbstractServer
         }
 
         if fetch logId, rawData["logId"] {
-            // ...
+            // set logId, same as request api
+            LogId::setId(logId);
         }
 
         if this->di->has("logger") {
@@ -199,7 +206,8 @@ abstract class AbstractServer
         return response;
     }
 }
-</pre>                </div>
+</pre>
+                </div>
             </div>
         </div>
     </body>

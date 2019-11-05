@@ -101,6 +101,20 @@ class Assertion
         return true;
     }
 
+    public static function integer(var value, var message = null, var propertyPath = null) -> boolean
+    {
+        if !\is_int(value) {
+            if message === null {
+                let message = \sprintf(
+                    message ? message : "Value \"%s\" is not an integer.", 
+                    static::stringify(value)
+                );
+            }
+            throw static::createException(value, message, AssertionCode::INVALID_INTEGER, propertyPath);
+        }
+        return true;
+    }
+
     public static function numeric(var value, var message = null, var propertyPath = null) -> boolean
     {
         if !is_numeric(value) {
@@ -298,6 +312,36 @@ class Assertion
                 static::stringify(value)
             );
             throw static::createException(value, message, AssertionCode::INVALID_ARRAY, propertyPath);
+        }
+        return true;
+    }
+
+    public static function isInstanceOf(object value, var classNames, var message = null, var propertyPath = null) -> bool
+    {
+        string classItem;
+        bool result = false;
+        if is_string(classNames) {
+            let classItem = classNames;
+            if value instanceof classItem { 
+                let result = true;
+            }
+        } elseif is_array(classNames) { // instance of anyone of classNames
+            var tmp;
+            for tmp in classNames {
+                let classItem = (string) tmp;
+                if value instanceof classItem { 
+                    let result = true;
+                    break;
+                } 
+            }
+        }
+        if result === false {
+            let message = sprintf(
+                message ? message : "Class \"%s\" was expected to be instanceof of \"%s\" but is not.",
+                static::stringify(value),
+                classItem
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_INSTANCE_OF, propertyPath, ["class" : classItem]);
         }
         return true;
     }

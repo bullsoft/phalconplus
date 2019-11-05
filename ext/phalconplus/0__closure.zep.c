@@ -32,7 +32,7 @@ PHP_METHOD(phalconplus_0__closure, __invoke) {
 
 	ZVAL_UNDEF(&freq_sub);
 
-	zephir_fetch_params(0, 1, 0, &freq);
+	zephir_fetch_params_without_memory_grow(1, 0, &freq);
 
 
 

@@ -26,11 +26,12 @@
 zend_class_entry *phalconplus_assert_assertionfailedexception_ce;
 zend_class_entry *phalconplus_base_protobuffer_ce;
 zend_class_entry *phalconplus_enum_abstractenum_ce;
-zend_class_entry *phalconplus_db_unitofwork_abstractvalue_ce;
 zend_class_entry *phalconplus_logger_processor_abstractprocessor_ce;
 zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
+zend_class_entry *phalconplus_db_unitofwork_abstractvalue_ce;
 zend_class_entry *phalconplus_base_abstractrequest_ce;
 zend_class_entry *phalconplus_base_abstractresponse_ce;
+zend_class_entry *phalconplus_base_exception_ce;
 zend_class_entry *phalconplus_db_pdo_abstractmysql_ce;
 zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 zend_class_entry *phalconplus_0__closure_ce;
@@ -39,7 +40,6 @@ zend_class_entry *phalconplus_2__closure_ce;
 zend_class_entry *phalconplus_assert_assertion_ce;
 zend_class_entry *phalconplus_assert_invalidargumentexception_ce;
 zend_class_entry *phalconplus_base_abstractmodule_ce;
-zend_class_entry *phalconplus_base_exception_ce;
 zend_class_entry *phalconplus_base_model_ce;
 zend_class_entry *phalconplus_base_moduledef_ce;
 zend_class_entry *phalconplus_base_pagable_ce;
@@ -49,6 +49,10 @@ zend_class_entry *phalconplus_base_service_ce;
 zend_class_entry *phalconplus_base_simplerequest_ce;
 zend_class_entry *phalconplus_base_simpleresponse_ce;
 zend_class_entry *phalconplus_bootstrap_ce;
+zend_class_entry *phalconplus_curl_curl_ce;
+zend_class_entry *phalconplus_curl_exception_ce;
+zend_class_entry *phalconplus_curl_request_ce;
+zend_class_entry *phalconplus_curl_response_ce;
 zend_class_entry *phalconplus_db_mysql_ce;
 zend_class_entry *phalconplus_db_pdo_mysql_ce;
 zend_class_entry *phalconplus_db_unitofwork_ce;
@@ -61,15 +65,19 @@ zend_class_entry *phalconplus_enum_runenv_ce;
 zend_class_entry *phalconplus_enum_runmode_ce;
 zend_class_entry *phalconplus_enum_sys_ce;
 zend_class_entry *phalconplus_featuretest_splobjectstoragetest_ce;
-zend_class_entry *phalconplus_http_psrrequest_ce;
+zend_class_entry *phalconplus_http_nonpsrrequest_ce;
 zend_class_entry *phalconplus_logger_adapter_fileplus_ce;
 zend_class_entry *phalconplus_logger_formatter_lineplus_ce;
+zend_class_entry *phalconplus_logger_multiplefile_ce;
+zend_class_entry *phalconplus_logger_processor_logid_ce;
 zend_class_entry *phalconplus_logger_processor_trace_ce;
 zend_class_entry *phalconplus_logger_processor_uid_ce;
 zend_class_entry *phalconplus_mvc_psrapplication_ce;
+zend_class_entry *phalconplus_rpc_client_adapter_curl_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_local_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_remote_ce;
 zend_class_entry *phalconplus_rpc_server_simpleserver_ce;
+zend_class_entry *phalconplus_rpc_yar_ce;
 zend_class_entry *phalconplus_volt_extension_phpfunction_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(phalconplus)
@@ -85,17 +93,17 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
 	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);
-	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork_AbstractValue);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_AbstractProcessor);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_AbstractClient);
+	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork_AbstractValue);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractRequest);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractResponse);
+	ZEPHIR_INIT(PhalconPlus_Base_Exception);
 	ZEPHIR_INIT(PhalconPlus_Db_Pdo_AbstractMysql);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Server_AbstractServer);
 	ZEPHIR_INIT(PhalconPlus_Assert_Assertion);
 	ZEPHIR_INIT(PhalconPlus_Assert_InvalidArgumentException);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractModule);
-	ZEPHIR_INIT(PhalconPlus_Base_Exception);
 	ZEPHIR_INIT(PhalconPlus_Base_Model);
 	ZEPHIR_INIT(PhalconPlus_Base_ModuleDef);
 	ZEPHIR_INIT(PhalconPlus_Base_Pagable);
@@ -105,6 +113,10 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Base_SimpleRequest);
 	ZEPHIR_INIT(PhalconPlus_Base_SimpleResponse);
 	ZEPHIR_INIT(PhalconPlus_Bootstrap);
+	ZEPHIR_INIT(PhalconPlus_Curl_Curl);
+	ZEPHIR_INIT(PhalconPlus_Curl_Exception);
+	ZEPHIR_INIT(PhalconPlus_Curl_Request);
+	ZEPHIR_INIT(PhalconPlus_Curl_Response);
 	ZEPHIR_INIT(PhalconPlus_Db_Mysql);
 	ZEPHIR_INIT(PhalconPlus_Db_Pdo_Mysql);
 	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork);
@@ -117,15 +129,19 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Enum_RunMode);
 	ZEPHIR_INIT(PhalconPlus_Enum_Sys);
 	ZEPHIR_INIT(PhalconPlus_FeatureTest_SplObjectStorageTest);
-	ZEPHIR_INIT(PhalconPlus_Http_PsrRequest);
+	ZEPHIR_INIT(PhalconPlus_Http_NonPsrRequest);
 	ZEPHIR_INIT(PhalconPlus_Logger_Adapter_FilePlus);
 	ZEPHIR_INIT(PhalconPlus_Logger_Formatter_LinePlus);
+	ZEPHIR_INIT(PhalconPlus_Logger_MultiPleFile);
+	ZEPHIR_INIT(PhalconPlus_Logger_Processor_LogId);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_Trace);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_Uid);
 	ZEPHIR_INIT(PhalconPlus_Mvc_PsrApplication);
+	ZEPHIR_INIT(PhalconPlus_Rpc_Client_Adapter_Curl);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_Adapter_Local);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_Adapter_Remote);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Server_SimpleServer);
+	ZEPHIR_INIT(PhalconPlus_Rpc_Yar);
 	ZEPHIR_INIT(PhalconPlus_Volt_Extension_PhpFunction);
 	ZEPHIR_INIT(phalconplus_0__closure);
 	ZEPHIR_INIT(phalconplus_1__closure);
@@ -150,12 +166,6 @@ static PHP_MSHUTDOWN_FUNCTION(phalconplus)
 static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_globals TSRMLS_DC)
 {
 	phalconplus_globals->initialized = 0;
-
-	/* Memory options */
-	phalconplus_globals->active_memory = NULL;
-
-	/* Virtual Symbol Tables */
-	phalconplus_globals->active_symbol_table = NULL;
 
 	/* Cache Enabled */
 	phalconplus_globals->cache_enabled = 1;
@@ -186,10 +196,11 @@ static PHP_RINIT_FUNCTION(phalconplus)
 #endif
 	phalconplus_globals_ptr = ZEPHIR_VGLOBAL;
 
-	php_zephir_init_globals(phalconplus_globals_ptr TSRMLS_CC);
-	zephir_initialize_memory(phalconplus_globals_ptr TSRMLS_CC);
+	php_zephir_init_globals(phalconplus_globals_ptr);
+	zephir_initialize_memory(phalconplus_globals_ptr);
 
 		zephir_init_static_properties_PhalconPlus_Base_ModuleDef(TSRMLS_C);
+		zephir_init_static_properties_PhalconPlus_Curl_Request(TSRMLS_C);
 	
 	return SUCCESS;
 }
@@ -226,8 +237,8 @@ static PHP_MINFO_FUNCTION(phalconplus)
 
 static PHP_GINIT_FUNCTION(phalconplus)
 {
-	php_zephir_init_globals(phalconplus_globals TSRMLS_CC);
-	php_zephir_init_module_globals(phalconplus_globals TSRMLS_CC);
+	php_zephir_init_globals(phalconplus_globals);
+	php_zephir_init_module_globals(phalconplus_globals);
 }
 
 static PHP_GSHUTDOWN_FUNCTION(phalconplus)
@@ -241,10 +252,16 @@ zend_function_entry php_phalconplus_functions[] = {
 
 };
 
+static const zend_module_dep php_phalconplus_deps[] = {
+	ZEND_MOD_REQUIRED("phalcon")
+	ZEND_MOD_REQUIRED("yar")
+	ZEND_MOD_END
+};
+
 zend_module_entry phalconplus_module_entry = {
 	STANDARD_MODULE_HEADER_EX,
 	NULL,
-	NULL,
+	php_phalconplus_deps,
 	PHP_PHALCONPLUS_EXTNAME,
 	php_phalconplus_functions,
 	PHP_MINIT(phalconplus),

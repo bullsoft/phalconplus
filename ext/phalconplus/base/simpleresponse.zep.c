@@ -26,7 +26,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleResponse) {
 	/**
 	 * @var array
 	 */
-	zend_declare_property_null(phalconplus_base_simpleresponse_ce, SL("result"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_simpleresponse_ce, SL("result"), ZEND_ACC_PRIVATE);
 
 	phalconplus_base_simpleresponse_ce->create_object = zephir_init_properties_PhalconPlus_Base_SimpleResponse;
 	return SUCCESS;
@@ -37,6 +37,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, softClone) {
 
 	zend_string *_3;
 	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, key, val, *_0, _1, _4$$3, _7$$6;
@@ -112,6 +113,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult) {
 
 	zval _1;
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
@@ -128,6 +130,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getResult) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *result_param = NULL;
 	zval result;
 	zval *this_ptr = getThis();
@@ -155,6 +158,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setResult) {
  */
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
 	zval *this_ptr = getThis();
@@ -178,7 +182,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 44, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 47, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}
@@ -188,6 +192,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, *key = NULL, key_sub, __$null, _0$$4;
 	zval *this_ptr = getThis();
@@ -211,7 +216,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 44, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 47, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}
@@ -221,6 +226,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 
 PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key = NULL, key_sub, __$null, val$$3, _0$$3, _1$$5;
 	zval *this_ptr = getThis();
@@ -243,13 +249,13 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 	if (!(Z_TYPE_P(key) == IS_NULL)) {
 		ZEPHIR_OBS_VAR(&val$$3);
 		zephir_read_property(&_0$$3, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
-		if (zephir_array_isset_fetch(&val$$3, &_0$$3, key, 0 TSRMLS_CC)) {
+		if (zephir_array_isset_fetch(&val$$3, &_0$$3, key, 0)) {
 			RETURN_CCTOR(&val$$3);
 		}
 	} else {
 		zephir_read_property(&_1$$5, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_1$$5);
-		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 49, &_1$$5);
+		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 54, &_1$$5);
 		ZEPHIR_UNREF(&_1$$5);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -258,9 +264,26 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 
 }
 
+PHP_METHOD(PhalconPlus_Base_SimpleResponse, isEmpty) {
+
+	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_OBS_VAR(&_0);
+	zephir_read_property(&_0, this_ptr, SL("result"), PH_NOISY_CC);
+	RETURN_MM_BOOL(ZEPHIR_IS_EMPTY(&_0));
+
+}
+
 zend_object *zephir_init_properties_PhalconPlus_Base_SimpleResponse(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 

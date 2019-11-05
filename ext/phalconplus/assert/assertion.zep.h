@@ -10,6 +10,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same);
 PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty);
 PHP_METHOD(PhalconPlus_Assert_Assertion, notNull);
 PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank);
+PHP_METHOD(PhalconPlus_Assert_Assertion, integer);
 PHP_METHOD(PhalconPlus_Assert_Assertion, numeric);
 PHP_METHOD(PhalconPlus_Assert_Assertion, range);
 PHP_METHOD(PhalconPlus_Assert_Assertion, minLength);
@@ -24,6 +25,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, keyExists);
 PHP_METHOD(PhalconPlus_Assert_Assertion, isResource);
 PHP_METHOD(PhalconPlus_Assert_Assertion, isString);
 PHP_METHOD(PhalconPlus_Assert_Assertion, isArray);
+PHP_METHOD(PhalconPlus_Assert_Assertion, isInstanceOf);
 PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString);
 PHP_METHOD(PhalconPlus_Assert_Assertion, stringify);
 
@@ -92,6 +94,16 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_notblank, 0, 1, _IS_BOOL, 1)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_notblank, 0, 1, _IS_BOOL, NULL, 1)
+#endif
+	ZEND_ARG_INFO(0, value)
+	ZEND_ARG_INFO(0, message)
+	ZEND_ARG_INFO(0, propertyPath)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_integer, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_integer, 0, 1, _IS_BOOL, NULL, 0)
 #endif
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, message)
@@ -304,6 +316,17 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isa
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isinstanceof, 0, 2, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isinstanceof, 0, 2, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_INFO(0, value)
+	ZEND_ARG_INFO(0, classNames)
+	ZEND_ARG_INFO(0, message)
+	ZEND_ARG_INFO(0, propertyPath)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isjsonstring, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_assert_assertion_isjsonstring, 0, 1, _IS_BOOL, NULL, 0)
@@ -325,6 +348,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_assert_assertion_method_entry) {
 	PHP_ME(PhalconPlus_Assert_Assertion, notEmpty, arginfo_phalconplus_assert_assertion_notempty, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, notNull, arginfo_phalconplus_assert_assertion_notnull, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, notBlank, arginfo_phalconplus_assert_assertion_notblank, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Assert_Assertion, integer, arginfo_phalconplus_assert_assertion_integer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, numeric, arginfo_phalconplus_assert_assertion_numeric, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, range, arginfo_phalconplus_assert_assertion_range, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, minLength, arginfo_phalconplus_assert_assertion_minlength, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
@@ -339,6 +363,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_assert_assertion_method_entry) {
 	PHP_ME(PhalconPlus_Assert_Assertion, isResource, arginfo_phalconplus_assert_assertion_isresource, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, isString, arginfo_phalconplus_assert_assertion_isstring, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, isArray, arginfo_phalconplus_assert_assertion_isarray, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Assert_Assertion, isInstanceOf, arginfo_phalconplus_assert_assertion_isinstanceof, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, isJsonString, arginfo_phalconplus_assert_assertion_isjsonstring, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Assert_Assertion, stringify, arginfo_phalconplus_assert_assertion_stringify, ZEND_ACC_PRIVATE|ZEND_ACC_STATIC)
 	PHP_FE_END
