@@ -11,9 +11,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
 	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/base/protobuffer.zep.c
 	phalconplus/enum/abstractenum.zep.c
-	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
+	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
 	phalconplus/base/abstractrequest.zep.c
 	phalconplus/base/abstractresponse.zep.c
@@ -49,12 +49,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/sys.zep.c
 	phalconplus/featuretest/splobjectstoragetest.zep.c
 	phalconplus/http/nonpsrrequest.zep.c
-	phalconplus/logger/adapter/fileplus.zep.c
-	phalconplus/logger/formatter/lineplus.zep.c
 	phalconplus/logger/multiplefile.zep.c
 	phalconplus/logger/processor/logid.zep.c
 	phalconplus/logger/processor/trace.zep.c
-	phalconplus/logger/processor/uid.zep.c
 	phalconplus/mvc/psrapplication.zep.c
 	phalconplus/rpc/client/adapter/curl.zep.c
 	phalconplus/rpc/client/adapter/local.zep.c

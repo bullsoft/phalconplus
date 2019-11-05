@@ -120,7 +120,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct) {
 		zephir_json_decode(&_3$$3, &rawBody, zephir_get_intval(&__$true) );
 		zephir_update_property_zval(this_ptr, SL("requestArgs"), &_3$$3);
 	} else {
-		ZEPHIR_CALL_FUNCTION(&_4$$4, "msgpack_unpack", NULL, 124, &rawBody);
+		ZEPHIR_CALL_FUNCTION(&_4$$4, "msgpack_unpack", NULL, 122, &rawBody);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("requestArgs"), &_4$$4);
 	}
@@ -241,7 +241,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 				ZEPHIR_CALL_METHOD(&_18$$7, &e$$4, "getcode", NULL, 0);
 				zephir_check_call_status();
 				ZVAL_LONG(&_19$$7, 1);
-				ZEPHIR_CALL_FUNCTION(&_20$$7, "max", NULL, 125, &_18$$7, &_19$$7);
+				ZEPHIR_CALL_FUNCTION(&_20$$7, "max", NULL, 123, &_18$$7, &_19$$7);
 				zephir_check_call_status();
 				zephir_array_update_string(&ret$$4, SL("errorCode"), &_20$$7, PH_COPY | PH_SEPARATE);
 				ZEPHIR_CALL_METHOD(&_21$$7, &e$$4, "getmessage", NULL, 0);
