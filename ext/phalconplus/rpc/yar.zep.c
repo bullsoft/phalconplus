@@ -35,8 +35,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Yar) {
 
 	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("encoder"), "msgpack_pack", ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("decoder"), "msgpack_unpack", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
 
 }
@@ -118,9 +116,6 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct) {
 		ZEPHIR_INIT_NVAR(&_3$$3);
 		ZVAL_STRING(&_3$$3, "json_encode");
 		zephir_update_property_zval(this_ptr, SL("encoder"), &_3$$3);
-		ZEPHIR_INIT_NVAR(&_3$$3);
-		ZVAL_STRING(&_3$$3, "json_decode");
-		zephir_update_property_zval(this_ptr, SL("decoder"), &_3$$3);
 		ZEPHIR_INIT_NVAR(&_3$$3);
 		zephir_json_decode(&_3$$3, &rawBody, zephir_get_intval(&__$true) );
 		zephir_update_property_zval(this_ptr, SL("requestArgs"), &_3$$3);
@@ -217,7 +212,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 				ZVAL_STRING(&_11$$6, "invalid request args");
 				ZEPHIR_CALL_METHOD(NULL, &_10$$6, "__construct", NULL, 7, &_11$$6);
 				zephir_check_call_status_or_jump(try_end_1);
-				zephir_throw_exception_debug(&_10$$6, "phalconplus/Rpc/Yar.zep", 49);
+				zephir_throw_exception_debug(&_10$$6, "phalconplus/Rpc/Yar.zep", 47);
 				goto try_end_1;
 
 			}

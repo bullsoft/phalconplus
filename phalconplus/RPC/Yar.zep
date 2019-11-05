@@ -16,7 +16,6 @@ class Yar extends \Phalcon\Application
 
 	protected formater = "msgpack";
 	protected encoder = "msgpack_pack";
-	protected decoder = "msgpack_unpack";
 
 	public function __construct(<DiInterface> di = null, string formater = "")
 	{
@@ -25,7 +24,6 @@ class Yar extends \Phalcon\Application
 		if "json" == formater {
 			let this->formater = formater;
 			let this->encoder = "json_encode";
-			let this->decoder = "json_decode";
 			let this->requestArgs = json_decode(rawBody, true);
 		} else {
 			let this->requestArgs = msgpack_unpack(rawBody);
@@ -56,8 +54,7 @@ class Yar extends \Phalcon\Application
 				let ret["errorCode"] = max(e->getCode(), 1);
 				let ret["errorMsg"] = e->getMessage();
 			}
-			string encoder;
-			let encoder = this->encoder;
+			string encoder = this->encoder;
 			let this->responseBody = {encoder}(ret);
 		}
 		echo this->responseBody;
