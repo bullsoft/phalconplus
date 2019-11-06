@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+
+<script src="../../../../asset/static/prettify.js"></script>
+<script src="../../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../asset/api_definition.js"></script>
+                    <script src="../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.1.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../class/PhalconPlus/Db/Pdo/Mysql.html">PhalconPlus\Db\Pdo\Mysql</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../class/PhalconPlus/Db/Pdo/Mysql.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/Db.html">Db</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/Db/Pdo.html">Pdo</a>
+        </span>
+        
+        <h1 class="class-name">Mysql</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Db\Pdo;
+
+class Mysql extends AbstractMysql
+{
+    public function __construct(array! descriptor, boolean autoConnect = true)
+    {
+        if autoConnect {
+            this->connect(descriptor);
+        } else {
+            %{
+            zephir_unset_property(this_ptr, "_pdo");
+            }%
+        }
+
+        // ------------------------------------------------------ //
+        // start coping from \Phalcon\Db\Adapter::__construct
+        // ------------------------------------------------------ //
+
+        var dialectClass, connectionId;
+
+        let connectionId = self::_connectionConsecutive,
+            this->_connectionId = connectionId,
+            self::_connectionConsecutive = connectionId + 1;
+
+        /**
+         * Dialect class can override the default dialect
+         */
+        if !fetch dialectClass, descriptor["dialectClass"] {
+            let dialectClass = "phalcon\\db\\dialect\\" . this->_dialectType;
+        }
+
+        /**
+         * Create the instance only if the dialect is a string
+         */
+        if typeof dialectClass == "string" {
+            let this->_dialect = new {dialectClass}();
+        } else {
+            if typeof dialectClass == "object" {
+                let this->_dialect = dialectClass;
+            }
+        }
+        let this->_descriptor = descriptor;
+        
+        // ------------------------------------------------------ //
+        // end coping
+        // ------------------------------------------------------ //
+    }
+
+    public function __get(string! prop)
+    {
+        if prop == "_pdo" {
+            %{
+            add_property_null_ex(this_ptr, SL("_pdo") TSRMLS_CC);
+            }%
+            this->connect(this->_descriptor);
+            return this->_pdo;
+        }
+        return null;
+    }
+
+    public function isUnderTransaction() -> boolean
+    {
+        string prop = "_pdo";        
+        int isPdoSet = 0;
+
+        // var_dump(this);
+
+        /* 
+         * Used to check if a property of the object exists 
+         * https://wiki.php.net/internals/engine/objects#the_handler_table
+         *
+         * param has_set_exists:
+         * 0 (has) whether property exists and is not NULL
+         * 1 (set) whether property exists and is true
+         * 2 (exists) whether property exists
+         */
+        %{
+        isPdoSet = Z_OBJ_HT_P(this_ptr)->has_property(this_ptr, &prop, 0, NULL);
+        // isPdoSet = zephir_isset_property(this_ptr, SL("_pdo"));
+        }%
+        
+        // var_dump(isPdoSet);
+        if(isPdoSet == 0) {
+            return false;
+        }
+
+        return parent::isUnderTransaction();
+    }
+
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

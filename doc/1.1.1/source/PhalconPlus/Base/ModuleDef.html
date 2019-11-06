@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.1.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Base/ModuleDef.html">PhalconPlus\Base\ModuleDef</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Base/ModuleDef.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Base.html">Base</a>
+        </span>
+        
+        <h1 class="class-name">ModuleDef</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    //<?php
+namespace PhalconPlus\Base;
+use PhalconPlus\Bootstrap as Bs;
+use PhalconPlus\Enum\Sys as Sys;
+
+/* Module Structure for mode "Web"
+    .
+    ├── app
+    │   ├── Module.php
+        │   ├── config
+        │   │   └── dev.php
+        │   ├── controllers
+        │   │   ├── BaseController.php
+        │   │   ├── ErrorController.php
+        │   │   ├── IndexController.php
+        │   │   └── apis
+        │   └── views
+        │       └── index
+        └── public
+        └── index.php
+*/
+
+class ModuleDef
+{
+    protected classPath = "";
+    protected className = "";
+    protected name = "";
+    protected configPath = "";
+    protected dir = "";
+
+    protected static loadedClasses = [];
+
+    // <\Phalcon\Config>
+    protected config = null;
+    // <\PhalconPlus\Enum\RunMode>
+    protected runMode = null;
+    // <\PhalconPlus\Bootstrap>
+    protected bootstrap = null;
+
+    // Is this a primary-module? false for default
+    protected isPrimary = false;
+
+    public function __construct(<\PhalconPlus\Bootstrap> boot, const string! moduleDir, boolean isPrimary = false)
+    {
+        if !is_dir(moduleDir) {
+            throw new \Exception("Module directory not exists or not a dir, file positon: " . moduleDir);
+        }
+        let this->dir = moduleDir;
+
+        let this->configPath = Sys::getModuleConfigPath(moduleDir);
+
+        // 模块配置
+        let this->config = new \Phalcon\Config(boot->load(this->configPath));
+        if !isset this->config["application"] {
+            throw new \PhalconPlus\Base\Exception("Config Path: /application must exists");
+        }
+        var appConfig = this->config->application;
+
+        let this->name = appConfig->name;
+        let this->runMode = new \PhalconPlus\Enum\RunMode(ucfirst(strtolower(appConfig->mode)));
+
+        let this->className = appConfig->ns . this->runMode->getMapClassName();
+
+        let this->classPath = Sys::getModuleClassPath(moduleDir, this->runMode);
+
+        if !is_file(this->classPath) {
+            throw new \Exception("Module class file not exists: " . this->classPath);
+        }
+        let this->bootstrap = boot;
+        let this->isPrimary = isPrimary;
+    }
+
+    public function impl(<\Phalcon\Di> di) -> <\PhalconPlus\Base\AbstractModule>
+    {
+        if !isset(self::loadedClasses[this->className]) {
+            require this->classPath;
+        }
+        if !class_exists(this->className) {
+            throw new \Exception("Module class not exists: ". this->className);
+        }
+        let self::loadedClasses[this->className] = 1;
+        var className = this->className;
+        return new {className}(di, this);
+    }
+
+    public function getIsPrimary()
+    {
+        return this->isPrimary;
+    }
+
+    public function getClassPath() -> string
+    {
+        return this->classPath;
+    }
+
+    public function getBootstrap() -> <\PhalconPlus\Bootstrap>
+    {
+        return this->bootstrap;
+    }
+
+    public function getClassName() -> string
+    {
+        return this->className;
+    }
+
+    public function getRunMode() -> <\PhalconPlus\Enum\RunMode>
+    {
+        return this->runMode;
+    }
+
+    public function getMapClassName() -> string
+    {
+        return this->runMode->getMapClassName();
+    }
+
+    public function getMode() -> string
+    {
+        return this->runMode->getValue();
+    }
+
+    public function getName() -> string
+    {
+        return this->name;
+    }
+
+    public function getConfigPath() -> string
+    {
+        return this->configPath;
+    }
+
+    public function getConfig() -> <\Phalcon\Config>
+    {
+        return this->config;
+    }
+
+    public function getDir() -> string
+    {
+        return this->dir;
+    }
+}
+</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.1.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Enum/RunMode.html">PhalconPlus\Enum\RunMode</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Enum/RunMode.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Enum.html">Enum</a>
+        </span>
+        
+        <h1 class="class-name">RunMode</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    // <?php
+namespace PhalconPlus\Enum;
+use PhalconPlus\Enum\AbstractEnum;
+use PhalconPlus\Enum\Sys as Sys;
+
+class RunMode extends AbstractEnum
+{
+    const WEB = "Web";
+    const CLI = "Cli";
+    const SRV = "Srv";
+    const MICRO = "Micro";
+
+    const __default = self::CLI;
+
+    // mode -> className
+    // eg: mode "Web" has a module initial className in app/Module.php
+    protected mapClasses = [
+        "Web"     : "Module",
+        "Cli"     : "Task",
+        "Srv"     : "Srv",
+        "Micro"   : "Micro"
+    ];
+
+    // 全局服务加载脚本定义
+    protected scripts = [
+        "Web"   : "default-web.php", 
+        "Cli"   : "default-cli.php", 
+        "Srv"   : "default-web.php", 
+        "Micro" : "default-micro.php"
+    ];
+
+    public function getScriptPath() -> string | null
+    {
+        var script;
+        let script = Sys::getGlobalLoadDir() . this->scripts[this->val];
+        if !is_file(script) {
+            error_log("PHP Notice:  PhalconPlus\\Enum\\RunMode Global load file not exists: " . script);
+            return null;
+        }
+        return script;
+    }
+
+    public function getMapClassName() -> string
+    {
+        return this->mapClasses[this->val];
+    }
+}
+</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

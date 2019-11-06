@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../../../asset/static/prettify.css" />
+
+<script src="../../../../../asset/static/prettify.js"></script>
+<script src="../../../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../../asset/api_definition.js"></script>
+                    <script src="../../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.1.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../../class/PhalconPlus/Rpc/Client/Adapter/Curl.html">PhalconPlus\Rpc\Client\Adapter\Curl</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../../class/PhalconPlus/Rpc/Client/Adapter/Curl.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/Rpc.html">Rpc</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/Rpc/Client.html">Client</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/Rpc/Client/Adapter.html">Adapter</a>
+        </span>
+        
+        <h1 class="class-name">Curl</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Rpc\Client\Adapter;
+use PhalconPlus\Rpc\Client\AbstractClient;
+
+use PhalconPlus\Curl\Curl as HttpClient;
+
+class Curl extends AbstractClient
+{
+    private remoteServerUrl;
+    private client;
+    private response { get };
+    private formater = "msgpack";
+
+    public function __construct(array remoteServerUrl, array opts = [], string formater = "")
+    {
+        if empty remoteServerUrl {
+            throw new \PhalconPlus\Base\Exception("server url can not be empty");
+        }
+        var key;
+        let key = array_rand(remoteServerUrl);
+        let this->remoteServerUrl = remoteServerUrl[key];
+        let this->client = new HttpClient();
+        if !empty opts {
+            this->client->setDefaultOptions(opts);
+        }
+        if "json" == formater {
+            let this->formater = formater;
+        }
+    }
+
+    public function callByObject(array rawData)
+    {
+        string encoder = "msgpack_pack", 
+               decoder = "msgpack_unpack";
+        if "json" == this->formater {
+            let encoder = "json_encode",
+                decoder = "json_decode";
+        }
+        let this->response = this->client->rawPost(this->remoteServerUrl, {encoder}(rawData));
+        if is_object(this->response) {
+            if(this->response->statusCode == 200) {
+                if "json" == this->formater { 
+                    return {decoder}(this->response->body, true);
+                } else {
+                    return {decoder}(this->response->body);
+                }
+            }
+            return this->response->statusText;
+        }
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

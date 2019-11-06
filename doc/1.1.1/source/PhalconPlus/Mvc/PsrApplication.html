@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.1.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Mvc/PsrApplication.html">PhalconPlus\Mvc\PsrApplication</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Mvc/PsrApplication.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Mvc.html">Mvc</a>
+        </span>
+        
+        <h1 class="class-name">PsrApplication</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    //<?php
+namespace PhalconPlus\Mvc;
+use Phalcon\Mvc\Application as BaseApplication;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Phalcon\DiInterface;
+use Psr\Http\Message\UploadedFileInterface;
+use Phalcon\Http\Cookie;
+
+class PsrApplication extends BaseApplication
+{
+    protected psrRequest = null {
+        set, get
+    };
+
+    protected nativeRequest = null {
+        get
+    };
+
+    public function __construct(<DiInterface> dependencyInjector = null, <ServerRequestInterface> psrRequest = null)
+    {
+        parent::__construct(dependencyInjector);
+        let this->_sendHeaders = false;
+        let this->_sendCookies = false;
+        let this->psrRequest = psrRequest;
+        // Phalcon\Http\Request
+        let this->nativeRequest = new \PhalconPlus\Http\NonPsrRequest(psrRequest);
+    }
+
+    public function __destruct()
+    {
+        if this->nativeRequest {
+            this->nativeRequest->removeTmpFiles();
+        }
+    }
+
+    public function handle(var uri = null) -> <ResponseInterface> | boolean
+    {
+        var psrRequest;
+
+        if empty this->_dependencyInjector {
+            throw new \PhalconPlus\Base\Exception("there is no di(dependency injector) in PsrAppliction");
+        }
+
+        if !empty this->psrRequest {
+            let psrRequest = this->psrRequest;
+        } else {
+            throw new \PhalconPlus\Base\Exception("request in PsrApplication must instance of \\Psr\\Http\\Message\\ServerRequestInterface");
+        }
+        
+        if !class_exists("\\GuzzleHttp\\Psr7\\Response") {
+            throw new \PhalconPlus\Base\Exception("PsrApplication depends on GuzzleHttp\\Psr7\\Response");
+        }
+
+        this->_dependencyInjector->setShared("request", this->nativeRequest);
+
+        // get request uri-path
+        var reqUri = psrRequest->getUri()->getPath();
+        // get Phalcon\Http\Response
+        var response;
+
+        ob_start();
+        let response = <\Phalcon\Http\Response> parent::handle(reqUri);
+        var stdout = ob_get_clean();
+
+        var headers = this->mapHeaders(response);
+        var status = response->getStatusCode();
+        var reason = response->getReasonPhrase();
+
+        ob_start();
+        response->send();
+        var content = ob_get_clean();
+
+        if !empty stdout {
+            let content = stdout . content;
+        }
+        
+        var psrResponse;
+        let psrResponse = new \GuzzleHttp\Psr7\Response(status?status:200, headers, content, psrRequest->getProtocolVersion(), reason?reason:"OK");
+
+        if !isset(headers["Content-Length"]) {
+            let psrResponse = psrResponse->withAddedHeader("Content-Length", strlen(content));
+        }
+
+        return psrResponse;
+    }
+
+    protected function mapHeaders(<\Phalcon\Http\Response> response)
+    {
+        var headers = response->getHeaders()->toArray();
+        
+        var rawHeaders = headers_list();
+        var h, pos, nativeHeaders = [];
+        for h in rawHeaders {
+            let pos = strpos(h, ":");
+            if false !== pos {
+                var name = substr(h, 0, pos);
+                var value = trim(substr(h, pos + 1));
+                if isset(nativeHeaders[name]) {
+                    if !is_array(nativeHeaders[name]) {
+                        let nativeHeaders[name] = [nativeHeaders[name]];
+                    }
+                    let nativeHeaders[name][] = value;
+                } else {
+                    let nativeHeaders[name] = value;
+                }
+            }
+        }
+        // after reading all headers we need to reset it, so next request
+        // operates on a clean header.
+        header_remove();
+        let headers = array_merge(nativeHeaders, headers);
+        
+        if isset(nativeHeaders["Set-Cookie"]) {
+            let headers["Set-Cookie"] = is_array(nativeHeaders["Set-Cookie"])?nativeHeaders["Set-Cookie"]:[nativeHeaders["Set-Cookie"]];
+        } else {
+            let headers["Set-Cookie"] = null;
+        }
+        return headers;
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
