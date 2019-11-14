@@ -26,9 +26,9 @@
 zend_class_entry *phalconplus_assert_assertionfailedexception_ce;
 zend_class_entry *phalconplus_base_protobuffer_ce;
 zend_class_entry *phalconplus_enum_abstractenum_ce;
+zend_class_entry *phalconplus_logger_processor_abstractprocessor_ce;
 zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
 zend_class_entry *phalconplus_db_unitofwork_abstractvalue_ce;
-zend_class_entry *phalconplus_logger_processor_abstractprocessor_ce;
 zend_class_entry *phalconplus_base_abstractrequest_ce;
 zend_class_entry *phalconplus_base_abstractresponse_ce;
 zend_class_entry *phalconplus_base_exception_ce;
@@ -68,6 +68,7 @@ zend_class_entry *phalconplus_featuretest_splobjectstoragetest_ce;
 zend_class_entry *phalconplus_http_nonpsrrequest_ce;
 zend_class_entry *phalconplus_logger_multiplefile_ce;
 zend_class_entry *phalconplus_logger_processor_logid_ce;
+zend_class_entry *phalconplus_logger_processor_msec_ce;
 zend_class_entry *phalconplus_logger_processor_trace_ce;
 zend_class_entry *phalconplus_mvc_psrapplication_ce;
 zend_class_entry *phalconplus_rpc_client_adapter_curl_ce;
@@ -90,9 +91,9 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
 	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);
+	ZEPHIR_INIT(PhalconPlus_Logger_Processor_AbstractProcessor);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_AbstractClient);
 	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork_AbstractValue);
-	ZEPHIR_INIT(PhalconPlus_Logger_Processor_AbstractProcessor);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractRequest);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractResponse);
 	ZEPHIR_INIT(PhalconPlus_Base_Exception);
@@ -129,6 +130,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Http_NonPsrRequest);
 	ZEPHIR_INIT(PhalconPlus_Logger_MultiPleFile);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_LogId);
+	ZEPHIR_INIT(PhalconPlus_Logger_Processor_Msec);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_Trace);
 	ZEPHIR_INIT(PhalconPlus_Mvc_PsrApplication);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_Adapter_Curl);

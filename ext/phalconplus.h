@@ -6,9 +6,9 @@
 
 #include "phalconplus/base/protobuffer.zep.h"
 #include "phalconplus/enum/abstractenum.zep.h"
+#include "phalconplus/logger/processor/abstractprocessor.zep.h"
 #include "phalconplus/rpc/client/abstractclient.zep.h"
 #include "phalconplus/db/unitofwork/abstractvalue.zep.h"
-#include "phalconplus/logger/processor/abstractprocessor.zep.h"
 #include "phalconplus/assert/assertionfailedexception.zep.h"
 #include "phalconplus/base/abstractrequest.zep.h"
 #include "phalconplus/base/abstractresponse.zep.h"
@@ -46,6 +46,7 @@
 #include "phalconplus/http/nonpsrrequest.zep.h"
 #include "phalconplus/logger/multiplefile.zep.h"
 #include "phalconplus/logger/processor/logid.zep.h"
+#include "phalconplus/logger/processor/msec.zep.h"
 #include "phalconplus/logger/processor/trace.zep.h"
 #include "phalconplus/mvc/psrapplication.zep.h"
 #include "phalconplus/rpc/client/adapter/curl.zep.h"
