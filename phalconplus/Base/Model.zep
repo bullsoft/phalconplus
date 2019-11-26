@@ -17,8 +17,10 @@ class Model extends \Phalcon\Mvc\Model
     public ctime;
     // 记录更新时间
     public mtime;
+    // 自定义模型唯一键
+    protected __uniqueKeys = [];
 
-    protected __p_UK = [];
+    protected optimisticLock = false;
 
     public function initialize()
     {
@@ -38,16 +40,16 @@ class Model extends \Phalcon\Mvc\Model
 
     public function getFirstMessage()
     {
-        if count(this->getMessages("")) {
-            return (string) current(this->getMessages(""));
+        if count(this->getMessages()) {
+            return (string) current(this->getMessages());
         }
         return false;
     }
 
     public function getLastMessage()
     {
-        if count(this->getMessages("")) {
-            return (string) end(this->getMessages(""));
+        if count(this->getMessages()) {
+            return (string) end(this->getMessages());
         }
         return false;
     }
@@ -61,16 +63,6 @@ class Model extends \Phalcon\Mvc\Model
             let source  = get_called_class();
         }
         return this->getModelsManager()->createBuilder()->from(source);
-    }
-
-    /**
-     * @deprecated 非单例，不建议用此方法名称，将在以后移除
-     */
-    public static function getInstance() -> <\Phalcon\Mvc\Model>
-    {
-        var className;
-        let className = get_called_class();
-        return new {className}();
     }
 
     public static function newInstance() -> <\Phalcon\Mvc\Model>
@@ -135,6 +127,14 @@ class Model extends \Phalcon\Mvc\Model
     public function beforeSave()
     {
         let this->mtime = date("Y-m-d H:i:s");
+        return true;
+    }
+
+    public function afterSave()
+    {
+        if true == this->optimisticLock {
+            this->resetUniqueFields();
+        }
         return true;
     }
 
@@ -214,11 +214,10 @@ class Model extends \Phalcon\Mvc\Model
      */
     public function exists() -> boolean
     {
-        var metaData, readConnection, schema, source, table;
+        var metaData, readConnection, schema, source, table, builds, num;
         let
             metaData = this->getModelsMetaData(),
-            readConnection = this->getReadConnection();
-        let
+            readConnection = this->getReadConnection(),
             schema = this->getSchema(),
             source = this->getSource();
 
@@ -228,30 +227,33 @@ class Model extends \Phalcon\Mvc\Model
             let table = source;
         }
 
-        if !empty this->__p_UK {
-            this->_p_buildUkCond(metaData, readConnection);
-        }
-
-        if this->_exists(metaData, readConnection, table) {
-            return true;
-        } else {
+        if empty this->__uniqueKeys {
+            if this->_exists(metaData, readConnection, table) {
+                return true;
+            }
             return false;
         }
-    }
-   
-    /**
-     * @alias setUpdateCondition()
-     * @deprecated
-     */
-    public function setUpdateCond(array params)
-    {
-        return this->setUpdateCondition(params);
+
+        let builds = this->__buildUniqueCondition(metaData, readConnection);
+        if empty builds {
+            return false;
+        }
+        let num = readConnection->fetchOne(
+            "SELECT COUNT(*) \"rowcount\" FROM " . readConnection->escapeIdentifier(table) . " WHERE " . builds["uniqueKey"],
+            null,
+            builds["uniqueParams"],
+            builds["uniqueTypes"]
+        );
+        if num["rowcount"] {
+            return true;
+        }
+        return false;
     }
 
     /**
      * 如果想在更新某条记录的时候额外加入其他条件，可以使用此方法
      * where = [
-         'id > ?',  // 占位符仅支持?形式，不支持:placeHolder这种形式
+         'id > ?',  // 特别注意！！！ 占位符仅支持?形式，不支持:placeHolder这种形式
          'bind' => [
              14
          ]
@@ -342,16 +344,10 @@ class Model extends \Phalcon\Mvc\Model
         }
         merge_append(this->_uniqueTypes, uniqueTypes);
         let this->_uniqueTypes = array_pad(this->_uniqueTypes, countKeys, \Phalcon\Db\Column::BIND_SKIP);
-        return true;
-    }
 
-    /**
-     * @alias setUniqueKeys
-     * @deprecated
-     */
-    public function setUqKeys(array whereUk)
-    {
-        return $this->setUniqueKeys(whereUk);
+        let this->optimisticLock = true;
+
+        return this;
     }
 
     /**
@@ -380,29 +376,29 @@ class Model extends \Phalcon\Mvc\Model
                 let field = attributeField;
             }
 
-            let this->__p_UK[attributeField]["field"] = field;
+            let this->__uniqueKeys[attributeField]["field"] = field;
 
             if !fetch type, bindDataTypes[field] {
                 throw new \PhalconPlus\Base\Exception("Model::setUqKeys: Column '" . field . "' isn't part of the table columns");
             }
-            let this->__p_UK[attributeField]["type"] = type;
-            let this->__p_UK[attributeField]["op"] = "=";
+            let this->__uniqueKeys[attributeField]["type"] = type;
+            let this->__uniqueKeys[attributeField]["op"] = "=";
         }
         return this;
     }
 
-    protected function _p_buildUkCond(<MetaDataInterface> metaData, <AdapterInterface> connection)
+    protected function __buildUniqueCondition(<MetaDataInterface> metaData, <AdapterInterface> connection)
     {
         var value, type, info, field, whereUk, uniqueParams, uniqueTypes, attributeField;
 
         let whereUk = [],
-        uniqueParams = [],
-        uniqueTypes = [];
+            uniqueParams = [],
+            uniqueTypes = [];
 
-        for attributeField, info in this->__p_UK {
+        for attributeField, info in this->__uniqueKeys {
             let type = info["type"],
-            field = info["field"],
-            value = null;
+                field = info["field"],
+                value = null;
             if fetch value, this->{attributeField} {
                 var selfVal;
                 if fetch selfVal, info["value"] {
@@ -425,20 +421,27 @@ class Model extends \Phalcon\Mvc\Model
         if empty usefulParams {  // if no ukField is defined
             return false;
         }
-
-        let this->_uniqueKey = join(" AND ", whereUk),
-        this->_uniqueParams = uniqueParams,
-        this->_uniqueTypes = uniqueTypes;
-        return true;
+        return [
+            "uniqueKey" : join(" AND ", whereUk),
+            "uniqueParams" : uniqueParams,
+            "uniqueTypes" : uniqueTypes 
+        ];
     }
 
-    public function getUniqueFields()
+    public function getUniqueFields() -> array
     {
         return [
             "key" : this->_uniqueKey,
             "params" : this->_uniqueParams,
             "types" : this->_uniqueTypes
         ];
+    }
+
+    protected function resetUniqueFields() -> void
+    {
+        let this->_uniqueKey = null;
+        let this->_uniqueParams = null;
+        let this->_uniqueTypes = null;
     }
 
     public function toProtoBuffer(columns = null) -> <ProtoBuffer>

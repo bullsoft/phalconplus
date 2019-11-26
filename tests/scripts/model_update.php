@@ -9,6 +9,8 @@ $a = EmployeesModel::findFirst(
     "employeeNumber = '1056' AND extension='x4611'"
 );
 
+var_dump($a->getUniqueFields());
+
 $a->setUpdateCondition([
     'reportsTo = ?', 
     'bind' => [
