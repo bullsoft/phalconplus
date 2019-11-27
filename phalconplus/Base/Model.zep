@@ -134,6 +134,7 @@ class Model extends \Phalcon\Mvc\Model
     {
         if true == this->optimisticLock {
             this->resetUniqueFields();
+            let this->optimisticLock = false;
         }
         return true;
     }
