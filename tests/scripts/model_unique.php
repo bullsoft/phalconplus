@@ -9,3 +9,6 @@ $a->email = 'dmurphy@classicmodelcars.com';
 $result = $a->setUniqueKeys(["email"])
             ->exists();
 var_dump($result);
+
+
+var_dump($a->getUniqueFields());

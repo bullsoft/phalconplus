@@ -15,6 +15,7 @@ PHP_METHOD(PhalconPlus_Base_Model, afterFetch);
 PHP_METHOD(PhalconPlus_Base_Model, beforeCreate);
 PHP_METHOD(PhalconPlus_Base_Model, beforeSave);
 PHP_METHOD(PhalconPlus_Base_Model, afterSave);
+PHP_METHOD(PhalconPlus_Base_Model, toArray);
 PHP_METHOD(PhalconPlus_Base_Model, findByPageable);
 PHP_METHOD(PhalconPlus_Base_Model, findByPagable);
 PHP_METHOD(PhalconPlus_Base_Model, exists);
@@ -49,6 +50,14 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_batchinsert, 0, 0, 2)
 	ZEND_ARG_ARRAY_INFO(0, columns, 0)
 	ZEND_ARG_ARRAY_INFO(0, rows, 0)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_toarray, 0, 0, IS_ARRAY, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_toarray, 0, 0, IS_ARRAY, NULL, 0)
+#endif
+	ZEND_ARG_INFO(0, columns)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findbypageable, 0, 0, 1)
@@ -127,6 +136,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, beforeCreate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, beforeSave, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, afterSave, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, toArray, arginfo_phalconplus_base_model_toarray, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, findByPageable, arginfo_phalconplus_base_model_findbypageable, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, findByPagable, arginfo_phalconplus_base_model_findbypagable, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, exists, arginfo_phalconplus_base_model_exists, ZEND_ACC_PUBLIC)

@@ -116,6 +116,8 @@ class Model extends \Phalcon\Mvc\Model
     public function afterFetch()
     {
         // nothing
+        let this->ctime = new \DateTime(this->ctime);
+        let this->mtime = new \DateTime(this->mtime);
     }
 
     public function beforeCreate()
@@ -126,7 +128,20 @@ class Model extends \Phalcon\Mvc\Model
 
     public function beforeSave()
     {
-        let this->mtime = date("Y-m-d H:i:s");
+        var changedFields;
+        if this->hasSnapshotData() {
+            let changedFields = this->getChangedFields();
+            if !empty changedFields {
+                let this->mtime = date("Y-m-d H:i:s");
+            }
+        }
+        if is_object(this->ctime) && (this->ctime instanceof \DateTime) {
+            let this->ctime = this->ctime->format("Y-m-d H:i:s");
+        }
+
+        if is_object(this->mtime) && (this->mtime instanceof \DateTime) {
+            let this->mtime = this->mtime->format("Y-m-d H:i:s");
+        }
         return true;
     }
 
@@ -137,6 +152,19 @@ class Model extends \Phalcon\Mvc\Model
             let this->optimisticLock = false;
         }
         return true;
+    }
+
+    public function toArray(columns = null) -> array
+    {
+        var fields, tmp, key, val;
+        let fields = parent::toArray(columns),
+            tmp = fields;
+        for key, val in tmp {
+            if is_object(val) && (val instanceof \DateTime) {
+                let fields[key] = val->format("Y-m-d H:i:s");
+            }
+        }
+        return fields;
     }
 
     /**

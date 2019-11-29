@@ -24,4 +24,9 @@ var_dump($a->getUniqueFields());
 
 $a->save();
 
+$exist = $a->exists();
+var_dump($exist);
+
 var_dump($a->getUniqueFields());
+
+echo json_encode($a);
