@@ -264,14 +264,14 @@ final class Bootstrap
     {
         // 如果此方法被直接调用需要自己加载配置
         if empty this->config { this->initConf(); }
-        if empty this->di {
-            if likely is_null(di) || ! (di instanceof \Phalcon\DI\FactoryDefault\CLI) {
-                let this->di = new \Phalcon\DI\FactoryDefault\CLI();
-            } else {
-                let this->di = di;
-            }
-            this->di->setShared("bootstrap", this);
+        
+        if likely is_null(di) || ! (di instanceof \Phalcon\DI\FactoryDefault\CLI) {
+            let this->di = this->di ? this->di : new \Phalcon\DI\FactoryDefault\CLI();
+        } else {
+            let this->di = di;
         }
+        this->di->setShared("bootstrap", this);
+        
 
         // Phalcon Cli Application
         if unlikely empty(this->application) {
