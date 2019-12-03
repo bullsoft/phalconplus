@@ -70,7 +70,9 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has) {
 	}
 	
         #if PHP_VERSION_ID >= 70000
-        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC, 0);
+        zend_class_entry *ce;
+        ce = zephir_fetch_class_str_ex(Z_STRVAL_P(&className), Z_STRLEN_P(&className), ZEND_FETCH_CLASS_AUTO);
+        zephir_read_static_property_ce(&details, ce, SL("details") TSRMLS_CC, 0);
         #else
         zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC);
         #endif
@@ -158,7 +160,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 	ZEPHIR_CALL_METHOD(&eCode, e, "getcode", NULL, 0);
 	zephir_check_call_status();
 	_2 = zephir_fetch_class_str_ex(SL("Phalcon\\Text"), ZEND_FETCH_CLASS_AUTO);
-	zephir_array_fetch(&_3, &map2Name, &eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 44);
+	zephir_array_fetch(&_3, &map2Name, &eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 46);
 	ZEPHIR_CALL_CE_STATIC(&eName, _2, "camelize", NULL, 0, &_3);
 	zephir_check_call_status();
 	ZEPHIR_CALL_STATIC(&_4, "exceptionclassprefix", NULL, 0);
