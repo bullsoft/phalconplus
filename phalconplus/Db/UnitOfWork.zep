@@ -186,7 +186,7 @@ class UnitOfWork
             var col, val;
             for col, val in initial_data {
                 if is_object(val) && val instanceof AbstractValue {
-                    let initial_data[col] = val->getValue(this);;
+                    let initial_data[col] = val->getValue(this);
                 }
             }
             let result = model->update(initial_data);
