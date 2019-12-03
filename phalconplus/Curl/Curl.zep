@@ -24,6 +24,13 @@ class Curl
       * @var array
       */
      protected defaultOptions = [];
+
+
+     public function __construct(array opts = [])
+     {
+        let this->defaultOptions = opts;
+     }
+
      /**
       * Get allowed methods.
       *
@@ -58,7 +65,7 @@ class Curl
       */
      public function setDefaultOptions(array options)
      {
-         let this->defaultOptions = options;
+         let this->defaultOptions = options + this->defaultOptions;
      }
      /**
       * Get the default options.

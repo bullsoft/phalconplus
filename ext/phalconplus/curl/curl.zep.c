@@ -13,8 +13,8 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/concat.h"
@@ -51,6 +51,31 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Curl_Curl) {
 
 	phalconplus_curl_curl_ce->create_object = zephir_init_properties_PhalconPlus_Curl_Curl;
 	return SUCCESS;
+
+}
+
+PHP_METHOD(PhalconPlus_Curl_Curl, __construct) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *opts_param = NULL;
+	zval opts;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&opts);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &opts_param);
+
+	if (!opts_param) {
+		ZEPHIR_INIT_VAR(&opts);
+		array_init(&opts);
+	} else {
+		zephir_get_arrval(&opts, opts_param);
+	}
+
+
+	zephir_update_property_zval(this_ptr, SL("defaultOptions"), &opts);
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -119,11 +144,13 @@ PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultHeaders) {
 PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultOptions) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *options_param = NULL;
+	zval *options_param = NULL, _0, _1;
 	zval options;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &options_param);
@@ -131,7 +158,10 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultOptions) {
 	zephir_get_arrval(&options, options_param);
 
 
-	zephir_update_property_zval(this_ptr, SL("defaultOptions"), &options);
+	zephir_read_property(&_0, this_ptr, SL("defaultOptions"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_1);
+	zephir_add_function(&_1, &options, &_0);
+	zephir_update_property_zval(this_ptr, SL("defaultOptions"), &_1);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -204,12 +234,12 @@ PHP_METHOD(PhalconPlus_Curl_Curl, buildUrl) {
 	ZVAL_STRING(&queryString, "");
 	_0 = zephir_array_isset_string(&parts, SL("query"));
 	if (_0) {
-		zephir_array_fetch_string(&_1, &parts, SL("query"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 88);
+		zephir_array_fetch_string(&_1, &parts, SL("query"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 95);
 		_0 = zephir_is_true(&_1);
 	}
 	ZEPHIR_INIT_NVAR(&queryString);
 	if (_0) {
-		zephir_array_fetch_string(&_2$$4, &parts, SL("query"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 89);
+		zephir_array_fetch_string(&_2$$4, &parts, SL("query"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 96);
 		ZEPHIR_CALL_FUNCTION(&_3$$4, "http_build_query", &_4, 73, &query);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_5$$4);
@@ -222,18 +252,18 @@ PHP_METHOD(PhalconPlus_Curl_Curl, buildUrl) {
 		ZEPHIR_CONCAT_VV(&_7$$5, &queryString, &_6$$5);
 		ZEPHIR_CPY_WRT(&queryString, &_7$$5);
 	}
-	zephir_array_fetch_string(&_8, &parts, SL("scheme"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 94);
-	zephir_array_fetch_string(&_9, &parts, SL("host"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 94);
+	zephir_array_fetch_string(&_8, &parts, SL("scheme"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 101);
+	zephir_array_fetch_string(&_9, &parts, SL("host"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 101);
 	ZEPHIR_INIT_VAR(&retUrl);
 	ZEPHIR_CONCAT_VSV(&retUrl, &_8, "://", &_9);
 	if (zephir_array_isset_string(&parts, SL("port"))) {
-		zephir_array_fetch_string(&_10$$6, &parts, SL("port"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 96);
+		zephir_array_fetch_string(&_10$$6, &parts, SL("port"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 103);
 		ZEPHIR_INIT_VAR(&_11$$6);
 		ZEPHIR_CONCAT_VSV(&_11$$6, &retUrl, ":", &_10$$6);
 		ZEPHIR_CPY_WRT(&retUrl, &_11$$6);
 	}
 	if (zephir_array_isset_string(&parts, SL("path"))) {
-		zephir_array_fetch_string(&_12$$7, &parts, SL("path"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 99);
+		zephir_array_fetch_string(&_12$$7, &parts, SL("path"), PH_NOISY | PH_READONLY, "phalconplus/Curl/Curl.zep", 106);
 		ZEPHIR_INIT_VAR(&_13$$7);
 		ZEPHIR_CONCAT_VV(&_13$$7, &retUrl, &_12$$7);
 		ZEPHIR_CPY_WRT(&retUrl, &_13$$7);
@@ -578,7 +608,7 @@ PHP_METHOD(PhalconPlus_Curl_Curl, sendRequest) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&_7$$3, &ex$$3, "setcode", NULL, 88, &errno$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_7$$3, "phalconplus/Curl/Curl.zep", 209);
+		zephir_throw_exception_debug(&_7$$3, "phalconplus/Curl/Curl.zep", 216);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -723,7 +753,7 @@ PHP_METHOD(PhalconPlus_Curl_Curl, __call) {
 		object_init_ex(&_11$$5, spl_ce_BadMethodCallException);
 		ZEPHIR_CALL_METHOD(NULL, &_11$$5, "__construct", NULL, 91, &msg);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_11$$5, "phalconplus/Curl/Curl.zep", 254);
+		zephir_throw_exception_debug(&_11$$5, "phalconplus/Curl/Curl.zep", 261);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -734,15 +764,15 @@ PHP_METHOD(PhalconPlus_Curl_Curl, __call) {
 		object_init_ex(&_12$$6, spl_ce_BadMethodCallException);
 		ZEPHIR_CALL_METHOD(NULL, &_12$$6, "__construct", NULL, 91, &msg);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_12$$6, "phalconplus/Curl/Curl.zep", 258);
+		zephir_throw_exception_debug(&_12$$6, "phalconplus/Curl/Curl.zep", 265);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	ZEPHIR_OBS_VAR(&url);
-	zephir_array_fetch_long(&url, &args, 0, PH_NOISY, "phalconplus/Curl/Curl.zep", 260);
+	zephir_array_fetch_long(&url, &args, 0, PH_NOISY, "phalconplus/Curl/Curl.zep", 267);
 	if (zephir_array_isset_long(&args, 1)) {
 		ZEPHIR_OBS_NVAR(&data);
-		zephir_array_fetch_long(&data, &args, 1, PH_NOISY, "phalconplus/Curl/Curl.zep", 262);
+		zephir_array_fetch_long(&data, &args, 1, PH_NOISY, "phalconplus/Curl/Curl.zep", 269);
 	}
 	ZEPHIR_CALL_METHOD(&request, this_ptr, "newrequest", NULL, 0, &method, &url, &data, &encoding);
 	zephir_check_call_status();

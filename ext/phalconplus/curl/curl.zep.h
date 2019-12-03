@@ -3,6 +3,7 @@ extern zend_class_entry *phalconplus_curl_curl_ce;
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Curl_Curl);
 
+PHP_METHOD(PhalconPlus_Curl_Curl, __construct);
 PHP_METHOD(PhalconPlus_Curl_Curl, getAllowedMethods);
 PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultHeaders);
 PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultHeaders);
@@ -17,6 +18,10 @@ PHP_METHOD(PhalconPlus_Curl_Curl, sendRequest);
 PHP_METHOD(PhalconPlus_Curl_Curl, createResponseObject);
 PHP_METHOD(PhalconPlus_Curl_Curl, __call);
 zend_object *zephir_init_properties_PhalconPlus_Curl_Curl(zend_class_entry *class_type TSRMLS_DC);
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl___construct, 0, 0, 0)
+	ZEND_ARG_ARRAY_INFO(0, opts, 0)
+ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_setdefaultheaders, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, headers, 0)
@@ -104,6 +109,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl___call, 0, 0, 2)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_curl_curl_method_entry) {
+	PHP_ME(PhalconPlus_Curl_Curl, __construct, arginfo_phalconplus_curl_curl___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Curl_Curl, getAllowedMethods, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Curl, setDefaultHeaders, arginfo_phalconplus_curl_curl_setdefaultheaders, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Curl, getDefaultHeaders, NULL, ZEND_ACC_PUBLIC)
