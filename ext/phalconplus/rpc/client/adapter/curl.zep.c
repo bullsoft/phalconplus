@@ -91,10 +91,8 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, __construct) {
 	zephir_update_property_zval(this_ptr, SL("remoteServerUrl"), &_0);
 	ZEPHIR_INIT_VAR(&_1);
 	object_init_ex(&_1, phalconplus_curl_curl_ce);
-	if (zephir_has_constructor(&_1)) {
-		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 0);
-		zephir_check_call_status();
-	}
+	ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 122);
+	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("client"), &_1);
 	if (!(ZEPHIR_IS_EMPTY(&opts))) {
 		zephir_read_property(&_2$$4, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
