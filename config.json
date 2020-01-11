@@ -66,6 +66,6 @@
     "version": "1.1.1",
     "verbose": false,
     "requires": {
-        "extensions": ["phalcon", "yar"]
+        "extensions": ["phalcon"]
     }
 }
