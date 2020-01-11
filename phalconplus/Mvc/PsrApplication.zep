@@ -34,7 +34,7 @@ class PsrApplication extends BaseApplication
         }
     }
 
-    public function handle(var uri = null) -> <ResponseInterface> | boolean
+    public function handle(string uri = null) -> <ResponseInterface> | boolean
     {
         var psrRequest;
 
