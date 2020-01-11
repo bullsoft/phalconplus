@@ -53,4 +53,7 @@ class AssertionCode extends AbstractEnum
     const INVALID_OBJECT            = 207;
     const INVALID_METHOD            = 208;
     const INVALID_SCALAR            = 209;
+
+    const INVALID_RESOURCE          = 225;
+    const INVALID_STRING_NOT_CONTAINS = 229;
 }

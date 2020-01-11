@@ -92,7 +92,7 @@ class OrderdetailsModel extends ModelBase
     /**
      * return related table name
      */
-    public function getSource()
+    public function getSource() : string
     {
         return 'orderdetails';
     }

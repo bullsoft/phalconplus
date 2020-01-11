@@ -38,7 +38,7 @@ class Task extends \PhalconPlus\Base\AbstractModule
 
         $di->set('modelsMetadata', function () use ($config) {
             $metaData = new \Phalcon\Mvc\Model\Metadata\Files(array(
-                'metaDataDir' => '/Users/guweigang/tmp/metas/',
+                'metaDataDir' => getenv("HOME").'/tmp/metas/',
             ));
             return $metaData;
         });
@@ -46,14 +46,14 @@ class Task extends \PhalconPlus\Base\AbstractModule
         // register db write service
         $di->setShared('db', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "db");
-            $conn = $mysql->getConnection();
+            $conn = $mysql->getConnection(false);
             return $conn;
         });
 
         // register db write service
         $di->setShared('dbRead', function() use ($di) {
             $mysql = new \PhalconPlus\Db\Mysql($di, "db");
-            $conn = $mysql->getConnection();
+            $conn = $mysql->getConnection(false);
             return $conn;
         });
     }

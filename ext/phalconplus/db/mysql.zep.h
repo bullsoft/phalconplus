@@ -21,6 +21,11 @@ ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_db_mysql_getconnectio
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_mysql_getconnection, 0, 0, IS_OBJECT, "Phalcon\\Db\\Adapter\\Pdo\\Mysql", 0)
 #endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, autoConnect, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, autoConnect)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_db_mysql_method_entry) {

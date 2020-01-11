@@ -11,10 +11,10 @@
 #include "kernel/globals.h"
 
 #define PHP_PHALCONPLUS_NAME        "phalconplus"
-#define PHP_PHALCONPLUS_VERSION     "1.0.0-rc-1"
+#define PHP_PHALCONPLUS_VERSION     "1.1.1"
 #define PHP_PHALCONPLUS_EXTNAME     "phalconplus"
 #define PHP_PHALCONPLUS_AUTHOR      "Gu Weigang<guweigang@outlook.com> and BullSoft<support@bullsoft.org>"
-#define PHP_PHALCONPLUS_ZEPVERSION  "0.11.10-$Id$"
+#define PHP_PHALCONPLUS_ZEPVERSION  "0.12.15-$Id$"
 #define PHP_PHALCONPLUS_DESCRIPTION "Phalcon+ is a new framework based on Phalcon."
 
 
@@ -22,14 +22,6 @@
 ZEND_BEGIN_MODULE_GLOBALS(phalconplus)
 
 	int initialized;
-
-	/* Memory */
-	zephir_memory_entry *start_memory; /**< The first preallocated frame */
-	zephir_memory_entry *end_memory; /**< The last preallocate frame */
-	zephir_memory_entry *active_memory; /**< The current memory frame */
-
-	/* Virtual Symbol Tables */
-	zephir_symbol_table *active_symbol_table;
 
 	/** Function cache */
 	HashTable *fcache;

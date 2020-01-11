@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>/index.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+        <lastmod>2019-11-14</lastmod>
+    </url>
+
+    <url>
+        <loc>/namespaces.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+        <lastmod>2019-11-14</lastmod>
+    </url>
+
+    <url>
+        <loc>/classes.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+        <lastmod>2019-11-14</lastmod>
+    </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/ProtoBuffer.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/ProtoBuffer.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Enum/AbstractEnum.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Enum/AbstractEnum.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Logger/Processor/AbstractProcessor.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Logger/Processor/AbstractProcessor.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Rpc/Client/AbstractClient.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Rpc/Client/AbstractClient.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Db/UnitOfWork/AbstractValue.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Db/UnitOfWork/AbstractValue.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Assert/AssertionFailedException.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Assert/AssertionFailedException.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/AbstractRequest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/AbstractRequest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/AbstractResponse.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/AbstractResponse.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/Exception.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/Exception.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Db/Pdo/AbstractMysql.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Db/Pdo/AbstractMysql.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Rpc/Server/AbstractServer.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Rpc/Server/AbstractServer.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Assert/Assertion.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Assert/Assertion.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Assert/InvalidArgumentException.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Assert/InvalidArgumentException.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/AbstractModule.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/AbstractModule.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/Model.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/Model.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/ModuleDef.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/ModuleDef.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/Pagable.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/Pagable.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/Page.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/Page.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/ProtoOrderBy.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/ProtoOrderBy.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/Service.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/Service.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/SimpleRequest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/SimpleRequest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Base/SimpleResponse.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Base/SimpleResponse.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Bootstrap.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Bootstrap.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Curl/Curl.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Curl/Curl.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Curl/Exception.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Curl/Exception.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Curl/Request.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Curl/Request.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Curl/Response.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Curl/Response.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Db/Mysql.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Db/Mysql.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Db/Pdo/Mysql.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Db/Pdo/Mysql.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Db/UnitOfWork.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Db/UnitOfWork.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Db/UnitOfWork/Field.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Db/UnitOfWork/Field.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Db/UnitOfWork/LastInsertId.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Db/UnitOfWork/LastInsertId.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Enum/AssertionCode.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Enum/AssertionCode.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Enum/Exception.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Enum/Exception.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Enum/OrderByDirection.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Enum/OrderByDirection.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Enum/RunEnv.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Enum/RunEnv.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Enum/RunMode.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Enum/RunMode.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Enum/Sys.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Enum/Sys.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/FeatureTest/SplObjectStorageTest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/FeatureTest/SplObjectStorageTest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Http/NonPsrRequest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Http/NonPsrRequest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Logger/MultiPleFile.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Logger/MultiPleFile.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Logger/Processor/LogId.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Logger/Processor/LogId.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Logger/Processor/Msec.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Logger/Processor/Msec.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Logger/Processor/Trace.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Logger/Processor/Trace.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Mvc/PsrApplication.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Mvc/PsrApplication.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Rpc/Client/Adapter/Curl.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Rpc/Client/Adapter/Curl.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Rpc/Client/Adapter/Local.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Rpc/Client/Adapter/Local.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Rpc/Client/Adapter/Remote.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Rpc/Client/Adapter/Remote.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Rpc/Server/SimpleServer.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Rpc/Server/SimpleServer.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Rpc/Yar.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Rpc/Yar.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+            <url>
+            <loc>/class/PhalconPlus/Volt/Extension/PhpFunction.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+        <url>
+            <loc>/source/PhalconPlus/Volt/Extension/PhpFunction.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+
+    
+            <url>
+            <loc>/namespace/PhalconPlus.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Base.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Enum.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Logger.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Logger/Processor.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Rpc.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Rpc/Client.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Db.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Db/UnitOfWork.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Assert.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Db/Pdo.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Rpc/Server.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Curl.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/FeatureTest.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Http.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Mvc.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Rpc/Client/Adapter.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Volt.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+            <url>
+            <loc>/namespace/PhalconPlus/Volt/Extension.html</loc>
+            <changefreq>daily</changefreq>
+            <priority>1</priority>
+            <lastmod>2019-11-14</lastmod>
+        </url>
+    
+</urlset>

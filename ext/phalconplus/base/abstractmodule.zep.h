@@ -5,7 +5,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractModule);
 
 PHP_METHOD(PhalconPlus_Base_AbstractModule, __construct);
 PHP_METHOD(PhalconPlus_Base_AbstractModule, getDef);
+PHP_METHOD(PhalconPlus_Base_AbstractModule, getDi);
 PHP_METHOD(PhalconPlus_Base_AbstractModule, isPrimary);
+PHP_METHOD(PhalconPlus_Base_AbstractModule, getBootstrap);
 PHP_METHOD(PhalconPlus_Base_AbstractModule, registerAutoloaders);
 PHP_METHOD(PhalconPlus_Base_AbstractModule, registerServices);
 
@@ -21,10 +23,19 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_abstractmodule_
 #endif
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_abstractmodule_getdi, 0, 0, Phalcon\\Di, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_abstractmodule_getdi, 0, 0, IS_OBJECT, "Phalcon\\Di", 0)
+#endif
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(phalconplus_base_abstractmodule_method_entry) {
 	PHP_ME(PhalconPlus_Base_AbstractModule, __construct, arginfo_phalconplus_base_abstractmodule___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Base_AbstractModule, getDef, arginfo_phalconplus_base_abstractmodule_getdef, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_AbstractModule, getDi, arginfo_phalconplus_base_abstractmodule_getdi, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_AbstractModule, isPrimary, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_AbstractModule, getBootstrap, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_AbstractModule, registerAutoloaders, NULL, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_AbstractModule, registerServices, NULL, ZEND_ACC_ABSTRACT|ZEND_ACC_PUBLIC)
 	PHP_FE_END

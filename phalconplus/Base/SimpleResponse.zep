@@ -65,4 +65,8 @@ final class SimpleResponse extends AbstractResponse
         }
     }
 
+    public function isEmpty()
+    {
+        return empty(this->result);
+    }
 }

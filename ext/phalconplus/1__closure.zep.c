@@ -14,6 +14,7 @@
 #include "kernel/main.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/object.h"
 
 
 ZEPHIR_INIT_CLASS(phalconplus_1__closure) {
@@ -31,7 +32,7 @@ PHP_METHOD(phalconplus_1__closure, __invoke) {
 
 	ZVAL_UNDEF(&elem_sub);
 
-	zephir_fetch_params(0, 1, 0, &elem);
+	zephir_fetch_params_without_memory_grow(1, 0, &elem);
 
 
 

@@ -94,21 +94,20 @@ class ProtoBuffer implements \JsonSerializable
         return this->toArray();
     }
 
-    public function toArray(bool isArray = false, array data = [])
+    public function toArray(array data = [])
     {
         var pros = [], newPros = [];
 
-        if isArray == false {
+        if empty data {
             let pros = this->getSelfVars();
         } else {
             let pros = data;
         }
 
         var key, val;
-
         for key, val in pros {
-            if is_array(val) {
-                let newPros[key] = this->toArray(true, val);
+            if is_array(val) && !empty(val) {
+                let newPros[key] = this->toArray(val);
             } elseif is_object(val) && method_exists(val, "toArray") {
                 let newPros[key] = val->toArray();
             } elseif is_object(val) && method_exists(val, "__toString") {

@@ -27,9 +27,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Volt_Extension_PhpFunction) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Volt\\Extension, PhpFunction, phalconplus, volt_extension_phpfunction, phalconplus_volt_extension_phpfunction_method_entry, 0);
 
-	zend_declare_property_string(phalconplus_volt_extension_phpfunction_ce, SL("ns"), "", ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_string(phalconplus_volt_extension_phpfunction_ce, SL("ns"), "", ZEND_ACC_PRIVATE);
 
-	zend_declare_property_string(phalconplus_volt_extension_phpfunction_ce, SL("func"), "__invoke__", ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_string(phalconplus_volt_extension_phpfunction_ce, SL("func"), "__invoke__", ZEND_ACC_PRIVATE);
 
 	return SUCCESS;
 
@@ -37,6 +37,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Volt_Extension_PhpFunction) {
 
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *ns_param = NULL;
 	zval ns;
 	zval *this_ptr = getThis();
@@ -47,7 +48,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace) {
 	zephir_fetch_params(1, 1, 0, &ns_param);
 
 	if (UNEXPECTED(Z_TYPE_P(ns_param) != IS_STRING && Z_TYPE_P(ns_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'ns' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'ns' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(ns_param) == IS_STRING)) {
@@ -65,6 +66,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace) {
 
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *func_param = NULL;
 	zval func;
 	zval *this_ptr = getThis();
@@ -75,7 +77,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 	zephir_fetch_params(1, 1, 0, &func_param);
 
 	if (UNEXPECTED(Z_TYPE_P(func_param) != IS_STRING && Z_TYPE_P(func_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'func' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'func' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(func_param) == IS_STRING)) {
@@ -96,6 +98,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName) {
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 
 	zval params, name, args, code, _0, pos$$3, _1$$3, _8$$3, _2$$4, _3$$5, _4$$5, _5$$5, _6$$5, _7$$5;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -121,15 +124,15 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 	ZEPHIR_INIT_NVAR(&params);
 	zephir_get_args(&params);
 	ZEPHIR_MAKE_REF(&params);
-	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 65, &params);
+	ZEPHIR_CALL_FUNCTION(&name, "array_shift", NULL, 95, &params);
 	ZEPHIR_UNREF(&params);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&params);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 70, &params);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_pop", NULL, 128, &params);
 	ZEPHIR_UNREF(&params);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&args);
-	zephir_fast_join_str(&args, SL(","), &params TSRMLS_CC);
+	zephir_fast_join_str(&args, SL(","), &params);
 	zephir_read_property(&_0, this_ptr, SL("func"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_IS_EQUAL(&name, &_0)) {
 		ZEPHIR_INIT_VAR(&_1$$3);
@@ -140,7 +143,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 			ZEPHIR_INIT_VAR(&_2$$4);
 			ZVAL_STRING(&_2$$4, "'\"");
 			ZEPHIR_INIT_NVAR(&name);
-			zephir_fast_trim(&name, &args, &_2$$4, ZEPHIR_TRIM_BOTH TSRMLS_CC);
+			zephir_fast_trim(&name, &args, &_2$$4, ZEPHIR_TRIM_BOTH);
 			ZEPHIR_INIT_NVAR(&args);
 			ZVAL_STRING(&args, "");
 		} else {
@@ -150,7 +153,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 			ZEPHIR_INIT_VAR(&_5$$5);
 			ZVAL_STRING(&_5$$5, "'\"");
 			ZEPHIR_INIT_NVAR(&name);
-			zephir_fast_trim(&name, &_4$$5, &_5$$5, ZEPHIR_TRIM_BOTH TSRMLS_CC);
+			zephir_fast_trim(&name, &_4$$5, &_5$$5, ZEPHIR_TRIM_BOTH);
 			ZVAL_LONG(&_6$$5, (zephir_get_numberval(&pos$$3) + 1));
 			ZEPHIR_INIT_VAR(&_7$$5);
 			zephir_substr(&_7$$5, &args, zephir_get_intval(&_6$$5), 0, ZEPHIR_SUBSTR_NO_LENGTH);
@@ -161,7 +164,7 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction) {
 		ZEPHIR_CONCAT_VVSVS(&code, &_8$$3, &name, "(", &args, ")");
 		RETURN_CCTOR(&code);
 	}
-	if ((zephir_function_exists(&name TSRMLS_CC)  == SUCCESS)) {
+	if ((zephir_function_exists(&name)  == SUCCESS)) {
 		ZEPHIR_INIT_NVAR(&code);
 		ZEPHIR_CONCAT_VSVS(&code, &name, "(", &args, ")");
 		RETURN_CCTOR(&code);

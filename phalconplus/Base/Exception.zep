@@ -1,4 +1,5 @@
 namespace PhalconPlus\Base;
+use PhalconPlus\Assert\Assertion as Assert;
 
 /**
  * throw new Exception("error message");
@@ -10,8 +11,9 @@ class Exception extends \Exception
     protected message = "";
     protected level = \Phalcon\Logger::DEBUG;
     protected code = 0;
+    protected info = [] { get };
 
-    public function __construct(var info = "", <\Phalcon\Logger\Adapter> logger = null)
+    public function __construct(var info = "", var logger = null)
     {
         var message = "", args = [];
         let message = "An exception created: " . get_called_class();
@@ -19,6 +21,7 @@ class Exception extends \Exception
             // nothing to do here ...
         } else {
             if is_array(info) {
+                let this->info = info;
                 let message = message . ", message: " . strval(info[0]);
                 if fetch args, info[1] {
                     let args = is_array(info[1]) ? info[1] : [strval(info[1])];
@@ -27,8 +30,11 @@ class Exception extends \Exception
                 let message = message . ", message: " . info;
             }
         }
-
         if !is_null(logger) {
+            Assert::isInstanceOf(logger, [
+                "\\Phalcon\\Logger\\Adapter",
+                "\\Phalcon\\Logger\\Multiple"
+            ]);
             logger->log(message . ", args: ". json_encode(args, JSON_UNESCAPED_UNICODE), this->getLevel());
         }
 

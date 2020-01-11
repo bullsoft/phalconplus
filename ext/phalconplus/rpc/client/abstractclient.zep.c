@@ -14,15 +14,15 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_RPC_Client_AbstractClient) {
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_AbstractClient) {
 
-	ZEPHIR_REGISTER_CLASS(PhalconPlus\\RPC\\Client, AbstractClient, phalconplus, rpc_client_abstractclient, phalconplus_rpc_client_abstractclient_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
+	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Rpc\\Client, AbstractClient, phalconplus, rpc_client_abstractclient, phalconplus_rpc_client_abstractclient_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	return SUCCESS;
 
 }
 
-PHP_METHOD(PhalconPlus_RPC_Client_AbstractClient, callByObject) {
+PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, callByObject) {
 
 }
 

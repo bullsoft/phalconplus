@@ -28,17 +28,17 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_ProtoOrderBy) {
 	/**
 	 * @required
 	 */
-	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("property"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("property"), ZEND_ACC_PROTECTED);
 
 	/**
 	 * @required
 	 */
-	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("direction"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_protoorderby_ce, SL("direction"), ZEND_ACC_PROTECTED);
 
 	/**
 	 * @optional
 	 */
-	zend_declare_property_string(phalconplus_base_protoorderby_ce, SL("alias"), "", ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_string(phalconplus_base_protoorderby_ce, SL("alias"), "", ZEND_ACC_PRIVATE);
 
 	return SUCCESS;
 
@@ -55,6 +55,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getProperty) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *property_param = NULL;
 	zval property;
 	zval *this_ptr = getThis();
@@ -65,7 +66,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 	zephir_fetch_params(1, 1, 0, &property_param);
 
 	if (UNEXPECTED(Z_TYPE_P(property_param) != IS_STRING && Z_TYPE_P(property_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(property_param) == IS_STRING)) {
@@ -88,7 +89,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setDirection) {
 
 	ZVAL_UNDEF(&orderBy_sub);
 
-	zephir_fetch_params(0, 1, 0, &orderBy);
+	zephir_fetch_params_without_memory_grow(1, 0, &orderBy);
 
 
 
@@ -116,6 +117,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getAlias) {
 
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *alias_param = NULL;
 	zval alias;
 	zval *this_ptr = getThis();
@@ -126,7 +128,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 	zephir_fetch_params(1, 1, 0, &alias_param);
 
 	if (UNEXPECTED(Z_TYPE_P(alias_param) != IS_STRING && Z_TYPE_P(alias_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'alias' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'alias' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(alias_param) == IS_STRING)) {
@@ -145,6 +147,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString) {
 
 	zval _1, _2, orderBy, _3, _6, _7, _4$$3, _5$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *this_ptr = getThis();

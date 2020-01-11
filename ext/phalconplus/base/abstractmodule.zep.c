@@ -22,9 +22,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_AbstractModule) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, AbstractModule, phalconplus, base_abstractmodule, phalconplus_base_abstractmodule_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
-	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("di"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("def"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(phalconplus_base_abstractmodule_ce, SL("def"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -39,7 +39,7 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, __construct) {
 	ZVAL_UNDEF(&def_sub);
 	ZVAL_NULL(&__$null);
 
-	zephir_fetch_params(0, 1, 1, &di, &def);
+	zephir_fetch_params_without_memory_grow(1, 1, &di, &def);
 
 	if (!def) {
 		def = &def_sub;
@@ -61,9 +61,19 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, getDef) {
 
 }
 
+PHP_METHOD(PhalconPlus_Base_AbstractModule, getDi) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "di");
+
+}
+
 PHP_METHOD(PhalconPlus_Base_AbstractModule, isPrimary) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -76,6 +86,24 @@ PHP_METHOD(PhalconPlus_Base_AbstractModule, isPrimary) {
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getisprimary", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_TRUE(&_1));
+
+}
+
+PHP_METHOD(PhalconPlus_Base_AbstractModule, getBootstrap) {
+
+	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+
+	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_RETURN_CALL_METHOD(&_0, "getbootstrap", NULL, 0);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

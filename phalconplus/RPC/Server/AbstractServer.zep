@@ -1,11 +1,17 @@
-namespace PhalconPlus\RPC\Server;
+namespace PhalconPlus\Rpc\Server;
 use PhalconPlus\Base\ProtoBuffer;
+use PhalconPlus\Logger\Processor\LogId;
 
 abstract class AbstractServer
 {
-    protected di = null;
-    protected config = null;
-    protected phpOnly = false;
+    protected di = null {
+        get
+    };
+
+    protected phpOnly = false {
+        get
+    };
+
     protected eventsManager = null;
 
     abstract public function __construct(<\Phalcon\DI> di);
@@ -26,10 +32,10 @@ abstract class AbstractServer
                 let request = new {paramClass}();
                 request->softClone(tmp);
             } else {
-                throw new \Exception("Service class:method definition is invalid. Detail: " . service . " : " . method . ". Request: " . json_encode(request));
+                throw new \PhalconPlus\Base\Exception("Service class:method definition is invalid. Detail: " . service . " : " . method . ". Request: " . json_encode(request));
             }
         } else {
-            throw new \Exception("Your input is not allowed. Request: " . json_encode(request));
+            throw new \PhalconPlus\Base\Exception("Your input is not allowed. Request: " . json_encode(request));
         }
 
         var serviceObj, response, e;
@@ -45,9 +51,9 @@ abstract class AbstractServer
             this->eventsManager->fire("backend-server:afterExecute", $this, [service, method, request]);
             // We do not allow to return #Resource type. And if an object returned, we expected type <ProtoBuffer>
             if is_object(response) && !(response instanceof ProtoBuffer) {
-                throw new \Exception("Your output is not allowed. Response: " . get_class(response) . ". We expect scalar type or <ProtoBuffer>");
+                throw new \PhalconPlus\Base\Exception("Your output is not allowed. Response: " . get_class(response) . ". We expect scalar type or <ProtoBuffer>");
             } elseif is_resource(response) {
-                throw new \Exception("Your output is not allowed. Response: #Resource.");
+                throw new \PhalconPlus\Base\Exception("Your output is not allowed. Response: #Resource.");
             }
             // Distinguish object/scalar types when there are non-php clients
             if this->phpOnly == false && is_object(response) {
@@ -55,7 +61,7 @@ abstract class AbstractServer
             }
             return response;
         } else {
-            throw new \Exception("Service:method not found. Detail: " . service . " : " . method);
+            throw new \PhalconPlus\Base\Exception("Service:method not found. Detail: " . service . " : " . method);
         }
     }
 
@@ -74,15 +80,15 @@ abstract class AbstractServer
         var service, method, request, response, logId = "", message = "";
 
         if !fetch service, rawData["service"] {
-            throw new \Exception("service " . service . " not exists");
+            throw new \PhalconPlus\Base\Exception("service " . service . " not exists");
         }
 
         if !fetch method, rawData["method"] {
-            throw new \Exception("method " . method . " not exists");
+            throw new \PhalconPlus\Base\Exception("method " . method . " not exists");
         }
 
         if !fetch request, rawData["args"] {
-            throw new \Exception("args not exists");
+            throw new \PhalconPlus\Base\Exception("args not exists");
         }
 
         this->eventsManager->fire("backend-server:requestCheck", $this, [service, method, rawData]);
@@ -91,13 +97,14 @@ abstract class AbstractServer
         let method = trim(method);
 
         if empty service || empty method {
-            throw new \Exception("service:method(args) must exists. All of them!!!");
+            throw new \PhalconPlus\Base\Exception("service:method(args) must exists. All of them!!!");
         }
 
         if fetch logId, rawData["logId"] {
-            // ...
+            // set logId, same as request api
+            LogId::setId(logId);
         }
-        
+
         if this->di->has("logger") {
             let message = "RPC Request - logId: " . logId . ", invoke: " . service . "::" . method . ", args: " . json_encode(request);           
             this->di->get("logger")->log(message);

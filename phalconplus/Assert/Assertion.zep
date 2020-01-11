@@ -89,6 +89,32 @@ class Assertion
         return true;
     }
 
+    public static function notBlank(var value, var message = null, var propertyPath = null) -> boolean | null
+    {
+        if false === value || (empty(value) && "0" != value) || (is_string(value) && "" === trim(value)) {
+            let message = sprintf(
+                message ? message : "Value \"%s\" is blank, but was expected to contain a value.",
+                static::stringify(value)
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_NOT_BLANK, propertyPath);
+        }
+        return true;
+    }
+
+    public static function integer(var value, var message = null, var propertyPath = null) -> boolean
+    {
+        if !\is_int(value) {
+            if message === null {
+                let message = \sprintf(
+                    message ? message : "Value \"%s\" is not an integer.", 
+                    static::stringify(value)
+                );
+            }
+            throw static::createException(value, message, AssertionCode::INVALID_INTEGER, propertyPath);
+        }
+        return true;
+    }
+
     public static function numeric(var value, var message = null, var propertyPath = null) -> boolean
     {
         if !is_numeric(value) {
@@ -110,13 +136,53 @@ class Assertion
             let message = sprintf(
                 message ? message : "Number \"%s\" was expected to be at least \"%d\" and at most \"%d\".",
                 static::stringify(value),
-                static::stringify(minValue),
-                static::stringify(maxValue)
+                minValue,
+                maxValue
             );
             throw static::createException(value, message, AssertionCode::INVALID_RANGE, propertyPath
                                           , ["min": minValue, "max": maxValue]);
         }
 
+        return true;
+    }
+
+    public static function minLength(var value, int minLength, var message = null, var propertyPath = null, string encodeing = "utf8") -> boolean | null
+    {
+        static::isString(value, message, propertyPath);
+        if mb_strlen(value, encodeing) < minLength {
+            let message = sprintf(
+                message ? message : "Value \"%s\" is too short, it should at least %d characters, but only has %d characters.",
+                static::stringify(value),
+                minLength,
+                mb_strlen(value, encodeing)
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_MIN_LENGTH, propertyPath
+                                          , ["min_length": minLength, "encoding": encodeing]);
+        }
+        return true;
+    }
+    
+    public static function maxLength(var value, int maxLength, var message = null, var propertyPath = null, string encodeing = "utf8") -> boolean | null
+    {
+        static::isString(value, message, propertyPath);
+        if mb_strlen(value, encodeing) > maxLength {
+            let message = sprintf(
+                message ? message : "Value \"%s\" is too long, it should no more than %d characters, but has %d characters.",
+                static::stringify(value),
+                maxLength,
+                mb_strlen(value, encodeing)
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_MAX_LENGTH, propertyPath
+                                          , ["max_length": maxLength, "encoding": encodeing]);
+        }
+        return true;
+    }
+
+    public static function betweenLength(var value, int minLength, int maxLength, var message = null, var propertyPath = null, string encodeing = "utf8") -> boolean | null
+    {
+        static::isString(value, message, propertyPath);
+        static::minLength(value, minLength, message, propertyPath, encodeing);
+        static::maxLength(value, maxLength, message, propertyPath, encodeing);
         return true;
     }
 
@@ -154,6 +220,76 @@ class Assertion
         return true;
     }
 
+    public static function contains(var value, var needle, var message = null, var propertyPath = null, string encodeing = "utf8") -> boolean | null
+    {
+        static::isString(value, message, propertyPath);
+        if false === mb_strpos(value, needle, null, encodeing) {
+            let message = sprintf(
+                message ? message : "Value \"%s\" does not contain \"%s\".",
+                static::stringify(value),
+                static::stringify(needle)
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_STRING_CONTAINS, propertyPath
+                                          , ["needle": needle, "encoding" : encodeing]);
+        }
+        return true;
+    }
+
+    public static function notContains(var value, var needle, var message = null, var propertyPath = null, string encodeing = "utf8") -> boolean | null
+    {
+        static::isString(value, message, propertyPath);
+        if false !== mb_strpos(value, needle, null, encodeing) {
+            let message = sprintf(
+                message ? message : "Value \"%s\" contain \"%s\".",
+                static::stringify(value),
+                static::stringify(needle)
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_STRING_NOT_CONTAINS, propertyPath
+                                          , ["needle": needle, "encoding" : encodeing]);
+        }
+        return true;
+    }
+
+    public static function inArray(var value, array choices, var message = null, var propertyPath = null)
+    {
+        if !in_array(value, choices, true) {
+            let message = sprintf(
+                message ? message : "Value \"%s\" is not an element of the valid values: %s",
+                static::stringify(value),
+                implode(", ", array_map([get_called_class(), "stringify"], choices))
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_CHOICE, propertyPath
+                                          , ["choices" : choices]);
+        }
+        return true;
+    }
+
+    public static function keyExists(var value, var key, var message = null, var propertyPath = null) -> boolean | null
+    {
+        static::isArray(value, message, propertyPath);
+        if !array_key_exists(key, value) {
+            let message = sprintf(
+                message ? message : "Array does not contain an element with key \"%s\"",
+                static::stringify(key)
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_KEY_EXISTS, propertyPath
+                                          , ["key" : key]);
+        }
+        return true;
+    }
+
+    public static function isResource(var value, var message = null, var propertyPath = null) -> boolean | null
+    {
+        if !is_resource(value) {
+            let message = sprintf(
+                message ? message : "Value \"%s\" is not a resource",
+                static::stringify(value)
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_RESOURCE, propertyPath);
+        }
+        return true;
+    }
+
     public static function isString(var value, var message = null, var propertyPath = null) -> boolean
     {
         if !is_string(value) {
@@ -180,6 +316,36 @@ class Assertion
         return true;
     }
 
+    public static function isInstanceOf(object value, var classNames, var message = null, var propertyPath = null) -> bool
+    {
+        string classItem;
+        bool result = false;
+        if is_string(classNames) {
+            let classItem = classNames;
+            if value instanceof classItem { 
+                let result = true;
+            }
+        } elseif is_array(classNames) { // instance of anyone of classNames
+            var tmp;
+            for tmp in classNames {
+                let classItem = (string) tmp;
+                if value instanceof classItem { 
+                    let result = true;
+                    break;
+                } 
+            }
+        }
+        if result === false {
+            let message = sprintf(
+                message ? message : "Class \"%s\" was expected to be instanceof of \"%s\" but is not.",
+                static::stringify(value),
+                classItem
+            );
+            throw static::createException(value, message, AssertionCode::INVALID_INSTANCE_OF, propertyPath, ["class" : classItem]);
+        }
+        return true;
+    }
+
     public static function isJsonString(var value, var message = null, var propertyPath = null) -> boolean
     {
         static::isString(value, message, propertyPath);
@@ -201,9 +367,7 @@ class Assertion
             return value == true ? "TRUE" : "FALSE";
         }
 
-        if value === NULL {
-            return "NULL";
-        }
+        if value === NULL { return "NULL"; }
 
         var val;
         if is_scalar(value) {
