@@ -110,7 +110,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
 	zephir_update_property_zval(this_ptr, SL("psrRequest"), psrRequest);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, phalconplus_http_nonpsrrequest_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 118, psrRequest);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 119, psrRequest);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("nativeRequest"), &_0);
 	ZEPHIR_MM_RESTORE();
@@ -145,11 +145,11 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uri = NULL, uri_sub, __$null, psrRequest, _0, _1, _3, _4, _5, _6, reqUri, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
+	zval *uri_param = NULL, psrRequest, _0, _1, _3, _4, _5, _6, reqUri, _7, response, _9, stdout, headers, status, reason, content, psrResponse, _12, _13, _2$$4, _10$$7, _14$$8, _15$$8, _16$$8;
+	zval uri;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&uri_sub);
-	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&uri);
 	ZVAL_UNDEF(&psrRequest);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -176,11 +176,13 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZVAL_UNDEF(&_16$$8);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &uri);
+	zephir_fetch_params(1, 0, 1, &uri_param);
 
-	if (!uri) {
-		uri = &uri_sub;
-		uri = &__$null;
+	if (!uri_param) {
+		ZEPHIR_INIT_VAR(&uri);
+		ZVAL_STRING(&uri, "");
+	} else {
+		zephir_get_strval(&uri, uri_param);
 	}
 
 
@@ -218,7 +220,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZEPHIR_CALL_PARENT(&_9, phalconplus_mvc_psrapplication_ce, getThis(), "handle", NULL, 0, &reqUri);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&response, &_9);
-	ZEPHIR_CALL_FUNCTION(&stdout, "ob_get_clean", NULL, 69);
+	ZEPHIR_CALL_FUNCTION(&stdout, "ob_get_clean", NULL, 70);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&headers, this_ptr, "mapheaders", NULL, 0, &response);
 	zephir_check_call_status();
@@ -230,7 +232,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, &response, "send", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&content, "ob_get_clean", NULL, 69);
+	ZEPHIR_CALL_FUNCTION(&content, "ob_get_clean", NULL, 70);
 	zephir_check_call_status();
 	if (!(ZEPHIR_IS_EMPTY(&stdout))) {
 		ZEPHIR_INIT_VAR(&_10$$7);
@@ -324,7 +326,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&headers, &_0, "toarray", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&rawHeaders, "headers_list", NULL, 119);
+	ZEPHIR_CALL_FUNCTION(&rawHeaders, "headers_list", NULL, 120);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&nativeHeaders);
 	array_init(&nativeHeaders);
@@ -407,7 +409,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, mapHeaders) {
 		}
 	}
 	ZEPHIR_INIT_NVAR(&h);
-	ZEPHIR_CALL_FUNCTION(NULL, "header_remove", NULL, 120);
+	ZEPHIR_CALL_FUNCTION(NULL, "header_remove", NULL, 121);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_17);
 	zephir_fast_array_merge(&_17, &nativeHeaders, &headers);

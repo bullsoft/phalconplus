@@ -250,7 +250,6 @@ zend_function_entry php_phalconplus_functions[] = {
 
 static const zend_module_dep php_phalconplus_deps[] = {
 	ZEND_MOD_REQUIRED("phalcon")
-	ZEND_MOD_REQUIRED("yar")
 	ZEND_MOD_END
 };
 

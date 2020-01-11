@@ -5,6 +5,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_LogId);
 
 PHP_METHOD(PhalconPlus_Logger_Processor_LogId, __construct);
 PHP_METHOD(PhalconPlus_Logger_Processor_LogId, setId);
+PHP_METHOD(PhalconPlus_Logger_Processor_LogId, getId);
 PHP_METHOD(PhalconPlus_Logger_Processor_LogId, __toString);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_processor_logid___construct, 0, 0, 0)
@@ -22,6 +23,7 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(phalconplus_logger_processor_logid_method_entry) {
 	PHP_ME(PhalconPlus_Logger_Processor_LogId, __construct, arginfo_phalconplus_logger_processor_logid___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Logger_Processor_LogId, setId, arginfo_phalconplus_logger_processor_logid_setid, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Logger_Processor_LogId, getId, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Logger_Processor_LogId, __toString, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
