@@ -10,7 +10,7 @@ class Curl extends AbstractClient
     private response { get };
     private formater = "msgpack";
 
-    public function __construct(array remoteServerUrl, array opts = [], string formater = "")
+    public function __construct(array remoteServerUrl, array opts = [], string formater = "json")
     {
         if empty remoteServerUrl {
             throw new \PhalconPlus\Base\Exception("server url can not be empty");

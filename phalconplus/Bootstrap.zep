@@ -2,6 +2,7 @@
 namespace PhalconPlus;
 use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\Enum\RunMode as RunMode;
+use PhalconPlus\Rpc\Yar as YarServerPlus;
 
 final class Bootstrap
 {
@@ -242,7 +243,13 @@ final class Bootstrap
 
         // Yar Server
         if unlikely empty(this->application) {
-            let this->application = new \Yar_Server(backendSrv);
+            var moduleConf = this->primaryModuleDef->getConfig();
+            if moduleConf->application->handler == "yar" {
+                let this->application = new \Yar_Server(backendSrv);
+            } else {
+                let this->application = new YarServerPlus(this->di);
+                this->application->setServer(backendSrv);
+            }
         }
 
         // 如果不需要handle，则直接返回

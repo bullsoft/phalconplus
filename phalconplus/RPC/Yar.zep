@@ -1,6 +1,7 @@
 // <?php
 namespace PhalconPlus\Rpc;
 use Phalcon\DiInterface;
+use PhalconPlus\Rpc\Server\AbstractServer;
 
 class Yar extends \Phalcon\Application
 {
@@ -17,7 +18,7 @@ class Yar extends \Phalcon\Application
 	protected formater = "msgpack";
 	protected encoder = "msgpack_pack";
 
-	public function __construct(<DiInterface> di = null, string formater = "")
+	public function __construct(<DiInterface> di = null, string formater = "json")
 	{
         parent::__construct(di);
 		var rawBody = this->__get("request")->getRawBody();
@@ -30,30 +31,108 @@ class Yar extends \Phalcon\Application
 		}
 	}
 
-	public function handle()// -> <\Phalcon\Http\Response>
+	public function setServer(<AbstractServer> obj)
 	{
+		let this->serviceObj = obj;
+		return this;
+	}
+
+	public function handle()
+	{
+		var serviceName = get_class(this->serviceObj);
+		var sampleCodes = "<?php
+$remoteUrls = [
+	\"http://localhost:9089\",
+];
+$client = new \PhalconPlus\Rpc\Client\Adapter\Curl($remoteUrls);
+$result = $client->callByObject([
+	\"service\" => \"\\Demo\\Services\\Dummy\",
+	\"method\" => \"demo\",
+	\"args\"   => [
+		\"foo\" => \"bar\",
+	],
+]);
+var_export($result);
+";
+		var  expectedRet = "<?php
+array (
+	'errorCode' => 0,
+	'errorMsg' => '',
+	'logId' => 'da0abdea3483146cd8',
+	'data' =>
+	array (
+		'params' =>
+		array (
+		'foo' => 'bar',
+		),
+	),
+)
+";
 		if this->__get("request")->isGet() {
-			let this->responseBody = "<h1>Welcome to Phalcon+</h1>
-			<p>If you see this page, the phalcon-rpc server is successfully installed and
-			working.</p>";
+			let this->responseBody = "<!DOCTYPE html>
+			<html>
+			 <head>
+			  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
+			  <title>" . serviceName . " - Phalcon+ Server</title>
+			  <style>
+			   body { margin: 0; font:14px/20px Verdana, Arial, sans-serif; color: #333; background: #f8f8f8;}
+			   h1, h2, pre { margin: 0; padding: 0;}
+			   h1 { font:bold 28px Verdana,Arial; background:#99c; padding: 12px 5px; border-bottom: 4px solid #669; box-shadow: 0 1px 4px #bbb; color: #222;}
+			   h2 { font:normal 20px/22px Georgia, Times, \"Times New Roman\", serif; padding: 5px 0 8px; margin: 20px 10px 0; border-bottom: 1px solid #ddd; cursor:pointer;}
+			   p, dd { color: #555; }
+			   .api-info { padding: 10px 0; margin-left: 20px; }
+			   .api-block, .sample-codes { margin: 0 40px;}
+			   .code {border: 1px solid #669; padding: 10px;}
+			   h2 u { font-size:20px;text-decoration:none;padding:10px; }
+			  </style>
+			  <script>
+			   function _t(elem) {
+				var block = elem.nextSibling;
+				var info = elem.getElementsByTagName('u')[0];
+				while (block) {
+				 if ( block.nodeType == 1 && block.className.indexOf('api-block') > -1 ) {
+				  break;
+				 }
+				 block = block.nextSibling;
+				}
+				var isHidden = block.style.display == 'none';
+				block.style.display = isHidden ? '' : 'none';
+				info.innerHTML = isHidden ? '-'  : '+';
+			   }
+			  </script>
+			 </head>
+			 <body>
+				<h1>Phalcon+ Server: " . serviceName . "</h1>
+				<h2>Code Samples: </h2>
+				<div class=\"sample-codes\">
+				<p class=\"code\">" . str_replace("&lt;?php", "", highlight_string(sampleCodes, true)) . "</p>
+				<p><center style=\"font-weight: bolder;\">-------------- Expected Result --------------</center></p>
+				<p class=\"code\">" . str_replace("&lt;?php", "", highlight_string(expectedRet, true)) . "</p>
+				</div>
+			 </body>
+		    </html>";
 		} elseif this->__get("request")->isPost() {
             var e = null;
 			var ret = [
 				"errorCode" : 0,
 				"errorMsg" : "",
-				"logId" : this->__get("logger")->logId,
 				"data" : []
 			];
 			try {
                 if empty this->requestArgs {
                     throw new \Exception("invalid request args");
-                }
-				let this->serviceObj = this->getDi()->get("backendSrv");
+				}
+				if empty this->serviceObj {
+					let this->serviceObj = this->getDi()->get("backendSrv");
+				}
 				let ret["data"] = this->serviceObj->callByObject(this->requestArgs);
 			} catch \Exception, e {
 				let ret["errorCode"] = max(e->getCode(), 1);
 				let ret["errorMsg"] = e->getMessage();
 			}
+			// Must do this after `callByObject`
+			let ret["logId"] = this->__get("logger")->logId;
+
 			string encoder = this->encoder;
 			let this->responseBody = {encoder}(ret);
 		}
