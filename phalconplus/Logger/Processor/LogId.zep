@@ -20,6 +20,11 @@ class LogId extends AbstractProcessor
         let self::id = logId;
     }
 
+    public static function getId()
+    {
+        return self::id;
+    }
+
     public function __toString()
     {
         return self::id;
