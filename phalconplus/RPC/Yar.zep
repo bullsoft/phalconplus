@@ -40,9 +40,10 @@ class Yar extends \Phalcon\Application
 	public function handle()
 	{
 		var serviceName = get_class(this->serviceObj);
-		var sampleCodes = "<?php
+		var sampleCodes;
+		let  sampleCodes = "<?php
 $remoteUrls = [
-	\"http://localhost:9089\",
+	\"http://" . _SERVER["HTTP_HOST"] . "\",
 ];
 $client = new \PhalconPlus\Rpc\Client\Adapter\Curl($remoteUrls);
 $result = $client->callByObject([
@@ -59,11 +60,9 @@ array (
 	'errorCode' => 0,
 	'errorMsg' => '',
 	'logId' => 'da0abdea3483146cd8',
-	'data' =>
-	array (
-		'params' =>
-		array (
-		'foo' => 'bar',
+	'data' => array (
+		'params' => array (
+			'foo' => 'bar',
 		),
 	),
 )
@@ -105,10 +104,13 @@ array (
 				<h1>Phalcon+ Server: " . serviceName . "</h1>
 				<h2>Code Samples: </h2>
 				<div class=\"sample-codes\">
-				<p class=\"code\">" . str_replace("&lt;?php", "", highlight_string(sampleCodes, true)) . "</p>
+				<p class=\"code\">" . str_replace("&lt;?php", "// Client", highlight_string(sampleCodes, true)) . "</p>
 				<p><center style=\"font-weight: bolder;\">-------------- Expected Result --------------</center></p>
-				<p class=\"code\">" . str_replace("&lt;?php", "", highlight_string(expectedRet, true)) . "</p>
+				<p class=\"code\">" . str_replace("&lt;?php", "// Return", highlight_string(expectedRet, true)) . "</p>
 				</div>
+				<footer>
+				    <center>Copyright &copy <a href=\"https://bullsoft.org\">BullSoft.org</a></center>
+				</footer>
 			 </body>
 		    </html>";
 		} elseif this->__get("request")->isPost() {
