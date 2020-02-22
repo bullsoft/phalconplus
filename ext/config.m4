@@ -9,7 +9,8 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
-	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/base/protobuffer.zep.c
+	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/facades/abstractfacade.zep.c
+	phalconplus/base/protobuffer.zep.c
 	phalconplus/enum/abstractenum.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
@@ -47,6 +48,32 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/runenv.zep.c
 	phalconplus/enum/runmode.zep.c
 	phalconplus/enum/sys.zep.c
+	phalconplus/facades/annotations.zep.c
+	phalconplus/facades/assets.zep.c
+	phalconplus/facades/bootstrap.zep.c
+	phalconplus/facades/config.zep.c
+	phalconplus/facades/cookies.zep.c
+	phalconplus/facades/crypt.zep.c
+	phalconplus/facades/dispatcher.zep.c
+	phalconplus/facades/escaper.zep.c
+	phalconplus/facades/eventsmanager.zep.c
+	phalconplus/facades/filter.zep.c
+	phalconplus/facades/flash.zep.c
+	phalconplus/facades/flashsession.zep.c
+	phalconplus/facades/log.zep.c
+	phalconplus/facades/modelscache.zep.c
+	phalconplus/facades/modelsmanager.zep.c
+	phalconplus/facades/modelsmetadata.zep.c
+	phalconplus/facades/request.zep.c
+	phalconplus/facades/response.zep.c
+	phalconplus/facades/router.zep.c
+	phalconplus/facades/security.zep.c
+	phalconplus/facades/service.zep.c
+	phalconplus/facades/session.zep.c
+	phalconplus/facades/sessionbag.zep.c
+	phalconplus/facades/tag.zep.c
+	phalconplus/facades/transactionmanager.zep.c
+	phalconplus/facades/url.zep.c
 	phalconplus/featuretest/splobjectstoragetest.zep.c
 	phalconplus/http/nonpsrrequest.zep.c
 	phalconplus/logger/multiplefile.zep.c

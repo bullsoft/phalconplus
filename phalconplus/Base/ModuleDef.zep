@@ -1,4 +1,3 @@
-//<?php
 namespace PhalconPlus\Base;
 use PhalconPlus\Bootstrap as Bs;
 use PhalconPlus\Enum\Sys as Sys;

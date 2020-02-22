@@ -15,6 +15,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleNameByDir);
 PHP_METHOD(PhalconPlus_Enum_Sys, getModuleClassPath);
 PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath);
 PHP_METHOD(PhalconPlus_Enum_Sys, getComposerAutoloadPath);
+PHP_METHOD(PhalconPlus_Enum_Sys, aliasFacades);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_init, 0, 0, 1)
 #if PHP_VERSION_ID >= 70200
@@ -107,6 +108,18 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_getmoduleconfigpath, 0, 0, 1
 #endif
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_aliasfacades, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_aliasfacades, 0, 1, _IS_BOOL, NULL, 0)
+#endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, prefix, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, prefix)
+#endif
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(phalconplus_enum_sys_method_entry) {
 	PHP_ME(PhalconPlus_Enum_Sys, init, arginfo_phalconplus_enum_sys_init, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Enum_Sys, getPrimaryModuleDir, arginfo_phalconplus_enum_sys_getprimarymoduledir, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
@@ -120,5 +133,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_enum_sys_method_entry) {
 	PHP_ME(PhalconPlus_Enum_Sys, getModuleClassPath, arginfo_phalconplus_enum_sys_getmoduleclasspath, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Enum_Sys, getModuleConfigPath, arginfo_phalconplus_enum_sys_getmoduleconfigpath, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Enum_Sys, getComposerAutoloadPath, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Enum_Sys, aliasFacades, arginfo_phalconplus_enum_sys_aliasfacades, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_FE_END
 };

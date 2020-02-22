@@ -1,4 +1,3 @@
-//<?php
 namespace PhalconPlus\Volt\Extension;
 
 class PhpFunction

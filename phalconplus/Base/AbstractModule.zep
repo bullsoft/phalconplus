@@ -1,4 +1,3 @@
-//<?php
 namespace PhalconPlus\Base;
 
 abstract class AbstractModule
