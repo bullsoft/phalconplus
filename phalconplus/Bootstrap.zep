@@ -1,4 +1,3 @@
-//<?php
 namespace PhalconPlus;
 use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\Enum\RunMode as RunMode;
@@ -64,11 +63,12 @@ final class Bootstrap
         define("APP_ROOT_COMMON_DIR", Sys::getCommonDir(), false);
         define("APP_ROOT_COMMON_LOAD_DIR", Sys::getGlobalLoadDir(), false);
         define("APP_ROOT_COMMON_CONF_DIR", Sys::getGlobalConfigDir(), false);
-
+        // 加载Facacdes
+        Sys::aliasFacades("\\Ph\\");
         // 加载Composer库
         if likely is_file(Sys::getComposerAutoloadPath()) {
             require Sys::getComposerAutoloadPath();
-        }
+        } 
     }
 
     private function registerModule(<\PhalconPlus\Base\ModuleDef> moduleDef) -> <\PhalconPlus\Base\AbstractModule>
