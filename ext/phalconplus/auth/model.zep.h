@@ -12,7 +12,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, getPolicy);
 zend_object *zephir_init_properties_PhalconPlus_Auth_Model(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_auth_model___construct, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, user, Phalcon\\Mvc\\Model, 0)
+	ZEND_ARG_OBJ_INFO(0, user, PhalconPlus\\Contracts\\Auth\\UserProvider, 0)
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
