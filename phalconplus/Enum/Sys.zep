@@ -167,7 +167,7 @@ final class Sys extends AbstractEnum
             "Flash", "FlashSession", "Log", "ModelsCache", "ModelsManager",
             "ModelsMetadata", "Request", "Response", "Router", "Security", 
             "Service", "Session", "SessionBag", "Tag", "TransactionManager",
-            "Url"
+            "Url", "Acl", "App", "Di", "View"
         ];
         var alias;
         for alias in facades {
