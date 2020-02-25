@@ -10,16 +10,20 @@ if (PHP_PHALCONPLUS != "no") {
     AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
   }
   
-  ADD_SOURCES(configure_module_dirname + "/phalconplus/facades", "abstractfacade.zep.c annotations.zep.c assets.zep.c bootstrap.zep.c config.zep.c cookies.zep.c crypt.zep.c dispatcher.zep.c escaper.zep.c eventsmanager.zep.c filter.zep.c flash.zep.c flashsession.zep.c log.zep.c modelscache.zep.c modelsmanager.zep.c modelsmetadata.zep.c request.zep.c response.zep.c router.zep.c security.zep.c service.zep.c session.zep.c sessionbag.zep.c tag.zep.c transactionmanager.zep.c url.zep.c", "phalconplus");
+  ADD_SOURCES(configure_module_dirname + "/phalconplus/facades", "abstractfacade.zep.c acl.zep.c annotations.zep.c app.zep.c assets.zep.c bootstrap.zep.c config.zep.c cookies.zep.c crypt.zep.c di.zep.c dispatcher.zep.c escaper.zep.c eventsmanager.zep.c filter.zep.c flash.zep.c flashsession.zep.c log.zep.c modelscache.zep.c modelsmanager.zep.c modelsmetadata.zep.c request.zep.c response.zep.c router.zep.c security.zep.c service.zep.c session.zep.c sessionbag.zep.c tag.zep.c transactionmanager.zep.c url.zep.c view.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/base", "protobuffer.zep.c abstractrequest.zep.c abstractresponse.zep.c exception.zep.c abstractmodule.zep.c model.zep.c moduledef.zep.c pagable.zep.c page.zep.c protoorderby.zep.c service.zep.c simplerequest.zep.c simpleresponse.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus/enum", "abstractenum.zep.c assertioncode.zep.c exception.zep.c orderbydirection.zep.c runenv.zep.c runmode.zep.c sys.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/enum", "abstractenum.zep.c exception.zep.c assertioncode.zep.c orderbydirection.zep.c runenv.zep.c runmode.zep.c sys.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/processor", "abstractprocessor.zep.c logid.zep.c msec.zep.c trace.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/client", "abstractclient.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/db/unitofwork", "abstractvalue.zep.c field.zep.c lastinsertid.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/assert", "assertionfailedexception.zep.c assertion.zep.c invalidargumentexception.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/contracts/auth/access", "modelevent.zep.c authorizable.zep.c dispatchevent.zep.c resourceaware.zep.c routerevent.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/contracts/auth", "policy.zep.c userprovider.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/db/pdo", "abstractmysql.zep.c mysql.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/server", "abstractserver.zep.c simpleserver.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/auth", "exception.zep.c model.zep.c policy.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus", "bootstrap.zep.c 0__closure.zep.c 1__closure.zep.c 2__closure.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/contracts", "eventattachable.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/curl", "curl.zep.c exception.zep.c request.zep.c response.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/db", "mysql.zep.c unitofwork.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/featuretest", "splobjectstoragetest.zep.c", "phalconplus");

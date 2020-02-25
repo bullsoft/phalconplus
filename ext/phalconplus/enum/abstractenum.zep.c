@@ -69,16 +69,16 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 	object_init_ex(&reflection, zephir_get_internal_ce(SL("reflectionclass")));
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_get_called_class(&_0);
-	ZEPHIR_CALL_METHOD(NULL, &reflection, "__construct", NULL, 4, &_0);
+	ZEPHIR_CALL_METHOD(NULL, &reflection, "__construct", NULL, 6, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "__default");
-	ZEPHIR_CALL_METHOD(&_1, &reflection, "hasconstant", NULL, 11, &_2);
+	ZEPHIR_CALL_METHOD(&_1, &reflection, "hasconstant", NULL, 13, &_2);
 	zephir_check_call_status();
 	if (zephir_is_true(&_1)) {
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZVAL_STRING(&_3$$3, "__default");
-		ZEPHIR_CALL_METHOD(&defaultVal, &reflection, "getconstant", NULL, 12, &_3$$3);
+		ZEPHIR_CALL_METHOD(&defaultVal, &reflection, "getconstant", NULL, 14, &_3$$3);
 		zephir_check_call_status();
 		ZEPHIR_CALL_STATIC(&_4$$3, "isvalid", NULL, 0, &defaultVal);
 		zephir_check_call_status();
@@ -89,9 +89,9 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 			zephir_get_class(&_6$$4, this_ptr, 0);
 			ZEPHIR_INIT_VAR(&_7$$4);
 			ZVAL_STRING(&_7$$4, "Invalid __default enumeration %s for Enum %s");
-			ZEPHIR_CALL_FUNCTION(&_8$$4, "sprintf", NULL, 13, &_7$$4, &defaultVal, &_6$$4);
+			ZEPHIR_CALL_FUNCTION(&_8$$4, "sprintf", NULL, 15, &_7$$4, &defaultVal, &_6$$4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &_5$$4, "__construct", NULL, 14, &_8$$4);
+			ZEPHIR_CALL_METHOD(NULL, &_5$$4, "__construct", NULL, 16, &_8$$4);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_5$$4, "phalconplus/Enum/AbstractEnum.zep", 15);
 			ZEPHIR_MM_RESTORE();
@@ -137,9 +137,9 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 		zephir_get_class(&_2$$3, this_ptr, 0);
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZVAL_STRING(&_3$$3, "Invalid enumeration %s for Enum %s");
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "sprintf", NULL, 13, &_3$$3, val, &_2$$3);
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "sprintf", NULL, 15, &_3$$3, val, &_2$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 15, &_4$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 17, &_4$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_1$$3, "phalconplus/Enum/AbstractEnum.zep", 29);
 		ZEPHIR_MM_RESTORE();
@@ -178,7 +178,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
 
 	ZEPHIR_CALL_STATIC(&_0, "validvalues", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_1, "in_array", NULL, 16, val, &_0, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_1, "in_array", NULL, 18, val, &_0, &__$true);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		RETURN_MM_BOOL(0);
@@ -259,12 +259,12 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 	object_init_ex(&reflection, zephir_get_internal_ce(SL("reflectionclass")));
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_get_called_class(&_0);
-	ZEPHIR_CALL_METHOD(NULL, &reflection, "__construct", NULL, 4, &_0);
+	ZEPHIR_CALL_METHOD(NULL, &reflection, "__construct", NULL, 6, &_0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&consts, &reflection, "getconstants", NULL, 17);
+	ZEPHIR_CALL_METHOD(&consts, &reflection, "getconstants", NULL, 19);
 	zephir_check_call_status();
 	zephir_array_unset_string(&consts, SL("__default"), PH_SEPARATE);
-	ZEPHIR_CALL_FUNCTION(&countValues, "array_count_values", NULL, 18, &consts);
+	ZEPHIR_CALL_FUNCTION(&countValues, "array_count_values", NULL, 20, &consts);
 	zephir_check_call_status();
 	if (zephir_fast_count_int(&consts) != zephir_fast_count_int(&countValues)) {
 		ZEPHIR_INIT_VAR(&duplicated$$3);
@@ -272,7 +272,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		ZEPHIR_INIT_NVAR(&_1$$3);
 		zephir_create_closure_ex(&_1$$3, NULL, phalconplus_0__closure_ce, SL("__invoke"));
-		ZEPHIR_CALL_FUNCTION(&duplicated$$3, "array_filter", NULL, 19, &countValues, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&duplicated$$3, "array_filter", NULL, 21, &countValues, &_1$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_2$$3);
 		object_init_ex(&_2$$3, spl_ce_RuntimeException);
@@ -284,7 +284,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 		zephir_json_encode(&_4$$3, &_5$$3, 0 );
 		ZEPHIR_INIT_VAR(&_6$$3);
 		ZEPHIR_CONCAT_SVSV(&_6$$3, "Duplicated values were found in Enum Class: ", &_3$$3, " with values in ", &_4$$3);
-		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "__construct", NULL, 20, &_6$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "__construct", NULL, 22, &_6$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_2$$3, "phalconplus/Enum/AbstractEnum.zep", 74);
 		ZEPHIR_MM_RESTORE();
@@ -293,7 +293,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 	if (assoc == 1) {
 		RETURN_CCTOR(&consts);
 	} else {
-		ZEPHIR_RETURN_CALL_FUNCTION("array_values", NULL, 21, &consts);
+		ZEPHIR_RETURN_CALL_FUNCTION("array_values", NULL, 23, &consts);
 		zephir_check_call_status();
 		RETURN_MM();
 	}

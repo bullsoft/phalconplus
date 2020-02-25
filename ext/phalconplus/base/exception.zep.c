@@ -115,7 +115,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 		if (Z_TYPE_P(info) == IS_ARRAY) {
 			zephir_update_property_zval(this_ptr, SL("info"), info);
 			zephir_array_fetch_long(&_1$$4, info, 0, PH_NOISY | PH_READONLY, "phalconplus/Base/Exception.zep", 25);
-			ZEPHIR_CALL_FUNCTION(&_2$$4, "strval", NULL, 22, &_1$$4);
+			ZEPHIR_CALL_FUNCTION(&_2$$4, "strval", NULL, 24, &_1$$4);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_3$$4);
 			ZEPHIR_CONCAT_VSV(&_3$$4, &message, ", message: ", &_2$$4);
@@ -130,7 +130,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 					ZEPHIR_INIT_VAR(&_5$$5);
 					zephir_create_array(&_5$$5, 1, 0);
 					zephir_array_fetch_long(&_6$$5, info, 1, PH_NOISY | PH_READONLY, "phalconplus/Base/Exception.zep", 27);
-					ZEPHIR_CALL_FUNCTION(&_7$$5, "strval", NULL, 22, &_6$$5);
+					ZEPHIR_CALL_FUNCTION(&_7$$5, "strval", NULL, 24, &_6$$5);
 					zephir_check_call_status();
 					zephir_array_fast_append(&_5$$5, &_7$$5);
 					ZEPHIR_CPY_WRT(&args, &_5$$5);
@@ -170,13 +170,13 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	zephir_read_property(&_16, this_ptr, SL("message"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_17);
 	ZVAL_STRING(&_17, "%s");
-	ZEPHIR_CALL_FUNCTION(&cnt, "substr_count", NULL, 23, &_16, &_17);
+	ZEPHIR_CALL_FUNCTION(&cnt, "substr_count", NULL, 25, &_16, &_17);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&argsCnt);
 	ZVAL_LONG(&argsCnt, zephir_fast_count_int(&args));
 	if (ZEPHIR_GE(&argsCnt, &cnt)) {
 		zephir_read_property(&_18$$9, this_ptr, SL("message"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_FUNCTION(&_19$$9, "vsprintf", NULL, 24, &_18$$9, &args);
+		ZEPHIR_CALL_FUNCTION(&_19$$9, "vsprintf", NULL, 26, &_18$$9, &args);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("message"), &_19$$9);
 	}

@@ -167,12 +167,12 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		zephir_array_fast_append(&_3$$4, &serviceClass);
 		zephir_array_fast_append(&_3$$4, &method);
 		ZVAL_LONG(&_4$$4, 0);
-		ZEPHIR_CALL_METHOD(NULL, &param$$4, "__construct", NULL, 2, &_3$$4, &_4$$4);
+		ZEPHIR_CALL_METHOD(NULL, &param$$4, "__construct", NULL, 4, &_3$$4, &_4$$4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_5$$4, &param$$4, "getclass", NULL, 3);
+		ZEPHIR_CALL_METHOD(&_5$$4, &param$$4, "getclass", NULL, 5);
 		zephir_check_call_status();
 		if (zephir_is_true(&_5$$4)) {
-			ZEPHIR_CALL_METHOD(&_6$$5, &param$$4, "getclass", NULL, 3);
+			ZEPHIR_CALL_METHOD(&_6$$5, &param$$4, "getclass", NULL, 5);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&paramClass$$4, &_6$$5, "getname", NULL, 0);
 			zephir_check_call_status();
@@ -196,7 +196,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			zephir_json_encode(&_10$$6, request, 0 );
 			ZEPHIR_INIT_VAR(&_11$$6);
 			ZEPHIR_CONCAT_SVSVSV(&_11$$6, "Service class:method definition is invalid. Detail: ", &service, " : ", &method, ". Request: ", &_10$$6);
-			ZEPHIR_CALL_METHOD(NULL, &_9$$6, "__construct", &_12, 25, &_11$$6);
+			ZEPHIR_CALL_METHOD(NULL, &_9$$6, "__construct", &_12, 2, &_11$$6);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_9$$6, "phalconplus/Rpc/Server/AbstractServer.zep", 35);
 			ZEPHIR_MM_RESTORE();
@@ -209,7 +209,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		zephir_json_encode(&_14$$7, request, 0 );
 		ZEPHIR_INIT_VAR(&_15$$7);
 		ZEPHIR_CONCAT_SV(&_15$$7, "Your input is not allowed. Request: ", &_14$$7);
-		ZEPHIR_CALL_METHOD(NULL, &_13$$7, "__construct", &_12, 25, &_15$$7);
+		ZEPHIR_CALL_METHOD(NULL, &_13$$7, "__construct", &_12, 2, &_15$$7);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_13$$7, "phalconplus/Rpc/Server/AbstractServer.zep", 38);
 		ZEPHIR_MM_RESTORE();
@@ -292,7 +292,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			zephir_get_class(&_31$$11, &response, 0);
 			ZEPHIR_INIT_VAR(&_32$$11);
 			ZEPHIR_CONCAT_SVS(&_32$$11, "Your output is not allowed. Response: ", &_31$$11, ". We expect scalar type or <ProtoBuffer>");
-			ZEPHIR_CALL_METHOD(NULL, &_30$$11, "__construct", &_12, 25, &_32$$11);
+			ZEPHIR_CALL_METHOD(NULL, &_30$$11, "__construct", &_12, 2, &_32$$11);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_30$$11, "phalconplus/Rpc/Server/AbstractServer.zep", 54);
 			ZEPHIR_MM_RESTORE();
@@ -317,7 +317,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		object_init_ex(&_35$$14, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_36$$14);
 		ZEPHIR_CONCAT_SVSV(&_36$$14, "Service:method not found. Detail: ", &service, " : ", &method);
-		ZEPHIR_CALL_METHOD(NULL, &_35$$14, "__construct", &_12, 25, &_36$$14);
+		ZEPHIR_CALL_METHOD(NULL, &_35$$14, "__construct", &_12, 2, &_36$$14);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_35$$14, "phalconplus/Rpc/Server/AbstractServer.zep", 64);
 		ZEPHIR_MM_RESTORE();
@@ -393,7 +393,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		object_init_ex(&_0$$3, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_1$$3);
 		ZEPHIR_CONCAT_SVS(&_1$$3, "service ", &service, " not exists");
-		ZEPHIR_CALL_METHOD(NULL, &_0$$3, "__construct", &_2, 25, &_1$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_0$$3, "__construct", &_2, 2, &_1$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_0$$3, "phalconplus/Rpc/Server/AbstractServer.zep", 83);
 		ZEPHIR_MM_RESTORE();
@@ -405,7 +405,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		object_init_ex(&_3$$4, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_4$$4);
 		ZEPHIR_CONCAT_SVS(&_4$$4, "method ", &method, " not exists");
-		ZEPHIR_CALL_METHOD(NULL, &_3$$4, "__construct", &_2, 25, &_4$$4);
+		ZEPHIR_CALL_METHOD(NULL, &_3$$4, "__construct", &_2, 2, &_4$$4);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_3$$4, "phalconplus/Rpc/Server/AbstractServer.zep", 87);
 		ZEPHIR_MM_RESTORE();

@@ -19,10 +19,16 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/abstractrequest.zep.c
 	phalconplus/base/abstractresponse.zep.c
 	phalconplus/base/exception.zep.c
+	phalconplus/contracts/auth/access/modelevent.zep.c
+	phalconplus/contracts/auth/policy.zep.c
 	phalconplus/db/pdo/abstractmysql.zep.c
+	phalconplus/enum/exception.zep.c
 	phalconplus/rpc/server/abstractserver.zep.c
 	phalconplus/assert/assertion.zep.c
 	phalconplus/assert/invalidargumentexception.zep.c
+	phalconplus/auth/exception.zep.c
+	phalconplus/auth/model.zep.c
+	phalconplus/auth/policy.zep.c
 	phalconplus/base/abstractmodule.zep.c
 	phalconplus/base/model.zep.c
 	phalconplus/base/moduledef.zep.c
@@ -33,6 +39,12 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/simplerequest.zep.c
 	phalconplus/base/simpleresponse.zep.c
 	phalconplus/bootstrap.zep.c
+	phalconplus/contracts/auth/access/authorizable.zep.c
+	phalconplus/contracts/auth/access/dispatchevent.zep.c
+	phalconplus/contracts/auth/access/resourceaware.zep.c
+	phalconplus/contracts/auth/access/routerevent.zep.c
+	phalconplus/contracts/auth/userprovider.zep.c
+	phalconplus/contracts/eventattachable.zep.c
 	phalconplus/curl/curl.zep.c
 	phalconplus/curl/exception.zep.c
 	phalconplus/curl/request.zep.c
@@ -43,17 +55,19 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/db/unitofwork/field.zep.c
 	phalconplus/db/unitofwork/lastinsertid.zep.c
 	phalconplus/enum/assertioncode.zep.c
-	phalconplus/enum/exception.zep.c
 	phalconplus/enum/orderbydirection.zep.c
 	phalconplus/enum/runenv.zep.c
 	phalconplus/enum/runmode.zep.c
 	phalconplus/enum/sys.zep.c
+	phalconplus/facades/acl.zep.c
 	phalconplus/facades/annotations.zep.c
+	phalconplus/facades/app.zep.c
 	phalconplus/facades/assets.zep.c
 	phalconplus/facades/bootstrap.zep.c
 	phalconplus/facades/config.zep.c
 	phalconplus/facades/cookies.zep.c
 	phalconplus/facades/crypt.zep.c
+	phalconplus/facades/di.zep.c
 	phalconplus/facades/dispatcher.zep.c
 	phalconplus/facades/escaper.zep.c
 	phalconplus/facades/eventsmanager.zep.c
@@ -74,6 +88,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/facades/tag.zep.c
 	phalconplus/facades/transactionmanager.zep.c
 	phalconplus/facades/url.zep.c
+	phalconplus/facades/view.zep.c
 	phalconplus/featuretest/splobjectstoragetest.zep.c
 	phalconplus/http/nonpsrrequest.zep.c
 	phalconplus/logger/multiplefile.zep.c
