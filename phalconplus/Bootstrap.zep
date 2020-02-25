@@ -206,6 +206,7 @@ final class Bootstrap
             let this->application = new \Phalcon\Mvc\Application();
         }
         this->application->setDI(this->di);
+        this->application->setEventsManager(this->di->get("eventsManager"));
 
         // 注册模块
         this->registerModule(this->primaryModuleDef);
@@ -249,6 +250,7 @@ final class Bootstrap
             } else {
                 let this->application = new YarServerPlus(this->di);
                 this->application->setServer(backendSrv);
+                this->application->setEventsManager(this->di->get("eventsManager"));
             }
         }
 
@@ -285,6 +287,7 @@ final class Bootstrap
             let this->application = new \Phalcon\CLI\Console();
         }
         this->application->setDI(this->di);
+        this->application->setEventsManager(this->di->get("eventsManager"));
 
         // 注册模块
         this->registerModule(this->primaryModuleDef);
