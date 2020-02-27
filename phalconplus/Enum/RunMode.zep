@@ -2,6 +2,8 @@
 namespace PhalconPlus\Enum;
 use PhalconPlus\Enum\AbstractEnum;
 use PhalconPlus\Enum\Sys as Sys;
+use Phalcon\DI\FactoryDefault as DefaultDI;
+use Phalcon\DI\FactoryDefault\CLI as TaskDI;
 
 class RunMode extends AbstractEnum
 {
@@ -38,6 +40,15 @@ class RunMode extends AbstractEnum
             return null;
         }
         return script;
+    }
+
+    public function newDI()
+    {
+        if this->val == self::CLI {
+            return new TaskDI();
+        } else {
+            return new DefaultDI();
+        }
     }
 
     public function getMapClassName() -> string
