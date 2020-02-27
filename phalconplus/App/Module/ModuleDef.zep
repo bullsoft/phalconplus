@@ -5,6 +5,8 @@ use PhalconPlus\Enum\RunMode;
 use PhalconPlus\Base\AbstractModule;
 use PhalconPlus\Bootstrap;
 use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\DI\FactoryDefault as DefaultDI;
+use Phalcon\DI\FactoryDefault\CLI as TaskDI;
 
 /* Module Structure for mode "Web"
     .
@@ -37,6 +39,8 @@ class ModuleDef
     protected config = null;
     // <\PhalconPlus\Enum\RunMode>
     protected runMode = null;
+    // <SuperApp>
+    protected app = null;
     // <\PhalconPlus\Bootstrap>
     protected bootstrap = null;
 
@@ -46,8 +50,9 @@ class ModuleDef
     public function __construct(<SuperApp> app, const string! moduleDir, boolean isPrimary = false)
     {
         if !is_dir(moduleDir) {
-            throw new \Exception("Module directory not exists or not a dir, file positon: " . moduleDir);
+            throw new BaseException("Module directory not exists or not a dir, file positon: " . moduleDir);
         }
+        let this->app = app;
         let this->bootstrap = app->getBootstrap();
 
         let this->dir = moduleDir;
@@ -62,17 +67,34 @@ class ModuleDef
         var appConfig = this->config->application;
 
         let this->name = appConfig->name;
-        let this->runMode = new RunMode(ucfirst(strtolower(appConfig->mode)));
+        let this->runMode   = new RunMode(ucfirst(strtolower(appConfig->mode)));
         let this->className = appConfig->ns . this->runMode->getMapClassName();
         let this->classPath = Sys::getModuleClassPath(moduleDir, this->runMode);
 
         if !is_file(this->classPath) {
             throw new BaseException("Module class file not exists: " . this->classPath);
         }
+
         let this->isPrimary = isPrimary;
     }
 
-    public function impl(<\Phalcon\Di> di) -> <AbstractModule>
+    public function loadScripts()
+    {
+        var scriptPath = this->runMode->getScriptPath();
+        return this->bootstrap->load(scriptPath);
+    }
+
+    public function newDI() -> <\Phalcon\Di>
+    {
+        var mode = this->runMode->getValue();
+        if mode == RunMode::CLI {
+            return new TaskDI();
+        } else {
+            return new DefaultDI();
+        }
+    }
+
+    public function checkout() -> <AbstractModule>
     {
         if !isset(self::loadedClasses[this->className]) {
             require this->classPath;
@@ -82,20 +104,20 @@ class ModuleDef
         }
         let self::loadedClasses[this->className] = 1;
         var className = this->className;
-        return new {className}(di, this);
+        return new {className}(this->app, this);
     }
 
-    public function isDefault()
+    public function isDefault() -> boolean
     {
         return this->isPrimary === true;
     }
 
-    public function isPrimary()
+    public function isPrimary() -> boolean
     {
         return this->isPrimary === true;
     }
 
-    public function getIsPrimary()
+    public function getIsPrimary() -> boolean
     {
         return this->isPrimary;
     }
