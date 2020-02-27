@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.2.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Enum/Facade.html">PhalconPlus\Enum\Facade</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Enum/Facade.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Enum.html">Enum</a>
+        </span>
+        
+        <h1 class="class-name">Facade</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Enum;
+use PhalconPlus\Enum\AbstractEnum;
+use PhalconPlus\App\App as SuperApp;
+use PhalconPlus\Facades\AbstractFacade;
+
+class Facade extends AbstractEnum
+{
+    const ANNO      = "Annotations";
+    const ASSETS    = "Assets";
+    const BOOT      = "Bootstrap";
+    const CONFIG    = "Config";
+    const COOKIES   = "Cookies";
+    const CRYPT     = "Crypt";
+    const ESCAPER   = "Escaper";
+    const EVENT_MGR = "EventsManager";
+    const FILTER    = "Filter";
+    const FLASH     = "Flash";
+
+    const DISPATCHER      = "Dispatcher";
+    const FLASH_SESSION   = "FlashSession";
+    const MODELS_CACHE    = "ModelsCache";
+    const MODELS_MGR      = "ModelsManager";
+    const MODELS_METADATA = "ModelsMetadata";
+    const SESSION_BAG     = "SessionBag";
+    const SESSION  = "Session";
+    const REQUEST  = "Request";
+    const RESPONSE = "Response";
+    const ROUTER   = "Router";
+    const SECURITY = "Security";
+    const SERVICE  = "Service";
+    const TX_MGR   = "TransactionManager";
+
+    const TAG  = "Tag";
+    const LOG  = "Log";
+    const URL  = "Url";
+    const ACL  = "Acl";
+    const APP  = "App";
+    const DI   = "Di";
+    const VIEW = "View";
+
+    protected static facades = [
+        "Annotations", "Assets", "Bootstrap", "Config", "Cookies",
+        "Crypt", "Dispatcher", "Escaper", "EventsManager", "Filter",
+        "Flash", "FlashSession", "Log", "ModelsCache", "ModelsManager",
+        "ModelsMetadata", "Request", "Response", "Router", "Security", 
+        "Service", "Session", "SessionBag", "Tag", "TransactionManager",
+        "Url", "Acl", "App", "Di", "View"
+    ];
+
+    private static classPrefix = "\\PhalconPlus\\Facades\\";
+    private static loaded = false;
+
+    public static function register(<SuperApp> superApp, string prefix = "") -> boolean
+    {
+        if self::loaded === true {
+            return true; 
+        }
+        AbstractFacade::setApp(superApp);
+
+        var alias, facades;
+        string className, classAlias;
+
+        let facades = self::validValues();
+        for alias in facades {
+            let className = self::classPrefix.alias;
+            let classAlias = prefix.alias;
+            %{
+                zend_class_entry *ce;
+                ce = zephir_fetch_class(&className TSRMLS_CC);
+                zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce);
+            }%
+        }
+        let self::loaded = true;
+        return true;
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
