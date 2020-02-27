@@ -4,7 +4,6 @@ use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\App\Module\ModuleDef;
 use PhalconPlus\App\Module\AbstractModule;
 use PhalconPlus\Enum\RunEnv;
-use PhalconPlus\Enum\RunMode;
 use PhalconPlus\Enum\Facade;
 use Phalcon\Config;
 use PhalconPlus\Bootstrap;
@@ -79,7 +78,7 @@ final class App extends BaseApplication
         // 初始化主模块
         var primaryModuleDef;
         let primaryModuleDef = new ModuleDef(this, Sys::getPrimaryModuleDir(), true);
-        this->setDI(primaryModuleDef->getRunMode()->newDI());
+        this->setDI(primaryModuleDef->newDI());
         this->getDI()->setShared("bootstrap", this->bootstrap);
         this->getDI()->setShared("superapp", this);
         this->getDI()->setShared("config", this->config);
@@ -114,11 +113,11 @@ final class App extends BaseApplication
             // 合并配置，Module配置优先级更高
             this->config->merge(moduleConf);
             // 装载全局服务初始化文件
-            this->bootstrap->load(moduleDef->getRunMode()->getScriptPath());
+            moduleDef->loadScripts();
         }
-        // Implement a module from it's defintion
-        var module = moduleDef->impl(this->getDI());
-        if moduleDef->isPrimary() {
+        // checkout a module instance from it's defintion
+        var module = moduleDef->checkout();
+        if module->isPrimary() {
             let this->_defaultModule = module;
         }
         // Register autoloaders and di-services
@@ -147,7 +146,7 @@ final class App extends BaseApplication
     }
 
     // 传入的 Config 优先级更高
-    public function setConfig(<Config> config)
+    public function setConfig(<Config> config) -> <App>
     {
         if is_null(this->config) {
             let this->config = new Config();
