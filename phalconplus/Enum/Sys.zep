@@ -1,6 +1,7 @@
 //<?php
 namespace PhalconPlus\Enum;
 use PhalconPlus\Enum\AbstractEnum;
+use PhalconPlus\Base\Exception as BaseException;
 
 final class Sys extends AbstractEnum
 {
@@ -17,7 +18,6 @@ final class Sys extends AbstractEnum
 
     private static rootDir = "";  // without trailing /
     private static primaryModuleDir = ""; // without trailing /
-    private static facadesLoaded = false;
 
     public static function init(string! moduleDir)
     {
@@ -26,7 +26,7 @@ final class Sys extends AbstractEnum
         }
         let moduleDir = rtrim(moduleDir, self::DS);
         if !is_dir(moduleDir) {
-            throw new \PhalconPlus\Base\Exception("Module directory not exists or not a dir, file positon: " . moduleDir);
+            throw new BaseException("Module directory not exists or not a dir, file positon: " . moduleDir);
         }
         let self::primaryModuleDir = moduleDir;
         let self::rootDir = dirname(moduleDir);
@@ -141,7 +141,7 @@ final class Sys extends AbstractEnum
         }
 
         if !is_file(confPath) {
-            throw new \PhalconPlus\Base\Exception("Module Config file not exists: " . confPath . " & " . APP_RUN_ENV . self::EXT);
+            throw new BaseException("Module Config file not exists: " . confPath . " & " . APP_RUN_ENV . self::EXT);
         }
 
         return confPath;
@@ -157,29 +157,4 @@ final class Sys extends AbstractEnum
         ]);
     }
 
-    public static function aliasFacades(string prefix) -> bool
-    {
-        if self::facadesLoaded == true { return true; }
-        string className, classAlias;
-        array facades = [
-            "Annotations", "Assets", "Bootstrap", "Config", "Cookies",
-            "Crypt", "Dispatcher", "Escaper", "EventsManager", "Filter",
-            "Flash", "FlashSession", "Log", "ModelsCache", "ModelsManager",
-            "ModelsMetadata", "Request", "Response", "Router", "Security", 
-            "Service", "Session", "SessionBag", "Tag", "TransactionManager",
-            "Url", "Acl", "App", "Di", "View"
-        ];
-        var alias;
-        for alias in facades {
-            let className = "\\PhalconPlus\\Facades\\".alias;
-            let classAlias = prefix.alias;
-            %{
-                zend_class_entry *ce;
-                ce = zephir_fetch_class(&className TSRMLS_CC);
-                zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce);
-            }%
-        }
-        let self::facadesLoaded = true;
-        return true;
-    }
 }

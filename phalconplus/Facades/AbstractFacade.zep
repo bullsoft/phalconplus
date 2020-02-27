@@ -1,19 +1,26 @@
 namespace PhalconPlus\Facades;
 use Phalcon\Di;
+use PhalconPlus\App\App as SuperApp;
 
 abstract class AbstractFacade
 {
-    abstract protected function getName() -> string;
+    private static app = null;
 
+    abstract protected function getName() -> string;
     protected function resolve(<Di> di) -> null | <Di>
     {
         return null;
     }
 
+    public static function setApp(<SuperApp> app)
+    {
+        let self::app = app;
+    }
+
     public static function __callStatic(string method, array params)
     {
         var di, name, facade, service;
-        let di = \Phalcon\Di::getDefault(),
+        let di = self::app->getDI(),
             name = get_called_class(),
             facade = new {name}();
 
@@ -29,6 +36,9 @@ abstract class AbstractFacade
             error_log("PHP Fatal:  Service can not be resovled: " . name);
             throw new \PhalconPlus\Base\Exception("Service can not be resovled: " . name);
         }
-        return call_user_func_array([service, method], params);
+        return call_user_func_array(
+            [service, method], 
+            params
+        );
     }
 }
