@@ -69,7 +69,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
 			}
 			ZEPHIR_INIT_NVAR(&val);
 			ZVAL_COPY(&val, _0);
-			ZEPHIR_CALL_FUNCTION(&_4$$3, "property_exists", &_5, 3, this_ptr, &key);
+			ZEPHIR_CALL_FUNCTION(&_4$$3, "property_exists", &_5, 15, this_ptr, &key);
 			zephir_check_call_status();
 			if (zephir_is_true(&_4$$3)) {
 				ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_6, 0, &key, &val);
@@ -91,7 +91,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&val, &data, "current", NULL, 0);
 			zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_7$$6, "property_exists", &_5, 3, this_ptr, &key);
+				ZEPHIR_CALL_FUNCTION(&_7$$6, "property_exists", &_5, 15, this_ptr, &key);
 				zephir_check_call_status();
 				if (zephir_is_true(&_7$$6)) {
 					ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_6, 0, &key, &val);
@@ -204,7 +204,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 49, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 61, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}

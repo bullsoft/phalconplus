@@ -4,6 +4,7 @@ extern zend_class_entry *phalconplus_enum_runmode_ce;
 ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunMode);
 
 PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath);
+PHP_METHOD(PhalconPlus_Enum_RunMode, newDI);
 PHP_METHOD(PhalconPlus_Enum_RunMode, getMapClassName);
 zend_object *zephir_init_properties_PhalconPlus_Enum_RunMode(zend_class_entry *class_type TSRMLS_DC);
 
@@ -23,6 +24,7 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_enum_runmode_method_entry) {
 	PHP_ME(PhalconPlus_Enum_RunMode, getScriptPath, arginfo_phalconplus_enum_runmode_getscriptpath, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Enum_RunMode, newDI, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Enum_RunMode, getMapClassName, arginfo_phalconplus_enum_runmode_getmapclassname, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

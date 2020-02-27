@@ -167,12 +167,12 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		zephir_array_fast_append(&_3$$4, &serviceClass);
 		zephir_array_fast_append(&_3$$4, &method);
 		ZVAL_LONG(&_4$$4, 0);
-		ZEPHIR_CALL_METHOD(NULL, &param$$4, "__construct", NULL, 4, &_3$$4, &_4$$4);
+		ZEPHIR_CALL_METHOD(NULL, &param$$4, "__construct", NULL, 16, &_3$$4, &_4$$4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_5$$4, &param$$4, "getclass", NULL, 5);
+		ZEPHIR_CALL_METHOD(&_5$$4, &param$$4, "getclass", NULL, 17);
 		zephir_check_call_status();
 		if (zephir_is_true(&_5$$4)) {
-			ZEPHIR_CALL_METHOD(&_6$$5, &param$$4, "getclass", NULL, 5);
+			ZEPHIR_CALL_METHOD(&_6$$5, &param$$4, "getclass", NULL, 17);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&paramClass$$4, &_6$$5, "getname", NULL, 0);
 			zephir_check_call_status();

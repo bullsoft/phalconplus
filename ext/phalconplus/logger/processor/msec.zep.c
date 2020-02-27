@@ -58,13 +58,13 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Msec, __toString) {
 	zephir_microtime(&_0, NULL);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "%f %d");
-	ZEPHIR_CALL_FUNCTION(&tmp, "sscanf", NULL, 118, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&tmp, "sscanf", NULL, 121, &_0, &_1);
 	zephir_check_call_status();
 	zephir_array_fetch_long(&_2, &tmp, 0, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Msec.zep", 15);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "%03d");
 	ZVAL_LONG(&_3, (zephir_get_numberval(&_2) * 1000));
-	ZEPHIR_CALL_FUNCTION(&_4, "sprintf", NULL, 15, &_1, &_3);
+	ZEPHIR_CALL_FUNCTION(&_4, "sprintf", NULL, 6, &_1, &_3);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("msec"), &_4);
 	RETURN_MM_MEMBER(getThis(), "msec");

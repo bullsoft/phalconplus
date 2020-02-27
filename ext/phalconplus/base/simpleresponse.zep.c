@@ -69,7 +69,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, softClone) {
 			}
 			ZEPHIR_INIT_NVAR(&val);
 			ZVAL_COPY(&val, _0);
-			ZEPHIR_CALL_FUNCTION(&_4$$3, "property_exists", &_5, 3, this_ptr, &key);
+			ZEPHIR_CALL_FUNCTION(&_4$$3, "property_exists", &_5, 15, this_ptr, &key);
 			zephir_check_call_status();
 			if (zephir_is_true(&_4$$3)) {
 				ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_6, 0, &key, &val);
@@ -91,7 +91,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, softClone) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&val, &data, "current", NULL, 0);
 			zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_7$$6, "property_exists", &_5, 3, this_ptr, &key);
+				ZEPHIR_CALL_FUNCTION(&_7$$6, "property_exists", &_5, 15, this_ptr, &key);
 				zephir_check_call_status();
 				if (zephir_is_true(&_7$$6)) {
 					ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_6, 0, &key, &val);
@@ -182,7 +182,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, pushItem) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 49, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 61, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}
@@ -216,7 +216,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 49, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 61, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}
@@ -255,7 +255,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 	} else {
 		zephir_read_property(&_1$$5, this_ptr, SL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_1$$5);
-		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 56, &_1$$5);
+		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 67, &_1$$5);
 		ZEPHIR_UNREF(&_1$$5);
 		zephir_check_call_status();
 		RETURN_MM();

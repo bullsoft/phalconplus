@@ -31,8 +31,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Sys) {
 
 	zend_declare_property_string(phalconplus_enum_sys_ce, SL("primaryModuleDir"), "", ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
 
-	zend_declare_property_bool(phalconplus_enum_sys_ce, SL("facadesLoaded"), 0, ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
-
 	zephir_declare_class_constant_string(phalconplus_enum_sys_ce, SL("COMMON_NAME"), "common");
 
 	zephir_declare_class_constant_string(phalconplus_enum_sys_ce, SL("CONF_NAME"), "config");
@@ -95,7 +93,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 	ZVAL_STRING(&_2, "/");
 	zephir_fast_trim(&_1, &moduleDir, &_2, ZEPHIR_TRIM_RIGHT);
 	zephir_get_strval(&moduleDir, &_1);
-	ZEPHIR_CALL_FUNCTION(&_3, "is_dir", NULL, 45, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_3, "is_dir", NULL, 40, &moduleDir);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_3))) {
 		ZEPHIR_INIT_VAR(&_4$$4);
@@ -109,7 +107,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 		return;
 	}
 	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("primaryModuleDir"), &moduleDir);
-	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 109, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 112, &moduleDir);
 	zephir_check_call_status();
 	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("rootDir"), &_6);
 	RETURN_MM_NULL();
@@ -337,7 +335,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleNameByDir) {
 
 
 	ZVAL_LONG(&_0, 8);
-	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 110, &moduleDir, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 113, &moduleDir, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -451,7 +449,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 	zephir_array_fast_append(&_3, &_4);
 	ZEPHIR_INIT_NVAR(&confPath);
 	zephir_fast_join_str(&confPath, SL(""), &_3);
-	ZEPHIR_CALL_FUNCTION(&_5, "is_file", &_6, 48, &confPath);
+	ZEPHIR_CALL_FUNCTION(&_5, "is_file", &_6, 43, &confPath);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_5))) {
 		ZEPHIR_INIT_VAR(&_7$$3);
@@ -466,7 +464,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 		ZEPHIR_INIT_NVAR(&confPath);
 		zephir_fast_join_str(&confPath, SL(""), &_7$$3);
 	}
-	ZEPHIR_CALL_FUNCTION(&_9, "is_file", &_6, 48, &confPath);
+	ZEPHIR_CALL_FUNCTION(&_9, "is_file", &_6, 43, &confPath);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_9))) {
 		ZEPHIR_INIT_VAR(&_10$$4);
@@ -513,181 +511,6 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getComposerAutoloadPath) {
 	ZVAL_STRING(&_2, "/");
 	zephir_fast_join(return_value, &_2, &_0);
 	RETURN_MM();
-
-}
-
-PHP_METHOD(PhalconPlus_Enum_Sys, aliasFacades) {
-
-	zval facades;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *prefix_param = NULL, __$true, _0, _1, alias, *_2, _3, _4$$4, _5$$4, _6$$5, _7$$5;
-	zval prefix, className, classAlias;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&prefix);
-	ZVAL_UNDEF(&className);
-	ZVAL_UNDEF(&classAlias);
-	ZVAL_BOOL(&__$true, 1);
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&alias);
-	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_4$$4);
-	ZVAL_UNDEF(&_5$$4);
-	ZVAL_UNDEF(&_6$$5);
-	ZVAL_UNDEF(&_7$$5);
-	ZVAL_UNDEF(&facades);
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &prefix_param);
-
-	zephir_get_strval(&prefix, prefix_param);
-
-
-	zephir_read_static_property_ce(&_0, phalconplus_enum_sys_ce, SL("facadesLoaded"), PH_NOISY_CC | PH_READONLY);
-	if (ZEPHIR_IS_TRUE(&_0)) {
-		RETURN_MM_BOOL(1);
-	}
-	ZEPHIR_INIT_VAR(&facades);
-	zephir_create_array(&facades, 30, 0);
-	ZEPHIR_INIT_VAR(&_1);
-	ZVAL_STRING(&_1, "Annotations");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Assets");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Bootstrap");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Config");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Cookies");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Crypt");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Dispatcher");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Escaper");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "EventsManager");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Filter");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Flash");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "FlashSession");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Log");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "ModelsCache");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "ModelsManager");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "ModelsMetadata");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Request");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Response");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Router");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Security");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Service");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Session");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "SessionBag");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Tag");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "TransactionManager");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Url");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Acl");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "App");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Di");
-	zephir_array_fast_append(&facades, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "View");
-	zephir_array_fast_append(&facades, &_1);
-	zephir_is_iterable(&facades, 0, "phalconplus/Enum/Sys.zep", 182);
-	if (Z_TYPE_P(&facades) == IS_ARRAY) {
-		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&facades), _2)
-		{
-			ZEPHIR_INIT_NVAR(&alias);
-			ZVAL_COPY(&alias, _2);
-			ZEPHIR_INIT_NVAR(&_4$$4);
-			ZEPHIR_CONCAT_SV(&_4$$4, "\\PhalconPlus\\Facades\\", &alias);
-			zephir_get_strval(&className, &_4$$4);
-			ZEPHIR_INIT_NVAR(&_5$$4);
-			ZEPHIR_CONCAT_VV(&_5$$4, &prefix, &alias);
-			zephir_get_strval(&classAlias, &_5$$4);
-			
-                zend_class_entry *ce;
-                ce = zephir_fetch_class(&className TSRMLS_CC);
-                zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce);
-            
-		} ZEND_HASH_FOREACH_END();
-	} else {
-		ZEPHIR_CALL_METHOD(NULL, &facades, "rewind", NULL, 0);
-		zephir_check_call_status();
-		while (1) {
-			ZEPHIR_CALL_METHOD(&_3, &facades, "valid", NULL, 0);
-			zephir_check_call_status();
-			if (!zend_is_true(&_3)) {
-				break;
-			}
-			ZEPHIR_CALL_METHOD(&alias, &facades, "current", NULL, 0);
-			zephir_check_call_status();
-				ZEPHIR_INIT_NVAR(&_6$$5);
-				ZEPHIR_CONCAT_SV(&_6$$5, "\\PhalconPlus\\Facades\\", &alias);
-				zephir_get_strval(&className, &_6$$5);
-				ZEPHIR_INIT_NVAR(&_7$$5);
-				ZEPHIR_CONCAT_VV(&_7$$5, &prefix, &alias);
-				zephir_get_strval(&classAlias, &_7$$5);
-				
-                zend_class_entry *ce;
-                ce = zephir_fetch_class(&className TSRMLS_CC);
-                zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce);
-            
-			ZEPHIR_CALL_METHOD(NULL, &facades, "next", NULL, 0);
-			zephir_check_call_status();
-		}
-	}
-	ZEPHIR_INIT_NVAR(&alias);
-	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("facadesLoaded"), &__$true);
-	RETURN_MM_BOOL(1);
 
 }
 

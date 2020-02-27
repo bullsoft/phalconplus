@@ -25,6 +25,8 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Facades_AbstractFacade) {
 
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Facades, AbstractFacade, phalconplus, facades_abstractfacade, phalconplus_facades_abstractfacade_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
+	zend_declare_property_null(phalconplus_facades_abstractfacade_ce, SL("app"), ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
+
 	return SUCCESS;
 
 }
@@ -48,14 +50,29 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, resolve) {
 
 }
 
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, setApp) {
+
+	zval *app, app_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&app_sub);
+
+	zephir_fetch_params_without_memory_grow(1, 0, &app);
+
+
+
+	zephir_update_static_property_ce(phalconplus_facades_abstractfacade_ce, ZEND_STRL("app"), app);
+
+}
+
 PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 
 	zend_bool _6$$4;
-	zend_class_entry *_0, *_2;
+	zend_class_entry *_2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval params, _13;
-	zval *method_param = NULL, *params_param = NULL, di, name, facade, service, _1, _3, _4, _5$$3, _7$$4, _8$$4, _9$$5, _10$$6, _11$$6, _12$$6;
+	zval *method_param = NULL, *params_param = NULL, di, name, facade, service, _0, _1, _3, _4, _5$$3, _7$$4, _8$$4, _9$$5, _10$$6, _11$$6, _12$$6;
 	zval method;
 	zval *this_ptr = getThis();
 
@@ -64,6 +81,7 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&facade);
 	ZVAL_UNDEF(&service);
+	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
@@ -84,8 +102,8 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 	zephir_get_arrval(&params, params_param);
 
 
-	_0 = zephir_fetch_class_str_ex(SL("Phalcon\\Di"), ZEND_FETCH_CLASS_AUTO);
-	ZEPHIR_CALL_CE_STATIC(&di, _0, "getdefault", NULL, 0);
+	zephir_read_static_property_ce(&_0, phalconplus_facades_abstractfacade_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&di, &_0, "getdi", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&name);
 	zephir_get_called_class(&name);
@@ -138,7 +156,7 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 		ZEPHIR_CONCAT_SV(&_12$$6, "Service can not be resovled: ", &name);
 		ZEPHIR_CALL_METHOD(NULL, &_11$$6, "__construct", NULL, 2, &_12$$6);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_11$$6, "phalconplus/Facades/AbstractFacade.zep", 30);
+		zephir_throw_exception_debug(&_11$$6, "phalconplus/Facades/AbstractFacade.zep", 37);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

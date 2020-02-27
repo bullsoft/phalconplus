@@ -231,12 +231,12 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams) {
 			zephir_array_fast_append(&_22$$7, &serviceClass);
 			zephir_array_fast_append(&_22$$7, &method);
 			ZVAL_LONG(&_23$$7, 0);
-			ZEPHIR_CALL_METHOD(NULL, &param$$7, "__construct", NULL, 4, &_22$$7, &_23$$7);
+			ZEPHIR_CALL_METHOD(NULL, &param$$7, "__construct", NULL, 16, &_22$$7, &_23$$7);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_24$$7, &param$$7, "getclass", NULL, 5);
+			ZEPHIR_CALL_METHOD(&_24$$7, &param$$7, "getclass", NULL, 17);
 			zephir_check_call_status();
 			if (zephir_is_true(&_24$$7)) {
-				ZEPHIR_CALL_METHOD(&_25$$8, &param$$7, "getclass", NULL, 5);
+				ZEPHIR_CALL_METHOD(&_25$$8, &param$$7, "getclass", NULL, 17);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&paramClass$$7, &_25$$8, "getname", NULL, 0);
 				zephir_check_call_status();
@@ -382,7 +382,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByObject) {
 	ZEPHIR_CONCAT_SVSVS(&_10, "Invoke callByParams with (", &service, ", ", &method, ")");
 	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 1, &_10);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 125, &service, &method, &request);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 128, &service, &method, &request);
 	zephir_check_call_status();
 	RETURN_MM();
 

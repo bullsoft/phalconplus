@@ -10,8 +10,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
 	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/facades/abstractfacade.zep.c
-	phalconplus/base/protobuffer.zep.c
 	phalconplus/enum/abstractenum.zep.c
+	phalconplus/base/protobuffer.zep.c
+	phalconplus/app/driver/appdriver.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
@@ -24,14 +25,18 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/db/pdo/abstractmysql.zep.c
 	phalconplus/enum/exception.zep.c
 	phalconplus/rpc/server/abstractserver.zep.c
+	phalconplus/app/app.zep.c
+	phalconplus/app/driver/module.zep.c
+	phalconplus/app/driver/srv.zep.c
+	phalconplus/app/driver/task.zep.c
+	phalconplus/app/module/abstractmodule.zep.c
+	phalconplus/app/module/moduledef.zep.c
 	phalconplus/assert/assertion.zep.c
 	phalconplus/assert/invalidargumentexception.zep.c
 	phalconplus/auth/exception.zep.c
 	phalconplus/auth/model.zep.c
 	phalconplus/auth/policy.zep.c
-	phalconplus/base/abstractmodule.zep.c
 	phalconplus/base/model.zep.c
-	phalconplus/base/moduledef.zep.c
 	phalconplus/base/pagable.zep.c
 	phalconplus/base/page.zep.c
 	phalconplus/base/protoorderby.zep.c
@@ -55,6 +60,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/db/unitofwork/field.zep.c
 	phalconplus/db/unitofwork/lastinsertid.zep.c
 	phalconplus/enum/assertioncode.zep.c
+	phalconplus/enum/facade.zep.c
 	phalconplus/enum/orderbydirection.zep.c
 	phalconplus/enum/runenv.zep.c
 	phalconplus/enum/runmode.zep.c
