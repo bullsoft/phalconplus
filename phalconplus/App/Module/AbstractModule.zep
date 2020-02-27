@@ -1,18 +1,27 @@
 namespace PhalconPlus\App\Module;
 use PhalconPlus\App\Module\ModuleDef;
+use PhalconPlus\App\App as SuperApp;
 
 abstract class AbstractModule
 {
+    // <SuperApp>
+    protected app = null {
+        get
+    };
     // <\Phalcon\DI>
-    protected di = null;
-
+    protected di = null {
+        get
+    };
     // <ModuleDef>
-    protected def = null;
+    protected def = null {
+        get
+    };
 
-    public function __construct(<\Phalcon\DI> di, <ModuleDef> def = null)
+    public function __construct(<SuperApp> app, <ModuleDef> def = null)
     {
-        let this->di = di;
-        let this->def = def; // Module should have it's definition.
+        let this->app = app;
+        let this->di  = app->getDI();
+        let this->def = def;  // Module should have it's definition.
     }
 
     public function getConfig()
@@ -20,19 +29,9 @@ abstract class AbstractModule
         return this->def->getConfig();
     }
 
-    public function getDef() -> <\PhalconPlus\Base\ModuleDef>
-    {
-        return this->def;
-    }
-
-    public function getDI() -> <\Phalcon\Di>
-    {
-        return this->di;
-    }
-
     public function isPrimary()
     {
-        return this->def->getIsPrimary() == true; // Report is primary or not
+        return this->def->getIsPrimary() === true; // Report is primary or not
     }
 
     public function getName()
@@ -42,7 +41,7 @@ abstract class AbstractModule
 
     public function getBootstrap()
     {
-        return this->def->getBootstrap();
+        return this->app->getBootstrap();
     }
 
     public function __call(string method, array params = [])
