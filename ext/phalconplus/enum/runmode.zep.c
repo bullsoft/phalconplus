@@ -66,7 +66,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 	zephir_read_property(&_2, this_ptr, SL("scripts"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_4);
 	zephir_read_property(&_4, this_ptr, SL("val"), PH_NOISY_CC);
-	zephir_array_fetch(&_3, &_2, &_4, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 37);
+	zephir_array_fetch(&_3, &_2, &_4, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 35);
 	ZEPHIR_INIT_VAR(&script);
 	ZEPHIR_CONCAT_VV(&script, &_0, &_3);
 	ZEPHIR_CALL_FUNCTION(&_5, "is_file", NULL, 43, &script);
@@ -79,32 +79,6 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 		RETURN_MM_NULL();
 	}
 	RETURN_CCTOR(&script);
-
-}
-
-PHP_METHOD(PhalconPlus_Enum_RunMode, newDI) {
-
-	zval _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&_0);
-
-	ZEPHIR_MM_GROW();
-
-	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
-	if (ZEPHIR_IS_STRING(&_0, "Cli")) {
-		object_init_ex(return_value, zephir_get_internal_ce(SL("phalcon\\di\\factorydefault\\cli")));
-		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
-		zephir_check_call_status();
-		RETURN_MM();
-	} else {
-		object_init_ex(return_value, zephir_get_internal_ce(SL("phalcon\\di\\factorydefault")));
-		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
-		zephir_check_call_status();
-		RETURN_MM();
-	}
 
 }
 
@@ -123,7 +97,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getMapClassName) {
 	zephir_read_property(&_0, this_ptr, SL("mapClasses"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_2);
 	zephir_read_property(&_2, this_ptr, SL("val"), PH_NOISY_CC);
-	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 56);
+	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 45);
 	RETURN_CTOR(&_1);
 
 }

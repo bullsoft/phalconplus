@@ -4,7 +4,9 @@ extern zend_class_entry *phalconplus_app_module_moduledef_ce;
 ZEPHIR_INIT_CLASS(PhalconPlus_App_Module_ModuleDef);
 
 PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct);
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, impl);
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, loadScripts);
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, newDI);
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, checkout);
 PHP_METHOD(PhalconPlus_App_Module_ModuleDef, isDefault);
 PHP_METHOD(PhalconPlus_App_Module_ModuleDef, isPrimary);
 PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getIsPrimary);
@@ -35,11 +37,38 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_module_moduledef___construct, 0, 
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_moduledef_impl, 0, 1, PhalconPlus\\Base\\AbstractModule, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_moduledef_newdi, 0, 0, Phalcon\\Di, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_impl, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_newdi, 0, 0, IS_OBJECT, "Phalcon\\Di", 0)
 #endif
-	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\Di, 0)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_moduledef_checkout, 0, 0, PhalconPlus\\Base\\AbstractModule, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_checkout, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_isdefault, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_isdefault, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_isprimary, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_isprimary, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_getisprimary, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_moduledef_getisprimary, 0, 0, _IS_BOOL, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
@@ -114,10 +143,12 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_app_module_moduledef_method_entry) {
 	PHP_ME(PhalconPlus_App_Module_ModuleDef, __construct, arginfo_phalconplus_app_module_moduledef___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(PhalconPlus_App_Module_ModuleDef, impl, arginfo_phalconplus_app_module_moduledef_impl, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_Module_ModuleDef, isDefault, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_Module_ModuleDef, isPrimary, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_Module_ModuleDef, getIsPrimary, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_ModuleDef, loadScripts, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_ModuleDef, newDI, arginfo_phalconplus_app_module_moduledef_newdi, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_ModuleDef, checkout, arginfo_phalconplus_app_module_moduledef_checkout, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_ModuleDef, isDefault, arginfo_phalconplus_app_module_moduledef_isdefault, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_ModuleDef, isPrimary, arginfo_phalconplus_app_module_moduledef_isprimary, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_ModuleDef, getIsPrimary, arginfo_phalconplus_app_module_moduledef_getisprimary, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_ModuleDef, getClassPath, arginfo_phalconplus_app_module_moduledef_getclasspath, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_ModuleDef, getBootstrap, arginfo_phalconplus_app_module_moduledef_getbootstrap, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_ModuleDef, getClassName, arginfo_phalconplus_app_module_moduledef_getclassname, ZEND_ACC_PUBLIC)
