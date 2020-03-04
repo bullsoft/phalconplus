@@ -5,6 +5,6 @@ class App extends AbstractFacade
 {
     protected function getName() -> string
     {
-        return "superapp";
+        return "superApp";
     }
 }
