@@ -3,7 +3,7 @@ use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\App\App as SuperApp;
 use PhalconPlus\Enum\RunMode;
 use PhalconPlus\Base\AbstractModule;
-use PhalconPlus\Bootstrap;
+use Phalcon\Config;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\DI\FactoryDefault as DefaultDI;
 use Phalcon\DI\FactoryDefault\CLI as TaskDI;
@@ -11,7 +11,7 @@ use Phalcon\DI\FactoryDefault\CLI as TaskDI;
 /* Module Structure for mode "Web"
     .
     ├── app
-    │   ├── Module.php
+    │   ├── Web.php
         │   ├── config
         │   │   └── dev.php
         │   ├── controllers
@@ -33,16 +33,12 @@ class ModuleDef
     protected configPath = "";
     protected dir = "";
 
-    protected static loadedClasses = [];
-
     // <\Phalcon\Config>
     protected config = null;
     // <\PhalconPlus\Enum\RunMode>
     protected runMode = null;
     // <SuperApp>
     protected app = null;
-    // <\PhalconPlus\Bootstrap>
-    protected bootstrap = null;
 
     // Is this a primary-module? false for default
     protected isPrimary = false;
@@ -53,13 +49,12 @@ class ModuleDef
             throw new BaseException("Module directory not exists or not a dir, file positon: " . moduleDir);
         }
         let this->app = app;
-        let this->bootstrap = app->getBootstrap();
 
         let this->dir = moduleDir;
         let this->configPath = Sys::getModuleConfigPath(moduleDir);
 
         // 模块配置
-        let this->config = new \Phalcon\Config(this->bootstrap->load(this->configPath));
+        let this->config = new Config(Sys::load(this->configPath));
         if !isset this->config["application"] {
             throw new BaseException("Config Path: /application must exists");
         }
@@ -78,12 +73,6 @@ class ModuleDef
         let this->isPrimary = isPrimary;
     }
 
-    public function loadScripts()
-    {
-        var scriptPath = this->runMode->getScriptPath();
-        return this->bootstrap->load(scriptPath);
-    }
-
     public function newDI() -> <\Phalcon\Di>
     {
         var mode = this->runMode->getValue();
@@ -96,15 +85,37 @@ class ModuleDef
 
     public function checkout() -> <AbstractModule>
     {
-        if !isset(self::loadedClasses[this->className]) {
-            require this->classPath;
+        if this->isPrimary() {
+            // 装载全局服务初始化文件
+            Sys::load(this->runMode->getScriptPath());
         }
+
+        Sys::load(this->classPath);
+
         if !class_exists(this->className) {
-            throw new BaseException("Module class not exists: ". this->className);
+            throw new BaseException([
+                "Module class (%s) not exists, ClassPath: %s ",
+                [
+                    this->className,
+                    this->classPath
+                ]
+            ]);
         }
-        let self::loadedClasses[this->className] = 1;
-        var className = this->className;
-        return new {className}(this->app, this);
+
+        var module, className = this->className;
+
+        let module = new {className}(this->app, this);
+
+        if this->isPrimary() {
+            this->app->di()->setShared("appModule", module);
+        }
+
+        // Register autoloaders and di-services
+        module->registerAutoloaders();
+        module->registerServices();
+        module->registerEvents();
+
+        return module;
     }
 
     public function isDefault() -> boolean
@@ -125,11 +136,6 @@ class ModuleDef
     public function getClassPath() -> string
     {
         return this->classPath;
-    }
-
-    public function getBootstrap() -> <Bootstrap>
-    {
-        return this->bootstrap;
     }
 
     public function getClassName() -> string
@@ -170,5 +176,15 @@ class ModuleDef
     public function getDir() -> string
     {
         return this->dir;
+    }
+
+    public function config() -> <\Phalcon\Config>
+    {
+        return this->config;
+    }
+
+    public function app() -> <SuperApp>
+    {
+        return this->app;
     }
 }
