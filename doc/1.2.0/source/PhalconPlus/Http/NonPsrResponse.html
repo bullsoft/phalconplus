@@ -50,7 +50,7 @@
         <li><a href="../../../index.html">Home</a></li>
         
                 <li><a href="../../../classes.html">Classes</a></li>
-                <li><a href="../../../class/PhalconPlus/Mvc/PsrApplication.html">PhalconPlus\Mvc\PsrApplication</a></li>
+                <li><a href="../../../class/PhalconPlus/Http/NonPsrResponse.html">PhalconPlus\Http\NonPsrResponse</a></li>
                 <li><a >Source</a></li>
                 
     </ul>
@@ -59,7 +59,7 @@
 <div class="class-header source clearfix">
     
     <div class="access-buttons">
-        <a class="zep-button" href="../../../class/PhalconPlus/Mvc/PsrApplication.html">Class</a>
+        <a class="zep-button" href="../../../class/PhalconPlus/Http/NonPsrResponse.html">Class</a>
 
             </div>
     
@@ -70,65 +70,51 @@
             <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
         </span>
                 <span class="namespace-piece">
-            <a href="../../../namespace/PhalconPlus/Mvc.html">Mvc</a>
+            <a href="../../../namespace/PhalconPlus/Http.html">Http</a>
         </span>
         
-        <h1 class="class-name">PsrApplication</h1>
+        <h1 class="class-name">NonPsrResponse</h1>
     </div>
     
 </div>
 
 <pre class="zephir-source-file prettyprint linenums">
-    namespace PhalconPlus\Mvc;
-use Phalcon\Mvc\Application as BaseApplication;
-use Psr\Http\Message\ServerRequestInterface;
-use Phalcon\Http\ResponseInterface;
+    namespace PhalconPlus\Http;
+
 use Phalcon\Http\Response as BaseResponse;
-use PhalconPlus\Http\PsrResponseFactory;
-use PhalconPlus\Http\NonPsrRequest;
-use PhalconPlus\Base\Exception as BaseException;
-use Phalcon\DiInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\UploadedFileInterface;
 
-class PsrApplication extends BaseApplication
+class NonPsrResponse extends BaseResponse
 {
-    protected psrRequest = null { set, get };
-    protected nativeRequest = null { get };
+    protected psrResponse = null;
 
-    public function __construct(<ServerRequestInterface> psrRequest, <DiInterface> dependencyInjector = null)
+    public function __construct(<ResponseInterface> psrResponse)
     {
-        parent::__construct(dependencyInjector);
-        let this->_sendHeaders = false;
-        let this->_sendCookies = false;
-        // <ServerRequestInterface>
-        let this->psrRequest = psrRequest;
-        // <Phalcon\Http\Request>
-        let this->nativeRequest = new NonPsrRequest(psrRequest);
-    }
+        parent::__construct(
+            psrResponse->getBody()->__toString(),
+            psrResponse->getStatusCode(),
+            psrResponse->getReasonPhrase()
+        );
 
-    public function __destruct()
-    {
-        if this->nativeRequest {
-            this->nativeRequest->removeTmpFiles();
-        }
-    }
+        var cookies, cookie, 
+            values, value, name;
 
-    public function handle(string uri = null) -> <ResponseInterface>
-    {
-        if empty this->_dependencyInjector {
-            throw new BaseException("there is no di(dependency injector) in PsrAppliction");
+        let cookies = psrResponse->getHeader("Set-Cookie");
+
+        var newPsrResponse = psrResponse->withoutHeader("Set-Cookie");
+
+        var headers = newPsrResponse->getHeaders();
+
+        for name, values in headers {
+            for value in values {
+                this->setHeader(name, value);
+            }
         }
 
-        this->_dependencyInjector->setShared("request", this->nativeRequest);
-   
-        var response,  // get Phalcon\Http\Response
-            psrRequest = this->psrRequest,
-            reqUri     = psrRequest->getUri()->getPath(), // get request uri-path
-            protocol   = psrRequest->getProtocolVersion();
-
-        // error_log(reqUri);
-        // error_log(var_export(_SERVER, true));
-        let response = <BaseResponse> parent::handle();
-        return response;
+        for cookie in cookies {
+            this->setRawHeader("Set-Cookie: ".cookie);
+        }
     }
 }</pre>
                 </div>

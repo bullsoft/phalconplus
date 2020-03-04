@@ -83,8 +83,6 @@
 namespace PhalconPlus\Enum;
 use PhalconPlus\Enum\AbstractEnum;
 use PhalconPlus\Enum\Sys as Sys;
-use Phalcon\DI\FactoryDefault as DefaultDI;
-use Phalcon\DI\FactoryDefault\CLI as TaskDI;
 
 class RunMode extends AbstractEnum
 {
@@ -98,8 +96,8 @@ class RunMode extends AbstractEnum
     // mode -> className
     // eg: mode "Web" has a module initial className in app/Module.php
     protected mapClasses = [
-        "Web"     : "Module",
-        "Cli"     : "Task",
+        "Web"     : "Web",
+        "Cli"     : "Cli",
         "Srv"     : "Srv",
         "Micro"   : "Micro"
     ];
@@ -123,13 +121,24 @@ class RunMode extends AbstractEnum
         return script;
     }
 
-    public function newDI()
+    public function isCli()
     {
-        if this->val == self::CLI {
-            return new TaskDI();
-        } else {
-            return new DefaultDI();
-        }
+        return this->val == RunMode::CLI;
+    }
+
+    public function isWeb()
+    {
+        return this->val == RunMode::WEB;
+    }
+
+    public function isSrv()
+    {
+        return this->val == RunMode::SRV;
+    }
+
+    public function isMicro()
+    {
+        return this->val == RunMode::MICRO;
     }
 
     public function getMapClassName() -> string

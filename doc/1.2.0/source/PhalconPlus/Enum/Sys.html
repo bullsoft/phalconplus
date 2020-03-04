@@ -83,6 +83,7 @@
 namespace PhalconPlus\Enum;
 use PhalconPlus\Enum\AbstractEnum;
 use PhalconPlus\Base\Exception as BaseException;
+use PhalconPlus\App\App as SuperApp;
 
 final class Sys extends AbstractEnum
 {
@@ -99,39 +100,56 @@ final class Sys extends AbstractEnum
 
     private static rootDir = "";  // without trailing /
     private static primaryModuleDir = ""; // without trailing /
+    private static requiredFiles = [];
+    private static app = null;
 
     public static function init(string! moduleDir)
     {
         if !empty(self::primaryModuleDir) {
             return ;
         }
-        let moduleDir = rtrim(moduleDir, self::DS);
+        let moduleDir = rtrim(moduleDir, Sys::DS);
         if !is_dir(moduleDir) {
             throw new BaseException("Module directory not exists or not a dir, file positon: " . moduleDir);
         }
         let self::primaryModuleDir = moduleDir;
         let self::rootDir = dirname(moduleDir);
+        // alias this class 
+        Sys::classAlias("PhalconPlus\\Enum\Sys", "Ph\\Sys");
+
         return ;
+    }
+
+    public static function initApp(<SuperApp> app)
+    {
+        if is_null(self::app) {
+            let self::app = app;
+        }
+    }
+
+    public static function app() -> <SuperApp>
+    {
+        return self::app;
     }
 
     // -> {APP_MODULE_DIR}
     public static function getPrimaryModuleDir() -> string
     {
-        return self::primaryModuleDir . self::DS;
+        return self::primaryModuleDir . Sys::DS;
     }
 
     // -> {APP_ROOT_DIR}
     public static function getRootDir() -> string
     {
-        return self::rootDir . self::DS;
+        return self::rootDir . Sys::DS;
     }
 
     // -> {APP_ROOT_DIR}/common/
     public static function getCommonDir() -> string
     {
-        return implode(self::DS, [
+        return implode(Sys::DS, [
             self::rootDir,
-            self::COMMON_NAME,
+            Sys::COMMON_NAME,
             ""
         ]);
     }
@@ -139,31 +157,31 @@ final class Sys extends AbstractEnum
     // -> {APP_ROOT_DIR}/common/config/
     public static function getGlobalConfigDir() -> string
     {
-        return implode(self::DS, [
+        return implode(Sys::DS, [
             self::rootDir,
-            self::COMMON_NAME,
-            self::CONF_NAME . self::EXT
+            Sys::COMMON_NAME,
+            Sys::CONF_NAME . Sys::EXT
         ]);
     }
 
     // -> {APP_ROOT_DIR}/common/config/config.php
     public static function getGlobalConfigPath() -> string
     {
-        return implode(self::DS, [
+        return implode(Sys::DS, [
             self::rootDir,
-            self::COMMON_NAME,
-            self::CONF_NAME,
-            self::CONF_NAME . self::EXT
+            Sys::COMMON_NAME,
+            Sys::CONF_NAME,
+            Sys::CONF_NAME . Sys::EXT
         ]);
     }
 
     // -> {APP_ROOT_DIR}/common/load/
     public static function getGlobalLoadDir() -> string
     {
-        return implode(self::DS, [
+        return implode(Sys::DS, [
             self::rootDir,
-            self::COMMON_NAME,
-            self::LOAD_NAME,
+            Sys::COMMON_NAME,
+            Sys::LOAD_NAME,
             ""
         ]);
     }
@@ -171,7 +189,7 @@ final class Sys extends AbstractEnum
     // -> {APP_ROOT_DIR}/{moduleName}/
     public static function getModuleDirByName(string moduleName) -> string
     {
-        return implode(self::DS, [
+        return implode(Sys::DS, [
             self::rootDir,
             moduleName,
             ""
@@ -188,36 +206,37 @@ final class Sys extends AbstractEnum
     {
         return implode("", [
             moduleDir,
-            self::APP_NAME,
-            self::DS,
+            Sys::APP_NAME,
+            Sys::DS,
             runMode->getMapClassName(),
-            self::EXT
+            Sys::EXT
         ]);
     }
 
     // -> {APP_ROOT_DIR}/{moduleName}/app/config/{APP_RUN_ENV}.php
     public static function getModuleConfigPath(string moduleDir)
     {
-        var confPrefix = "", confPath = "";
+        var confPrefix = "", 
+            confPath = "";
 
-        let confPrefix = implode(self::DS, [
-            rtrim(moduleDir, self::DS),
-            self::APP_NAME,
-            self::CONF_NAME,
+        let confPrefix = implode(Sys::DS, [
+            rtrim(moduleDir, Sys::DS),
+            Sys::APP_NAME,
+            Sys::CONF_NAME,
             ""
         ]);
 
         let confPath = implode("", [
             confPrefix,
             APP_RUN_ENV,
-            self::EXT
+            Sys::EXT
         ]);
 
         if !is_file(confPath) {
             let confPath = implode("", [
                 confPrefix,
-                self::CONF_NAME,
-                self::EXT
+                Sys::CONF_NAME,
+                Sys::EXT
             ]);
         }
 
@@ -231,11 +250,68 @@ final class Sys extends AbstractEnum
     // -> {APP_ROOT_DIR}/vendor/autoload.php
     public static function getComposerAutoloadPath()
     {
-        return implode(self::DS, [
+        return implode(Sys::DS, [
             self::rootDir,
             "vendor",
             "autoload.php"
         ]);
+    }
+
+    public static function classAlias(string className, string classAlias) -> bool
+    {
+        %{
+            zend_class_entry *ce;
+            ce = zephir_fetch_class(&className TSRMLS_CC);
+            zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce);
+        }%
+        
+        return true;
+    }
+
+    public static function load(var filePath)
+    {
+        if unlikely !is_string(filePath) {
+            return false;
+        }
+        if unlikely !is_file(filePath) {
+            throw new BaseException("The file you try to load is not exists. file position: " . filePath);
+        }
+        var loader, config, superapp, di;
+        var rootPath, result;
+
+        if fetch result, self::requiredFiles[filePath] {
+            return result;
+        }
+
+        let rootPath = "rootPath",
+            di       = "di",
+            loader   = "loader",
+            config   = "config",
+            superapp = "superapp";
+          
+        let {rootPath} = Sys::getRootDir();
+        if typeof self::app == "object" {
+            let {config} = self::app->config();
+            if self::app->isBooted() {
+                let {superapp} = self::app;
+                let {di} = self::app->di();
+                let {loader} = self::app->di()->get("loader");
+            }
+        }
+        
+        /* PHP 7.1 and later version, forbid dynamic calls to scope introspection functions
+        extract(["rootPath": APP_ROOT_DIR,
+                 "loader": new \Phalcon\Loader(),
+                 "config": this->config,
+                 "application": this->application,
+                 "bootstrap": this,
+                 "di": this->di
+        ]);
+        */
+
+        let result = require filePath;
+        let self::requiredFiles[filePath] = result;
+        return result;
     }
 
 }

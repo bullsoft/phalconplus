@@ -7,22 +7,22 @@
     <title>
                     phalconplus API Documentation
             </title>
-    <link rel="stylesheet" type="text/css" href="../../asset/static/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
 
-<script src="../../asset/static/prettify.js"></script>
-<script src="../../asset/api_definition.js"></script>
+<script src="../../../../asset/static/prettify.js"></script>
+<script src="../../../../asset/api_definition.js"></script>
 
 
-                        <link rel="stylesheet" type="text/css" href="../../asset/static/prettify.css" />
-                    <link rel="stylesheet" type="text/css" href="../../asset/static/zephir-theme.css" />
+                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
             
     
 
-                        <script src="../../asset/static/prettify.js"></script>
-                                    <script src="../../asset/api_definition.js"></script>
-                    <script src="../../asset/static/jquery.min.js"></script>
-                    <script src="../../asset/static/zephir-doc.js"></script>
-                <script type="application/javascript">let ZepCurrentPath = '../../'</script>
+                        <script src="../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../asset/api_definition.js"></script>
+                    <script src="../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -47,10 +47,10 @@
     
     <ul>
         
-        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../../../index.html">Home</a></li>
         
-                <li><a href="../../classes.html">Classes</a></li>
-                <li><a >PhalconPlus\Bootstrap</a></li>
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a >PhalconPlus\App\Engine\Srv</a></li>
                 
     </ul>
     
@@ -58,18 +58,26 @@
 <div class="class-header clearfix">
 
     <div class="access-buttons">
-        <a class="zep-button" href="../../source/PhalconPlus/Bootstrap.html">Source</a>
+        <a class="zep-button" href="../../../../source/PhalconPlus/App/Engine/Srv.html">Source</a>
             </div>
     
     <div class="class-full-name">
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
-            <a href="../../namespace/PhalconPlus.html">
+            <a href="../../../../namespace/PhalconPlus.html">
                 PhalconPlus            </a>
         </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/App.html">
+                App            </a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/App/Engine.html">
+                Engine            </a>
+        </span>
         
-        <h1 class="class-name">Bootstrap</h1>
+        <h1 class="class-name">Srv</h1>
     </div>
 </div>
 
@@ -87,27 +95,11 @@
             <span class="method-name">
                 <a href="#method-details-__construct">__construct</a><!--
             --></span><!--
-            -->(<span class="param-data-type">string</span> <span class="variable param-name">$moduleDir</span>, <span class="param-data-type">string</span> <span class="variable param-name">$env</span>)<!--
+            -->(<span class="param-data-type">variable</span> <span class="variable param-name">$appModule</span>, <span class="param-data-type">variable</span> <span class="variable param-name">$handler</span>)<!--
             --><span class="method-return">
                 <strong>:</strong>
                                     void
                             </span>
-        </div>
-            </div>
-</li>
-            
-<li class="class-method clearfix">
-    <div class="method-summary">
-        <div class="method-signature">
-            <!-- method-summary -->
-            <!-- Do not remove comments below. It's a trick to remove the spaces. -->
-            <span class="method-name">
-                <a href="#method-details-initConf">initConf</a><!--
-            --></span><!--
-            -->()<!--
-            --><span class="method-return">
-                <strong>:</strong>
-                                    <a href="../../class/Phalcon/Config.html">\Phalcon\Config</a>                            </span>
         </div>
             </div>
 </li>
@@ -123,8 +115,7 @@
             -->()<!--
             --><span class="method-return">
                 <strong>:</strong>
-                                    void
-                            </span>
+                                    <a href="../../../../class/Phalcon/Http/ResponseInterface.html">\Phalcon\Http\ResponseInterface</a> | <a href="../../../../class/PhalconPlus/App/Engine/AppEngine.html">PhalconPlus\App\Engine\AppEngine</a>                            </span>
         </div>
             </div>
 </li>
@@ -135,12 +126,12 @@
             <!-- method-summary -->
             <!-- Do not remove comments below. It's a trick to remove the spaces. -->
             <span class="method-name">
-                <a href="#method-details-app">app</a><!--
+                <a href="#method-details-setHandler">setHandler</a><!--
             --></span><!--
-            -->()<!--
+            -->(<span class="param-data-type">object</span> <span class="variable param-name">$handler</span>)<!--
             --><span class="method-return">
                 <strong>:</strong>
-                                    <a href="../../class/PhalconPlus/App/App.html">\PhalconPlus\App\App</a>                            </span>
+                                    <a href="../../../../class/PhalconPlus/App/Engine/AppEngine.html">PhalconPlus\App\Engine\AppEngine</a>                            </span>
         </div>
             </div>
 </li>
@@ -151,13 +142,28 @@
             <!-- method-summary -->
             <!-- Do not remove comments below. It's a trick to remove the spaces. -->
             <span class="method-name">
-                <a href="#method-details-terminate">terminate</a><!--
+                <a href="#method-details-handler">handler</a><!--
             --></span><!--
             -->()<!--
             --><span class="method-return">
                 <strong>:</strong>
-                                    void
-                            </span>
+                                    object                            </span>
+        </div>
+            </div>
+</li>
+            
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <!-- method-summary -->
+            <!-- Do not remove comments below. It's a trick to remove the spaces. -->
+            <span class="method-name">
+                <a href="#method-details-getHandler">getHandler</a><!--
+            --></span><!--
+            -->()<!--
+            --><span class="method-return">
+                <strong>:</strong>
+                                    object                            </span>
         </div>
             </div>
 </li>
@@ -179,28 +185,7 @@
                 <!-- method-details -->
                 <!-- Do not remove comments below. It's a trick to remove the spaces. -->
                 <span class="method-name">__construct</span><!--
-                -->(<span class="param-data-type">string</span> <span class="variable param-name">$moduleDir</span>, <span class="param-data-type">string</span> <span class="variable param-name">$env</span>)
-            </p>
-
-            <div class="method-doc">
-                                            </div>
-
-        </div>
-    </div>
-</li>
-            
-<li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-initConf"></div>
-    <div class="method-details">
-        <div class="method-details-details">
-
-            <p class="method-signature">
-                                    <span class="visibility-protected keyword">protected</span>
-                                <span class="keyword">function</span>
-                <!-- method-details -->
-                <!-- Do not remove comments below. It's a trick to remove the spaces. -->
-                <span class="method-name">initConf</span><!--
-                -->()
+                -->(<span class="param-data-type">variable</span> <span class="variable param-name">$appModule</span>, <span class="param-data-type">variable</span> <span class="variable param-name">$handler</span>)
             </p>
 
             <div class="method-doc">
@@ -232,7 +217,7 @@
 </li>
             
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-app"></div>
+    <div class="hidden-anchor" id="method-details-setHandler"></div>
     <div class="method-details">
         <div class="method-details-details">
 
@@ -241,7 +226,28 @@
                                 <span class="keyword">function</span>
                 <!-- method-details -->
                 <!-- Do not remove comments below. It's a trick to remove the spaces. -->
-                <span class="method-name">app</span><!--
+                <span class="method-name">setHandler</span><!--
+                -->(<span class="param-data-type">object</span> <span class="variable param-name">$handler</span>)
+            </p>
+
+            <div class="method-doc">
+                                            </div>
+
+        </div>
+    </div>
+</li>
+            
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-handler"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+
+            <p class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>
+                <!-- method-details -->
+                <!-- Do not remove comments below. It's a trick to remove the spaces. -->
+                <span class="method-name">handler</span><!--
                 -->()
             </p>
 
@@ -253,7 +259,7 @@
 </li>
             
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-terminate"></div>
+    <div class="hidden-anchor" id="method-details-getHandler"></div>
     <div class="method-details">
         <div class="method-details-details">
 
@@ -262,7 +268,7 @@
                                 <span class="keyword">function</span>
                 <!-- method-details -->
                 <!-- Do not remove comments below. It's a trick to remove the spaces. -->
-                <span class="method-name">terminate</span><!--
+                <span class="method-name">getHandler</span><!--
                 -->()
             </p>
 

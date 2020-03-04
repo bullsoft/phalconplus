@@ -50,7 +50,7 @@
         <li><a href="../../../index.html">Home</a></li>
         
                 <li><a href="../../../classes.html">Classes</a></li>
-                <li><a href="../../../class/PhalconPlus/Mvc/PsrApplication.html">PhalconPlus\Mvc\PsrApplication</a></li>
+                <li><a href="../../../class/PhalconPlus/Facades/Redis.html">PhalconPlus\Facades\Redis</a></li>
                 <li><a >Source</a></li>
                 
     </ul>
@@ -59,7 +59,7 @@
 <div class="class-header source clearfix">
     
     <div class="access-buttons">
-        <a class="zep-button" href="../../../class/PhalconPlus/Mvc/PsrApplication.html">Class</a>
+        <a class="zep-button" href="../../../class/PhalconPlus/Facades/Redis.html">Class</a>
 
             </div>
     
@@ -70,65 +70,23 @@
             <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
         </span>
                 <span class="namespace-piece">
-            <a href="../../../namespace/PhalconPlus/Mvc.html">Mvc</a>
+            <a href="../../../namespace/PhalconPlus/Facades.html">Facades</a>
         </span>
         
-        <h1 class="class-name">PsrApplication</h1>
+        <h1 class="class-name">Redis</h1>
     </div>
     
 </div>
 
 <pre class="zephir-source-file prettyprint linenums">
-    namespace PhalconPlus\Mvc;
-use Phalcon\Mvc\Application as BaseApplication;
-use Psr\Http\Message\ServerRequestInterface;
-use Phalcon\Http\ResponseInterface;
-use Phalcon\Http\Response as BaseResponse;
-use PhalconPlus\Http\PsrResponseFactory;
-use PhalconPlus\Http\NonPsrRequest;
-use PhalconPlus\Base\Exception as BaseException;
-use Phalcon\DiInterface;
+    namespace PhalconPlus\Facades;
+use Phalcon\Di;
 
-class PsrApplication extends BaseApplication
+class Redis extends AbstractFacade
 {
-    protected psrRequest = null { set, get };
-    protected nativeRequest = null { get };
-
-    public function __construct(<ServerRequestInterface> psrRequest, <DiInterface> dependencyInjector = null)
+    protected function getName() -> string
     {
-        parent::__construct(dependencyInjector);
-        let this->_sendHeaders = false;
-        let this->_sendCookies = false;
-        // <ServerRequestInterface>
-        let this->psrRequest = psrRequest;
-        // <Phalcon\Http\Request>
-        let this->nativeRequest = new NonPsrRequest(psrRequest);
-    }
-
-    public function __destruct()
-    {
-        if this->nativeRequest {
-            this->nativeRequest->removeTmpFiles();
-        }
-    }
-
-    public function handle(string uri = null) -> <ResponseInterface>
-    {
-        if empty this->_dependencyInjector {
-            throw new BaseException("there is no di(dependency injector) in PsrAppliction");
-        }
-
-        this->_dependencyInjector->setShared("request", this->nativeRequest);
-   
-        var response,  // get Phalcon\Http\Response
-            psrRequest = this->psrRequest,
-            reqUri     = psrRequest->getUri()->getPath(), // get request uri-path
-            protocol   = psrRequest->getProtocolVersion();
-
-        // error_log(reqUri);
-        // error_log(var_export(_SERVER, true));
-        let response = <BaseResponse> parent::handle();
-        return response;
+        return "redis";
     }
 }</pre>
                 </div>

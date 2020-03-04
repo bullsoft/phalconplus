@@ -50,87 +50,82 @@
         <li><a href="../../../index.html">Home</a></li>
         
                 <li><a href="../../../classes.html">Classes</a></li>
-                <li><a href="../../../class/PhalconPlus/Mvc/PsrApplication.html">PhalconPlus\Mvc\PsrApplication</a></li>
-                <li><a >Source</a></li>
+                <li><a >PhalconPlus\Facades\User</a></li>
                 
     </ul>
     
 </div>
-<div class="class-header source clearfix">
-    
-    <div class="access-buttons">
-        <a class="zep-button" href="../../../class/PhalconPlus/Mvc/PsrApplication.html">Class</a>
+<div class="class-header clearfix">
 
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../source/PhalconPlus/Facades/User.html">Source</a>
             </div>
     
     <div class="class-full-name">
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
-            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+            <a href="../../../namespace/PhalconPlus.html">
+                PhalconPlus            </a>
         </span>
                 <span class="namespace-piece">
-            <a href="../../../namespace/PhalconPlus/Mvc.html">Mvc</a>
+            <a href="../../../namespace/PhalconPlus/Facades.html">
+                Facades            </a>
         </span>
         
-        <h1 class="class-name">PsrApplication</h1>
+        <h1 class="class-name">User</h1>
     </div>
-    
 </div>
 
-<pre class="zephir-source-file prettyprint linenums">
-    namespace PhalconPlus\Mvc;
-use Phalcon\Mvc\Application as BaseApplication;
-use Psr\Http\Message\ServerRequestInterface;
-use Phalcon\Http\ResponseInterface;
-use Phalcon\Http\Response as BaseResponse;
-use PhalconPlus\Http\PsrResponseFactory;
-use PhalconPlus\Http\NonPsrRequest;
-use PhalconPlus\Base\Exception as BaseException;
-use Phalcon\DiInterface;
 
-class PsrApplication extends BaseApplication
-{
-    protected psrRequest = null { set, get };
-    protected nativeRequest = null { get };
+<div class="hidden-anchor"  id="methods"></div>
+<div class="methods-summary standard-bandeau">Methods</div>
 
-    public function __construct(<ServerRequestInterface> psrRequest, <DiInterface> dependencyInjector = null)
-    {
-        parent::__construct(dependencyInjector);
-        let this->_sendHeaders = false;
-        let this->_sendCookies = false;
-        // <ServerRequestInterface>
-        let this->psrRequest = psrRequest;
-        // <Phalcon\Http\Request>
-        let this->nativeRequest = new NonPsrRequest(psrRequest);
-    }
+<ul class="method-summary-list">
+            
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <!-- method-summary -->
+            <!-- Do not remove comments below. It's a trick to remove the spaces. -->
+            <span class="method-name">
+                <a href="#method-details-getName">getName</a><!--
+            --></span><!--
+            -->()<!--
+            --><span class="method-return">
+                <strong>:</strong>
+                                    string                            </span>
+        </div>
+            </div>
+</li>
+    </ul>
 
-    public function __destruct()
-    {
-        if this->nativeRequest {
-            this->nativeRequest->removeTmpFiles();
-        }
-    }
+<div class="hidden-anchor" id="methods-details"></div>
+<div class="methods-summary standard-bandeau">Methods Details</div>
 
-    public function handle(string uri = null) -> <ResponseInterface>
-    {
-        if empty this->_dependencyInjector {
-            throw new BaseException("there is no di(dependency injector) in PsrAppliction");
-        }
+<ul class="method-details-list">
+            
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-getName"></div>
+    <div class="method-details">
+        <div class="method-details-details">
 
-        this->_dependencyInjector->setShared("request", this->nativeRequest);
-   
-        var response,  // get Phalcon\Http\Response
-            psrRequest = this->psrRequest,
-            reqUri     = psrRequest->getUri()->getPath(), // get request uri-path
-            protocol   = psrRequest->getProtocolVersion();
+            <p class="method-signature">
+                                    <span class="visibility-protected keyword">protected</span>
+                                <span class="keyword">function</span>
+                <!-- method-details -->
+                <!-- Do not remove comments below. It's a trick to remove the spaces. -->
+                <span class="method-name">getName</span><!--
+                -->()
+            </p>
 
-        // error_log(reqUri);
-        // error_log(var_export(_SERVER, true));
-        let response = <BaseResponse> parent::handle();
-        return response;
-    }
-}</pre>
+            <div class="method-doc">
+                                            </div>
+
+        </div>
+    </div>
+</li>
+    </ul>
                 </div>
             </div>
         </div>
