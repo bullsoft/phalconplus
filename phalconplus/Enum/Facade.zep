@@ -7,7 +7,6 @@ class Facade extends AbstractEnum
 {
     const ANNO      = "Annotations";
     const ASSETS    = "Assets";
-    const BOOT      = "Bootstrap";
     const CONFIG    = "Config";
     const COOKIES   = "Cookies";
     const CRYPT     = "Crypt";
@@ -16,6 +15,8 @@ class Facade extends AbstractEnum
     const FILTER    = "Filter";
     const FLASH     = "Flash";
 
+    const APP_MODULE      = "AppModule";
+    const APP_ENGINE      = "AppEngine";
     const DISPATCHER      = "Dispatcher";
     const FLASH_SESSION   = "FlashSession";
     const MODELS_CACHE    = "ModelsCache";
@@ -29,6 +30,7 @@ class Facade extends AbstractEnum
     const SECURITY = "Security";
     const SERVICE  = "Service";
     const TX_MGR   = "TransactionManager";
+    const REDIS    = "Redis";
 
     const TAG  = "Tag";
     const LOG  = "Log";
@@ -37,14 +39,15 @@ class Facade extends AbstractEnum
     const APP  = "App";
     const DI   = "Di";
     const VIEW = "View";
+    const USER = "User";
 
     protected static facades = [
-        "Annotations", "Assets", "Bootstrap", "Config", "Cookies",
+        "Annotations", "Assets", "Config", "Cookies", "View",
         "Crypt", "Dispatcher", "Escaper", "EventsManager", "Filter",
         "Flash", "FlashSession", "Log", "ModelsCache", "ModelsManager",
         "ModelsMetadata", "Request", "Response", "Router", "Security", 
         "Service", "Session", "SessionBag", "Tag", "TransactionManager",
-        "Url", "Acl", "App", "Di", "View"
+        "Url", "Acl", "App", "Di", "AppEngine", "Redis", "User", "AppModule"
     ];
 
     private static classPrefix = "\\PhalconPlus\\Facades\\";
