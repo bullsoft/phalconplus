@@ -10,11 +10,7 @@ PHP_METHOD(PhalconPlus_App_Driver_Task, getHandler);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_driver_task___construct, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, app, PhalconPlus\\App\\App, 0)
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, autoHandle, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, autoHandle)
-#endif
+	ZEND_ARG_OBJ_INFO(0, handler, PhalconPlus\\App\\Driver\\BaseApplication, 1)
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
@@ -32,11 +28,6 @@ ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_driver_task_setha
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_driver_task_sethandler, 0, 1, IS_OBJECT, "PhalconPlus\\App\\Driver\\AppDriver", 0)
 #endif
 	ZEND_ARG_INFO(0, handler)
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, autoHandle, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, autoHandle)
-#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200

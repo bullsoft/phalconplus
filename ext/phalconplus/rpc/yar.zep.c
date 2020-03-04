@@ -121,7 +121,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct) {
 		zephir_json_decode(&_3$$3, &rawBody, zephir_get_intval(&__$true) );
 		zephir_update_property_zval(this_ptr, SL("requestArgs"), &_3$$3);
 	} else {
-		ZEPHIR_CALL_FUNCTION(&_4$$4, "msgpack_unpack", NULL, 129, &rawBody);
+		ZEPHIR_CALL_FUNCTION(&_4$$4, "msgpack_unpack", NULL, 128, &rawBody);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("requestArgs"), &_4$$4);
 	}
@@ -225,7 +225,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	zephir_check_call_status();
 	if (zephir_is_true(&_4)) {
 		ZEPHIR_INIT_VAR(&_7$$3);
-		ZEPHIR_CALL_FUNCTION(&_8$$3, "highlight_string", &_9, 130, &sampleCodes, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_8$$3, "highlight_string", &_9, 129, &sampleCodes, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_10$$3);
 		ZVAL_STRING(&_10$$3, "&lt;?php");
@@ -233,7 +233,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 		ZVAL_STRING(&_11$$3, "// Client");
 		zephir_fast_str_replace(&_7$$3, &_10$$3, &_11$$3, &_8$$3);
 		ZEPHIR_INIT_VAR(&_12$$3);
-		ZEPHIR_CALL_FUNCTION(&_13$$3, "highlight_string", &_9, 130, &expectedRet, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_13$$3, "highlight_string", &_9, 129, &expectedRet, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_14$$3);
 		ZVAL_STRING(&_14$$3, "&lt;?php");
@@ -296,7 +296,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 				ZEPHIR_CALL_METHOD(&_28$$8, &e$$4, "getcode", NULL, 0);
 				zephir_check_call_status();
 				ZVAL_LONG(&_29$$8, 1);
-				ZEPHIR_CALL_FUNCTION(&_30$$8, "max", NULL, 131, &_28$$8, &_29$$8);
+				ZEPHIR_CALL_FUNCTION(&_30$$8, "max", NULL, 130, &_28$$8, &_29$$8);
 				zephir_check_call_status();
 				zephir_array_update_string(&ret$$4, SL("errorCode"), &_30$$8, PH_COPY | PH_SEPARATE);
 				ZEPHIR_CALL_METHOD(&_31$$8, &e$$4, "getmessage", NULL, 0);

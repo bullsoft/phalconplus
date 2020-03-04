@@ -222,7 +222,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 				} else {
 					ZVAL_BOOL(&_6$$6, 0);
 				}
-				ZEPHIR_CALL_METHOD(NULL, &_4$$6, "__construct", &_7, 101, &_5$$6, &_6$$6);
+				ZEPHIR_CALL_METHOD(NULL, &_4$$6, "__construct", &_7, 100, &_5$$6, &_6$$6);
 				zephir_check_call_status_or_jump(try_end_1);
 				zephir_update_property_zval(this_ptr, SL("connection"), &_4$$6);
 			}
@@ -255,7 +255,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 				ZVAL_LONG(&tryTimes, _15$$7);
 				if (ZEPHIR_GT_LONG(&tryTimes, 0)) {
 					zephir_read_property(&_16$$8, this_ptr, SL("retryInterval"), PH_NOISY_CC | PH_READONLY);
-					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_17, 102, &_16$$8);
+					ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_17, 101, &_16$$8);
 					zephir_check_call_status();
 					zephir_read_property(&_18$$8, this_ptr, SL("retryTimes"), PH_NOISY_CC | PH_READONLY);
 					ZEPHIR_INIT_NVAR(&_19$$8);

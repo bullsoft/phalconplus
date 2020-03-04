@@ -27,8 +27,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_App_Driver_Module) {
 
 	zend_declare_property_null(phalconplus_app_driver_module_ce, SL("handler"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_bool(phalconplus_app_driver_module_ce, SL("autoHandle"), 1, ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalconplus_app_driver_module_ce, 1, phalconplus_app_driver_appdriver_ce);
 	return SUCCESS;
 
@@ -38,45 +36,42 @@ PHP_METHOD(PhalconPlus_App_Driver_Module, __construct) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zend_bool autoHandle;
-	zval *app, app_sub, *autoHandle_param = NULL, __$true, __$false, di, _0, _1, _2, _3, _4;
+	zval *app, app_sub, *handler = NULL, handler_sub, __$null, di, _1, _2, _3, _4, _0$$3;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&app_sub);
-	ZVAL_BOOL(&__$true, 1);
-	ZVAL_BOOL(&__$false, 0);
+	ZVAL_UNDEF(&handler_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&di);
-	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_0$$3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &app, &autoHandle_param);
+	zephir_fetch_params(1, 1, 1, &app, &handler);
 
-	if (!autoHandle_param) {
-		autoHandle = 1;
-	} else {
-		autoHandle = zephir_get_boolval(autoHandle_param);
+	if (!handler) {
+		handler = &handler_sub;
+		handler = &__$null;
 	}
 
 
-	if (autoHandle) {
-		zephir_update_property_zval(this_ptr, SL("autoHandle"), &__$true);
-	} else {
-		zephir_update_property_zval(this_ptr, SL("autoHandle"), &__$false);
-	}
 	zephir_update_property_zval(this_ptr, SL("app"), app);
 	ZEPHIR_CALL_METHOD(&di, app, "getdi", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdi", NULL, 0, &di);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_0);
-	object_init_ex(&_0, zephir_get_internal_ce(SL("phalcon\\mvc\\application")));
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0);
-	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("handler"), &_0);
+	if (Z_TYPE_P(handler) == IS_NULL) {
+		ZEPHIR_INIT_VAR(&_0$$3);
+		object_init_ex(&_0$$3, zephir_get_internal_ce(SL("phalcon\\mvc\\application")));
+		ZEPHIR_CALL_METHOD(NULL, &_0$$3, "__construct", NULL, 0);
+		zephir_check_call_status();
+		zephir_update_property_zval(this_ptr, SL("handler"), &_0$$3);
+	} else {
+		zephir_update_property_zval(this_ptr, SL("handler"), handler);
+	}
 	zephir_read_property(&_1, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_1, "setdi", NULL, 0, &di);
 	zephir_check_call_status();
@@ -98,13 +93,14 @@ PHP_METHOD(PhalconPlus_App_Driver_Module, exec) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *request = NULL, request_sub, __$null, _0, _1;
+	zval *request = NULL, request_sub, __$null, _0, _1, _2;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&request_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &request);
@@ -115,12 +111,14 @@ PHP_METHOD(PhalconPlus_App_Driver_Module, exec) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("autoHandle"), PH_NOISY_CC | PH_READONLY);
-	if (!(zephir_is_true(&_0))) {
+	zephir_read_property(&_0, this_ptr, SL("app"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&_1, &_0, "isauto", NULL, 0);
+	zephir_check_call_status();
+	if (!(zephir_is_true(&_1))) {
 		RETURN_THIS();
 	}
-	zephir_read_property(&_1, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_RETURN_CALL_METHOD(&_1, "handle", NULL, 0, request);
+	zephir_read_property(&_2, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_RETURN_CALL_METHOD(&_2, "handle", NULL, 0, request);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -131,33 +129,20 @@ PHP_METHOD(PhalconPlus_App_Driver_Module, setHandler) {
 	zend_class_entry *_1$$4 = NULL;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zend_bool autoHandle;
-	zval *handler, handler_sub, *autoHandle_param = NULL, __$true, __$false, _0$$4, _2$$4;
+	zval *handler, handler_sub, _0$$4, _2$$4;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&handler_sub);
-	ZVAL_BOOL(&__$true, 1);
-	ZVAL_BOOL(&__$false, 0);
 	ZVAL_UNDEF(&_0$$4);
 	ZVAL_UNDEF(&_2$$4);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &handler, &autoHandle_param);
+	zephir_fetch_params(1, 1, 0, &handler);
 
-	if (!autoHandle_param) {
-		autoHandle = 0;
-	} else {
-		autoHandle = zephir_get_boolval(autoHandle_param);
-	}
 
 
 	if (EXPECTED(zephir_instance_of_ev(handler, zephir_get_internal_ce(SL("phalcon\\application"))))) {
 		zephir_update_property_zval(this_ptr, SL("handler"), handler);
-		if (autoHandle) {
-			zephir_update_property_zval(this_ptr, SL("autoHandle"), &__$true);
-		} else {
-			zephir_update_property_zval(this_ptr, SL("autoHandle"), &__$false);
-		}
 	} else {
 		ZEPHIR_INIT_VAR(&_0$$4);
 		if (!_1$$4) {
@@ -170,7 +155,7 @@ PHP_METHOD(PhalconPlus_App_Driver_Module, setHandler) {
 			ZEPHIR_CALL_METHOD(NULL, &_0$$4, "__construct", NULL, 0, &_2$$4);
 			zephir_check_call_status();
 		}
-		zephir_throw_exception_debug(&_0$$4, "phalconplus/App/Driver/Module.zep", 44);
+		zephir_throw_exception_debug(&_0$$4, "phalconplus/App/Driver/Module.zep", 46);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -206,7 +191,7 @@ PHP_METHOD(PhalconPlus_App_Driver_Module, getHandler) {
 			ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 0, &_3$$3);
 			zephir_check_call_status();
 		}
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/App/Driver/Module.zep", 53);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/App/Driver/Module.zep", 55);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

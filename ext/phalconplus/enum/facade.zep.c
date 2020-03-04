@@ -34,8 +34,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade) {
 
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("ASSETS"), "Assets");
 
-	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("BOOT"), "Bootstrap");
-
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("CONFIG"), "Config");
 
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("COOKIES"), "Cookies");
@@ -49,6 +47,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade) {
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("FILTER"), "Filter");
 
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("FLASH"), "Flash");
+
+	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("APP_MODULE"), "AppModule");
+
+	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("APP_ENGINE"), "AppEngine");
 
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("DISPATCHER"), "Dispatcher");
 
@@ -76,6 +78,8 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade) {
 
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("TX_MGR"), "TransactionManager");
 
+	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("REDIS"), "Redis");
+
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("TAG"), "Tag");
 
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("LOG"), "Log");
@@ -89,6 +93,8 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade) {
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("DI"), "Di");
 
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("VIEW"), "View");
+
+	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("USER"), "User");
 
 	return SUCCESS;
 
@@ -138,7 +144,7 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_SELF(&facades, "validvalues", NULL, 0);
 	zephir_check_call_status();
-	zephir_is_iterable(&facades, 0, "phalconplus/Enum/Facade.zep", 73);
+	zephir_is_iterable(&facades, 0, "phalconplus/Enum/Facade.zep", 76);
 	if (Z_TYPE_P(&facades) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&facades), _2)
 		{
@@ -203,7 +209,7 @@ void zephir_init_static_properties_PhalconPlus_Enum_Facade(TSRMLS_D) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 30, 0);
+	zephir_create_array(&_0, 37, 0);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "Annotations");
 	zephir_array_fast_append(&_0, &_1);
@@ -211,13 +217,13 @@ void zephir_init_static_properties_PhalconPlus_Enum_Facade(TSRMLS_D) {
 	ZVAL_STRING(&_1, "Assets");
 	zephir_array_fast_append(&_0, &_1);
 	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "Bootstrap");
-	zephir_array_fast_append(&_0, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "Config");
 	zephir_array_fast_append(&_0, &_1);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "Cookies");
+	zephir_array_fast_append(&_0, &_1);
+	ZEPHIR_INIT_NVAR(&_1);
+	ZVAL_STRING(&_1, "View");
 	zephir_array_fast_append(&_0, &_1);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "Crypt");
@@ -292,7 +298,16 @@ void zephir_init_static_properties_PhalconPlus_Enum_Facade(TSRMLS_D) {
 	ZVAL_STRING(&_1, "Di");
 	zephir_array_fast_append(&_0, &_1);
 	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "View");
+	ZVAL_STRING(&_1, "AppEngine");
+	zephir_array_fast_append(&_0, &_1);
+	ZEPHIR_INIT_NVAR(&_1);
+	ZVAL_STRING(&_1, "Redis");
+	zephir_array_fast_append(&_0, &_1);
+	ZEPHIR_INIT_NVAR(&_1);
+	ZVAL_STRING(&_1, "User");
+	zephir_array_fast_append(&_0, &_1);
+	ZEPHIR_INIT_NVAR(&_1);
+	ZVAL_STRING(&_1, "AppModule");
 	zephir_array_fast_append(&_0, &_1);
 	zephir_update_static_property_ce(phalconplus_enum_facade_ce, ZEND_STRL("facades"), &_0);
 	ZEPHIR_MM_RESTORE();

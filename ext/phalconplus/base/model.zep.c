@@ -112,7 +112,7 @@ PHP_METHOD(PhalconPlus_Base_Model, getFirstMessage) {
 	if (zephir_fast_count_int(&_0)) {
 		ZEPHIR_CALL_METHOD(&_1$$3, this_ptr, "getmessages", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "current", NULL, 55, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "current", NULL, 60, &_1$$3);
 		zephir_check_call_status();
 		zephir_get_strval(&_3$$3, &_2$$3);
 		RETURN_CTOR(&_3$$3);
@@ -142,7 +142,7 @@ PHP_METHOD(PhalconPlus_Base_Model, getLastMessage) {
 		ZEPHIR_CALL_METHOD(&_1$$3, this_ptr, "getmessages", NULL, 0);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(&_1$$3);
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "end", NULL, 56, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "end", NULL, 61, &_1$$3);
 		ZEPHIR_UNREF(&_1$$3);
 		zephir_check_call_status();
 		zephir_get_strval(&_3$$3, &_2$$3);
@@ -409,7 +409,7 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeValidationOnCreate) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "Y-m-d H:i:s");
-	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 57, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 62, &_0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("ctime"), &_1);
 	zephir_read_property(&_2, this_ptr, SL("ctime"), PH_NOISY_CC | PH_READONLY);
@@ -516,7 +516,7 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeCreate) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "Y-m-d H:i:s");
-	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 57, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 62, &_0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("ctime"), &_1);
 	zephir_read_property(&_2, this_ptr, SL("ctime"), PH_NOISY_CC | PH_READONLY);
@@ -590,7 +590,7 @@ PHP_METHOD(PhalconPlus_Base_Model, beforeSave) {
 		if (!(ZEPHIR_IS_EMPTY(&changedFields))) {
 			ZEPHIR_INIT_VAR(&_1$$4);
 			ZVAL_STRING(&_1$$4, "Y-m-d H:i:s");
-			ZEPHIR_CALL_FUNCTION(&_2$$4, "date", NULL, 57, &_1$$4);
+			ZEPHIR_CALL_FUNCTION(&_2$$4, "date", NULL, 62, &_1$$4);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, SL("mtime"), &_2$$4);
 			ZEPHIR_INIT_NVAR(&_1$$4);
@@ -894,7 +894,7 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZVAL_STRING(&_3, "strval");
-	ZEPHIR_CALL_FUNCTION(&orderBys, "array_map", NULL, 50, &_3, &_2);
+	ZEPHIR_CALL_FUNCTION(&orderBys, "array_map", NULL, 55, &_3, &_2);
 	zephir_check_call_status();
 	if (!(ZEPHIR_IS_EMPTY(&orderBys))) {
 		ZEPHIR_INIT_VAR(&_4$$3);
@@ -956,7 +956,7 @@ PHP_METHOD(PhalconPlus_Base_Model, findByPagable) {
 	object_init_ex(return_value, phalconplus_base_page_ce);
 	zephir_read_property(&_10, &page, SL("total_items"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_11, &page, SL("items"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 58, pagable, &_10, &_11);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 63, pagable, &_10, &_11);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -1302,7 +1302,7 @@ PHP_METHOD(PhalconPlus_Base_Model, setUpdateCondition) {
 	zephir_merge_append(&_34, &uniqueParams);
 	zephir_read_property(&_35, this_ptr, SL("_uniqueParams"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_NULL(&_36);
-	ZEPHIR_CALL_FUNCTION(&_37, "array_pad", &_38, 59, &_35, &countKeys, &_36);
+	ZEPHIR_CALL_FUNCTION(&_37, "array_pad", &_38, 64, &_35, &countKeys, &_36);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("_uniqueParams"), &_37);
 	ZEPHIR_OBS_VAR(&bindTypes);
@@ -1319,7 +1319,7 @@ PHP_METHOD(PhalconPlus_Base_Model, setUpdateCondition) {
 	zephir_merge_append(&_40, &uniqueTypes);
 	zephir_read_property(&_41, this_ptr, SL("_uniqueTypes"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_42, 1024);
-	ZEPHIR_CALL_FUNCTION(&_43, "array_pad", &_38, 59, &_41, &countKeys, &_42);
+	ZEPHIR_CALL_FUNCTION(&_43, "array_pad", &_38, 64, &_41, &countKeys, &_42);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("_uniqueTypes"), &_43);
 	if (1) {
@@ -1791,7 +1791,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 			}
 			ZEPHIR_INIT_NVAR(&method$$5);
 			ZEPHIR_CONCAT_SV(&method$$5, "get", &alias);
-			ZEPHIR_CALL_FUNCTION(&property$$5, "lcfirst", &_9, 60, &alias);
+			ZEPHIR_CALL_FUNCTION(&property$$5, "lcfirst", &_9, 65, &alias);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD_ZVAL(&_10$$5, this_ptr, &method$$5, NULL, 0);
 			zephir_check_call_status();
@@ -1829,7 +1829,7 @@ PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer) {
 				}
 				ZEPHIR_INIT_NVAR(&method$$9);
 				ZEPHIR_CONCAT_SV(&method$$9, "get", &alias);
-				ZEPHIR_CALL_FUNCTION(&property$$9, "lcfirst", &_9, 60, &alias);
+				ZEPHIR_CALL_FUNCTION(&property$$9, "lcfirst", &_9, 65, &alias);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD_ZVAL(&_12$$9, this_ptr, &method$$9, NULL, 0);
 				zephir_check_call_status();

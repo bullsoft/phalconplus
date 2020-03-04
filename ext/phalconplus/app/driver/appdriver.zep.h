@@ -16,11 +16,6 @@ ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_driver_appdriver_
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_driver_appdriver_sethandler, 0, 1, IS_OBJECT, "PhalconPlus\\App\\Driver\\AppDriver", 0)
 #endif
 	ZEND_ARG_INFO(0, handler)
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, autoHandle, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, autoHandle)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_app_driver_appdriver_method_entry) {

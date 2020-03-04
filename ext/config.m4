@@ -12,7 +12,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/facades/abstractfacade.zep.c
 	phalconplus/enum/abstractenum.zep.c
 	phalconplus/base/protobuffer.zep.c
-	phalconplus/app/driver/appdriver.zep.c
+	phalconplus/app/engine/appengine.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
@@ -26,9 +26,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/exception.zep.c
 	phalconplus/rpc/server/abstractserver.zep.c
 	phalconplus/app/app.zep.c
-	phalconplus/app/driver/module.zep.c
-	phalconplus/app/driver/srv.zep.c
-	phalconplus/app/driver/task.zep.c
+	phalconplus/app/engine/cli.zep.c
+	phalconplus/app/engine/srv.zep.c
+	phalconplus/app/engine/web.zep.c
 	phalconplus/app/module/abstractmodule.zep.c
 	phalconplus/app/module/moduledef.zep.c
 	phalconplus/assert/assertion.zep.c
@@ -68,8 +68,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/facades/acl.zep.c
 	phalconplus/facades/annotations.zep.c
 	phalconplus/facades/app.zep.c
+	phalconplus/facades/appengine.zep.c
+	phalconplus/facades/appmodule.zep.c
 	phalconplus/facades/assets.zep.c
-	phalconplus/facades/bootstrap.zep.c
 	phalconplus/facades/config.zep.c
 	phalconplus/facades/cookies.zep.c
 	phalconplus/facades/crypt.zep.c
@@ -84,6 +85,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/facades/modelscache.zep.c
 	phalconplus/facades/modelsmanager.zep.c
 	phalconplus/facades/modelsmetadata.zep.c
+	phalconplus/facades/redis.zep.c
 	phalconplus/facades/request.zep.c
 	phalconplus/facades/response.zep.c
 	phalconplus/facades/router.zep.c
@@ -94,9 +96,12 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/facades/tag.zep.c
 	phalconplus/facades/transactionmanager.zep.c
 	phalconplus/facades/url.zep.c
+	phalconplus/facades/user.zep.c
 	phalconplus/facades/view.zep.c
 	phalconplus/featuretest/splobjectstoragetest.zep.c
 	phalconplus/http/nonpsrrequest.zep.c
+	phalconplus/http/nonpsrresponse.zep.c
+	phalconplus/http/psrresponsefactory.zep.c
 	phalconplus/logger/multiplefile.zep.c
 	phalconplus/logger/processor/logid.zep.c
 	phalconplus/logger/processor/msec.zep.c

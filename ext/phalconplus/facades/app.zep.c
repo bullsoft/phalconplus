@@ -28,7 +28,7 @@ PHP_METHOD(PhalconPlus_Facades_App, getName) {
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("superapp");
+	RETURN_STRING("superApp");
 
 }
 

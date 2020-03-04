@@ -23,7 +23,7 @@
 
 
 
-zend_class_entry *phalconplus_app_driver_appdriver_ce;
+zend_class_entry *phalconplus_app_engine_appengine_ce;
 zend_class_entry *phalconplus_assert_assertionfailedexception_ce;
 zend_class_entry *phalconplus_contracts_auth_access_modelevent_ce;
 zend_class_entry *phalconplus_contracts_auth_policy_ce;
@@ -49,9 +49,9 @@ zend_class_entry *phalconplus_0__closure_ce;
 zend_class_entry *phalconplus_1__closure_ce;
 zend_class_entry *phalconplus_2__closure_ce;
 zend_class_entry *phalconplus_app_app_ce;
-zend_class_entry *phalconplus_app_driver_module_ce;
-zend_class_entry *phalconplus_app_driver_srv_ce;
-zend_class_entry *phalconplus_app_driver_task_ce;
+zend_class_entry *phalconplus_app_engine_cli_ce;
+zend_class_entry *phalconplus_app_engine_srv_ce;
+zend_class_entry *phalconplus_app_engine_web_ce;
 zend_class_entry *phalconplus_app_module_abstractmodule_ce;
 zend_class_entry *phalconplus_app_module_moduledef_ce;
 zend_class_entry *phalconplus_assert_assertion_ce;
@@ -85,8 +85,9 @@ zend_class_entry *phalconplus_enum_sys_ce;
 zend_class_entry *phalconplus_facades_acl_ce;
 zend_class_entry *phalconplus_facades_annotations_ce;
 zend_class_entry *phalconplus_facades_app_ce;
+zend_class_entry *phalconplus_facades_appengine_ce;
+zend_class_entry *phalconplus_facades_appmodule_ce;
 zend_class_entry *phalconplus_facades_assets_ce;
-zend_class_entry *phalconplus_facades_bootstrap_ce;
 zend_class_entry *phalconplus_facades_config_ce;
 zend_class_entry *phalconplus_facades_cookies_ce;
 zend_class_entry *phalconplus_facades_crypt_ce;
@@ -101,6 +102,7 @@ zend_class_entry *phalconplus_facades_log_ce;
 zend_class_entry *phalconplus_facades_modelscache_ce;
 zend_class_entry *phalconplus_facades_modelsmanager_ce;
 zend_class_entry *phalconplus_facades_modelsmetadata_ce;
+zend_class_entry *phalconplus_facades_redis_ce;
 zend_class_entry *phalconplus_facades_request_ce;
 zend_class_entry *phalconplus_facades_response_ce;
 zend_class_entry *phalconplus_facades_router_ce;
@@ -111,9 +113,12 @@ zend_class_entry *phalconplus_facades_sessionbag_ce;
 zend_class_entry *phalconplus_facades_tag_ce;
 zend_class_entry *phalconplus_facades_transactionmanager_ce;
 zend_class_entry *phalconplus_facades_url_ce;
+zend_class_entry *phalconplus_facades_user_ce;
 zend_class_entry *phalconplus_facades_view_ce;
 zend_class_entry *phalconplus_featuretest_splobjectstoragetest_ce;
 zend_class_entry *phalconplus_http_nonpsrrequest_ce;
+zend_class_entry *phalconplus_http_nonpsrresponse_ce;
+zend_class_entry *phalconplus_http_psrresponsefactory_ce;
 zend_class_entry *phalconplus_logger_multiplefile_ce;
 zend_class_entry *phalconplus_logger_processor_logid_ce;
 zend_class_entry *phalconplus_logger_processor_msec_ce;
@@ -136,7 +141,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 {
 	REGISTER_INI_ENTRIES();
 	zephir_module_init();
-	ZEPHIR_INIT(PhalconPlus_App_Driver_AppDriver);
+	ZEPHIR_INIT(PhalconPlus_App_Engine_AppEngine);
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Contracts_Auth_Access_ModelEvent);
 	ZEPHIR_INIT(PhalconPlus_Contracts_Auth_Policy);
@@ -159,9 +164,9 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Enum_Exception);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Server_AbstractServer);
 	ZEPHIR_INIT(PhalconPlus_App_App);
-	ZEPHIR_INIT(PhalconPlus_App_Driver_Module);
-	ZEPHIR_INIT(PhalconPlus_App_Driver_Srv);
-	ZEPHIR_INIT(PhalconPlus_App_Driver_Task);
+	ZEPHIR_INIT(PhalconPlus_App_Engine_Cli);
+	ZEPHIR_INIT(PhalconPlus_App_Engine_Srv);
+	ZEPHIR_INIT(PhalconPlus_App_Engine_Web);
 	ZEPHIR_INIT(PhalconPlus_App_Module_AbstractModule);
 	ZEPHIR_INIT(PhalconPlus_App_Module_ModuleDef);
 	ZEPHIR_INIT(PhalconPlus_Assert_Assertion);
@@ -195,8 +200,9 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Facades_Acl);
 	ZEPHIR_INIT(PhalconPlus_Facades_Annotations);
 	ZEPHIR_INIT(PhalconPlus_Facades_App);
+	ZEPHIR_INIT(PhalconPlus_Facades_AppEngine);
+	ZEPHIR_INIT(PhalconPlus_Facades_AppModule);
 	ZEPHIR_INIT(PhalconPlus_Facades_Assets);
-	ZEPHIR_INIT(PhalconPlus_Facades_Bootstrap);
 	ZEPHIR_INIT(PhalconPlus_Facades_Config);
 	ZEPHIR_INIT(PhalconPlus_Facades_Cookies);
 	ZEPHIR_INIT(PhalconPlus_Facades_Crypt);
@@ -211,6 +217,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Facades_ModelsCache);
 	ZEPHIR_INIT(PhalconPlus_Facades_ModelsManager);
 	ZEPHIR_INIT(PhalconPlus_Facades_ModelsMetadata);
+	ZEPHIR_INIT(PhalconPlus_Facades_Redis);
 	ZEPHIR_INIT(PhalconPlus_Facades_Request);
 	ZEPHIR_INIT(PhalconPlus_Facades_Response);
 	ZEPHIR_INIT(PhalconPlus_Facades_Router);
@@ -221,9 +228,12 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Facades_Tag);
 	ZEPHIR_INIT(PhalconPlus_Facades_TransactionManager);
 	ZEPHIR_INIT(PhalconPlus_Facades_Url);
+	ZEPHIR_INIT(PhalconPlus_Facades_User);
 	ZEPHIR_INIT(PhalconPlus_Facades_View);
 	ZEPHIR_INIT(PhalconPlus_FeatureTest_SplObjectStorageTest);
 	ZEPHIR_INIT(PhalconPlus_Http_NonPsrRequest);
+	ZEPHIR_INIT(PhalconPlus_Http_NonPsrResponse);
+	ZEPHIR_INIT(PhalconPlus_Http_PsrResponseFactory);
 	ZEPHIR_INIT(PhalconPlus_Logger_MultiPleFile);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_LogId);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_Msec);
@@ -291,9 +301,9 @@ static PHP_RINIT_FUNCTION(phalconplus)
 	php_zephir_init_globals(phalconplus_globals_ptr);
 	zephir_initialize_memory(phalconplus_globals_ptr);
 
-		zephir_init_static_properties_PhalconPlus_App_Module_ModuleDef(TSRMLS_C);
 		zephir_init_static_properties_PhalconPlus_Curl_Request(TSRMLS_C);
 		zephir_init_static_properties_PhalconPlus_Enum_Facade(TSRMLS_C);
+		zephir_init_static_properties_PhalconPlus_Enum_Sys(TSRMLS_C);
 	
 	return SUCCESS;
 }
