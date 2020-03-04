@@ -4,8 +4,6 @@ namespace PhalconPlus\Enum;
 
 use PhalconPlus\Enum\AbstractEnum;
 use PhalconPlus\Enum\Sys;
-use Phalcon\DI\FactoryDefault as DefaultDI;
-use Phalcon\DI\FactoryDefault\CLI as TaskDI;
 
 class RunMode extends AbstractEnum
 {
@@ -25,7 +23,7 @@ class RunMode extends AbstractEnum
     const __default = 'Cli';
 
 
-    protected $mapClasses = array('Web' => 'Module', 'Cli' => 'Task', 'Srv' => 'Srv', 'Micro' => 'Micro');
+    protected $mapClasses = array('Web' => 'Web', 'Cli' => 'Cli', 'Srv' => 'Srv', 'Micro' => 'Micro');
 
 
     protected $scripts = array('Web' => 'default-web.php', 'Cli' => 'default-cli.php', 'Srv' => 'default-web.php', 'Micro' => 'default-micro.php');
@@ -39,7 +37,22 @@ class RunMode extends AbstractEnum
     }
 
 
-    public function newDI()
+    public function isCli()
+    {
+    }
+
+
+    public function isWeb()
+    {
+    }
+
+
+    public function isSrv()
+    {
+    }
+
+
+    public function isMicro()
     {
     }
 

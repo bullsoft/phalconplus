@@ -5,12 +5,12 @@ namespace PhalconPlus\App;
 use Phalcon\Application as BaseApplication;
 use PhalconPlus\Enum\Sys;
 use PhalconPlus\App\Module\ModuleDef;
+use Phalcon\DiInterface;
+use Phalcon\Di;
 use PhalconPlus\App\Module\AbstractModule;
 use PhalconPlus\Enum\RunEnv;
-use PhalconPlus\Enum\RunMode;
 use PhalconPlus\Enum\Facade;
 use Phalcon\Config;
-use PhalconPlus\Bootstrap;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\Events\ManagerInterface;
 
@@ -26,65 +26,33 @@ final class App extends Phalcon\Application
     protected $booted = false;
 
 
-    protected $bootstrap = null;
-
-
     protected $config = null;
 
-
-    protected $driver = null;
-
-
-    protected $autoHandle = true;
-
-
-
-    public function getBootstrap()
-    {
-    }
 
 
     public function getConfig()
     {
     }
 
-
-    public function getDriver()
-    {
-    }
-
-    /**
-     * @param mixed $driver
-     */
-    public function setDriver($driver)
-    {
-    }
-
-    /**
-     * @param mixed $autoHandle
-     */
-    public function setAutoHandle($autoHandle)
-    {
-    }
-
-
-    public function getAutoHandle()
-    {
-    }
-
-    /**
-     * @param \PhalconPlus\Bootstrap $boot
-     */
-    public function __construct(\PhalconPlus\Bootstrap $boot)
-    {
-    }
-
     /**
      * @param \Phalcon\Config $config
+     */
+    public function __construct(\Phalcon\Config $config)
+    {
+    }
+
+    /**
      * @param string $env
      * @return App
      */
-    public function boot(\Phalcon\Config $config, string $env = ''): App
+    public function boot(string $env = ''): App
+    {
+    }
+
+    /**
+     * @return App
+     */
+    private function bootPrimaryModule(): App
     {
     }
 
@@ -106,8 +74,9 @@ final class App extends Phalcon\Application
 
     /**
      * @param \Phalcon\Config $config
+     * @return App
      */
-    public function setConfig(\Phalcon\Config $config)
+    public function setConfig(\Phalcon\Config $config): App
     {
     }
 
@@ -197,7 +166,7 @@ final class App extends Phalcon\Application
      * @param string $name
      * @return AbstractModule
      */
-    public function getModule(string $name): AbstractModule
+    public function getModule(string $name = ''): AbstractModule
     {
     }
 
@@ -205,7 +174,29 @@ final class App extends Phalcon\Application
      * @param string $name
      * @return ModuleDef
      */
-    public function getModuleDef(string $name): ModuleDef
+    public function getModuleDef(string $name = ''): ModuleDef
+    {
+    }
+
+    /**
+     * @return Config
+     */
+    public function config(): Config
+    {
+    }
+
+    /**
+     * @return Di
+     */
+    public function di(): Di
+    {
+    }
+
+    /**
+     * @param string $method
+     * @param array $params
+     */
+    public function __call(string $method, array $params)
     {
     }
 

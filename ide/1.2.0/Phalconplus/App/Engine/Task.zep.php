@@ -1,13 +1,13 @@
 <?php
 
-namespace PhalconPlus\App\Driver;
+namespace PhalconPlus\App\Engine;
 
 use PhalconPlus\App\App as SuperApp;
 use Phalcon\Di\Injectable;
 use Phalcon\CLI\Console as TaskHandler;
 use Phalcon\Cli\Task;
 
-class Task extends Injectable implements \PhalconPlus\App\Driver\AppDriver
+class Task extends Injectable implements \PhalconPlus\App\Engine\AppEngine
 {
 
     protected $app = null;
@@ -27,7 +27,7 @@ class Task extends Injectable implements \PhalconPlus\App\Driver\AppDriver
     /**
      * @param array $argv
      * @param \Phalcon\DI\FactoryDefault $di
-     * @return AppDriver|Task
+     * @return AppEngine|Task
      */
     public function exec(array $argv, \Phalcon\DI\FactoryDefault $di = null)
     {
@@ -35,9 +35,9 @@ class Task extends Injectable implements \PhalconPlus\App\Driver\AppDriver
 
     /**
      * @param object $handler
-     * @return AppDriver
+     * @return AppEngine
      */
-    public function setHandler($handler): AppDriver
+    public function setHandler($handler): AppEngine
     {
     }
 

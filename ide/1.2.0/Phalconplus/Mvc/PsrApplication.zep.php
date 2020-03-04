@@ -4,10 +4,12 @@ namespace PhalconPlus\Mvc;
 
 use Phalcon\Mvc\Application as BaseApplication;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Phalcon\Http\ResponseInterface;
+use Phalcon\Http\Response as BaseResponse;
+use PhalconPlus\Http\PsrResponseFactory;
+use PhalconPlus\Http\NonPsrRequest;
+use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\DiInterface;
-use Psr\Http\Message\UploadedFileInterface;
-use Phalcon\Http\Cookie;
 
 class PsrApplication extends Phalcon\Mvc\Application
 {
@@ -36,10 +38,10 @@ class PsrApplication extends Phalcon\Mvc\Application
     }
 
     /**
-     * @param \Phalcon\DiInterface $dependencyInjector
      * @param \Psr\Http\Message\ServerRequestInterface $psrRequest
+     * @param \Phalcon\DiInterface $dependencyInjector
      */
-    public function __construct(\Phalcon\DiInterface $dependencyInjector = null, \Psr\Http\Message\ServerRequestInterface $psrRequest = null)
+    public function __construct(\Psr\Http\Message\ServerRequestInterface $psrRequest, \Phalcon\DiInterface $dependencyInjector = null)
     {
     }
 
@@ -50,16 +52,9 @@ class PsrApplication extends Phalcon\Mvc\Application
 
     /**
      * @param string $uri
-     * @return mixed
+     * @return ResponseInterface
      */
-    public function handle(string $uri = null)
-    {
-    }
-
-    /**
-     * @param \Phalcon\Http\Response $response
-     */
-    protected function mapHeaders(\Phalcon\Http\Response $response)
+    public function handle(string $uri = null): ResponseInterface
     {
     }
 

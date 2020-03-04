@@ -6,8 +6,10 @@ use PhalconPlus\Enum\Sys;
 use PhalconPlus\App\App as SuperApp;
 use PhalconPlus\Enum\RunMode;
 use PhalconPlus\Base\AbstractModule;
-use PhalconPlus\Bootstrap;
+use Phalcon\Config;
 use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\DI\FactoryDefault as DefaultDI;
+use Phalcon\DI\FactoryDefault\CLI as TaskDI;
 
 class ModuleDef
 {
@@ -27,16 +29,13 @@ class ModuleDef
     protected $dir = '';
 
 
-    static protected $loadedClasses = array();
-
-
     protected $config = null;
 
 
     protected $runMode = null;
 
 
-    protected $bootstrap = null;
+    protected $app = null;
 
 
     protected $isPrimary = false;
@@ -52,25 +51,37 @@ class ModuleDef
     }
 
     /**
-     * @param \Phalcon\Di $di
+     * @return \Phalcon\Di
+     */
+    public function newDI(): \Phalcon\Di
+    {
+    }
+
+    /**
      * @return AbstractModule
      */
-    public function impl(\Phalcon\Di $di): AbstractModule
+    public function checkout(): AbstractModule
     {
     }
 
-
-    public function isDefault()
+    /**
+     * @return bool
+     */
+    public function isDefault(): bool
     {
     }
 
-
-    public function isPrimary()
+    /**
+     * @return bool
+     */
+    public function isPrimary(): bool
     {
     }
 
-
-    public function getIsPrimary()
+    /**
+     * @return bool
+     */
+    public function getIsPrimary(): bool
     {
     }
 
@@ -78,13 +89,6 @@ class ModuleDef
      * @return string
      */
     public function getClassPath(): string
-    {
-    }
-
-    /**
-     * @return Bootstrap
-     */
-    public function getBootstrap(): Bootstrap
     {
     }
 
@@ -131,7 +135,7 @@ class ModuleDef
     }
 
     /**
-     * @return \Phalcon\Config
+     * @return Config
      */
     public function getConfig(): \Phalcon\Config
     {
@@ -141,6 +145,20 @@ class ModuleDef
      * @return string
      */
     public function getDir(): string
+    {
+    }
+
+    /**
+     * @return Config
+     */
+    public function config(): \Phalcon\Config
+    {
+    }
+
+    /**
+     * @return SuperApp
+     */
+    public function app(): SuperApp
     {
     }
 

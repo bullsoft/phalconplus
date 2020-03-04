@@ -4,6 +4,7 @@ namespace PhalconPlus\Enum;
 
 use PhalconPlus\Enum\AbstractEnum;
 use PhalconPlus\Base\Exception as BaseException;
+use PhalconPlus\App\App as SuperApp;
 
 final class Sys extends AbstractEnum
 {
@@ -38,10 +39,30 @@ final class Sys extends AbstractEnum
     static private $primaryModuleDir = '';
 
 
+    static private $requiredFiles = array();
+
+
+    static private $app = null;
+
+
     /**
      * @param string $moduleDir
      */
     public static function init(string $moduleDir)
+    {
+    }
+
+    /**
+     * @param \PhalconPlus\App\App $app
+     */
+    public static function initApp(\PhalconPlus\App\App $app)
+    {
+    }
+
+    /**
+     * @return SuperApp
+     */
+    public static function app(): SuperApp
     {
     }
 
@@ -120,6 +141,22 @@ final class Sys extends AbstractEnum
 
 
     public static function getComposerAutoloadPath()
+    {
+    }
+
+    /**
+     * @param string $className
+     * @param string $classAlias
+     * @return bool
+     */
+    public static function classAlias(string $className, string $classAlias): bool
+    {
+    }
+
+    /**
+     * @param mixed $filePath
+     */
+    public static function load($filePath)
     {
     }
 

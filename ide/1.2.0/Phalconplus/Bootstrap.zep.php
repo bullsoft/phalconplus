@@ -4,25 +4,13 @@ namespace PhalconPlus;
 
 use PhalconPlus\Enum\Sys;
 use PhalconPlus\App\App as SuperApp;
+use Phalcon\Config;
 
 final class Bootstrap
 {
 
     protected $app = null;
 
-
-    protected $loadedFiles = array();
-
-
-
-    public function getApp()
-    {
-    }
-
-
-    public function getLoadedFiles()
-    {
-    }
 
     /**
      * @param string $moduleDir
@@ -33,9 +21,9 @@ final class Bootstrap
     }
 
     /**
-     * @return \Phalcon\Config
+     * @return Config
      */
-    protected function initConf(): \Phalcon\Config
+    protected function initConf(): Config
     {
     }
 
@@ -45,19 +33,14 @@ final class Bootstrap
     }
 
     /**
-     * @param mixed $filePath
+     * @return SuperApp
      */
-    public function load($filePath)
+    public function app(): SuperApp
     {
     }
 
 
     public function terminate()
-    {
-    }
-
-
-    public function __destruct()
     {
     }
 

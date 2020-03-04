@@ -1,8 +1,8 @@
 <?php
 
-namespace PhalconPlus\App\Driver;
+namespace PhalconPlus\App\Engine;
 
-interface AppDriver
+interface AppEngine
 {
 
     /**
@@ -12,8 +12,8 @@ interface AppDriver
 
     /**
      * @param object $handler
-     * @return AppDriver
+     * @return AppEngine
      */
-    public function setHandler($handler): AppDriver;
+    public function setHandler($handler): AppEngine;
 
 }

@@ -15,9 +15,6 @@ class Facade extends AbstractEnum
     const ASSETS = 'Assets';
 
 
-    const BOOT = 'Bootstrap';
-
-
     const CONFIG = 'Config';
 
 
@@ -37,6 +34,12 @@ class Facade extends AbstractEnum
 
 
     const FLASH = 'Flash';
+
+
+    const APP_MODULE = 'AppModule';
+
+
+    const APP_ENGINE = 'AppEngine';
 
 
     const DISPATCHER = 'Dispatcher';
@@ -78,6 +81,9 @@ class Facade extends AbstractEnum
     const TX_MGR = 'TransactionManager';
 
 
+    const REDIS = 'Redis';
+
+
     const TAG = 'Tag';
 
 
@@ -99,7 +105,10 @@ class Facade extends AbstractEnum
     const VIEW = 'View';
 
 
-    static protected $facades = array('Annotations', 'Assets', 'Bootstrap', 'Config', 'Cookies', 'Crypt', 'Dispatcher', 'Escaper', 'EventsManager', 'Filter', 'Flash', 'FlashSession', 'Log', 'ModelsCache', 'ModelsManager', 'ModelsMetadata', 'Request', 'Response', 'Router', 'Security', 'Service', 'Session', 'SessionBag', 'Tag', 'TransactionManager', 'Url', 'Acl', 'App', 'Di', 'View');
+    const USER = 'User';
+
+
+    static protected $facades = array('Annotations', 'Assets', 'Config', 'Cookies', 'View', 'Crypt', 'Dispatcher', 'Escaper', 'EventsManager', 'Filter', 'Flash', 'FlashSession', 'Log', 'ModelsCache', 'ModelsManager', 'ModelsMetadata', 'Request', 'Response', 'Router', 'Security', 'Service', 'Session', 'SessionBag', 'Tag', 'TransactionManager', 'Url', 'Acl', 'App', 'Di', 'AppEngine', 'Redis', 'User', 'AppModule');
 
 
     static private $classPrefix = '\\\\PhalconPlus\\\\Facades\\\\';

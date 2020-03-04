@@ -13,20 +13,17 @@ use Yar_Server;
 class Srv extends Injectable implements \PhalconPlus\App\Driver\AppDriver
 {
 
-    protected $app;
+    protected $app = null;
 
 
-    protected $handler;
-
-
-    protected $autoHandle = true;
+    protected $handler = null;
 
 
     /**
      * @param \PhalconPlus\App\App $app
-     * @param bool $autoHandle
+     * @param BaseApplication $handler
      */
-    public function __construct(\PhalconPlus\App\App $app, bool $autoHandle = true)
+    public function __construct(\PhalconPlus\App\App $app, BaseApplication $handler = null)
     {
     }
 
@@ -39,10 +36,9 @@ class Srv extends Injectable implements \PhalconPlus\App\Driver\AppDriver
 
     /**
      * @param object $handler
-     * @param bool $autoHandle
      * @return AppDriver
      */
-    public function setHandler($handler, bool $autoHandle = false): AppDriver
+    public function setHandler($handler): AppDriver
     {
     }
 
