@@ -63,12 +63,18 @@ class ModuleDef
 
         let this->name = appConfig->name;
         let this->runMode   = new RunMode(ucfirst(strtolower(appConfig->mode)));
-        let this->className = appConfig->ns . this->runMode->getMapClassName();
-        let this->classPath = Sys::getModuleClassPath(moduleDir, this->runMode);
-
-        if !is_file(this->classPath) {
-            throw new BaseException("Module class file not exists: " . this->classPath);
+        
+        let this->classPath = Sys::getModuleClassPath(moduleDir, this->runMode->getMapClassName());
+        if is_file(this->classPath) {
+            let this->className = appConfig->ns . this->runMode->getMapClassName();
+        } else {
+            let this->classPath = Sys::getModuleClassPath(moduleDir, "Module");
+            let this->className = appConfig->ns . "Module";
         }
+
+        // if !is_file(this->classPath) {
+        //     throw new BaseException("Module class file not exists: " . this->classPath);
+        // }
 
         let this->isPrimary = isPrimary;
     }
