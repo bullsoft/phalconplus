@@ -34,6 +34,15 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Auth_Model) {
 
 }
 
+PHP_METHOD(PhalconPlus_Auth_Model, getUser) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "user");
+
+}
+
 PHP_METHOD(PhalconPlus_Auth_Model, __construct) {
 
 	zval *user, user_sub;
@@ -49,22 +58,44 @@ PHP_METHOD(PhalconPlus_Auth_Model, __construct) {
 
 }
 
+PHP_METHOD(PhalconPlus_Auth_Model, setUser) {
+
+	zval *user, user_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&user_sub);
+
+	zephir_fetch_params_without_memory_grow(1, 0, &user);
+
+
+
+	zephir_update_property_zval(this_ptr, SL("user"), user);
+	RETURN_THISW();
+
+}
+
 PHP_METHOD(PhalconPlus_Auth_Model, beforeDelete) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *event, event_sub, *model, model_sub, instance, _0, _1;
+	zval *event, event_sub, *model, model_sub, *context = NULL, context_sub, __$null, instance, _0, _1;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&event_sub);
 	ZVAL_UNDEF(&model_sub);
+	ZVAL_UNDEF(&context_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&instance);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &event, &model);
+	zephir_fetch_params(1, 2, 1, &event, &model, &context);
 
+	if (!context) {
+		context = &context_sub;
+		context = &__$null;
+	}
 
 
 	ZEPHIR_CALL_METHOD(&instance, this_ptr, "getpolicy", NULL, 0, model);
@@ -85,18 +116,24 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeCreate) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *event, event_sub, *model, model_sub, instance, _0, _1;
+	zval *event, event_sub, *model, model_sub, *context = NULL, context_sub, __$null, instance, _0, _1;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&event_sub);
 	ZVAL_UNDEF(&model_sub);
+	ZVAL_UNDEF(&context_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&instance);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &event, &model);
+	zephir_fetch_params(1, 2, 1, &event, &model, &context);
 
+	if (!context) {
+		context = &context_sub;
+		context = &__$null;
+	}
 
 
 	ZEPHIR_CALL_METHOD(&instance, this_ptr, "getpolicy", NULL, 0, model);
@@ -117,18 +154,24 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeUpdate) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *event, event_sub, *model, model_sub, instance, _0, _1;
+	zval *event, event_sub, *model, model_sub, *context = NULL, context_sub, __$null, instance, _0, _1;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&event_sub);
 	ZVAL_UNDEF(&model_sub);
+	ZVAL_UNDEF(&context_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&instance);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &event, &model);
+	zephir_fetch_params(1, 2, 1, &event, &model, &context);
 
+	if (!context) {
+		context = &context_sub;
+		context = &__$null;
+	}
 
 
 	ZEPHIR_CALL_METHOD(&instance, this_ptr, "getpolicy", NULL, 0, model);
@@ -147,14 +190,20 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeUpdate) {
 
 PHP_METHOD(PhalconPlus_Auth_Model, beforeValidation) {
 
-	zval *event, event_sub, *model, model_sub;
+	zval *event, event_sub, *model, model_sub, *context = NULL, context_sub, __$null;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&event_sub);
 	ZVAL_UNDEF(&model_sub);
+	ZVAL_UNDEF(&context_sub);
+	ZVAL_NULL(&__$null);
 
-	zephir_fetch_params_without_memory_grow(2, 0, &event, &model);
+	zephir_fetch_params_without_memory_grow(2, 1, &event, &model, &context);
 
+	if (!context) {
+		context = &context_sub;
+		context = &__$null;
+	}
 
 
 	RETURN_BOOL(1);
@@ -210,7 +259,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, getPolicy) {
 		}
 	} else {
 		object_init_ex(&instance, phalconplus_auth_policy_ce);
-		ZEPHIR_CALL_METHOD(NULL, &instance, "__construct", NULL, 59);
+		ZEPHIR_CALL_METHOD(NULL, &instance, "__construct", NULL, 62);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&instance);

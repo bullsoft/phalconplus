@@ -20,13 +20,11 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Contracts_Auth_UserProvider) {
 
 }
 
-ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_UserProvider, getById);
-
 ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_UserProvider, getRole);
+
+ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_UserProvider, getName);
 
 ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_UserProvider, getIdName);
 
-ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_UserProvider, getIdValue);
-
-ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_UserProvider, setIdValue);
+ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_UserProvider, getUsernameName);
 

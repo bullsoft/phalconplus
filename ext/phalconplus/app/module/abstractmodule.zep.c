@@ -85,7 +85,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, __construct) {
 
 	zephir_update_property_zval(this_ptr, SL("app"), app);
 	zephir_update_property_zval(this_ptr, SL("def"), def);
-	ZEPHIR_CALL_METHOD(&_0, app, "di", NULL, 45);
+	ZEPHIR_CALL_METHOD(&_0, app, "di", NULL, 48);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("_dependencyInjector"), &_0);
 	ZEPHIR_MM_RESTORE();

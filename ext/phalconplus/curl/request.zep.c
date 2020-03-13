@@ -285,7 +285,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, setHeader) {
 
 	if (Z_TYPE_P(value) == IS_NULL) {
 		ZEPHIR_INIT_VAR(&parts$$3);
-		zephir_fast_explode_str(&parts$$3, SL(":"), value, 2 );
+		zephir_fast_explode_str(&parts$$3, SL(":"), key, 2 );
 		ZEPHIR_OBS_NVAR(key);
 		zephir_array_fetch_long(key, &parts$$3, 0, PH_NOISY, "phalconplus/Curl/Request.zep", 154);
 		ZEPHIR_OBS_NVAR(value);
@@ -461,7 +461,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, setCookie) {
 
 
 	zephir_update_property_array(this_ptr, SL("cookies"), &key, &value);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "updatecookieheader", NULL, 96);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "updatecookieheader", NULL, 100);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -489,7 +489,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, setCookies) {
 
 
 	zephir_update_property_zval(this_ptr, SL("cookies"), &cookies);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "updatecookieheader", NULL, 96);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "updatecookieheader", NULL, 100);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -925,7 +925,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, encodeData) {
 			zephir_read_property(&_3$$4, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
 			if (!(Z_TYPE_P(&_3$$4) == IS_NULL)) {
 				zephir_read_property(&_4$$4, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_FUNCTION(&_2$$4, "http_build_query", NULL, 77, &_4$$4);
+				ZEPHIR_CALL_FUNCTION(&_2$$4, "http_build_query", NULL, 81, &_4$$4);
 				zephir_check_call_status();
 			} else {
 				ZVAL_STRING(&_2$$4, "");
@@ -940,7 +940,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, encodeData) {
 		ZEPHIR_CONCAT_SVS(&msg, "Encoding [", &_5$$6, "] not a known Request::ENCODING_* constant");
 		ZEPHIR_INIT_VAR(&_6$$6);
 		object_init_ex(&_6$$6, spl_ce_UnexpectedValueException);
-		ZEPHIR_CALL_METHOD(NULL, &_6$$6, "__construct", NULL, 97, &msg);
+		ZEPHIR_CALL_METHOD(NULL, &_6$$6, "__construct", NULL, 101, &msg);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_6$$6, "phalconplus/Curl/Request.zep", 355);
 		ZEPHIR_MM_RESTORE();

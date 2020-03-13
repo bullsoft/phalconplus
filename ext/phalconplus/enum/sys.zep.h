@@ -112,7 +112,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_getmoduleclasspath, 0, 0, 2)
 #else
 	ZEND_ARG_INFO(0, moduleDir)
 #endif
-	ZEND_ARG_OBJ_INFO(0, runMode, PhalconPlus\\Enum\\RunMode, 0)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, modeName, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, modeName)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_getmoduleconfigpath, 0, 0, 1)

@@ -65,18 +65,41 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, setApp) {
 
 }
 
-PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, app) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	zephir_read_static_property_ce(&_0, phalconplus_facades_abstractfacade_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
+	RETURN_CTORW(&_0);
+
+}
+
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, getApp) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	zephir_read_static_property_ce(&_0, phalconplus_facades_abstractfacade_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
+	RETURN_CTORW(&_0);
+
+}
+
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, itself) {
 
 	zend_bool _6$$4;
 	zend_class_entry *_2;
+	zval di, name, facade, service, _0, _1, _3, _4, _5$$3, _7$$4, _8$$4, _9$$5, _10$$6, _11$$6, _12$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval params, _13;
-	zval *method_param = NULL, *params_param = NULL, di, name, facade, service, _0, _1, _3, _4, _5$$3, _7$$4, _8$$4, _9$$5, _10$$6, _11$$6, _12$$6;
-	zval method;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&di);
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&facade);
@@ -92,18 +115,11 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 	ZVAL_UNDEF(&_10$$6);
 	ZVAL_UNDEF(&_11$$6);
 	ZVAL_UNDEF(&_12$$6);
-	ZVAL_UNDEF(&params);
-	ZVAL_UNDEF(&_13);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &method_param, &params_param);
-
-	zephir_get_strval(&method, method_param);
-	zephir_get_arrval(&params, params_param);
-
 
 	zephir_read_static_property_ce(&_0, phalconplus_facades_abstractfacade_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&di, &_0, "getdi", NULL, 0);
+	ZEPHIR_CALL_METHOD(&di, &_0, "di", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&name);
 	zephir_get_called_class(&name);
@@ -147,8 +163,8 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 	}
 	if (Z_TYPE_P(&service) == IS_NULL) {
 		ZEPHIR_INIT_VAR(&_10$$6);
-		ZEPHIR_CONCAT_SV(&_10$$6, "PHP Fatal:  Service can not be resovled: ", &name);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 1, &_10$$6);
+		ZEPHIR_CONCAT_SV(&_10$$6, "Service can not be resovled: ", &name);
+		ZEPHIR_CALL_FUNCTION(NULL, "trigger_error", NULL, 1, &_10$$6);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_11$$6);
 		object_init_ex(&_11$$6, phalconplus_base_exception_ce);
@@ -156,15 +172,42 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 		ZEPHIR_CONCAT_SV(&_12$$6, "Service can not be resovled: ", &name);
 		ZEPHIR_CALL_METHOD(NULL, &_11$$6, "__construct", NULL, 2, &_12$$6);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_11$$6, "phalconplus/Facades/AbstractFacade.zep", 37);
+		zephir_throw_exception_debug(&_11$$6, "phalconplus/Facades/AbstractFacade.zep", 50);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	ZEPHIR_INIT_VAR(&_13);
-	zephir_create_array(&_13, 2, 0);
-	zephir_array_fast_append(&_13, &service);
-	zephir_array_fast_append(&_13, &method);
-	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_13, &params);
+	RETURN_CCTOR(&service);
+
+}
+
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval params, _0;
+	zval *method_param = NULL, *params_param = NULL, service;
+	zval method;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&method);
+	ZVAL_UNDEF(&service);
+	ZVAL_UNDEF(&params);
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &method_param, &params_param);
+
+	zephir_get_strval(&method, method_param);
+	zephir_get_arrval(&params, params_param);
+
+
+	ZEPHIR_CALL_STATIC(&service, "itself", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&_0);
+	zephir_create_array(&_0, 2, 0);
+	zephir_array_fast_append(&_0, &service);
+	zephir_array_fast_append(&_0, &method);
+	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, &params);
 	zephir_check_call_status();
 	RETURN_MM();
 

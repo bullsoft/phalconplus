@@ -96,7 +96,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 	ZEPHIR_INIT_VAR(&className);
 	zephir_get_class(&className, &_0, 0);
 	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 110, &_1);
+	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 114, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&objs, unitwork, "getobjects", NULL, 0);
 	zephir_check_call_status();
@@ -165,7 +165,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
 
 	zephir_read_property(&_0, this_ptr, SL("attr"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_2, "spl_object_hash", NULL, 110, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "spl_object_hash", NULL, 114, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVSV(return_value, "Field: ", &_0, ", Hash: ", &_2);
 	RETURN_MM();

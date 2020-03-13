@@ -22,6 +22,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/exception.zep.c
 	phalconplus/contracts/auth/access/modelevent.zep.c
 	phalconplus/contracts/auth/policy.zep.c
+	phalconplus/contracts/auth/userprovider.zep.c
 	phalconplus/db/pdo/abstractmysql.zep.c
 	phalconplus/enum/exception.zep.c
 	phalconplus/rpc/server/abstractserver.zep.c
@@ -36,6 +37,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/auth/exception.zep.c
 	phalconplus/auth/model.zep.c
 	phalconplus/auth/policy.zep.c
+	phalconplus/auth/userprovider.zep.c
 	phalconplus/base/model.zep.c
 	phalconplus/base/pagable.zep.c
 	phalconplus/base/page.zep.c
@@ -48,7 +50,6 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/contracts/auth/access/dispatchevent.zep.c
 	phalconplus/contracts/auth/access/resourceaware.zep.c
 	phalconplus/contracts/auth/access/routerevent.zep.c
-	phalconplus/contracts/auth/userprovider.zep.c
 	phalconplus/contracts/eventattachable.zep.c
 	phalconplus/curl/curl.zep.c
 	phalconplus/curl/exception.zep.c

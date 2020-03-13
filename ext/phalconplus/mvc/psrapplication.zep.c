@@ -103,7 +103,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
 	zephir_update_property_zval(this_ptr, SL("psrRequest"), psrRequest);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, phalconplus_http_nonpsrrequest_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 124, psrRequest);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 128, psrRequest);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("nativeRequest"), &_0);
 	ZEPHIR_MM_RESTORE();

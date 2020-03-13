@@ -72,13 +72,13 @@ PHP_METHOD(PhalconPlus_Bootstrap, __construct) {
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_sys_ce, "init", &_0, 0, &moduleDir);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&config, this_ptr, "initconf", NULL, 73);
+	ZEPHIR_CALL_METHOD(&config, this_ptr, "initconf", NULL, 76);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
 	object_init_ex(&_1, phalconplus_app_app_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 74, &config);
+	ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 77, &config);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_2, &_1, "boot", NULL, 75, &env);
+	ZEPHIR_CALL_METHOD(&_2, &_1, "boot", NULL, 78, &env);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("app"), &_2);
 	ZEPHIR_CALL_CE_STATIC(&_4, phalconplus_enum_sys_ce, "getcomposerautoloadpath", &_5, 0);
@@ -108,13 +108,13 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf) {
 
 	ZEPHIR_CALL_CE_STATIC(&globalConfPath, phalconplus_enum_sys_ce, "getglobalconfigpath", &_0, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_1, "is_file", NULL, 48, &globalConfPath);
+	ZEPHIR_CALL_FUNCTION(&_1, "is_file", NULL, 51, &globalConfPath);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&globalConf);
 	if (UNEXPECTED(!zephir_is_true(&_1))) {
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_CONCAT_SV(&_2$$3, "PHP Notice:  PhalconPlus\\Bootstrap Global config file not exists: ", &globalConfPath);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 1, &_2$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 79, &_2$$3);
 		zephir_check_call_status();
 		object_init_ex(&globalConf, zephir_get_internal_ce(SL("phalcon\\config")));
 		ZEPHIR_INIT_VAR(&_3$$3);

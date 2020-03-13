@@ -34,10 +34,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_App_Engine_Srv) {
 
 PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct) {
 
-	zend_class_entry *_8$$7 = NULL;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *appModule, appModule_sub, *handler = NULL, handler_sub, __$null, di, backendSrv, _0, _1, moduleConf, _4, _5, _2$$3, _3$$5, _6$$6, _7$$7, _9$$7, _10$$7, _11$$7, _12$$7;
+	zval *appModule, appModule_sub, *handler = NULL, handler_sub, __$null, di, backendSrv, _0, _1, moduleConf, _4, _5, _2$$3, _3$$5, _6$$6, _7$$7, _8$$7, _9$$7, _10$$7, _11$$7;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&appModule_sub);
@@ -54,10 +53,10 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct) {
 	ZVAL_UNDEF(&_3$$5);
 	ZVAL_UNDEF(&_6$$6);
 	ZVAL_UNDEF(&_7$$7);
+	ZVAL_UNDEF(&_8$$7);
 	ZVAL_UNDEF(&_9$$7);
 	ZVAL_UNDEF(&_10$$7);
 	ZVAL_UNDEF(&_11$$7);
-	ZVAL_UNDEF(&_12$$7);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &appModule, &handler);
@@ -85,13 +84,13 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct) {
 		ZEPHIR_CALL_METHOD(&backendSrv, &di, "get", NULL, 0, &_2$$3);
 		zephir_check_call_status();
 		if (!(zephir_instance_of_ev(&backendSrv, phalconplus_rpc_server_abstractserver_ce))) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Service object(DI[\"backendSrv\"]) must be type of \\PhalconPlus\\Rpc\\Server\\AbstractServer", "phalconplus/App/Engine/Srv.zep", 29);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Service object(DI[\"backendSrv\"]) must be type of \\PhalconPlus\\Rpc\\Server\\AbstractServer", "phalconplus/App/Engine/Srv.zep", 33);
 			return;
 		}
 	} else {
 		ZEPHIR_INIT_NVAR(&backendSrv);
 		object_init_ex(&backendSrv, phalconplus_rpc_server_simpleserver_ce);
-		ZEPHIR_CALL_METHOD(NULL, &backendSrv, "__construct", NULL, 42, &di);
+		ZEPHIR_CALL_METHOD(NULL, &backendSrv, "__construct", NULL, 44, &di);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_3$$5);
 		ZVAL_STRING(&_3$$5, "backendSrv");
@@ -110,24 +109,19 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct) {
 		zephir_update_property_zval(this_ptr, SL("handler"), &_6$$6);
 	} else {
 		ZEPHIR_INIT_VAR(&_7$$7);
-		if (!_8$$7) {
-		_8$$7 = zephir_fetch_class_str_ex(SL("PhalconPlus\\App\\Engine\\YarServerPlus"), ZEND_FETCH_CLASS_AUTO);
-		}
-		object_init_ex(&_7$$7, _8$$7);
-		if (zephir_has_constructor(&_7$$7)) {
-			ZEPHIR_CALL_METHOD(NULL, &_7$$7, "__construct", NULL, 0, &di);
-			zephir_check_call_status();
-		}
+		object_init_ex(&_7$$7, phalconplus_rpc_yar_ce);
+		ZEPHIR_CALL_METHOD(NULL, &_7$$7, "__construct", NULL, 45, &di);
+		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("handler"), &_7$$7);
+		zephir_read_property(&_8$$7, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_METHOD(NULL, &_8$$7, "setserver", NULL, 0, &backendSrv);
+		zephir_check_call_status();
 		zephir_read_property(&_9$$7, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(NULL, &_9$$7, "setserver", NULL, 0, &backendSrv);
+		ZEPHIR_INIT_VAR(&_11$$7);
+		ZVAL_STRING(&_11$$7, "eventsManager");
+		ZEPHIR_CALL_METHOD(&_10$$7, &di, "get", NULL, 0, &_11$$7);
 		zephir_check_call_status();
-		zephir_read_property(&_10$$7, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_12$$7);
-		ZVAL_STRING(&_12$$7, "eventsManager");
-		ZEPHIR_CALL_METHOD(&_11$$7, &di, "get", NULL, 0, &_12$$7);
-		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_10$$7, "seteventsmanager", NULL, 0, &_11$$7);
+		ZEPHIR_CALL_METHOD(NULL, &_9$$7, "seteventsmanager", NULL, 0, &_10$$7);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
@@ -150,12 +144,12 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, exec) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 43);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 46);
 	zephir_check_call_status();
 	zephir_read_property(&_0, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_0, "handle", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&content, "ob_get_clean", NULL, 44);
+	ZEPHIR_CALL_FUNCTION(&content, "ob_get_clean", NULL, 47);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getdi", NULL, 0);
 	zephir_check_call_status();
@@ -193,7 +187,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, setHandler) {
 	if (EXPECTED(_0)) {
 		zephir_update_property_zval(this_ptr, SL("handler"), handler);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Application must be instance of phalcon\\appliction or yar_server", "phalconplus/App/Engine/Srv.zep", 65);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Application must be instance of phalcon\\appliction or yar_server", "phalconplus/App/Engine/Srv.zep", 69);
 		return;
 	}
 	RETURN_THISW();
@@ -222,7 +216,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, getHandler) {
 	ZEPHIR_OBS_VAR(&_0);
 	zephir_read_property(&_0, this_ptr, SL("handler"), PH_NOISY_CC);
 	if (UNEXPECTED(ZEPHIR_IS_EMPTY(&_0))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty handler", "phalconplus/App/Engine/Srv.zep", 79);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty handler", "phalconplus/App/Engine/Srv.zep", 83);
 		return;
 	}
 	RETURN_MM_MEMBER(getThis(), "handler");
