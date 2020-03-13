@@ -121,13 +121,13 @@ final class Sys extends AbstractEnum
         return pathinfo(moduleDir, PATHINFO_FILENAME);
     }
 
-    public static function getModuleClassPath(string moduleDir, <\PhalconPlus\Enum\RunMode> runMode)
+    public static function getModuleClassPath(string moduleDir, string modeName)
     {
         return implode("", [
             moduleDir,
             Sys::APP_NAME,
             Sys::DS,
-            runMode->getMapClassName(),
+            modeName,
             Sys::EXT
         ]);
     }
