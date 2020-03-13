@@ -150,7 +150,7 @@ class Request
 	public function setHeader(var key, var value = null, bool preserveCase = false)
 	{
 		if (value === null) {
-               var parts = explode(":", value, 2);
+               var parts = explode(":", key, 2);
                let key = parts[0];
                let value = parts[1];
 		}
@@ -173,8 +173,8 @@ class Request
 	 */
 	public function setHeaders(array headers)
 	{
-          let this->headers = [];
-          var key, val;
+        let this->headers = [];
+        var key, val;
 		for key, val in headers {
 			this->setHeader(key, val);
 		}
