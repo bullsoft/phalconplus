@@ -2,7 +2,7 @@ namespace PhalconPlus\App\Engine;
 use PhalconPlus\App\App as SuperApp;
 use PhalconPlus\App\Module\AbstractModule as AppModule;
 use Phalcon\Di\Injectable;
-use Phalcon\CLI\Console as TaskHandler;
+use Phalcon\Cli\Console as TaskHandler;
 use Phalcon\Cli\Task;
 
 class Cli extends Injectable implements AppEngine
