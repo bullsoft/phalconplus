@@ -7,7 +7,7 @@ use PhalconPlus\Contracts\Auth\UserProvider;
 
 class Model implements ModelEvent
 {
-    protected user;
+    protected user = null { get };
     protected policies = [
     ];
 
@@ -16,25 +16,31 @@ class Model implements ModelEvent
         let this->user = user;
     }
 
-    public function beforeDelete(<Event> event, <ARModel> model) -> bool
+    public function setUser(<UserProvider> user) -> <Model>
+    {
+        let this->user = user;
+        return this;
+    }
+
+    public function beforeDelete(<Event> event, <ARModel> model, var context = null) -> bool
     {
         var instance = this->getPolicy(model);
         return instance ? instance->delete(this->user, model) : false;
     }
 
-    public function beforeCreate(<Event> event, <ARModel> model) -> bool
+    public function beforeCreate(<Event> event, <ARModel> model, var context = null) -> bool
     {
         var instance = this->getPolicy(model);   
         return instance ? instance->create(this->user, model) : false;
     }
 
-    public function beforeUpdate(<Event> event, <ARModel> model) -> bool
+    public function beforeUpdate(<Event> event, <ARModel> model, var context = null) -> bool
     {
         var instance = this->getPolicy(model);
         return instance ? instance->update(this->user, model) : false;
     }
 
-    public function beforeValidation(<Event> event, <ARModel> model) -> bool
+    public function beforeValidation(<Event> event, <ARModel> model, var context = null) -> bool
     {
         return true;
     }
