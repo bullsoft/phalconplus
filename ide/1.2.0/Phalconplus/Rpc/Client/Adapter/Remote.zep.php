@@ -7,7 +7,7 @@ use PhalconPlus\Rpc\Client\AbstractClient;
 class Remote extends AbstractClient
 {
 
-    private $remoteServerUrl;
+    private $remoteServerUrl = '';
 
 
     private $client;

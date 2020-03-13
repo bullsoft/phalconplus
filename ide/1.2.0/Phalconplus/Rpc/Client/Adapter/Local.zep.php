@@ -4,6 +4,7 @@ namespace PhalconPlus\Rpc\Client\Adapter;
 
 use PhalconPlus\Rpc\Client\AbstractClient;
 use PhalconPlus\Base\ProtoBuffer;
+use PhalconPlus\Base\Exception as BaseException;
 
 class Local extends AbstractClient
 {

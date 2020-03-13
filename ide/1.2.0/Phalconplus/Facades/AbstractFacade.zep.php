@@ -4,6 +4,7 @@ namespace PhalconPlus\Facades;
 
 use Phalcon\Di;
 use PhalconPlus\App\App as SuperApp;
+use PhalconPlus\Base\Exception as BaseException;
 
 abstract class AbstractFacade
 {
@@ -28,6 +29,25 @@ abstract class AbstractFacade
      * @param \PhalconPlus\App\App $app
      */
     public static function setApp(\PhalconPlus\App\App $app)
+    {
+    }
+
+    /**
+     * @return SuperApp
+     */
+    public static function app(): SuperApp
+    {
+    }
+
+    /**
+     * @return SuperApp
+     */
+    public static function getApp(): SuperApp
+    {
+    }
+
+
+    public static function itself()
     {
     }
 

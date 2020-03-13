@@ -4,6 +4,7 @@ namespace PhalconPlus\Rpc\Client\Adapter;
 
 use PhalconPlus\Rpc\Client\AbstractClient;
 use PhalconPlus\Curl\Curl as HttpClient;
+use PhalconPlus\Base\Exception as BaseException;
 
 class Curl extends AbstractClient
 {

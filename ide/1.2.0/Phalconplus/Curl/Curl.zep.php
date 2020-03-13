@@ -5,6 +5,7 @@ namespace PhalconPlus\Curl;
 use PhalconPlus\Curl\Request;
 use PhalconPlus\Curl\Response;
 use PhalconPlus\Curl\Exception as CurlException;
+use Phalcon\Text;
 
 /**
  * @ref https://github.com/anlutro/php-curl
@@ -30,6 +31,13 @@ class Curl
      */
     protected $defaultOptions = array();
 
+    /**
+     * The base url
+     *
+     * @var string
+     */
+    protected $baseUrl = '';
+
 
     /**
      * @param array $opts
@@ -43,7 +51,7 @@ class Curl
      *
      * @return array
      */
-    public function getAllowedMethods()
+    public function getAllowedMethods(): array
     {
     }
 
@@ -51,8 +59,9 @@ class Curl
      * Set the default headers for every request.
      *
      * @param array $headers
+     * @return Curl
      */
-    public function setDefaultHeaders(array $headers)
+    public function setDefaultHeaders(array $headers): Curl
     {
     }
 
@@ -61,7 +70,7 @@ class Curl
      *
      * @return array
      */
-    public function getDefaultHeaders()
+    public function getDefaultHeaders(): array
     {
     }
 
@@ -69,8 +78,9 @@ class Curl
      * Set the default curl options for every request.
      *
      * @param array $options
+     * @return Curl
      */
-    public function setDefaultOptions(array $options)
+    public function setDefaultOptions(array $options): Curl
     {
     }
 
@@ -84,6 +94,16 @@ class Curl
     }
 
     /**
+     * Get the default options.
+     *
+     * @return array
+     * @param string $baseUrl
+     */
+    public function setBaseUrl(string $baseUrl): Curl
+    {
+    }
+
+    /**
      * Build an URL with an optional query string.
      *
      * @param  string $url   the base URL without any query string
@@ -91,7 +111,7 @@ class Curl
      *
      * @return string
      */
-    public function buildUrl(string $url, array $query)
+    public function buildUrl(string $url, array $query): string
     {
     }
 
@@ -105,7 +125,7 @@ class Curl
      *
      * @return Request
      */
-    public function newRequest(string $method, string $url, $data, int $encoding = Request::ENCODING_QUERY)
+    public function newRequest(string $method, string $url, $data, int $encoding = Request::ENCODING_QUERY): Request
     {
     }
 
@@ -118,7 +138,7 @@ class Curl
      *
      * @return Request
      */
-    public function newJsonRequest(string $method, string $url, array $data = array())
+    public function newJsonRequest(string $method, string $url, array $data = array()): Request
     {
     }
 
@@ -131,7 +151,7 @@ class Curl
      *
      * @return Request
      */
-    public function newRawRequest(string $method, string $url, $data = '')
+    public function newRawRequest(string $method, string $url, $data = ''): Request
     {
     }
 
@@ -140,9 +160,9 @@ class Curl
      *
      * @param  Request $request
      *
-     * @return void
+     * @return Curl
      */
-    public function prepareRequest(\PhalconPlus\Curl\Request $request)
+    public function prepareRequest(\PhalconPlus\Curl\Request $request): Curl
     {
     }
 
@@ -153,7 +173,7 @@ class Curl
      *
      * @return Response
      */
-    public function sendRequest(\PhalconPlus\Curl\Request $request)
+    public function sendRequest(\PhalconPlus\Curl\Request $request): Response
     {
     }
 
@@ -165,7 +185,7 @@ class Curl
      *
      * @return Response
      */
-    protected function createResponseObject($response)
+    protected function createResponseObject($response): Response
     {
     }
 
@@ -175,9 +195,9 @@ class Curl
      * @param  string $func
      * @param  array  $args
      *
-     * @return mixed
+     * @return Response
      */
-    public function __call(string $func, array $args)
+    public function __call(string $func, array $args): Response
     {
     }
 

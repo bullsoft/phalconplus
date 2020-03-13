@@ -11,11 +11,16 @@ use PhalconPlus\Contracts\Auth\UserProvider;
 class Model implements \PhalconPlus\Contracts\Auth\Access\ModelEvent
 {
 
-    protected $user;
+    protected $user = null;
 
 
     protected $policies = array();
 
+
+
+    public function getUser()
+    {
+    }
 
     /**
      * @param \PhalconPlus\Contracts\Auth\UserProvider $user
@@ -25,38 +30,50 @@ class Model implements \PhalconPlus\Contracts\Auth\Access\ModelEvent
     }
 
     /**
-     * @param \Phalcon\Events\Event $event
-     * @param \Phalcon\Mvc\Model $model
-     * @return bool
+     * @param \PhalconPlus\Contracts\Auth\UserProvider $user
+     * @return Model
      */
-    public function beforeDelete(\Phalcon\Events\Event $event, \Phalcon\Mvc\Model $model): bool
+    public function setUser(\PhalconPlus\Contracts\Auth\UserProvider $user): Model
     {
     }
 
     /**
      * @param \Phalcon\Events\Event $event
      * @param \Phalcon\Mvc\Model $model
+     * @param mixed $context
      * @return bool
      */
-    public function beforeCreate(\Phalcon\Events\Event $event, \Phalcon\Mvc\Model $model): bool
+    public function beforeDelete(\Phalcon\Events\Event $event, \Phalcon\Mvc\Model $model, $context = null): bool
     {
     }
 
     /**
      * @param \Phalcon\Events\Event $event
      * @param \Phalcon\Mvc\Model $model
+     * @param mixed $context
      * @return bool
      */
-    public function beforeUpdate(\Phalcon\Events\Event $event, \Phalcon\Mvc\Model $model): bool
+    public function beforeCreate(\Phalcon\Events\Event $event, \Phalcon\Mvc\Model $model, $context = null): bool
     {
     }
 
     /**
      * @param \Phalcon\Events\Event $event
      * @param \Phalcon\Mvc\Model $model
+     * @param mixed $context
      * @return bool
      */
-    public function beforeValidation(\Phalcon\Events\Event $event, \Phalcon\Mvc\Model $model): bool
+    public function beforeUpdate(\Phalcon\Events\Event $event, \Phalcon\Mvc\Model $model, $context = null): bool
+    {
+    }
+
+    /**
+     * @param \Phalcon\Events\Event $event
+     * @param \Phalcon\Mvc\Model $model
+     * @param mixed $context
+     * @return bool
+     */
+    public function beforeValidation(\Phalcon\Events\Event $event, \Phalcon\Mvc\Model $model, $context = null): bool
     {
     }
 

@@ -265,9 +265,10 @@ class Assertion
      * @param mixed $value
      * @param mixed $message
      * @param mixed $propertyPath
+     * @param \ArrayObject $obj
      * @return bool
      */
-    public static function isJsonString($value, $message = null, $propertyPath = null): bool
+    public static function isJsonString($value, $message = null, $propertyPath = null, \ArrayObject $obj = null): bool
     {
     }
 

@@ -4,6 +4,7 @@ namespace PhalconPlus\Rpc\Server;
 
 use PhalconPlus\Base\ProtoBuffer;
 use PhalconPlus\Logger\Processor\LogId;
+use PhalconPlus\Base\Exception as BaseException;
 
 abstract class AbstractServer
 {
@@ -46,7 +47,7 @@ abstract class AbstractServer
      *     rawData = ["service":"Demo", "method":"demo", "args": <ProtoBuffer>, "logId": "234fdfaf3334"]
      * </code>
      * @return <ProtoBuffer>
-     * @throw \Exception
+     * @throw <BaseException>
      *
      */
     public function callByObject(array $rawData)

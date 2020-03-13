@@ -2,27 +2,29 @@
 
 namespace PhalconPlus\Contracts\Auth;
 
+use Phalcon\Mvc\Model;
+
 interface UserProvider
 {
 
+    /**
+     * @return string
+     */
+    public function getRole(): string;
 
-    public function getById();
-
-
-    public function getRole();
+    /**
+     * @return string
+     */
+    public function getName(): string;
 
     /**
      * @return string
      */
     public function getIdName(): string;
 
-
-    public function getIdValue();
-
     /**
-     * @param mixed $val
-     * @return UserProvider
+     * @return string
      */
-    public function setIdValue($val): UserProvider;
+    public function getUsernameName(): string;
 
 }
