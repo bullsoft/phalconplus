@@ -427,10 +427,11 @@ class Assertion
         return true;
     }
 
-    public static function isJsonString(var value, var message = null, var propertyPath = null) -> boolean
+    public static function isJsonString(var value, var message = null, var propertyPath = null, <\ArrayObject> obj = null) -> boolean
     {
         static::isString(value, message, propertyPath);
-        if null == json_decode(value) && JSON_ERROR_NONE != json_last_error() {
+        var data = json_decode(value, true);
+        if null == data && JSON_ERROR_NONE != json_last_error() {
             let message = sprintf(
                 message ? message : "Value \"%s\" is not a valid JSON string.",
                 static::stringify(value)
@@ -438,7 +439,9 @@ class Assertion
 
             throw static::createException(value, message, AssertionCode::INVALID_JSON_STRING, propertyPath);
         }
-
+        if is_object(obj) {
+            obj->exchangeArray(data);
+        }
         return true;
     }
 

@@ -83,19 +83,19 @@
 
 <pre class="zephir-source-file prettyprint linenums">
     namespace PhalconPlus\Contracts\Auth;
-// use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model;
 
 interface UserProvider
 {
-    public function getById();
-    // public function getByToken();
-    // public function getByCredentials(array credentials);
-    // public function validateCredentials(<Model> $user, array $credentials);
-    // public function guest() -> <UserProvider>;
-    public function getRole();
+    // public function getById() -> <UserProvider>;
+    // public function getByToken(string token) -> <UserProvider>;
+    // public function getByCredentials(array credentials) -> <UserProvider>;
+    // public function validateCredentials(<Model> user, array credentials) -> bool;
+
+    public function getRole() -> string;
+    public function getName() -> string;
     public function getIdName() -> string;
-    public function getIdValue();
-    public function setIdValue(var val) -> <UserProvider>;
+    public function getUsernameName() -> string;
 }</pre>
                 </div>
             </div>

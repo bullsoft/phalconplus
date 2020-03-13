@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.2.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Auth/UserProvider.html">PhalconPlus\Auth\UserProvider</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Auth/UserProvider.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Auth.html">Auth</a>
+        </span>
+        
+        <h1 class="class-name">UserProvider</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Auth;
+use PhalconPlus\Contracts\Auth\UserProvider as UserProviderContract;
+use Phalcon\Security;
+use Phalcon\Text;
+use Phalcon\Mvc\Model;
+
+abstract class UserProvider implements UserProviderContract
+{
+    protected id;
+    protected role = "Guests";
+    protected name = "";
+    protected entity = null { get };
+
+    public function __construct(<Model> user = null, string role = "Guests")
+    {
+        if is_null(user) {
+            let this->id = 0;    
+            let this->name = Text::random(Text::RANDOM_ALNUM);
+            let this->role = role;
+        } else {
+            var idName = this->getIdName();
+            var usernameName = this->getUsernameName();
+            var roleName = this->getRoleName();
+            
+            let this->id = user->{idName};
+            if !empty(this->id) {
+                let this->name = user->{usernameName};
+                let this->role = empty(user->{roleName}) ? "Members" : user->{roleName};
+                let this->entity = user;
+            } else {
+                let this->id = 0;    
+                let this->name = Text::random(Text::RANDOM_ALNUM);
+                let this->role = role;
+            }
+        }
+    }
+
+    public static function getById(string userId) -> <UserProvider>
+    {
+        // 
+    }
+    public static function getByToken(string token) -> <UserProvider>
+    {
+        // 
+    }
+    public static function getByCredentials(array credentials) -> <UserProvider>
+    {
+        // 
+    }
+    public static function loginByCredentials(array credentials) -> <UserProvider>
+    {
+        // 
+    }
+    public static function loginByToken(array credentials) -> <UserProvider>
+    {
+        // 
+    }
+    public static function checkLogin() -> bool
+    {
+        return false;
+    }
+    public static function checkLoginByToken() -> bool
+    {
+        return false;
+    }
+    public static function validateCredentials(<Model> user, array credentials) -> bool
+    {
+        return false;
+    }
+
+    public static function guest() -> <UserProvider>
+    {
+        var userClass = get_called_class();
+        return new {userClass}();
+    }
+
+    public static function hashPassword(string rawPasswd, bool makeSalt = false) -> array
+    {
+        var sec, salt = "", encryptedPasswd = "";
+
+        let sec = new Security();
+        if makeSalt === true {
+            let salt = sec->getSaltBytes();
+        }
+        let encryptedPasswd = sec->hash(Text::concat(rawPasswd, salt));
+        return [
+            "raw" : rawPasswd,
+            "encrypted" : encryptedPasswd,
+            "salt" : salt
+        ];
+    }
+
+    public static function checkPassword(string rawPasswd, string encryptedPasswd, string salt = "") -> bool
+    {
+        var sec;
+        let sec = new Security();
+        return sec->checkHash(Text::concat(rawPasswd, salt), encryptedPasswd);
+    }
+
+    public function can(string ability, var params) -> bool
+    {
+        return false;
+    }
+
+    public function entity() -> <Model> | null
+    {
+        return this->entity;
+    }
+
+    public function hasAccess(string roleName) -> bool
+    {
+        return false;
+    }
+    
+    public function getRole() -> string
+    {
+        return this->role;
+    }
+
+    public function getName() -> string
+    {
+        return this->name;
+    }
+
+    public function getIdName() -> string
+    {
+        return "id";
+    }
+
+    public function getUsernameName() -> string
+    {
+        return "username";
+    }
+
+    public function getRoleName() -> string
+    {
+        return "role";
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
