@@ -23,10 +23,10 @@ class RunMode extends AbstractEnum
 
     // 全局服务加载脚本定义
     protected scripts = [
-        "Web"   : "default-web.php", 
-        "Cli"   : "default-cli.php", 
-        "Srv"   : "default-web.php", 
-        "Micro" : "default-micro.php"
+        "Web"   : "/default-web.php", 
+        "Cli"   : "/default-cli.php", 
+        "Srv"   : "/default-web.php", 
+        "Micro" : "/default-micro.php"
     ];
 
     public function getScriptPath() -> string | null
