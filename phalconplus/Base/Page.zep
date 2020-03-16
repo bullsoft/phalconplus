@@ -26,29 +26,31 @@ class Page extends ProtoBuffer
     {
         Assert::notNull(pagable);
 
-        var hydrateMode, tmpData, item;
+        var hydrateMode, tmpData = [], item;
 
         let this->pagable = pagable;
 
         let hydrateMode = data->getHydrateMode();
 
-        switch(hydrateMode) {
-            case Resultset::HYDRATE_RECORDS:
-                let tmpData = new \ArrayObject();
-                let tmpData->modelName = get_class(data->getFirst());
-                let tmpData->columnMap = data->getFirst()->columnMap();
-                for item in iterator(data) {
-                    tmpData->append(item->toArray());
-                }
-                break;
-            default:
-                let tmpData = [];
-                for item in iterator(data) {
-                    let tmpData[] = item;
-                }
-                break;
+        if data->count() > 0 {
+            switch(hydrateMode) {
+                case Resultset::HYDRATE_RECORDS:
+                    let tmpData = new \ArrayObject();
+                    let tmpData->modelName = get_class(data->getFirst());
+                    let tmpData->columnMap = data->getFirst()->columnMap();
+                    for item in iterator(data) {
+                        tmpData->append(item->toArray());
+                    }
+                    break;
+                default:
+                    let tmpData = [];
+                    for item in iterator(data) {
+                        let tmpData[] = item;
+                    }
+                    break;
+            }
         }
-
+        
         let this->data = tmpData;
         let this->totalSize = totalSize;
 
