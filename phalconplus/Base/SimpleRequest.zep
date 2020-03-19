@@ -1,4 +1,5 @@
 namespace PhalconPlus\Base;
+use PhalconPlus\Base\ProtoBuffer;
 
 final class SimpleRequest extends AbstractRequest
 {
@@ -7,7 +8,7 @@ final class SimpleRequest extends AbstractRequest
      */
     private params = [];
 
-    public function softClone(array data)
+    public function softClone(array data, boolean deep = false) -> <ProtoBuffer>
     {
         var key, val;
         for key, val in data {
@@ -17,6 +18,7 @@ final class SimpleRequest extends AbstractRequest
                 let this->params[key] = val;
             }
         }
+        return this;
     }
 
     public function getParam(var idx, var defaultValue = null)
@@ -56,5 +58,10 @@ final class SimpleRequest extends AbstractRequest
     public function getParams() -> array
     {
         return this->params;
+    }
+
+    public function isEmpty() -> boolean
+    {
+        return empty(this->params);
     }
 }

@@ -7,7 +7,7 @@ final class SimpleResponse extends AbstractResponse
      */
     private result = [];
 
-    public function softClone(array data)
+    public function softClone(array data, boolean deep = false) -> <ProtoBuffer>
     {
         var key, val;
         for key, val in data {
@@ -17,6 +17,7 @@ final class SimpleResponse extends AbstractResponse
                 let this->result[key] = val;
             }
         }
+        return this;
     }
 
     public function getResult()
@@ -65,7 +66,7 @@ final class SimpleResponse extends AbstractResponse
         }
     }
 
-    public function isEmpty()
+    public function isEmpty() -> boolean
     {
         return empty(this->result);
     }
