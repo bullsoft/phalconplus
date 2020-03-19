@@ -17,21 +17,28 @@ abstract class AbstractServer
 
     abstract public function __construct(<\Phalcon\DI> di);
 
-    protected function callByParams(string! service, string! method, request)
+    protected function callByParams(string! service, string! method, request = null)
     {
-        var serviceClass = "", methodReflection;
+        var serviceClass = "", methodReflection, 
+            serviceObj, response, e;
 		
         let serviceClass = service->upperfirst() . "Service";
-        let methodReflection = new \ReflectionMethod(serviceClass, method);
-		
-		
+        try {
+            let methodReflection = new \ReflectionMethod(serviceClass, method);
+        } catch ReflectionException, e {
+            throw new BaseException("Service:method not found. Detail: " . serviceClass . " : " . method . ". RawException: ". e->getMessage());
+        }
+		if request == null && methodReflection->getNumberOfRequiredParameters() > 0 {
+            throw new BaseException(service."::".method." need required params");
+        }
+
         if methodReflection->getNumberOfParameters() > 0 {
     		// ...
             if is_object(request) && request instanceof ProtoBuffer {
                 let this->phpOnly = true;
             } elseif is_array(request) {
-                var tmp = [], param, paramClass;
-                let tmp = request;
+                var tmp = request, param, paramClass;
+                // We just care the first parameter, and ignore others
                 let param = new \ReflectionParameter([serviceClass, method], 0);
                 if param->getClass() {
                     let paramClass = param->getClass()->getName();
@@ -40,46 +47,40 @@ abstract class AbstractServer
                 } else {
                     throw new BaseException("Service class:method definition is invalid. Detail: " . service . " : " . method . ". Request: " . json_encode(request));
                 }
+            } elseif is_null(request) {
+                // Now "null" for optional param is allowed
             } else {
                 throw new BaseException("Your args is not allowed. Request: " . json_encode(request));
             }
     		// ...	
         }
-	
-
-        var serviceObj, response, e;
-		
+        // Instance Server Object
         let serviceObj = new {serviceClass}(this->di);
-
-        if is_callable([serviceObj, method]) {
-		
-            this->eventsManager->fire("backend-server:beforeExecute", $this, [service, method, request]);
-			
-            try {
-                let response = <ProtoBuffer> call_user_func_array([serviceObj, method], [request]);
-            } catch \Exception, e {
-                throw e;
-            }
-			
-            this->eventsManager->fire("backend-server:afterExecute", $this, [service, method, request]);
-			
-            // We do not allow to return #Resource type. And if an object returned, we expected type <ProtoBuffer>
-            if is_object(response) && !(response instanceof ProtoBuffer) {
-                throw new BaseException("Your output is not allowed. Response: " . get_class(response) . ". We expect scalar type or <ProtoBuffer>");
-            } elseif is_resource(response) {
-                throw new BaseException("Your output is not allowed. Response: #Resource.");
-            }
-			
-            // Distinguish object/scalar types when there are non-php clients
-            if this->phpOnly == false && is_object(response) {
-                return response->toArray();
-            }
-			
-            return response;
-			
-        } else {
-            throw new BaseException("Service:method not found. Detail: " . service . " : " . method);
+        // Fire Event "beforeExecute"
+        this->eventsManager->fire("backend-server:beforeExecute", $this, [service, method, request]);
+        // Invoke target method
+        try {
+            // We expected type <ProtoBase>
+            let response = methodReflection->invokeArgs(serviceObj, [request]);
+        } catch \Exception, e {
+            throw new BaseException(e->getMessage());
         }
+        // Fire Event "afterExecute"
+        this->eventsManager->fire("backend-server:afterExecute", $this, [service, method, request]);
+        
+        // We do not allow to return #Resource type. And if an object returned, we expected type <ProtoBuffer>
+        if is_object(response) && !(response instanceof ProtoBuffer) {
+            throw new BaseException("Your output is not allowed. Response: " . get_class(response) . ". We expect scalar type or <ProtoBuffer>");
+        } elseif is_resource(response) {
+            throw new BaseException("Your output is not allowed. Response: #Resource.");
+        }
+        
+        // Distinguish object/scalar types when there are non-php clients
+        if this->phpOnly == false && is_object(response) {
+            return response->toArray();
+        }
+        
+        return response;  
     }
 
     /**
@@ -94,31 +95,29 @@ abstract class AbstractServer
      */
     public function callByObject(array rawData)
     {
-        var service, method, request, response, logId = "", message = "";
+        var service, method, request, 
+            response, logId = "", message = "";
 
         if !fetch service, rawData["service"] {
             throw new BaseException("service " . service . " not exists");
         }
-
         if !fetch method, rawData["method"] {
             throw new BaseException("method " . method . " not exists");
         }
-
         if !fetch request, rawData["args"] {
-            throw new BaseException("args not exists");
+            // throw new BaseException("args not exists");
+            let request = null;
         }
 
         this->eventsManager->fire("backend-server:requestCheck", $this, [service, method, rawData]);
 
-        let service = trim(service),
-            method = trim(method);
-
+        let service = trim(service), method = trim(method);
         if empty service || empty method {
             throw new BaseException("service:method(args) must exists. All of them!!!");
         }
 
+        // set logId, same as request api
         if fetch logId, rawData["logId"] {
-            // set logId, same as request api
             LogId::setId(logId);
         }
 
@@ -137,7 +136,6 @@ abstract class AbstractServer
             let message = "RPC Response - logId: " . logId . ", invoke: " . service . "::" . method . ", response: " . json_encode(response);
             this->di->get("logger")->log(message);
         }
-
         return response;
     }
 }
