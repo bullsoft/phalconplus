@@ -22,32 +22,36 @@ class Page extends ProtoBuffer
 
     private totalPage = 0;
 
-    public function __construct(<Pagable> pagable, totalSize, <\Phalcon\Mvc\Model\Resultset> data)
+    public function __construct(<Pagable> pagable, int totalSize, var data = [])
     {
         Assert::notNull(pagable);
-
-        var hydrateMode, tmpData = [], item;
+        Assert::isTraversable(data);
 
         let this->pagable = pagable;
 
-        let hydrateMode = data->getHydrateMode();
+        var hydrateMode, tmpData = [], item;
 
-        if data->count() > 0 {
-            switch(hydrateMode) {
-                case Resultset::HYDRATE_RECORDS:
-                    let tmpData = new \ArrayObject();
-                    let tmpData->modelName = get_class(data->getFirst());
-                    let tmpData->columnMap = data->getFirst()->columnMap();
-                    for item in iterator(data) {
-                        tmpData->append(item->toArray());
-                    }
-                    break;
-                default:
-                    let tmpData = [];
-                    for item in iterator(data) {
-                        let tmpData[] = item;
-                    }
-                    break;
+        if typeof data == "array" {
+            let tmpData = data;
+        } elseif typeof data == "object" && data instanceof Resultset {
+            let hydrateMode = data->getHydrateMode();
+            if data->count() > 0 {
+                switch(hydrateMode) {
+                    case Resultset::HYDRATE_RECORDS:
+                        let tmpData = new \ArrayObject();
+                        let tmpData->modelName = get_class(data->getFirst());
+                        let tmpData->columnMap = data->getFirst()->columnMap();
+                        for item in iterator(data) {
+                            tmpData->append(item->toArray());
+                        }
+                        break;
+                    default:
+                        let tmpData = [];
+                        for item in iterator(data) {
+                            let tmpData[] = item;
+                        }
+                        break;
+                }
             }
         }
         
@@ -74,7 +78,7 @@ class Page extends ProtoBuffer
 
     public function setTotalPage()
     {
-        let this->totalPage = ceil(this->totalSize / this->pageSize);
+        let this->totalPage = intval(ceil(this->totalSize / this->pageSize));
         return this;
     }
 
@@ -118,7 +122,7 @@ class Page extends ProtoBuffer
         return this->data;
     }
 
-    public function isEmpty()
+    public function isEmpty() -> boolean
     {
         return count(this->data) == 0;
     }
