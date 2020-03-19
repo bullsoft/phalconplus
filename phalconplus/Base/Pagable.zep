@@ -1,14 +1,51 @@
 namespace PhalconPlus\Base;
-use PhalconPlus\Enum\OrderByDirection as OrderByDirection;
+use PhalconPlus\Enum\OrderByDirection;
+use PhalconPlus\Base\ProtoOrderBy;
 
 class Pagable extends ProtoBuffer
 {
     const DEFAULT_PAGE_NO = 1;
-    const DEFAULT_PAGE_SIZE = 15;
+    const DEFAULT_PAGE_SIZE = 20;
 
-    protected pageNo = self::DEFAULT_PAGE_NO;
-    protected pageSize = self::DEFAULT_PAGE_SIZE;
+    protected pageNo = 0;
+    protected pageSize = 0;
     protected orderBys = [];
+
+    public function __construct(int pageNo = 0, int pageSize = 0, array orderBys = [])
+    {
+        if pageNo < 1 {
+            let pageNo = Pagable::DEFAULT_PAGE_NO;
+        }
+        if pageSize < 1 {
+            let pageSize = Pagable::DEFAULT_PAGE_SIZE;
+        }
+        
+        this->setPageNo(pageNo)
+            ->setPageSize(pageSize);
+
+        if !empty orderBys {
+            this->setOrderBys(orderBys);
+        }
+    }
+
+    public static function fromArray(array pages, bool cursor = false)
+    {
+        int pageNo, pageSize;
+        if cursor == false {
+            let pageNo = isset(pages["pageNo"]) ? (int) pages["pageNo"] : 0;
+            let pageSize = isset(pages["pageSize"]) ? (int) pages["pageSize"] : 0;
+        } else {
+            let pageSize = (int) pages["limit"];
+            let pageNo = intval(ceil(intval(pages["offset"]) / pageSize)) + 1; 
+        }
+        var clsInst = null,
+            clsName = get_called_class();
+        let clsInst = new {clsName}(pageNo, pageSize);
+        if isset pages["orderBys"] {
+            clsInst->setOrderBys(pages["orderBys"]);
+        }
+        return clsInst;
+    }
 
     public function getPageNo() -> int
     {
@@ -20,7 +57,7 @@ class Pagable extends ProtoBuffer
         return this->pageSize;
     }
 
-    public function getOrderBys() -> <\PhalconPlus\Base\ProtoOrderBy>
+    public function getOrderBys() -> <ProtoOrderBy>
     {
         return this->orderBys;
     }
@@ -35,7 +72,7 @@ class Pagable extends ProtoBuffer
         return this->pageSize;
     }
 
-    public function setOrderBy(<\PhalconPlus\Base\ProtoOrderBy> orderBy)
+    public function setOrderBy(<ProtoOrderBy> orderBy)
     {
         array_push(this->orderBys, orderBy);
         return this;
@@ -54,6 +91,7 @@ class Pagable extends ProtoBuffer
                 this->setOrderBy(orderBy);
             }
         }
+        return this;
     }
 
     public function hasOrderBy()
