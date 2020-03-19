@@ -13,15 +13,13 @@ class Trace extends AbstractProcessor
     {
         let this->mode = mode;
         if empty skipClassesPartials {
-            let this->skipClassesPartials = ["PhalconPlus\\", "Phalcon\\"];
+            // let this->skipClassesPartials = ["PhalconPlus\\", "Phalcon\\", "Ph\\"];
         }
     }
 
     public function __toString()
     {
-        var trace;
-        let trace = debug_backtrace();
-
+        var trace = debug_backtrace();
         // skip first since it's always the current method
         array_shift(trace);
         // the strval is also skipped
@@ -45,13 +43,13 @@ class Trace extends AbstractProcessor
         let j = i - 1;
 
         let trace1 = [
-            "file"      : isset(trace[j]["file"]) ? trace[j]["file"] : "Nil",
-            "line"      : isset(trace[j]["line"]) ? trace[j]["line"] : -1
+            "file" : isset(trace[j]["file"]) ? trace[j]["file"] : "Nil",
+            "line" : isset(trace[j]["line"]) ? trace[j]["line"] : -1
         ];
 
         let trace2 = [
-            "class"     : isset(trace[i]["class"]) ? trace[i]["class"] : "Nil",
-            "function"  : isset(trace[i]["function"]) ? trace[i]["function"] : "Nil"
+            "class"    : isset(trace[i]["class"]) ? trace[i]["class"] : "Nil",
+            "function" : isset(trace[i]["function"]) ? trace[i]["function"] : "Nil"
         ];
 
         switch this->mode & 0x0011 {
