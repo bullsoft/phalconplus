@@ -1,5 +1,6 @@
 namespace PhalconPlus\Assert;
 use PhalconPlus\Enum\AssertionCode;
+use PhalconPlus\Assert\InvalidArgumentException;
 
 /**
  *
@@ -9,7 +10,7 @@ class Assertion
 {
     protected static function createException(value, message, code, propertyPath, array constraints = [])
     {
-        return new \PhalconPlus\Assert\InvalidArgumentException(message, code, propertyPath, value, constraints);
+        return new InvalidArgumentException(message, code, propertyPath, value, constraints);
     }
 
     public static function eq(var value1, var value2, var message = null, var propertyPath = null) -> boolean
@@ -316,6 +317,48 @@ class Assertion
         return true;
     }
 
+     public static function isTraversable(value, var message = null, string propertyPath = null) -> boolean
+     {
+         if !is_array(value) && !is_object(value) && !(value instanceof \Traversable) {
+             let message = sprintf(
+                 message ? message : "Value \"%s\" is not an array and does not implement Traversable.",
+                 static::stringify(value)
+             );
+             throw static::createException(value, message, AssertionCode::INVALID_TRAVERSABLE, propertyPath);
+         }
+         return true;
+     }
+ 
+     public static function isArrayAccessible(value, var message = null, string propertyPath = null) -> boolean
+     {
+         if !is_array(value) && !is_object(value) && !(value instanceof \ArrayAccess) {
+             let message = sprintf(
+                 message ? message : "Value \"%s\" is not an array and does not implement ArrayAccess.",
+                 static::stringify(value)
+             );
+             throw static::createException(value, message, AssertionCode::INVALID_ARRAY_ACCESSIBLE, propertyPath);
+         }
+         return true;
+     }
+ 
+     public static function isCountable(value, var message = null, string propertyPath = null) -> boolean
+     {
+         var assert;
+         if (function_exists("is_countable")) {
+             let assert = is_countable(value);
+         } else {
+             let assert = is_array(value) || (is_object(value) && (value instanceof \Countable || value instanceof \ResourceBundle || value instanceof \SimpleXMLElement));
+         }
+         if !assert {
+             let message = sprintf(
+                 message ? message : "Value \"%s\" is not an array and does not implement Countable.",
+                 static::stringify(value)
+             );
+             throw static::createException(value, message, AssertionCode::INVALID_COUNTABLE, propertyPath);
+         }
+         return true;
+     }
+
     public static function isInstanceOf(object value, var classNames, var message = null, var propertyPath = null) -> bool
     {
         string classItem;
@@ -328,11 +371,11 @@ class Assertion
         } elseif is_array(classNames) { // instance of anyone of classNames
             var tmp;
             for tmp in classNames {
-                let classItem = (string) tmp;
-                if value instanceof classItem { 
+                let classItem = tmp;
+                if value instanceof classItem {
                     let result = true;
                     break;
-                } 
+                }
             }
         }
         if result === false {
