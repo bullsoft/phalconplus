@@ -1,16 +1,28 @@
 namespace PhalconPlus\Base;
+use PhalconPlus\Base\Exception as BaseException;
+use PhalconPlus\Assert\Assertion as Assert;
 
-class ProtoBuffer implements \JsonSerializable
+class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable, \IteratorAggregate
 {
-    public function softClone(array data)
+    public function __construct(var data = [])
+    {
+        Assert::isArray(data);
+        this->softClone(data, true);
+    }
+
+    public function softClone(array data, boolean deep = false) -> <ProtoBuffer>
     {
         var key, val;
         for key, val in data {
-            if property_exists(this, key) {
-                // error_log("SoftClone: ". key . ": " . var_export(val, true));
+            if deep === true { 
                 this->__set(key, val);
+            } else {
+                if property_exists(this, key) {
+                    this->__set(key, val);
+                }
             }
         }
+        return this;
     }
 
     public function __set(string! key, val)
@@ -39,19 +51,21 @@ class ProtoBuffer implements \JsonSerializable
         }
 
         // rule break: hard code
-        if is_scalar(val) || is_null(val) || is_array(val) {
-            let this->{key} = val;
-            return this;
-        } elseif is_object(val) && val instanceof "\PhalconPlus\Base\ProtoBuffer" {
+        if is_scalar(val) || is_null(val) || is_array(val) || (is_object(val) && val instanceof ProtoBuffer) {
             let this->{key} = val;
             return this;
         } else {
-            throw new \Exception("Please add " . method . " in your class, complex-type vars are not allowed to assign directly");
+            throw new BaseException("Please add " . method . " in your class, complex-type vars are not allowed to assign directly");
         }
     }
 
     public function __isset(string! key)
     {
+        var method;
+        let method = "get" . key->upperfirst();
+        if method_exists(this, method) {
+            return true;
+        }
         if property_exists(this, key) {
             return true;
         }
@@ -72,6 +86,23 @@ class ProtoBuffer implements \JsonSerializable
         }
 
         return null;
+    }
+
+    public function __unset(string! key) -> void
+    {
+        var method;
+        let method = "unset" . key->upperfirst();
+
+        if method_exists(this, method) {
+            this->{method}();
+        }
+
+        if property_exists(this, key) {
+            %{
+                zephir_unset_property(this_ptr, Z_STRVAL(key));
+            }%
+        }
+
     }
 
     protected function getSelfVars() -> array
@@ -127,5 +158,44 @@ class ProtoBuffer implements \JsonSerializable
         });
         return pros;
         */
+    }
+
+    public function offsetSet(offset, value) -> void
+    {
+        Assert::isString(offset);
+        this->__set(offset, value);
+    }
+
+    public function offsetExists(offset) -> bool
+    {
+        Assert::isString(offset);
+        return this->__isset(offset);
+    }
+
+    public function offsetUnset(offset) -> void
+    {
+        Assert::isString(offset);
+        this->__unset(offset);
+    }
+
+    public function offsetGet(offset) 
+    {
+        Assert::isString(offset);
+        return this->__get(offset);
+    }
+
+    public function count() -> int
+    {
+        return count(this->getSelfVars());
+    }
+
+    public function isEmpty() -> boolean
+    {
+        return empty(this->getSelfVars());
+    }
+
+    public function getIterator() -> <\RecursiveArrayIterator>
+    {
+        return new \RecursiveArrayIterator(this->getSelfVars());
     }
 }
