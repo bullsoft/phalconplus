@@ -5,14 +5,8 @@ use PhalconPlus\Base\Exception as BaseException;
 
 abstract class AbstractServer
 {
-    protected di = null {
-        get
-    };
-
-    protected phpOnly = false {
-        get
-    };
-
+    protected di = null { get };
+    protected phpOnly = false { get };
     protected eventsManager = null;
 
     abstract public function __construct(<\Phalcon\DI> di);
@@ -25,7 +19,7 @@ abstract class AbstractServer
         let serviceClass = service->upperfirst() . "Service";
         try {
             let methodReflection = new \ReflectionMethod(serviceClass, method);
-        } catch ReflectionException, e {
+        } catch \ReflectionException, e {
             throw new BaseException("Service:method not found. Detail: " . serviceClass . " : " . method . ". RawException: ". e->getMessage());
         }
 		if request == null && methodReflection->getNumberOfRequiredParameters() > 0 {
@@ -95,8 +89,8 @@ abstract class AbstractServer
      */
     public function callByObject(array rawData)
     {
-        var service, method, request, 
-            response, logId = "", message = "";
+        var service, method, request, response, 
+            logId = "", message = "";
 
         if !fetch service, rawData["service"] {
             throw new BaseException("service " . service . " not exists");
