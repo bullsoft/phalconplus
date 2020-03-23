@@ -2,6 +2,18 @@ namespace PhalconPlus\Helper;
 
 class Variable
 {
+    const NULL_VALUE = "$Ph/Var/SoftNull$";
+
+    public static function softNull()
+    {
+        return Variable::NULL_VALUE;
+    }
+
+    public static function isSoftNull(string nil)
+    {
+        return Variable::NULL_VALUE === nil;
+    }
+
     public static function stringify(var value, bool full = false) -> string
     {
         if is_bool(value) {

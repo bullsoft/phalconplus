@@ -41,4 +41,14 @@ class Arr
     {
         return new ProtoBuffer(inputArray);
     }
+
+    public static function encodeJson(inputArray) -> string
+    {
+        var str = json_encode(inputArray, JSON_UNESCAPED_UNICODE);
+        var errCode = json_last_error();
+        if JSON_ERROR_NONE != errCode {
+            throw new Exception(json_last_error_msg());
+        }
+        return str;
+    }
 }
