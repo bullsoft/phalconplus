@@ -161,6 +161,9 @@ class AssertionCode extends \PhalconPlus\Enum\AbstractEnum
     const INVALID_RESOURCE = 225;
 
 
+    const INVALID_COUNTABLE = 226;
+
+
     const INVALID_STRING_NOT_CONTAINS = 229;
 
 

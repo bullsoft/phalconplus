@@ -15,8 +15,9 @@ final class Bootstrap
     /**
      * @param string $moduleDir
      * @param string $env
+     * @param string $runMode
      */
-    public function __construct(string $moduleDir, string $env = '')
+    public function __construct(string $moduleDir, string $env = '', string $runMode = '')
     {
     }
 

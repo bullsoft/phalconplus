@@ -3,6 +3,7 @@
 namespace PhalconPlus\Assert;
 
 use PhalconPlus\Enum\AssertionCode;
+use PhalconPlus\Assert\InvalidArgumentException;
 
 /**
  * @ref https://github.com/beberlei/assert
@@ -247,6 +248,36 @@ class Assertion
      * @return bool
      */
     public static function isArray($value, $message = null, $propertyPath = null): bool
+    {
+    }
+
+    /**
+     * @param mixed $value
+     * @param mixed $message
+     * @param string $propertyPath
+     * @return bool
+     */
+    public static function isTraversable($value, $message = null, string $propertyPath = null): bool
+    {
+    }
+
+    /**
+     * @param mixed $value
+     * @param mixed $message
+     * @param string $propertyPath
+     * @return bool
+     */
+    public static function isArrayAccessible($value, $message = null, string $propertyPath = null): bool
+    {
+    }
+
+    /**
+     * @param mixed $value
+     * @param mixed $message
+     * @param string $propertyPath
+     * @return bool
+     */
+    public static function isCountable($value, $message = null, string $propertyPath = null): bool
     {
     }
 

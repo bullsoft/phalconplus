@@ -47,6 +47,7 @@ final class Sys extends AbstractEnum
 
     /**
      * @param string $moduleDir
+     * @return void
      */
     public static function init(string $moduleDir)
     {
@@ -54,6 +55,7 @@ final class Sys extends AbstractEnum
 
     /**
      * @param \PhalconPlus\App\App $app
+     * @return void
      */
     public static function initApp(\PhalconPlus\App\App $app)
     {
@@ -154,9 +156,10 @@ final class Sys extends AbstractEnum
     }
 
     /**
-     * @param mixed $filePath
+     * @param string $filePath
+     * @param array $context
      */
-    public static function load($filePath)
+    public static function load(string $filePath, array $context = array())
     {
     }
 

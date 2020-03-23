@@ -45,8 +45,9 @@ class ModuleDef
      * @param \PhalconPlus\App\App $app
      * @param string $moduleDir
      * @param bool $isPrimary
+     * @param string $runMode
      */
-    public function __construct(\PhalconPlus\App\App $app, string $moduleDir, bool $isPrimary = false)
+    public function __construct(\PhalconPlus\App\App $app, string $moduleDir, bool $isPrimary = false, string $runMode = '')
     {
     }
 

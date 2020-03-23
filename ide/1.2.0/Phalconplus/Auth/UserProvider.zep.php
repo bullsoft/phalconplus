@@ -6,8 +6,9 @@ use PhalconPlus\Contracts\Auth\UserProvider as UserProviderContract;
 use Phalcon\Security;
 use Phalcon\Text;
 use Phalcon\Mvc\Model;
+use JsonSerializable;
 
-abstract class UserProvider implements UserProviderContract
+abstract class UserProvider implements UserProviderContract, \JsonSerializable
 {
 
     protected $id;
@@ -28,10 +29,10 @@ abstract class UserProvider implements UserProviderContract
     }
 
     /**
-     * @param \Phalcon\Mvc\Model $user
+     * @param mixed $user
      * @param string $role
      */
-    public function __construct(\Phalcon\Mvc\Model $user = null, string $role = 'Guests')
+    public function __construct($user = null, string $role = 'Guests')
     {
     }
 
@@ -148,6 +149,11 @@ abstract class UserProvider implements UserProviderContract
     {
     }
 
+
+    public function getId()
+    {
+    }
+
     /**
      * @return string
      */
@@ -180,6 +186,11 @@ abstract class UserProvider implements UserProviderContract
      * @return string
      */
     public function getRoleName(): string
+    {
+    }
+
+
+    public function jsonSerialize()
     {
     }
 

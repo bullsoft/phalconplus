@@ -26,7 +26,7 @@ class RunMode extends AbstractEnum
     protected $mapClasses = array('Web' => 'Web', 'Cli' => 'Cli', 'Srv' => 'Srv', 'Micro' => 'Micro');
 
 
-    protected $scripts = array('Web' => 'default-web.php', 'Cli' => 'default-cli.php', 'Srv' => 'default-web.php', 'Micro' => 'default-micro.php');
+    protected $scripts = array('Web' => '/default-web.php', 'Cli' => '/default-cli.php', 'Srv' => '/default-web.php', 'Micro' => '/default-micro.php');
 
 
     /**

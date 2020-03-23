@@ -17,11 +17,21 @@ class Trace extends \PhalconPlus\Logger\Processor\AbstractProcessor
     private $mode = self::T_FILE;
 
 
+    private $limit = 15;
+
+
     /**
      * @param int $mode
      * @param array $skipClassesPartials
      */
     public function __construct(int $mode = self::T_FILE, array $skipClassesPartials = array())
+    {
+    }
+
+    /**
+     * @param int $limit
+     */
+    public function setLimit(int $limit = 15)
     {
     }
 

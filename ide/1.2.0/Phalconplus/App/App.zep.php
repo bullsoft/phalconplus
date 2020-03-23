@@ -43,16 +43,18 @@ final class App extends Phalcon\Application
 
     /**
      * @param string $env
+     * @param string $runMode
      * @return App
      */
-    public function boot(string $env = ''): App
+    public function boot(string $env = '', string $runMode = ''): App
     {
     }
 
     /**
+     * @param string $runMode
      * @return App
      */
-    private function bootPrimaryModule(): App
+    private function bootPrimaryModule(string $runMode = ''): App
     {
     }
 

@@ -38,7 +38,7 @@ abstract class AbstractServer
      * @param string $method
      * @param mixed $request
      */
-    protected function callByParams(string $service, string $method, $request)
+    protected function callByParams(string $service, string $method, $request = null)
     {
     }
 

@@ -32,10 +32,10 @@ class Page extends \PhalconPlus\Base\ProtoBuffer
 
     /**
      * @param Pagable $pagable
-     * @param mixed $totalSize
-     * @param \Phalcon\Mvc\Model\Resultset $data
+     * @param int $totalSize
+     * @param mixed $data
      */
-    public function __construct(Pagable $pagable, $totalSize, \Phalcon\Mvc\Model\Resultset $data)
+    public function __construct(Pagable $pagable, int $totalSize, $data = array())
     {
     }
 
@@ -94,8 +94,10 @@ class Page extends \PhalconPlus\Base\ProtoBuffer
     {
     }
 
-
-    public function isEmpty()
+    /**
+     * @return bool
+     */
+    public function isEmpty(): bool
     {
     }
 

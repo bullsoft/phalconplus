@@ -3,6 +3,7 @@
 namespace PhalconPlus\Base;
 
 use PhalconPlus\Enum\OrderByDirection;
+use PhalconPlus\Base\ProtoOrderBy;
 
 class Pagable extends \PhalconPlus\Base\ProtoBuffer
 {
@@ -10,17 +11,35 @@ class Pagable extends \PhalconPlus\Base\ProtoBuffer
     const DEFAULT_PAGE_NO = 1;
 
 
-    const DEFAULT_PAGE_SIZE = 15;
+    const DEFAULT_PAGE_SIZE = 20;
 
 
-    protected $pageNo = self::DEFAULT_PAGE_NO;
+    protected $pageNo = 0;
 
 
-    protected $pageSize = self::DEFAULT_PAGE_SIZE;
+    protected $pageSize = 0;
 
 
     protected $orderBys = array();
 
+
+    /**
+     * @param int $pageNo
+     * @param int $pageSize
+     * @param array $orderBys
+     */
+    public function __construct(int $pageNo = 0, int $pageSize = 0, array $orderBys = array())
+    {
+    }
+
+    /**
+     * @param array $pages
+     * @param bool $cursor
+     * @return Pagable
+     */
+    public static function fromArray(array $pages, bool $cursor = false): Pagable
+    {
+    }
 
     /**
      * @return int
@@ -37,9 +56,9 @@ class Pagable extends \PhalconPlus\Base\ProtoBuffer
     }
 
     /**
-     * @return \PhalconPlus\Base\ProtoOrderBy
+     * @return ProtoOrderBy
      */
-    public function getOrderBys(): \PhalconPlus\Base\ProtoOrderBy
+    public function getOrderBys(): ProtoOrderBy
     {
     }
 
@@ -59,34 +78,40 @@ class Pagable extends \PhalconPlus\Base\ProtoBuffer
 
     /**
      * @param \PhalconPlus\Base\ProtoOrderBy $orderBy
+     * @return Pagable
      */
-    public function setOrderBy(\PhalconPlus\Base\ProtoOrderBy $orderBy)
+    public function setOrderBy(\PhalconPlus\Base\ProtoOrderBy $orderBy): Pagable
     {
     }
 
     /**
      * @param array $orderBys
+     * @return Pagable
      */
-    public function setOrderBys(array $orderBys)
+    public function setOrderBys(array $orderBys): Pagable
     {
     }
 
-
-    public function hasOrderBy()
+    /**
+     * @return bool
+     */
+    public function hasOrderBy(): bool
     {
     }
 
     /**
      * @param mixed $pageNo
+     * @return Pagable
      */
-    public function setPageNo($pageNo)
+    public function setPageNo($pageNo): Pagable
     {
     }
 
     /**
      * @param mixed $pageSize
+     * @return Pagable
      */
-    public function setPageSize($pageSize)
+    public function setPageSize($pageSize): Pagable
     {
     }
 
