@@ -1,13 +1,19 @@
 namespace PhalconPlus\Base;
 use PhalconPlus\Base\Exception as BaseException;
 use PhalconPlus\Assert\Assertion as Assert;
+use PhalconPlus\Contracts\EmptyOrNot;
+use PhalconPlus\Contracts\ArrayOf;
+use PhalconPlus\Helper\Variable;
 
-class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable, \IteratorAggregate
+class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable, 
+                             \IteratorAggregate, EmptyOrNot, ArrayOf
 {
     public function __construct(var data = [])
     {
         Assert::isArray(data);
-        this->softClone(data, true);
+        if !empty data {
+            this->softClone(data, true);
+        }
     }
 
     public function softClone(array data, boolean deep = false) -> <ProtoBuffer>
@@ -27,10 +33,17 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable, \Itera
 
     public function __set(string! key, val)
     {
-        var method, param, paramClass, paramClassRef, paramObj;
-        let method = "set" . key->upperfirst();
+        var method, methodRef, e,
+            param, paramClass, paramClassRef, paramObj;
+
+        let method = "set".key->upperfirst();
         // error_log("Proto__set: " . key . ": " . var_export(val, true));
-        if method_exists(this, method) {
+
+        try {
+            let methodRef = new \ReflectionMethod(this, method);
+            if methodRef->getNumberOfParameters() < 1 {
+                throw new BaseException(__CLASS__."::".method."() need at least 1 parameter");
+            }
             let param = new \ReflectionParameter([this, method], 0);
             if param->getClass() {
                 // error_log("Proto__set: param class" . param->getClass());
@@ -39,21 +52,21 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable, \Itera
                 let paramClassRef = new \ReflectionClass(paramClass);
                 // if is-a ProtoBuffer class
                 if paramClassRef->isSubclassOf("\\PhalconPlus\\Base\\ProtoBuffer") {
-                    let paramObj = paramClassRef->newInstance();
-                    paramObj->softClone(val);
+                    let paramObj = (paramClassRef->newInstance())->softClone(val);
                     let val = paramObj;
                 } else {
                     let paramObj = paramClassRef->newInstance(val);
                     let val = paramObj;
                 }
             }
-            return this->{method}(val);
+            return methodRef->invokeArgs(this, [val]);
+        } catch \Exception, e {
+            // nothing...
         }
 
         // rule break: hard code
         if is_scalar(val) || is_null(val) || is_array(val) || (is_object(val) && val instanceof ProtoBuffer) {
             let this->{key} = val;
-            return this;
         } else {
             throw new BaseException("Please add " . method . " in your class, complex-type vars are not allowed to assign directly");
         }
@@ -96,27 +109,34 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable, \Itera
         if method_exists(this, method) {
             this->{method}();
         }
-
         if property_exists(this, key) {
             %{
                 zephir_unset_property(this_ptr, Z_STRVAL(key));
             }%
         }
+    }
 
+    public function isSetGet(string! key)
+    {
+        if this->__isset(key) {
+            return this->__get(key);
+        }
+        return Variable::softNull();
     }
 
     protected function getSelfVars() -> array
     {
-        var objReflection = null;
-        var vars = [], pros = [], pro = null;
+        var objRef = null, vars = [], 
+            pros = [], pro = null;
 
-        let objReflection = new \ReflectionObject(this);
-        let pros = objReflection->getProperties();
+        let objRef = new \ReflectionObject(this);
+        let pros = objRef->getProperties();
 
         for pro in pros {
             pro->setAccessible(true);
             let vars[pro->getName()] = pro->getValue(this);
         }
+
         return vars;
     }
 
@@ -125,18 +145,14 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable, \Itera
         return this->toArray();
     }
 
-    public function toArray(array data = [])
+    public function toArray(array inputPros = []) -> array
     {
-        var pros = [], newPros = [];
-
-        if empty data {
-            let pros = this->getSelfVars();
-        } else {
-            let pros = data;
-        }
+        var newPros = [], currPros = [];
+        let currPros = empty(inputPros) ? this->getSelfVars() : inputPros;
 
         var key, val;
-        for key, val in pros {
+        
+        for key, val in currPros {
             if is_array(val) && !empty(val) {
                 let newPros[key] = this->toArray(val);
             } elseif is_object(val) && method_exists(val, "toArray") {
