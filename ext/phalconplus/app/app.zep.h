@@ -42,12 +42,22 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_boot, 0, 0, 
 #else
 	ZEND_ARG_INFO(0, env)
 #endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, runMode, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, runMode)
+#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_app_bootprimarymodule, 0, 0, PhalconPlus\\App\\App, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_bootprimarymodule, 0, 0, IS_OBJECT, "PhalconPlus\\App\\App", 0)
+#endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, runMode, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, runMode)
 #endif
 ZEND_END_ARG_INFO()
 

@@ -21,7 +21,17 @@ PHP_METHOD(PhalconPlus_Enum_Sys, classAlias);
 PHP_METHOD(PhalconPlus_Enum_Sys, load);
 void zephir_init_static_properties_PhalconPlus_Enum_Sys(TSRMLS_D);
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_init, 0, 1, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_init, 0, 1, IS_VOID, NULL, 0)
+#endif
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_init, 0, 0, 1)
+#define arginfo_phalconplus_enum_sys_init NULL
+#endif
+
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, moduleDir, IS_STRING, 0)
 #else
@@ -29,7 +39,17 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_init, 0, 0, 1)
 #endif
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_initapp, 0, 1, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_initapp, 0, 1, IS_VOID, NULL, 0)
+#endif
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_initapp, 0, 0, 1)
+#define arginfo_phalconplus_enum_sys_initapp NULL
+#endif
+
 	ZEND_ARG_OBJ_INFO(0, app, PhalconPlus\\App\\App, 0)
 ZEND_END_ARG_INFO()
 
@@ -145,7 +165,12 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_sys_classalias,
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_sys_load, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, filePath, IS_STRING, 0)
+#else
 	ZEND_ARG_INFO(0, filePath)
+#endif
+	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_enum_sys_method_entry) {

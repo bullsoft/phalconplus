@@ -100,7 +100,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 	ZVAL_STRING(&_2, "/");
 	zephir_fast_trim(&_1, &moduleDir, &_2, ZEPHIR_TRIM_RIGHT);
 	zephir_get_strval(&moduleDir, &_1);
-	ZEPHIR_CALL_FUNCTION(&_3, "is_dir", NULL, 49, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_3, "is_dir", NULL, 51, &moduleDir);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_3))) {
 		ZEPHIR_INIT_VAR(&_4$$4);
@@ -109,12 +109,12 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 		ZEPHIR_CONCAT_SV(&_5$$4, "Module directory not exists or not a dir, file positon: ", &moduleDir);
 		ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", NULL, 2, &_5$$4);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_4$$4, "phalconplus/Enum/Sys.zep", 32);
+		zephir_throw_exception_debug(&_4$$4, "phalconplus/Enum/Sys.zep", 31);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("primaryModuleDir"), &moduleDir);
-	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 115, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 119, &moduleDir);
 	zephir_check_call_status();
 	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("rootDir"), &_6);
 	ZEPHIR_INIT_VAR(&_7);
@@ -123,7 +123,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 	ZVAL_STRING(&_8, "Ph\\Sys");
 	ZEPHIR_CALL_SELF(NULL, "classalias", NULL, 0, &_7, &_8);
 	zephir_check_call_status();
-	RETURN_MM_NULL();
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -162,34 +162,26 @@ PHP_METHOD(PhalconPlus_Enum_Sys, app) {
 PHP_METHOD(PhalconPlus_Enum_Sys, getPrimaryModuleDir) {
 
 	zval _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
-	ZEPHIR_MM_GROW();
 
-	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_static_property_ce(&_0, phalconplus_enum_sys_ce, SL("primaryModuleDir"), PH_NOISY_CC);
-	ZEPHIR_CONCAT_VS(return_value, &_0, "/");
-	RETURN_MM();
+	zephir_read_static_property_ce(&_0, phalconplus_enum_sys_ce, SL("primaryModuleDir"), PH_NOISY_CC | PH_READONLY);
+	RETURN_CTORW(&_0);
 
 }
 
 PHP_METHOD(PhalconPlus_Enum_Sys, getRootDir) {
 
 	zval _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
-	ZEPHIR_MM_GROW();
 
-	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_static_property_ce(&_0, phalconplus_enum_sys_ce, SL("rootDir"), PH_NOISY_CC);
-	ZEPHIR_CONCAT_VS(return_value, &_0, "/");
-	RETURN_MM();
+	zephir_read_static_property_ce(&_0, phalconplus_enum_sys_ce, SL("rootDir"), PH_NOISY_CC | PH_READONLY);
+	RETURN_CTORW(&_0);
 
 }
 
@@ -207,15 +199,12 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getCommonDir) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 3, 0);
+	zephir_create_array(&_0, 2, 0);
 	ZEPHIR_OBS_VAR(&_1);
 	zephir_read_static_property_ce(&_1, phalconplus_enum_sys_ce, SL("rootDir"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "common");
-	zephir_array_fast_append(&_0, &_2);
-	ZEPHIR_INIT_NVAR(&_2);
-	ZVAL_STRING(&_2, "");
 	zephir_array_fast_append(&_0, &_2);
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "/");
@@ -226,7 +215,6 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getCommonDir) {
 
 PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalConfigDir) {
 
-	zval _3;
 	zval _1, _2;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -235,7 +223,6 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalConfigDir) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
-	ZVAL_UNDEF(&_3);
 
 	ZEPHIR_MM_GROW();
 
@@ -247,9 +234,9 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalConfigDir) {
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "common");
 	zephir_array_fast_append(&_0, &_2);
-	ZEPHIR_INIT_VAR(&_3);
-	ZEPHIR_CONCAT_SS(&_3, "config", ".php");
-	zephir_array_fast_append(&_0, &_3);
+	ZEPHIR_INIT_NVAR(&_2);
+	ZVAL_STRING(&_2, "config");
+	zephir_array_fast_append(&_0, &_2);
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "/");
 	zephir_fast_join(return_value, &_2, &_0);
@@ -307,7 +294,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalLoadDir) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 4, 0);
+	zephir_create_array(&_0, 3, 0);
 	ZEPHIR_OBS_VAR(&_1);
 	zephir_read_static_property_ce(&_1, phalconplus_enum_sys_ce, SL("rootDir"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);
@@ -316,9 +303,6 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getGlobalLoadDir) {
 	zephir_array_fast_append(&_0, &_2);
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "load");
-	zephir_array_fast_append(&_0, &_2);
-	ZEPHIR_INIT_NVAR(&_2);
-	ZVAL_STRING(&_2, "");
 	zephir_array_fast_append(&_0, &_2);
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "/");
@@ -347,15 +331,12 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleDirByName) {
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 3, 0);
+	zephir_create_array(&_0, 2, 0);
 	ZEPHIR_OBS_VAR(&_1);
 	zephir_read_static_property_ce(&_1, phalconplus_enum_sys_ce, SL("rootDir"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);
 	zephir_array_fast_append(&_0, &moduleName);
 	ZEPHIR_INIT_VAR(&_2);
-	ZVAL_STRING(&_2, "");
-	zephir_array_fast_append(&_0, &_2);
-	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "/");
 	zephir_fast_join(return_value, &_2, &_0);
 	RETURN_MM();
@@ -380,7 +361,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleNameByDir) {
 
 
 	ZVAL_LONG(&_0, 8);
-	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 116, &moduleDir, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 120, &moduleDir, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -391,11 +372,12 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleClassPath) {
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *moduleDir_param = NULL, *modeName_param = NULL, _1;
-	zval moduleDir, modeName;
+	zval moduleDir, modeName, _2;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&moduleDir);
 	ZVAL_UNDEF(&modeName);
+	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_0);
 
@@ -407,48 +389,45 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleClassPath) {
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 5, 0);
+	zephir_create_array(&_0, 3, 0);
 	zephir_array_fast_append(&_0, &moduleDir);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "app");
 	zephir_array_fast_append(&_0, &_1);
+	ZEPHIR_INIT_VAR(&_2);
+	ZEPHIR_CONCAT_VS(&_2, &modeName, ".php");
+	zephir_array_fast_append(&_0, &_2);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "/");
-	zephir_array_fast_append(&_0, &_1);
-	zephir_array_fast_append(&_0, &modeName);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, ".php");
-	zephir_array_fast_append(&_0, &_1);
-	zephir_fast_join_str(return_value, SL(""), &_0);
+	zephir_fast_join(return_value, &_1, &_0);
 	RETURN_MM();
 
 }
 
 PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 
-	zval _0, _3, _7$$3;
+	zval _0, _6$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_6 = NULL;
-	zval *moduleDir_param = NULL, confPrefix, confPath, _1, _2, _4, _5, _9, _8$$3, _10$$4, _11$$4, _12$$4;
-	zval moduleDir;
+	zephir_fcall_cache_entry *_5 = NULL;
+	zval *moduleDir_param = NULL, confPath, _1, _2, _3, _4, _9, _7$$3, _10$$4, _11$$4, _12$$4;
+	zval moduleDir, _8$$3;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&moduleDir);
-	ZVAL_UNDEF(&confPrefix);
+	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&confPath);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_9);
-	ZVAL_UNDEF(&_8$$3);
+	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_10$$4);
 	ZVAL_UNDEF(&_11$$4);
 	ZVAL_UNDEF(&_12$$4);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_7$$3);
+	ZVAL_UNDEF(&_6$$3);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &moduleDir_param);
@@ -456,57 +435,47 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 	zephir_get_strval(&moduleDir, moduleDir_param);
 
 
-	ZEPHIR_INIT_VAR(&confPrefix);
-	ZVAL_STRING(&confPrefix, "");
 	ZEPHIR_INIT_VAR(&confPath);
 	ZVAL_STRING(&confPath, "");
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 4, 0);
+	zephir_array_fast_append(&_0, &moduleDir);
 	ZEPHIR_INIT_VAR(&_1);
-	ZEPHIR_INIT_VAR(&_2);
-	ZVAL_STRING(&_2, "/");
-	zephir_fast_trim(&_1, &moduleDir, &_2, ZEPHIR_TRIM_RIGHT);
-	zephir_array_fast_append(&_0, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "app");
 	zephir_array_fast_append(&_0, &_1);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "config");
 	zephir_array_fast_append(&_0, &_1);
 	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "");
-	zephir_array_fast_append(&_0, &_1);
-	ZEPHIR_INIT_NVAR(&_1);
-	ZVAL_STRING(&_1, "/");
-	ZEPHIR_INIT_NVAR(&confPrefix);
-	zephir_fast_join(&confPrefix, &_1, &_0);
+	ZEPHIR_GET_CONSTANT(&_1, "APP_RUN_ENV");
+	ZEPHIR_INIT_VAR(&_2);
+	ZEPHIR_CONCAT_VS(&_2, &_1, ".php");
+	zephir_array_fast_append(&_0, &_2);
 	ZEPHIR_INIT_VAR(&_3);
-	zephir_create_array(&_3, 3, 0);
-	zephir_array_fast_append(&_3, &confPrefix);
-	ZEPHIR_INIT_VAR(&_4);
-	ZEPHIR_GET_CONSTANT(&_4, "APP_RUN_ENV");
-	zephir_array_fast_append(&_3, &_4);
-	ZEPHIR_INIT_NVAR(&_4);
-	ZVAL_STRING(&_4, ".php");
-	zephir_array_fast_append(&_3, &_4);
+	ZVAL_STRING(&_3, "/");
 	ZEPHIR_INIT_NVAR(&confPath);
-	zephir_fast_join_str(&confPath, SL(""), &_3);
-	ZEPHIR_CALL_FUNCTION(&_5, "is_file", &_6, 51, &confPath);
+	zephir_fast_join(&confPath, &_3, &_0);
+	ZEPHIR_CALL_FUNCTION(&_4, "is_file", &_5, 53, &confPath);
 	zephir_check_call_status();
-	if (!(zephir_is_true(&_5))) {
+	if (!(zephir_is_true(&_4))) {
+		ZEPHIR_INIT_VAR(&_6$$3);
+		zephir_create_array(&_6$$3, 4, 0);
+		zephir_array_fast_append(&_6$$3, &moduleDir);
 		ZEPHIR_INIT_VAR(&_7$$3);
-		zephir_create_array(&_7$$3, 3, 0);
-		zephir_array_fast_append(&_7$$3, &confPrefix);
+		ZVAL_STRING(&_7$$3, "app");
+		zephir_array_fast_append(&_6$$3, &_7$$3);
+		ZEPHIR_INIT_NVAR(&_7$$3);
+		ZVAL_STRING(&_7$$3, "config");
+		zephir_array_fast_append(&_6$$3, &_7$$3);
 		ZEPHIR_INIT_VAR(&_8$$3);
-		ZVAL_STRING(&_8$$3, "config");
-		zephir_array_fast_append(&_7$$3, &_8$$3);
-		ZEPHIR_INIT_NVAR(&_8$$3);
-		ZVAL_STRING(&_8$$3, ".php");
-		zephir_array_fast_append(&_7$$3, &_8$$3);
+		ZEPHIR_CONCAT_SS(&_8$$3, "config", ".php");
+		zephir_array_fast_append(&_6$$3, &_8$$3);
+		ZEPHIR_INIT_NVAR(&_7$$3);
+		ZVAL_STRING(&_7$$3, "/");
 		ZEPHIR_INIT_NVAR(&confPath);
-		zephir_fast_join_str(&confPath, SL(""), &_7$$3);
+		zephir_fast_join(&confPath, &_7$$3, &_6$$3);
 	}
-	ZEPHIR_CALL_FUNCTION(&_9, "is_file", &_6, 51, &confPath);
+	ZEPHIR_CALL_FUNCTION(&_9, "is_file", &_5, 53, &confPath);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_9))) {
 		ZEPHIR_INIT_VAR(&_10$$4);
@@ -517,7 +486,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 		ZEPHIR_CONCAT_SVSVS(&_12$$4, "Module Config file not exists: ", &confPath, " & ", &_11$$4, ".php");
 		ZEPHIR_CALL_METHOD(NULL, &_10$$4, "__construct", NULL, 2, &_12$$4);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_10$$4, "phalconplus/Enum/Sys.zep", 163);
+		zephir_throw_exception_debug(&_10$$4, "phalconplus/Enum/Sys.zep", 148);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -584,62 +553,77 @@ PHP_METHOD(PhalconPlus_Enum_Sys, classAlias) {
 
 PHP_METHOD(PhalconPlus_Enum_Sys, load) {
 
+	zend_string *_23;
+	zend_ulong _22;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *filePath, filePath_sub, _0, loader, config, superapp, di, rootPath, result, _3, _4, _5, _6, _1$$4, _2$$4, _7$$6, _8$$6, _9$$6, _10$$6, _11$$7, _12$$7, _13$$7, _14$$7, _15$$7, _16$$7, _17$$7, _18$$7;
+	zval context;
+	zval *filePath_param = NULL, *context_param = NULL, _0, result, _3, rootPath, di, loader, config, superapp, _4, _5, _6, _7, name, value, *_20, _21, _1$$3, _8$$5, _9$$5, _10$$5, _11$$5, _12$$6, _13$$6, _14$$6, _15$$6, _16$$6, _17$$6, _18$$6, _19$$6, _24$$7, _25$$8;
+	zval filePath, _2$$3;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&filePath_sub);
+	ZVAL_UNDEF(&filePath);
+	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&result);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&rootPath);
+	ZVAL_UNDEF(&di);
 	ZVAL_UNDEF(&loader);
 	ZVAL_UNDEF(&config);
 	ZVAL_UNDEF(&superapp);
-	ZVAL_UNDEF(&di);
-	ZVAL_UNDEF(&rootPath);
-	ZVAL_UNDEF(&result);
-	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
-	ZVAL_UNDEF(&_1$$4);
-	ZVAL_UNDEF(&_2$$4);
-	ZVAL_UNDEF(&_7$$6);
-	ZVAL_UNDEF(&_8$$6);
-	ZVAL_UNDEF(&_9$$6);
-	ZVAL_UNDEF(&_10$$6);
-	ZVAL_UNDEF(&_11$$7);
-	ZVAL_UNDEF(&_12$$7);
-	ZVAL_UNDEF(&_13$$7);
-	ZVAL_UNDEF(&_14$$7);
-	ZVAL_UNDEF(&_15$$7);
-	ZVAL_UNDEF(&_16$$7);
-	ZVAL_UNDEF(&_17$$7);
-	ZVAL_UNDEF(&_18$$7);
+	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&name);
+	ZVAL_UNDEF(&value);
+	ZVAL_UNDEF(&_21);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_8$$5);
+	ZVAL_UNDEF(&_9$$5);
+	ZVAL_UNDEF(&_10$$5);
+	ZVAL_UNDEF(&_11$$5);
+	ZVAL_UNDEF(&_12$$6);
+	ZVAL_UNDEF(&_13$$6);
+	ZVAL_UNDEF(&_14$$6);
+	ZVAL_UNDEF(&_15$$6);
+	ZVAL_UNDEF(&_16$$6);
+	ZVAL_UNDEF(&_17$$6);
+	ZVAL_UNDEF(&_18$$6);
+	ZVAL_UNDEF(&_19$$6);
+	ZVAL_UNDEF(&_24$$7);
+	ZVAL_UNDEF(&_25$$8);
+	ZVAL_UNDEF(&context);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &filePath);
+	zephir_fetch_params(1, 1, 1, &filePath_param, &context_param);
 
-
-
-	if (UNEXPECTED(!(Z_TYPE_P(filePath) == IS_STRING))) {
-		RETURN_MM_BOOL(0);
+	zephir_get_strval(&filePath, filePath_param);
+	if (!context_param) {
+		ZEPHIR_INIT_VAR(&context);
+		array_init(&context);
+	} else {
+		zephir_get_arrval(&context, context_param);
 	}
-	ZEPHIR_CALL_FUNCTION(&_0, "is_file", NULL, 51, filePath);
+
+
+	ZEPHIR_CALL_FUNCTION(&_0, "is_file", NULL, 53, &filePath);
 	zephir_check_call_status();
 	if (UNEXPECTED(!zephir_is_true(&_0))) {
-		ZEPHIR_INIT_VAR(&_1$$4);
-		object_init_ex(&_1$$4, phalconplus_base_exception_ce);
-		ZEPHIR_INIT_VAR(&_2$$4);
-		ZEPHIR_CONCAT_SV(&_2$$4, "The file you try to load is not exists. file position: ", filePath);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$4, "__construct", NULL, 2, &_2$$4);
+		ZEPHIR_INIT_VAR(&_1$$3);
+		object_init_ex(&_1$$3, phalconplus_base_exception_ce);
+		ZEPHIR_INIT_VAR(&_2$$3);
+		ZEPHIR_CONCAT_SV(&_2$$3, "The file you try to load is not exists. file position: ", &filePath);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 2, &_2$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$4, "phalconplus/Enum/Sys.zep", 196);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/Enum/Sys.zep", 177);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	ZEPHIR_OBS_VAR(&result);
 	zephir_read_static_property_ce(&_3, phalconplus_enum_sys_ce, SL("requiredFiles"), PH_NOISY_CC | PH_READONLY);
-	if (zephir_array_isset_fetch(&result, &_3, filePath, 0)) {
+	if (zephir_array_isset_fetch(&result, &_3, &filePath, 0)) {
 		RETURN_CCTOR(&result);
 	}
 	ZEPHIR_INIT_VAR(&rootPath);
@@ -652,58 +636,101 @@ PHP_METHOD(PhalconPlus_Enum_Sys, load) {
 	ZVAL_STRING(&config, "config");
 	ZEPHIR_INIT_VAR(&superapp);
 	ZVAL_STRING(&superapp, "superapp");
-	ZEPHIR_CALL_SELF(&_4, "getrootdir", NULL, 0);
+	ZEPHIR_INIT_VAR(&_4);
+	ZEPHIR_CREATE_SYMBOL_TABLE();
+	
+	ZEPHIR_CALL_SELF(&_5, "getrootdir", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CPY_WRT(&_5, &_4);
-	if (zephir_set_symbol(&rootPath, &_5) == FAILURE) {
+	ZEPHIR_CPY_WRT(&_6, &_5);
+	if (zephir_set_symbol(&rootPath, &_6) == FAILURE) {
 		return;
 	}
-	ZEPHIR_OBS_VAR(&_6);
-	zephir_read_static_property_ce(&_6, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC);
-	if (Z_TYPE_P(&_6) == IS_OBJECT) {
-		zephir_read_static_property_ce(&_7$$6, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(&_8$$6, &_7$$6, "config", NULL, 0);
+	ZEPHIR_OBS_VAR(&_7);
+	zephir_read_static_property_ce(&_7, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC);
+	if (Z_TYPE_P(&_7) == IS_OBJECT) {
+		zephir_read_static_property_ce(&_8$$5, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_METHOD(&_9$$5, &_8$$5, "config", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CPY_WRT(&_9$$6, &_8$$6);
-		if (zephir_set_symbol(&config, &_9$$6) == FAILURE) {
+		ZEPHIR_CPY_WRT(&_10$$5, &_9$$5);
+		if (zephir_set_symbol(&config, &_10$$5) == FAILURE) {
 			return;
 		}
-		zephir_read_static_property_ce(&_10$$6, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(&_8$$6, &_10$$6, "isbooted", NULL, 0);
+		zephir_read_static_property_ce(&_11$$5, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_METHOD(&_9$$5, &_11$$5, "isbooted", NULL, 0);
 		zephir_check_call_status();
-		if (zephir_is_true(&_8$$6)) {
-			ZEPHIR_OBS_VAR(&_11$$7);
-			zephir_read_static_property_ce(&_11$$7, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC);
-			ZEPHIR_CPY_WRT(&_12$$7, &_11$$7);
-			if (zephir_set_symbol(&superapp, &_12$$7) == FAILURE) {
+		if (zephir_is_true(&_9$$5)) {
+			ZEPHIR_OBS_VAR(&_12$$6);
+			zephir_read_static_property_ce(&_12$$6, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC);
+			ZEPHIR_CPY_WRT(&_13$$6, &_12$$6);
+			if (zephir_set_symbol(&superapp, &_13$$6) == FAILURE) {
 				return;
 			}
-			zephir_read_static_property_ce(&_11$$7, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_CALL_METHOD(&_13$$7, &_11$$7, "di", NULL, 0);
+			zephir_read_static_property_ce(&_12$$6, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_METHOD(&_14$$6, &_12$$6, "di", NULL, 0);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(&_14$$7, &_13$$7);
-			if (zephir_set_symbol(&di, &_14$$7) == FAILURE) {
+			ZEPHIR_CPY_WRT(&_15$$6, &_14$$6);
+			if (zephir_set_symbol(&di, &_15$$6) == FAILURE) {
 				return;
 			}
-			zephir_read_static_property_ce(&_15$$7, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_CALL_METHOD(&_13$$7, &_15$$7, "di", NULL, 0);
+			zephir_read_static_property_ce(&_16$$6, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_METHOD(&_14$$6, &_16$$6, "di", NULL, 0);
 			zephir_check_call_status();
-			ZEPHIR_INIT_VAR(&_17$$7);
-			ZVAL_STRING(&_17$$7, "loader");
-			ZEPHIR_CALL_METHOD(&_16$$7, &_13$$7, "get", NULL, 0, &_17$$7);
+			ZEPHIR_INIT_VAR(&_18$$6);
+			ZVAL_STRING(&_18$$6, "loader");
+			ZEPHIR_CALL_METHOD(&_17$$6, &_14$$6, "get", NULL, 0, &_18$$6);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(&_18$$7, &_16$$7);
-			if (zephir_set_symbol(&loader, &_18$$7) == FAILURE) {
+			ZEPHIR_CPY_WRT(&_19$$6, &_17$$6);
+			if (zephir_set_symbol(&loader, &_19$$6) == FAILURE) {
 				return;
 			}
 		}
 	}
-	ZEPHIR_OBSERVE_OR_NULLIFY_PPZV(&_4);
-	if (zephir_require_zval_ret(&_4, filePath) == FAILURE) {
+	zephir_is_iterable(&context, 0, "phalconplus/Enum/Sys.zep", 214);
+	if (Z_TYPE_P(&context) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&context), _22, _23, _20)
+		{
+			ZEPHIR_INIT_NVAR(&name);
+			if (_23 != NULL) { 
+				ZVAL_STR_COPY(&name, _23);
+			} else {
+				ZVAL_LONG(&name, _22);
+			}
+			ZEPHIR_INIT_NVAR(&value);
+			ZVAL_COPY(&value, _20);
+			ZEPHIR_CPY_WRT(&_24$$7, &value);
+			if (zephir_set_symbol(&name, &_24$$7) == FAILURE) {
+				return;
+			}
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, &context, "rewind", NULL, 0);
+		zephir_check_call_status();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_21, &context, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_21)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&name, &context, "key", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&value, &context, "current", NULL, 0);
+			zephir_check_call_status();
+				ZEPHIR_CPY_WRT(&_25$$8, &value);
+				if (zephir_set_symbol(&name, &_25$$8) == FAILURE) {
+					return;
+				}
+			ZEPHIR_CALL_METHOD(NULL, &context, "next", NULL, 0);
+			zephir_check_call_status();
+		}
+	}
+	ZEPHIR_INIT_NVAR(&value);
+	ZEPHIR_INIT_NVAR(&name);
+	ZEPHIR_OBSERVE_OR_NULLIFY_PPZV(&_5);
+	if (zephir_require_zval_ret(&_5, &filePath) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_CPY_WRT(&result, &_4);
-	zephir_update_static_property_array_multi_ce(phalconplus_enum_sys_ce, SL("requiredFiles"), &result, SL("z"), 1, filePath);
+	ZEPHIR_CPY_WRT(&result, &_5);
+	zephir_update_static_property_array_multi_ce(phalconplus_enum_sys_ce, SL("requiredFiles"), &result, SL("z"), 1, &filePath);
 	RETURN_CCTOR(&result);
 
 }

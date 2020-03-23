@@ -73,39 +73,31 @@ PHP_METHOD(PhalconPlus_App_App, __construct) {
 
 PHP_METHOD(PhalconPlus_App_App, boot) {
 
-	zend_bool _6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zephir_fcall_cache_entry *_8 = NULL, *_14 = NULL, *_17 = NULL, *_19 = NULL, *_22 = NULL, *_24 = NULL, *_26 = NULL, *_27 = NULL;
+	zephir_fcall_cache_entry *_4 = NULL, *_7 = NULL, *_9 = NULL, *_12 = NULL, *_14 = NULL, *_16 = NULL, *_17 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *env_param = NULL, __$false, sysEnv$$3, _0$$3, _1$$3, _2, _3, _4, _5, _7, _9, _12, _13, _15, _16, _18, _20, _21, _23, _25, _10$$6, _11$$6;
-	zval env;
+	zval *env_param = NULL, *runMode_param = NULL, __$false, sysEnv$$3, _0$$3, _1$$3, _2, _3, _5, _6, _8, _10, _11, _13, _15;
+	zval env, runMode;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&env);
+	ZVAL_UNDEF(&runMode);
 	ZVAL_BOOL(&__$false, 0);
 	ZVAL_UNDEF(&sysEnv$$3);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
-	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_9);
-	ZVAL_UNDEF(&_12);
+	ZVAL_UNDEF(&_6);
+	ZVAL_UNDEF(&_8);
+	ZVAL_UNDEF(&_10);
+	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_15);
-	ZVAL_UNDEF(&_16);
-	ZVAL_UNDEF(&_18);
-	ZVAL_UNDEF(&_20);
-	ZVAL_UNDEF(&_21);
-	ZVAL_UNDEF(&_23);
-	ZVAL_UNDEF(&_25);
-	ZVAL_UNDEF(&_10$$6);
-	ZVAL_UNDEF(&_11$$6);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &env_param);
+	zephir_fetch_params(1, 0, 2, &env_param, &runMode_param);
 
 	if (!env_param) {
 		ZEPHIR_INIT_VAR(&env);
@@ -113,12 +105,18 @@ PHP_METHOD(PhalconPlus_App_App, boot) {
 	} else {
 		zephir_get_strval(&env, env_param);
 	}
+	if (!runMode_param) {
+		ZEPHIR_INIT_VAR(&runMode);
+		ZVAL_STRING(&runMode, "");
+	} else {
+		zephir_get_strval(&runMode, runMode_param);
+	}
 
 
 	if (EXPECTED(ZEPHIR_IS_EMPTY(&env))) {
 		ZEPHIR_INIT_VAR(&_0$$3);
 		ZVAL_STRING(&_0$$3, "phalconplus.env");
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "get_cfg_var", NULL, 30, &_0$$3);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "get_cfg_var", NULL, 32, &_0$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&sysEnv$$3);
 		zephir_fast_trim(&sysEnv$$3, &_1$$3, NULL , ZEPHIR_TRIM_BOTH);
@@ -128,82 +126,57 @@ PHP_METHOD(PhalconPlus_App_App, boot) {
 	} else {
 		zephir_update_property_zval(this_ptr, SL("env"), &env);
 	}
-	ZEPHIR_INIT_VAR(&_2);
-	ZEPHIR_GET_CONSTANT(&_2, "PHP_SAPI");
-	ZVAL_LONG(&_3, 0);
-	ZVAL_LONG(&_4, 3);
-	ZEPHIR_INIT_VAR(&_5);
-	zephir_substr(&_5, &_2, 0 , 3 , 0);
-	_6 = !ZEPHIR_IS_STRING(&_5, "cli");
-	if (_6) {
-		zephir_read_property(&_9, this_ptr, SL("env"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_CE_STATIC(&_7, phalconplus_enum_runenv_ce, "isinprod", &_8, 0, &_9);
-		zephir_check_call_status();
-		_6 = !zephir_is_true(&_7);
-	}
-	if (_6) {
-		ZEPHIR_INIT_VAR(&_10$$6);
-		object_init_ex(&_10$$6, zephir_get_internal_ce(SL("phalcon\\debug")));
-		if (zephir_has_constructor(&_10$$6)) {
-			ZEPHIR_CALL_METHOD(NULL, &_10$$6, "__construct", NULL, 0);
-			zephir_check_call_status();
-		}
-		zephir_update_property_zval(this_ptr, SL("debug"), &_10$$6);
-		zephir_read_property(&_11$$6, this_ptr, SL("debug"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(NULL, &_11$$6, "listen", NULL, 0);
-		zephir_check_call_status();
-	}
-	zephir_read_property(&_12, this_ptr, SL("env"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_VAR(&_13);
-	ZVAL_STRING(&_13, "APP_ENV");
-	ZEPHIR_CALL_FUNCTION(NULL, "define", &_14, 31, &_13, &_12, &__$false);
+	zephir_read_property(&_2, this_ptr, SL("env"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_3);
+	ZVAL_STRING(&_3, "APP_ENV");
+	ZEPHIR_CALL_FUNCTION(NULL, "define", &_4, 33, &_3, &_2, &__$false);
 	zephir_check_call_status();
-	zephir_read_property(&_15, this_ptr, SL("env"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_NVAR(&_13);
-	ZVAL_STRING(&_13, "APP_RUN_ENV");
-	ZEPHIR_CALL_FUNCTION(NULL, "define", &_14, 31, &_13, &_15, &__$false);
+	zephir_read_property(&_5, this_ptr, SL("env"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "APP_RUN_ENV");
+	ZEPHIR_CALL_FUNCTION(NULL, "define", &_4, 33, &_3, &_5, &__$false);
 	zephir_check_call_status();
-	ZEPHIR_CALL_CE_STATIC(&_16, phalconplus_enum_sys_ce, "getrootdir", &_17, 0);
+	ZEPHIR_CALL_CE_STATIC(&_6, phalconplus_enum_sys_ce, "getrootdir", &_7, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(&_13);
-	ZVAL_STRING(&_13, "APP_ROOT_DIR");
-	ZEPHIR_CALL_FUNCTION(NULL, "define", &_14, 31, &_13, &_16, &__$false);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "APP_ROOT_DIR");
+	ZEPHIR_CALL_FUNCTION(NULL, "define", &_4, 33, &_3, &_6, &__$false);
 	zephir_check_call_status();
-	ZEPHIR_CALL_CE_STATIC(&_18, phalconplus_enum_sys_ce, "getprimarymoduledir", &_19, 0);
+	ZEPHIR_CALL_CE_STATIC(&_8, phalconplus_enum_sys_ce, "getprimarymoduledir", &_9, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(&_13);
-	ZVAL_STRING(&_13, "APP_MODULE_DIR");
-	ZEPHIR_CALL_FUNCTION(NULL, "define", &_14, 31, &_13, &_18, &__$false);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "APP_MODULE_DIR");
+	ZEPHIR_CALL_FUNCTION(NULL, "define", &_4, 33, &_3, &_8, &__$false);
 	zephir_check_call_status();
-	ZEPHIR_CALL_CE_STATIC(&_20, phalconplus_enum_sys_ce, "getprimarymoduledir", &_19, 0);
+	ZEPHIR_CALL_CE_STATIC(&_10, phalconplus_enum_sys_ce, "getprimarymoduledir", &_9, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(&_13);
-	ZVAL_STRING(&_13, "APP_PRI_MODULE_DIR");
-	ZEPHIR_CALL_FUNCTION(NULL, "define", &_14, 31, &_13, &_20, &__$false);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "APP_PRI_MODULE_DIR");
+	ZEPHIR_CALL_FUNCTION(NULL, "define", &_4, 33, &_3, &_10, &__$false);
 	zephir_check_call_status();
-	ZEPHIR_CALL_CE_STATIC(&_21, phalconplus_enum_sys_ce, "getcommondir", &_22, 0);
+	ZEPHIR_CALL_CE_STATIC(&_11, phalconplus_enum_sys_ce, "getcommondir", &_12, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(&_13);
-	ZVAL_STRING(&_13, "APP_ROOT_COMMON_DIR");
-	ZEPHIR_CALL_FUNCTION(NULL, "define", &_14, 31, &_13, &_21, &__$false);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "APP_ROOT_COMMON_DIR");
+	ZEPHIR_CALL_FUNCTION(NULL, "define", &_4, 33, &_3, &_11, &__$false);
 	zephir_check_call_status();
-	ZEPHIR_CALL_CE_STATIC(&_23, phalconplus_enum_sys_ce, "getgloballoaddir", &_24, 0);
+	ZEPHIR_CALL_CE_STATIC(&_13, phalconplus_enum_sys_ce, "getgloballoaddir", &_14, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(&_13);
-	ZVAL_STRING(&_13, "APP_ROOT_COMMON_LOAD_DIR");
-	ZEPHIR_CALL_FUNCTION(NULL, "define", &_14, 31, &_13, &_23, &__$false);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "APP_ROOT_COMMON_LOAD_DIR");
+	ZEPHIR_CALL_FUNCTION(NULL, "define", &_4, 33, &_3, &_13, &__$false);
 	zephir_check_call_status();
-	ZEPHIR_CALL_CE_STATIC(&_25, phalconplus_enum_sys_ce, "getglobalconfigdir", &_26, 0);
+	ZEPHIR_CALL_CE_STATIC(&_15, phalconplus_enum_sys_ce, "getglobalconfigdir", &_16, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(&_13);
-	ZVAL_STRING(&_13, "APP_ROOT_COMMON_CONF_DIR");
-	ZEPHIR_CALL_FUNCTION(NULL, "define", &_14, 31, &_13, &_25, &__$false);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "APP_ROOT_COMMON_CONF_DIR");
+	ZEPHIR_CALL_FUNCTION(NULL, "define", &_4, 33, &_3, &_15, &__$false);
 	zephir_check_call_status();
-	ZEPHIR_INIT_NVAR(&_13);
-	ZVAL_STRING(&_13, "\\Ph\\");
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_facade_ce, "register", &_27, 0, this_ptr, &_13);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "\\Ph\\");
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_facade_ce, "register", &_17, 0, this_ptr, &_3);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "bootprimarymodule", NULL, 32);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "bootprimarymodule", NULL, 34, &runMode);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -212,11 +185,13 @@ PHP_METHOD(PhalconPlus_App_App, boot) {
 PHP_METHOD(PhalconPlus_App_App, bootPrimaryModule) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval __$true, __$false, primaryModuleDef, _0, _2, _3, _4, _5, _6, _7, _8;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_1 = NULL;
+	zephir_fcall_cache_entry *_1 = NULL, *_11 = NULL;
+	zval *runMode_param = NULL, __$true, __$false, primaryModuleDef, _0, _2, _3, _4, _5, _6, _7, _8, module, _9, _10$$3, _12$$3, _13$$4, _14$$4;
+	zval runMode;
 	zval *this_ptr = getThis();
 
+	ZVAL_UNDEF(&runMode);
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
 	ZVAL_UNDEF(&primaryModuleDef);
@@ -228,17 +203,32 @@ PHP_METHOD(PhalconPlus_App_App, bootPrimaryModule) {
 	ZVAL_UNDEF(&_6);
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_8);
+	ZVAL_UNDEF(&module);
+	ZVAL_UNDEF(&_9);
+	ZVAL_UNDEF(&_10$$3);
+	ZVAL_UNDEF(&_12$$3);
+	ZVAL_UNDEF(&_13$$4);
+	ZVAL_UNDEF(&_14$$4);
 
 	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &runMode_param);
+
+	if (!runMode_param) {
+		ZEPHIR_INIT_VAR(&runMode);
+		ZVAL_STRING(&runMode, "");
+	} else {
+		zephir_get_strval(&runMode, runMode_param);
+	}
+
 
 	ZEPHIR_INIT_VAR(&primaryModuleDef);
 	object_init_ex(&primaryModuleDef, phalconplus_app_module_moduledef_ce);
 	ZEPHIR_CALL_CE_STATIC(&_0, phalconplus_enum_sys_ce, "getprimarymoduledir", &_1, 0);
 	zephir_check_call_status();
 	ZVAL_BOOL(&_2, 1);
-	ZEPHIR_CALL_METHOD(NULL, &primaryModuleDef, "__construct", NULL, 33, this_ptr, &_0, &_2);
+	ZEPHIR_CALL_METHOD(NULL, &primaryModuleDef, "__construct", NULL, 35, this_ptr, &_0, &_2, &runMode);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_3, &primaryModuleDef, "newdi", NULL, 34);
+	ZEPHIR_CALL_METHOD(&_3, &primaryModuleDef, "newdi", NULL, 36);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdi", NULL, 0, &_3);
 	zephir_check_call_status();
@@ -272,8 +262,27 @@ PHP_METHOD(PhalconPlus_App_App, bootPrimaryModule) {
 	} else {
 		zephir_update_property_zval(this_ptr, SL("booted"), &__$false);
 	}
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registermodule", NULL, 35, &primaryModuleDef);
+	ZEPHIR_CALL_METHOD(&module, this_ptr, "registermodule", NULL, 37, &primaryModuleDef);
 	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_9, &module, "isweb", NULL, 0);
+	zephir_check_call_status();
+	if (zephir_is_true(&_9)) {
+		zephir_read_property(&_12$$3, this_ptr, SL("env"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_CE_STATIC(&_10$$3, phalconplus_enum_runenv_ce, "isinprod", &_11, 0, &_12$$3);
+		zephir_check_call_status();
+		if (!(zephir_is_true(&_10$$3))) {
+			ZEPHIR_INIT_VAR(&_13$$4);
+			object_init_ex(&_13$$4, zephir_get_internal_ce(SL("phalcon\\debug")));
+			if (zephir_has_constructor(&_13$$4)) {
+				ZEPHIR_CALL_METHOD(NULL, &_13$$4, "__construct", NULL, 0);
+				zephir_check_call_status();
+			}
+			zephir_update_property_zval(this_ptr, SL("debug"), &_13$$4);
+			zephir_read_property(&_14$$4, this_ptr, SL("debug"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_METHOD(NULL, &_14$$4, "listen", NULL, 0);
+			zephir_check_call_status();
+		}
+	}
 	RETURN_THIS();
 
 }
@@ -360,14 +369,14 @@ PHP_METHOD(PhalconPlus_App_App, registerModule) {
 	if (zephir_is_true(&_14)) {
 		ZEPHIR_INIT_VAR(&_15$$6);
 		ZVAL_STRING(&_15$$6, "APP_RUN_MODE");
-		ZEPHIR_CALL_FUNCTION(&_16$$6, "defined", NULL, 36, &_15$$6);
+		ZEPHIR_CALL_FUNCTION(&_16$$6, "defined", NULL, 38, &_15$$6);
 		zephir_check_call_status();
 		if (!(zephir_is_true(&_16$$6))) {
 			ZEPHIR_CALL_METHOD(&_17$$7, moduleDef, "getmode", NULL, 0);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_18$$7);
 			ZVAL_STRING(&_18$$7, "APP_RUN_MODE");
-			ZEPHIR_CALL_FUNCTION(NULL, "define", NULL, 31, &_18$$7, &_17$$7, &__$false);
+			ZEPHIR_CALL_FUNCTION(NULL, "define", NULL, 33, &_18$$7, &_17$$7, &__$false);
 			zephir_check_call_status();
 		}
 		ZEPHIR_CALL_METHOD(&moduleConf$$6, moduleDef, "getconfig", NULL, 0);
@@ -427,11 +436,11 @@ PHP_METHOD(PhalconPlus_App_App, dependModule) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&moduleDef);
 	object_init_ex(&moduleDef, phalconplus_app_module_moduledef_ce);
-	ZEPHIR_CALL_METHOD(NULL, &moduleDef, "__construct", NULL, 33, this_ptr, &moduleDir);
+	ZEPHIR_CALL_METHOD(NULL, &moduleDef, "__construct", NULL, 35, this_ptr, &moduleDir);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&module, this_ptr, "registermodule", NULL, 35, &moduleDef);
+	ZEPHIR_CALL_METHOD(&module, this_ptr, "registermodule", NULL, 37, &moduleDef);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_2, &moduleDef, "getconfigpath", NULL, 37);
+	ZEPHIR_CALL_METHOD(&_2, &moduleDef, "getconfigpath", NULL, 39);
 	zephir_check_call_status();
 	ZEPHIR_CALL_CE_STATIC(&tmp, phalconplus_enum_sys_ce, "load", &_1, 0, &_2);
 	zephir_check_call_status();
@@ -442,7 +451,7 @@ PHP_METHOD(PhalconPlus_App_App, dependModule) {
 	zephir_read_property(&_3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &moduleConf, "merge", NULL, 0, &_3);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setconfig", NULL, 38, &moduleConf);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setconfig", NULL, 40, &moduleConf);
 	zephir_check_call_status();
 	RETURN_CCTOR(&module);
 
@@ -570,7 +579,7 @@ PHP_METHOD(PhalconPlus_App_App, handle) {
 
 	zephir_read_property(&_0, this_ptr, SL("booted"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_IS_FALSE(&_0)) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "bootprimarymodule", NULL, 32);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "bootprimarymodule", NULL, 34);
 		zephir_check_call_status();
 	}
 	ZEPHIR_INIT_VAR(&params);
@@ -644,18 +653,18 @@ PHP_METHOD(PhalconPlus_App_App, terminate) {
 	zephir_get_global(&_POST, SL("_POST"));
 	zephir_get_global(&_SESSION, SL("_SESSION"));
 
-	ZEPHIR_CALL_FUNCTION(&_0, "session_status", NULL, 39);
+	ZEPHIR_CALL_FUNCTION(&_0, "session_status", NULL, 41);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG(&_0, 2)) {
-		ZEPHIR_CALL_FUNCTION(NULL, "session_write_close", NULL, 40);
+		ZEPHIR_CALL_FUNCTION(NULL, "session_write_close", NULL, 42);
 		zephir_check_call_status();
 	}
-	ZEPHIR_CALL_FUNCTION(&_1, "headers_sent", NULL, 41);
+	ZEPHIR_CALL_FUNCTION(&_1, "headers_sent", NULL, 43);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		ZEPHIR_INIT_VAR(&_2$$4);
 		ZVAL_STRING(&_2$$4, "");
-		ZEPHIR_CALL_FUNCTION(NULL, "session_id", NULL, 42, &_2$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "session_id", NULL, 44, &_2$$4);
 		zephir_check_call_status();
 	}
 	ZEPHIR_INIT_NVAR(&_SESSION);
@@ -960,7 +969,7 @@ PHP_METHOD(PhalconPlus_App_App, __call) {
 	zephir_get_arrval(&params, params_param);
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isbooted", NULL, 43);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isbooted", NULL, 45);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		RETURN_MM_NULL();

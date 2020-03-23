@@ -155,7 +155,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException) {
 	ZVAL_BOOL(&_1, 1);
 	ZEPHIR_CALL_STATIC(&_0, "validvalues", NULL, 0, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&map2Name, "array_flip", NULL, 27, &_0);
+	ZEPHIR_CALL_FUNCTION(&map2Name, "array_flip", NULL, 30, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&eCode, e, "getcode", NULL, 0);
 	zephir_check_call_status();

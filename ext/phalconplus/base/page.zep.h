@@ -17,10 +17,21 @@ PHP_METHOD(PhalconPlus_Base_Page, hasNextPage);
 PHP_METHOD(PhalconPlus_Base_Page, getData);
 PHP_METHOD(PhalconPlus_Base_Page, isEmpty);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_page___construct, 0, 0, 3)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_page___construct, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, pagable, PhalconPlus\\Base\\Pagable, 0)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, totalSize, IS_LONG, 0)
+#else
 	ZEND_ARG_INFO(0, totalSize)
-	ZEND_ARG_OBJ_INFO(0, data, Phalcon\\Mvc\\Model\\Resultset, 0)
+#endif
+	ZEND_ARG_INFO(0, data)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_page_isempty, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_page_isempty, 0, 0, _IS_BOOL, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_base_page_method_entry) {
@@ -36,6 +47,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_page_method_entry) {
 	PHP_ME(PhalconPlus_Base_Page, isLastPage, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Page, hasNextPage, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Page, getData, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Base_Page, isEmpty, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Page, isEmpty, arginfo_phalconplus_base_page_isempty, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

@@ -10,16 +10,18 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 
 	AC_DEFINE(HAVE_PHALCONPLUS, 1, [Whether you have Phalconplus])
 	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/facades/abstractfacade.zep.c
+	phalconplus/contracts/arrayof.zep.c
+	phalconplus/contracts/emptyornot.zep.c
 	phalconplus/enum/abstractenum.zep.c
 	phalconplus/base/protobuffer.zep.c
 	phalconplus/app/engine/appengine.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
+	phalconplus/base/exception.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
 	phalconplus/base/abstractrequest.zep.c
 	phalconplus/base/abstractresponse.zep.c
-	phalconplus/base/exception.zep.c
 	phalconplus/contracts/auth/access/modelevent.zep.c
 	phalconplus/contracts/auth/policy.zep.c
 	phalconplus/contracts/auth/userprovider.zep.c
@@ -100,6 +102,10 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/facades/user.zep.c
 	phalconplus/facades/view.zep.c
 	phalconplus/featuretest/splobjectstoragetest.zep.c
+	phalconplus/helper/arr.zep.c
+	phalconplus/helper/exception.zep.c
+	phalconplus/helper/str.zep.c
+	phalconplus/helper/variable.zep.c
 	phalconplus/http/nonpsrrequest.zep.c
 	phalconplus/http/nonpsrresponse.zep.c
 	phalconplus/http/psrresponsefactory.zep.c

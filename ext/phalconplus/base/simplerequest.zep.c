@@ -17,6 +17,8 @@
 #include "kernel/operators.h"
 #include "kernel/object.h"
 #include "kernel/array.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_SimpleRequest) {
@@ -38,9 +40,10 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL;
+	zephir_fcall_cache_entry *_4 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *data_param = NULL, key, val, *_0, _1, _4$$3, _7$$6;
+	zend_bool deep;
+	zval *data_param = NULL, *deep_param = NULL, key, val, *_0, _1;
 	zval data;
 	zval *this_ptr = getThis();
 
@@ -48,16 +51,19 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&val);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_4$$3);
-	ZVAL_UNDEF(&_7$$6);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &data_param);
+	zephir_fetch_params(1, 1, 1, &data_param, &deep_param);
 
 	zephir_get_arrval(&data, data_param);
+	if (!deep_param) {
+		deep = 0;
+	} else {
+		deep = zephir_get_boolval(deep_param);
+	}
 
 
-	zephir_is_iterable(&data, 0, "phalconplus/Base/SimpleRequest.zep", 20);
+	zephir_is_iterable(&data, 0, "phalconplus/Base/SimpleRequest.zep", 17);
 	if (Z_TYPE_P(&data) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _2, _3, _0)
 		{
@@ -69,14 +75,8 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
 			}
 			ZEPHIR_INIT_NVAR(&val);
 			ZVAL_COPY(&val, _0);
-			ZEPHIR_CALL_FUNCTION(&_4$$3, "property_exists", &_5, 15, this_ptr, &key);
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 77, &key, &val);
 			zephir_check_call_status();
-			if (zephir_is_true(&_4$$3)) {
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_6, 0, &key, &val);
-				zephir_check_call_status();
-			} else {
-				zephir_update_property_array(this_ptr, SL("params"), &key, &val);
-			}
 		} ZEND_HASH_FOREACH_END();
 	} else {
 		ZEPHIR_CALL_METHOD(NULL, &data, "rewind", NULL, 0);
@@ -91,21 +91,24 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, softClone) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&val, &data, "current", NULL, 0);
 			zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_7$$6, "property_exists", &_5, 15, this_ptr, &key);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 77, &key, &val);
 				zephir_check_call_status();
-				if (zephir_is_true(&_7$$6)) {
-					ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_6, 0, &key, &val);
-					zephir_check_call_status();
-				} else {
-					zephir_update_property_array(this_ptr, SL("params"), &key, &val);
-				}
 			ZEPHIR_CALL_METHOD(NULL, &data, "next", NULL, 0);
 			zephir_check_call_status();
 		}
 	}
 	ZEPHIR_INIT_NVAR(&val);
 	ZEPHIR_INIT_NVAR(&key);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, getSelfVars) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "params");
 
 }
 
@@ -204,7 +207,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 69, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 72, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}
@@ -218,6 +221,157 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParams) {
 
 
 	RETURN_MEMBER(getThis(), "params");
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, __set) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *key_param = NULL, *val, val_sub;
+	zval key;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&val_sub);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &key_param, &val);
+
+	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
+		zephir_get_strval(&key, key_param);
+	} else {
+		ZEPHIR_INIT_VAR(&key);
+		ZVAL_EMPTY_STRING(&key);
+	}
+
+
+	zephir_update_property_array(this_ptr, SL("params"), &key, val);
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, __isset) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *key_param = NULL, _0;
+	zval key;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &key_param);
+
+	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
+		zephir_get_strval(&key, key_param);
+	} else {
+		ZEPHIR_INIT_VAR(&key);
+		ZVAL_EMPTY_STRING(&key);
+	}
+
+
+	zephir_read_property(&_0, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
+	if (zephir_array_isset(&_0, &key)) {
+		RETURN_MM_BOOL(1);
+	}
+	RETURN_MM_BOOL(0);
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, __get) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *key_param = NULL, _0, _1$$3, _2$$3;
+	zval key;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_2$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &key_param);
+
+	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
+		zephir_get_strval(&key, key_param);
+	} else {
+		ZEPHIR_INIT_VAR(&key);
+		ZVAL_EMPTY_STRING(&key);
+	}
+
+
+	zephir_read_property(&_0, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
+	if (zephir_array_isset(&_0, &key)) {
+		zephir_read_property(&_1$$3, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
+		zephir_array_fetch(&_2$$3, &_1$$3, &key, PH_NOISY | PH_READONLY, "phalconplus/Base/SimpleRequest.zep", 80);
+		RETURN_CTOR(&_2$$3);
+	}
+	RETURN_MM_NULL();
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, __unset) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *key_param = NULL, _0, _1$$3;
+	zval key;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &key_param);
+
+	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
+		zephir_get_strval(&key, key_param);
+	} else {
+		ZEPHIR_INIT_VAR(&key);
+		ZVAL_EMPTY_STRING(&key);
+	}
+
+
+	zephir_read_property(&_0, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
+	if (zephir_array_isset(&_0, &key)) {
+		zephir_read_property(&_1$$3, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
+		zephir_array_unset(&_1$$3, &key, PH_SEPARATE);
+	}
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_Base_SimpleRequest, isEmpty) {
+
+	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_OBS_VAR(&_0);
+	zephir_read_property(&_0, this_ptr, SL("params"), PH_NOISY_CC);
+	RETURN_MM_BOOL(ZEPHIR_IS_EMPTY(&_0));
 
 }
 

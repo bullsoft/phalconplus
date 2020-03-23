@@ -33,6 +33,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_module_moduledef___construct, 0, 
 #else
 	ZEND_ARG_INFO(0, isPrimary)
 #endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, runMode, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, runMode)
+#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200

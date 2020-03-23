@@ -23,6 +23,8 @@
 
 
 
+zend_class_entry *phalconplus_contracts_arrayof_ce;
+zend_class_entry *phalconplus_contracts_emptyornot_ce;
 zend_class_entry *phalconplus_app_engine_appengine_ce;
 zend_class_entry *phalconplus_assert_assertionfailedexception_ce;
 zend_class_entry *phalconplus_contracts_auth_access_modelevent_ce;
@@ -38,10 +40,10 @@ zend_class_entry *phalconplus_enum_abstractenum_ce;
 zend_class_entry *phalconplus_base_protobuffer_ce;
 zend_class_entry *phalconplus_logger_processor_abstractprocessor_ce;
 zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
+zend_class_entry *phalconplus_base_exception_ce;
 zend_class_entry *phalconplus_db_unitofwork_abstractvalue_ce;
 zend_class_entry *phalconplus_base_abstractrequest_ce;
 zend_class_entry *phalconplus_base_abstractresponse_ce;
-zend_class_entry *phalconplus_base_exception_ce;
 zend_class_entry *phalconplus_db_pdo_abstractmysql_ce;
 zend_class_entry *phalconplus_enum_exception_ce;
 zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
@@ -117,6 +119,10 @@ zend_class_entry *phalconplus_facades_url_ce;
 zend_class_entry *phalconplus_facades_user_ce;
 zend_class_entry *phalconplus_facades_view_ce;
 zend_class_entry *phalconplus_featuretest_splobjectstoragetest_ce;
+zend_class_entry *phalconplus_helper_arr_ce;
+zend_class_entry *phalconplus_helper_exception_ce;
+zend_class_entry *phalconplus_helper_str_ce;
+zend_class_entry *phalconplus_helper_variable_ce;
 zend_class_entry *phalconplus_http_nonpsrrequest_ce;
 zend_class_entry *phalconplus_http_nonpsrresponse_ce;
 zend_class_entry *phalconplus_http_psrresponsefactory_ce;
@@ -142,6 +148,8 @@ static PHP_MINIT_FUNCTION(phalconplus)
 {
 	REGISTER_INI_ENTRIES();
 	zephir_module_init();
+	ZEPHIR_INIT(PhalconPlus_Contracts_ArrayOf);
+	ZEPHIR_INIT(PhalconPlus_Contracts_EmptyOrNot);
 	ZEPHIR_INIT(PhalconPlus_App_Engine_AppEngine);
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Contracts_Auth_Access_ModelEvent);
@@ -157,10 +165,10 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_AbstractProcessor);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_AbstractClient);
+	ZEPHIR_INIT(PhalconPlus_Base_Exception);
 	ZEPHIR_INIT(PhalconPlus_Db_UnitOfWork_AbstractValue);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractRequest);
 	ZEPHIR_INIT(PhalconPlus_Base_AbstractResponse);
-	ZEPHIR_INIT(PhalconPlus_Base_Exception);
 	ZEPHIR_INIT(PhalconPlus_Db_Pdo_AbstractMysql);
 	ZEPHIR_INIT(PhalconPlus_Enum_Exception);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Server_AbstractServer);
@@ -233,6 +241,10 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Facades_User);
 	ZEPHIR_INIT(PhalconPlus_Facades_View);
 	ZEPHIR_INIT(PhalconPlus_FeatureTest_SplObjectStorageTest);
+	ZEPHIR_INIT(PhalconPlus_Helper_Arr);
+	ZEPHIR_INIT(PhalconPlus_Helper_Exception);
+	ZEPHIR_INIT(PhalconPlus_Helper_Str);
+	ZEPHIR_INIT(PhalconPlus_Helper_Variable);
 	ZEPHIR_INIT(PhalconPlus_Http_NonPsrRequest);
 	ZEPHIR_INIT(PhalconPlus_Http_NonPsrResponse);
 	ZEPHIR_INIT(PhalconPlus_Http_PsrResponseFactory);

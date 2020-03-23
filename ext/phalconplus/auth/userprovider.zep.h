@@ -19,14 +19,16 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, checkPassword);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, can);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, entity);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, hasAccess);
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getId);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, getRole);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, getName);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, getIdName);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, getUsernameName);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, getRoleName);
+PHP_METHOD(PhalconPlus_Auth_UserProvider, jsonSerialize);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_auth_userprovider___construct, 0, 0, 0)
-	ZEND_ARG_OBJ_INFO(0, user, Phalcon\\Mvc\\Model, 1)
+	ZEND_ARG_INFO(0, user)
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, role, IS_STRING, 0)
 #else
@@ -235,10 +237,12 @@ ZEPHIR_INIT_FUNCS(phalconplus_auth_userprovider_method_entry) {
 	PHP_ME(PhalconPlus_Auth_UserProvider, can, arginfo_phalconplus_auth_userprovider_can, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, entity, arginfo_phalconplus_auth_userprovider_entity, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, hasAccess, arginfo_phalconplus_auth_userprovider_hasaccess, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Auth_UserProvider, getId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, getRole, arginfo_phalconplus_auth_userprovider_getrole, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, getName, arginfo_phalconplus_auth_userprovider_getname, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, getIdName, arginfo_phalconplus_auth_userprovider_getidname, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, getUsernameName, arginfo_phalconplus_auth_userprovider_getusernamename, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, getRoleName, arginfo_phalconplus_auth_userprovider_getrolename, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Auth_UserProvider, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
