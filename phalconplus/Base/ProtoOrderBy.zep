@@ -1,5 +1,6 @@
 namespace PhalconPlus\Base;
 use PhalconPlus\Assert\Assertion as Assert;
+use PhalconPlus\Enum\OrderByDirection;
 
 class ProtoOrderBy extends ProtoBuffer
 {
@@ -16,36 +17,39 @@ class ProtoOrderBy extends ProtoBuffer
     /**
      * @optional
      */
-    private alias = "";
+    protected alias = "";
 
-    public function getProperty()
+    public function getProperty() -> string
     {
         return this->property;
     }
 
-    public function setProperty(string! property)
+    public function setProperty(string! property) -> <ProtoOrderBy>
     {
         let this->property = property;
+        return this;
     }
 
-    public function setDirection(<\PhalconPlus\Enum\OrderByDirection> orderBy)
+    public function setDirection(<OrderByDirection> orderBy) -> <ProtoOrderBy>
     {
         let this->direction = orderBy;
+        return this;
     }
 
-    public function getDirection()
+    public function setAlias(string! alias) -> <ProtoOrderBy>
+    {
+        let this->alias = alias;
+        return this;
+    }
+
+    public function getDirection() -> <OrderByDirection>
     {
         return this->direction;
     }
 
-    public function getAlias()
+    public function getAlias() -> string
     {
         return this->alias;
-    }
-
-    public function setAlias(string! alias)
-    {
-        let this->alias = alias;
     }
 
     public function __toString()
