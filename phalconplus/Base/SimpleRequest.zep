@@ -12,13 +12,14 @@ final class SimpleRequest extends AbstractRequest
     {
         var key, val;
         for key, val in data {
-            if property_exists(this, key) {
-                this->__set(key, val);
-            } else {
-                let this->params[key] = val;
-            }
+            this->__set(key, val);
         }
         return this;
+    }
+
+    protected function getSelfVars() -> array
+    {
+        return this->params;
     }
 
     public function getParam(var idx, var defaultValue = null)
@@ -30,7 +31,7 @@ final class SimpleRequest extends AbstractRequest
         return defaultValue;
     }
 
-    public function hasParam(var idx) 
+    public function hasParam(var idx)
     {
         if isset this->params[idx] {
             return true;
@@ -39,13 +40,13 @@ final class SimpleRequest extends AbstractRequest
         }
     }
 
-    public function setParams(array params) -> <\PhalconPlus\Base\SimpleRequest>
+    public function setParams(array params) -> <SimpleRequest>
     {
         let this->params = params;
         return this;
     }
 
-    public function setParam(var val, var key = null) -> <\PhalconPlus\Base\SimpleRequest>
+    public function setParam(var val, var key = null) -> <SimpleRequest>
     {
         if !is_null(key) {
             let this->params[key] = val;
@@ -58,6 +59,34 @@ final class SimpleRequest extends AbstractRequest
     public function getParams() -> array
     {
         return this->params;
+    }
+
+    public function __set(string! key, val)
+    {
+        let this->params[key] = val;
+    }
+
+    public function __isset(string! key)
+    {
+        if isset this->params[key] {
+            return true;
+        }
+        return false;
+    }
+
+    public function __get(string! key)
+    {
+        if isset this->params[key] {
+            return this->params[key];
+        }
+        return null;
+    }
+
+    public function __unset(string! key) -> void
+    {
+        if isset this->params[key] {
+            unset(this->params[key]);
+        }
     }
 
     public function isEmpty() -> boolean
