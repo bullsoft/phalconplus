@@ -28,7 +28,7 @@ class Pagable extends ProtoBuffer
         }
     }
 
-    public static function fromArray(array pages, bool cursor = false)
+    public static function fromArray(array pages, bool cursor = false) -> <Pagable>
     {
         int pageNo, pageSize;
         if cursor == false {
@@ -72,40 +72,42 @@ class Pagable extends ProtoBuffer
         return this->pageSize;
     }
 
-    public function setOrderBy(<ProtoOrderBy> orderBy)
+    public function setOrderBy(<ProtoOrderBy> orderBy) -> <Pagable>
     {
         array_push(this->orderBys, orderBy);
         return this;
     }
 
-    public function setOrderBys(array orderBys)
+    public function setOrderBys(array orderBys) -> <Pagable>
     {
         var item;
         for item in orderBys {
             if isset(item["property"]) && isset(item["direction"]) {
-                var orderBy, direction;
+                var orderBy, direction,
+                    upperDirection = strtoupper(item["direction"]);
+
+                let direction = new OrderByDirection(upperDirection);
                 let orderBy = new ProtoOrderBy();
-                orderBy->setProperty(item["property"]);
-                let direction = new OrderByDirection(item["direction"]);
-                orderBy->setDirection(direction);
+                orderBy->setProperty(item["property"])
+                       ->setDirection(direction);
                 this->setOrderBy(orderBy);
             }
         }
         return this;
     }
 
-    public function hasOrderBy()
+    public function hasOrderBy() -> boolean
     {
         return ! empty(this->orderBys);
     }
 
-    public function setPageNo(var pageNo)
+    public function setPageNo(var pageNo) -> <Pagable>
     {
         let this->pageNo = pageNo;
         return this;
     }
 
-    public function setPageSize(var pageSize)
+    public function setPageSize(var pageSize) -> <Pagable>
     {
         let this->pageSize = pageSize;
         return this;
