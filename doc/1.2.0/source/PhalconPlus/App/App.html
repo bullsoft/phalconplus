@@ -111,7 +111,7 @@ final class App extends BaseApplication
         Sys::initApp(this);
     }
 
-    public function boot(string env = "") -> <App>
+    public function boot(string env = "", string runMode = "") -> <App>
     {
         // 获取并初始化运行环境
         if likely empty env {
@@ -122,12 +122,6 @@ final class App extends BaseApplication
             if !empty sysEnv { let this->env = sysEnv; }
         } else {
             let this->env = env;
-        }
-        // 如果不是生产环境，打开Debug
-        // 这里我们假设生产环境的env值会以"product"开头
-        if substr(PHP_SAPI, 0, 3) != "cli" && !RunEnv::isInProd(this->env) {
-            let this->debug = new \Phalcon\Debug();
-            this->debug->listen();
         }
 
         // 定义全局常量
@@ -143,14 +137,14 @@ final class App extends BaseApplication
         // 加载Facacdes
         Facade::register(this, "\\Ph\\");
 
-        return this->bootPrimaryModule();
+        return this->bootPrimaryModule(runMode);
     }
 
-    private function bootPrimaryModule() -> <App>
+    private function bootPrimaryModule(string runMode = "") -> <App>
     {
         // 初始化主模块
         var primaryModuleDef;
-        let primaryModuleDef = new ModuleDef(this, Sys::getPrimaryModuleDir(), true);
+        let primaryModuleDef = new ModuleDef(this, Sys::getPrimaryModuleDir(), true, runMode);
         this->setDI(primaryModuleDef->newDI());
         this->getDI()->setShared("superApp", this);
         this->getDI()->setShared("config", this->config);
@@ -158,7 +152,13 @@ final class App extends BaseApplication
         // App启动成功
         let this->booted = true;
         // 注册主模块
-        this->registerModule(primaryModuleDef);
+        var module = this->registerModule(primaryModuleDef);
+        if module->isWeb() {
+            if !RunEnv::isInProd(this->env) {
+                let this->debug = new \Phalcon\Debug();
+                this->debug->listen();
+            }
+        }
         return this;
     }
 

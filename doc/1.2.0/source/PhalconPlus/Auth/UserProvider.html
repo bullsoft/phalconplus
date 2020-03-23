@@ -84,21 +84,31 @@ use PhalconPlus\Contracts\Auth\UserProvider as UserProviderContract;
 use Phalcon\Security;
 use Phalcon\Text;
 use Phalcon\Mvc\Model;
+use JsonSerializable;
 
-abstract class UserProvider implements UserProviderContract
+abstract class UserProvider implements UserProviderContract, JsonSerializable
 {
     protected id;
     protected role = "Guests";
     protected name = "";
     protected entity = null { get };
 
-    public function __construct(<Model> user = null, string role = "Guests")
+    public function __construct(var user = null, string role = "Guests")
     {
+        %{BEGIN:}%
         if is_null(user) {
             let this->id = 0;    
             let this->name = Text::random(Text::RANDOM_ALNUM);
             let this->role = role;
-        } else {
+        } elseif (typeof user == "array") {
+            if !isset user["id"] {
+                let user = null;
+                %{goto BEGIN;}%
+            }
+            let this->id   = user["id"];
+            let this->name = user["name"];
+            let this->role = user["role"];
+        } elseif (typeof user == "object" && user instanceof Model) {
             var idName = this->getIdName();
             var usernameName = this->getUsernameName();
             var roleName = this->getRoleName();
@@ -113,6 +123,9 @@ abstract class UserProvider implements UserProviderContract
                 let this->name = Text::random(Text::RANDOM_ALNUM);
                 let this->role = role;
             }
+        } else {
+            let user = null;
+            %{goto BEGIN;}%
         }
     }
 
@@ -192,6 +205,11 @@ abstract class UserProvider implements UserProviderContract
     {
         return false;
     }
+
+    public function getId() 
+    {
+        return this->id;
+    }
     
     public function getRole() -> string
     {
@@ -216,6 +234,15 @@ abstract class UserProvider implements UserProviderContract
     public function getRoleName() -> string
     {
         return "role";
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            "name" : this->name,
+            "id"   : this->id,
+            "role" : this->role
+        ];
     }
 }</pre>
                 </div>

@@ -99,7 +99,7 @@ class Exception extends AbstractEnum
         #else
         zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC);
         #endif
-        }%        
+        }%
         if fetch val, details[code->__toString()] {
             return val;
         } else {

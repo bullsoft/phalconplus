@@ -50,7 +50,7 @@
         <li><a href="../../../index.html">Home</a></li>
         
                 <li><a href="../../../classes.html">Classes</a></li>
-                <li><a href="../../../class/PhalconPlus/Base/ProtoOrderBy.html">PhalconPlus\Base\ProtoOrderBy</a></li>
+                <li><a href="../../../class/PhalconPlus/Helper/Variable.html">PhalconPlus\Helper\Variable</a></li>
                 <li><a >Source</a></li>
                 
     </ul>
@@ -59,7 +59,7 @@
 <div class="class-header source clearfix">
     
     <div class="access-buttons">
-        <a class="zep-button" href="../../../class/PhalconPlus/Base/ProtoOrderBy.html">Class</a>
+        <a class="zep-button" href="../../../class/PhalconPlus/Helper/Variable.html">Class</a>
 
             </div>
     
@@ -70,78 +70,56 @@
             <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
         </span>
                 <span class="namespace-piece">
-            <a href="../../../namespace/PhalconPlus/Base.html">Base</a>
+            <a href="../../../namespace/PhalconPlus/Helper.html">Helper</a>
         </span>
         
-        <h1 class="class-name">ProtoOrderBy</h1>
+        <h1 class="class-name">Variable</h1>
     </div>
     
 </div>
 
 <pre class="zephir-source-file prettyprint linenums">
-    namespace PhalconPlus\Base;
-use PhalconPlus\Assert\Assertion as Assert;
-use PhalconPlus\Enum\OrderByDirection;
+    namespace PhalconPlus\Helper;
 
-class ProtoOrderBy extends ProtoBuffer
+class Variable
 {
-    /**
-     * @required
-     */
-    protected property;
+    const NULL_VALUE = "$Ph/Var/SoftNull$";
 
-    /**
-     * @required
-     */
-    protected direction;
-
-    /**
-     * @optional
-     */
-    protected alias = "";
-
-    public function getProperty() -> string
+    public static function softNull()
     {
-        return this->property;
+        return Variable::NULL_VALUE;
     }
 
-    public function setProperty(string! property) -> <ProtoOrderBy>
+    public static function isSoftNull(string nil)
     {
-        let this->property = property;
-        return this;
+        return Variable::NULL_VALUE === nil;
     }
 
-    public function setDirection(<OrderByDirection> orderBy) -> <ProtoOrderBy>
+    public static function stringify(var value, bool full = false) -> string
     {
-        let this->direction = orderBy;
-        return this;
-    }
-
-    public function setAlias(string! alias) -> <ProtoOrderBy>
-    {
-        let this->alias = alias;
-        return this;
-    }
-
-    public function getDirection() -> <OrderByDirection>
-    {
-        return this->direction;
-    }
-
-    public function getAlias() -> string
-    {
-        return this->alias;
-    }
-
-    public function __toString()
-    {
-        Assert::notEmpty(this->property);
-        Assert::notEmpty(this->direction);
-        var orderBy = "";
-        if !empty this->alias {
-            let orderBy = orderBy . this->alias . ".";
+        if is_bool(value) {
+            return value == true ? "TRUE" : "FALSE";
         }
-        return orderBy . this->property . " " . this->direction;
+        if value === NULL { 
+            return "NULL"; 
+        }
+        var val = "";
+        if is_scalar(value) {
+            let val = (string) value;
+            if full == false && strlen(val) > 100 {
+                let val = substr(val, 0, 96) . " ...";
+            }
+            return val;
+        }
+        if is_array(value) || is_object(value) || is_resource(value) {
+            let val = print_r(value, true);
+            let val = preg_replace("/\s+/", " ", val);
+            if full == false && strlen(val) > 160 {
+                return substr(val, 0, 156) . " ...";
+            }
+            return val;
+        }
+        return "unknown";
     }
 }</pre>
                 </div>

@@ -89,6 +89,9 @@ class InvalidArgumentException extends \InvalidArgumentException implements Asse
 
     public function __construct(message, code, propertyPath = null, value, array constraints = [])
     {
+        // if is_callable(message) {
+        //     let message = (string) {message}(value, propertyPath, constraints);
+        // }
         parent::__construct(message, code);
         let this->propertyPath = propertyPath;
         let this->value = value;

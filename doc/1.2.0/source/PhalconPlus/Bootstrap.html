@@ -86,12 +86,12 @@ final class Bootstrap
     // SuperApp: <\PhalconPlus\App\App>
     protected app = null;
 
-    public function __construct(string! moduleDir, string env = "")
+    public function __construct(string! moduleDir, string env = "", string runMode = "")
     {
         // 模块目录, PrimaryModule Dir
         Sys::init(moduleDir);
         var config = this->initConf();
-        let this->app = (new SuperApp(config))->boot(env);
+        let this->app = (new SuperApp(config))->boot(env, runMode);
         // 加载Composer库
         Sys::load(Sys::getComposerAutoloadPath());
     }

@@ -7,22 +7,22 @@
     <title>
                     phalconplus API Documentation
             </title>
-    <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
 
-<script src="../../../../asset/static/prettify.js"></script>
-<script src="../../../../asset/api_definition.js"></script>
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
 
 
-                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
-                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
             
     
 
-                        <script src="../../../../asset/static/prettify.js"></script>
-                                    <script src="../../../../asset/api_definition.js"></script>
-                    <script src="../../../../asset/static/jquery.min.js"></script>
-                    <script src="../../../../asset/static/zephir-doc.js"></script>
-                <script type="application/javascript">let ZepCurrentPath = '../../../../'</script>
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
     </head>
  <body onload="prettyPrint()">
         <div id="top-bar">
@@ -47,10 +47,10 @@
     
     <ul>
         
-        <li><a href="../../../../index.html">Home</a></li>
+        <li><a href="../../../index.html">Home</a></li>
         
-                <li><a href="../../../../classes.html">Classes</a></li>
-                <li><a >PhalconPlus\Logger\Processor\Trace</a></li>
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a >PhalconPlus\Helper\Arr</a></li>
                 
     </ul>
     
@@ -58,26 +58,22 @@
 <div class="class-header clearfix">
 
     <div class="access-buttons">
-        <a class="zep-button" href="../../../../source/PhalconPlus/Logger/Processor/Trace.html">Source</a>
+        <a class="zep-button" href="../../../source/PhalconPlus/Helper/Arr.html">Source</a>
             </div>
     
     <div class="class-full-name">
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
-            <a href="../../../../namespace/PhalconPlus.html">
+            <a href="../../../namespace/PhalconPlus.html">
                 PhalconPlus            </a>
         </span>
                 <span class="namespace-piece">
-            <a href="../../../../namespace/PhalconPlus/Logger.html">
-                Logger            </a>
-        </span>
-                <span class="namespace-piece">
-            <a href="../../../../namespace/PhalconPlus/Logger/Processor.html">
-                Processor            </a>
+            <a href="../../../namespace/PhalconPlus/Helper.html">
+                Helper            </a>
         </span>
         
-        <h1 class="class-name">Trace</h1>
+        <h1 class="class-name">Arr</h1>
     </div>
 </div>
 
@@ -93,9 +89,9 @@
             <!-- method-summary -->
             <!-- Do not remove comments below. It's a trick to remove the spaces. -->
             <span class="method-name">
-                <a href="#method-details-__construct">__construct</a><!--
+                <a href="#method-details-isAllKeyInt">isAllKeyInt</a><!--
             --></span><!--
-            -->(<span class="param-data-type">int</span> <span class="variable param-name">$mode</span>, <span class="param-data-type">array</span> <span class="variable param-name">$skipClassesPartials</span>)<!--
+            -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)<!--
             --><span class="method-return">
                 <strong>:</strong>
                                     void
@@ -110,9 +106,9 @@
             <!-- method-summary -->
             <!-- Do not remove comments below. It's a trick to remove the spaces. -->
             <span class="method-name">
-                <a href="#method-details-setLimit">setLimit</a><!--
+                <a href="#method-details-isAllKeyString">isAllKeyString</a><!--
             --></span><!--
-            -->(<span class="param-data-type">int</span> <span class="variable param-name">$limit</span>)<!--
+            -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)<!--
             --><span class="method-return">
                 <strong>:</strong>
                                     void
@@ -127,9 +123,9 @@
             <!-- method-summary -->
             <!-- Do not remove comments below. It's a trick to remove the spaces. -->
             <span class="method-name">
-                <a href="#method-details-__toString">__toString</a><!--
+                <a href="#method-details-isKeyNumericSequentialZeroBased">isKeyNumericSequentialZeroBased</a><!--
             --></span><!--
-            -->()<!--
+            -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)<!--
             --><span class="method-return">
                 <strong>:</strong>
                                     void
@@ -144,13 +140,29 @@
             <!-- method-summary -->
             <!-- Do not remove comments below. It's a trick to remove the spaces. -->
             <span class="method-name">
-                <a href="#method-details-zephir_init_properties_PhalconPlus_Logger_Processor_Trace">zephir_init_properties_PhalconPlus_Logger_Processor_Trace</a><!--
+                <a href="#method-details-newProtoBuffer">newProtoBuffer</a><!--
             --></span><!--
-            -->()<!--
+            -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)<!--
             --><span class="method-return">
                 <strong>:</strong>
                                     void
                             </span>
+        </div>
+            </div>
+</li>
+            
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <!-- method-summary -->
+            <!-- Do not remove comments below. It's a trick to remove the spaces. -->
+            <span class="method-name">
+                <a href="#method-details-encodeJson">encodeJson</a><!--
+            --></span><!--
+            -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)<!--
+            --><span class="method-return">
+                <strong>:</strong>
+                                    string                            </span>
         </div>
             </div>
 </li>
@@ -162,17 +174,18 @@
 <ul class="method-details-list">
             
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-__construct"></div>
+    <div class="hidden-anchor" id="method-details-isAllKeyInt"></div>
     <div class="method-details">
         <div class="method-details-details">
 
             <p class="method-signature">
                                     <span class="visibility-public keyword">public</span>
+                                    <span class="visibility-static keyword">static</span>
                                 <span class="keyword">function</span>
                 <!-- method-details -->
                 <!-- Do not remove comments below. It's a trick to remove the spaces. -->
-                <span class="method-name">__construct</span><!--
-                -->(<span class="param-data-type">int</span> <span class="variable param-name">$mode</span>, <span class="param-data-type">array</span> <span class="variable param-name">$skipClassesPartials</span>)
+                <span class="method-name">isAllKeyInt</span><!--
+                -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)
             </p>
 
             <div class="method-doc">
@@ -183,17 +196,18 @@
 </li>
             
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-setLimit"></div>
+    <div class="hidden-anchor" id="method-details-isAllKeyString"></div>
     <div class="method-details">
         <div class="method-details-details">
 
             <p class="method-signature">
                                     <span class="visibility-public keyword">public</span>
+                                    <span class="visibility-static keyword">static</span>
                                 <span class="keyword">function</span>
                 <!-- method-details -->
                 <!-- Do not remove comments below. It's a trick to remove the spaces. -->
-                <span class="method-name">setLimit</span><!--
-                -->(<span class="param-data-type">int</span> <span class="variable param-name">$limit</span>)
+                <span class="method-name">isAllKeyString</span><!--
+                -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)
             </p>
 
             <div class="method-doc">
@@ -204,17 +218,18 @@
 </li>
             
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-__toString"></div>
+    <div class="hidden-anchor" id="method-details-isKeyNumericSequentialZeroBased"></div>
     <div class="method-details">
         <div class="method-details-details">
 
             <p class="method-signature">
                                     <span class="visibility-public keyword">public</span>
+                                    <span class="visibility-static keyword">static</span>
                                 <span class="keyword">function</span>
                 <!-- method-details -->
                 <!-- Do not remove comments below. It's a trick to remove the spaces. -->
-                <span class="method-name">__toString</span><!--
-                -->()
+                <span class="method-name">isKeyNumericSequentialZeroBased</span><!--
+                -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)
             </p>
 
             <div class="method-doc">
@@ -225,17 +240,40 @@
 </li>
             
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-zephir_init_properties_PhalconPlus_Logger_Processor_Trace"></div>
+    <div class="hidden-anchor" id="method-details-newProtoBuffer"></div>
     <div class="method-details">
         <div class="method-details-details">
 
             <p class="method-signature">
-                                    <span class="visibility-internal keyword">internal</span>
+                                    <span class="visibility-public keyword">public</span>
+                                    <span class="visibility-static keyword">static</span>
                                 <span class="keyword">function</span>
                 <!-- method-details -->
                 <!-- Do not remove comments below. It's a trick to remove the spaces. -->
-                <span class="method-name">zephir_init_properties_PhalconPlus_Logger_Processor_Trace</span><!--
-                -->()
+                <span class="method-name">newProtoBuffer</span><!--
+                -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)
+            </p>
+
+            <div class="method-doc">
+                                            </div>
+
+        </div>
+    </div>
+</li>
+            
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-encodeJson"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+
+            <p class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                    <span class="visibility-static keyword">static</span>
+                                <span class="keyword">function</span>
+                <!-- method-details -->
+                <!-- Do not remove comments below. It's a trick to remove the spaces. -->
+                <span class="method-name">encodeJson</span><!--
+                -->(<span class="param-data-type">variable</span> <span class="variable param-name">$inputArray</span>)
             </p>
 
             <div class="method-doc">

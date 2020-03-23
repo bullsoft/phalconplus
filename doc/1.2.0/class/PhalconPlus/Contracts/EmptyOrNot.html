@@ -50,100 +50,82 @@
         <li><a href="../../../index.html">Home</a></li>
         
                 <li><a href="../../../classes.html">Classes</a></li>
-                <li><a href="../../../class/PhalconPlus/Base/ProtoOrderBy.html">PhalconPlus\Base\ProtoOrderBy</a></li>
-                <li><a >Source</a></li>
+                <li><a >PhalconPlus\Contracts\EmptyOrNot</a></li>
                 
     </ul>
     
 </div>
-<div class="class-header source clearfix">
-    
-    <div class="access-buttons">
-        <a class="zep-button" href="../../../class/PhalconPlus/Base/ProtoOrderBy.html">Class</a>
+<div class="class-header clearfix">
 
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../source/PhalconPlus/Contracts/EmptyOrNot.html">Source</a>
             </div>
     
     <div class="class-full-name">
         <span class="class-type">Class</span>
         
                 <span class="namespace-piece">
-            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+            <a href="../../../namespace/PhalconPlus.html">
+                PhalconPlus            </a>
         </span>
                 <span class="namespace-piece">
-            <a href="../../../namespace/PhalconPlus/Base.html">Base</a>
+            <a href="../../../namespace/PhalconPlus/Contracts.html">
+                Contracts            </a>
         </span>
         
-        <h1 class="class-name">ProtoOrderBy</h1>
+        <h1 class="class-name">EmptyOrNot</h1>
     </div>
-    
 </div>
 
-<pre class="zephir-source-file prettyprint linenums">
-    namespace PhalconPlus\Base;
-use PhalconPlus\Assert\Assertion as Assert;
-use PhalconPlus\Enum\OrderByDirection;
 
-class ProtoOrderBy extends ProtoBuffer
-{
-    /**
-     * @required
-     */
-    protected property;
+<div class="hidden-anchor"  id="methods"></div>
+<div class="methods-summary standard-bandeau">Methods</div>
 
-    /**
-     * @required
-     */
-    protected direction;
+<ul class="method-summary-list">
+            
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <!-- method-summary -->
+            <!-- Do not remove comments below. It's a trick to remove the spaces. -->
+            <span class="method-name">
+                <a href="#method-details-isEmpty">isEmpty</a><!--
+            --></span><!--
+            -->()<!--
+            --><span class="method-return">
+                <strong>:</strong>
+                                    bool                            </span>
+        </div>
+            </div>
+</li>
+    </ul>
 
-    /**
-     * @optional
-     */
-    protected alias = "";
+<div class="hidden-anchor" id="methods-details"></div>
+<div class="methods-summary standard-bandeau">Methods Details</div>
 
-    public function getProperty() -> string
-    {
-        return this->property;
-    }
+<ul class="method-details-list">
+            
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-isEmpty"></div>
+    <div class="method-details">
+        <div class="method-details-details">
 
-    public function setProperty(string! property) -> <ProtoOrderBy>
-    {
-        let this->property = property;
-        return this;
-    }
+            <p class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>
+                <!-- method-details -->
+                <!-- Do not remove comments below. It's a trick to remove the spaces. -->
+                <span class="method-name">isEmpty</span><!--
+                -->()
+            </p>
 
-    public function setDirection(<OrderByDirection> orderBy) -> <ProtoOrderBy>
-    {
-        let this->direction = orderBy;
-        return this;
-    }
+            <div class="method-doc">
+                                            </div>
 
-    public function setAlias(string! alias) -> <ProtoOrderBy>
-    {
-        let this->alias = alias;
-        return this;
-    }
-
-    public function getDirection() -> <OrderByDirection>
-    {
-        return this->direction;
-    }
-
-    public function getAlias() -> string
-    {
-        return this->alias;
-    }
-
-    public function __toString()
-    {
-        Assert::notEmpty(this->property);
-        Assert::notEmpty(this->direction);
-        var orderBy = "";
-        if !empty this->alias {
-            let orderBy = orderBy . this->alias . ".";
-        }
-        return orderBy . this->property . " " . this->direction;
-    }
-}</pre>
+        </div>
+    </div>
+</li>
+    </ul>
                 </div>
             </div>
         </div>
