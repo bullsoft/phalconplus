@@ -17,6 +17,7 @@
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/operators.h"
+#include "kernel/concat.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Auth_UserProvider) {
@@ -326,7 +327,6 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, guest) {
 
 PHP_METHOD(PhalconPlus_Auth_UserProvider, hashPassword) {
 
-	zend_class_entry *_1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool makeSalt;
@@ -363,9 +363,8 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, hashPassword) {
 		ZEPHIR_CALL_METHOD(&salt, &sec, "getsaltbytes", NULL, 0);
 		zephir_check_call_status();
 	}
-	_1 = zephir_fetch_class_str_ex(SL("Phalcon\\Text"), ZEND_FETCH_CLASS_AUTO);
-	ZEPHIR_CALL_CE_STATIC(&_0, _1, "concat", NULL, 0, &rawPasswd, &salt);
-	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&_0);
+	ZEPHIR_CONCAT_VV(&_0, &rawPasswd, &salt);
 	ZEPHIR_CALL_METHOD(&encryptedPasswd, &sec, "hash", NULL, 0, &_0);
 	zephir_check_call_status();
 	zephir_create_array(return_value, 3, 0);
@@ -378,18 +377,17 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, hashPassword) {
 
 PHP_METHOD(PhalconPlus_Auth_UserProvider, checkPassword) {
 
-	zend_class_entry *_1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *rawPasswd_param = NULL, *encryptedPasswd_param = NULL, *salt_param = NULL, sec, _0;
-	zval rawPasswd, encryptedPasswd, salt;
+	zval *rawPasswd_param = NULL, *encryptedPasswd_param = NULL, *salt_param = NULL, sec;
+	zval rawPasswd, encryptedPasswd, salt, _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&rawPasswd);
 	ZVAL_UNDEF(&encryptedPasswd);
 	ZVAL_UNDEF(&salt);
-	ZVAL_UNDEF(&sec);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&sec);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &rawPasswd_param, &encryptedPasswd_param, &salt_param);
@@ -408,9 +406,8 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, checkPassword) {
 	object_init_ex(&sec, zephir_get_internal_ce(SL("phalcon\\security")));
 	ZEPHIR_CALL_METHOD(NULL, &sec, "__construct", NULL, 0);
 	zephir_check_call_status();
-	_1 = zephir_fetch_class_str_ex(SL("Phalcon\\Text"), ZEND_FETCH_CLASS_AUTO);
-	ZEPHIR_CALL_CE_STATIC(&_0, _1, "concat", NULL, 0, &rawPasswd, &salt);
-	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&_0);
+	ZEPHIR_CONCAT_VV(&_0, &rawPasswd, &salt);
 	ZEPHIR_RETURN_CALL_METHOD(&sec, "checkhash", NULL, 0, &_0, &encryptedPasswd);
 	zephir_check_call_status();
 	RETURN_MM();

@@ -13,6 +13,11 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
+#include "kernel/array.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
+#include "kernel/operators.h"
+#include "kernel/memory.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Request) {
@@ -29,6 +34,134 @@ PHP_METHOD(PhalconPlus_Facades_Request, getName) {
 
 
 	RETURN_STRING("request");
+
+}
+
+PHP_METHOD(PhalconPlus_Facades_Request, setPost) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *name_param = NULL, *val, val_sub, _POST;
+	zval name;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name);
+	ZVAL_UNDEF(&val_sub);
+	ZVAL_UNDEF(&_POST);
+
+	ZEPHIR_MM_GROW();
+	zephir_get_global(&_POST, SL("_POST"));
+	zephir_fetch_params(1, 2, 0, &name_param, &val);
+
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+
+
+	zephir_array_update_zval(&_POST, &name, val, PH_COPY | PH_SEPARATE);
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_Facades_Request, setQuery) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *name_param = NULL, *val, val_sub, _GET;
+	zval name;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name);
+	ZVAL_UNDEF(&val_sub);
+	ZVAL_UNDEF(&_GET);
+
+	ZEPHIR_MM_GROW();
+	zephir_get_global(&_GET, SL("_GET"));
+	zephir_fetch_params(1, 2, 0, &name_param, &val);
+
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+
+
+	zephir_array_update_zval(&_GET, &name, val, PH_COPY | PH_SEPARATE);
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_Facades_Request, setServer) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *name_param = NULL, *val, val_sub, _SERVER;
+	zval name;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name);
+	ZVAL_UNDEF(&val_sub);
+	ZVAL_UNDEF(&_SERVER);
+
+	ZEPHIR_MM_GROW();
+	zephir_get_global(&_SERVER, SL("_SERVER"));
+	zephir_fetch_params(1, 2, 0, &name_param, &val);
+
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+
+
+	zephir_array_update_zval(&_SERVER, &name, val, PH_COPY | PH_SEPARATE);
+	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_Facades_Request, set) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *name_param = NULL, *val, val_sub, _REQUEST;
+	zval name;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name);
+	ZVAL_UNDEF(&val_sub);
+	ZVAL_UNDEF(&_REQUEST);
+
+	ZEPHIR_MM_GROW();
+	zephir_get_global(&_REQUEST, SL("_REQUEST"));
+	zephir_fetch_params(1, 2, 0, &name_param, &val);
+
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+
+
+	zephir_array_update_zval(&_REQUEST, &name, val, PH_COPY | PH_SEPARATE);
+	ZEPHIR_MM_RESTORE();
 
 }
 
