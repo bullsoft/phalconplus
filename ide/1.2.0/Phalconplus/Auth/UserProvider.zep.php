@@ -54,9 +54,9 @@ abstract class UserProvider implements UserProviderContract, \JsonSerializable
 
     /**
      * @param array $credentials
-     * @return UserProvider
+     * @return Model
      */
-    public static function getByCredentials(array $credentials): UserProvider
+    public static function getByCredentials(array $credentials): Model
     {
     }
 
