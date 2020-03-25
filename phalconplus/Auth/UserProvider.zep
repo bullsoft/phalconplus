@@ -56,7 +56,7 @@ abstract class UserProvider implements UserProviderContract, JsonSerializable
     {
         // 
     }
-    public static function getByCredentials(array credentials) -> <UserProvider>
+    public static function getByCredentials(array credentials) -> <Model>
     {
         // 
     }
@@ -95,7 +95,7 @@ abstract class UserProvider implements UserProviderContract, JsonSerializable
         if makeSalt === true {
             let salt = sec->getSaltBytes();
         }
-        let encryptedPasswd = sec->hash(Text::concat(rawPasswd, salt));
+        let encryptedPasswd = sec->hash(rawPasswd . salt);
         return [
             "raw" : rawPasswd,
             "encrypted" : encryptedPasswd,
@@ -107,7 +107,7 @@ abstract class UserProvider implements UserProviderContract, JsonSerializable
     {
         var sec;
         let sec = new Security();
-        return sec->checkHash(Text::concat(rawPasswd, salt), encryptedPasswd);
+        return sec->checkHash(rawPasswd . salt, encryptedPasswd);
     }
 
     public function can(string ability, var params) -> bool
