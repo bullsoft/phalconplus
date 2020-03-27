@@ -113,16 +113,16 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "is_dir", NULL, 43, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_0, "is_dir", NULL, 45, &moduleDir);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		object_init_ex(&_1$$3, zend_exception_get_default(TSRMLS_C));
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_CONCAT_SV(&_2$$3, "Module directory not exists or not a dir, file positon: ", &moduleDir);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 7, &_2$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 9, &_2$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/Base/ModuleDef.zep", 46);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/Base/ModuleDef.zep", 45);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -133,14 +133,14 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 	ZEPHIR_INIT_VAR(&_5);
 	object_init_ex(&_5, zephir_get_internal_ce(SL("phalcon\\config")));
 	zephir_read_property(&_7, this_ptr, SL("configPath"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&_6, boot, "load", NULL, 44, &_7);
+	ZEPHIR_CALL_METHOD(&_6, boot, "load", NULL, 46, &_7);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, &_5, "__construct", NULL, 0, &_6);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("config"), &_5);
 	zephir_read_property(&_8, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_array_isset_string(&_8, SL("application")))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Config Path: /application must exists", "phalconplus/Base/ModuleDef.zep", 55);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Config Path: /application must exists", "phalconplus/Base/ModuleDef.zep", 54);
 		return;
 	}
 	zephir_read_property(&_9, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
@@ -155,7 +155,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 	zephir_read_property(&_14, &appConfig, SL("mode"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_strtolower(&_13, &_14);
 	zephir_ucfirst(&_12, &_13);
-	ZEPHIR_CALL_METHOD(NULL, &_11, "__construct", NULL, 45, &_12);
+	ZEPHIR_CALL_METHOD(NULL, &_11, "__construct", NULL, 47, &_12);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("runMode"), &_11);
 	zephir_read_property(&_15, &appConfig, SL("ns"), PH_NOISY_CC | PH_READONLY);
@@ -170,7 +170,7 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("classPath"), &_19);
 	zephir_read_property(&_22, this_ptr, SL("classPath"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_23, "is_file", NULL, 46, &_22);
+	ZEPHIR_CALL_FUNCTION(&_23, "is_file", NULL, 48, &_22);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_23))) {
 		ZEPHIR_INIT_VAR(&_24$$5);
@@ -178,9 +178,9 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, __construct) {
 		zephir_read_property(&_25$$5, this_ptr, SL("classPath"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_26$$5);
 		ZEPHIR_CONCAT_SV(&_26$$5, "Module class file not exists: ", &_25$$5);
-		ZEPHIR_CALL_METHOD(NULL, &_24$$5, "__construct", NULL, 7, &_26$$5);
+		ZEPHIR_CALL_METHOD(NULL, &_24$$5, "__construct", NULL, 9, &_26$$5);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_24$$5, "phalconplus/Base/ModuleDef.zep", 67);
+		zephir_throw_exception_debug(&_24$$5, "phalconplus/Base/ModuleDef.zep", 66);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -236,9 +236,9 @@ PHP_METHOD(PhalconPlus_Base_ModuleDef, impl) {
 		zephir_read_property(&_5$$4, this_ptr, SL("className"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_6$$4);
 		ZEPHIR_CONCAT_SV(&_6$$4, "Module class not exists: ", &_5$$4);
-		ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", NULL, 7, &_6$$4);
+		ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", NULL, 9, &_6$$4);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_4$$4, "phalconplus/Base/ModuleDef.zep", 79);
+		zephir_throw_exception_debug(&_4$$4, "phalconplus/Base/ModuleDef.zep", 78);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

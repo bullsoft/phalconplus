@@ -1,7 +1,7 @@
 namespace PhalconPlus\Rpc\Client\Adapter;
 use PhalconPlus\Rpc\Client\AbstractClient;
-
 use PhalconPlus\Curl\Curl as HttpClient;
+use PhalconPlus\Base\Exception as BaseException;
 
 class Curl extends AbstractClient
 {
@@ -13,7 +13,7 @@ class Curl extends AbstractClient
     public function __construct(array remoteServerUrl, array opts = [], string formater = "json")
     {
         if empty remoteServerUrl {
-            throw new \PhalconPlus\Base\Exception("server url can not be empty");
+            throw new BaseException("server url can not be empty");
         }
         var key;
         let key = array_rand(remoteServerUrl);
@@ -31,11 +31,16 @@ class Curl extends AbstractClient
     {
         string encoder = "msgpack_pack", 
                decoder = "msgpack_unpack";
+
         if "json" == this->formater {
             let encoder = "json_encode",
                 decoder = "json_decode";
         }
+
+        let rawData["service"] = this->namePrefix . rawData["service"];
+
         let this->response = this->client->rawPost(this->remoteServerUrl, {encoder}(rawData));
+
         if is_object(this->response) {
             if(this->response->statusCode == 200) {
                 if "json" == this->formater { 

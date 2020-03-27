@@ -15,8 +15,11 @@ class Model extends \Phalcon\Mvc\Model
 {
     // 记录创建时间
     public ctime;
+    public createdAt;
     // 记录更新时间
     public mtime;
+    public updatedAt;
+
     // 自定义模型唯一键
     protected __uniqueKeys = [];
 
@@ -111,6 +114,12 @@ class Model extends \Phalcon\Mvc\Model
     {
         let this->ctime = date("Y-m-d H:i:s");
         let this->mtime = this->ctime;
+        if property_exists(this, "created_at") {
+            let this->createdAt = this->ctime;
+        }
+        if property_exists(this, "updated_at") {
+            let this->updatedAt = this->ctime;
+        }
     }
 
     public function afterFetch()
@@ -118,12 +127,24 @@ class Model extends \Phalcon\Mvc\Model
         // nothing
         let this->ctime = new \DateTime(this->ctime);
         let this->mtime = new \DateTime(this->mtime);
+        if property_exists(this, "created_at") {
+            let this->createdAt = new \DateTime(this->createdAt);
+        }
+        if property_exists(this, "updated_at") {
+            let this->updatedAt = new \DateTime(this->updatedAt);
+        }
     }
 
     public function beforeCreate()
     {
         let this->ctime = date("Y-m-d H:i:s");
         let this->mtime = this->ctime;
+        if property_exists(this, "created_at") {
+            let this->createdAt = this->ctime;
+        }
+        if property_exists(this, "updated_at") {
+            let this->updatedAt = this->ctime;
+        }
     }
 
     public function beforeSave()
@@ -133,15 +154,29 @@ class Model extends \Phalcon\Mvc\Model
             let changedFields = this->getChangedFields();
             if !empty changedFields {
                 let this->mtime = date("Y-m-d H:i:s");
+                if property_exists(this, "updated_at") {
+                    let this->updatedAt =  this->mtime;
+                }
             }
         }
         if is_object(this->ctime) && (this->ctime instanceof \DateTime) {
             let this->ctime = this->ctime->format("Y-m-d H:i:s");
         }
+        if property_exists(this, "created_at") {
+            if is_object(this->createdAt) && (this->createdAt instanceof \DateTime) {
+               let this->createdAt = this->createdAt->format("Y-m-d H:i:s");
+            }
+        }
 
         if is_object(this->mtime) && (this->mtime instanceof \DateTime) {
             let this->mtime = this->mtime->format("Y-m-d H:i:s");
         }
+        if property_exists(this, "updated_at") {
+            if is_object(this->updatedAt) && (this->updatedAt instanceof \DateTime) {
+                let this->updatedAt = this->updatedAt->format("Y-m-d H:i:s");
+            }
+        }
+
         return true;
     }
 

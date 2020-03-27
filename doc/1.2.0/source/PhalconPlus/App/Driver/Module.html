@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+
+<script src="../../../../asset/static/prettify.js"></script>
+<script src="../../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../asset/api_definition.js"></script>
+                    <script src="../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.2.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../class/PhalconPlus/App/Driver/Module.html">PhalconPlus\App\Driver\Module</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../class/PhalconPlus/App/Driver/Module.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/App.html">App</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/App/Driver.html">Driver</a>
+        </span>
+        
+        <h1 class="class-name">Module</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\App\Driver;
+use PhalconPlus\App\App as SuperApp;
+use Phalcon\Di\Injectable;
+use Phalcon\Application as BaseApplication;
+use Phalcon\Mvc\Application as MvcHandler;
+use Phalcon\Http\Response as HttpResponse;
+
+class Module extends Injectable implements AppDriver
+{
+    protected app;
+    protected handler;
+    protected autoHandle = true;
+
+    public function __construct(<SuperApp> app, boolean autoHandle = true)
+    {
+        let this->autoHandle = autoHandle;
+        let this->app = app;
+
+        var di = app->getDI();
+
+        this->setDI(di);
+        let this->handler = new MvcHandler();
+        this->handler->setDI(di);
+        this->handler->setEventsManager(di->get("eventsManager"));
+    }
+
+    /**
+    * @request a uri string (for \Phalcon\Mvc\Application) or Psr\Http\Message\Request
+    */
+    public function exec(var request = null) -> <HttpResponse> | <AppDriver>
+    {
+        // 如果不需要handle，则直接返回
+        if !this->autoHandle { return this; }
+        // Handle
+        return this->handler->handle(request);
+    }
+
+    public function setHandler(object handler, boolean autoHandle = false) -> <AppDriver>
+    {
+        if likely handler instanceof BaseApplication {
+            let this->handler = handler;
+            let this->autoHandle = autoHandle;
+        } else {
+            throw new BaseException("Application must be instance of phalcon\\appliction");
+        }
+        return this;
+    }
+
+    // return object | null
+    public function getHandler() -> object
+    {
+        if unlikely empty(this->handler) {
+            throw new BaseException("Sorry, empty handler");
+        }
+        return this->handler;
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

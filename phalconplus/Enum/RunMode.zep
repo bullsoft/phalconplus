@@ -15,18 +15,18 @@ class RunMode extends AbstractEnum
     // mode -> className
     // eg: mode "Web" has a module initial className in app/Module.php
     protected mapClasses = [
-        "Web"     : "Module",
-        "Cli"     : "Task",
+        "Web"     : "Web",
+        "Cli"     : "Cli",
         "Srv"     : "Srv",
         "Micro"   : "Micro"
     ];
 
     // 全局服务加载脚本定义
     protected scripts = [
-        "Web"   : "default-web.php", 
-        "Cli"   : "default-cli.php", 
-        "Srv"   : "default-web.php", 
-        "Micro" : "default-micro.php"
+        "Web"   : "/default-web.php", 
+        "Cli"   : "/default-cli.php", 
+        "Srv"   : "/default-web.php", 
+        "Micro" : "/default-micro.php"
     ];
 
     public function getScriptPath() -> string | null
@@ -38,6 +38,26 @@ class RunMode extends AbstractEnum
             return null;
         }
         return script;
+    }
+
+    public function isCli()
+    {
+        return this->val == RunMode::CLI;
+    }
+
+    public function isWeb()
+    {
+        return this->val == RunMode::WEB;
+    }
+
+    public function isSrv()
+    {
+        return this->val == RunMode::SRV;
+    }
+
+    public function isMicro()
+    {
+        return this->val == RunMode::MICRO;
     }
 
     public function getMapClassName() -> string

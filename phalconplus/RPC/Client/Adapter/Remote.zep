@@ -3,7 +3,8 @@ use PhalconPlus\Rpc\Client\AbstractClient;
 
 class Remote extends AbstractClient
 {
-    private remoteServerUrl;
+    private remoteServerUrl = "";
+
     private client;
 
     public function __construct(array remoteServerUrl, array opts = [])
@@ -26,13 +27,13 @@ class Remote extends AbstractClient
 
     public function callByObject(array rawData)
     {
+        let rawData["service"] = this->namePrefix . rawData["service"];
         return this->client->callByObject(rawData);
     }
 
     public function __call(string! method, array args)
     {
         if method_exists(this->client, method) {
-            // error_log("Remote RPC set Opts: " . method . " args: " . var_export(args, true));
             return call_user_func_array([this->client, method], args);
         } else {
             throw new \PhalconPlus\Base\Exception("method not exists");

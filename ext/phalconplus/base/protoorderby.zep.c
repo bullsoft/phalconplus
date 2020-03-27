@@ -38,7 +38,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_ProtoOrderBy) {
 	/**
 	 * @optional
 	 */
-	zend_declare_property_string(phalconplus_base_protoorderby_ce, SL("alias"), "", ZEND_ACC_PRIVATE);
+	zend_declare_property_string(phalconplus_base_protoorderby_ce, SL("alias"), "", ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -78,7 +78,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 
 
 	zephir_update_property_zval(this_ptr, SL("property"), &property);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -94,24 +94,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setDirection) {
 
 
 	zephir_update_property_zval(this_ptr, SL("direction"), orderBy);
-
-}
-
-PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getDirection) {
-
-	zval *this_ptr = getThis();
-
-
-	RETURN_MEMBER(getThis(), "direction");
-
-}
-
-PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getAlias) {
-
-	zval *this_ptr = getThis();
-
-
-	RETURN_MEMBER(getThis(), "alias");
+	RETURN_THISW();
 
 }
 
@@ -140,7 +123,25 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 
 
 	zephir_update_property_zval(this_ptr, SL("alias"), &alias);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
+
+}
+
+PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getDirection) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "direction");
+
+}
+
+PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, getAlias) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "alias");
 
 }
 

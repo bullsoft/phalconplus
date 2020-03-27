@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v1.2.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Auth/Model.html">PhalconPlus\Auth\Model</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Auth/Model.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Auth.html">Auth</a>
+        </span>
+        
+        <h1 class="class-name">Model</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Auth;
+use PhalconPlus\Contracts\Auth\Access\ModelEvent;
+use Phalcon\Mvc\Model as ARModel;
+use Phalcon\Events\Event;
+use PhalconPlus\Contracts\Auth\Policy as PolicyContract;
+use PhalconPlus\Contracts\Auth\UserProvider;
+
+class Model implements ModelEvent
+{
+    protected user = null { get };
+    protected policies = [
+    ];
+
+    public function __construct(<UserProvider> user)
+    {
+        let this->user = user;
+    }
+
+    public function setUser(<UserProvider> user) -> <Model>
+    {
+        let this->user = user;
+        return this;
+    }
+
+    public function beforeDelete(<Event> event, <ARModel> model, var context = null) -> bool
+    {
+        var instance = this->getPolicy(model);
+        return instance ? instance->delete(this->user, model) : false;
+    }
+
+    public function beforeCreate(<Event> event, <ARModel> model, var context = null) -> bool
+    {
+        var instance = this->getPolicy(model);   
+        return instance ? instance->create(this->user, model) : false;
+    }
+
+    public function beforeUpdate(<Event> event, <ARModel> model, var context = null) -> bool
+    {
+        var instance = this->getPolicy(model);
+        return instance ? instance->update(this->user, model) : false;
+    }
+
+    public function beforeValidation(<Event> event, <ARModel> model, var context = null) -> bool
+    {
+        return true;
+    }
+
+    public function getPolicy(var model) -> <PolicyContract> | null
+    {
+        var modelClass, policyClass, instance;
+        if typeof model == "object" && model instanceof ARModel {
+            let modelClass = get_class(model);
+        }  else {
+            let modelClass = (string) model;
+        }
+        if fetch policyClass, this->policies[modelClass] {
+            let instance = new {policyClass}();
+        } else {
+            let instance = new Policy();
+        }        
+        return instance;
+    }
+
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

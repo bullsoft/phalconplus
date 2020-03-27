@@ -14,8 +14,8 @@
 #include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
 #include "ext/spl/spl_array.h"
 #include "kernel/iterator.h"
 #include "kernel/array.h"
@@ -50,88 +50,114 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page) {
 
 PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
-	zend_object_iterator *_5$$3, *_8$$5;
+	zend_object_iterator *_8$$6, *_11$$8;
+	zend_bool _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL, *_7 = NULL;
-	zval *pagable, pagable_sub, *totalSize, totalSize_sub, *data, data_sub, hydrateMode, tmpData, item, _9, _10, _1$$3, _2$$3, _3$$3, _4$$3, _6$$4;
+	zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL, *_10 = NULL;
+	zend_long totalSize, ZEPHIR_LAST_CALL_STATUS;
+	zval *pagable, pagable_sub, *totalSize_param = NULL, *data = NULL, data_sub, hydrateMode, tmpData, item, _12, _13, _14, _3$$4, _4$$6, _5$$6, _6$$6, _7$$6, _9$$7;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&pagable_sub);
-	ZVAL_UNDEF(&totalSize_sub);
 	ZVAL_UNDEF(&data_sub);
 	ZVAL_UNDEF(&hydrateMode);
 	ZVAL_UNDEF(&tmpData);
 	ZVAL_UNDEF(&item);
-	ZVAL_UNDEF(&_9);
-	ZVAL_UNDEF(&_10);
-	ZVAL_UNDEF(&_1$$3);
-	ZVAL_UNDEF(&_2$$3);
-	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_4$$3);
-	ZVAL_UNDEF(&_6$$4);
+	ZVAL_UNDEF(&_12);
+	ZVAL_UNDEF(&_13);
+	ZVAL_UNDEF(&_14);
+	ZVAL_UNDEF(&_3$$4);
+	ZVAL_UNDEF(&_4$$6);
+	ZVAL_UNDEF(&_5$$6);
+	ZVAL_UNDEF(&_6$$6);
+	ZVAL_UNDEF(&_7$$6);
+	ZVAL_UNDEF(&_9$$7);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 3, 0, &pagable, &totalSize, &data);
+	zephir_fetch_params(1, 2, 1, &pagable, &totalSize_param, &data);
 
+	totalSize = zephir_get_intval(totalSize_param);
+	if (!data) {
+		data = &data_sub;
+		ZEPHIR_INIT_VAR(data);
+		array_init(data);
+	}
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 0, pagable);
 	zephir_check_call_status();
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "istraversable", &_1, 0, data);
+	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("pagable"), pagable);
-	ZEPHIR_CALL_METHOD(&hydrateMode, data, "gethydratemode", NULL, 0);
-	zephir_check_call_status();
-	do {
-		if (ZEPHIR_IS_LONG(&hydrateMode, 0)) {
-			ZEPHIR_INIT_VAR(&tmpData);
-			object_init_ex(&tmpData, spl_ce_ArrayObject);
-			ZEPHIR_CALL_METHOD(NULL, &tmpData, "__construct", NULL, 50);
-			zephir_check_call_status();
-			ZEPHIR_INIT_VAR(&_1$$3);
-			ZEPHIR_CALL_METHOD(&_2$$3, data, "getfirst", NULL, 0);
-			zephir_check_call_status();
-			zephir_get_class(&_1$$3, &_2$$3, 0);
-			zephir_update_property_zval(&tmpData, SL("modelName"), &_1$$3);
-			ZEPHIR_CALL_METHOD(&_3$$3, data, "getfirst", NULL, 0);
-			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_4$$3, &_3$$3, "columnmap", NULL, 0);
-			zephir_check_call_status();
-			zephir_update_property_zval(&tmpData, SL("columnMap"), &_4$$3);
-			_5$$3 = zephir_get_iterator(data);
-			_5$$3->funcs->rewind(_5$$3);
-			for (;_5$$3->funcs->valid(_5$$3) == SUCCESS && !EG(exception); _5$$3->funcs->move_forward(_5$$3)) {
-				{
-					ZEPHIR_ITERATOR_COPY(&item, _5$$3);
+	ZEPHIR_INIT_VAR(&tmpData);
+	array_init(&tmpData);
+	_2 = Z_TYPE_P(data) == IS_OBJECT;
+	if (_2) {
+		_2 = zephir_instance_of_ev(data, zephir_get_internal_ce(SL("phalcon\\mvc\\model\\resultset")));
+	}
+	if (Z_TYPE_P(data) == IS_ARRAY) {
+		ZEPHIR_CPY_WRT(&tmpData, data);
+	} else if (_2) {
+		ZEPHIR_CALL_METHOD(&hydrateMode, data, "gethydratemode", NULL, 0);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(&_3$$4, data, "count", NULL, 0);
+		zephir_check_call_status();
+		if (ZEPHIR_GT_LONG(&_3$$4, 0)) {
+			do {
+				if (ZEPHIR_IS_LONG(&hydrateMode, 0)) {
+					ZEPHIR_INIT_NVAR(&tmpData);
+					object_init_ex(&tmpData, spl_ce_ArrayObject);
+					ZEPHIR_CALL_METHOD(NULL, &tmpData, "__construct", NULL, 74);
+					zephir_check_call_status();
+					ZEPHIR_INIT_VAR(&_4$$6);
+					ZEPHIR_CALL_METHOD(&_5$$6, data, "getfirst", NULL, 0);
+					zephir_check_call_status();
+					zephir_get_class(&_4$$6, &_5$$6, 0);
+					zephir_update_property_zval(&tmpData, SL("modelName"), &_4$$6);
+					ZEPHIR_CALL_METHOD(&_6$$6, data, "getfirst", NULL, 0);
+					zephir_check_call_status();
+					ZEPHIR_CALL_METHOD(&_7$$6, &_6$$6, "columnmap", NULL, 0);
+					zephir_check_call_status();
+					zephir_update_property_zval(&tmpData, SL("columnMap"), &_7$$6);
+					_8$$6 = zephir_get_iterator(data);
+					_8$$6->funcs->rewind(_8$$6);
+					for (;_8$$6->funcs->valid(_8$$6) == SUCCESS && !EG(exception); _8$$6->funcs->move_forward(_8$$6)) {
+						{
+							ZEPHIR_ITERATOR_COPY(&item, _8$$6);
+						}
+						ZEPHIR_CALL_METHOD(&_9$$7, &item, "toarray", NULL, 0);
+						zephir_check_call_status();
+						ZEPHIR_CALL_METHOD(NULL, &tmpData, "append", &_10, 75, &_9$$7);
+						zephir_check_call_status();
+					}
+					zend_iterator_dtor(_8$$6);
+					break;
 				}
-				ZEPHIR_CALL_METHOD(&_6$$4, &item, "toarray", NULL, 0);
-				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, &tmpData, "append", &_7, 51, &_6$$4);
-				zephir_check_call_status();
-			}
-			zend_iterator_dtor(_5$$3);
-			break;
-		}
-		ZEPHIR_INIT_NVAR(&tmpData);
-		array_init(&tmpData);
-		_8$$5 = zephir_get_iterator(data);
-		_8$$5->funcs->rewind(_8$$5);
-		for (;_8$$5->funcs->valid(_8$$5) == SUCCESS && !EG(exception); _8$$5->funcs->move_forward(_8$$5)) {
-			{
-				ZEPHIR_ITERATOR_COPY(&item, _8$$5);
-			}
-			zephir_array_append(&tmpData, &item, PH_SEPARATE, "phalconplus/Base/Page.zep", 47);
-		}
-		zend_iterator_dtor(_8$$5);
-		break;
-	} while(0);
+				ZEPHIR_INIT_NVAR(&tmpData);
+				array_init(&tmpData);
+				_11$$8 = zephir_get_iterator(data);
+				_11$$8->funcs->rewind(_11$$8);
+				for (;_11$$8->funcs->valid(_11$$8) == SUCCESS && !EG(exception); _11$$8->funcs->move_forward(_11$$8)) {
+					{
+						ZEPHIR_ITERATOR_COPY(&item, _11$$8);
+					}
+					zephir_array_append(&tmpData, &item, PH_SEPARATE, "phalconplus/Base/Page.zep", 51);
+				}
+				zend_iterator_dtor(_11$$8);
+				break;
+			} while(0);
 
+		}
+	}
 	zephir_update_property_zval(this_ptr, SL("data"), &tmpData);
-	zephir_update_property_zval(this_ptr, SL("totalSize"), totalSize);
-	ZEPHIR_CALL_METHOD(&_9, this_ptr, "setpageno", NULL, 0);
+	ZEPHIR_INIT_ZVAL_NREF(_12);
+	ZVAL_LONG(&_12, totalSize);
+	zephir_update_property_zval(this_ptr, SL("totalSize"), &_12);
+	ZEPHIR_CALL_METHOD(&_13, this_ptr, "setpageno", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_10, &_9, "setpagesize", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_14, &_13, "setpagesize", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, &_10, "settotalpage", NULL, 0);
+	ZEPHIR_CALL_METHOD(NULL, &_14, "settotalpage", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -193,9 +219,10 @@ PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 	zephir_read_property(&_1, this_ptr, SL("pageSize"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	div_function(&_2, &_0, &_1);
-	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_DOUBLE(&_0, zephir_ceil(&_2));
-	zephir_update_property_zval(this_ptr, SL("totalPage"), &_0);
+	ZEPHIR_INIT_ZVAL_NREF(_1);
+	ZVAL_LONG(&_1, zephir_get_intval(&_0));
+	zephir_update_property_zval(this_ptr, SL("totalPage"), &_1);
 	RETURN_THIS();
 
 }

@@ -9,6 +9,7 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultHeaders);
 PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultHeaders);
 PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultOptions);
 PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultOptions);
+PHP_METHOD(PhalconPlus_Curl_Curl, setBaseUrl);
 PHP_METHOD(PhalconPlus_Curl_Curl, buildUrl);
 PHP_METHOD(PhalconPlus_Curl_Curl, newRequest);
 PHP_METHOD(PhalconPlus_Curl_Curl, newJsonRequest);
@@ -23,15 +24,53 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, opts, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_setdefaultheaders, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_getallowedmethods, 0, 0, IS_ARRAY, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_getallowedmethods, 0, 0, IS_ARRAY, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_setdefaultheaders, 0, 1, PhalconPlus\\Curl\\Curl, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_setdefaultheaders, 0, 1, IS_OBJECT, "PhalconPlus\\Curl\\Curl", 0)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, headers, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_setdefaultoptions, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_getdefaultheaders, 0, 0, IS_ARRAY, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_getdefaultheaders, 0, 0, IS_ARRAY, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_setdefaultoptions, 0, 1, PhalconPlus\\Curl\\Curl, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_setdefaultoptions, 0, 1, IS_OBJECT, "PhalconPlus\\Curl\\Curl", 0)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_buildurl, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_setbaseurl, 0, 1, PhalconPlus\\Curl\\Curl, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_setbaseurl, 0, 1, IS_OBJECT, "PhalconPlus\\Curl\\Curl", 0)
+#endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, baseUrl, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, baseUrl)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_buildurl, 0, 2, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_buildurl, 0, 2, IS_STRING, NULL, 0)
+#endif
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, url, IS_STRING, 0)
 #else
@@ -40,7 +79,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_buildurl, 0, 0, 2)
 	ZEND_ARG_ARRAY_INFO(0, query, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_newrequest, 0, 0, 3)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_newrequest, 0, 3, PhalconPlus\\Curl\\Request, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_newrequest, 0, 3, IS_OBJECT, "PhalconPlus\\Curl\\Request", 0)
+#endif
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
 #else
@@ -59,7 +102,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_newrequest, 0, 0, 3)
 #endif
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_newjsonrequest, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_newjsonrequest, 0, 2, PhalconPlus\\Curl\\Request, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_newjsonrequest, 0, 2, IS_OBJECT, "PhalconPlus\\Curl\\Request", 0)
+#endif
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
 #else
@@ -73,7 +120,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_newjsonrequest, 0, 0, 2)
 	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_newrawrequest, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_newrawrequest, 0, 2, PhalconPlus\\Curl\\Request, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_newrawrequest, 0, 2, IS_OBJECT, "PhalconPlus\\Curl\\Request", 0)
+#endif
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
 #else
@@ -87,19 +138,35 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_newrawrequest, 0, 0, 2)
 	ZEND_ARG_INFO(0, data)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_preparerequest, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_preparerequest, 0, 1, PhalconPlus\\Curl\\Curl, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_preparerequest, 0, 1, IS_OBJECT, "PhalconPlus\\Curl\\Curl", 0)
+#endif
 	ZEND_ARG_OBJ_INFO(0, request, PhalconPlus\\Curl\\Request, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_sendrequest, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_sendrequest, 0, 1, PhalconPlus\\Curl\\Response, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_sendrequest, 0, 1, IS_OBJECT, "PhalconPlus\\Curl\\Response", 0)
+#endif
 	ZEND_ARG_OBJ_INFO(0, request, PhalconPlus\\Curl\\Request, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl_createresponseobject, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl_createresponseobject, 0, 1, PhalconPlus\\Curl\\Response, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl_createresponseobject, 0, 1, IS_OBJECT, "PhalconPlus\\Curl\\Response", 0)
+#endif
 	ZEND_ARG_INFO(0, response)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_curl___call, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_curl_curl___call, 0, 2, PhalconPlus\\Curl\\Response, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_curl___call, 0, 2, IS_OBJECT, "PhalconPlus\\Curl\\Response", 0)
+#endif
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, func, IS_STRING, 0)
 #else
@@ -110,11 +177,12 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_curl_curl_method_entry) {
 	PHP_ME(PhalconPlus_Curl_Curl, __construct, arginfo_phalconplus_curl_curl___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(PhalconPlus_Curl_Curl, getAllowedMethods, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Curl_Curl, getAllowedMethods, arginfo_phalconplus_curl_curl_getallowedmethods, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Curl, setDefaultHeaders, arginfo_phalconplus_curl_curl_setdefaultheaders, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Curl_Curl, getDefaultHeaders, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Curl_Curl, getDefaultHeaders, arginfo_phalconplus_curl_curl_getdefaultheaders, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Curl, setDefaultOptions, arginfo_phalconplus_curl_curl_setdefaultoptions, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Curl, getDefaultOptions, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Curl_Curl, setBaseUrl, arginfo_phalconplus_curl_curl_setbaseurl, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Curl, buildUrl, arginfo_phalconplus_curl_curl_buildurl, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Curl, newRequest, arginfo_phalconplus_curl_curl_newrequest, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Curl, newJsonRequest, arginfo_phalconplus_curl_curl_newjsonrequest, ZEND_ACC_PUBLIC)

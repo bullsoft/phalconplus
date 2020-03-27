@@ -31,12 +31,9 @@ class NonPsrRequest extends BaseRequest
     public function __construct(<ServerRequestInterface> request)
     {
         let this->attributes = request->getAttributes() ?: [];
-        let this->cookies = request->getCookieParams() ?: [];
-        let this->headers = request->getHeaders() ?: [];
-        let this->_rawBody = request->getBody()->__toString();
-
-        let _SERVER["REQUEST_URI"] = self::getRequestTarget(request);
-        let _SERVER["REQUEST_METHOD"] = request->getMethod();
+        let this->cookies    = request->getCookieParams() ?: [];
+        let this->headers    = request->getHeaders() ?: [];
+        let this->_rawBody   = request->getBody()->__toString();
         
         var posts, gets, cookies;
         let posts = request->getParsedBody() ?: [];
@@ -52,16 +49,20 @@ class NonPsrRequest extends BaseRequest
         for k, v in gets {
             let _GET[k] = v;
         }
-        let _GET["_url"] = request->getUri()->getPath();
+
         // SERVER
         for k, v in request->getServerParams() {
             let _SERVER[k] = v;
         }
         for k, v in this->headers {
             let k = strtoupper(str_replace("-", "_", k));
-            let _SERVER["HTTP_".k] = v;
+            let _SERVER["HTTP_".k] = is_array(v) ? reset(v) : v;
         }
+
+        // error_log("IN NoPsrRequest: " . self::getRequestTarget(request));
         let _SERVER["REQUEST_URI"] = self::getRequestTarget(request);
+        let _SERVER["REQUEST_METHOD"] = request->getMethod();
+
         // COOKIE
         for k, v in cookies {
             let _COOKIE[k] = v;

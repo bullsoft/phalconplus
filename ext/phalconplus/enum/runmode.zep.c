@@ -69,16 +69,68 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 	zephir_array_fetch(&_3, &_2, &_4, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 35);
 	ZEPHIR_INIT_VAR(&script);
 	ZEPHIR_CONCAT_VV(&script, &_0, &_3);
-	ZEPHIR_CALL_FUNCTION(&_5, "is_file", NULL, 46, &script);
+	ZEPHIR_CALL_FUNCTION(&_5, "is_file", NULL, 53, &script);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_5))) {
 		ZEPHIR_INIT_VAR(&_6$$3);
 		ZEPHIR_CONCAT_SV(&_6$$3, "PHP Notice:  PhalconPlus\\Enum\\RunMode Global load file not exists: ", &script);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 58, &_6$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 83, &_6$$3);
 		zephir_check_call_status();
 		RETURN_MM_NULL();
 	}
 	RETURN_CCTOR(&script);
+
+}
+
+PHP_METHOD(PhalconPlus_Enum_RunMode, isCli) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	RETURN_BOOL(ZEPHIR_IS_STRING(&_0, "Cli"));
+
+}
+
+PHP_METHOD(PhalconPlus_Enum_RunMode, isWeb) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	RETURN_BOOL(ZEPHIR_IS_STRING(&_0, "Web"));
+
+}
+
+PHP_METHOD(PhalconPlus_Enum_RunMode, isSrv) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	RETURN_BOOL(ZEPHIR_IS_STRING(&_0, "Srv"));
+
+}
+
+PHP_METHOD(PhalconPlus_Enum_RunMode, isMicro) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	RETURN_BOOL(ZEPHIR_IS_STRING(&_0, "Micro"));
 
 }
 
@@ -97,7 +149,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getMapClassName) {
 	zephir_read_property(&_0, this_ptr, SL("mapClasses"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_2);
 	zephir_read_property(&_2, this_ptr, SL("val"), PH_NOISY_CC);
-	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 45);
+	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 65);
 	RETURN_CTOR(&_1);
 
 }
@@ -121,18 +173,18 @@ zend_object *zephir_init_properties_PhalconPlus_Enum_RunMode(zend_class_entry *c
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			zephir_create_array(&_1$$3, 4, 0);
-			add_assoc_stringl_ex(&_1$$3, SL("Web"), SL("default-web.php"));
-			add_assoc_stringl_ex(&_1$$3, SL("Cli"), SL("default-cli.php"));
-			add_assoc_stringl_ex(&_1$$3, SL("Srv"), SL("default-web.php"));
-			add_assoc_stringl_ex(&_1$$3, SL("Micro"), SL("default-micro.php"));
+			add_assoc_stringl_ex(&_1$$3, SL("Web"), SL("/default-web.php"));
+			add_assoc_stringl_ex(&_1$$3, SL("Cli"), SL("/default-cli.php"));
+			add_assoc_stringl_ex(&_1$$3, SL("Srv"), SL("/default-web.php"));
+			add_assoc_stringl_ex(&_1$$3, SL("Micro"), SL("/default-micro.php"));
 			zephir_update_property_zval(this_ptr, SL("scripts"), &_1$$3);
 		}
 		zephir_read_property(&_2, this_ptr, SL("mapClasses"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_3$$4);
 			zephir_create_array(&_3$$4, 4, 0);
-			add_assoc_stringl_ex(&_3$$4, SL("Web"), SL("Module"));
-			add_assoc_stringl_ex(&_3$$4, SL("Cli"), SL("Task"));
+			add_assoc_stringl_ex(&_3$$4, SL("Web"), SL("Web"));
+			add_assoc_stringl_ex(&_3$$4, SL("Cli"), SL("Cli"));
 			add_assoc_stringl_ex(&_3$$4, SL("Srv"), SL("Srv"));
 			add_assoc_stringl_ex(&_3$$4, SL("Micro"), SL("Micro"));
 			zephir_update_property_zval(this_ptr, SL("mapClasses"), &_3$$4);

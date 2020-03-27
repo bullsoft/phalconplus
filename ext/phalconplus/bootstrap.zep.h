@@ -3,42 +3,11 @@ extern zend_class_entry *phalconplus_bootstrap_ce;
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Bootstrap);
 
-PHP_METHOD(PhalconPlus_Bootstrap, setDi);
-PHP_METHOD(PhalconPlus_Bootstrap, getDi);
-PHP_METHOD(PhalconPlus_Bootstrap, setAutoHandle);
-PHP_METHOD(PhalconPlus_Bootstrap, getAutoHandle);
-PHP_METHOD(PhalconPlus_Bootstrap, getLoadedFiles);
 PHP_METHOD(PhalconPlus_Bootstrap, __construct);
-PHP_METHOD(PhalconPlus_Bootstrap, registerModule);
 PHP_METHOD(PhalconPlus_Bootstrap, initConf);
-PHP_METHOD(PhalconPlus_Bootstrap, setApp);
-PHP_METHOD(PhalconPlus_Bootstrap, getApp);
 PHP_METHOD(PhalconPlus_Bootstrap, exec);
+PHP_METHOD(PhalconPlus_Bootstrap, app);
 PHP_METHOD(PhalconPlus_Bootstrap, terminate);
-PHP_METHOD(PhalconPlus_Bootstrap, __destruct);
-PHP_METHOD(PhalconPlus_Bootstrap, execModule);
-PHP_METHOD(PhalconPlus_Bootstrap, execSrv);
-PHP_METHOD(PhalconPlus_Bootstrap, execTask);
-PHP_METHOD(PhalconPlus_Bootstrap, getPrimaryModuleDef);
-PHP_METHOD(PhalconPlus_Bootstrap, getPrimaryModule);
-PHP_METHOD(PhalconPlus_Bootstrap, getModule);
-PHP_METHOD(PhalconPlus_Bootstrap, getModuleDef);
-PHP_METHOD(PhalconPlus_Bootstrap, dependModule);
-PHP_METHOD(PhalconPlus_Bootstrap, isDebug);
-PHP_METHOD(PhalconPlus_Bootstrap, getDebug);
-PHP_METHOD(PhalconPlus_Bootstrap, getEnv);
-PHP_METHOD(PhalconPlus_Bootstrap, getConfig);
-PHP_METHOD(PhalconPlus_Bootstrap, setConfig);
-PHP_METHOD(PhalconPlus_Bootstrap, load);
-zend_object *zephir_init_properties_PhalconPlus_Bootstrap(zend_class_entry *class_type TSRMLS_DC);
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_setdi, 0, 0, 1)
-	ZEND_ARG_INFO(0, di)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_setautohandle, 0, 0, 1)
-	ZEND_ARG_INFO(0, autoHandle)
-ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap___construct, 0, 0, 1)
 #if PHP_VERSION_ID >= 70200
@@ -51,176 +20,32 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap___construct, 0, 0, 1)
 #else
 	ZEND_ARG_INFO(0, env)
 #endif
-ZEND_END_ARG_INFO()
-
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_registermodule, 0, 1, PhalconPlus\\Base\\AbstractModule, 0)
+	ZEND_ARG_TYPE_INFO(0, runMode, IS_STRING, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_registermodule, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
-#endif
-	ZEND_ARG_OBJ_INFO(0, moduleDef, PhalconPlus\\Base\\ModuleDef, 0)
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_initconf, 0, 0, PhalconPlus\\Bootstrap, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_initconf, 0, 0, IS_OBJECT, "PhalconPlus\\Bootstrap", 0)
+	ZEND_ARG_INFO(0, runMode)
 #endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_setapp, 0, 1, PhalconPlus\\Bootstrap, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_initconf, 0, 0, Phalcon\\Config, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_setapp, 0, 1, IS_OBJECT, "PhalconPlus\\Bootstrap", 0)
-#endif
-	ZEND_ARG_INFO(0, app)
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, autoHandle, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, autoHandle)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_initconf, 0, 0, IS_OBJECT, "Phalcon\\Config", 0)
 #endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getapp, 0, 0, NULL, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_app, 0, 0, PhalconPlus\\App\\App, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getapp, 0, 0, IS_OBJECT, "NULL", 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_app, 0, 0, IS_OBJECT, "PhalconPlus\\App\\App", 0)
 #endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_execmodule, 0, 0, NULL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_execmodule, 0, 0, IS_OBJECT, "NULL", 0)
-#endif
-	ZEND_ARG_INFO(0, request)
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_execsrv, 0, 0, NULL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_execsrv, 0, 0, IS_OBJECT, "NULL", 0)
-#endif
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_exectask, 0, 0, 1)
-	ZEND_ARG_ARRAY_INFO(0, argv, 0)
-	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI\\FactoryDefault, 1)
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymoduledef, 0, 0, PhalconPlus\\Base\\ModuleDef, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymoduledef, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\ModuleDef", 0)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymodule, 0, 0, PhalconPlus\\Base\\AbstractModule, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getprimarymodule, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getmodule, 0, 1, PhalconPlus\\Base\\AbstractModule, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getmodule, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
-#endif
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getmoduledef, 0, 1, PhalconPlus\\Base\\ModuleDef, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getmoduledef, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\ModuleDef", 0)
-#endif
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_dependmodule, 0, 1, PhalconPlus\\Base\\AbstractModule, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_dependmodule, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\AbstractModule", 0)
-#endif
-#if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, moduleName, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, moduleName)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_isdebug, 0, 0, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_isdebug, 0, 0, _IS_BOOL, NULL, 0)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getdebug, 0, 0, Phalcon\\Debug, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getdebug, 0, 0, IS_OBJECT, "Phalcon\\Debug", 0)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getenv, 0, 0, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getenv, 0, 0, IS_STRING, NULL, 0)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_bootstrap_getconfig, 0, 0, Phalcon\\Config, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_bootstrap_getconfig, 0, 0, IS_OBJECT, "Phalcon\\Config", 0)
-#endif
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_setconfig, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, config, Phalcon\\Config, 0)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_bootstrap_load, 0, 0, 1)
-	ZEND_ARG_INFO(0, filePath)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_bootstrap_method_entry) {
-	PHP_ME(PhalconPlus_Bootstrap, setDi, arginfo_phalconplus_bootstrap_setdi, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getDi, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, setAutoHandle, arginfo_phalconplus_bootstrap_setautohandle, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getAutoHandle, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getLoadedFiles, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, __construct, arginfo_phalconplus_bootstrap___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(PhalconPlus_Bootstrap, registerModule, arginfo_phalconplus_bootstrap_registermodule, ZEND_ACC_PRIVATE)
-	PHP_ME(PhalconPlus_Bootstrap, initConf, arginfo_phalconplus_bootstrap_initconf, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, setApp, arginfo_phalconplus_bootstrap_setapp, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getApp, arginfo_phalconplus_bootstrap_getapp, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, initConf, arginfo_phalconplus_bootstrap_initconf, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Bootstrap, exec, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Bootstrap, app, arginfo_phalconplus_bootstrap_app, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, terminate, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, __destruct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_DTOR)
-	PHP_ME(PhalconPlus_Bootstrap, execModule, arginfo_phalconplus_bootstrap_execmodule, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, execSrv, arginfo_phalconplus_bootstrap_execsrv, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, execTask, arginfo_phalconplus_bootstrap_exectask, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getPrimaryModuleDef, arginfo_phalconplus_bootstrap_getprimarymoduledef, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getPrimaryModule, arginfo_phalconplus_bootstrap_getprimarymodule, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getModule, arginfo_phalconplus_bootstrap_getmodule, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getModuleDef, arginfo_phalconplus_bootstrap_getmoduledef, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, dependModule, arginfo_phalconplus_bootstrap_dependmodule, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, isDebug, arginfo_phalconplus_bootstrap_isdebug, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getDebug, arginfo_phalconplus_bootstrap_getdebug, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getEnv, arginfo_phalconplus_bootstrap_getenv, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, getConfig, arginfo_phalconplus_bootstrap_getconfig, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, setConfig, arginfo_phalconplus_bootstrap_setconfig, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Bootstrap, load, arginfo_phalconplus_bootstrap_load, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
