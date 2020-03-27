@@ -461,7 +461,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, setCookie) {
 
 
 	zephir_update_property_array(this_ptr, SL("cookies"), &key, &value);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "updatecookieheader", NULL, 104);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "updatecookieheader", NULL, 103);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -489,7 +489,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, setCookies) {
 
 
 	zephir_update_property_zval(this_ptr, SL("cookies"), &cookies);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "updatecookieheader", NULL, 104);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "updatecookieheader", NULL, 103);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -940,7 +940,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, encodeData) {
 		ZEPHIR_CONCAT_SVS(&msg, "Encoding [", &_5$$6, "] not a known Request::ENCODING_* constant");
 		ZEPHIR_INIT_VAR(&_6$$6);
 		object_init_ex(&_6$$6, spl_ce_UnexpectedValueException);
-		ZEPHIR_CALL_METHOD(NULL, &_6$$6, "__construct", NULL, 105, &msg);
+		ZEPHIR_CALL_METHOD(NULL, &_6$$6, "__construct", NULL, 104, &msg);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_6$$6, "phalconplus/Curl/Request.zep", 355);
 		ZEPHIR_MM_RESTORE();

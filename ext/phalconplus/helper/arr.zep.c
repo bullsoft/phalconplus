@@ -61,7 +61,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyInt) {
 	ZVAL_STRING(&_2, "is_int");
 	ZEPHIR_CALL_FUNCTION(&_3, "array_map", NULL, 60, &_2, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&input, "array_unique", NULL, 121, &_3);
+	ZEPHIR_CALL_FUNCTION(&input, "array_unique", NULL, 120, &_3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&expected);
 	zephir_create_array(&expected, 1, 0);
@@ -102,7 +102,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyString) {
 	ZVAL_STRING(&_2, "is_string");
 	ZEPHIR_CALL_FUNCTION(&_3, "array_map", NULL, 60, &_2, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&input, "array_unique", NULL, 121, &_3);
+	ZEPHIR_CALL_FUNCTION(&input, "array_unique", NULL, 120, &_3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&expected);
 	zephir_create_array(&expected, 1, 0);
@@ -139,7 +139,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isKeyNumericSequentialZeroBased) {
 	zephir_array_keys(&input, inputArray);
 	ZVAL_LONG(&_1, 0);
 	ZVAL_LONG(&_2, (zephir_fast_count_int(inputArray) - 1));
-	ZEPHIR_CALL_FUNCTION(&expected, "range", NULL, 122, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&expected, "range", NULL, 121, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&input, &expected));
 
@@ -193,7 +193,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, encodeJson) {
 	if (!ZEPHIR_IS_LONG(&errCode, 0)) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		object_init_ex(&_1$$3, phalconplus_helper_exception_ce);
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "json_last_error_msg", NULL, 123);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "json_last_error_msg", NULL, 122);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 2, &_2$$3);
 		zephir_check_call_status();
