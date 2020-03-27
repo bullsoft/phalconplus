@@ -6,6 +6,6 @@ class Exception extends BaseException
 {
     public function getRequest()
     {
-        return this->info[2];
+        return this->info[1][0];
     }
 }

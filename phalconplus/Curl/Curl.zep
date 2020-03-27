@@ -251,8 +251,7 @@ class Curl
             let errmsg = curl_error(this->ch);
             let msg = "Curl request failed with error [".errno.":". errmsg;
             curl_close(this->ch);
-            let ex = new CurlException([msg, [], request]);
-            throw ex->setCode(errno);
+            throw new CurlException([msg, [request]], errno);
         }
         let response = this->createResponseObject(result);
         curl_close(this->ch);
