@@ -22,6 +22,8 @@ final class App extends BaseApplication
     protected booted = false;
     // 全局配置 <\Phalcon\Config>
     protected config = null { get };
+    // 处理请求次数
+    protected requestNumber = 0;
    
     public function __construct(<Config> config)
     {
@@ -64,10 +66,12 @@ final class App extends BaseApplication
         // 初始化主模块
         var primaryModuleDef;
         let primaryModuleDef = new ModuleDef(this, Sys::getPrimaryModuleDir(), true, runMode);
-        this->setDI(primaryModuleDef->newDI());
-        this->getDI()->setShared("superApp", this);
-        this->getDI()->setShared("config", this->config);
-        this->getDI()->setShared("loader", new \Phalcon\Loader());
+        if this->_dependencyInjector == null {
+            this->setDI(primaryModuleDef->newDI());
+            this->getDI()->setShared("superApp", this);
+            this->getDI()->setShared("config", this->config);
+            this->getDI()->setShared("loader", new \Phalcon\Loader());
+        }
         // App启动成功
         let this->booted = true;
         // 注册主模块
@@ -167,6 +171,8 @@ final class App extends BaseApplication
 
     public function handle()
     {
+        let this->requestNumber = this->requestNumber + 1;
+
         if false == this->booted {
             this->bootPrimaryModule();
         }
@@ -189,11 +195,10 @@ final class App extends BaseApplication
                 // error_log(var_export(response, true));
             }
         }
-        
         return response;
     }
 
-    public function terminate()
+    public function terminate(bool deep = true)
     {
         if session_status() == PHP_SESSION_ACTIVE { 
             session_write_close(); 
@@ -209,11 +214,17 @@ final class App extends BaseApplication
         let this->_modules = [];
         let this->_defaultModule = null;
         let this->booted = false;
-        Di::reset();
 
-        let this->_dependencyInjector = null;
-        // let this->config = null;
-        
+        if deep == true {
+            // let this->config = null;
+            Di::reset();
+            let this->_dependencyInjector = null;
+        }
+    }
+
+    public function getRequestNumber() -> int
+    {
+        return this->requestNumber;
     }
 
     public function getDefaultModuleDef() -> <ModuleDef>

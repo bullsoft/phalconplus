@@ -17,6 +17,7 @@ PHP_METHOD(PhalconPlus_App_App, getEnv);
 PHP_METHOD(PhalconPlus_App_App, setEnv);
 PHP_METHOD(PhalconPlus_App_App, handle);
 PHP_METHOD(PhalconPlus_App_App, terminate);
+PHP_METHOD(PhalconPlus_App_App, getRequestNumber);
 PHP_METHOD(PhalconPlus_App_App, getDefaultModuleDef);
 PHP_METHOD(PhalconPlus_App_App, getPrimaryModuleDef);
 PHP_METHOD(PhalconPlus_App_App, setDefaultModule);
@@ -129,6 +130,21 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_setenv, 0, 1
 #endif
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_app_terminate, 0, 0, 0)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, deep, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, deep)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_getrequestnumber, 0, 0, IS_LONG, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_getrequestnumber, 0, 0, IS_LONG, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
 #if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_app_getdefaultmoduledef, 0, 0, PhalconPlus\\App\\Module\\ModuleDef, 0)
 #else
@@ -230,7 +246,8 @@ ZEPHIR_INIT_FUNCS(phalconplus_app_app_method_entry) {
 	PHP_ME(PhalconPlus_App_App, getEnv, arginfo_phalconplus_app_app_getenv, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, setEnv, arginfo_phalconplus_app_app_setenv, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, handle, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_App, terminate, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_App, terminate, arginfo_phalconplus_app_app_terminate, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_App, getRequestNumber, arginfo_phalconplus_app_app_getrequestnumber, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, getDefaultModuleDef, arginfo_phalconplus_app_app_getdefaultmoduledef, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, getPrimaryModuleDef, arginfo_phalconplus_app_app_getprimarymoduledef, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, setDefaultModule, arginfo_phalconplus_app_app_setdefaultmodule, ZEND_ACC_PUBLIC)
