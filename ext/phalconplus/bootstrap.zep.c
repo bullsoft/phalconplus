@@ -19,8 +19,6 @@
 #include "kernel/exception.h"
 #include "kernel/operators.h"
 #include "kernel/concat.h"
-#include "kernel/array.h"
-#include "kernel/main.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Bootstrap) {
@@ -136,36 +134,6 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf) {
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&globalConf);
-
-}
-
-PHP_METHOD(PhalconPlus_Bootstrap, exec) {
-
-	zval _1, _2;
-	zval _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_2);
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 2, 0);
-	ZEPHIR_OBS_VAR(&_1);
-	zephir_read_property(&_1, this_ptr, SL("app"), PH_NOISY_CC);
-	zephir_array_fast_append(&_0, &_1);
-	ZEPHIR_INIT_VAR(&_2);
-	ZVAL_STRING(&_2, "handle");
-	zephir_array_fast_append(&_0, &_2);
-	ZEPHIR_INIT_NVAR(&_2);
-	zephir_get_args(&_2);
-	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, &_2);
-	zephir_check_call_status();
-	RETURN_MM();
 
 }
 

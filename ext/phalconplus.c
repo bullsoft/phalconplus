@@ -50,6 +50,7 @@ zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 zend_class_entry *phalconplus_0__closure_ce;
 zend_class_entry *phalconplus_1__closure_ce;
 zend_class_entry *phalconplus_2__closure_ce;
+zend_class_entry *phalconplus_3__closure_ce;
 zend_class_entry *phalconplus_app_app_ce;
 zend_class_entry *phalconplus_app_engine_cli_ce;
 zend_class_entry *phalconplus_app_engine_srv_ce;
@@ -262,6 +263,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(phalconplus_0__closure);
 	ZEPHIR_INIT(phalconplus_1__closure);
 	ZEPHIR_INIT(phalconplus_2__closure);
+	ZEPHIR_INIT(phalconplus_3__closure);
 	
 	return SUCCESS;
 }

@@ -13,7 +13,6 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
-#include "kernel/fcall.h"
 #include "kernel/object.h"
 
 
@@ -27,24 +26,15 @@ ZEPHIR_INIT_CLASS(phalconplus_3__closure) {
 
 PHP_METHOD(phalconplus_3__closure, __invoke) {
 
-	zval acl, _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *view, view_sub;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&acl);
-	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&view_sub);
 
-	ZEPHIR_MM_GROW();
+	zephir_fetch_params_without_memory_grow(1, 0, &view);
 
-	ZEPHIR_INIT_VAR(&acl);
-	object_init_ex(&acl, zephir_get_internal_ce(SL("phalcon\\acl\\adapter\\memory")));
-	ZEPHIR_CALL_METHOD(NULL, &acl, "__construct", NULL, 0);
-	zephir_check_call_status();
-	ZVAL_LONG(&_0, 0);
-	ZEPHIR_CALL_METHOD(NULL, &acl, "setdefaultaction", NULL, 0, &_0);
-	zephir_check_call_status();
-	RETURN_CCTOR(&acl);
+
+
 
 }
 

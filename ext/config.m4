@@ -122,7 +122,8 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/volt/extension/phpfunction.zep.c
 	phalconplus/0__closure.zep.c
 	phalconplus/1__closure.zep.c
-	phalconplus/2__closure.zep.c "
+	phalconplus/2__closure.zep.c
+	phalconplus/3__closure.zep.c "
 	PHP_NEW_EXTENSION(phalconplus, $phalconplus_sources, $ext_shared,, )
 	PHP_SUBST(PHALCONPLUS_SHARED_LIBADD)
 

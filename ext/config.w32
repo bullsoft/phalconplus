@@ -26,7 +26,7 @@ if (PHP_PHALCONPLUS != "no") {
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/app", "app.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/app/module", "abstractmodule.zep.c moduledef.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/auth", "exception.zep.c model.zep.c policy.zep.c userprovider.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus", "bootstrap.zep.c 0__closure.zep.c 1__closure.zep.c 2__closure.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus", "bootstrap.zep.c 0__closure.zep.c 1__closure.zep.c 2__closure.zep.c 3__closure.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/curl", "curl.zep.c exception.zep.c request.zep.c response.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/db", "mysql.zep.c unitofwork.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/featuretest", "splobjectstoragetest.zep.c", "phalconplus");

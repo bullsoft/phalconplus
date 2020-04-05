@@ -118,5 +118,6 @@
 #include "phalconplus/0__closure.zep.h"
 #include "phalconplus/1__closure.zep.h"
 #include "phalconplus/2__closure.zep.h"
+#include "phalconplus/3__closure.zep.h"
 
 #endif

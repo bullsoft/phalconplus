@@ -5,7 +5,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Bootstrap);
 
 PHP_METHOD(PhalconPlus_Bootstrap, __construct);
 PHP_METHOD(PhalconPlus_Bootstrap, initConf);
-PHP_METHOD(PhalconPlus_Bootstrap, exec);
 PHP_METHOD(PhalconPlus_Bootstrap, app);
 PHP_METHOD(PhalconPlus_Bootstrap, terminate);
 
@@ -44,7 +43,6 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(phalconplus_bootstrap_method_entry) {
 	PHP_ME(PhalconPlus_Bootstrap, __construct, arginfo_phalconplus_bootstrap___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Bootstrap, initConf, arginfo_phalconplus_bootstrap_initconf, ZEND_ACC_PROTECTED)
-	PHP_ME(PhalconPlus_Bootstrap, exec, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, app, arginfo_phalconplus_bootstrap_app, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Bootstrap, terminate, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
