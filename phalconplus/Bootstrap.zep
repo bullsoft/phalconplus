@@ -34,13 +34,14 @@ final class Bootstrap
         return globalConf;
     }
 
-    public function exec()
-    {
-        return call_user_func_array(
-            [this->app, "handle"], 
-            func_get_args()
-        );
-    }
+    // Should not Exec-App from bootstrap ...
+    // public function exec()
+    // {
+    //     return call_user_func_array(
+    //         [this->app, "handle"], 
+    //         func_get_args()
+    //     );
+    // }
 
     public function app() -> <SuperApp>
     {
