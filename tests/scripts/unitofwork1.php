@@ -1,5 +1,4 @@
 <?php
-define("AUTO_HANDLE", false);
 include dirname(__DIR__) . "/bootstrap.php";
 use PhalconPlus\Test\Models\Classicmodels\OrdersModel;
 use PhalconPlus\Test\Models\Classicmodels\OrderdetailsModel;
@@ -7,7 +6,7 @@ use PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Db\UnitOfWork\LastInsertId;
 use PhalconPlus\Db\UnitOfWork\Field;
 
-$unitwork = new \PhalconPlus\Db\UnitOfWork("db");
+$unitwork = new UnitOfWork("db");
 
 $orderArray = [
     'orderDate' => date("Y-m-d"),

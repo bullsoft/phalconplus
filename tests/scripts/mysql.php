@@ -1,8 +1,7 @@
 <?php
-define("AUTO_HANDLE", false);
 include dirname(__DIR__) . "/bootstrap.php";
 
-$di = $bootstrap->getDI();
+$di = $app->di();
 
 $result = $di->get("db")->query("select version();");
 $record = $result->fetch();
