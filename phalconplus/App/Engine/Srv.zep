@@ -47,11 +47,8 @@ class Srv extends Injectable implements AppEngine
         }
     }
     
-    public function exec() -> <HttpResponse> | <AppEngine>
+    public function exec() -> <HttpResponse>
     {
-        // 如果不需要handle，则直接返回
-        // if !this->appModule->isAuto() { return this; }
-        // Handle It
         ob_start();
         this->handler->handle();
         var content = ob_get_clean();

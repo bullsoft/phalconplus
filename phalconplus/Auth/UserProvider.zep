@@ -1,11 +1,12 @@
 namespace PhalconPlus\Auth;
 use PhalconPlus\Contracts\Auth\UserProvider as UserProviderContract;
+use PhalconPlus\Base\ProtoBuffer;
 use Phalcon\Security;
 use Phalcon\Text;
 use Phalcon\Mvc\Model;
 use JsonSerializable;
 
-abstract class UserProvider implements UserProviderContract, JsonSerializable
+abstract class UserProvider extends ProtoBuffer implements UserProviderContract
 {
     protected id;
     protected role = "Guests";

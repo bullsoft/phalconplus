@@ -22,7 +22,7 @@
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Auth_UserProvider) {
 
-	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Auth, UserProvider, phalconplus, auth_userprovider, phalconplus_auth_userprovider_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Auth, UserProvider, phalconplus, auth_userprovider, phalconplus_base_protobuffer_ce, phalconplus_auth_userprovider_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(phalconplus_auth_userprovider_ce, SL("id"), ZEND_ACC_PROTECTED);
 
@@ -33,7 +33,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Auth_UserProvider) {
 	zend_declare_property_null(phalconplus_auth_userprovider_ce, SL("entity"), ZEND_ACC_PROTECTED);
 
 	zend_class_implements(phalconplus_auth_userprovider_ce, 1, phalconplus_contracts_auth_userprovider_ce);
-	zend_class_implements(phalconplus_auth_userprovider_ce, 1, zephir_get_internal_ce(SL("jsonserializable")));
 	return SUCCESS;
 
 }
@@ -114,11 +113,11 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
 			ZVAL_NULL(user);
 			goto BEGIN;
 		}
-		zephir_array_fetch_string(&_4$$4, user, SL("id"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 27);
+		zephir_array_fetch_string(&_4$$4, user, SL("id"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 28);
 		zephir_update_property_zval(this_ptr, SL("id"), &_4$$4);
-		zephir_array_fetch_string(&_5$$4, user, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 28);
+		zephir_array_fetch_string(&_5$$4, user, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 29);
 		zephir_update_property_zval(this_ptr, SL("name"), &_5$$4);
-		zephir_array_fetch_string(&_6$$4, user, SL("role"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 29);
+		zephir_array_fetch_string(&_6$$4, user, SL("role"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 30);
 		zephir_update_property_zval(this_ptr, SL("role"), &_6$$4);
 	} else if (_0) {
 		ZEPHIR_CALL_METHOD(&idName$$6, this_ptr, "getidname", NULL, 0);

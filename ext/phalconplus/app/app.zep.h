@@ -8,6 +8,7 @@ PHP_METHOD(PhalconPlus_App_App, __construct);
 PHP_METHOD(PhalconPlus_App_App, boot);
 PHP_METHOD(PhalconPlus_App_App, bootPrimaryModule);
 PHP_METHOD(PhalconPlus_App_App, registerModule);
+PHP_METHOD(PhalconPlus_App_App, import);
 PHP_METHOD(PhalconPlus_App_App, dependModule);
 PHP_METHOD(PhalconPlus_App_App, setConfig);
 PHP_METHOD(PhalconPlus_App_App, isDebug);
@@ -71,6 +72,18 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_registermodu
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_app_import, 0, 1, PhalconPlus\\App\\Module\\AbstractModule, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_import, 0, 1, IS_OBJECT, "PhalconPlus\\App\\Module\\AbstractModule", 0)
+#endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, moduleName, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, moduleName)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_app_dependmodule, 0, 1, PhalconPlus\\App\\Module\\AbstractModule, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_dependmodule, 0, 1, IS_OBJECT, "PhalconPlus\\App\\Module\\AbstractModule", 0)
@@ -79,6 +92,11 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_dependmodule
 	ZEND_ARG_TYPE_INFO(0, moduleName, IS_STRING, 0)
 #else
 	ZEND_ARG_INFO(0, moduleName)
+#endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, force, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, force)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -132,9 +150,9 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_app_terminate, 0, 0, 0)
 #if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, deep, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO(0, deeply, _IS_BOOL, 0)
 #else
-	ZEND_ARG_INFO(0, deep)
+	ZEND_ARG_INFO(0, deeply)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -238,6 +256,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_app_app_method_entry) {
 	PHP_ME(PhalconPlus_App_App, boot, arginfo_phalconplus_app_app_boot, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, bootPrimaryModule, arginfo_phalconplus_app_app_bootprimarymodule, ZEND_ACC_PRIVATE)
 	PHP_ME(PhalconPlus_App_App, registerModule, arginfo_phalconplus_app_app_registermodule, ZEND_ACC_PRIVATE)
+	PHP_ME(PhalconPlus_App_App, import, arginfo_phalconplus_app_app_import, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, dependModule, arginfo_phalconplus_app_app_dependmodule, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, setConfig, arginfo_phalconplus_app_app_setconfig, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, isDebug, arginfo_phalconplus_app_app_isdebug, ZEND_ACC_PUBLIC)

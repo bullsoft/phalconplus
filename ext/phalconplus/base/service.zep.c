@@ -48,11 +48,11 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 
 	zephir_update_property_zval(this_ptr, SL("di"), di);
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 48);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 50);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 76);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 80);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -103,7 +103,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", NULL, 15, this_ptr, &key);
+	ZEPHIR_CALL_FUNCTION(&_0, "property_exists", NULL, 3, this_ptr, &key);
 	zephir_check_call_status();
 	if (zephir_is_true(&_0)) {
 		ZEPHIR_OBS_VAR(&_1$$3);

@@ -8,6 +8,8 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue);
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValue);
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid);
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, commaString);
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getList);
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getMap);
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValues);
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues);
 PHP_METHOD(PhalconPlus_Enum_AbstractEnum, jsonSerialize);
@@ -39,6 +41,8 @@ ZEPHIR_INIT_FUNCS(phalconplus_enum_abstractenum_method_entry) {
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, getValue, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, isValid, arginfo_phalconplus_enum_abstractenum_isvalid, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, commaString, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Enum_AbstractEnum, getList, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Enum_AbstractEnum, getMap, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, getValues, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, validValues, arginfo_phalconplus_enum_abstractenum_validvalues, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, jsonSerialize, NULL, ZEND_ACC_PUBLIC)

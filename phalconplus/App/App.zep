@@ -6,7 +6,6 @@ use Phalcon\DiInterface;
 use Phalcon\Di;
 use PhalconPlus\App\Module\AbstractModule;
 use PhalconPlus\Enum\RunEnv;
-use PhalconPlus\Enum\Facade;
 use Phalcon\Config;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\Events\ManagerInterface;
@@ -45,18 +44,15 @@ final class App extends BaseApplication
             let this->env = env;
         }
 
-        // 定义全局常量
-        define("APP_ENV", this->env, false); // 为了兼容, 同下
+        // Define global constants
+        define("APP_ENV",     this->env, false); // 为了兼容, 同下
         define("APP_RUN_ENV", this->env, false);
-        define("APP_ROOT_DIR", Sys::getRootDir(), false);
-        define("APP_MODULE_DIR", Sys::getPrimaryModuleDir(), false); // 为了兼容, 同下
-        define("APP_PRI_MODULE_DIR", Sys::getPrimaryModuleDir(), false);
-        define("APP_ROOT_COMMON_DIR", Sys::getCommonDir(), false);
-        define("APP_ROOT_COMMON_LOAD_DIR", Sys::getGlobalLoadDir(), false);
+        define("APP_ROOT_DIR",   Sys::getRootDir(), false);
+        define("APP_MODULE_DIR", Sys::getPrimaryModuleDir(),      false); // 为了兼容, 同下
+        define("APP_PRI_MODULE_DIR",  Sys::getPrimaryModuleDir(), false);
+        define("APP_ROOT_COMMON_DIR", Sys::getCommonDir(),        false);
+        define("APP_ROOT_COMMON_LOAD_DIR", Sys::getGlobalLoadDir(),   false);
         define("APP_ROOT_COMMON_CONF_DIR", Sys::getGlobalConfigDir(), false);
-
-        // 加载Facacdes
-        Facade::register(this, "\\Ph\\");
 
         return this->bootPrimaryModule(runMode);
     }
@@ -105,27 +101,44 @@ final class App extends BaseApplication
             // 合并配置，Module配置优先级更高
             this->config->merge(moduleConf);
         }
-        // checkout a module instance from it's defintion
+        // Checkout a module instance from it's defintion
         var module = moduleDef->checkout();
         if module->isPrimary() {
             let this->_defaultModule = module;
         }
-        
         // Maintain a HashMap of loaded modules
         let this->_modules[moduleDef->getName()] = module;
         return module;
     }
 
-    public function dependModule(string! moduleName) -> <AbstractModule>
+    // import exportable module
+    public function import(string! moduleName) -> <AbstractModule>
     {
-        var module, moduleDef, moduleDir, moduleConf;
-        let moduleDir = Sys::getModuleDirByName(moduleName);
-        let moduleDef = new ModuleDef(this, moduleDir);
-        // 注册模块
-        let module = this->registerModule(moduleDef);
+        return this->dependModule(moduleName, false);        
+    }
+
+    public function dependModule(string! moduleName, bool force = true) -> <AbstractModule>
+    {
+        let moduleName = trim(moduleName);
+        if unlikely isset(this->_modules[moduleName]) {
+            return this->_modules[moduleName];
+        }
+        var moduleDef;
+        let moduleDef = new ModuleDef(this, Sys::getModuleDirByName(moduleName));
+        if force === false {
+            if moduleDef->config()->path("application.exportable", false) == false {
+                throw new BaseException(moduleName . " can't be imported as external library.");
+            }
+        }
+
         // 参与合并的模块配置
-        var tmp = Sys::load(moduleDef->getConfigPath());
-        let moduleConf = new Config(tmp);
+        var moduleConf = null,    
+            arrayConf = Sys::load(moduleDef->getConfigPath()),
+            // 注册模块
+            module = this->registerModule(moduleDef);
+
+        let moduleConf = new Config(arrayConf);
+
         // 全局配置文件优先级高于被依赖的模块
         moduleConf->merge(this->config);
         this->setConfig(moduleConf);
@@ -139,7 +152,6 @@ final class App extends BaseApplication
             let this->config = new Config();
         }
         this->config->merge(config);
-        // this->getDI()->setShared("config", this->config);
         return this;
     }
 
@@ -172,51 +184,52 @@ final class App extends BaseApplication
     public function handle()
     {
         let this->requestNumber = this->requestNumber + 1;
-
+        // If app booted is false, reboot it again here.
         if false == this->booted {
             this->bootPrimaryModule();
         }
 
-        var eventsManager, response, params = func_get_args();
+        var eventsManager = null, 
+            response = null, 
+            params = func_get_args();
 
         let eventsManager = <ManagerInterface> this->_eventsManager;
         if typeof eventsManager == "object" {
             if eventsManager->fire("superapp:beforeExecModule", this, [this->_defaultModule, params]) === false {
                 // 
-                // error_log(var_export(params, true));
             }
         }
-
+        // Exec primary module, and get response
         let response = this->_defaultModule->exec(params);
 
         if typeof eventsManager == "object" {
             if eventsManager->fire("superapp:afterExecModule", this, [this->_defaultModule, response]) === false {
                 // 
-                // error_log(var_export(response, true));
             }
         }
         return response;
     }
 
-    public function terminate(bool deep = true)
+    public function terminate(bool deeply = true)
     {
+        // Close SESSION here
         if session_status() == PHP_SESSION_ACTIVE { 
             session_write_close(); 
         }
 
-        // empty session id
+        // Empty session-id
         if !headers_sent() { session_id(""); }
 
-        // reset global variables
-        let _SESSION = [], _POST = [],  _GET = [], _SERVER = [],
+        // Reset global variables
+        let _SESSION = [], _POST = [], 
+            _GET = [], _SERVER = [],
             _REQUEST = [], _COOKIE = [], _FILES = [];
 
         let this->_modules = [];
         let this->_defaultModule = null;
         let this->booted = false;
 
-        if deep == true {
-            // let this->config = null;
+        if deeply === true {
             Di::reset();
             let this->_dependencyInjector = null;
         }
@@ -239,12 +252,13 @@ final class App extends BaseApplication
 
     public function setDefaultModule(string defaultModule) -> <BaseApplication>
     {
-        // 
+        // nothing here...
         return this;
     }
     
     public function getDefaultModule() -> string
     {
+        // Constraited by parent class, have to return module-name as string
         return this->_defaultModule->getName();
     }
 
@@ -291,14 +305,16 @@ final class App extends BaseApplication
 
     public function __call(string method, array params)
     {
-        var dependencyInjector, service;
+        var dependencyInjector = null;
+        
+        // If App not booted, return null
         if ! this->isBooted() {
             return null;
         }
+
         let dependencyInjector = <DiInterface> this->_dependencyInjector;
         if dependencyInjector->has(method) {
-            let service = dependencyInjector->get(method, params);
-            return service;
+            return dependencyInjector->get(method, params);
         }
         return null;
     }

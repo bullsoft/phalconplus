@@ -8,10 +8,10 @@ use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\DI\FactoryDefault as DefaultDI;
 use Phalcon\DI\FactoryDefault\CLI as TaskDI;
 
-/* Module Structure for mode "Web"
+/* Module Structure
     .
     ├── app
-    │   ├── Web.php
+    │   ├── Module.php
         │   ├── config
         │   │   └── dev.php
         │   ├── controllers
@@ -81,16 +81,11 @@ class ModuleDef
             let this->classPath = Sys::getModuleClassPath(moduleDir, "Module");
             let this->className = appConfig->ns . "Module";
         }
-
-        // if !is_file(this->classPath) {
-        //     throw new BaseException("Module class file not exists: " . this->classPath);
-        // }
     }
 
     public function newDI() -> <\Phalcon\Di>
     {
-        var mode = this->runMode->getValue();
-        if mode == RunMode::CLI {
+        if this->runMode->isCli() {
             return new TaskDI();
         } else {
             return new DefaultDI();
@@ -99,13 +94,18 @@ class ModuleDef
 
     public function checkout() -> <AbstractModule>
     {
+        var e;
         if this->isPrimary() {
             // 装载全局服务初始化文件
-            Sys::load(this->runMode->getScriptPath());
+            try {
+                Sys::load(this->runMode->getScriptPath());
+            } catch \Exception, e {
+                // nothing to do...
+                trigger_error("Global load scripts not exists: " . e->getMessage());
+            }
         }
 
         Sys::load(this->classPath);
-
         if !class_exists(this->className) {
             throw new BaseException([
                 "Module class (%s) not exists, ClassPath: %s ",
@@ -147,9 +147,19 @@ class ModuleDef
         return this->isPrimary;
     }
 
+    public function classPath() -> string
+    {
+        return this->classPath;
+    }
+
     public function getClassPath() -> string
     {
         return this->classPath;
+    }
+
+    public function className() -> string
+    {
+        return this->className;
     }
 
     public function getClassName() -> string
@@ -157,9 +167,19 @@ class ModuleDef
         return this->className;
     }
 
+    public function runMode() -> <RunMode>
+    {
+        return this->runMode;
+    }
+
     public function getRunMode() -> <RunMode>
     {
         return this->runMode;
+    }
+
+    public function mapClassName() -> string
+    {
+        return this->runMode->getMapClassName();
     }
 
     public function getMapClassName() -> string
@@ -167,14 +187,39 @@ class ModuleDef
         return this->runMode->getMapClassName();
     }
 
+    public function mode() -> string
+    {
+        return this->runMode->getValue();
+    }
+
     public function getMode() -> string
     {
         return this->runMode->getValue();
     }
 
+    public function mame() -> string
+    {
+        return this->name;
+    }
+
     public function getName() -> string
     {
         return this->name;
+    }
+
+    public function ns() -> string
+    {
+        return rtrim(this->config->path("application.ns"), "\\");
+    }
+
+    public function getNs() -> string
+    {
+        return rtrim(this->config->path("application.ns"), "\\");
+    }
+
+    public function configPath() -> string
+    {
+        return this->configPath;
     }
 
     public function getConfigPath() -> string
@@ -185,6 +230,11 @@ class ModuleDef
     public function getConfig() -> <\Phalcon\Config>
     {
         return this->config;
+    }
+
+    public function dir() -> string
+    {
+        return this->dir;
     }
 
     public function getDir() -> string
@@ -200,5 +250,15 @@ class ModuleDef
     public function app() -> <SuperApp>
     {
         return this->app;
+    }
+
+    public function getApp() -> <SuperApp>
+    {
+        return this->app;
+    }
+
+    public function di() -> <\Phalcon\Di>
+    {
+        return this->app->di();
     }
 }

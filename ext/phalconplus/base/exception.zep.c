@@ -253,3 +253,12 @@ PHP_METHOD(PhalconPlus_Base_Exception, setLevel) {
 
 }
 
+PHP_METHOD(PhalconPlus_Base_Exception, getInfo) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "info");
+
+}
+

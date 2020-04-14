@@ -59,7 +59,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, __construct) {
 
 
 	zephir_update_property_zval(this_ptr, SL("appModule"), appModule);
-	ZEPHIR_CALL_METHOD(&di, appModule, "getdi", NULL, 0);
+	ZEPHIR_CALL_METHOD(&di, appModule, "di", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdi", NULL, 0, &di);
 	zephir_check_call_status();
@@ -147,7 +147,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, setHandler) {
 			ZEPHIR_CALL_METHOD(NULL, &_0$$4, "__construct", NULL, 0, &_2$$4);
 			zephir_check_call_status();
 		}
-		zephir_throw_exception_debug(&_0$$4, "phalconplus/App/Engine/Cli.zep", 43);
+		zephir_throw_exception_debug(&_0$$4, "phalconplus/App/Engine/Cli.zep", 40);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -192,7 +192,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, getHandler) {
 			ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 0, &_3$$3);
 			zephir_check_call_status();
 		}
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/App/Engine/Cli.zep", 57);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/App/Engine/Cli.zep", 54);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

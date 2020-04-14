@@ -85,7 +85,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, __construct) {
 
 	zephir_update_property_zval(this_ptr, SL("app"), app);
 	zephir_update_property_zval(this_ptr, SL("def"), def);
-	ZEPHIR_CALL_METHOD(&_0, app, "di", NULL, 50);
+	ZEPHIR_CALL_METHOD(&_0, app, "di", NULL, 52);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("_dependencyInjector"), &_0);
 	ZEPHIR_MM_RESTORE();
@@ -240,6 +240,24 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, def) {
 
 }
 
+PHP_METHOD(PhalconPlus_App_Module_AbstractModule, config) {
+
+	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+
+	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_RETURN_CALL_METHOD(&_0, "config", NULL, 0);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
 PHP_METHOD(PhalconPlus_App_Module_AbstractModule, engine) {
 
 	zval *this_ptr = getThis();
@@ -327,7 +345,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec) {
 	ZEPHIR_CALL_METHOD(&_1, &_0, "isprimary", NULL, 0);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Only primary module can be executed", "phalconplus/App/Module/AbstractModule.zep", 86);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Only primary module can be executed", "phalconplus/App/Module/AbstractModule.zep", 91);
 		return;
 	}
 	zephir_read_property(&_2, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
@@ -348,11 +366,11 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec) {
 		}
 	}
 	zephir_read_property(&_3, this_ptr, SL("engine"), PH_NOISY_CC | PH_READONLY);
-	if (Z_TYPE_P(&_3) == IS_NULL) {
+	if (ZEPHIR_IS_EMPTY(&_3)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerengine", NULL, 0);
 		zephir_check_call_status();
 	}
-	ZEPHIR_CALL_METHOD(&_7, this_ptr, "getdi", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_7, this_ptr, "di", NULL, 0);
 	zephir_check_call_status();
 	zephir_read_property(&_8, this_ptr, SL("engine"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_9);

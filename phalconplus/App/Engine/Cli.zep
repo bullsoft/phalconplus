@@ -14,7 +14,7 @@ class Cli extends Injectable implements AppEngine
     {
         let this->appModule = appModule;
 
-        var di = appModule->getDI();
+        var di = appModule->di();
         this->setDI(di);
         
         if is_null(handler) {
@@ -27,11 +27,8 @@ class Cli extends Injectable implements AppEngine
         this->handler->setEventsManager(di->get("eventsManager"));
     }
     
-    public function exec(array argv, <\Phalcon\DI\FactoryDefault> di = null) -> <AppEngine> | <Task>
+    public function exec(array argv, <\Phalcon\DI\FactoryDefault> di = null) -> <Task>
     {
-        // 如果不需要handle，则直接返回
-        // if !this->appModule->isAuto() { return this; }
-        // Handle
         return this->handler->handle(argv);
     }
 

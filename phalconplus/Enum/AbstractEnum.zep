@@ -50,6 +50,16 @@ abstract class AbstractEnum implements \JsonSerializable
         return implode(", ", vals);
     }
 
+    public static function getList()
+    {
+        return static::validValues(false);
+    }
+
+    public static function getMap()
+    {
+        return static::validValues(true);
+    }
+
     public static function getValues()
     {
         return static::validValues(true);

@@ -162,7 +162,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 
 		ZEPHIR_INIT_VAR(&methodReflection);
 		object_init_ex(&methodReflection, zephir_get_internal_ce(SL("reflectionmethod")));
-		ZEPHIR_CALL_METHOD(NULL, &methodReflection, "__construct", NULL, 16, &serviceClass, &method);
+		ZEPHIR_CALL_METHOD(NULL, &methodReflection, "__construct", NULL, 4, &serviceClass, &method);
 		zephir_check_call_status_or_jump(try_end_1);
 
 	try_end_1:
@@ -204,7 +204,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	ZEPHIR_CALL_METHOD(&_11, &methodReflection, "getnumberofparameters", NULL, 17);
+	ZEPHIR_CALL_METHOD(&_11, &methodReflection, "getnumberofparameters", NULL, 5);
 	zephir_check_call_status();
 	if (ZEPHIR_GT_LONG(&_11, 0)) {
 		_12$$6 = Z_TYPE_P(request) == IS_OBJECT;
@@ -226,12 +226,12 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			zephir_array_fast_append(&_13$$8, &serviceClass);
 			zephir_array_fast_append(&_13$$8, &method);
 			ZVAL_LONG(&_14$$8, 0);
-			ZEPHIR_CALL_METHOD(NULL, &param$$8, "__construct", NULL, 18, &_13$$8, &_14$$8);
+			ZEPHIR_CALL_METHOD(NULL, &param$$8, "__construct", NULL, 6, &_13$$8, &_14$$8);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_15$$8, &param$$8, "getclass", NULL, 19);
+			ZEPHIR_CALL_METHOD(&_15$$8, &param$$8, "getclass", NULL, 7);
 			zephir_check_call_status();
 			if (zephir_is_true(&_15$$8)) {
-				ZEPHIR_CALL_METHOD(&_16$$9, &param$$8, "getclass", NULL, 19);
+				ZEPHIR_CALL_METHOD(&_16$$9, &param$$8, "getclass", NULL, 7);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&paramClass$$8, &_16$$9, "getname", NULL, 0);
 				zephir_check_call_status();
@@ -303,7 +303,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		ZEPHIR_INIT_VAR(&_31$$12);
 		zephir_create_array(&_31$$12, 1, 0);
 		zephir_array_fast_append(&_31$$12, request);
-		ZEPHIR_CALL_METHOD(&response, &methodReflection, "invokeargs", NULL, 22, &serviceObj, &_31$$12);
+		ZEPHIR_CALL_METHOD(&response, &methodReflection, "invokeargs", NULL, 11, &serviceObj, &_31$$12);
 		zephir_check_call_status_or_jump(try_end_2);
 
 	try_end_2:

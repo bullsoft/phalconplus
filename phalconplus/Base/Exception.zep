@@ -67,4 +67,9 @@ class Exception extends \Exception
         let this->level = level;
         return this;
     }
+
+    public function getInfo()
+    {
+        return this->info;
+    }
 }

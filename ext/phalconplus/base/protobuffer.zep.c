@@ -116,7 +116,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone) {
 				ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 0, &key, &val);
 				zephir_check_call_status();
 			} else {
-				ZEPHIR_CALL_FUNCTION(&_5$$5, "property_exists", &_6, 15, this_ptr, &key);
+				ZEPHIR_CALL_FUNCTION(&_5$$5, "property_exists", &_6, 3, this_ptr, &key);
 				zephir_check_call_status();
 				if (zephir_is_true(&_5$$5)) {
 					ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 0, &key, &val);
@@ -141,7 +141,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone) {
 					ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 0, &key, &val);
 					zephir_check_call_status();
 				} else {
-					ZEPHIR_CALL_FUNCTION(&_7$$9, "property_exists", &_6, 15, this_ptr, &key);
+					ZEPHIR_CALL_FUNCTION(&_7$$9, "property_exists", &_6, 3, this_ptr, &key);
 					zephir_check_call_status();
 					if (zephir_is_true(&_7$$9)) {
 						ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 0, &key, &val);
@@ -161,11 +161,11 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone) {
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 
 	zval _6$$3, _13$$3;
-	zend_bool _15, _16, _17, _18;
+	zend_bool _16, _17, _18, _19;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *val = NULL, val_sub, method, methodRef, e, param, paramClass, paramClassRef, paramObj, _0, _1, _14, _2$$3, _7$$3, _8$$3, _3$$4, _4$$4, _9$$5, _10$$5, _11$$5, _12$$6, _19$$10, _20$$10;
+	zval *key_param = NULL, *val = NULL, val_sub, method, methodRef, param, paramClass, paramClassRef, paramObj, _0, _1, _14, _15, _2$$3, _7$$3, _8$$3, _3$$4, _4$$4, _9$$5, _10$$5, _11$$5, _12$$6, _20$$10, _21$$10;
 	zval key;
 	zval *this_ptr = getThis();
 
@@ -173,7 +173,6 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 	ZVAL_UNDEF(&val_sub);
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&methodRef);
-	ZVAL_UNDEF(&e);
 	ZVAL_UNDEF(&param);
 	ZVAL_UNDEF(&paramClass);
 	ZVAL_UNDEF(&paramClassRef);
@@ -181,6 +180,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_14);
+	ZVAL_UNDEF(&_15);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_8$$3);
@@ -190,8 +190,8 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 	ZVAL_UNDEF(&_10$$5);
 	ZVAL_UNDEF(&_11$$5);
 	ZVAL_UNDEF(&_12$$6);
-	ZVAL_UNDEF(&_19$$10);
 	ZVAL_UNDEF(&_20$$10);
+	ZVAL_UNDEF(&_21$$10);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_13$$3);
 
@@ -220,9 +220,9 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 
 		ZEPHIR_INIT_VAR(&methodRef);
 		object_init_ex(&methodRef, zephir_get_internal_ce(SL("reflectionmethod")));
-		ZEPHIR_CALL_METHOD(NULL, &methodRef, "__construct", NULL, 16, this_ptr, &method);
+		ZEPHIR_CALL_METHOD(NULL, &methodRef, "__construct", NULL, 4, this_ptr, &method);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_METHOD(&_2$$3, &methodRef, "getnumberofparameters", NULL, 17);
+		ZEPHIR_CALL_METHOD(&_2$$3, &methodRef, "getnumberofparameters", NULL, 5);
 		zephir_check_call_status_or_jump(try_end_1);
 		if (ZEPHIR_LT_LONG(&_2$$3, 1)) {
 			ZEPHIR_INIT_VAR(&_3$$4);
@@ -231,7 +231,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 			ZEPHIR_CONCAT_SSVS(&_4$$4, "PhalconPlus\\Base\\ProtoBuffer", "::", &method, "() need at least 1 parameter");
 			ZEPHIR_CALL_METHOD(NULL, &_3$$4, "__construct", &_5, 2, &_4$$4);
 			zephir_check_call_status_or_jump(try_end_1);
-			zephir_throw_exception_debug(&_3$$4, "phalconplus/Base/ProtoBuffer.zep", 45);
+			zephir_throw_exception_debug(&_3$$4, "phalconplus/Base/ProtoBuffer.zep", 44);
 			goto try_end_1;
 
 		}
@@ -242,31 +242,31 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 		zephir_array_fast_append(&_6$$3, this_ptr);
 		zephir_array_fast_append(&_6$$3, &method);
 		ZVAL_LONG(&_7$$3, 0);
-		ZEPHIR_CALL_METHOD(NULL, &param, "__construct", NULL, 18, &_6$$3, &_7$$3);
+		ZEPHIR_CALL_METHOD(NULL, &param, "__construct", NULL, 6, &_6$$3, &_7$$3);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_METHOD(&_8$$3, &param, "getclass", NULL, 19);
+		ZEPHIR_CALL_METHOD(&_8$$3, &param, "getclass", NULL, 7);
 		zephir_check_call_status_or_jump(try_end_1);
 		if (zephir_is_true(&_8$$3)) {
-			ZEPHIR_CALL_METHOD(&_9$$5, &param, "getclass", NULL, 19);
+			ZEPHIR_CALL_METHOD(&_9$$5, &param, "getclass", NULL, 7);
 			zephir_check_call_status_or_jump(try_end_1);
 			ZEPHIR_CALL_METHOD(&paramClass, &_9$$5, "getname", NULL, 0);
 			zephir_check_call_status_or_jump(try_end_1);
 			ZEPHIR_INIT_VAR(&paramClassRef);
 			object_init_ex(&paramClassRef, zephir_get_internal_ce(SL("reflectionclass")));
-			ZEPHIR_CALL_METHOD(NULL, &paramClassRef, "__construct", NULL, 3, &paramClass);
+			ZEPHIR_CALL_METHOD(NULL, &paramClassRef, "__construct", NULL, 8, &paramClass);
 			zephir_check_call_status_or_jump(try_end_1);
 			ZEPHIR_INIT_VAR(&_11$$5);
 			ZVAL_STRING(&_11$$5, "\\PhalconPlus\\Base\\ProtoBuffer");
-			ZEPHIR_CALL_METHOD(&_10$$5, &paramClassRef, "issubclassof", NULL, 20, &_11$$5);
+			ZEPHIR_CALL_METHOD(&_10$$5, &paramClassRef, "issubclassof", NULL, 9, &_11$$5);
 			zephir_check_call_status_or_jump(try_end_1);
 			if (zephir_is_true(&_10$$5)) {
-				ZEPHIR_CALL_METHOD(&_12$$6, &paramClassRef, "newinstance", NULL, 21);
+				ZEPHIR_CALL_METHOD(&_12$$6, &paramClassRef, "newinstance", NULL, 10);
 				zephir_check_call_status_or_jump(try_end_1);
 				ZEPHIR_CALL_METHOD(&paramObj, &_12$$6, "softclone", NULL, 0, val);
 				zephir_check_call_status_or_jump(try_end_1);
 				ZEPHIR_CPY_WRT(val, &paramObj);
 			} else {
-				ZEPHIR_CALL_METHOD(&paramObj, &paramClassRef, "newinstance", NULL, 21, val);
+				ZEPHIR_CALL_METHOD(&paramObj, &paramClassRef, "newinstance", NULL, 10, val);
 				zephir_check_call_status_or_jump(try_end_1);
 				ZEPHIR_CPY_WRT(val, &paramObj);
 			}
@@ -274,7 +274,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 		ZEPHIR_INIT_VAR(&_13$$3);
 		zephir_create_array(&_13$$3, 1, 0);
 		zephir_array_fast_append(&_13$$3, val);
-		ZEPHIR_RETURN_CALL_METHOD(&methodRef, "invokeargs", NULL, 22, this_ptr, &_13$$3);
+		ZEPHIR_RETURN_CALL_METHOD(&methodRef, "invokeargs", NULL, 11, this_ptr, &_13$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		RETURN_MM();
 
@@ -284,37 +284,38 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set) {
 		ZEPHIR_INIT_VAR(&_14);
 		ZVAL_OBJ(&_14, EG(exception));
 		Z_ADDREF_P(&_14);
+		ZEPHIR_INIT_VAR(&_15);
 		if (zephir_instance_of_ev(&_14, zend_exception_get_default(TSRMLS_C))) {
 			zend_clear_exception(TSRMLS_C);
-			ZEPHIR_CPY_WRT(&e, &_14);
+			ZEPHIR_CPY_WRT(&_15, &_14);
 		}
 	}
-	_15 = zephir_is_scalar(val);
-	if (!(_15)) {
-		_15 = Z_TYPE_P(val) == IS_NULL;
-	}
-	_16 = _15;
+	_16 = zephir_is_scalar(val);
 	if (!(_16)) {
-		_16 = Z_TYPE_P(val) == IS_ARRAY;
+		_16 = Z_TYPE_P(val) == IS_NULL;
 	}
 	_17 = _16;
 	if (!(_17)) {
-		_18 = Z_TYPE_P(val) == IS_OBJECT;
-		if (_18) {
-			_18 = zephir_instance_of_ev(val, phalconplus_base_protobuffer_ce);
-		}
-		_17 = _18;
+		_17 = Z_TYPE_P(val) == IS_ARRAY;
 	}
-	if (_17) {
+	_18 = _17;
+	if (!(_18)) {
+		_19 = Z_TYPE_P(val) == IS_OBJECT;
+		if (_19) {
+			_19 = zephir_instance_of_ev(val, phalconplus_base_protobuffer_ce);
+		}
+		_18 = _19;
+	}
+	if (_18) {
 		zephir_update_property_zval_zval(this_ptr, &key, val);
 	} else {
-		ZEPHIR_INIT_VAR(&_19$$10);
-		object_init_ex(&_19$$10, phalconplus_base_exception_ce);
 		ZEPHIR_INIT_VAR(&_20$$10);
-		ZEPHIR_CONCAT_SVS(&_20$$10, "Please add ", &method, " in your class, complex-type vars are not allowed to assign directly");
-		ZEPHIR_CALL_METHOD(NULL, &_19$$10, "__construct", &_5, 2, &_20$$10);
+		object_init_ex(&_20$$10, phalconplus_base_exception_ce);
+		ZEPHIR_INIT_VAR(&_21$$10);
+		ZEPHIR_CONCAT_SVS(&_21$$10, "Please add ", &method, " in your class, complex-type vars are not allowed to assign directly");
+		ZEPHIR_CALL_METHOD(NULL, &_20$$10, "__construct", &_5, 2, &_21$$10);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_19$$10, "phalconplus/Base/ProtoBuffer.zep", 71);
+		zephir_throw_exception_debug(&_20$$10, "phalconplus/Base/ProtoBuffer.zep", 72);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -358,7 +359,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __isset) {
 	if ((zephir_method_exists(this_ptr, &method)  == SUCCESS)) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_FUNCTION(&_2, "property_exists", NULL, 15, this_ptr, &key);
+	ZEPHIR_CALL_FUNCTION(&_2, "property_exists", NULL, 3, this_ptr, &key);
 	zephir_check_call_status();
 	if (zephir_is_true(&_2)) {
 		RETURN_MM_BOOL(1);
@@ -406,7 +407,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __get) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-	ZEPHIR_CALL_FUNCTION(&_2, "property_exists", NULL, 15, this_ptr, &key);
+	ZEPHIR_CALL_FUNCTION(&_2, "property_exists", NULL, 3, this_ptr, &key);
 	zephir_check_call_status();
 	if (zephir_is_true(&_2)) {
 		ZEPHIR_OBS_VAR(&_3$$4);
@@ -454,7 +455,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __unset) {
 		ZEPHIR_CALL_METHOD_ZVAL(NULL, this_ptr, &method, NULL, 0);
 		zephir_check_call_status();
 	}
-	ZEPHIR_CALL_FUNCTION(&_2, "property_exists", NULL, 15, this_ptr, &key);
+	ZEPHIR_CALL_FUNCTION(&_2, "property_exists", NULL, 3, this_ptr, &key);
 	zephir_check_call_status();
 	if (zephir_is_true(&_2)) {
 		
@@ -536,11 +537,11 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars) {
 	ZVAL_NULL(&pro);
 	ZEPHIR_INIT_NVAR(&objRef);
 	object_init_ex(&objRef, zephir_get_internal_ce(SL("reflectionobject")));
-	ZEPHIR_CALL_METHOD(NULL, &objRef, "__construct", NULL, 23, this_ptr);
+	ZEPHIR_CALL_METHOD(NULL, &objRef, "__construct", NULL, 12, this_ptr);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&pros, &objRef, "getproperties", NULL, 24);
+	ZEPHIR_CALL_METHOD(&pros, &objRef, "getproperties", NULL, 13);
 	zephir_check_call_status();
-	zephir_is_iterable(&pros, 0, "phalconplus/Base/ProtoBuffer.zep", 140);
+	zephir_is_iterable(&pros, 0, "phalconplus/Base/ProtoBuffer.zep", 144);
 	if (Z_TYPE_P(&pros) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&pros), _0)
 		{
@@ -644,7 +645,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 	} else {
 		ZEPHIR_CPY_WRT(&currPros, &inputPros);
 	}
-	zephir_is_iterable(&currPros, 0, "phalconplus/Base/ProtoBuffer.zep", 167);
+	zephir_is_iterable(&currPros, 0, "phalconplus/Base/ProtoBuffer.zep", 171);
 	if (Z_TYPE_P(&currPros) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&currPros), _2, _3, _0)
 		{
@@ -669,7 +670,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 				_6$$3 = (zephir_method_exists_ex(&val, ZEND_STRL("__tostring")) == SUCCESS);
 			}
 			if (_4$$3) {
-				ZEPHIR_CALL_METHOD(&_7$$4, this_ptr, "toarray", &_8, 25, &val);
+				ZEPHIR_CALL_METHOD(&_7$$4, this_ptr, "toarray", &_8, 14, &val);
 				zephir_check_call_status();
 				zephir_array_update_zval(&newPros, &key, &_7$$4, PH_COPY | PH_SEPARATE);
 			} else if (_5$$3) {
@@ -710,7 +711,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray) {
 					_13$$8 = (zephir_method_exists_ex(&val, ZEND_STRL("__tostring")) == SUCCESS);
 				}
 				if (_11$$8) {
-					ZEPHIR_CALL_METHOD(&_14$$9, this_ptr, "toarray", &_8, 25, &val);
+					ZEPHIR_CALL_METHOD(&_14$$9, this_ptr, "toarray", &_8, 14, &val);
 					zephir_check_call_status();
 					zephir_array_update_zval(&newPros, &key, &_14$$9, PH_COPY | PH_SEPARATE);
 				} else if (_12$$8) {
@@ -875,7 +876,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getIterator) {
 	object_init_ex(return_value, zephir_get_internal_ce(SL("recursivearrayiterator")));
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getselfvars", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 26, &_0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 15, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
