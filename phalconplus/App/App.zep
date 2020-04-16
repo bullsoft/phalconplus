@@ -23,6 +23,8 @@ final class App extends BaseApplication
     protected config = null { get };
     // 处理请求次数
     protected requestNumber = 0;
+    // 需要手动关闭的服务，一般是有状态服务，如Mysql、Redis等
+    protected finalizers = [];
    
     public function __construct(<Config> config)
     {
@@ -229,10 +231,21 @@ final class App extends BaseApplication
         let this->_defaultModule = null;
         let this->booted = false;
 
+        var finalizer;
+        for finalizer in this->finalizers {
+            {finalizer}();
+        }
+        let this->finalizers = [];
         if deeply === true {
             Di::reset();
             let this->_dependencyInjector = null;
         }
+    }
+
+    public function defer(callable handler)
+    {
+        let this->finalizers[] = handler;
+        return this;
     }
 
     public function getRequestNumber() -> int
