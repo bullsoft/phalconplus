@@ -170,6 +170,15 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf) {
 
 }
 
+PHP_METHOD(PhalconPlus_Bootstrap, getApp) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "app");
+
+}
+
 PHP_METHOD(PhalconPlus_Bootstrap, app) {
 
 	zval *this_ptr = getThis();
