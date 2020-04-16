@@ -95,7 +95,7 @@ while ($req = $psr7->acceptRequest()) {
     try {
         $resp = $app->handle($req);
     } catch (\Throwable $e) {
-        LightCloud\Uc\Exceptions\Handler::catch($e);
+        Test\Exceptions\Handler::catch($e);
         $resp = $app->response();
     }
 
