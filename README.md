@@ -9,11 +9,11 @@ So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框�
     * cPhalcon 3.4.x - https://github.com/phalcon/cphalcon/tree/3.4.x
 
 ## 约束
- - 不支持Phalcon的多模块结构
+ - 不支持Phalcon的多模块结构，Phalcon+有自己的模块机制
  - 所有模块目录结构都是同构的
  - 模块是有工作模式的，如：Web, Srv, Cli等...，不同模式的模块角色不一样
  - 无论哪种模式，入口文件都完全一样
- - Buit-in RPC
+ - 内置RPC服务端和客户端
  - 所有模块都依赖全局的common（实际上是Cli Module）
 
 ## 安装
@@ -36,16 +36,17 @@ cd fp-app
 ```
 
 ## 运行
-使用Phalcon+DevTool
+
+使用[Phalcon+DevTool](https://github.com/bullsoft/fp-common)
 ```bash
 ./common/bin/fp-devtool server:start test
 ```
-使用PPM
+使用[PPM](https://github.com/php-pm/php-pm)
 ```
 cd test
 ../vendor/bin/ppm start --bridge="PhalconPlus\\Bridge" --bootstrap="PhalconPlus\\Bootstrap" --static-directory=public/ --port=8181 --workers=1
 ```
-使用RoadRunner
+使用[RoadRunner](https://github.com/spiral/roadrunner)
 ```
 cd test
 touch .rr.json
@@ -103,7 +104,10 @@ while ($req = $psr7->acceptRequest()) {
     unset($req, $resp);
 }
 ```
-
+然后在模块目录下执行
+```
+rr serve -d -v
+```
 
 ## Demos
   * 雪品应用：[http://shopbigbang.com](http://shopbigbang.com)
