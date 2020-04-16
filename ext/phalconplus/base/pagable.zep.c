@@ -256,7 +256,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 
 	zephir_read_property(&_0, this_ptr, SL("orderBys"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_MAKE_REF(&_0);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 72, &_0, orderBy);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 76, &_0, orderBy);
 	ZEPHIR_UNREF(&_0);
 	zephir_check_call_status();
 	RETURN_THIS();
@@ -311,14 +311,14 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys) {
 				zephir_fast_strtoupper(&upperDirection$$4, &_3$$4);
 				ZEPHIR_INIT_NVAR(&direction$$4);
 				object_init_ex(&direction$$4, phalconplus_enum_orderbydirection_ce);
-				ZEPHIR_CALL_METHOD(NULL, &direction$$4, "__construct", &_4, 52, &upperDirection$$4);
+				ZEPHIR_CALL_METHOD(NULL, &direction$$4, "__construct", &_4, 54, &upperDirection$$4);
 				zephir_check_call_status();
 				ZEPHIR_INIT_NVAR(&orderBy$$4);
 				object_init_ex(&orderBy$$4, phalconplus_base_protoorderby_ce);
-				ZEPHIR_CALL_METHOD(NULL, &orderBy$$4, "__construct", &_5, 70);
+				ZEPHIR_CALL_METHOD(NULL, &orderBy$$4, "__construct", &_5, 74);
 				zephir_check_call_status();
 				zephir_array_fetch_string(&_7$$4, &item, SL("property"), PH_NOISY | PH_READONLY, "phalconplus/Base/Pagable.zep", 91);
-				ZEPHIR_CALL_METHOD(&_6$$4, &orderBy$$4, "setproperty", &_8, 73, &_7$$4);
+				ZEPHIR_CALL_METHOD(&_6$$4, &orderBy$$4, "setproperty", &_8, 77, &_7$$4);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, &_6$$4, "setdirection", &_9, 0, &direction$$4);
 				zephir_check_call_status();
@@ -347,14 +347,14 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys) {
 					zephir_fast_strtoupper(&upperDirection$$6, &_12$$6);
 					ZEPHIR_INIT_NVAR(&direction$$6);
 					object_init_ex(&direction$$6, phalconplus_enum_orderbydirection_ce);
-					ZEPHIR_CALL_METHOD(NULL, &direction$$6, "__construct", &_4, 52, &upperDirection$$6);
+					ZEPHIR_CALL_METHOD(NULL, &direction$$6, "__construct", &_4, 54, &upperDirection$$6);
 					zephir_check_call_status();
 					ZEPHIR_INIT_NVAR(&orderBy$$6);
 					object_init_ex(&orderBy$$6, phalconplus_base_protoorderby_ce);
-					ZEPHIR_CALL_METHOD(NULL, &orderBy$$6, "__construct", &_5, 70);
+					ZEPHIR_CALL_METHOD(NULL, &orderBy$$6, "__construct", &_5, 74);
 					zephir_check_call_status();
 					zephir_array_fetch_string(&_14$$6, &item, SL("property"), PH_NOISY | PH_READONLY, "phalconplus/Base/Pagable.zep", 91);
-					ZEPHIR_CALL_METHOD(&_13$$6, &orderBy$$6, "setproperty", &_8, 73, &_14$$6);
+					ZEPHIR_CALL_METHOD(&_13$$6, &orderBy$$6, "setproperty", &_8, 77, &_14$$6);
 					zephir_check_call_status();
 					ZEPHIR_CALL_METHOD(NULL, &_13$$6, "setdirection", &_9, 0, &direction$$6);
 					zephir_check_call_status();

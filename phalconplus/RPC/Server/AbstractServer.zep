@@ -17,8 +17,13 @@ abstract class AbstractServer
             serviceObj, response, e;
 		
         let serviceClass = service->upperfirst() . "Service";
+        if !class_exists(serviceClass) {
+            throw new BaseException("Service class not exists: " . serviceClass);
+        }
+        // Instance Server Object
+        let serviceObj = new {serviceClass}(this->di);
         try {
-            let methodReflection = new \ReflectionMethod(serviceClass, method);
+            let methodReflection = new \ReflectionMethod(serviceObj, method);
         } catch \ReflectionException, e {
             throw new BaseException("Service:method not found. Detail: " . serviceClass . " : " . method . ". RawException: ". e->getMessage());
         }
@@ -48,8 +53,6 @@ abstract class AbstractServer
             }
     		// ...	
         }
-        // Instance Server Object
-        let serviceObj = new {serviceClass}(this->di);
         // Fire Event "beforeExecute"
         this->eventsManager->fire("backend-server:beforeExecute", $this, [service, method, request]);
         // Invoke target method
@@ -73,8 +76,7 @@ abstract class AbstractServer
         if this->phpOnly == false && is_object(response) {
             return response->toArray();
         }
-        
-        return response;  
+        return response;
     }
 
     /**

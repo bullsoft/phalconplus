@@ -36,8 +36,8 @@ zend_class_entry *phalconplus_contracts_auth_access_resourceaware_ce;
 zend_class_entry *phalconplus_contracts_auth_access_routerevent_ce;
 zend_class_entry *phalconplus_contracts_eventattachable_ce;
 zend_class_entry *phalconplus_facades_abstractfacade_ce;
-zend_class_entry *phalconplus_enum_abstractenum_ce;
 zend_class_entry *phalconplus_base_protobuffer_ce;
+zend_class_entry *phalconplus_enum_abstractenum_ce;
 zend_class_entry *phalconplus_logger_processor_abstractprocessor_ce;
 zend_class_entry *phalconplus_rpc_client_abstractclient_ce;
 zend_class_entry *phalconplus_base_exception_ce;
@@ -50,6 +50,7 @@ zend_class_entry *phalconplus_rpc_server_abstractserver_ce;
 zend_class_entry *phalconplus_0__closure_ce;
 zend_class_entry *phalconplus_1__closure_ce;
 zend_class_entry *phalconplus_2__closure_ce;
+zend_class_entry *phalconplus_3__closure_ce;
 zend_class_entry *phalconplus_app_app_ce;
 zend_class_entry *phalconplus_app_engine_cli_ce;
 zend_class_entry *phalconplus_app_engine_srv_ce;
@@ -121,6 +122,7 @@ zend_class_entry *phalconplus_facades_view_ce;
 zend_class_entry *phalconplus_featuretest_splobjectstoragetest_ce;
 zend_class_entry *phalconplus_helper_arr_ce;
 zend_class_entry *phalconplus_helper_exception_ce;
+zend_class_entry *phalconplus_helper_ns_ce;
 zend_class_entry *phalconplus_helper_str_ce;
 zend_class_entry *phalconplus_helper_variable_ce;
 zend_class_entry *phalconplus_http_nonpsrrequest_ce;
@@ -161,8 +163,8 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Contracts_Auth_Access_RouterEvent);
 	ZEPHIR_INIT(PhalconPlus_Contracts_EventAttachable);
 	ZEPHIR_INIT(PhalconPlus_Facades_AbstractFacade);
-	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
+	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_AbstractProcessor);
 	ZEPHIR_INIT(PhalconPlus_Rpc_Client_AbstractClient);
 	ZEPHIR_INIT(PhalconPlus_Base_Exception);
@@ -243,6 +245,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_FeatureTest_SplObjectStorageTest);
 	ZEPHIR_INIT(PhalconPlus_Helper_Arr);
 	ZEPHIR_INIT(PhalconPlus_Helper_Exception);
+	ZEPHIR_INIT(PhalconPlus_Helper_Ns);
 	ZEPHIR_INIT(PhalconPlus_Helper_Str);
 	ZEPHIR_INIT(PhalconPlus_Helper_Variable);
 	ZEPHIR_INIT(PhalconPlus_Http_NonPsrRequest);
@@ -262,6 +265,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(phalconplus_0__closure);
 	ZEPHIR_INIT(phalconplus_1__closure);
 	ZEPHIR_INIT(phalconplus_2__closure);
+	ZEPHIR_INIT(phalconplus_3__closure);
 	
 	return SUCCESS;
 }

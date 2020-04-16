@@ -6,6 +6,7 @@ use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\MetaDataInterface;
 use Phalcon\Db\AdapterInterface;
 use Phalcon\Mvc\Model\Resultset;
+use PhalconPlus\Base\Exception as BaseException;
 
 // use Phalcon\Mvc\Model;
 // use Phalcon\Mvc\ModelMessage;
@@ -15,10 +16,10 @@ class Model extends \Phalcon\Mvc\Model
 {
     // 记录创建时间
     public ctime;
-    public createdAt;
+    // public createdAt;
     // 记录更新时间
     public mtime;
-    public updatedAt;
+    // public updatedAt;
 
     // 自定义模型唯一键
     protected __uniqueKeys = [];
@@ -36,25 +37,97 @@ class Model extends \Phalcon\Mvc\Model
         this->keepSnapshots(true);
     }
 
-    public function getMessage()
+    public static function findFirstOrFail(var params = null)
     {
-        return this->getFirstMessage();
+        var record = static::findFirst(params);
+        if record == false {
+            throw new BaseException([
+                "Recored not exists,",
+                params
+            ]); 
+        }
+        return record;
     }
 
-    public function getFirstMessage()
+    public static function findFirstOrEmpty(var params = null)
+    {
+        var record = static::findFirst(params);
+        if record == false {
+            return new static();
+        }
+        return record;
+    }
+
+    public static function findOrFail(var params = null)
+    {
+        var collection = static::find(params);
+        if collection->count() == 0 {
+            throw new BaseException([
+                "Collection is empty",
+                params
+            ]);
+        }
+        return collection;
+    }
+
+    public function saveOrFail(var data = null, var whiteList = null) -> boolean
+    {
+        var result = this->save(data, whiteList);
+        if result !== true {
+            throw new BaseException([
+                "Model save failed: " . (string) this->getMessage(),
+                [data, whiteList]
+            ]);
+        }
+        return true;
+    }
+
+    public function createOrFail(var data = null, var whiteList = null) -> boolean
+    {
+        var result = this->create(data, whiteList);
+        if result !== true {
+            throw new BaseException([
+                "Model create failed: " . (string) this->getMessage(),
+                [data, whiteList]
+            ]);
+        }
+        return true;
+    }
+
+    public function updateOrFail(var data = null, var whiteList = null) -> boolean
+    {
+        var result = this->update(data, whiteList);
+        if result !== true {
+            throw new BaseException([
+                "Model update failed: " . (string) this->getMessage(),
+                [data, whiteList]
+            ]);
+        }
+        return true;
+    }
+
+    public function getMessage() -> string | null
     {
         if count(this->getMessages()) {
             return (string) current(this->getMessages());
         }
-        return false;
+        return null;
     }
 
-    public function getLastMessage()
+    public function getFirstMessage() -> string | null
+    {
+        if count(this->getMessages()) {
+            return (string) reset(this->getMessages());
+        }
+        return null;
+    }
+
+    public function getLastMessage() -> string | null
     {
         if count(this->getMessages()) {
             return (string) end(this->getMessages());
         }
-        return false;
+        return null;
     }
 
     public function createBuilder(string! alias = "") -> <\Phalcon\Mvc\Model\Query\BuilderInterface>
@@ -115,10 +188,10 @@ class Model extends \Phalcon\Mvc\Model
         let this->ctime = date("Y-m-d H:i:s");
         let this->mtime = this->ctime;
         if property_exists(this, "created_at") {
-            let this->createdAt = this->ctime;
+            let this->{"createdAt"} = this->ctime;
         }
         if property_exists(this, "updated_at") {
-            let this->updatedAt = this->ctime;
+            let this->{"updatedAt"} = this->ctime;
         }
     }
 
@@ -128,10 +201,10 @@ class Model extends \Phalcon\Mvc\Model
         let this->ctime = new \DateTime(this->ctime);
         let this->mtime = new \DateTime(this->mtime);
         if property_exists(this, "created_at") {
-            let this->createdAt = new \DateTime(this->createdAt);
+            let this->{"createdAt"} = new \DateTime(this->{"createdAt"});
         }
         if property_exists(this, "updated_at") {
-            let this->updatedAt = new \DateTime(this->updatedAt);
+            let this->{"updatedAt"} = new \DateTime(this->{"updatedAt"});
         }
     }
 
@@ -140,10 +213,10 @@ class Model extends \Phalcon\Mvc\Model
         let this->ctime = date("Y-m-d H:i:s");
         let this->mtime = this->ctime;
         if property_exists(this, "created_at") {
-            let this->createdAt = this->ctime;
+            let this->{"createdAt"} = this->ctime;
         }
         if property_exists(this, "updated_at") {
-            let this->updatedAt = this->ctime;
+            let this->{"updatedAt"} = this->ctime;
         }
     }
 
@@ -155,7 +228,7 @@ class Model extends \Phalcon\Mvc\Model
             if !empty changedFields {
                 let this->mtime = date("Y-m-d H:i:s");
                 if property_exists(this, "updated_at") {
-                    let this->updatedAt =  this->mtime;
+                    let this->{"updatedAt"} =  this->mtime;
                 }
             }
         }
@@ -163,8 +236,8 @@ class Model extends \Phalcon\Mvc\Model
             let this->ctime = this->ctime->format("Y-m-d H:i:s");
         }
         if property_exists(this, "created_at") {
-            if is_object(this->createdAt) && (this->createdAt instanceof \DateTime) {
-               let this->createdAt = this->createdAt->format("Y-m-d H:i:s");
+            if is_object(this->{"createdAt"}) && (this->{"createdAt"} instanceof \DateTime) {
+               let this->{"createdAt"} = this->{"createdAt"}->format("Y-m-d H:i:s");
             }
         }
 
@@ -172,8 +245,8 @@ class Model extends \Phalcon\Mvc\Model
             let this->mtime = this->mtime->format("Y-m-d H:i:s");
         }
         if property_exists(this, "updated_at") {
-            if is_object(this->updatedAt) && (this->updatedAt instanceof \DateTime) {
-                let this->updatedAt = this->updatedAt->format("Y-m-d H:i:s");
+            if is_object(this->{"updatedAt"}) && (this->{"updatedAt"} instanceof \DateTime) {
+                let this->{"updatedAt"} = this->{"updatedAt"}->format("Y-m-d H:i:s");
             }
         }
 
@@ -341,14 +414,14 @@ class Model extends \Phalcon\Mvc\Model
              */
             if typeof columnMap == "array" {
                 if !fetch attributeField, columnMap[pk] {
-                    throw new \PhalconPlus\Base\Exception("Model::setUpdateCond: Column '" . pk . "' isn't part of the column map");
+                    throw new BaseException("Model::setUpdateCond: Column '" . pk . "' isn't part of the column map");
                 }
             } else {
                 let attributeField = pk;
             }
 
             if !fetch type, bindDataTypes[pk] {
-                throw new \PhalconPlus\Base\Exception("Model::setupdateCond: Column '" . pk . "' isn't part of the table columns");
+                throw new BaseException("Model::setupdateCond: Column '" . pk . "' isn't part of the table columns");
             }
 
             if fetch value, this->{attributeField} {
@@ -434,7 +507,7 @@ class Model extends \Phalcon\Mvc\Model
                 var tmp;
                 let tmp = array_flip(columnMap);
                 if !fetch field, tmp[attributeField] {
-                    throw new \PhalconPlus\Base\Exception("Model::setUqKeys: Column '" . attributeField . "' isn't part of the column map");
+                    throw new BaseException("Model::setUqKeys: Column '" . attributeField . "' isn't part of the column map");
                 }
             } else {
                 let field = attributeField;
@@ -443,7 +516,7 @@ class Model extends \Phalcon\Mvc\Model
             let this->__uniqueKeys[attributeField]["field"] = field;
 
             if !fetch type, bindDataTypes[field] {
-                throw new \PhalconPlus\Base\Exception("Model::setUqKeys: Column '" . field . "' isn't part of the table columns");
+                throw new BaseException("Model::setUqKeys: Column '" . field . "' isn't part of the table columns");
             }
             let this->__uniqueKeys[attributeField]["type"] = type;
             let this->__uniqueKeys[attributeField]["op"] = "=";
@@ -526,7 +599,7 @@ class Model extends \Phalcon\Mvc\Model
             let options = val->getOptions();
             if fetch alias, options["alias"] {
                 if typeof alias != "string" {
-                    throw new \Exception("Relation alias must be a string");
+                    throw new BaseException("Relation alias must be a string");
                 }
                 let lowerAlias = strtolower(alias);
             } else {

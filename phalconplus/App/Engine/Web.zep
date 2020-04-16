@@ -31,11 +31,8 @@ class Web extends Injectable implements AppEngine
     /**
     * @request a uri string (for \Phalcon\Mvc\Application) or Psr\Http\Message\Request
     */
-    public function exec(var uri = null) -> <HttpResponse> | <AppEngine>
+    public function exec(var uri = null) -> <HttpResponse>
     {
-        // 如果不需要handle，则直接返回
-        // if !this->appModule->isAuto() { return this; }
-        // Handle
         if !is_string(uri) || empty(uri) {
             let uri = null;
         }

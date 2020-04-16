@@ -11,11 +11,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_adapter_local___construct,
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_rpc_client_adapter_local_callbyparams, 0, 3, PhalconPlus\\Base\\ProtoBuffer, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_rpc_client_adapter_local_callbyparams, 0, 3, IS_OBJECT, "PhalconPlus\\Base\\ProtoBuffer", 0)
-#endif
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_adapter_local_callbyparams, 0, 0, 3)
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, service, IS_STRING, 0)
 #else
@@ -26,7 +22,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_rpc_client_adapter_l
 #else
 	ZEND_ARG_INFO(0, method)
 #endif
-	ZEND_ARG_OBJ_INFO(0, request, PhalconPlus\\Base\\ProtoBuffer, 0)
+	ZEND_ARG_INFO(0, request)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_adapter_local_callbyobject, 0, 0, 1)

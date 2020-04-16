@@ -1,5 +1,4 @@
 <?php
-define("AUTO_HANDLE", false);
 include dirname(__DIR__) . "/bootstrap.php";
 
 use PhalconPlus\Test\Models\Classicmodels\EmployeesModel;

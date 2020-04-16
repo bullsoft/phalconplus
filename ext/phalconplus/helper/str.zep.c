@@ -59,7 +59,7 @@ PHP_METHOD(PhalconPlus_Helper_Str, decodeJson) {
 	ZEPHIR_INIT_VAR(&_0);
 	array_init(&_0);
 	ZVAL_LONG(&_1, 2);
-	ZEPHIR_CALL_METHOD(NULL, &obj, "__construct", NULL, 74, &_0, &_1);
+	ZEPHIR_CALL_METHOD(NULL, &obj, "__construct", NULL, 78, &_0, &_1);
 	zephir_check_call_status();
 
 	/* try_start_1: */

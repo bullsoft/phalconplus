@@ -10,36 +10,36 @@ final class Bootstrap
 
     public function __construct(string! moduleDir, string env = "", string runMode = "")
     {
-        // 模块目录, PrimaryModule Dir
+        // PrimaryModule Dir
         Sys::init(moduleDir);
         var config = this->initConf();
         let this->app = (new SuperApp(config))->boot(env, runMode);
-        // 加载Composer库
-        Sys::load(Sys::getComposerAutoloadPath());
+        // Try to load composer-autoloader
+        try {
+            Sys::load(Sys::getComposerAutoloadPath());
+        } catch \Exception {
+            // nothing here...
+        }
     }
 
     protected function initConf() -> <Config>
     {
-        // 全局配置
-        var globalConf,
+        // Initial global config here
+        var globalConf, e,
             globalConfPath = Sys::getGlobalConfigPath();
-
-        if unlikely !is_file(globalConfPath) {
-            // Trigger a warning here
-            error_log("PHP Notice:  PhalconPlus\\Bootstrap Global config file not exists: " . globalConfPath);
-            let globalConf = new Config([]);
-        } else {
+        
+        try {
             let globalConf = new Config(Sys::load(globalConfPath));
+        } catch \Exception, e {
+            let globalConf = new Config([]);
+            trigger_error("Global config file not exists: " . e->getMessage());
         }
         return globalConf;
     }
 
-    public function exec()
+    public function getApp() -> <SuperApp>
     {
-        return call_user_func_array(
-            [this->app, "handle"], 
-            func_get_args()
-        );
+        return this->app;
     }
 
     public function app() -> <SuperApp>

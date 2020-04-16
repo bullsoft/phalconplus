@@ -39,9 +39,13 @@ final class Sys extends AbstractEnum
 
     public static function initApp(<SuperApp> app) -> void
     {
-        if is_null(self::app) {
-            let self::app = app;
+        // Initial only once
+        if self::app !== null {
+            return ;
         }
+        let self::app = app;
+        // 加载Facacdes
+        Facade::register(app, "\\Ph\\");
     }
 
     public static function app() -> <SuperApp>
@@ -174,7 +178,7 @@ final class Sys extends AbstractEnum
     public static function load(string filePath, array context = [])
     {
         if unlikely !is_file(filePath) {
-            throw new BaseException("The file you try to load is not exists. file position: " . filePath);
+            throw new BaseException("The file you try to load is not exists. The Path is: " . filePath);
         }
         var result;
         if fetch result, self::requiredFiles[filePath] {

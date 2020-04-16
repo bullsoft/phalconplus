@@ -4,6 +4,12 @@ extern zend_class_entry *phalconplus_base_model_ce;
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_Model);
 
 PHP_METHOD(PhalconPlus_Base_Model, initialize);
+PHP_METHOD(PhalconPlus_Base_Model, findFirstOrFail);
+PHP_METHOD(PhalconPlus_Base_Model, findFirstOrEmpty);
+PHP_METHOD(PhalconPlus_Base_Model, findOrFail);
+PHP_METHOD(PhalconPlus_Base_Model, saveOrFail);
+PHP_METHOD(PhalconPlus_Base_Model, createOrFail);
+PHP_METHOD(PhalconPlus_Base_Model, updateOrFail);
 PHP_METHOD(PhalconPlus_Base_Model, getMessage);
 PHP_METHOD(PhalconPlus_Base_Model, getFirstMessage);
 PHP_METHOD(PhalconPlus_Base_Model, getLastMessage);
@@ -27,6 +33,66 @@ PHP_METHOD(PhalconPlus_Base_Model, resetUniqueFields);
 PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
 PHP_METHOD(PhalconPlus_Base_Model, getReadConnection);
 zend_object *zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type TSRMLS_DC);
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findfirstorfail, 0, 0, 0)
+	ZEND_ARG_INFO(0, params)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findfirstorempty, 0, 0, 0)
+	ZEND_ARG_INFO(0, params)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findorfail, 0, 0, 0)
+	ZEND_ARG_INFO(0, params)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_saveorfail, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_saveorfail, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_INFO(0, whiteList)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_createorfail, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_createorfail, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_INFO(0, whiteList)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_updateorfail, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_updateorfail, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_INFO(0, whiteList)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getmessage, 0, 0, IS_STRING, 1)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getmessage, 0, 0, IS_STRING, NULL, 1)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getfirstmessage, 0, 0, IS_STRING, 1)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getfirstmessage, 0, 0, IS_STRING, NULL, 1)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getlastmessage, 0, 0, IS_STRING, 1)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getlastmessage, 0, 0, IS_STRING, NULL, 1)
+#endif
+ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_model_createbuilder, 0, 0, Phalcon\\Mvc\\Model\\Query\\BuilderInterface, 0)
@@ -125,9 +191,15 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, initialize, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Base_Model, getMessage, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Base_Model, getFirstMessage, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Base_Model, getLastMessage, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, findFirstOrFail, arginfo_phalconplus_base_model_findfirstorfail, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Base_Model, findFirstOrEmpty, arginfo_phalconplus_base_model_findfirstorempty, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Base_Model, findOrFail, arginfo_phalconplus_base_model_findorfail, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(PhalconPlus_Base_Model, saveOrFail, arginfo_phalconplus_base_model_saveorfail, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, createOrFail, arginfo_phalconplus_base_model_createorfail, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, updateOrFail, arginfo_phalconplus_base_model_updateorfail, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, getMessage, arginfo_phalconplus_base_model_getmessage, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, getFirstMessage, arginfo_phalconplus_base_model_getfirstmessage, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Base_Model, getLastMessage, arginfo_phalconplus_base_model_getlastmessage, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, createBuilder, arginfo_phalconplus_base_model_createbuilder, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, newInstance, arginfo_phalconplus_base_model_newinstance, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Base_Model, batchInsert, arginfo_phalconplus_base_model_batchinsert, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)

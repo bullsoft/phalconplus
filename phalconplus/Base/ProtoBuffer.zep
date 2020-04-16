@@ -33,11 +33,10 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
 
     public function __set(string! key, val)
     {
-        var method, methodRef, e,
+        var method, methodRef,
             param, paramClass, paramClassRef, paramObj;
 
         let method = "set".key->upperfirst();
-        // error_log("Proto__set: " . key . ": " . var_export(val, true));
 
         try {
             let methodRef = new \ReflectionMethod(this, method);
@@ -46,8 +45,6 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
             }
             let param = new \ReflectionParameter([this, method], 0);
             if param->getClass() {
-                // error_log("Proto__set: param class" . param->getClass());
-                // error_log("Proto__set: value" . var_export(val, true));
                 let paramClass = param->getClass()->getName();
                 let paramClassRef = new \ReflectionClass(paramClass);
                 // if is-a ProtoBuffer class
@@ -60,12 +57,16 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
                 }
             }
             return methodRef->invokeArgs(this, [val]);
-        } catch \Exception, e {
+        } catch \Exception {
             // nothing...
         }
 
         // rule break: hard code
-        if is_scalar(val) || is_null(val) || is_array(val) || (is_object(val) && val instanceof ProtoBuffer) {
+        if is_scalar(val) 
+            || is_null(val) 
+            || is_array(val) 
+            || (is_object(val) && val instanceof ProtoBuffer)
+        {
             let this->{key} = val;
         } else {
             throw new BaseException("Please add " . method . " in your class, complex-type vars are not allowed to assign directly");
@@ -76,9 +77,12 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
     {
         var method;
         let method = "get" . key->upperfirst();
+
+        // new \ReflectionMethod(this, method);
         if method_exists(this, method) {
             return true;
         }
+        // new \ReflectionProperty(this, key)
         if property_exists(this, key) {
             return true;
         }

@@ -67,6 +67,11 @@ abstract class AbstractModule extends Injectable
         return this->def;
     }
 
+    public function config() -> <\Phalcon\Config>
+    {
+        return this->def->config();
+    }
+
     public function engine() -> <AppEngine>
     {
         return this->engine;
@@ -97,10 +102,10 @@ abstract class AbstractModule extends Injectable
             }
         }
 
-        if is_null(this->engine) {
+        if empty this->engine {
             this->registerEngine();
         }
-        this->getDI()->setShared("appEngine", this->engine);
+        this->di()->setShared("appEngine", this->engine);
 
         return call_user_func_array(
             [this->engine, "exec"], 

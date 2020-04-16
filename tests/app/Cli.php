@@ -1,26 +1,22 @@
 <?php
 namespace PhalconPlus\Test;
+use PhalconPlus\App\Module\AbstractModule as AppModule;
+use Ph\Di;
 
-class Task extends \PhalconPlus\Base\AbstractModule
+class Cli extends AppModule
 {
     public function registerAutoloaders()
     {
-        $loader = new \Phalcon\Loader();
-        $loader->registerNamespaces(array(
-            __NAMESPACE__.'\\Tasks' => __DIR__.'/tasks/',
-            __NAMESPACE__.'\\Models' => __DIR__.'/models/',
-            __NAMESPACE__.'\\Protos' => __DIR__.'/protos/',
-        ))->register();
+        Di::get('loader')->registerNamespaces(array(
+            __NAMESPACE__.'\\Tasks'  => __DIR__.'/tasks/',
+            __NAMESPACE__.'\\Protos' => $this->getDir().'/src/protos/',
+            __NAMESPACE__.'\\Models' => $this->getDir().'/src/models/',
+        ), true)->register();
     }
 
     public function registerServices()
     {
-        $di = $this->di;
-        $config = $di->get("bootstrap")->getConfig();
-
-        $di->set('config', function() use ($config) {
-            return $config;
-        });
+        $di = Di::itself();
 
         if($this->isPrimary()) {
             $di->set('dispatcher', function() use ($di) {
@@ -30,18 +26,6 @@ class Task extends \PhalconPlus\Base\AbstractModule
                 return $dispatcher;
             });
         }
-
-        $di->set("rpc", function() use ($di) {
-            $client = new \PhalconPlus\RPC\Client\Adapter\Local($di);
-            return $client;
-        });
-
-        $di->set('modelsMetadata', function () use ($config) {
-            $metaData = new \Phalcon\Mvc\Model\Metadata\Files(array(
-                'metaDataDir' => getenv("HOME").'/tmp/metas/',
-            ));
-            return $metaData;
-        });
 
         // register db write service
         $di->setShared('db', function() use ($di) {

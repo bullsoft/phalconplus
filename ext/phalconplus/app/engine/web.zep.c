@@ -158,7 +158,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, setHandler) {
 			ZEPHIR_CALL_METHOD(NULL, &_0$$4, "__construct", NULL, 0, &_2$$4);
 			zephir_check_call_status();
 		}
-		zephir_throw_exception_debug(&_0$$4, "phalconplus/App/Engine/Web.zep", 50);
+		zephir_throw_exception_debug(&_0$$4, "phalconplus/App/Engine/Web.zep", 47);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -203,7 +203,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, getHandler) {
 			ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 0, &_3$$3);
 			zephir_check_call_status();
 		}
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/App/Engine/Web.zep", 64);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/App/Engine/Web.zep", 61);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

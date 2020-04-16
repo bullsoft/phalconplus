@@ -259,7 +259,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, getPolicy) {
 		}
 	} else {
 		object_init_ex(&instance, phalconplus_auth_policy_ce);
-		ZEPHIR_CALL_METHOD(NULL, &instance, "__construct", NULL, 64);
+		ZEPHIR_CALL_METHOD(NULL, &instance, "__construct", NULL, 66);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&instance);

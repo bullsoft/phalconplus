@@ -12,8 +12,8 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus_sources="phalconplus.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c phalconplus/facades/abstractfacade.zep.c
 	phalconplus/contracts/arrayof.zep.c
 	phalconplus/contracts/emptyornot.zep.c
-	phalconplus/enum/abstractenum.zep.c
 	phalconplus/base/protobuffer.zep.c
+	phalconplus/enum/abstractenum.zep.c
 	phalconplus/app/engine/appengine.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
@@ -104,6 +104,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/featuretest/splobjectstoragetest.zep.c
 	phalconplus/helper/arr.zep.c
 	phalconplus/helper/exception.zep.c
+	phalconplus/helper/ns.zep.c
 	phalconplus/helper/str.zep.c
 	phalconplus/helper/variable.zep.c
 	phalconplus/http/nonpsrrequest.zep.c
@@ -122,7 +123,8 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/volt/extension/phpfunction.zep.c
 	phalconplus/0__closure.zep.c
 	phalconplus/1__closure.zep.c
-	phalconplus/2__closure.zep.c "
+	phalconplus/2__closure.zep.c
+	phalconplus/3__closure.zep.c "
 	PHP_NEW_EXTENSION(phalconplus, $phalconplus_sources, $ext_shared,, )
 	PHP_SUBST(PHALCONPLUS_SHARED_LIBADD)
 

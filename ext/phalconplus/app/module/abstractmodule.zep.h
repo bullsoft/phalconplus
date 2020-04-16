@@ -16,6 +16,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, getName);
 PHP_METHOD(PhalconPlus_App_Module_AbstractModule, app);
 PHP_METHOD(PhalconPlus_App_Module_AbstractModule, di);
 PHP_METHOD(PhalconPlus_App_Module_AbstractModule, def);
+PHP_METHOD(PhalconPlus_App_Module_AbstractModule, config);
 PHP_METHOD(PhalconPlus_App_Module_AbstractModule, engine);
 PHP_METHOD(PhalconPlus_App_Module_AbstractModule, __call);
 PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec);
@@ -47,6 +48,13 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_def, 0, 0, PhalconPlus\\App\\Module\\ModuleDef, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_def, 0, 0, IS_OBJECT, "PhalconPlus\\App\\Module\\ModuleDef", 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_config, 0, 0, Phalcon\\Config, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_config, 0, 0, IS_OBJECT, "Phalcon\\Config", 0)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -91,6 +99,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_app_module_abstractmodule_method_entry) {
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, app, arginfo_phalconplus_app_module_abstractmodule_app, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, di, arginfo_phalconplus_app_module_abstractmodule_di, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, def, arginfo_phalconplus_app_module_abstractmodule_def, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_AbstractModule, config, arginfo_phalconplus_app_module_abstractmodule_config, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, engine, arginfo_phalconplus_app_module_abstractmodule_engine, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, __call, arginfo_phalconplus_app_module_abstractmodule___call, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, exec, arginfo_phalconplus_app_module_abstractmodule_exec, ZEND_ACC_PUBLIC)

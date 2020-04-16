@@ -11,7 +11,7 @@
 #include "kernel/globals.h"
 
 #define PHP_PHALCONPLUS_NAME        "phalconplus"
-#define PHP_PHALCONPLUS_VERSION     "1.2.0"
+#define PHP_PHALCONPLUS_VERSION     "1.3.0-development"
 #define PHP_PHALCONPLUS_EXTNAME     "phalconplus"
 #define PHP_PHALCONPLUS_AUTHOR      "Gu Weigang<guweigang@outlook.com> and BullSoft<support@bullsoft.org>"
 #define PHP_PHALCONPLUS_ZEPVERSION  "0.12.17-$Id$"

@@ -6,7 +6,6 @@ use PhalconPlus\Base\Exception as BaseException;
 class Local extends AbstractClient
 {
     private config;
-
     private di;
 
     public function __construct(<\Phalcon\DI> di)
@@ -15,32 +14,40 @@ class Local extends AbstractClient
         let this->config = di->get("config");
     }
 
-    private function callByParams(string! service, string! method, <ProtoBuffer> request) -> <ProtoBuffer>
+    private function callByParams(string! service, string! method, request)
     {
-        var serviceClass, serviceObj, response;
+        var serviceObj = null, 
+            methodReflection = null,
+            serviceClass = "";
 
-        let serviceClass = service->upperfirst() . "Service";
-
+        let serviceClass  = service->upperfirst() . "Service";
         if !class_exists(serviceClass) {
             throw new BaseException("Service class not exists: " . serviceClass);
         }
-
         let serviceObj = new {serviceClass}(this->di);
 
-        if is_callable([serviceObj, method]) {
-            error_log("ServerClass: " . serviceClass);
-            error_log("InvokeMethod: " . method);
+        var e;
+        try {
+            let methodReflection = new \ReflectionMethod(serviceObj, method);
+        } catch \ReflectionException, e {
+            throw new BaseException("Service:method not found. Detail: " . serviceClass . " : " . method . ". RawException: ". e->getMessage());
+        }
+        error_log("ServerClass: " . serviceClass);
+        error_log("InvokeMethod: " . method);
+
+		if request == null && methodReflection->getNumberOfRequiredParameters() > 0 {
+            throw new BaseException(service."::".method." need required params");
+        }
+
+        if methodReflection->getNumberOfParameters() > 0 {
             error_log("InputParam: " . var_export(request, true));
-            // We expect only Array or Object
-            if !is_object(request) && !is_array(request) {
-                throw new BaseException("Your input is not allowed. Request: " . json_encode(request));
-            }
             // If get an object, must be instance of <ProtoBuffer> or it's subclasses
-            if is_object(request) && !(request instanceof ProtoBuffer) {
-                throw new BaseException("Your input is not allowed. Request: ". get_class(request));
+            if is_object(request) && (request instanceof ProtoBuffer) {
+                error_log("Request is object and instanceof ProtoBuffer: ". get_class(request));
             } elseif is_array(request) {
-                var tmp = [], param, paramClass;
-                let tmp = request;
+                var tmp = request, 
+                    param = null, 
+                    paramClass = "";
                 let param = new \ReflectionParameter([serviceClass, method], 0);
                 if param->getClass() {
                     let paramClass = param->getClass()->getName();
@@ -49,17 +56,30 @@ class Local extends AbstractClient
                 } else {
                     throw new BaseException("Service class:method definition is invalid. Detail: " . service . " : " . method . ". Request: " . json_encode(request));
                 }
+            } elseif null == request {
+                // nothing here...
+            } else {
+                throw new BaseException("No service found: " . serviceClass . "::" . method);
             }
-
-            error_log("Finally InputParam: ". var_export(request, true));
-
-            let response = call_user_func_array([serviceObj, method], [request]);
-
-            return response;
-
-        } else {
-            throw new BaseException("No service found: " . serviceClass . "::" . method);
         }
+
+        error_log("Finally Requst: ". var_export(request, true));
+        
+        var response;
+        // Invoke target method
+        try {
+            // We expected type <ProtoBase>
+            let response = methodReflection->invokeArgs(serviceObj, [request]);
+        } catch \Exception, e {
+            throw new BaseException(e->getMessage());
+        }
+        // We do not allow to return #Resource type. And if an object returned, we expected type <ProtoBuffer>
+        if is_object(response) && !(response instanceof ProtoBuffer) {
+            throw new BaseException("Your output is not allowed. Response: " . get_class(response) . ". We expect scalar type or <ProtoBuffer>");
+        } elseif is_resource(response) {
+            throw new BaseException("Your output is not allowed. Response: #Resource.");
+        }
+        return response;
     }
 
     public function callByObject(array rawData)
@@ -71,13 +91,11 @@ class Local extends AbstractClient
         if !fetch service, rawData["service"] {
             throw new BaseException("service " . service . " not exists");
         }
-
         if !fetch method, rawData["method"] {
             throw new BaseException("method " . method . " not exists");
         }
-
         if !fetch request, rawData["args"] {
-            throw new BaseException("args not exists");
+            let request = null;
         }
 
         let service = this->namePrefix . trim(service);

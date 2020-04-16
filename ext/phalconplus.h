@@ -7,8 +7,8 @@
 #include "phalconplus/facades/abstractfacade.zep.h"
 #include "phalconplus/contracts/arrayof.zep.h"
 #include "phalconplus/contracts/emptyornot.zep.h"
-#include "phalconplus/enum/abstractenum.zep.h"
 #include "phalconplus/base/protobuffer.zep.h"
+#include "phalconplus/enum/abstractenum.zep.h"
 #include "phalconplus/app/engine/appengine.zep.h"
 #include "phalconplus/logger/processor/abstractprocessor.zep.h"
 #include "phalconplus/rpc/client/abstractclient.zep.h"
@@ -99,6 +99,7 @@
 #include "phalconplus/featuretest/splobjectstoragetest.zep.h"
 #include "phalconplus/helper/arr.zep.h"
 #include "phalconplus/helper/exception.zep.h"
+#include "phalconplus/helper/ns.zep.h"
 #include "phalconplus/helper/str.zep.h"
 #include "phalconplus/helper/variable.zep.h"
 #include "phalconplus/http/nonpsrrequest.zep.h"
@@ -118,5 +119,6 @@
 #include "phalconplus/0__closure.zep.h"
 #include "phalconplus/1__closure.zep.h"
 #include "phalconplus/2__closure.zep.h"
+#include "phalconplus/3__closure.zep.h"
 
 #endif
