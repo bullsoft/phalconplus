@@ -37,6 +37,11 @@ final class Bootstrap
         return globalConf;
     }
 
+    public function getApp() -> <SuperApp>
+    {
+        return this->app;
+    }
+
     public function app() -> <SuperApp>
     {
         return this->app;
