@@ -29,30 +29,161 @@ So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框�
 ## 创建应用
 ```
 # 下载骨架
-composer create-project bullsoft/fp-project fp-app
-# 生成模块，假设模块名为test
-cd fp-app
-./common/bin/fp-devtool module:create
+➜ composer create-project bullsoft/fp-project fp-app
+# 生成模块，假设生成的模块名为test
+➜ cd fp-app
+➜ ./common/bin/fp-devtool module:create
+
+现在开始引导您创建Phalcon+模块 ...
+Step 1 请输入该模块的名称，如"api"
+[Enter]: test
+Step 2 ...
+...
+...
+```
+一个Web模块的结构如下，Web模块中集成了所有的模式，包括Cli，RpcService。
+```
+test
+.
+├── app
+│   ├── Module.php
+│   ├── auth
+│   │   ├── AclResources.php
+│   │   ├── Model.php
+│   │   ├── Resources
+│   │   │   ├── Actions.php
+│   │   │   └── Models.php
+│   │   └── User.php
+│   ├── config
+│   │   └── dev.php
+│   ├── controllers
+│   │   ├── BaseController.php
+│   │   ├── ErrorController.php
+│   │   ├── IndexController.php
+│   │   ├── UserController.php
+│   │   └── apis
+│   │       └── DemoController.php
+│   ├── events
+│   │   ├── Acl.php
+│   │   ├── AppConsole.php
+│   │   ├── AppHandler.php
+│   │   ├── BackendServer.php
+│   │   ├── Db.php
+│   │   ├── EventProvider.php
+│   │   ├── Model.php
+│   │   ├── MvcDispatch.php
+│   │   ├── Router.php
+│   │   ├── SuperApp.php
+│   │   └── View.php
+│   ├── exceptions
+│   │   ├── EnumExceptionCode.php
+│   │   ├── Handler.php
+│   │   ├── UnknownException.php
+│   │   ├── UserAlreadyExistsException.php
+│   │   └── UserNotExistsException.php
+│   ├── plugins
+│   │   └── Volt.php
+│   ├── providers
+│   │   ├── CookieServiceProvider.php
+│   │   ├── CryptServiceProvider.php
+│   │   ├── DatabaseServiceProvider.php
+│   │   ├── DispatcherServiceProvider.php
+│   │   ├── LoggerServiceProvider.php
+│   │   ├── RedisServiceProvider.php
+│   │   ├── RouterServiceProvider.php
+│   │   ├── RpcServiceProvider.php
+│   │   ├── ServiceProvider.php
+│   │   ├── SessionServiceProvider.php
+│   │   ├── UrlServiceProvider.php
+│   │   └── ViewServiceProvider.php
+│   ├── routes
+│   │   ├── Api.php
+│   │   └── Bare.php
+│   └── views
+│       ├── error
+│       │   ├── show403.volt
+│       │   ├── show404.volt
+│       │   └── show500.volt
+│       ├── index
+│       │   └── index.volt
+│       └── index.volt
+├── cli
+│   ├── init.php
+│   └── tasks
+│       └── HelloTask.php
+├── public
+│   ├── index.php
+│   └── rpc.php
+├── src
+│   ├── models
+│   │   └── UserModel.php
+│   ├── protos
+│   │   ├── Enums
+│   │   │   └── UserStatus.php
+│   │   └── Schemas
+│   │       └── RegInfo.php
+│   └── services
+│       ├── BaseService.php
+│       └── DemoService.php
+└── var
+    └── cache
 ```
 
 ## 运行
 
 ### 使用[Phalcon+DevTool](https://github.com/bullsoft/fp-common)
 ```bash
-./common/bin/fp-devtool server:start test
+➜ ./common/bin/fp-devtool server:start test
+
+正在为您启动服务器...
+{
+    "command": "{ (php -S 0.0.0.0:8181 -t public/ .htrouter.php) <&3 3<&- 3>/dev/null & } 3<&0;pid=$!; echo $pid > /path/to/test/var/run/server.pid",
+    "pid": 8249,
+    "running": true,
+    "signaled": false,
+    "stopped": false,
+    "exitcode": -1,
+    "termsig": 0,
+    "stopsig": 0
+}
+... 启动成功，请使用 http://127.0.0.1:8181 访问
 ```
 ### 使用[PPM](https://github.com/php-pm/php-pm)
 ```
-cd test
-../vendor/bin/ppm start --bridge="PhalconPlus\\Bridge" --bootstrap="PhalconPlus\\Bootstrap" --static-directory=public/ --port=8181 --workers=1
+➜ cd test
+➜ ../vendor/bin/ppm start --bridge="PhalconPlus\\Bridge" --bootstrap="PhalconPlus\\Bootstrap" --static-directory=public/ --port=8181 --workers=2
+```
+当然也可以创建配置文件，以便每次启动更方便
+```
+➜ cd test
+➜ touch ppm.json
+➜ ../vendor/bin/ppm start -c ppm.json
+```
+
+ppm.json内容如下：
+```json
+{
+    "bridge": "PhalconPlus\\Bridge",
+    "host": "127.0.0.1",
+    "port": 8181,
+    "workers": 2,
+    "app-env": "dev",
+    "debug": 1,
+    "logging": 1,
+    "static-directory": "public/",
+    "bootstrap": "PhalconPlus\\Bootstrap",
+    "max-requests": 1000,
+    "concurrent-requests": 20,
+    "php-cgi": "/usr/local/opt/php@7.2/bin/php"
+}
 ```
 ### 使用[RoadRunner](https://github.com/spiral/roadrunner)
 ```
-cd test
-touch .rr.json
-touch psr-worker.php
+➜ cd test
+➜ touch .rr.json
+➜ touch psr-worker.php
 ```
-.rr.json
+.rr.json内容如下：
 ```json
 {
   "http": {
@@ -61,7 +192,7 @@ touch psr-worker.php
       "command": "/usr/local/opt/php@7.2/bin/php psr-worker.php",
       "relay": "unix://rr.sock",
       "pool": {
-        "numWorkers": 4
+        "numWorkers": 2
       }
     }
   },
@@ -72,7 +203,7 @@ touch psr-worker.php
   }
 }
 ```
-psr-worker.php
+psr-worker.php内容如下：
 ```php
 <?php
 
@@ -106,7 +237,7 @@ while ($req = $psr7->acceptRequest()) {
 ```
 然后在模块目录下执行
 ```
-rr serve -d -v
+➜ rr serve -d -v
 ```
 
 ### 使用Nginx
