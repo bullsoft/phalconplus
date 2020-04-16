@@ -108,10 +108,11 @@ while ($req = $psr7->acceptRequest()) {
 ```
 rr serve -d -v
 ```
+## 反馈&支持
 
-## Demos
-  * 雪品应用：[http://shopbigbang.com](http://shopbigbang.com)
-  * Phalcon+: [http://phalconphp.org](http://phalconphp.org)
+欢迎任何反馈，也希望得到大家的捐助支持。
+
+祝一切顺利没八二哥 :)
       
 
 
