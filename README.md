@@ -37,16 +37,16 @@ cd fp-app
 
 ## 运行
 
-使用[Phalcon+DevTool](https://github.com/bullsoft/fp-common)
+### 使用[Phalcon+DevTool](https://github.com/bullsoft/fp-common)
 ```bash
 ./common/bin/fp-devtool server:start test
 ```
-使用[PPM](https://github.com/php-pm/php-pm)
+### 使用[PPM](https://github.com/php-pm/php-pm)
 ```
 cd test
 ../vendor/bin/ppm start --bridge="PhalconPlus\\Bridge" --bootstrap="PhalconPlus\\Bootstrap" --static-directory=public/ --port=8181 --workers=1
 ```
-使用[RoadRunner](https://github.com/spiral/roadrunner)
+### 使用[RoadRunner](https://github.com/spiral/roadrunner)
 ```
 cd test
 touch .rr.json
@@ -107,6 +107,43 @@ while ($req = $psr7->acceptRequest()) {
 然后在模块目录下执行
 ```
 rr serve -d -v
+```
+
+### 使用Nginx
+配置文件
+```nginx
+server {
+      listen 8181;
+      server_name localhost;
+      access_log  /var/log/nginx/test.access.log;
+
+      index index.php index.html index.htm;
+
+      set $root_path '/home/work/wwwroot/fp-app/test/public';
+
+      root $root_path;
+
+      try_files $uri $uri/ @rewrite;
+
+      location @rewrite {
+          rewrite ^/(.*)$ /index.php last;
+      }
+
+      location ~ \.php {
+          fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+          include fastcgi_params;
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      }
+
+      location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
+          root $root_path;
+      }
+
+      location ~ /\.ht {
+          deny all;
+      }
+
+}
 ```
 ## 反馈&支持
 
