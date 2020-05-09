@@ -14,7 +14,11 @@ So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框�
  - 模块是有工作模式的，如：Web, Srv, Cli等...，不同模式的模块角色不一样
  - 无论哪种模式，入口文件都完全一样
  - 内置RPC服务端和客户端
- - 所有模块都依赖全局的common（实际上是Cli Module）
+ - 所有模块都依赖全局的common（实际上是一个Phalcon+Cli模块）
+
+## MaaS & MaaL 
+ - MaaS(Module as a Service): Phalcon+模块即服务，`Srv`提供Rpc服务，`Web`可提供Restful服务
+ - MaaL(Module as a Library): Phalcon+模块即类库，可在项目其他模块通过`App::import("test")`引入test模块
 
 ## 安装
 ```
@@ -179,6 +183,7 @@ ppm.json内容如下：
 ```
 ### 使用[RoadRunner](https://github.com/spiral/roadrunner)
 ```
+➜ composer require spiral/roadrunner
 ➜ cd test
 ➜ touch .rr.json
 ➜ touch psr-worker.php
