@@ -1,19 +1,18 @@
 namespace PhalconPlus\Rpc\Client\Adapter;
 use PhalconPlus\Rpc\Client\AbstractClient;
+use PhalconPlus\Base\Exception as BaseException;
 
 class Remote extends AbstractClient
 {
     private remoteServerUrl = "";
-
-    private client;
+    private client = null;
 
     public function __construct(array remoteServerUrl, array opts = [])
     {
         if empty remoteServerUrl {
-            throw new \PhalconPlus\Base\Exception("server url can not be empty");
+            throw new BaseException("server url can not be empty");
         }
-        var key;
-        let key = array_rand(remoteServerUrl);
+        var key = array_rand(remoteServerUrl);
         let this->remoteServerUrl = remoteServerUrl[key];
         let this->client = new \Yar_Client(this->remoteServerUrl);
 
@@ -28,6 +27,11 @@ class Remote extends AbstractClient
     public function callByObject(array rawData)
     {
         let rawData["service"] = this->namePrefix . rawData["service"];
+        var message = "";
+        if isset(this->di) && this->di->has("logger") {
+            let message = "RemoteRpc> callByObject: ". var_export(rawData, true);
+            this->di->get("logger")->log(message);
+        }
         return this->client->callByObject(rawData);
     }
 
@@ -36,7 +40,7 @@ class Remote extends AbstractClient
         if method_exists(this->client, method) {
             return call_user_func_array([this->client, method], args);
         } else {
-            throw new \PhalconPlus\Base\Exception("method not exists");
+            throw new BaseException("Yar_Client: method(".method.") not exists");
         }
     }
 
