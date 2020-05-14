@@ -5,20 +5,17 @@ use PhalconPlus\Base\Exception as BaseException;
 
 class Local extends AbstractClient
 {
-    private config;
-    private di;
-
     public function __construct(<\Phalcon\DI> di)
     {
-        let this->di = di;
-        let this->config = di->get("config");
+        this->setDi(di);
     }
 
     private function callByParams(string! service, string! method, request)
     {
         var serviceObj = null, 
             methodReflection = null,
-            serviceClass = "";
+            serviceClass = "",
+            message = "";
 
         let serviceClass  = service->upperfirst() . "Service";
         if !class_exists(serviceClass) {
@@ -32,18 +29,20 @@ class Local extends AbstractClient
         } catch \ReflectionException, e {
             throw new BaseException("Service:method not found. Detail: " . serviceClass . " : " . method . ". RawException: ". e->getMessage());
         }
-        error_log("ServerClass: " . serviceClass);
-        error_log("InvokeMethod: " . method);
 
 		if request == null && methodReflection->getNumberOfRequiredParameters() > 0 {
             throw new BaseException(service."::".method." need required params");
         }
 
+        if this->di->has("logger") {
+            let message = "LocalRpc> dispatch to '" .serviceClass. "::". method . "(request)' where request is: " . var_export(request, true);
+            this->di->get("logger")->log(message);
+        }
+
         if methodReflection->getNumberOfParameters() > 0 {
-            error_log("InputParam: " . var_export(request, true));
             // If get an object, must be instance of <ProtoBuffer> or it's subclasses
             if is_object(request) && (request instanceof ProtoBuffer) {
-                error_log("Request is object and instanceof ProtoBuffer: ". get_class(request));
+                let this->phpOnly = true; // make no sense
             } elseif is_array(request) {
                 var tmp = request, 
                     param = null, 
@@ -63,7 +62,10 @@ class Local extends AbstractClient
             }
         }
 
-        error_log("Finally Requst: ". var_export(request, true));
+        if this->di->has("logger") {
+            let message = "LocalRpc> finally requst transformed to: ". var_export(request, true);
+            this->di->get("logger")->log(message);
+        }
         
         var response;
         // Invoke target method
@@ -84,9 +86,12 @@ class Local extends AbstractClient
 
     public function callByObject(array rawData)
     {
-        var service, method, request;
-        
-        error_log("Local callByObject: " . var_export(rawData, true));
+        var service, method, request, message;
+
+        if this->di->has("logger") {
+            let message = "LocalRpc> callByObject: " . var_export(rawData, true);
+            this->di->get("logger")->log(message);
+        }
 
         if !fetch service, rawData["service"] {
             throw new BaseException("service " . service . " not exists");
@@ -106,7 +111,10 @@ class Local extends AbstractClient
             throw new BaseException("service:method(args) must exists. All of them!!!");
         }
 
-        error_log("Invoke callByParams with (" . service . ", " . method . ")");
+        if this->di->has("logger") {
+            let message = "LocalRpc> callByParams with (" . service . ", " . method . ")";
+            this->di->get("logger")->log(message);
+        }
 		
         return this->callByParams(service, method, request);
     }

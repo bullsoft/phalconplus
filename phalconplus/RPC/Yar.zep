@@ -1,11 +1,10 @@
-// <?php
 namespace PhalconPlus\Rpc;
 use Phalcon\DiInterface;
 use PhalconPlus\Rpc\Server\AbstractServer;
 
 class Yar extends \Phalcon\Application
 {
-	protected serviceObj = null {
+    protected serviceObj = null {
         get
     };
     protected requestArgs = "" {
@@ -139,10 +138,5 @@ array (
 			let this->responseBody = {encoder}(ret);
 		}
 		echo this->responseBody;
-        // var response;
-        // let response = new \Phalcon\Http\Response();
-		// response->setStatusCode(200, "OK");
-		// response->setContent(this->responseBody);
-		// return response;
 	}
 }

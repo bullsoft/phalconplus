@@ -108,7 +108,7 @@ final class App extends BaseApplication
     // import exportable module
     public function import(string! moduleName) -> <AbstractModule>
     {
-        return this->dependModule(moduleName, false);        
+        return this->dependModule(moduleName, false);
     }
 
     public function dependModule(string! moduleName, bool force = true) -> <AbstractModule>
