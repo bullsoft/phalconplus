@@ -4,7 +4,7 @@ use PhalconPlus\Base\ProtoBuffer;
 
 class Arr
 {
-    public static function isAllKeyInt(var inputArray)
+    public static function isAllKeyInt(var inputArray) -> boolean
     {
         Assert::isArray(inputArray);
         if count(inputArray) <= 0 {
@@ -15,7 +15,7 @@ class Arr
         return  input === expected;
     }
     
-    public static function isAllKeyString(var inputArray)
+    public static function isAllKeyString(var inputArray) -> boolean
     {
         Assert::isArray(inputArray);
         if count(inputArray) <= 0 {
@@ -26,7 +26,7 @@ class Arr
         return input === expected;
     }
 
-    public static function isKeyNumericSequentialZeroBased(var inputArray)
+    public static function isKeyNumericSequentialZeroBased(var inputArray) -> boolean
     {
         Assert::isArray(inputArray);
         if count(inputArray) <= 0 {
@@ -37,13 +37,15 @@ class Arr
         return  input === expected;
     }
 
-    public static function newProtoBuffer(inputArray)
+    public static function newProtoBuffer(inputArray) -> <ProtoBuffer>
     {
+        Assert::isArray(inputArray);
         return new ProtoBuffer(inputArray);
     }
 
     public static function encodeJson(inputArray) -> string
     {
+        Assert::isArray(inputArray);
         var str = json_encode(inputArray, JSON_UNESCAPED_UNICODE);
         var errCode = json_last_error();
         if JSON_ERROR_NONE != errCode {
@@ -51,4 +53,59 @@ class Arr
         }
         return str;
     }
+    public static function firstKey(inputArray)
+    {
+        Assert::isArray(inputArray);
+        reset(inputArray);
+        var k, v;
+        for k, v in inputArray {
+            return k;
+        }
+    }
+
+    public static function lastKey(inputArray)
+    {
+        Assert::isArray(inputArray);
+        reset(inputArray);
+        var k, v;
+        for k, v in reverse inputArray {
+            return k;
+        }
+    }
+
+    public static function first(inputArray)
+    {
+        Assert::isArray(inputArray);
+        return reset(inputArray);
+    }
+
+    public static function last(inputArray)
+    {
+        Assert::isArray(inputArray);
+        return end(inputArray);
+    }
+
+    /**
+     * 
+     * handler = function(string | int key, mixed val) : string {
+     *    return <string>
+     * }
+     *
+     */
+    public static function groupBy(inputArray, callable handler) -> array
+    {
+        Assert::isArray(inputArray);
+        
+        var k, v;
+        var tmp = [];
+        for k, v in inputArray {
+            var group = call_user_func(handler, k, v);
+            if !isset tmp[group] {
+                let tmp[group] = [];
+            }
+            let tmp[group][k] = v;
+        }
+        return tmp;
+    }
+
 }
