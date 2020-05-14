@@ -206,7 +206,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("serviceObj"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&serviceName);
 	zephir_get_class(&serviceName, &_0, 0);
-	zephir_array_fetch_string(&_1, &_SERVER, SL("HTTP_HOST"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 44);
+	zephir_array_fetch_string(&_1, &_SERVER, SL("HTTP_HOST"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 43);
 	ZEPHIR_INIT_VAR(&sampleCodes);
 	ZEPHIR_CONCAT_SVS(&sampleCodes, "<?php\n$remoteUrls = [\n	\"http://", &_1, "\",\n];\n$client = new \\PhalconPlus\\Rpc\\Client\\Adapter\\Curl($remoteUrls);\n$result = $client->callByObject([\n	\"service\" => \"\\Demo\\Services\\Dummy\",\n	\"method\" => \"demo\",\n	\"args\"   => [\n		\"foo\" => \"bar\",\n	],\n]);\nvar_export($result);\n");
 	ZEPHIR_INIT_VAR(&expectedRet);
@@ -264,7 +264,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 				ZVAL_STRING(&_20$$6, "invalid request args");
 				ZEPHIR_CALL_METHOD(NULL, &_19$$6, "__construct", NULL, 149, &_20$$6);
 				zephir_check_call_status_or_jump(try_end_1);
-				zephir_throw_exception_debug(&_19$$6, "phalconplus/Rpc/Yar.zep", 57);
+				zephir_throw_exception_debug(&_19$$6, "phalconplus/Rpc/Yar.zep", 56);
 				goto try_end_1;
 
 			}

@@ -24,6 +24,8 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_AbstractClient) {
 
 	zend_declare_property_string(phalconplus_rpc_client_abstractclient_ce, SL("namePrefix"), "", ZEND_ACC_PROTECTED);
 
+	zend_declare_property_null(phalconplus_rpc_client_abstractclient_ce, SL("di"), ZEND_ACC_PROTECTED);
+
 	return SUCCESS;
 
 }
@@ -48,6 +50,22 @@ PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, setNamePrefix) {
 	zephir_fast_trim(&_0, &prefix, NULL , ZEPHIR_TRIM_BOTH);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("namePrefix"), &_0);
 	RETURN_THIS();
+
+}
+
+PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, setDi) {
+
+	zval *di, di_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&di_sub);
+
+	zephir_fetch_params_without_memory_grow(1, 0, &di);
+
+
+
+	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
+	RETURN_THISW();
 
 }
 
