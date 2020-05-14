@@ -77,7 +77,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setProperty) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("property"), &property);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("property"), &property);
 	RETURN_THIS();
 
 }
@@ -93,7 +93,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setDirection) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("direction"), orderBy);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("direction"), orderBy);
 	RETURN_THISW();
 
 }
@@ -122,7 +122,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, setAlias) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("alias"), &alias);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("alias"), &alias);
 	RETURN_THIS();
 
 }
@@ -164,23 +164,23 @@ PHP_METHOD(PhalconPlus_Base_ProtoOrderBy, __toString) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_1, this_ptr, SL("property"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("property"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 0, &_1);
 	zephir_check_call_status();
-	zephir_read_property(&_2, this_ptr, SL("direction"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("direction"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 0, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&orderBy);
 	ZVAL_STRING(&orderBy, "");
-	zephir_read_property(&_3, this_ptr, SL("alias"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("alias"), PH_NOISY_CC | PH_READONLY);
 	if (!(ZEPHIR_IS_EMPTY(&_3))) {
-		zephir_read_property(&_4$$3, this_ptr, SL("alias"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("alias"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_5$$3);
 		ZEPHIR_CONCAT_VVS(&_5$$3, &orderBy, &_4$$3, ".");
 		ZEPHIR_CPY_WRT(&orderBy, &_5$$3);
 	}
-	zephir_read_property(&_6, this_ptr, SL("property"), PH_NOISY_CC | PH_READONLY);
-	zephir_read_property(&_7, this_ptr, SL("direction"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_6, this_ptr, ZEND_STRL("property"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_7, this_ptr, ZEND_STRL("direction"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CONCAT_VVSV(return_value, &orderBy, &_6, " ", &_7);
 	RETURN_MM();
 

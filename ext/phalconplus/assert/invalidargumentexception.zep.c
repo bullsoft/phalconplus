@@ -66,9 +66,9 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 
 	ZEPHIR_CALL_PARENT(NULL, phalconplus_assert_invalidargumentexception_ce, getThis(), "__construct", NULL, 0, message, code);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("propertyPath"), propertyPath);
-	zephir_update_property_zval(this_ptr, SL("value"), value);
-	zephir_update_property_zval(this_ptr, SL("constraints"), &constraints);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("propertyPath"), propertyPath);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("value"), value);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("constraints"), &constraints);
 	ZEPHIR_MM_RESTORE();
 
 }

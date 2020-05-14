@@ -52,12 +52,12 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, __construct) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("di"), di);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "config");
 	ZEPHIR_CALL_METHOD(&_0, di, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("config"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("config"), &_0);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -179,7 +179,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams) {
 	}
 	object_init_ex(&serviceObj, _6);
 	if (zephir_has_constructor(&serviceObj)) {
-		zephir_read_property(&_7, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_7, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, &serviceObj, "__construct", NULL, 0, &_7);
 		zephir_check_call_status();
 	}
@@ -446,7 +446,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByObject) {
 		ZEPHIR_INIT_NVAR(&request);
 		ZVAL_NULL(&request);
 	}
-	zephir_read_property(&_8, this_ptr, SL("namePrefix"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_8, this_ptr, ZEND_STRL("namePrefix"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_9);
 	zephir_fast_trim(&_9, &service, NULL , ZEPHIR_TRIM_BOTH);
 	ZEPHIR_INIT_VAR(&_10);
@@ -467,7 +467,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByObject) {
 	ZEPHIR_CONCAT_SVSVS(&_10, "Invoke callByParams with (", &service, ", ", &method, ")");
 	ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_2, 110, &_10);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 141, &service, &method, &request);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 146, &service, &method, &request);
 	zephir_check_call_status();
 	RETURN_MM();
 

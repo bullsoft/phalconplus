@@ -47,7 +47,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, __construct) {
 		ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("objects"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("objects"), &_0);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -78,10 +78,10 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, insert) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_0, "detach", NULL, 0, obj);
 	zephir_check_call_status();
-	zephir_read_property(&_1, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_create_array(&_2, 3, 0);
 	zephir_array_update_string(&_2, SL("name"), name, PH_COPY | PH_SEPARATE);
@@ -117,23 +117,23 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_0, "rewind", NULL, 0);
 	zephir_check_call_status();
 	while (1) {
-		zephir_read_property(&_1, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_2, &_1, "valid", NULL, 0);
 		zephir_check_call_status();
 		if (!(zephir_is_true(&_2))) {
 			break;
 		}
-		zephir_read_property(&_3$$3, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_3$$3, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&obj, &_3$$3, "current", NULL, 0);
 		zephir_check_call_status();
-		zephir_read_property(&_4$$3, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&info, &_4$$3, "getinfo", NULL, 0);
 		zephir_check_call_status();
-		zephir_read_property(&_5$$3, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_5$$3, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_6$$3, &_5$$3, "key", NULL, 0);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_7$$3, &info, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/FeatureTest/SplObjectStorageTest.zep", 29);
@@ -144,7 +144,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
 		ZEPHIR_INIT_NVAR(&_10$$3);
 		ZEPHIR_CONCAT_SVSVSVV(&_10$$3, "Key: ", &_6$$3, " Name: ", &_7$$3, " Obj: ", &_8$$3, &_9$$3);
 		zend_print_zval(&_10$$3, 0);
-		zephir_read_property(&_11$$3, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_11$$3, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, &_11$$3, "next", NULL, 0);
 		zephir_check_call_status();
 	}

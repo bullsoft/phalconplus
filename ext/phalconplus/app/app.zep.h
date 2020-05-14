@@ -11,9 +11,7 @@ PHP_METHOD(PhalconPlus_App_App, registerModule);
 PHP_METHOD(PhalconPlus_App_App, import);
 PHP_METHOD(PhalconPlus_App_App, dependModule);
 PHP_METHOD(PhalconPlus_App_App, setConfig);
-PHP_METHOD(PhalconPlus_App_App, isDebug);
 PHP_METHOD(PhalconPlus_App_App, isBooted);
-PHP_METHOD(PhalconPlus_App_App, getDebug);
 PHP_METHOD(PhalconPlus_App_App, getEnv);
 PHP_METHOD(PhalconPlus_App_App, setEnv);
 PHP_METHOD(PhalconPlus_App_App, handle);
@@ -111,23 +109,9 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_setconfig, 0
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_isdebug, 0, 0, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_isdebug, 0, 0, _IS_BOOL, NULL, 0)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_isbooted, 0, 0, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_isbooted, 0, 0, _IS_BOOL, NULL, 0)
-#endif
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_app_getdebug, 0, 0, Phalcon\\Debug, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_getdebug, 0, 0, IS_OBJECT, "Phalcon\\Debug", 0)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -265,9 +249,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_app_app_method_entry) {
 	PHP_ME(PhalconPlus_App_App, import, arginfo_phalconplus_app_app_import, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, dependModule, arginfo_phalconplus_app_app_dependmodule, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, setConfig, arginfo_phalconplus_app_app_setconfig, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_App, isDebug, arginfo_phalconplus_app_app_isdebug, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, isBooted, arginfo_phalconplus_app_app_isbooted, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_App, getDebug, arginfo_phalconplus_app_app_getdebug, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, getEnv, arginfo_phalconplus_app_app_getenv, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, setEnv, arginfo_phalconplus_app_app_setenv, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_App, handle, NULL, ZEND_ACC_PUBLIC)

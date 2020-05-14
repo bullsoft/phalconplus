@@ -83,11 +83,11 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, __construct) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("app"), app);
-	zephir_update_property_zval(this_ptr, SL("def"), def);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("app"), app);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("def"), def);
 	ZEPHIR_CALL_METHOD(&_0, app, "di", NULL, 52);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("_dependencyInjector"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("_dependencyInjector"), &_0);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -104,7 +104,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, isPrimary) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getisprimary", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_TRUE_IDENTICAL(&_1));
@@ -123,7 +123,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, isCli) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getrunmode", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(&_1, "iscli", NULL, 0);
@@ -144,7 +144,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, isWeb) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getrunmode", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(&_1, "isweb", NULL, 0);
@@ -165,7 +165,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, isSrv) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getrunmode", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(&_1, "issrv", NULL, 0);
@@ -186,7 +186,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, isMicro) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getrunmode", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(&_1, "ismicro", NULL, 0);
@@ -206,7 +206,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, getName) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getname", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -251,7 +251,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, config) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "config", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -296,7 +296,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, __call) {
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 2, 0);
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_read_property(&_1, this_ptr, SL("def"), PH_NOISY_CC);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("def"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);
 	zephir_array_fast_append(&_0, &method);
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, &params);
@@ -341,17 +341,17 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "isprimary", NULL, 0);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Only primary module can be executed", "phalconplus/App/Module/AbstractModule.zep", 91);
 		return;
 	}
-	zephir_read_property(&_2, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&engineName, &_2, "getmapclassname", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_3, this_ptr, SL("_eventsManager"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("_eventsManager"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&eventsManager, &_3);
 	if (Z_TYPE_P(&eventsManager) == IS_OBJECT) {
 		ZEPHIR_INIT_VAR(&_5$$4);
@@ -365,14 +365,14 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec) {
 		if (ZEPHIR_IS_FALSE_IDENTICAL(&_4$$4)) {
 		}
 	}
-	zephir_read_property(&_3, this_ptr, SL("engine"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("engine"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_IS_EMPTY(&_3)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "registerengine", NULL, 0);
 		zephir_check_call_status();
 	}
 	ZEPHIR_CALL_METHOD(&_7, this_ptr, "di", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_8, this_ptr, SL("engine"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_8, this_ptr, ZEND_STRL("engine"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_9);
 	ZVAL_STRING(&_9, "appEngine");
 	ZEPHIR_CALL_METHOD(NULL, &_7, "setshared", NULL, 0, &_9, &_8);
@@ -380,7 +380,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec) {
 	ZEPHIR_INIT_VAR(&_10);
 	zephir_create_array(&_10, 2, 0);
 	ZEPHIR_OBS_VAR(&_11);
-	zephir_read_property(&_11, this_ptr, SL("engine"), PH_NOISY_CC);
+	zephir_read_property(&_11, this_ptr, ZEND_STRL("engine"), PH_NOISY_CC);
 	zephir_array_fast_append(&_10, &_11);
 	ZEPHIR_INIT_NVAR(&_9);
 	ZVAL_STRING(&_9, "exec");
@@ -425,13 +425,13 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, registerEngine) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "isprimary", NULL, 0);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		RETURN_THIS();
 	}
-	zephir_read_property(&_2, this_ptr, SL("def"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&engineName, &_2, "getmapclassname", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&engineClass);
@@ -447,7 +447,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, registerEngine) {
 		ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", NULL, 0, this_ptr);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("engine"), &_3);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("engine"), &_3);
 	RETURN_THIS();
 
 }

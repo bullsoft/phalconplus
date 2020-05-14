@@ -63,9 +63,9 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 
 	ZEPHIR_CALL_CE_STATIC(&_0, phalconplus_enum_sys_ce, "getgloballoaddir", &_1, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_2, this_ptr, SL("scripts"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("scripts"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_4);
-	zephir_read_property(&_4, this_ptr, SL("val"), PH_NOISY_CC);
+	zephir_read_property(&_4, this_ptr, ZEND_STRL("val"), PH_NOISY_CC);
 	zephir_array_fetch(&_3, &_2, &_4, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 35);
 	ZEPHIR_INIT_VAR(&script);
 	ZEPHIR_CONCAT_VV(&script, &_0, &_3);
@@ -90,7 +90,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, isCli) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("val"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_STRING(&_0, "Cli"));
 
 }
@@ -103,7 +103,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, isWeb) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("val"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_STRING(&_0, "Web"));
 
 }
@@ -116,7 +116,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, isSrv) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("val"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_STRING(&_0, "Srv"));
 
 }
@@ -129,7 +129,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, isMicro) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("val"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_STRING(&_0, "Micro"));
 
 }
@@ -146,9 +146,9 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getMapClassName) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("mapClasses"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("mapClasses"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_2);
-	zephir_read_property(&_2, this_ptr, SL("val"), PH_NOISY_CC);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("val"), PH_NOISY_CC);
 	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 65);
 	RETURN_CTOR(&_1);
 
@@ -169,7 +169,7 @@ zend_object *zephir_init_properties_PhalconPlus_Enum_RunMode(zend_class_entry *c
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("scripts"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("scripts"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			zephir_create_array(&_1$$3, 4, 0);
@@ -177,9 +177,9 @@ zend_object *zephir_init_properties_PhalconPlus_Enum_RunMode(zend_class_entry *c
 			add_assoc_stringl_ex(&_1$$3, SL("Cli"), SL("/default-cli.php"));
 			add_assoc_stringl_ex(&_1$$3, SL("Srv"), SL("/default-web.php"));
 			add_assoc_stringl_ex(&_1$$3, SL("Micro"), SL("/default-micro.php"));
-			zephir_update_property_zval(this_ptr, SL("scripts"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("scripts"), &_1$$3);
 		}
-		zephir_read_property(&_2, this_ptr, SL("mapClasses"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_2, this_ptr, ZEND_STRL("mapClasses"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_3$$4);
 			zephir_create_array(&_3$$4, 4, 0);
@@ -187,7 +187,7 @@ zend_object *zephir_init_properties_PhalconPlus_Enum_RunMode(zend_class_entry *c
 			add_assoc_stringl_ex(&_3$$4, SL("Cli"), SL("Cli"));
 			add_assoc_stringl_ex(&_3$$4, SL("Srv"), SL("Srv"));
 			add_assoc_stringl_ex(&_3$$4, SL("Micro"), SL("Micro"));
-			zephir_update_property_zval(this_ptr, SL("mapClasses"), &_3$$4);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("mapClasses"), &_3$$4);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

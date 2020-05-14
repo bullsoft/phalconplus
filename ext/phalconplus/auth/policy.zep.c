@@ -48,7 +48,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, __construct) {
 	ZVAL_STRING(&_2, "acl");
 	ZEPHIR_CALL_METHOD(&_1, &_0, "get", NULL, 0, &_2);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("acl"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("acl"), &_1);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -74,7 +74,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, list) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("acl"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("acl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, user, "getrole", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
@@ -112,7 +112,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, view) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("acl"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("acl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, user, "getrole", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
@@ -150,7 +150,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, delete) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("acl"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("acl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, user, "getrole", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
@@ -188,7 +188,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, update) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("acl"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("acl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, user, "getrole", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
@@ -226,7 +226,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, create) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("acl"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("acl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, user, "getrole", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);

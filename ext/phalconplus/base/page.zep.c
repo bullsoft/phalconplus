@@ -88,7 +88,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "istraversable", &_1, 0, data);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("pagable"), pagable);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("pagable"), pagable);
 	ZEPHIR_INIT_VAR(&tmpData);
 	array_init(&tmpData);
 	_2 = Z_TYPE_P(data) == IS_OBJECT;
@@ -113,12 +113,12 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 					ZEPHIR_CALL_METHOD(&_5$$6, data, "getfirst", NULL, 0);
 					zephir_check_call_status();
 					zephir_get_class(&_4$$6, &_5$$6, 0);
-					zephir_update_property_zval(&tmpData, SL("modelName"), &_4$$6);
+					zephir_update_property_zval(&tmpData, ZEND_STRL("modelName"), &_4$$6);
 					ZEPHIR_CALL_METHOD(&_6$$6, data, "getfirst", NULL, 0);
 					zephir_check_call_status();
 					ZEPHIR_CALL_METHOD(&_7$$6, &_6$$6, "columnmap", NULL, 0);
 					zephir_check_call_status();
-					zephir_update_property_zval(&tmpData, SL("columnMap"), &_7$$6);
+					zephir_update_property_zval(&tmpData, ZEND_STRL("columnMap"), &_7$$6);
 					_8$$6 = zephir_get_iterator(data);
 					_8$$6->funcs->rewind(_8$$6);
 					for (;_8$$6->funcs->valid(_8$$6) == SUCCESS && !EG(exception); _8$$6->funcs->move_forward(_8$$6)) {
@@ -149,10 +149,10 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 
 		}
 	}
-	zephir_update_property_zval(this_ptr, SL("data"), &tmpData);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("data"), &tmpData);
 	ZEPHIR_INIT_ZVAL_NREF(_12);
 	ZVAL_LONG(&_12, totalSize);
-	zephir_update_property_zval(this_ptr, SL("totalSize"), &_12);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("totalSize"), &_12);
 	ZEPHIR_CALL_METHOD(&_13, this_ptr, "setpageno", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_14, &_13, "setpagesize", NULL, 0);
@@ -175,10 +175,10 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("pagable"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("pagable"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getpageno", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("pageNo"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("pageNo"), &_1);
 	RETURN_THIS();
 
 }
@@ -195,10 +195,10 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("pagable"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("pagable"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "getpagesize", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("pageSize"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("pageSize"), &_1);
 	RETURN_THIS();
 
 }
@@ -215,14 +215,14 @@ PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("totalSize"), PH_NOISY_CC | PH_READONLY);
-	zephir_read_property(&_1, this_ptr, SL("pageSize"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("totalSize"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("pageSize"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	div_function(&_2, &_0, &_1);
 	ZVAL_DOUBLE(&_0, zephir_ceil(&_2));
 	ZEPHIR_INIT_ZVAL_NREF(_1);
 	ZVAL_LONG(&_1, zephir_get_intval(&_0));
-	zephir_update_property_zval(this_ptr, SL("totalPage"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("totalPage"), &_1);
 	RETURN_THIS();
 
 }
@@ -262,7 +262,7 @@ PHP_METHOD(PhalconPlus_Base_Page, hasPreviousPage) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("pageNo"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("pageNo"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_GT_LONG(&_0, 1));
 
 }
@@ -338,7 +338,7 @@ PHP_METHOD(PhalconPlus_Base_Page, isEmpty) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(zephir_fast_count_int(&_0) == 0);
 
 }

@@ -67,7 +67,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("appModule"), appModule);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("appModule"), appModule);
 	ZEPHIR_CALL_METHOD(&di, appModule, "di", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdi", NULL, 0, &di);
@@ -99,24 +99,24 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct) {
 	}
 	ZEPHIR_CALL_METHOD(&moduleConf, appModule, "config", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_4, &moduleConf, SL("application"), PH_NOISY_CC | PH_READONLY);
-	zephir_read_property(&_5, &_4, SL("handler"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_4, &moduleConf, ZEND_STRL("application"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, &_4, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_IS_STRING(&_5, "yar")) {
 		ZEPHIR_INIT_VAR(&_6$$6);
 		object_init_ex(&_6$$6, zephir_get_internal_ce(SL("yar_server")));
 		ZEPHIR_CALL_METHOD(NULL, &_6$$6, "__construct", NULL, 0, &backendSrv);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("handler"), &_6$$6);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), &_6$$6);
 	} else {
 		ZEPHIR_INIT_VAR(&_7$$7);
 		object_init_ex(&_7$$7, phalconplus_rpc_yar_ce);
 		ZEPHIR_CALL_METHOD(NULL, &_7$$7, "__construct", NULL, 49, &di);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("handler"), &_7$$7);
-		zephir_read_property(&_8$$7, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), &_7$$7);
+		zephir_read_property(&_8$$7, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, &_8$$7, "setserver", NULL, 0, &backendSrv);
 		zephir_check_call_status();
-		zephir_read_property(&_9$$7, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_9$$7, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_11$$7);
 		ZVAL_STRING(&_11$$7, "eventsManager");
 		ZEPHIR_CALL_METHOD(&_10$$7, &di, "get", NULL, 0, &_11$$7);
@@ -146,7 +146,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, exec) {
 
 	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 50);
 	zephir_check_call_status();
-	zephir_read_property(&_0, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_0, "handle", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&content, "ob_get_clean", NULL, 51);
@@ -185,7 +185,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, setHandler) {
 		_0 = (zephir_instance_of_ev(handler, zephir_get_internal_ce(SL("yar_server"))));
 	}
 	if (EXPECTED(_0)) {
-		zephir_update_property_zval(this_ptr, SL("handler"), handler);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	} else {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Application must be instance of phalcon\\appliction or yar_server", "phalconplus/App/Engine/Srv.zep", 66);
 		return;
@@ -214,7 +214,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, getHandler) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_property(&_0, this_ptr, SL("handler"), PH_NOISY_CC);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC);
 	if (UNEXPECTED(ZEPHIR_IS_EMPTY(&_0))) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty handler", "phalconplus/App/Engine/Srv.zep", 80);
 		return;

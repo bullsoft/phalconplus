@@ -69,13 +69,13 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 	}
 	ZEPHIR_OBS_VAR(&connectionId);
 	zephir_read_static_property_ce(&connectionId, phalconplus_db_pdo_mysql_ce, SL("_connectionConsecutive"), PH_NOISY_CC);
-	zephir_update_property_zval(this_ptr, SL("_connectionId"), &connectionId);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("_connectionId"), &connectionId);
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(&_0, (zephir_get_numberval(&connectionId) + 1));
 	zephir_update_static_property_ce(phalconplus_db_pdo_mysql_ce, ZEND_STRL("_connectionConsecutive"), &_0);
 	ZEPHIR_OBS_VAR(&dialectClass);
 	if (!(zephir_array_isset_string_fetch(&dialectClass, &descriptor, SL("dialectClass"), 0))) {
-		zephir_read_property(&_1$$5, this_ptr, SL("_dialectType"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1$$5, this_ptr, ZEND_STRL("_dialectType"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_NVAR(&dialectClass);
 		ZEPHIR_CONCAT_SV(&dialectClass, "phalcon\\db\\dialect\\", &_1$$5);
 	}
@@ -91,13 +91,13 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 			ZEPHIR_CALL_METHOD(NULL, &_2$$6, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
-		zephir_update_property_zval(this_ptr, SL("_dialect"), &_2$$6);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("_dialect"), &_2$$6);
 	} else {
 		if (Z_TYPE_P(&dialectClass) == IS_OBJECT) {
-			zephir_update_property_zval(this_ptr, SL("_dialect"), &dialectClass);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("_dialect"), &dialectClass);
 		}
 	}
-	zephir_update_property_zval(this_ptr, SL("_descriptor"), &descriptor);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("_descriptor"), &descriptor);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -132,7 +132,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 		
             add_property_null_ex(this_ptr, SL("_pdo") TSRMLS_CC);
             
-		zephir_read_property(&_0$$3, this_ptr, SL("_descriptor"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("_descriptor"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, 0, &_0$$3);
 		zephir_check_call_status();
 		RETURN_MM_MEMBER(getThis(), "_pdo");

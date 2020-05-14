@@ -14,7 +14,7 @@
 #define PHP_PHALCONPLUS_VERSION     "1.3.0-development"
 #define PHP_PHALCONPLUS_EXTNAME     "phalconplus"
 #define PHP_PHALCONPLUS_AUTHOR      "Gu Weigang<guweigang@outlook.com> and BullSoft<support@bullsoft.org>"
-#define PHP_PHALCONPLUS_ZEPVERSION  "0.12.17-$Id$"
+#define PHP_PHALCONPLUS_ZEPVERSION  "0.12.19-$Id$"
 #define PHP_PHALCONPLUS_DESCRIPTION "Phalcon+ is a new framework based on Phalcon."
 
 
@@ -50,7 +50,7 @@ ZEND_EXTERN_MODULE_GLOBALS(phalconplus)
 #endif
 
 #ifdef ZTS
-	void ***tsrm_ls;
+	ZEND_TSRMLS_CACHE_EXTERN()
 	#define ZEPHIR_VGLOBAL ((zend_phalconplus_globals *) (*((void ***) tsrm_get_ls_cache()))[TSRM_UNSHUFFLE_RSRC_ID(phalconplus_globals_id)])
 #else
 	#define ZEPHIR_VGLOBAL &(phalconplus_globals)

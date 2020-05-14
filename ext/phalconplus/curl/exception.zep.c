@@ -34,7 +34,7 @@ PHP_METHOD(PhalconPlus_Curl_Exception, getRequest) {
 	ZVAL_UNDEF(&_2);
 
 
-	zephir_read_property(&_0, this_ptr, SL("info"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("info"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch_long(&_1, &_0, 1, PH_NOISY | PH_READONLY, "phalconplus/Curl/Exception.zep", 9);
 	zephir_array_fetch_long(&_2, &_1, 0, PH_NOISY | PH_READONLY, "phalconplus/Curl/Exception.zep", 9);
 	RETURN_CTORW(&_2);

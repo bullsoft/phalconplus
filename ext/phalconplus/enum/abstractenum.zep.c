@@ -145,7 +145,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	zephir_update_property_zval(this_ptr, SL("val"), val);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("val"), val);
 	ZEPHIR_MM_RESTORE();
 
 }
