@@ -15,10 +15,10 @@ use PhalconPlus\Base\Exception as BaseException;
 class Model extends \Phalcon\Mvc\Model
 {
     // 记录创建时间
-    public ctime;
+    // public ctime;
     // public createdAt;
     // 记录更新时间
-    public mtime;
+    // public mtime;
     // public updatedAt;
 
     // 自定义模型唯一键
@@ -44,7 +44,7 @@ class Model extends \Phalcon\Mvc\Model
             throw new BaseException([
                 "Recored not exists,",
                 params
-            ]); 
+            ]);
         }
         return record;
     }
@@ -143,8 +143,7 @@ class Model extends \Phalcon\Mvc\Model
 
     public static function newInstance() -> <\Phalcon\Mvc\Model>
     {
-        var className;
-        let className = get_called_class();
+        var className = get_called_class();
         return new {className}();
     }
 
@@ -153,8 +152,7 @@ class Model extends \Phalcon\Mvc\Model
         var model, conn, e, row;
         var columnMap = [], newColumns = [];
 
-        var className;
-        let className = get_called_class();
+        var className = get_called_class();
         let model = new {className}();
 
         if method_exists(model, "columnMap") {
@@ -185,21 +183,29 @@ class Model extends \Phalcon\Mvc\Model
 
     public function beforeValidationOnCreate()
     {
-        let this->ctime = date("Y-m-d H:i:s");
-        let this->mtime = this->ctime;
+        var now = date("Y-m-d H:i:s");
+        if property_exists(this, "ctime") {
+            let this->{"ctime"} = now;
+        }
+        if property_exists(this, "mtime") {
+            let this->{"mtime"} = now;
+        }
         if property_exists(this, "created_at") {
-            let this->{"createdAt"} = this->ctime;
+            let this->{"createdAt"} = now;
         }
         if property_exists(this, "updated_at") {
-            let this->{"updatedAt"} = this->ctime;
+            let this->{"updatedAt"} = now;
         }
     }
 
     public function afterFetch()
     {
-        // nothing
-        let this->ctime = new \DateTime(this->ctime);
-        let this->mtime = new \DateTime(this->mtime);
+        if property_exists(this, "ctime") {
+            let this->{"ctime"} = new \DateTime(this->{"ctime"});
+        }
+        if property_exists(this, "mtime") {
+            let this->{"mtime"} = new \DateTime(this->{"mtime"});
+        }
         if property_exists(this, "created_at") {
             let this->{"createdAt"} = new \DateTime(this->{"createdAt"});
         }
@@ -210,39 +216,50 @@ class Model extends \Phalcon\Mvc\Model
 
     public function beforeCreate()
     {
-        let this->ctime = date("Y-m-d H:i:s");
-        let this->mtime = this->ctime;
+        var now = date("Y-m-d H:i:s");
+        if property_exists(this, "ctime") {
+            let this->{"ctime"} = now;
+        }
+        if property_exists(this, "mtime") {
+            let this->{"mtime"} = now;
+        }
         if property_exists(this, "created_at") {
-            let this->{"createdAt"} = this->ctime;
+            let this->{"createdAt"} = now;
         }
         if property_exists(this, "updated_at") {
-            let this->{"updatedAt"} = this->ctime;
+            let this->{"updatedAt"} = now;
         }
     }
 
     public function beforeSave()
     {
         var changedFields;
+        var now = date("Y-m-d H:i:s");
         if this->hasSnapshotData() {
             let changedFields = this->getChangedFields();
             if !empty changedFields {
-                let this->mtime = date("Y-m-d H:i:s");
+                if property_exists(this, "mtime") {
+                    let this->{"mtime"} = now;
+                }
                 if property_exists(this, "updated_at") {
-                    let this->{"updatedAt"} =  this->mtime;
+                    let this->{"updatedAt"} = now;
                 }
             }
         }
-        if is_object(this->ctime) && (this->ctime instanceof \DateTime) {
-            let this->ctime = this->ctime->format("Y-m-d H:i:s");
+        if property_exists(this, "ctime") {
+            if is_object(this->{"ctime"}) && (this->{"ctime"} instanceof \DateTime) {
+                let this->{"ctime"} = this->{"ctime"}->format("Y-m-d H:i:s");
+            }
         }
         if property_exists(this, "created_at") {
             if is_object(this->{"createdAt"}) && (this->{"createdAt"} instanceof \DateTime) {
                let this->{"createdAt"} = this->{"createdAt"}->format("Y-m-d H:i:s");
             }
         }
-
-        if is_object(this->mtime) && (this->mtime instanceof \DateTime) {
-            let this->mtime = this->mtime->format("Y-m-d H:i:s");
+        if property_exists(this, "mtime") {
+            if is_object(this->{"mtime"}) && (this->{"mtime"} instanceof \DateTime) {
+                let this->{"mtime"} = this->{"mtime"}->format("Y-m-d H:i:s");
+            }
         }
         if property_exists(this, "updated_at") {
             if is_object(this->{"updatedAt"}) && (this->{"updatedAt"} instanceof \DateTime) {
@@ -264,12 +281,14 @@ class Model extends \Phalcon\Mvc\Model
 
     public function toArray(columns = null) -> array
     {
-        var fields, tmp, key, val;
-        let fields = parent::toArray(columns),
-            tmp = fields;
+        var key, val;
+        var fields = parent::toArray(columns);
+        var tmp = fields;
         for key, val in tmp {
             if is_object(val) && (val instanceof \DateTime) {
                 let fields[key] = val->format("Y-m-d H:i:s");
+            } elseif is_object(val) && (val instanceof \Phalcon\Mvc\Model) {
+                let fields[key] = val->toArray();
             }
         }
         return fields;
@@ -365,10 +384,7 @@ class Model extends \Phalcon\Mvc\Model
         }
 
         if empty this->__uniqueKeys {
-            if this->_exists(metaData, readConnection, table) {
-                return true;
-            }
-            return false;
+            return this->_exists(metaData, readConnection, table);
         }
 
         let builds = this->__buildUniqueCondition(metaData, readConnection);
@@ -438,9 +454,9 @@ class Model extends \Phalcon\Mvc\Model
          * Process conditions
          */
         var conditions, bind, bindTypes;
-        if fetch conditions, params[0] {
-        } else {
-            if fetch conditions, params["conditions"] {
+        if !fetch conditions, params[0] {
+            if !fetch conditions, params["conditions"] {
+                let conditions = null;
             }
         }
 
@@ -589,10 +605,14 @@ class Model extends \Phalcon\Mvc\Model
         for key, val in toArray {
             let proto->{key} = is_scalar(val)?val:strval(val);
         }
-        var modelName, manager, relations, referenceModel, referencedEntity, options, alias, lowerAlias;
 
-		let modelName = get_class(this), manager = this->getModelsManager();
-        let relations = manager->getRelations(modelName);
+        var modelName, manager, relations, referenceModel, 
+            referencedEntity, options, alias, lowerAlias;
+
+        let modelName = get_class(this), 
+            manager = this->getModelsManager(),
+            relations = manager->getRelations(modelName);
+
         for val in relations {
             let referenceModel = val->getReferencedModel();
             let referencedEntity = strtolower(referenceModel);
@@ -605,9 +625,9 @@ class Model extends \Phalcon\Mvc\Model
             } else {
                 let lowerAlias = referencedEntity;
             }
-            var method, property;
-            let method = "get".alias;
-            let property = lcfirst(alias);
+            var method = ucfirst(alias);
+            var property = lcfirst(alias);
+            let method = "get".method;
             let proto->{property} = this->{method}()->toArray();
         }
         return proto;
@@ -620,8 +640,7 @@ class Model extends \Phalcon\Mvc\Model
      */
     public function getReadConnection() -> <AdapterInterface>
     {
-        var dbConn;
-        let dbConn = this->getWriteConnection();
+        var dbConn = this->getWriteConnection();
         if dbConn->isUnderTransaction() {
             return dbConn;
         } else {
