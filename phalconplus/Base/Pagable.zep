@@ -35,8 +35,9 @@ class Pagable extends ProtoBuffer
             let pageNo = isset(pages["pageNo"]) ? (int) pages["pageNo"] : 0;
             let pageSize = isset(pages["pageSize"]) ? (int) pages["pageSize"] : 0;
         } else {
-            let pageSize = (int) pages["limit"];
-            let pageNo = intval(ceil(intval(pages["offset"]) / pageSize)) + 1; 
+            let pageSize = isset(pages["limit"]) ? (int) pages["limit"] : 0;
+            let pageNo = isset(pages["offset"]) ? (int) pages["offset"] : 0;
+            let pageNo = intval(ceil(pageNo / pageSize)) + 1; 
         }
         var clsInst = null,
             clsName = get_called_class();
