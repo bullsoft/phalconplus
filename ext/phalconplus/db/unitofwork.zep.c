@@ -68,29 +68,29 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, __construct) {
 		ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("objects"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("objects"), &_0);
 	ZEPHIR_INIT_VAR(&_1);
 	object_init_ex(&_1, zephir_get_internal_ce(SL("splobjectstorage")));
 	if (zephir_has_constructor(&_1)) {
 		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("deleted"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("deleted"), &_1);
 	ZEPHIR_INIT_VAR(&_2);
 	object_init_ex(&_2, zephir_get_internal_ce(SL("splobjectstorage")));
 	if (zephir_has_constructor(&_2)) {
 		ZEPHIR_CALL_METHOD(NULL, &_2, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("inserted"), &_2);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("inserted"), &_2);
 	ZEPHIR_INIT_VAR(&_3);
 	object_init_ex(&_3, zephir_get_internal_ce(SL("splobjectstorage")));
 	if (zephir_has_constructor(&_3)) {
 		ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("updated"), &_3);
-	zephir_update_property_zval(this_ptr, SL("dbServiceName"), dbServiceName);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("updated"), &_3);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("dbServiceName"), dbServiceName);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -281,7 +281,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, attach) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_0, "attach", NULL, 0, model, info);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -303,7 +303,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, detach) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_0, "detach", NULL, 0, model);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -345,13 +345,13 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_update_property_zval(this_ptr, SL("exception"), &__$null);
-	zephir_update_property_zval(this_ptr, SL("failed"), &__$null);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("exception"), &__$null);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("failed"), &__$null);
 	ZEPHIR_INIT_VAR(&txManager);
 	object_init_ex(&txManager, zephir_get_internal_ce(SL("phalcon\\mvc\\model\\transaction\\manager")));
 	ZEPHIR_CALL_METHOD(NULL, &txManager, "__construct", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_0, this_ptr, SL("dbServiceName"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("dbServiceName"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &txManager, "setdbservice", NULL, 0, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&transaction, &txManager, "get", NULL, 0);
@@ -362,7 +362,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 		ZEPHIR_CALL_METHOD(NULL, &objects, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_read_property(&_1, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &objects, "addall", NULL, 112, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, &objects, "rewind", NULL, 113);
@@ -431,15 +431,15 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec) {
 		if (zephir_instance_of_ev(&_15, zephir_get_internal_ce(SL("phalcon\\mvc\\model\\transaction\\failed")))) {
 			zend_clear_exception(TSRMLS_C);
 			ZEPHIR_CPY_WRT(&e, &_15);
-			zephir_update_property_zval(this_ptr, SL("failed"), &obj);
-			zephir_update_property_zval(this_ptr, SL("exception"), &e);
-			zephir_read_property(&_16$$8, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("failed"), &obj);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("exception"), &e);
+			zephir_read_property(&_16$$8, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(NULL, &objects, "removeall", NULL, 119, &_16$$8);
 			zephir_check_call_status();
 			RETURN_MM_BOOL(0);
 		}
 	}
-	zephir_read_property(&_17, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_17, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &objects, "removeall", NULL, 119, &_17);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(1);
@@ -556,7 +556,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&last_insert_id, &_14$$13, "lastinsertid", NULL, 0);
 		zephir_check_call_status();
-		zephir_read_property(&_15$$13, this_ptr, SL("inserted"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_15$$13, this_ptr, ZEND_STRL("inserted"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_16$$13);
 		zephir_create_array(&_16$$13, 1, 0);
 		zephir_array_update_string(&_16$$13, SL("last_insert_id"), &last_insert_id, PH_COPY | PH_SEPARATE);
@@ -662,7 +662,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate) {
 		zephir_check_call_status();
 	}
 	if (ZEPHIR_IS_TRUE(&result)) {
-		zephir_read_property(&_10$$9, this_ptr, SL("updated"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_10$$9, this_ptr, ZEND_STRL("updated"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_11$$9);
 		zephir_create_array(&_11$$9, 1, 0);
 		zephir_array_update_string(&_11$$9, SL("updated_data"), &initial_data, PH_COPY | PH_SEPARATE);
@@ -700,7 +700,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execDelete) {
 	ZEPHIR_CALL_METHOD(&result, model, "delete", NULL, 0);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_TRUE(&result)) {
-		zephir_read_property(&_0$$3, this_ptr, SL("deleted"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("deleted"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, &_0$$3, "attach", NULL, 0, model);
 		zephir_check_call_status();
 	}
@@ -716,7 +716,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, getObjects) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("objects"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("objects"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_clone(return_value, &_0) == FAILURE) {
 		return;
 	}
@@ -732,7 +732,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, getInserted) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("inserted"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("inserted"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_clone(return_value, &_0) == FAILURE) {
 		return;
 	}
@@ -748,7 +748,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, getUpdated) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("updated"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("updated"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_clone(return_value, &_0) == FAILURE) {
 		return;
 	}
@@ -764,7 +764,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, getDeleted) {
 	ZVAL_UNDEF(&_0);
 
 
-	zephir_read_property(&_0, this_ptr, SL("deleted"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("deleted"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_clone(return_value, &_0) == FAILURE) {
 		return;
 	}

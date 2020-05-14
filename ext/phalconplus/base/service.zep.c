@@ -47,7 +47,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("di"), di);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
 	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 50);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
@@ -110,7 +110,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 		zephir_read_property_zval(&_1$$3, this_ptr, &key, PH_NOISY_CC);
 		RETURN_CCTOR(&_1$$3);
 	} else {
-		zephir_read_property(&_2$$4, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_2$$4, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_RETURN_CALL_METHOD(&_2$$4, "get", NULL, 0, &key);
 		zephir_check_call_status();
 		RETURN_MM();

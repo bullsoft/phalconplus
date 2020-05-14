@@ -178,7 +178,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 	}
 	object_init_ex(&serviceObj, _6);
 	if (zephir_has_constructor(&serviceObj)) {
-		zephir_read_property(&_7, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_7, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, &serviceObj, "__construct", NULL, 0, &_7);
 		zephir_check_call_status();
 	}
@@ -238,9 +238,9 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		}
 		if (_17$$7) {
 			if (1) {
-				zephir_update_property_zval(this_ptr, SL("phpOnly"), &__$true);
+				zephir_update_property_zval(this_ptr, ZEND_STRL("phpOnly"), &__$true);
 			} else {
-				zephir_update_property_zval(this_ptr, SL("phpOnly"), &__$false);
+				zephir_update_property_zval(this_ptr, ZEND_STRL("phpOnly"), &__$false);
 			}
 		} else if (Z_TYPE_P(request) == IS_ARRAY) {
 			ZEPHIR_CPY_WRT(&tmp$$9, request);
@@ -300,7 +300,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			return;
 		}
 	}
-	zephir_read_property(&_30, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_30, this_ptr, ZEND_STRL("eventsManager"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_31);
 	zephir_create_array(&_31, 3, 0);
 	zephir_array_fast_append(&_31, &service);
@@ -339,7 +339,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 			return;
 		}
 	}
-	zephir_read_property(&_36, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_36, this_ptr, ZEND_STRL("eventsManager"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_37);
 	zephir_create_array(&_37, 3, 0);
 	zephir_array_fast_append(&_37, &service);
@@ -369,7 +369,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Your output is not allowed. Response: #Resource.", "phalconplus/Rpc/Server/AbstractServer.zep", 72);
 		return;
 	}
-	zephir_read_property(&_43, this_ptr, SL("phpOnly"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_43, this_ptr, ZEND_STRL("phpOnly"), PH_NOISY_CC | PH_READONLY);
 	_44 = ZEPHIR_IS_FALSE(&_43);
 	if (_44) {
 		_44 = Z_TYPE_P(&response) == IS_OBJECT;
@@ -473,7 +473,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		ZEPHIR_INIT_NVAR(&request);
 		ZVAL_NULL(&request);
 	}
-	zephir_read_property(&_5, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("eventsManager"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_6);
 	zephir_create_array(&_6, 3, 0);
 	zephir_array_fast_append(&_6, &service);
@@ -502,7 +502,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_logger_processor_logid_ce, "setid", &_9, 0, &logId);
 		zephir_check_call_status();
 	}
-	zephir_read_property(&_10, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_10, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "logger");
 	ZEPHIR_CALL_METHOD(&_11, &_10, "has", NULL, 0, &_7);
@@ -512,7 +512,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		zephir_json_encode(&_12$$8, &request, 0 );
 		ZEPHIR_INIT_NVAR(&message);
 		ZEPHIR_CONCAT_SVSVSVSV(&message, "RPC Request - logId: ", &logId, ", invoke: ", &service, "::", &method, ", args: ", &_12$$8);
-		zephir_read_property(&_13$$8, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_13$$8, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_15$$8);
 		ZVAL_STRING(&_15$$8, "logger");
 		ZEPHIR_CALL_METHOD(&_14$$8, &_13$$8, "get", NULL, 0, &_15$$8);
@@ -520,7 +520,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		ZEPHIR_CALL_METHOD(NULL, &_14$$8, "log", NULL, 0, &message);
 		zephir_check_call_status();
 	}
-	zephir_read_property(&_16, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_16, this_ptr, ZEND_STRL("eventsManager"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_17);
 	zephir_create_array(&_17, 3, 0);
 	zephir_array_fast_append(&_17, &service);
@@ -532,7 +532,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, this_ptr, "callbyparams", NULL, 0, &service, &method, &request);
 	zephir_check_call_status();
-	zephir_read_property(&_18, this_ptr, SL("eventsManager"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_18, this_ptr, ZEND_STRL("eventsManager"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_19);
 	zephir_create_array(&_19, 4, 0);
 	zephir_array_fast_append(&_19, &service);
@@ -543,7 +543,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 	ZVAL_STRING(&_7, "backend-server:afterDispatch");
 	ZEPHIR_CALL_METHOD(NULL, &_18, "fire", NULL, 0, &_7, this_ptr, &_19);
 	zephir_check_call_status();
-	zephir_read_property(&_20, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_20, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "logger");
 	ZEPHIR_CALL_METHOD(&_21, &_20, "has", NULL, 0, &_7);
@@ -553,7 +553,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		zephir_json_encode(&_22$$9, &response, 0 );
 		ZEPHIR_INIT_NVAR(&message);
 		ZEPHIR_CONCAT_SVSVSVSV(&message, "RPC Response - logId: ", &logId, ", invoke: ", &service, "::", &method, ", response: ", &_22$$9);
-		zephir_read_property(&_23$$9, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_23$$9, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_25$$9);
 		ZVAL_STRING(&_25$$9, "logger");
 		ZEPHIR_CALL_METHOD(&_24$$9, &_23$$9, "get", NULL, 0, &_25$$9);

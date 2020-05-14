@@ -87,7 +87,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_2, &_1, "boot", NULL, 85, &env, &runMode);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("app"), &_2);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("app"), &_2);
 
 	/* try_start_1: */
 
@@ -196,7 +196,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, terminate) {
 	ZVAL_NULL(&__$null);
 
 
-	zephir_update_property_zval(this_ptr, SL("app"), &__$null);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("app"), &__$null);
 
 }
 

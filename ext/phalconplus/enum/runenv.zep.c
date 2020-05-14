@@ -89,7 +89,7 @@ PHP_METHOD(PhalconPlus_Enum_RunEnv, isInAbTest) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("val"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("val"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "ab_test");
 	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(&_1, &_0));

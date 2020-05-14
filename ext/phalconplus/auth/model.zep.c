@@ -54,7 +54,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, __construct) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("user"), user);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("user"), user);
 
 }
 
@@ -69,7 +69,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, setUser) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("user"), user);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("user"), user);
 	RETURN_THISW();
 
 }
@@ -102,7 +102,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeDelete) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	if (zephir_is_true(&instance)) {
-		zephir_read_property(&_1, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1, this_ptr, ZEND_STRL("user"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_0, &instance, "delete", NULL, 0, &_1, model);
 		zephir_check_call_status();
 	} else {
@@ -140,7 +140,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeCreate) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	if (zephir_is_true(&instance)) {
-		zephir_read_property(&_1, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1, this_ptr, ZEND_STRL("user"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_0, &instance, "create", NULL, 0, &_1, model);
 		zephir_check_call_status();
 	} else {
@@ -178,7 +178,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeUpdate) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	if (zephir_is_true(&instance)) {
-		zephir_read_property(&_1, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1, this_ptr, ZEND_STRL("user"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_0, &instance, "update", NULL, 0, &_1, model);
 		zephir_check_call_status();
 	} else {
@@ -244,7 +244,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, getPolicy) {
 		zephir_get_strval(&_1$$4, model);
 		ZEPHIR_CPY_WRT(&modelClass, &_1$$4);
 	}
-	zephir_read_property(&_2, this_ptr, SL("policies"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("policies"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&instance);
 	if (zephir_array_isset_fetch(&policyClass, &_2, &modelClass, 1)) {
 		zephir_fetch_safe_class(&_3$$5, &policyClass);
@@ -278,11 +278,11 @@ zend_object *zephir_init_properties_PhalconPlus_Auth_Model(zend_class_entry *cla
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("policies"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("policies"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zephir_update_property_zval(this_ptr, SL("policies"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("policies"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

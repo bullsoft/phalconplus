@@ -311,9 +311,6 @@ static void php_zephir_init_module_globals(zend_phalconplus_globals *phalconplus
 static PHP_RINIT_FUNCTION(phalconplus)
 {
 	zend_phalconplus_globals *phalconplus_globals_ptr;
-#ifdef ZTS
-	tsrm_ls = ts_resource(0);
-#endif
 	phalconplus_globals_ptr = ZEPHIR_VGLOBAL;
 
 	php_zephir_init_globals(phalconplus_globals_ptr);
@@ -358,6 +355,10 @@ static PHP_MINFO_FUNCTION(phalconplus)
 
 static PHP_GINIT_FUNCTION(phalconplus)
 {
+#if defined(COMPILE_DL_PHALCONPLUS) && defined(ZTS)
+	ZEND_TSRMLS_CACHE_UPDATE();
+#endif
+
 	php_zephir_init_globals(phalconplus_globals);
 	php_zephir_init_module_globals(phalconplus_globals);
 }
@@ -405,6 +406,10 @@ zend_module_entry phalconplus_module_entry = {
 	STANDARD_MODULE_PROPERTIES_EX
 };
 
+/* implement standard "stub" routine to introduce ourselves to Zend */
 #ifdef COMPILE_DL_PHALCONPLUS
+# ifdef ZTS
+ZEND_TSRMLS_CACHE_DEFINE()
+# endif
 ZEND_GET_MODULE(phalconplus)
 #endif

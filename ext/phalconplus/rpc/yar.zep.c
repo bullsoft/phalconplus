@@ -112,18 +112,18 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct) {
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "json");
 	if (ZEPHIR_IS_EQUAL(&_2, &formater)) {
-		zephir_update_property_zval(this_ptr, SL("formater"), &formater);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("formater"), &formater);
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZEPHIR_INIT_NVAR(&_3$$3);
 		ZVAL_STRING(&_3$$3, "json_encode");
-		zephir_update_property_zval(this_ptr, SL("encoder"), &_3$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("encoder"), &_3$$3);
 		ZEPHIR_INIT_NVAR(&_3$$3);
 		zephir_json_decode(&_3$$3, &rawBody, zephir_get_intval(&__$true) );
-		zephir_update_property_zval(this_ptr, SL("requestArgs"), &_3$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("requestArgs"), &_3$$3);
 	} else {
-		ZEPHIR_CALL_FUNCTION(&_4$$4, "msgpack_unpack", NULL, 142, &rawBody);
+		ZEPHIR_CALL_FUNCTION(&_4$$4, "msgpack_unpack", NULL, 147, &rawBody);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("requestArgs"), &_4$$4);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("requestArgs"), &_4$$4);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -140,7 +140,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, setServer) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("serviceObj"), obj);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("serviceObj"), obj);
 	RETURN_THISW();
 
 }
@@ -203,14 +203,14 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_SERVER, SL("_SERVER"));
 
-	zephir_read_property(&_0, this_ptr, SL("serviceObj"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("serviceObj"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&serviceName);
 	zephir_get_class(&serviceName, &_0, 0);
 	zephir_array_fetch_string(&_1, &_SERVER, SL("HTTP_HOST"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 44);
 	ZEPHIR_INIT_VAR(&sampleCodes);
-	ZEPHIR_CONCAT_SVS(&sampleCodes, "<?php\n$remoteUrls = [\n\t\"http://", &_1, "\",\n];\n$client = new \\PhalconPlus\\Rpc\\Client\\Adapter\\Curl($remoteUrls);\n$result = $client->callByObject([\n\t\"service\" => \"\\Demo\\Services\\Dummy\",\n\t\"method\" => \"demo\",\n\t\"args\"   => [\n\t\t\"foo\" => \"bar\",\n\t],\n]);\nvar_export($result);\n");
+	ZEPHIR_CONCAT_SVS(&sampleCodes, "<?php\n$remoteUrls = [\n	\"http://", &_1, "\",\n];\n$client = new \\PhalconPlus\\Rpc\\Client\\Adapter\\Curl($remoteUrls);\n$result = $client->callByObject([\n	\"service\" => \"\\Demo\\Services\\Dummy\",\n	\"method\" => \"demo\",\n	\"args\"   => [\n		\"foo\" => \"bar\",\n	],\n]);\nvar_export($result);\n");
 	ZEPHIR_INIT_VAR(&expectedRet);
-	ZVAL_STRING(&expectedRet, "<?php\narray (\n\t'errorCode' => 0,\n\t'errorMsg' => '',\n\t'logId' => 'da0abdea3483146cd8',\n\t'data' => array (\n\t\t'params' => array (\n\t\t\t'foo' => 'bar',\n\t\t),\n\t),\n)\n");
+	ZVAL_STRING(&expectedRet, "<?php\narray (\n	'errorCode' => 0,\n	'errorMsg' => '',\n	'logId' => 'da0abdea3483146cd8',\n	'data' => array (\n		'params' => array (\n			'foo' => 'bar',\n		),\n	),\n)\n");
 	ZEPHIR_INIT_VAR(&_3);
 	ZVAL_STRING(&_3, "request");
 	ZEPHIR_CALL_METHOD(&_2, this_ptr, "__get", NULL, 0, &_3);
@@ -225,7 +225,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	zephir_check_call_status();
 	if (zephir_is_true(&_4)) {
 		ZEPHIR_INIT_VAR(&_7$$3);
-		ZEPHIR_CALL_FUNCTION(&_8$$3, "highlight_string", &_9, 143, &sampleCodes, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_8$$3, "highlight_string", &_9, 148, &sampleCodes, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_10$$3);
 		ZVAL_STRING(&_10$$3, "&lt;?php");
@@ -233,7 +233,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 		ZVAL_STRING(&_11$$3, "// Client");
 		zephir_fast_str_replace(&_7$$3, &_10$$3, &_11$$3, &_8$$3);
 		ZEPHIR_INIT_VAR(&_12$$3);
-		ZEPHIR_CALL_FUNCTION(&_13$$3, "highlight_string", &_9, 143, &expectedRet, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_13$$3, "highlight_string", &_9, 148, &expectedRet, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_14$$3);
 		ZVAL_STRING(&_14$$3, "&lt;?php");
@@ -241,8 +241,8 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 		ZVAL_STRING(&_15$$3, "// Return");
 		zephir_fast_str_replace(&_12$$3, &_14$$3, &_15$$3, &_13$$3);
 		ZEPHIR_INIT_VAR(&_16$$3);
-		ZEPHIR_CONCAT_SVSVSVSVS(&_16$$3, "<!DOCTYPE html>\n\t\t\t<html>\n\t\t\t <head>\n\t\t\t  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n\t\t\t  <title>", &serviceName, " - Phalcon+ Server</title>\n\t\t\t  <style>\n\t\t\t   body { margin: 0; font:14px/20px Verdana, Arial, sans-serif; color: #333; background: #f8f8f8;}\n\t\t\t   h1, h2, pre { margin: 0; padding: 0;}\n\t\t\t   h1 { font:bold 28px Verdana,Arial; background:#99c; padding: 12px 5px; border-bottom: 4px solid #669; box-shadow: 0 1px 4px #bbb; color: #222;}\n\t\t\t   h2 { font:normal 20px/22px Georgia, Times, \"Times New Roman\", serif; padding: 5px 0 8px; margin: 20px 10px 0; border-bottom: 1px solid #ddd; cursor:pointer;}\n\t\t\t   p, dd { color: #555; }\n\t\t\t   .api-info { padding: 10px 0; margin-left: 20px; }\n\t\t\t   .api-block, .sample-codes { margin: 0 40px;}\n\t\t\t   .code {border: 1px solid #669; padding: 10px;}\n\t\t\t   h2 u { font-size:20px;text-decoration:none;padding:10px; }\n\t\t\t  </style>\n\t\t\t  <script>\n\t\t\t   function _t(elem) {\n\t\t\t\tvar block = elem.nextSibling;\n\t\t\t\tvar info = elem.getElementsByTagName('u')[0];\n\t\t\t\twhile (block) {\n\t\t\t\t if ( block.nodeType == 1 && block.className.indexOf('api-block') > -1 ) {\n\t\t\t\t  break;\n\t\t\t\t }\n\t\t\t\t block = block.nextSibling;\n\t\t\t\t}\n\t\t\t\tvar isHidden = block.style.display == 'none';\n\t\t\t\tblock.style.display = isHidden ? '' : 'none';\n\t\t\t\tinfo.innerHTML = isHidden ? '-'  : '+';\n\t\t\t   }\n\t\t\t  </script>\n\t\t\t </head>\n\t\t\t <body>\n\t\t\t\t<h1>Phalcon+ Server: ", &serviceName, "</h1>\n\t\t\t\t<h2>Code Samples: </h2>\n\t\t\t\t<div class=\"sample-codes\">\n\t\t\t\t<p class=\"code\">", &_7$$3, "</p>\n\t\t\t\t<p><center style=\"font-weight: bolder;\">-------------- Expected Result --------------</center></p>\n\t\t\t\t<p class=\"code\">", &_12$$3, "</p>\n\t\t\t\t</div>\n\t\t\t\t<footer>\n\t\t\t\t    <center>Copyright &copy <a href=\"https://bullsoft.org\">BullSoft.org</a></center>\n\t\t\t\t</footer>\n\t\t\t </body>\n\t\t    </html>");
-		zephir_update_property_zval(this_ptr, SL("responseBody"), &_16$$3);
+		ZEPHIR_CONCAT_SVSVSVSVS(&_16$$3, "<!DOCTYPE html>\n			<html>\n			 <head>\n			  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n			  <title>", &serviceName, " - Phalcon+ Server</title>\n			  <style>\n			   body { margin: 0; font:14px/20px Verdana, Arial, sans-serif; color: #333; background: #f8f8f8;}\n			   h1, h2, pre { margin: 0; padding: 0;}\n			   h1 { font:bold 28px Verdana,Arial; background:#99c; padding: 12px 5px; border-bottom: 4px solid #669; box-shadow: 0 1px 4px #bbb; color: #222;}\n			   h2 { font:normal 20px/22px Georgia, Times, \"Times New Roman\", serif; padding: 5px 0 8px; margin: 20px 10px 0; border-bottom: 1px solid #ddd; cursor:pointer;}\n			   p, dd { color: #555; }\n			   .api-info { padding: 10px 0; margin-left: 20px; }\n			   .api-block, .sample-codes { margin: 0 40px;}\n			   .code {border: 1px solid #669; padding: 10px;}\n			   h2 u { font-size:20px;text-decoration:none;padding:10px; }\n			  </style>\n			  <script>\n			   function _t(elem) {\n				var block = elem.nextSibling;\n				var info = elem.getElementsByTagName('u')[0];\n				while (block) {\n				 if ( block.nodeType == 1 && block.className.indexOf('api-block') > -1 ) {\n				  break;\n				 }\n				 block = block.nextSibling;\n				}\n				var isHidden = block.style.display == 'none';\n				block.style.display = isHidden ? '' : 'none';\n				info.innerHTML = isHidden ? '-'  : '+';\n			   }\n			  </script>\n			 </head>\n			 <body>\n				<h1>Phalcon+ Server: ", &serviceName, "</h1>\n				<h2>Code Samples: </h2>\n				<div class=\"sample-codes\">\n				<p class=\"code\">", &_7$$3, "</p>\n				<p><center style=\"font-weight: bolder;\">-------------- Expected Result --------------</center></p>\n				<p class=\"code\">", &_12$$3, "</p>\n				</div>\n				<footer>\n				    <center>Copyright &copy <a href=\"https://bullsoft.org\">BullSoft.org</a></center>\n				</footer>\n			 </body>\n		    </html>");
+		zephir_update_property_zval(this_ptr, ZEND_STRL("responseBody"), &_16$$3);
 	} else if (zephir_is_true(&_6)) {
 		ZEPHIR_INIT_VAR(&e$$4);
 		ZVAL_NULL(&e$$4);
@@ -256,19 +256,19 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 
 		/* try_start_1: */
 
-			zephir_read_property(&_18$$5, this_ptr, SL("requestArgs"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_18$$5, this_ptr, ZEND_STRL("requestArgs"), PH_NOISY_CC | PH_READONLY);
 			if (ZEPHIR_IS_EMPTY(&_18$$5)) {
 				ZEPHIR_INIT_VAR(&_19$$6);
 				object_init_ex(&_19$$6, zend_exception_get_default(TSRMLS_C));
 				ZEPHIR_INIT_VAR(&_20$$6);
 				ZVAL_STRING(&_20$$6, "invalid request args");
-				ZEPHIR_CALL_METHOD(NULL, &_19$$6, "__construct", NULL, 144, &_20$$6);
+				ZEPHIR_CALL_METHOD(NULL, &_19$$6, "__construct", NULL, 149, &_20$$6);
 				zephir_check_call_status_or_jump(try_end_1);
 				zephir_throw_exception_debug(&_19$$6, "phalconplus/Rpc/Yar.zep", 57);
 				goto try_end_1;
 
 			}
-			zephir_read_property(&_21$$5, this_ptr, SL("serviceObj"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_21$$5, this_ptr, ZEND_STRL("serviceObj"), PH_NOISY_CC | PH_READONLY);
 			if (ZEPHIR_IS_EMPTY(&_21$$5)) {
 				ZEPHIR_CALL_METHOD(&_22$$7, this_ptr, "getdi", NULL, 0);
 				zephir_check_call_status_or_jump(try_end_1);
@@ -276,10 +276,10 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 				ZVAL_STRING(&_24$$7, "backendSrv");
 				ZEPHIR_CALL_METHOD(&_23$$7, &_22$$7, "get", NULL, 0, &_24$$7);
 				zephir_check_call_status_or_jump(try_end_1);
-				zephir_update_property_zval(this_ptr, SL("serviceObj"), &_23$$7);
+				zephir_update_property_zval(this_ptr, ZEND_STRL("serviceObj"), &_23$$7);
 			}
-			zephir_read_property(&_25$$5, this_ptr, SL("serviceObj"), PH_NOISY_CC | PH_READONLY);
-			zephir_read_property(&_27$$5, this_ptr, SL("requestArgs"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_25$$5, this_ptr, ZEND_STRL("serviceObj"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_27$$5, this_ptr, ZEND_STRL("requestArgs"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(&_26$$5, &_25$$5, "callbyobject", NULL, 0, &_27$$5);
 			zephir_check_call_status_or_jump(try_end_1);
 			zephir_array_update_string(&ret$$4, SL("data"), &_26$$5, PH_COPY | PH_SEPARATE);
@@ -296,7 +296,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 				ZEPHIR_CALL_METHOD(&_28$$8, &e$$4, "getcode", NULL, 0);
 				zephir_check_call_status();
 				ZVAL_LONG(&_29$$8, 1);
-				ZEPHIR_CALL_FUNCTION(&_30$$8, "max", NULL, 145, &_28$$8, &_29$$8);
+				ZEPHIR_CALL_FUNCTION(&_30$$8, "max", NULL, 150, &_28$$8, &_29$$8);
 				zephir_check_call_status();
 				zephir_array_update_string(&ret$$4, SL("errorCode"), &_30$$8, PH_COPY | PH_SEPARATE);
 				ZEPHIR_CALL_METHOD(&_31$$8, &e$$4, "getmessage", NULL, 0);
@@ -308,15 +308,15 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 		ZVAL_STRING(&_33$$4, "logger");
 		ZEPHIR_CALL_METHOD(&_32$$4, this_ptr, "__get", NULL, 0, &_33$$4);
 		zephir_check_call_status();
-		zephir_read_property(&_34$$4, &_32$$4, SL("logId"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_34$$4, &_32$$4, ZEND_STRL("logId"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_update_string(&ret$$4, SL("logId"), &_34$$4, PH_COPY | PH_SEPARATE);
-		zephir_read_property(&_35$$4, this_ptr, SL("encoder"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_35$$4, this_ptr, ZEND_STRL("encoder"), PH_NOISY_CC | PH_READONLY);
 		zephir_get_strval(&encoder$$4, &_35$$4);
 		ZEPHIR_CALL_ZVAL_FUNCTION(&_36$$4, &encoder$$4, NULL, 0, &ret$$4);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("responseBody"), &_36$$4);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("responseBody"), &_36$$4);
 	}
-	zephir_read_property(&_37, this_ptr, SL("responseBody"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_37, this_ptr, ZEND_STRL("responseBody"), PH_NOISY_CC | PH_READONLY);
 	zend_print_zval(&_37, 0);
 	ZEPHIR_MM_RESTORE();
 

@@ -71,9 +71,9 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(&_0, mode);
-	zephir_update_property_zval(this_ptr, SL("mode"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("mode"), &_0);
 	if (!(ZEPHIR_IS_EMPTY(&skipClassesPartials))) {
-		zephir_update_property_zval(this_ptr, SL("skipClassesPartials"), &skipClassesPartials);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("skipClassesPartials"), &skipClassesPartials);
 	} else {
 		ZEPHIR_INIT_VAR(&_1$$4);
 		zephir_create_array(&_1$$4, 4, 0);
@@ -89,7 +89,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 		ZEPHIR_INIT_NVAR(&_2$$4);
 		ZVAL_STRING(&_2$$4, "Exception");
 		zephir_array_fast_append(&_1$$4, &_2$$4);
-		zephir_update_property_zval(this_ptr, SL("skipClassesPartials"), &_1$$4);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("skipClassesPartials"), &_1$$4);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -114,7 +114,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, setLimit) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(&_0, limit);
-	zephir_update_property_zval(this_ptr, SL("limit"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("limit"), &_0);
 
 }
 
@@ -159,9 +159,9 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("limit"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("limit"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_1, 2);
-	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 137, &_1, &_0);
+	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 142, &_1, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&trace);
 	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_2, 107, &trace);
@@ -187,7 +187,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 			_4$$3 = ZEPHIR_IS_LONG(&j, i);
 		}
 		if (_4$$3) {
-			zephir_read_property(&_5$$4, this_ptr, SL("skipClassesPartials"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_5$$4, this_ptr, ZEND_STRL("skipClassesPartials"), PH_NOISY_CC | PH_READONLY);
 			zephir_is_iterable(&_5$$4, 0, "phalconplus/Logger/Processor/Trace.zep", 56);
 			if (Z_TYPE_P(&_5$$4) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_5$$4), _6$$4)
@@ -288,7 +288,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	}
 	zephir_array_update_string(&_18, SL("function"), &_13, PH_COPY | PH_SEPARATE);
 	ZEPHIR_CPY_WRT(&trace2, &_18);
-	zephir_read_property(&_1, this_ptr, SL("mode"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("mode"), PH_NOISY_CC | PH_READONLY);
 	do {
 		_23 = ((int) (zephir_get_numberval(&_1)) & 0x0011);
 		if (_23 == 0x0010) {
@@ -323,11 +323,11 @@ zend_object *zephir_init_properties_PhalconPlus_Logger_Processor_Trace(zend_clas
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("skipClassesPartials"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("skipClassesPartials"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zephir_update_property_zval(this_ptr, SL("skipClassesPartials"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("skipClassesPartials"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

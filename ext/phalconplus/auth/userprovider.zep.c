@@ -100,13 +100,13 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
 	if (Z_TYPE_P(user) == IS_NULL) {
 		ZEPHIR_INIT_ZVAL_NREF(_1$$3);
 		ZVAL_LONG(&_1$$3, 0);
-		zephir_update_property_zval(this_ptr, SL("id"), &_1$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_1$$3);
 		_3$$3 = zephir_fetch_class_str_ex(SL("Phalcon\\Text"), ZEND_FETCH_CLASS_AUTO);
 		ZVAL_LONG(&_1$$3, 0);
 		ZEPHIR_CALL_CE_STATIC(&_2$$3, _3$$3, "random", NULL, 0, &_1$$3);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("name"), &_2$$3);
-		zephir_update_property_zval(this_ptr, SL("role"), &role);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_2$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &role);
 	} else if (Z_TYPE_P(user) == IS_ARRAY) {
 		if (!(zephir_array_isset_string(user, SL("id")))) {
 			ZEPHIR_INIT_NVAR(user);
@@ -114,11 +114,11 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
 			goto BEGIN;
 		}
 		zephir_array_fetch_string(&_4$$4, user, SL("id"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 28);
-		zephir_update_property_zval(this_ptr, SL("id"), &_4$$4);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_4$$4);
 		zephir_array_fetch_string(&_5$$4, user, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 29);
-		zephir_update_property_zval(this_ptr, SL("name"), &_5$$4);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_5$$4);
 		zephir_array_fetch_string(&_6$$4, user, SL("role"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 30);
-		zephir_update_property_zval(this_ptr, SL("role"), &_6$$4);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &_6$$4);
 	} else if (_0) {
 		ZEPHIR_CALL_METHOD(&idName$$6, this_ptr, "getidname", NULL, 0);
 		zephir_check_call_status();
@@ -128,13 +128,13 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
 		zephir_check_call_status();
 		ZEPHIR_OBS_VAR(&_7$$6);
 		zephir_read_property_zval(&_7$$6, user, &idName$$6, PH_NOISY_CC);
-		zephir_update_property_zval(this_ptr, SL("id"), &_7$$6);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_7$$6);
 		ZEPHIR_OBS_VAR(&_8$$6);
-		zephir_read_property(&_8$$6, this_ptr, SL("id"), PH_NOISY_CC);
+		zephir_read_property(&_8$$6, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
 		if (!(ZEPHIR_IS_EMPTY(&_8$$6))) {
 			ZEPHIR_OBS_VAR(&_9$$7);
 			zephir_read_property_zval(&_9$$7, user, &usernameName$$6, PH_NOISY_CC);
-			zephir_update_property_zval(this_ptr, SL("name"), &_9$$7);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_9$$7);
 			ZEPHIR_INIT_VAR(&_10$$7);
 			ZEPHIR_OBS_VAR(&_11$$7);
 			zephir_read_property_zval(&_11$$7, user, &roleName$$6, PH_NOISY_CC);
@@ -145,18 +145,18 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
 				ZEPHIR_OBS_NVAR(&_10$$7);
 				zephir_read_property_zval(&_10$$7, user, &roleName$$6, PH_NOISY_CC);
 			}
-			zephir_update_property_zval(this_ptr, SL("role"), &_10$$7);
-			zephir_update_property_zval(this_ptr, SL("entity"), user);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &_10$$7);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("entity"), user);
 		} else {
 			ZEPHIR_INIT_ZVAL_NREF(_12$$8);
 			ZVAL_LONG(&_12$$8, 0);
-			zephir_update_property_zval(this_ptr, SL("id"), &_12$$8);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_12$$8);
 			_14$$8 = zephir_fetch_class_str_ex(SL("Phalcon\\Text"), ZEND_FETCH_CLASS_AUTO);
 			ZVAL_LONG(&_12$$8, 0);
 			ZEPHIR_CALL_CE_STATIC(&_13$$8, _14$$8, "random", NULL, 0, &_12$$8);
 			zephir_check_call_status();
-			zephir_update_property_zval(this_ptr, SL("name"), &_13$$8);
-			zephir_update_property_zval(this_ptr, SL("role"), &role);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_13$$8);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &role);
 		}
 	} else {
 		ZEPHIR_INIT_NVAR(user);
@@ -527,13 +527,13 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, jsonSerialize) {
 
 	zephir_create_array(return_value, 3, 0);
 	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_property(&_0, this_ptr, SL("name"), PH_NOISY_CC);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("name"), PH_NOISY_CC);
 	zephir_array_update_string(return_value, SL("name"), &_0, PH_COPY | PH_SEPARATE);
 	ZEPHIR_OBS_NVAR(&_0);
-	zephir_read_property(&_0, this_ptr, SL("id"), PH_NOISY_CC);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
 	zephir_array_update_string(return_value, SL("id"), &_0, PH_COPY | PH_SEPARATE);
 	ZEPHIR_OBS_NVAR(&_0);
-	zephir_read_property(&_0, this_ptr, SL("role"), PH_NOISY_CC);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("role"), PH_NOISY_CC);
 	zephir_array_update_string(return_value, SL("role"), &_0, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
 

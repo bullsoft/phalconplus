@@ -58,8 +58,8 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("model"), model);
-	zephir_update_property_zval(this_ptr, SL("attr"), &attr);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("model"), model);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("attr"), &attr);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -92,26 +92,26 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("model"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&className);
 	zephir_get_class(&className, &_0, 0);
-	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 119, &_1);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("model"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&hash, "spl_object_hash", NULL, 120, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&objs, unitwork, "getobjects", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_3, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("model"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_2, &objs, "contains", NULL, 0, &_3);
 	zephir_check_call_status();
 	if (zephir_is_true(&_2)) {
-		zephir_read_property(&_4$$3, this_ptr, SL("attr"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("attr"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CPY_WRT(&attr$$3, &_4$$3);
-		zephir_read_property(&_4$$3, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("model"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_FUNCTION(&_5$$3, "property_exists", NULL, 3, &_4$$3, &attr$$3);
 		zephir_check_call_status();
 		if (zephir_is_true(&_5$$3)) {
 			ZEPHIR_OBS_VAR(&_6$$4);
-			zephir_read_property(&_6$$4, this_ptr, SL("model"), PH_NOISY_CC);
+			zephir_read_property(&_6$$4, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
 			ZEPHIR_OBS_VAR(&_7$$4);
 			zephir_read_property_zval(&_7$$4, &_6$$4, &attr$$3, PH_NOISY_CC);
 			RETURN_CCTOR(&_7$$4);
@@ -163,9 +163,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("attr"), PH_NOISY_CC | PH_READONLY);
-	zephir_read_property(&_1, this_ptr, SL("model"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_2, "spl_object_hash", NULL, 119, &_1);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("attr"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("model"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&_2, "spl_object_hash", NULL, 120, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVSV(return_value, "Field: ", &_0, ", Hash: ", &_2);
 	RETURN_MM();

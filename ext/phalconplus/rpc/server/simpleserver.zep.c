@@ -44,12 +44,12 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __construct) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("di"), di);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "eventsManager");
 	ZEPHIR_CALL_METHOD(&_0, di, "getshared", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("eventsManager"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("eventsManager"), &_0);
 	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 50);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
@@ -96,11 +96,11 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __get) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "has", NULL, 0, &property);
 	zephir_check_call_status();
 	if (zephir_is_true(&_1)) {
-		zephir_read_property(&_2$$3, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_2$$3, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_RETURN_CALL_METHOD(&_2$$3, "get", NULL, 0, &property);
 		zephir_check_call_status();
 		RETURN_MM();

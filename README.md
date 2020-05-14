@@ -6,7 +6,9 @@ So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框�
 
 ## 依赖
     * PHP 7.0 or above
-    * cPhalcon 3.4.x - https://github.com/phalcon/cphalcon/tree/3.4.x
+    * cPhalcon 3.4.x，在官方发布3.4.6之前一定要下载此分支，通过`zephir build`手动编译phalcon - https://github.com/phalcon/cphalcon/tree/3.4.x
+      > 安装zephir之前，需要先安装扩展 https://github.com/phalcon/php-zephir-parser ，然后使用`composer`安装`zephir`
+      `composer global require phalcon/zephir`
 
 ## 约束
  - 不支持Phalcon的多模块结构，Phalcon+有自己的模块机制
@@ -14,7 +16,11 @@ So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框�
  - 模块是有工作模式的，如：Web, Srv, Cli等...，不同模式的模块角色不一样
  - 无论哪种模式，入口文件都完全一样
  - 内置RPC服务端和客户端
- - 所有模块都依赖全局的common（实际上是Cli Module）
+ - 所有模块都依赖全局的common（实际上是一个Phalcon+Cli模块）
+
+## MaaS & MaaL 
+ - MaaS(Module as a Service): Phalcon+模块即服务，`Srv`提供Rpc服务，`Web`可提供Restful服务
+ - MaaL(Module as a Library): Phalcon+模块即类库，可在项目其他模块通过`App::import("test")`引入test模块
 
 ## 安装
 ```
@@ -179,6 +185,7 @@ ppm.json内容如下：
 ```
 ### 使用[RoadRunner](https://github.com/spiral/roadrunner)
 ```
+➜ composer require spiral/roadrunner
 ➜ cd test
 ➜ touch .rr.json
 ➜ touch psr-worker.php

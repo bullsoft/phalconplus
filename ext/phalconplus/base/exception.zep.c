@@ -108,7 +108,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	if (ZEPHIR_IS_EMPTY(info)) {
 	} else {
 		if (Z_TYPE_P(info) == IS_ARRAY) {
-			zephir_update_property_zval(this_ptr, SL("info"), info);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("info"), info);
 			zephir_array_fetch_long(&_1$$4, info, 0, PH_NOISY | PH_READONLY, "phalconplus/Base/Exception.zep", 25);
 			ZEPHIR_CALL_FUNCTION(&_2$$4, "strval", &_3, 27, &_1$$4);
 			zephir_check_call_status();
@@ -192,14 +192,14 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_VAR(&showMessage);
-	zephir_read_property(&_28, this_ptr, SL("message"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_28, this_ptr, ZEND_STRL("message"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_string_fetch(&showMessage, info, SL("text"), 0)) {
 		ZEPHIR_CALL_FUNCTION(&_29$$9, "strval", &_3, 27, &showMessage);
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(&showMessage, &_29$$9);
 	} else if (!(ZEPHIR_IS_EMPTY(&_28))) {
 		ZEPHIR_OBS_NVAR(&showMessage);
-		zephir_read_property(&showMessage, this_ptr, SL("message"), PH_NOISY_CC);
+		zephir_read_property(&showMessage, this_ptr, ZEND_STRL("message"), PH_NOISY_CC);
 	} else {
 		ZEPHIR_CPY_WRT(&showMessage, &message);
 	}
@@ -216,9 +216,9 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(&showMessage, &_31$$12);
 	}
-	zephir_read_property(&_32, this_ptr, SL("code"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_32, this_ptr, ZEND_STRL("code"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_GT_LONG(&_32, 0)) {
-		zephir_read_property(&_33$$13, this_ptr, SL("code"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_33$$13, this_ptr, ZEND_STRL("code"), PH_NOISY_CC | PH_READONLY);
 		code = zephir_get_numberval(&_33$$13);
 	}
 	ZVAL_LONG(&_34, code);
@@ -248,7 +248,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, setLevel) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("level"), level);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("level"), level);
 	RETURN_THISW();
 
 }

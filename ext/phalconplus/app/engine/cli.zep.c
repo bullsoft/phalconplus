@@ -58,7 +58,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, __construct) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("appModule"), appModule);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("appModule"), appModule);
 	ZEPHIR_CALL_METHOD(&di, appModule, "di", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdi", NULL, 0, &di);
@@ -68,14 +68,14 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, __construct) {
 		object_init_ex(&_0$$3, zephir_get_internal_ce(SL("phalcon\\cli\\console")));
 		ZEPHIR_CALL_METHOD(NULL, &_0$$3, "__construct", NULL, 0);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("handler"), &_0$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), &_0$$3);
 	} else {
-		zephir_update_property_zval(this_ptr, SL("handler"), handler);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	}
-	zephir_read_property(&_1, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_1, "setdi", NULL, 0, &di);
 	zephir_check_call_status();
-	zephir_read_property(&_2, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_4);
 	ZVAL_STRING(&_4, "eventsManager");
 	ZEPHIR_CALL_METHOD(&_3, &di, "get", NULL, 0, &_4);
@@ -109,7 +109,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, exec) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "handle", NULL, 0, &argv);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -134,7 +134,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, setHandler) {
 
 
 	if (EXPECTED(zephir_is_instance_of(handler, SL("PhalconPlus\\App\\Engine\\BaseApplication")))) {
-		zephir_update_property_zval(this_ptr, SL("handler"), handler);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	} else {
 		ZEPHIR_INIT_VAR(&_0$$4);
 		if (!_1$$4) {
@@ -179,7 +179,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, getHandler) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_property(&_0, this_ptr, SL("handler"), PH_NOISY_CC);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC);
 	if (UNEXPECTED(ZEPHIR_IS_EMPTY(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		if (!_2$$3) {

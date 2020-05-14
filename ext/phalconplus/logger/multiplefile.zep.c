@@ -169,7 +169,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessorVar) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("processors"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("processors"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&processor, &_0, &name, 1)) {
 		zephir_get_strval(&_1$$3, &processor);
 		RETURN_CTOR(&_1$$3);
@@ -261,9 +261,9 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, log) {
 	array_init(&custormContext);
 	if (ZEPHIR_IS_EMPTY(&context)) {
 		ZEPHIR_OBS_VAR(&_0$$3);
-		zephir_read_property(&_0$$3, this_ptr, SL("processors"), PH_NOISY_CC);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("processors"), PH_NOISY_CC);
 		if (!(ZEPHIR_IS_EMPTY(&_0$$3))) {
-			zephir_read_property(&_1$$4, this_ptr, SL("processors"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_1$$4, this_ptr, ZEND_STRL("processors"), PH_NOISY_CC | PH_READONLY);
 			zephir_is_iterable(&_1$$4, 0, "phalconplus/Logger/MultipleFile.zep", 50);
 			if (Z_TYPE_P(&_1$$4) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_1$$4), _4$$4, _5$$4, _2$$4)
@@ -307,7 +307,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, log) {
 		ZEPHIR_CPY_WRT(&custormContext, &context);
 	}
 	ZEPHIR_OBS_VAR(&loggers);
-	zephir_read_property(&loggers, this_ptr, SL("_loggers"), PH_NOISY_CC);
+	zephir_read_property(&loggers, this_ptr, ZEND_STRL("_loggers"), PH_NOISY_CC);
 	if (Z_TYPE_P(&loggers) == IS_ARRAY) {
 		zephir_is_iterable(&loggers, 0, "phalconplus/Logger/MultipleFile.zep", 65);
 		if (Z_TYPE_P(&loggers) == IS_ARRAY) {
@@ -373,11 +373,11 @@ zend_object *zephir_init_properties_PhalconPlus_Logger_MultiPleFile(zend_class_e
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("processors"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("processors"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zephir_update_property_zval(this_ptr, SL("processors"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("processors"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

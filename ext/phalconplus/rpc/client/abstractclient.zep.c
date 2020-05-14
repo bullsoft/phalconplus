@@ -46,7 +46,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, setNamePrefix) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_fast_trim(&_0, &prefix, NULL , ZEPHIR_TRIM_BOTH);
-	zephir_update_property_zval(this_ptr, SL("namePrefix"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("namePrefix"), &_0);
 	RETURN_THIS();
 
 }
