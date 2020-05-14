@@ -113,11 +113,11 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
 			ZVAL_NULL(user);
 			goto BEGIN;
 		}
-		zephir_array_fetch_string(&_4$$4, user, SL("id"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 28);
+		zephir_array_fetch_string(&_4$$4, user, SL("id"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 27);
 		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_4$$4);
-		zephir_array_fetch_string(&_5$$4, user, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 29);
+		zephir_array_fetch_string(&_5$$4, user, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 28);
 		zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_5$$4);
-		zephir_array_fetch_string(&_6$$4, user, SL("role"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 30);
+		zephir_array_fetch_string(&_6$$4, user, SL("role"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 29);
 		zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &_6$$4);
 	} else if (_0) {
 		ZEPHIR_CALL_METHOD(&idName$$6, this_ptr, "getidname", NULL, 0);
@@ -512,30 +512,6 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, getRoleName) {
 
 
 	RETURN_STRING("role");
-
-}
-
-PHP_METHOD(PhalconPlus_Auth_UserProvider, jsonSerialize) {
-
-	zval _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&_0);
-
-	ZEPHIR_MM_GROW();
-
-	zephir_create_array(return_value, 3, 0);
-	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("name"), PH_NOISY_CC);
-	zephir_array_update_string(return_value, SL("name"), &_0, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_0);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
-	zephir_array_update_string(return_value, SL("id"), &_0, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_0);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("role"), PH_NOISY_CC);
-	zephir_array_update_string(return_value, SL("role"), &_0, PH_COPY | PH_SEPARATE);
-	RETURN_MM();
 
 }
 
