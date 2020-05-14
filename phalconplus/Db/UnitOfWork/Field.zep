@@ -1,5 +1,6 @@
 namespace PhalconPlus\Db\UnitOfWork;
-use \PhalconPlus\Db\UnitOfWork;
+use PhalconPlus\Db\UnitOfWork;
+use PhalconPlus\Base\Exception as BaseException;
 
 class Field extends AbstractValue
 {
@@ -26,7 +27,7 @@ class Field extends AbstractValue
             return null;
         }
 
-        throw new \PhalconPlus\Base\Exception("Object(".hash.") instance of ".className." not in SplObjectStorage");
+        throw new BaseException("Object(".hash.") instance of ".className." not in SplObjectStorage");
     }
 
     public function getField(<UnitOfWork> unitwork)

@@ -4,7 +4,6 @@ use PhalconPlus\Base\ProtoBuffer;
 use Phalcon\Security;
 use Phalcon\Text;
 use Phalcon\Mvc\Model;
-use JsonSerializable;
 
 abstract class UserProvider extends ProtoBuffer implements UserProviderContract
 {
@@ -156,12 +155,12 @@ abstract class UserProvider extends ProtoBuffer implements UserProviderContract
         return "role";
     }
 
-    public function jsonSerialize()
-    {
-        return [
-            "name" : this->name,
-            "id"   : this->id,
-            "role" : this->role
-        ];
-    }
+    // public function jsonSerialize()
+    // {
+    //     return [
+    //         "name" : this->name,
+    //         "id"   : this->id,
+    //         "role" : this->role
+    //     ];
+    // }
 }
