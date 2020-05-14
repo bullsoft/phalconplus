@@ -12,8 +12,6 @@ use Phalcon\Events\ManagerInterface;
 
 final class App extends BaseApplication
 {
-    // <\Phalcon\Debug>
-    protected debug = null;
     // 默认运行环境
     // 其实框架定义了<\PhalconPlus\Enum\RunEnv>，但考虑再三，此处不能做枚举限制
     // Enum: ['dev', 'test', 'pre-production', 'production']
@@ -23,7 +21,7 @@ final class App extends BaseApplication
     protected config = null { get };
     // 处理请求次数
     protected requestNumber = 0;
-    // 需要手动关闭的服务，一般是有状态服务，如Mysql、Redis等
+    // 需要手动关闭的服务 []callable，一般是有状态服务，如Mysql、Redis等
     protected finalizers = [];
    
     public function __construct(<Config> config)
@@ -74,12 +72,6 @@ final class App extends BaseApplication
         let this->booted = true;
         // 注册主模块
         var module = this->registerModule(primaryModuleDef);
-        if module->isWeb() {
-            if !RunEnv::isInProd(this->env) {
-                let this->debug = new \Phalcon\Debug();
-                this->debug->listen();
-            }
-        }
         return this;
     }
 
@@ -157,19 +149,9 @@ final class App extends BaseApplication
         return this;
     }
 
-    public function isDebug() -> boolean
-    {
-        return null !== this->debug;
-    }
-
     public function isBooted() -> boolean
     {
         return this->booted === true;
-    }
-
-    public function getDebug() -> <\Phalcon\Debug>
-    {
-        return this->debug;
     }
 
     public function getEnv() -> string
