@@ -25,7 +25,6 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, getName);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, getIdName);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, getUsernameName);
 PHP_METHOD(PhalconPlus_Auth_UserProvider, getRoleName);
-PHP_METHOD(PhalconPlus_Auth_UserProvider, jsonSerialize);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_auth_userprovider___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, user)
@@ -243,6 +242,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_auth_userprovider_method_entry) {
 	PHP_ME(PhalconPlus_Auth_UserProvider, getIdName, arginfo_phalconplus_auth_userprovider_getidname, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, getUsernameName, arginfo_phalconplus_auth_userprovider_getusernamename, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Auth_UserProvider, getRoleName, arginfo_phalconplus_auth_userprovider_getrolename, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Auth_UserProvider, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

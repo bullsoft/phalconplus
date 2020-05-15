@@ -1,6 +1,6 @@
 namespace PhalconPlus\Auth;
 use PhalconPlus\Contracts\Auth\Access\ModelEvent;
-use Phalcon\Mvc\Model as ARModel;
+use Phalcon\Mvc\Model as MvcModel;
 use Phalcon\Events\Event;
 use PhalconPlus\Contracts\Auth\Policy as PolicyContract;
 use PhalconPlus\Contracts\Auth\UserProvider;
@@ -22,25 +22,25 @@ class Model implements ModelEvent
         return this;
     }
 
-    public function beforeDelete(<Event> event, <ARModel> model, var context = null) -> bool
+    public function beforeDelete(<Event> event, <MvcModel> model, var context = null) -> bool
     {
         var instance = this->getPolicy(model);
         return instance ? instance->delete(this->user, model) : false;
     }
 
-    public function beforeCreate(<Event> event, <ARModel> model, var context = null) -> bool
+    public function beforeCreate(<Event> event, <MvcModel> model, var context = null) -> bool
     {
         var instance = this->getPolicy(model);   
         return instance ? instance->create(this->user, model) : false;
     }
 
-    public function beforeUpdate(<Event> event, <ARModel> model, var context = null) -> bool
+    public function beforeUpdate(<Event> event, <MvcModel> model, var context = null) -> bool
     {
         var instance = this->getPolicy(model);
         return instance ? instance->update(this->user, model) : false;
     }
 
-    public function beforeValidation(<Event> event, <ARModel> model, var context = null) -> bool
+    public function beforeValidation(<Event> event, <MvcModel> model, var context = null) -> bool
     {
         return true;
     }
@@ -48,7 +48,7 @@ class Model implements ModelEvent
     public function getPolicy(var model) -> <PolicyContract> | null
     {
         var modelClass, policyClass, instance;
-        if typeof model == "object" && model instanceof ARModel {
+        if typeof model == "object" && model instanceof MvcModel {
             let modelClass = get_class(model);
         }  else {
             let modelClass = (string) model;

@@ -1,5 +1,5 @@
 namespace PhalconPlus\Db\UnitOfWork;
-use \PhalconPlus\Db\UnitOfWork;
+use PhalconPlus\Db\UnitOfWork;
 
 abstract class AbstractValue 
 {

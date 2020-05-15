@@ -1,5 +1,6 @@
 namespace PhalconPlus\Db\UnitOfWork;
-use \PhalconPlus\Db\UnitOfWork;
+use PhalconPlus\Db\UnitOfWork;
+use PhalconPlus\Base\Exception as BaseException;
 
 class LastInsertId extends AbstractValue
 {
@@ -24,7 +25,7 @@ class LastInsertId extends AbstractValue
             return 0;
         }
 
-        throw new \PhalconPlus\Base\Exception("Object(".hash.") instance of ".className." not in SplObjectStorage");
+        throw new BaseException("Object(".hash.") instance of ".className." not in SplObjectStorage");
     }
 
     public function __toString()

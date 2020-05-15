@@ -1,4 +1,3 @@
-//<?php
 namespace PhalconPlus\Http;
 
 use Phalcon\Http\Request as BaseRequest;
@@ -59,7 +58,6 @@ class NonPsrRequest extends BaseRequest
             let _SERVER["HTTP_".k] = is_array(v) ? reset(v) : v;
         }
 
-        // error_log("IN NoPsrRequest: " . self::getRequestTarget(request));
         let _SERVER["REQUEST_URI"] = self::getRequestTarget(request);
         let _SERVER["REQUEST_METHOD"] = request->getMethod();
 

@@ -12,7 +12,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_lastinsertid___construc
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_lastinsertid_getvalue, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, unitwork, \\PhalconPlus\\Db\\UnitOfWork, 0)
+	ZEND_ARG_OBJ_INFO(0, unitwork, PhalconPlus\\Db\\UnitOfWork, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_db_unitofwork_lastinsertid_method_entry) {

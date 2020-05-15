@@ -94,9 +94,7 @@ class Curl
      */
     public function setBaseUrl(string baseUrl) -> <Curl>
     {
-        if Text::startsWith(baseUrl, "http://") || Text::startsWith(baseUrl, "https://") {
-            // 
-        } else {
+        if !Text::startsWith(baseUrl, "http://") && !Text::startsWith(baseUrl, "https://") {
             throw new CurlException("Base Url should start with http:// or https://");
         }
         let this->baseUrl = baseUrl;
@@ -113,9 +111,7 @@ class Curl
      */
     public function buildUrl(string url, array query) -> string
     {
-        if Text::startsWith(url, "http://") || Text::startsWith(url, "https://") {
-            // 
-        } else {
+        if !Text::startsWith(url, "http://") && !Text::startsWith(url, "https://") {
             let url = this->baseUrl . url;
         }
 
@@ -164,9 +160,7 @@ class Curl
             request->setOptions(this->defaultOptions);
         }
         request->setMethod(method);
-        if Text::startsWith(url, "http://") || Text::startsWith(url, "https://") {
-            // 
-        } else {
+        if !Text::startsWith(url, "http://") && !Text::startsWith(url, "https://") {
             let url = this->baseUrl . url;
         }
         request->setUrl(url);

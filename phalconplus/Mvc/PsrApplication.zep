@@ -44,8 +44,6 @@ class PsrApplication extends BaseApplication
             reqUri     = psrRequest->getUri()->getPath(), // get request uri-path
             protocol   = psrRequest->getProtocolVersion();
 
-        // error_log(reqUri);
-        // error_log(var_export(_SERVER, true));
         let response = <BaseResponse> parent::handle();
         return response;
     }
