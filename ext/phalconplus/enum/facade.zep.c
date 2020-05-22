@@ -26,7 +26,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade) {
 
 	zend_declare_property_null(phalconplus_enum_facade_ce, SL("facades"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC);
 
-	zend_declare_property_string(phalconplus_enum_facade_ce, SL("classPrefix"), "\\PhalconPlus\\Facades\\", ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
+	zend_declare_property_string(phalconplus_enum_facade_ce, SL("classPrefix"), "PhalconPlus\\Facades\\", ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
 
 	zend_declare_property_bool(phalconplus_enum_facade_ce, SL("loaded"), 0, ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
 

@@ -136,7 +136,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uri_param = NULL, _0, _1, _2, _3, response, psrRequest, _4, reqUri, _5, protocol, _6;
+	zval *uri_param = NULL, _0, _1, _2, _3, _4;
 	zval uri;
 	zval *this_ptr = getThis();
 
@@ -145,13 +145,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&response);
-	ZVAL_UNDEF(&psrRequest);
 	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&reqUri);
-	ZVAL_UNDEF(&_5);
-	ZVAL_UNDEF(&protocol);
-	ZVAL_UNDEF(&_6);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri_param);
@@ -175,18 +169,9 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZVAL_STRING(&_3, "request");
 	ZEPHIR_CALL_METHOD(NULL, &_1, "setshared", NULL, 0, &_3, &_2);
 	zephir_check_call_status();
-	zephir_read_property(&_4, this_ptr, ZEND_STRL("psrRequest"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CPY_WRT(&psrRequest, &_4);
-	ZEPHIR_CALL_METHOD(&_5, &psrRequest, "geturi", NULL, 0);
+	ZEPHIR_CALL_PARENT(&_4, phalconplus_mvc_psrapplication_ce, getThis(), "handle", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&reqUri, &_5, "getpath", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&protocol, &psrRequest, "getprotocolversion", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CALL_PARENT(&_6, phalconplus_mvc_psrapplication_ce, getThis(), "handle", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CPY_WRT(&response, &_6);
-	RETURN_CCTOR(&response);
+	RETURN_CCTOR(&_4);
 
 }
 

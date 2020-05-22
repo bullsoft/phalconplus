@@ -11,7 +11,7 @@ if (PHP_PHALCONPLUS != "no") {
   }
   
   ADD_SOURCES(configure_module_dirname + "/phalconplus/facades", "abstractfacade.zep.c acl.zep.c annotations.zep.c app.zep.c appengine.zep.c appmodule.zep.c assets.zep.c config.zep.c cookies.zep.c crypt.zep.c di.zep.c dispatcher.zep.c escaper.zep.c eventsmanager.zep.c filter.zep.c flash.zep.c flashsession.zep.c log.zep.c modelscache.zep.c modelsmanager.zep.c modelsmetadata.zep.c redis.zep.c request.zep.c response.zep.c router.zep.c security.zep.c service.zep.c session.zep.c sessionbag.zep.c tag.zep.c transactionmanager.zep.c url.zep.c user.zep.c view.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus/contracts", "arrayof.zep.c emptyornot.zep.c eventattachable.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/contracts", "arrayof.zep.c emptyornot.zep.c dump.zep.c eventattachable.zep.c invoke.zep.c stringer.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/base", "protobuffer.zep.c exception.zep.c abstractrequest.zep.c abstractresponse.zep.c model.zep.c pagable.zep.c page.zep.c protoorderby.zep.c service.zep.c simplerequest.zep.c simpleresponse.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/enum", "abstractenum.zep.c exception.zep.c assertioncode.zep.c facade.zep.c orderbydirection.zep.c runenv.zep.c runmode.zep.c sys.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/app/engine", "appengine.zep.c cli.zep.c srv.zep.c web.zep.c", "phalconplus");

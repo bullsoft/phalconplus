@@ -88,7 +88,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, __construct) {
 	}
 	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 144, &remoteServerUrl);
 	zephir_check_call_status();
-	zephir_array_fetch(&_0, &remoteServerUrl, &key, PH_NOISY | PH_READONLY, "phalconplus/Rpc/Client/Adapter/Curl.zep", 20);
+	zephir_array_fetch(&_0, &remoteServerUrl, &key, PH_NOISY | PH_READONLY, "phalconplus/Rpc/Client/Adapter/Curl.zep", 19);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("remoteServerUrl"), &_0);
 	ZEPHIR_INIT_VAR(&_1);
 	object_init_ex(&_1, phalconplus_curl_curl_ce);
@@ -163,7 +163,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, callByObject) {
 		ZVAL_STRING(&decoder, "json_decode");
 	}
 	zephir_read_property(&_2, this_ptr, ZEND_STRL("namePrefix"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_3, &rawData, SL("service"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Client/Adapter/Curl.zep", 40);
+	zephir_array_fetch_string(&_3, &rawData, SL("service"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Client/Adapter/Curl.zep", 39);
 	ZEPHIR_INIT_VAR(&_4);
 	ZEPHIR_CONCAT_VV(&_4, &_2, &_3);
 	zephir_array_update_string(&rawData, SL("service"), &_4, PH_COPY | PH_SEPARATE);

@@ -164,11 +164,11 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	ZEPHIR_CALL_FUNCTION(&trace, "debug_backtrace", NULL, 142, &_1, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_2, 107, &trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_2, 105, &trace);
 	ZEPHIR_UNREF(&trace);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&trace);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_2, 107, &trace);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", &_2, 105, &trace);
 	ZEPHIR_UNREF(&trace);
 	zephir_check_call_status();
 	i = 0;
