@@ -45,11 +45,14 @@ final class Sys extends AbstractEnum
         }
         let self::app = app;
         // 加载Facacdes
-        Facade::register(app, "\\Ph\\");
+        Facade::register(app, "Ph\\");
     }
 
     public static function app() -> <SuperApp>
     {
+        if self::app == null {
+            throw new BaseException("SuperApp has no instances yet");
+        }
         return self::app;
     }
 

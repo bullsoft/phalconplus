@@ -11,7 +11,7 @@ abstract class AbstractClient
 		 return this;
 	}
 
-	public function setDi(<\Phalcon\DI> di) -> <AbstractClient>
+	public function setDI(<\Phalcon\DI> di) -> <AbstractClient>
 	{
 		let this->di = di;
 		return this;

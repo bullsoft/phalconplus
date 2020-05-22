@@ -17,9 +17,7 @@ class Exception extends \Exception
     {
         var message = "", args = [];
         let message = "An exception created: " . get_class(this);
-        if empty info {
-            // nothing to do here ...
-        } else {
+        if !empty info {
             if is_array(info) {
                 let this->info = info;
                 let message = message . ", message: " . strval(info[0]);
@@ -32,7 +30,7 @@ class Exception extends \Exception
                 let message = message . ", message: " . info;
             }
         }
-        if Sys::app() && Sys::app()->di() && Sys::app()->di()->has("logger") {
+        if Sys::app()->isBooted() && Sys::app()->di()->has("logger") {
             var logger = Sys::app()->di()->get("logger");
             var argsJson = json_encode(args, JSON_UNESCAPED_UNICODE);
             logger->log(message . ", args: ". argsJson, this->getLevel());

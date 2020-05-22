@@ -39,12 +39,10 @@ class PsrApplication extends BaseApplication
 
         this->_dependencyInjector->setShared("request", this->nativeRequest);
    
-        var response,  // get Phalcon\Http\Response
-            psrRequest = this->psrRequest,
-            reqUri     = psrRequest->getUri()->getPath(), // get request uri-path
-            protocol   = psrRequest->getProtocolVersion();
+        // var psrRequest = this->psrRequest,
+        //     reqUri     = psrRequest->getUri()->getPath(),
+        //     protocol   = psrRequest->getProtocolVersion();
 
-        let response = <BaseResponse> parent::handle();
-        return response;
+        return <BaseResponse> parent::handle();
     }
 }

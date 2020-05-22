@@ -44,7 +44,7 @@ class Web extends Injectable implements AppEngine
         if likely handler instanceof BaseApplication {
             let this->handler = handler;
         } else {
-            throw new BaseException("Application must be instance of phalcon\\appliction");
+            throw new BaseException("Application must be instance of phalcon\\application");
         }
         return this;
     }
@@ -58,7 +58,7 @@ class Web extends Injectable implements AppEngine
     public function getHandler() -> object
     {
         if unlikely empty(this->handler) {
-            throw new BaseException("Sorry, empty handler");
+            throw new BaseException("Sorry, empty web handler");
         }
         return this->handler;
     }
