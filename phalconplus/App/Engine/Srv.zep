@@ -30,7 +30,7 @@ class Srv extends Injectable implements AppEngine
         if unlikely di->has("backendSrv") {
             let backendSrv = di->get("backendSrv");
             if ! (backendSrv instanceof AbstractServer) {
-                throw new BaseException("Service object(DI[\"backendSrv\"]) must be type of \\PhalconPlus\\Rpc\\Server\\AbstractServer");
+                throw new BaseException("Service object(DI[\"backendSrv\"]) must be type of PhalconPlus\\Rpc\\Server\\AbstractServer");
             }
         } else {
             let backendSrv = new SimpleServer(di);
@@ -63,7 +63,7 @@ class Srv extends Injectable implements AppEngine
         if likely (handler instanceof BaseApplication) || (handler instanceof Yar_Server) {
             let this->handler = handler;
         } else {
-            throw new BaseException("Application must be instance of phalcon\\appliction or yar_server");
+            throw new BaseException("Application must be instance of phalcon\\application or yar_server");
         }
         
         return this;
@@ -77,7 +77,7 @@ class Srv extends Injectable implements AppEngine
     public function getHandler() -> object
     {
         if unlikely empty(this->handler) {
-            throw new BaseException("Sorry, empty handler");
+            throw new BaseException("Sorry, empty srv handler");
         }
         return this->handler;
     }

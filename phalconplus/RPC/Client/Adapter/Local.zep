@@ -7,7 +7,7 @@ class Local extends AbstractClient
 {
     public function __construct(<\Phalcon\DI> di)
     {
-        this->setDi(di);
+        this->setDI(di);
     }
 
     private function callByParams(string! service, string! method, request)

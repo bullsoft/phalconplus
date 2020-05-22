@@ -15,8 +15,7 @@ class Curl extends AbstractClient
         if empty remoteServerUrl {
             throw new BaseException("server url can not be empty");
         }
-        var key;
-        let key = array_rand(remoteServerUrl);
+        var key = array_rand(remoteServerUrl);
         let this->remoteServerUrl = remoteServerUrl[key];
         let this->client = new HttpClient();
         if !empty opts {

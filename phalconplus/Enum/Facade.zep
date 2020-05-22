@@ -50,7 +50,7 @@ class Facade extends AbstractEnum
         "Url", "Acl", "App", "Di", "AppEngine", "Redis", "User", "AppModule"
     ];
 
-    private static classPrefix = "\\PhalconPlus\\Facades\\";
+    private static classPrefix = "PhalconPlus\\Facades\\";
     private static loaded = false;
 
     public static function register(<SuperApp> superApp, string prefix = "") -> boolean

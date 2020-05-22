@@ -79,13 +79,13 @@ PHP_METHOD(PhalconPlus_Bootstrap, __construct) {
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_sys_ce, "init", &_0, 0, &moduleDir);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&config, this_ptr, "initconf", NULL, 83);
+	ZEPHIR_CALL_METHOD(&config, this_ptr, "initconf", NULL, 81);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
 	object_init_ex(&_1, phalconplus_app_app_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 84, &config);
+	ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 82, &config);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_2, &_1, "boot", NULL, 85, &env, &runMode);
+	ZEPHIR_CALL_METHOD(&_2, &_1, "boot", NULL, 83, &env, &runMode);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("app"), &_2);
 

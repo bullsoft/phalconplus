@@ -15,9 +15,9 @@
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
+#include "kernel/fcall.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
-#include "kernel/fcall.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Helper_Variable) {
@@ -58,6 +58,55 @@ PHP_METHOD(PhalconPlus_Helper_Variable, isSoftNull) {
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "$Ph/Var/SoftNull$");
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&_0, &nil));
+
+}
+
+/**
+ * if $a is null, exception will be thrown
+ *
+ * Variable::notNull($a)->callMethod()
+ */
+PHP_METHOD(PhalconPlus_Helper_Variable, notNull) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_0 = NULL;
+	zval *val, val_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&val_sub);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &val);
+
+
+
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notnull", &_0, 0, val);
+	zephir_check_call_status();
+	RETVAL_ZVAL(val, 1, 0);
+	RETURN_MM();
+
+}
+
+PHP_METHOD(PhalconPlus_Helper_Variable, notEmpty) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_0 = NULL;
+	zval *val, val_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&val_sub);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &val);
+
+
+
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "notempty", &_0, 0, val);
+	zephir_check_call_status();
+	RETVAL_ZVAL(val, 1, 0);
+	RETURN_MM();
 
 }
 
@@ -137,24 +186,24 @@ PHP_METHOD(PhalconPlus_Helper_Variable, stringify) {
 		_8 = Z_TYPE_P(value) == IS_RESOURCE;
 	}
 	if (_8) {
-		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 64, value, &__$true);
+		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 130, value, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_9$$7);
 		ZVAL_STRING(&_9$$7, "/\\s+/");
 		ZEPHIR_INIT_VAR(&_10$$7);
 		ZVAL_STRING(&_10$$7, " ");
-		ZEPHIR_CALL_FUNCTION(&_11$$7, "preg_replace", NULL, 65, &_9$$7, &_10$$7, &val);
+		ZEPHIR_CALL_FUNCTION(&_11$$7, "preg_replace", NULL, 131, &_9$$7, &_10$$7, &val);
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(&val, &_11$$7);
 		_12$$7 = full == 0;
 		if (_12$$7) {
-			_12$$7 = zephir_fast_strlen_ev(&val) > 160;
+			_12$$7 = zephir_fast_strlen_ev(&val) > 260;
 		}
 		if (_12$$7) {
 			ZVAL_LONG(&_13$$8, 0);
-			ZVAL_LONG(&_14$$8, 156);
+			ZVAL_LONG(&_14$$8, 256);
 			ZEPHIR_INIT_VAR(&_15$$8);
-			zephir_substr(&_15$$8, &val, 0 , 156 , 0);
+			zephir_substr(&_15$$8, &val, 0 , 256 , 0);
 			ZEPHIR_CONCAT_VS(return_value, &_15$$8, " ...");
 			RETURN_MM();
 		}

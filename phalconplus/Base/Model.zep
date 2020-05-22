@@ -14,13 +14,6 @@ use PhalconPlus\Base\Exception as BaseException;
 
 class Model extends \Phalcon\Mvc\Model
 {
-    // 记录创建时间
-    // public ctime;
-    // public createdAt;
-    // 记录更新时间
-    // public mtime;
-    // public updatedAt;
-
     // 自定义模型唯一键
     protected __uniqueKeys = [];
 
@@ -324,7 +317,6 @@ class Model extends \Phalcon\Mvc\Model
 
         let orderBys = array_map("strval", pagable->getOrderBys());
         if !empty orderBys {
-            // error_log(var_export(orderBys, true));
             builder->orderBy(implode(", ", orderBys));
         }
 
@@ -406,11 +398,11 @@ class Model extends \Phalcon\Mvc\Model
     /**
      * 如果想在更新某条记录的时候额外加入其他条件，可以使用此方法
      * where = [
-         'id > ?',  // 特别注意！！！ 占位符仅支持?形式，不支持:placeHolder这种形式
-         'bind' => [
-             14
-         ]
-     ];
+     *    'id > ?',  // 特别注意！！！ 占位符仅支持?形式，不支持:placeHolder这种形式
+     *    'bind' => [
+     *        14
+     *    ]
+     * ];
      */
     public function setUpdateCondition(array params)
     {

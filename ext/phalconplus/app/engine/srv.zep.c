@@ -84,7 +84,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct) {
 		ZEPHIR_CALL_METHOD(&backendSrv, &di, "get", NULL, 0, &_2$$3);
 		zephir_check_call_status();
 		if (!(zephir_instance_of_ev(&backendSrv, phalconplus_rpc_server_abstractserver_ce))) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Service object(DI[\"backendSrv\"]) must be type of \\PhalconPlus\\Rpc\\Server\\AbstractServer", "phalconplus/App/Engine/Srv.zep", 33);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Service object(DI[\"backendSrv\"]) must be type of PhalconPlus\\Rpc\\Server\\AbstractServer", "phalconplus/App/Engine/Srv.zep", 33);
 			return;
 		}
 	} else {
@@ -187,7 +187,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, setHandler) {
 	if (EXPECTED(_0)) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Application must be instance of phalcon\\appliction or yar_server", "phalconplus/App/Engine/Srv.zep", 66);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Application must be instance of phalcon\\application or yar_server", "phalconplus/App/Engine/Srv.zep", 66);
 		return;
 	}
 	RETURN_THISW();
@@ -216,7 +216,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, getHandler) {
 	ZEPHIR_OBS_VAR(&_0);
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC);
 	if (UNEXPECTED(ZEPHIR_IS_EMPTY(&_0))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty handler", "phalconplus/App/Engine/Srv.zep", 80);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty srv handler", "phalconplus/App/Engine/Srv.zep", 80);
 		return;
 	}
 	RETURN_MM_MEMBER(getThis(), "handler");

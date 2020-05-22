@@ -343,7 +343,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrRequest, __construct) {
 			ZEPHIR_INIT_NVAR(&_32$$21);
 			if (Z_TYPE_P(&v) == IS_ARRAY) {
 				ZEPHIR_MAKE_REF(&v);
-				ZEPHIR_CALL_FUNCTION(&_32$$21, "reset", &_33, 69, &v);
+				ZEPHIR_CALL_FUNCTION(&_32$$21, "reset", &_33, 67, &v);
 				ZEPHIR_UNREF(&v);
 				zephir_check_call_status();
 			} else {
@@ -377,7 +377,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrRequest, __construct) {
 				ZEPHIR_INIT_NVAR(&_38$$22);
 				if (Z_TYPE_P(&v) == IS_ARRAY) {
 					ZEPHIR_MAKE_REF(&v);
-					ZEPHIR_CALL_FUNCTION(&_38$$22, "reset", &_33, 69, &v);
+					ZEPHIR_CALL_FUNCTION(&_38$$22, "reset", &_33, 67, &v);
 					ZEPHIR_UNREF(&v);
 					zephir_check_call_status();
 				} else {

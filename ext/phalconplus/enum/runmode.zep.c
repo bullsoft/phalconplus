@@ -74,7 +74,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 	if (!(zephir_is_true(&_5))) {
 		ZEPHIR_INIT_VAR(&_6$$3);
 		ZEPHIR_CONCAT_SV(&_6$$3, "PHP Notice:  PhalconPlus\\Enum\\RunMode Global load file not exists: ", &script);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 110, &_6$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 108, &_6$$3);
 		zephir_check_call_status();
 		RETURN_MM_NULL();
 	}

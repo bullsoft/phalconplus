@@ -53,7 +53,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, setNamePrefix) {
 
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, setDi) {
+PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, setDI) {
 
 	zval *di, di_sub;
 	zval *this_ptr = getThis();

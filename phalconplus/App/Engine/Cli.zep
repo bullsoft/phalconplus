@@ -37,7 +37,7 @@ class Cli extends Injectable implements AppEngine
         if likely handler instanceof BaseApplication {
             let this->handler = handler;
         } else {
-            throw new BaseException("Handler must be instance of phalcon\\appliction");
+            throw new BaseException("Handler must be instance of phalcon\\application");
         }
         return this;
     }
@@ -51,7 +51,7 @@ class Cli extends Injectable implements AppEngine
     public function getHandler() -> object
     {
         if unlikely empty(this->handler) {
-            throw new BaseException("Sorry, empty handler");
+            throw new BaseException("Sorry, empty cli handler");
         }
         return this->handler;
     }

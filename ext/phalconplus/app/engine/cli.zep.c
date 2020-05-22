@@ -143,7 +143,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, setHandler) {
 		object_init_ex(&_0$$4, _1$$4);
 		if (zephir_has_constructor(&_0$$4)) {
 			ZEPHIR_INIT_VAR(&_2$$4);
-			ZVAL_STRING(&_2$$4, "Handler must be instance of phalcon\\appliction");
+			ZVAL_STRING(&_2$$4, "Handler must be instance of phalcon\\application");
 			ZEPHIR_CALL_METHOD(NULL, &_0$$4, "__construct", NULL, 0, &_2$$4);
 			zephir_check_call_status();
 		}
@@ -188,7 +188,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, getHandler) {
 		object_init_ex(&_1$$3, _2$$3);
 		if (zephir_has_constructor(&_1$$3)) {
 			ZEPHIR_INIT_VAR(&_3$$3);
-			ZVAL_STRING(&_3$$3, "Sorry, empty handler");
+			ZVAL_STRING(&_3$$3, "Sorry, empty cli handler");
 			ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 0, &_3$$3);
 			zephir_check_call_status();
 		}

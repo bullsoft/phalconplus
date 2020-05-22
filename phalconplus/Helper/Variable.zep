@@ -1,4 +1,5 @@
 namespace PhalconPlus\Helper;
+use PhalconPlus\Assert\Assertion as Assert;
 
 class Variable
 {
@@ -12,6 +13,23 @@ class Variable
     public static function isSoftNull(string nil)
     {
         return Variable::NULL_VALUE === nil;
+    }
+
+    /**
+     * if $a is null, exception will be thrown
+     *
+     * Variable::notNull($a)->callMethod()
+     */ 
+    public static function notNull(var val)
+    {
+        Assert::notNull(val);
+        return val;
+    }
+
+    public static function notEmpty(var val) 
+    {
+        Assert::notEmpty(val);
+        return val;
     }
 
     public static function stringify(var value, bool full = false) -> string
@@ -33,8 +51,8 @@ class Variable
         if is_array(value) || is_object(value) || is_resource(value) {
             let val = print_r(value, true);
             let val = preg_replace("/\s+/", " ", val);
-            if full == false && strlen(val) > 160 {
-                return substr(val, 0, 156) . " ...";
+            if full == false && strlen(val) > 260 {
+                return substr(val, 0, 256) . " ...";
             }
             return val;
         }

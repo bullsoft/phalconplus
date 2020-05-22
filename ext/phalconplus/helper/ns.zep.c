@@ -26,6 +26,9 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Helper_Ns) {
 
 }
 
+/**
+ * PhalconPlus\App\Engine\Web -> PhalconPlus\App\Engine
+ */
 PHP_METHOD(PhalconPlus_Helper_Ns, super) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -52,16 +55,16 @@ PHP_METHOD(PhalconPlus_Helper_Ns, super) {
 	ZVAL_STRING(&_0, "\\");
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "/");
-	ZEPHIR_CALL_FUNCTION(&dir, "strtr", NULL, 127, &ns, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&dir, "strtr", NULL, 125, &ns, &_0, &_1);
 	zephir_check_call_status();
 	ZVAL_LONG(&_2, levels);
-	ZEPHIR_CALL_FUNCTION(&here, "dirname", NULL, 121, &dir, &_2);
+	ZEPHIR_CALL_FUNCTION(&here, "dirname", NULL, 119, &dir, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "/");
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "\\");
-	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 127, &here, &_0, &_1);
+	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 125, &here, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
 
