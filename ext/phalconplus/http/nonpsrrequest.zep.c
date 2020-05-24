@@ -343,7 +343,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrRequest, __construct) {
 			ZEPHIR_INIT_NVAR(&_32$$21);
 			if (Z_TYPE_P(&v) == IS_ARRAY) {
 				ZEPHIR_MAKE_REF(&v);
-				ZEPHIR_CALL_FUNCTION(&_32$$21, "reset", &_33, 67, &v);
+				ZEPHIR_CALL_FUNCTION(&_32$$21, "reset", &_33, 66, &v);
 				ZEPHIR_UNREF(&v);
 				zephir_check_call_status();
 			} else {
@@ -377,7 +377,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrRequest, __construct) {
 				ZEPHIR_INIT_NVAR(&_38$$22);
 				if (Z_TYPE_P(&v) == IS_ARRAY) {
 					ZEPHIR_MAKE_REF(&v);
-					ZEPHIR_CALL_FUNCTION(&_38$$22, "reset", &_33, 67, &v);
+					ZEPHIR_CALL_FUNCTION(&_38$$22, "reset", &_33, 66, &v);
 					ZEPHIR_UNREF(&v);
 					zephir_check_call_status();
 				} else {
@@ -442,7 +442,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrRequest, __construct) {
 			ZEPHIR_CALL_FUNCTION(&_51$$26, "session_name", NULL, 132);
 			zephir_check_call_status();
 			zephir_array_fetch(&_50$$26, &_49$$26, &_51$$26, PH_NOISY | PH_READONLY, "phalconplus/Http/NonPsrRequest.zep", 71);
-			ZEPHIR_CALL_FUNCTION(NULL, "session_id", NULL, 46, &_50$$26);
+			ZEPHIR_CALL_FUNCTION(NULL, "session_id", NULL, 45, &_50$$26);
 			zephir_check_call_status();
 		}
 	}

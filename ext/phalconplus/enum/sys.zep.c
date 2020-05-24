@@ -100,7 +100,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 	ZVAL_STRING(&_2, "/");
 	zephir_fast_trim(&_1, &moduleDir, &_2, ZEPHIR_TRIM_RIGHT);
 	zephir_get_strval(&moduleDir, &_1);
-	ZEPHIR_CALL_FUNCTION(&_3, "is_dir", NULL, 53, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_3, "is_dir", NULL, 52, &moduleDir);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_3))) {
 		ZEPHIR_INIT_VAR(&_4$$4);
@@ -472,7 +472,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 	ZVAL_STRING(&_3, "/");
 	ZEPHIR_INIT_NVAR(&confPath);
 	zephir_fast_join(&confPath, &_3, &_0);
-	ZEPHIR_CALL_FUNCTION(&_4, "is_file", &_5, 55, &confPath);
+	ZEPHIR_CALL_FUNCTION(&_4, "is_file", &_5, 54, &confPath);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_4))) {
 		ZEPHIR_INIT_VAR(&_6$$3);
@@ -492,7 +492,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 		ZEPHIR_INIT_NVAR(&confPath);
 		zephir_fast_join(&confPath, &_7$$3, &_6$$3);
 	}
-	ZEPHIR_CALL_FUNCTION(&_9, "is_file", &_5, 55, &confPath);
+	ZEPHIR_CALL_FUNCTION(&_9, "is_file", &_5, 54, &confPath);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_9))) {
 		ZEPHIR_INIT_VAR(&_10$$4);
@@ -625,7 +625,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, load) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "is_file", NULL, 55, &filePath);
+	ZEPHIR_CALL_FUNCTION(&_0, "is_file", NULL, 54, &filePath);
 	zephir_check_call_status();
 	if (UNEXPECTED(!zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);

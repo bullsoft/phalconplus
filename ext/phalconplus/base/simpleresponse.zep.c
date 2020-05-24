@@ -233,7 +233,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 	} else {
 		zephir_read_property(&_3$$5, this_ptr, ZEND_STRL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_3$$5);
-		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 67, &_3$$5);
+		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 66, &_3$$5);
 		ZEPHIR_UNREF(&_3$$5);
 		zephir_check_call_status();
 		RETURN_MM();

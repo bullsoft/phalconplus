@@ -15,9 +15,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/protobuffer.zep.c
 	phalconplus/enum/abstractenum.zep.c
 	phalconplus/app/engine/appengine.zep.c
+	phalconplus/base/exception.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
-	phalconplus/base/exception.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
 	phalconplus/base/abstractrequest.zep.c
@@ -26,7 +26,6 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/contracts/auth/policy.zep.c
 	phalconplus/contracts/auth/userprovider.zep.c
 	phalconplus/db/pdo/abstractmysql.zep.c
-	phalconplus/enum/exception.zep.c
 	phalconplus/rpc/server/abstractserver.zep.c
 	phalconplus/app/app.zep.c
 	phalconplus/app/engine/cli.zep.c
@@ -66,6 +65,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/db/unitofwork/field.zep.c
 	phalconplus/db/unitofwork/lastinsertid.zep.c
 	phalconplus/enum/assertioncode.zep.c
+	phalconplus/enum/exception.zep.c
 	phalconplus/enum/facade.zep.c
 	phalconplus/enum/orderbydirection.zep.c
 	phalconplus/enum/runenv.zep.c

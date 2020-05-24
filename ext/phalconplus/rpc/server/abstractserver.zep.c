@@ -214,7 +214,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByParams) {
 	}
 	_12 = Z_TYPE_P(request) == IS_NULL;
 	if (_12) {
-		ZEPHIR_CALL_METHOD(&_13, &methodReflection, "getnumberofrequiredparameters", NULL, 31);
+		ZEPHIR_CALL_METHOD(&_13, &methodReflection, "getnumberofrequiredparameters", NULL, 30);
 		zephir_check_call_status();
 		_12 = ZEPHIR_GT_LONG(&_13, 0);
 	}

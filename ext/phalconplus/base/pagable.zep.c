@@ -331,7 +331,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys) {
 				zephir_fast_strtoupper(&upperDirection$$4, &_3$$4);
 				ZEPHIR_INIT_NVAR(&direction$$4);
 				object_init_ex(&direction$$4, phalconplus_enum_orderbydirection_ce);
-				ZEPHIR_CALL_METHOD(NULL, &direction$$4, "__construct", &_4, 54, &upperDirection$$4);
+				ZEPHIR_CALL_METHOD(NULL, &direction$$4, "__construct", &_4, 53, &upperDirection$$4);
 				zephir_check_call_status();
 				ZEPHIR_INIT_NVAR(&orderBy$$4);
 				object_init_ex(&orderBy$$4, phalconplus_base_protoorderby_ce);
@@ -367,7 +367,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys) {
 					zephir_fast_strtoupper(&upperDirection$$6, &_12$$6);
 					ZEPHIR_INIT_NVAR(&direction$$6);
 					object_init_ex(&direction$$6, phalconplus_enum_orderbydirection_ce);
-					ZEPHIR_CALL_METHOD(NULL, &direction$$6, "__construct", &_4, 54, &upperDirection$$6);
+					ZEPHIR_CALL_METHOD(NULL, &direction$$6, "__construct", &_4, 53, &upperDirection$$6);
 					zephir_check_call_status();
 					ZEPHIR_INIT_NVAR(&orderBy$$6);
 					object_init_ex(&orderBy$$6, phalconplus_base_protoorderby_ce);
