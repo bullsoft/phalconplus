@@ -1,8 +1,9 @@
 namespace PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Base\Exception as BaseException;
+use PhalconPlus\Contracts\Stringer;
 
-class LastInsertId extends AbstractValue
+class LastInsertId extends AbstractValue implements Stringer
 {
     protected model;
 
@@ -28,7 +29,7 @@ class LastInsertId extends AbstractValue
         throw new BaseException("Object(".hash.") instance of ".className." not in SplObjectStorage");
     }
 
-    public function __toString()
+    public function __toString() -> string
     {
         return "LastInsertId: " . spl_object_hash(this->model);
     }
