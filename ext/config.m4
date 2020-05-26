@@ -18,6 +18,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/base/exception.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
+	phalconplus/contracts/stringer.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
 	phalconplus/base/abstractrequest.zep.c
@@ -54,7 +55,6 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/contracts/dump.zep.c
 	phalconplus/contracts/eventattachable.zep.c
 	phalconplus/contracts/invoke.zep.c
-	phalconplus/contracts/stringer.zep.c
 	phalconplus/curl/curl.zep.c
 	phalconplus/curl/exception.zep.c
 	phalconplus/curl/request.zep.c

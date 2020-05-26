@@ -26,6 +26,7 @@
 zend_class_entry *phalconplus_contracts_arrayof_ce;
 zend_class_entry *phalconplus_contracts_emptyornot_ce;
 zend_class_entry *phalconplus_app_engine_appengine_ce;
+zend_class_entry *phalconplus_contracts_stringer_ce;
 zend_class_entry *phalconplus_assert_assertionfailedexception_ce;
 zend_class_entry *phalconplus_contracts_auth_access_modelevent_ce;
 zend_class_entry *phalconplus_contracts_auth_policy_ce;
@@ -37,7 +38,6 @@ zend_class_entry *phalconplus_contracts_auth_access_routerevent_ce;
 zend_class_entry *phalconplus_contracts_dump_ce;
 zend_class_entry *phalconplus_contracts_eventattachable_ce;
 zend_class_entry *phalconplus_contracts_invoke_ce;
-zend_class_entry *phalconplus_contracts_stringer_ce;
 zend_class_entry *phalconplus_facades_abstractfacade_ce;
 zend_class_entry *phalconplus_base_protobuffer_ce;
 zend_class_entry *phalconplus_enum_abstractenum_ce;
@@ -156,6 +156,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Contracts_ArrayOf);
 	ZEPHIR_INIT(PhalconPlus_Contracts_EmptyOrNot);
 	ZEPHIR_INIT(PhalconPlus_App_Engine_AppEngine);
+	ZEPHIR_INIT(PhalconPlus_Contracts_Stringer);
 	ZEPHIR_INIT(PhalconPlus_Assert_AssertionFailedException);
 	ZEPHIR_INIT(PhalconPlus_Contracts_Auth_Access_ModelEvent);
 	ZEPHIR_INIT(PhalconPlus_Contracts_Auth_Policy);
@@ -167,7 +168,6 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Contracts_Dump);
 	ZEPHIR_INIT(PhalconPlus_Contracts_EventAttachable);
 	ZEPHIR_INIT(PhalconPlus_Contracts_Invoke);
-	ZEPHIR_INIT(PhalconPlus_Contracts_Stringer);
 	ZEPHIR_INIT(PhalconPlus_Facades_AbstractFacade);
 	ZEPHIR_INIT(PhalconPlus_Base_ProtoBuffer);
 	ZEPHIR_INIT(PhalconPlus_Enum_AbstractEnum);
