@@ -11,9 +11,9 @@ PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Encode);
 PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Decode);
 
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_helper_str_decodejson, 0, 1, ArrayObject, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_str_decodejson, 0, 1, IS_ARRAY, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_str_decodejson, 0, 1, IS_OBJECT, "ArrayObject", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_str_decodejson, 0, 1, IS_ARRAY, NULL, 0)
 #endif
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, inputStr, IS_STRING, 0)

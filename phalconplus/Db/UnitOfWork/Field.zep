@@ -1,8 +1,9 @@
 namespace PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Base\Exception as BaseException;
+use PhalconPlus\Contracts\Stringer;
 
-class Field extends AbstractValue
+class Field extends AbstractValue implements Stringer
 {
     protected model = null;
     protected attr = "";
@@ -35,7 +36,7 @@ class Field extends AbstractValue
         return this->getValue(unitwork);
     }
 
-    public function __toString()
+    public function __toString() -> string
     {
         return "Field: " . this->attr . ", Hash: " . spl_object_hash(this->model);
     }

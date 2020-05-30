@@ -69,7 +69,7 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 	zephir_array_fetch(&_3, &_2, &_4, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 35);
 	ZEPHIR_INIT_VAR(&script);
 	ZEPHIR_CONCAT_VV(&script, &_0, &_3);
-	ZEPHIR_CALL_FUNCTION(&_5, "is_file", NULL, 55, &script);
+	ZEPHIR_CALL_FUNCTION(&_5, "is_file", NULL, 54, &script);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_5))) {
 		ZEPHIR_INIT_VAR(&_6$$3);

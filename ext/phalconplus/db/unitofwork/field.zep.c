@@ -29,6 +29,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_Field) {
 
 	zend_declare_property_string(phalconplus_db_unitofwork_field_ce, SL("attr"), "", ZEND_ACC_PROTECTED);
 
+	zend_class_implements(phalconplus_db_unitofwork_field_ce, 1, phalconplus_contracts_stringer_ce);
 	return SUCCESS;
 
 }
@@ -124,7 +125,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 	ZEPHIR_CONCAT_SVSVS(&_9, "Object(", &hash, ") instance of ", &className, " not in SplObjectStorage");
 	ZEPHIR_CALL_METHOD(NULL, &_8, "__construct", NULL, 2, &_9);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 30);
+	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 31);
 	ZEPHIR_MM_RESTORE();
 	return;
 

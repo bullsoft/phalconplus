@@ -1,7 +1,7 @@
 namespace PhalconPlus\Auth;
-use PhalconPlus\Enum\Exception;
+use PhalconPlus\Base\Exception as BaseException;
 
-class Exception extends Exception
+class Exception extends BaseException
 {
     
 }

@@ -214,7 +214,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams) {
 	}
 	_12 = Z_TYPE_P(request) == IS_NULL;
 	if (_12) {
-		ZEPHIR_CALL_METHOD(&_13, &methodReflection, "getnumberofrequiredparameters", NULL, 31);
+		ZEPHIR_CALL_METHOD(&_13, &methodReflection, "getnumberofrequiredparameters", NULL, 30);
 		zephir_check_call_status();
 		_12 = ZEPHIR_GT_LONG(&_13, 0);
 	}
@@ -515,7 +515,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByObject) {
 		ZEPHIR_CALL_METHOD(NULL, &_19$$8, "log", NULL, 0, &message);
 		zephir_check_call_status();
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 146, &service, &method, &request);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 147, &service, &method, &request);
 	zephir_check_call_status();
 	RETURN_MM();
 

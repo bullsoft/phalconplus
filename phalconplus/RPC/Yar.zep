@@ -4,43 +4,42 @@ use PhalconPlus\Rpc\Server\AbstractServer;
 
 class Yar extends \Phalcon\Application
 {
-    protected serviceObj = null {
-        get
-    };
-    protected requestArgs = "" {
-        get
-    };
-    protected responseBody = "not supported http method" {
-        get
-	};
+    protected serviceObj = null { get };
+    protected requestArgs = "" { get };
+    protected responseBody = "Not supported http method." { get };
 
-	protected formater = "msgpack";
-	protected encoder = "msgpack_pack";
+    protected formater = "msgpack";
+    protected encoder = "msgpack_pack";
 
-	public function __construct(<DiInterface> di = null, string formater = "json")
-	{
+    public function __construct(<DiInterface> di = null, string formater = "json")
+    {
         parent::__construct(di);
-		var rawBody = this->__get("request")->getRawBody();
-		if "json" == formater {
-			let this->formater = formater;
-			let this->encoder = "json_encode";
-			let this->requestArgs = json_decode(rawBody, true);
-		} else {
-			let this->requestArgs = msgpack_unpack(rawBody);
-		}
-	}
+        var rawBody = this->__get("request")->getRawBody();
+        if "json" == formater {
+            let this->formater = formater;
+            let this->encoder = "json_encode";
+            let this->requestArgs = json_decode(rawBody, true);
+        } else {
+            let this->requestArgs = msgpack_unpack(rawBody);
+        }
+    }
 
-	public function setServer(<AbstractServer> obj)
-	{
-		let this->serviceObj = obj;
-		return this;
-	}
+    public function setServer(<AbstractServer> obj)
+    {
+        let this->serviceObj = obj;
+        return this;
+    }
 
-	public function handle()
-	{
-		var serviceName = get_class(this->serviceObj);
-		var sampleCodes;
-		let  sampleCodes = "<?php
+    public function getServer() -> <AbstractServer>
+    {
+        return this->serviceObj;
+    }
+
+    public function handle()
+    {
+        var serviceName = get_class(this->serviceObj);
+        var sampleCodes;
+        let  sampleCodes = "<?php
 $remoteUrls = [
 	\"http://" . _SERVER["HTTP_HOST"] . "\",
 ];
@@ -54,7 +53,8 @@ $result = $client->callByObject([
 ]);
 var_export($result);
 ";
-		var  expectedRet = "<?php
+        
+        var  expectedRet = "<?php
 array (
 	'errorCode' => 0,
 	'errorMsg' => '',
@@ -66,8 +66,8 @@ array (
 	),
 )
 ";
-		if this->__get("request")->isGet() {
-			let this->responseBody = "<!DOCTYPE html>
+        if this->__get("request")->isGet() {
+            let this->responseBody = "<!DOCTYPE html>
 			<html>
 			 <head>
 			  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
@@ -112,31 +112,36 @@ array (
 				</footer>
 			 </body>
 		    </html>";
-		} elseif this->__get("request")->isPost() {
+        } elseif this->__get("request")->isPost() {
             var e = null;
-			var ret = [
-				"errorCode" : 0,
-				"errorMsg" : "",
-				"data" : []
-			];
-			try {
+            var ret = [
+                "errorCode" : 0,
+                "errorMsg" : "",
+                "data" : []
+            ];
+            try {
                 if empty this->requestArgs {
                     throw new \Exception("invalid request args");
-				}
-				if empty this->serviceObj {
-					let this->serviceObj = this->getDi()->get("backendSrv");
-				}
-				let ret["data"] = this->serviceObj->callByObject(this->requestArgs);
-			} catch \Exception, e {
-				let ret["errorCode"] = max(e->getCode(), 1);
-				let ret["errorMsg"] = e->getMessage();
-			}
-			// Must do this after `callByObject`
-			let ret["logId"] = this->__get("logger")->logId;
+                }
+                if empty this->serviceObj {
+                    let this->serviceObj = this->getDI()->get("backendSrv");
+                }
+                let ret["data"] = this->serviceObj->callByObject(this->requestArgs);
+            } catch \Exception, e {
+                let ret["errorCode"] = max(e->getCode(), 1);
+                let ret["errorMsg"] = e->getMessage();
+            }
+            // Must do this after `callByObject`
+            let ret["logId"] = this->__get("logger")->logId;
 
-			string encoder = this->encoder;
-			let this->responseBody = {encoder}(ret);
-		}
-		echo this->responseBody;
-	}
+            string encoder = this->encoder;
+            let this->responseBody = {encoder}(ret);
+        }
+        echo this->responseBody;
+    }
+
+    public function responseBody() -> string
+    {
+        return this->responseBody;
+    }
 }

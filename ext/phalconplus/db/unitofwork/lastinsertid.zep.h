@@ -15,9 +15,16 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_lastinsertid_getvalue, 
 	ZEND_ARG_OBJ_INFO(0, unitwork, PhalconPlus\\Db\\UnitOfWork, 0)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_unitofwork_lastinsertid___tostring, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_unitofwork_lastinsertid___tostring, 0, 0, IS_STRING, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(phalconplus_db_unitofwork_lastinsertid_method_entry) {
 	PHP_ME(PhalconPlus_Db_UnitOfWork_LastInsertId, __construct, arginfo_phalconplus_db_unitofwork_lastinsertid___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue, arginfo_phalconplus_db_unitofwork_lastinsertid_getvalue, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Db_UnitOfWork_LastInsertId, __toString, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Db_UnitOfWork_LastInsertId, __toString, arginfo_phalconplus_db_unitofwork_lastinsertid___tostring, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

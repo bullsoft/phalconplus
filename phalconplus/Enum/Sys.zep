@@ -32,9 +32,12 @@ final class Sys extends AbstractEnum
         }
         let self::primaryModuleDir = moduleDir;
         let self::rootDir = dirname(moduleDir);
-        // Alias this class for convenience
-        // PhalconPlus\Enum\Sys == Ph\Sys
-        Sys::classAlias("PhalconPlus\\Enum\Sys", "Ph\\Sys");
+        // Alias classes for convenience.
+        Sys::classAlias("PhalconPlus\\Enum\\Sys",   "Ph\\Sys");
+        Sys::classAlias("PhalconPlus\\Helper\\Arr", "Ph\\Arr");
+        Sys::classAlias("PhalconPlus\\Helper\\Str", "Ph\\Str");
+        Sys::classAlias("PhalconPlus\\Helper\\Ns",  "Ph\\Ns");
+        Sys::classAlias("PhalconPlus\\Helper\\Variable", "Ph\\Vars");
     }
 
     public static function initApp(<SuperApp> app) -> void
@@ -209,15 +212,7 @@ final class Sys extends AbstractEnum
         for name, value in context {
             let {name} = value;
         }
-        /* PHP 7.1 and later version, forbid dynamic calls to scope introspection functions
-        extract(["rootPath": APP_ROOT_DIR,
-                 "loader": new \Phalcon\Loader(),
-                 "config": this->config,
-                 "application": this->application,
-                 "bootstrap": this,
-                 "di": this->di
-        ]);
-        */
+        // Require file and hold the result for subsequent request.
         let result = require filePath;
         let self::requiredFiles[filePath] = result;
         return result;

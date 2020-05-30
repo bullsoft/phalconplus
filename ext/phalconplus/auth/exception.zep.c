@@ -16,7 +16,7 @@
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Auth_Exception) {
 
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Auth, Exception, phalconplus, auth_exception, phalconplus_enum_exception_ce, NULL, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Auth, Exception, phalconplus, auth_exception, phalconplus_base_exception_ce, NULL, 0);
 
 	return SUCCESS;
 
