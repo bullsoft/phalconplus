@@ -30,7 +30,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Yar) {
 
 	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("requestArgs"), "", ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("responseBody"), "not supported http method", ZEND_ACC_PROTECTED);
+	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("responseBody"), "Not supported http method.", ZEND_ACC_PROTECTED);
 
 	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("formater"), "msgpack", ZEND_ACC_PROTECTED);
 
@@ -121,7 +121,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct) {
 		zephir_json_decode(&_3$$3, &rawBody, zephir_get_intval(&__$true) );
 		zephir_update_property_zval(this_ptr, ZEND_STRL("requestArgs"), &_3$$3);
 	} else {
-		ZEPHIR_CALL_FUNCTION(&_4$$4, "msgpack_unpack", NULL, 147, &rawBody);
+		ZEPHIR_CALL_FUNCTION(&_4$$4, "msgpack_unpack", NULL, 148, &rawBody);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("requestArgs"), &_4$$4);
 	}
@@ -142,6 +142,15 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, setServer) {
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("serviceObj"), obj);
 	RETURN_THISW();
+
+}
+
+PHP_METHOD(PhalconPlus_Rpc_Yar, getServer) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "serviceObj");
 
 }
 
@@ -206,7 +215,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("serviceObj"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&serviceName);
 	zephir_get_class(&serviceName, &_0, 0);
-	zephir_array_fetch_string(&_1, &_SERVER, SL("HTTP_HOST"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 43);
+	zephir_array_fetch_string(&_1, &_SERVER, SL("HTTP_HOST"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 42);
 	ZEPHIR_INIT_VAR(&sampleCodes);
 	ZEPHIR_CONCAT_SVS(&sampleCodes, "<?php\n$remoteUrls = [\n	\"http://", &_1, "\",\n];\n$client = new \\PhalconPlus\\Rpc\\Client\\Adapter\\Curl($remoteUrls);\n$result = $client->callByObject([\n	\"service\" => \"\\Demo\\Services\\Dummy\",\n	\"method\" => \"demo\",\n	\"args\"   => [\n		\"foo\" => \"bar\",\n	],\n]);\nvar_export($result);\n");
 	ZEPHIR_INIT_VAR(&expectedRet);
@@ -225,7 +234,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	zephir_check_call_status();
 	if (zephir_is_true(&_4)) {
 		ZEPHIR_INIT_VAR(&_7$$3);
-		ZEPHIR_CALL_FUNCTION(&_8$$3, "highlight_string", &_9, 148, &sampleCodes, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_8$$3, "highlight_string", &_9, 149, &sampleCodes, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_10$$3);
 		ZVAL_STRING(&_10$$3, "&lt;?php");
@@ -233,7 +242,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 		ZVAL_STRING(&_11$$3, "// Client");
 		zephir_fast_str_replace(&_7$$3, &_10$$3, &_11$$3, &_8$$3);
 		ZEPHIR_INIT_VAR(&_12$$3);
-		ZEPHIR_CALL_FUNCTION(&_13$$3, "highlight_string", &_9, 148, &expectedRet, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_13$$3, "highlight_string", &_9, 149, &expectedRet, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_14$$3);
 		ZVAL_STRING(&_14$$3, "&lt;?php");
@@ -262,7 +271,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 				object_init_ex(&_19$$6, zend_exception_get_default(TSRMLS_C));
 				ZEPHIR_INIT_VAR(&_20$$6);
 				ZVAL_STRING(&_20$$6, "invalid request args");
-				ZEPHIR_CALL_METHOD(NULL, &_19$$6, "__construct", NULL, 149, &_20$$6);
+				ZEPHIR_CALL_METHOD(NULL, &_19$$6, "__construct", NULL, 150, &_20$$6);
 				zephir_check_call_status_or_jump(try_end_1);
 				zephir_throw_exception_debug(&_19$$6, "phalconplus/Rpc/Yar.zep", 56);
 				goto try_end_1;
@@ -296,7 +305,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 				ZEPHIR_CALL_METHOD(&_28$$8, &e$$4, "getcode", NULL, 0);
 				zephir_check_call_status();
 				ZVAL_LONG(&_29$$8, 1);
-				ZEPHIR_CALL_FUNCTION(&_30$$8, "max", NULL, 150, &_28$$8, &_29$$8);
+				ZEPHIR_CALL_FUNCTION(&_30$$8, "max", NULL, 151, &_28$$8, &_29$$8);
 				zephir_check_call_status();
 				zephir_array_update_string(&ret$$4, SL("errorCode"), &_30$$8, PH_COPY | PH_SEPARATE);
 				ZEPHIR_CALL_METHOD(&_31$$8, &e$$4, "getmessage", NULL, 0);
@@ -319,6 +328,15 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	zephir_read_property(&_37, this_ptr, ZEND_STRL("responseBody"), PH_NOISY_CC | PH_READONLY);
 	zend_print_zval(&_37, 0);
 	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_Rpc_Yar, responseBody) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "responseBody");
 
 }
 

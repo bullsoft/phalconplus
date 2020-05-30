@@ -91,7 +91,9 @@ PHP_METHOD(PhalconPlus_Helper_Str, decodeJson) {
 			return;
 		}
 	}
-	RETURN_CCTOR(&obj);
+	ZEPHIR_RETURN_CALL_METHOD(&obj, "getarraycopy", NULL, 126);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 
@@ -118,7 +120,7 @@ PHP_METHOD(PhalconPlus_Helper_Str, startsWith) {
 
 	ZVAL_LONG(&_0, 0);
 	ZVAL_LONG(&_1, zephir_fast_strlen_ev(&partial));
-	ZEPHIR_CALL_FUNCTION(&_2, "mb_substr", NULL, 126, &full, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "mb_substr", NULL, 127, &full, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&partial, &_2));
 
@@ -145,7 +147,7 @@ PHP_METHOD(PhalconPlus_Helper_Str, endsWith) {
 
 
 	ZVAL_LONG(&_0, (-1 * zephir_fast_strlen_ev(&partial)));
-	ZEPHIR_CALL_FUNCTION(&_1, "mb_substr", NULL, 126, &full, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "mb_substr", NULL, 127, &full, &_0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&partial, &_1));
 
@@ -170,7 +172,7 @@ PHP_METHOD(PhalconPlus_Helper_Str, contains) {
 	zephir_get_strval(&partial, partial_param);
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "mb_substr_count", NULL, 127, &full, &partial);
+	ZEPHIR_CALL_FUNCTION(&_0, "mb_substr_count", NULL, 128, &full, &partial);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_GT_LONG(&_0, 0));
 
@@ -203,7 +205,7 @@ PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Encode) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "base64_encode", NULL, 128, &inputStr);
+	ZEPHIR_CALL_FUNCTION(&_0, "base64_encode", NULL, 129, &inputStr);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "+/");
@@ -246,7 +248,7 @@ PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Decode) {
 	ZVAL_STRING(&_1, "+/");
 	ZEPHIR_CALL_FUNCTION(&_2, "strtr", NULL, 125, &inputStr, &_0, &_1);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("base64_decode", NULL, 129, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("base64_decode", NULL, 130, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 
