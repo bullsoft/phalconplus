@@ -3,7 +3,7 @@ use PhalconPlus\Assert\Assertion as Assert;
 
 class Str
 {
-    public static function decodeJson(string inputStr) -> <\ArrayObject>
+    public static function decodeJson(string inputStr) -> array
     {
         var obj, e;
         let obj = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
@@ -12,7 +12,7 @@ class Str
         } catch \Exception, e {
             throw new Exception(e->getMessage());
         }
-        return obj;
+        return obj->getArrayCopy();
     }
 
     public static function startsWith(string full, string partial) -> boolean
