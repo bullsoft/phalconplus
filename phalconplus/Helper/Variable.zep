@@ -32,6 +32,46 @@ class Variable
         return val;
     }
 
+    public static function isInt(var input) -> boolean
+    {
+        return typeof input == "integer";
+    }
+
+    public static function isArray(var input) -> boolean
+    {
+        return typeof input == "array";
+    }
+
+    public static function isObject(var input) -> boolean
+    {
+        return typeof input == "object";
+    }
+
+    public static function isBool(var input) -> boolean
+    {
+        return typeof input == "boolean";
+    }
+
+    public static function isString(var input) -> boolean
+    {
+        return typeof input == "string";
+    }
+
+    public static function isNull(var input) -> boolean
+    {
+        return typeof input == "null";
+    }
+
+    public static function isFloat(var input) -> boolean
+    {
+        return typeof input == "float";
+    }
+
+    public static function isFunctional(var input) -> boolean
+    {
+        return typeof input == "callable";
+    }
+
     public static function stringify(var value, bool full = false) -> string
     {
         if is_bool(value) {
