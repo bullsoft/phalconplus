@@ -27,7 +27,7 @@ So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框�
 ➜ git clone https://github.com/bullsoft/phalconplus.git
 ➜ cd phalconplus/ext/
 ➜ /usr/bin/phpize
-➜ ./configure --with-php-config=/usr/bin/php-configure
+➜ ./configure --with-php-config=/usr/bin/php-confi
 ➜ make
 ➜ make install
 ```
