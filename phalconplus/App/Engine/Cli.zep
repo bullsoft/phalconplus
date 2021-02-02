@@ -4,6 +4,7 @@ use PhalconPlus\App\Module\AbstractModule as AppModule;
 use Phalcon\Di\Injectable;
 use Phalcon\Cli\Console as TaskHandler;
 use Phalcon\Cli\Task;
+use PhalconPlus\Base\Exception as BaseException;
 
 class Cli extends Injectable implements AppEngine
 {

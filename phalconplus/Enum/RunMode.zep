@@ -33,10 +33,10 @@ class RunMode extends AbstractEnum
     {
         var script;
         let script = Sys::getGlobalLoadDir() . this->scripts[this->val];
-        if !is_file(script) {
-            error_log("PHP Notice:  PhalconPlus\\Enum\\RunMode Global load file not exists: " . script);
-            return null;
-        }
+//        if !is_file(script) {
+//            trigger_error("PHP Notice:  PhalconPlus\\Enum\\RunMode Global load file not exists: " . script);
+//            return null;
+//        }
         return script;
     }
 
