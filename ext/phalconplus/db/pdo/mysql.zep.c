@@ -64,18 +64,18 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 		zephir_check_call_status();
 	} else {
 		
-            zephir_unset_property(this_ptr, "_pdo");
+            zephir_unset_property(this_ptr, "pdo");
             
 	}
 	ZEPHIR_OBS_VAR(&connectionId);
-	zephir_read_static_property_ce(&connectionId, phalconplus_db_pdo_mysql_ce, SL("_connectionConsecutive"), PH_NOISY_CC);
+	zephir_read_static_property_ce(&connectionId, phalconplus_db_pdo_mysql_ce, SL("connectionConsecutive"), PH_NOISY_CC);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("_connectionId"), &connectionId);
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(&_0, (zephir_get_numberval(&connectionId) + 1));
-	zephir_update_static_property_ce(phalconplus_db_pdo_mysql_ce, ZEND_STRL("_connectionConsecutive"), &_0);
+	zephir_update_static_property_ce(phalconplus_db_pdo_mysql_ce, ZEND_STRL("connectionConsecutive"), &_0);
 	ZEPHIR_OBS_VAR(&dialectClass);
 	if (!(zephir_array_isset_string_fetch(&dialectClass, &descriptor, SL("dialectClass"), 0))) {
-		zephir_read_property(&_1$$5, this_ptr, ZEND_STRL("_dialectType"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1$$5, this_ptr, ZEND_STRL("dialectType"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_NVAR(&dialectClass);
 		ZEPHIR_CONCAT_SV(&dialectClass, "phalcon\\db\\dialect\\", &_1$$5);
 	}
@@ -91,10 +91,10 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 			ZEPHIR_CALL_METHOD(NULL, &_2$$6, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
-		zephir_update_property_zval(this_ptr, ZEND_STRL("_dialect"), &_2$$6);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("dialect"), &_2$$6);
 	} else {
 		if (Z_TYPE_P(&dialectClass) == IS_OBJECT) {
-			zephir_update_property_zval(this_ptr, ZEND_STRL("_dialect"), &dialectClass);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("dialect"), &dialectClass);
 		}
 	}
 	zephir_update_property_zval(this_ptr, ZEND_STRL("_descriptor"), &descriptor);
@@ -128,14 +128,14 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 	}
 
 
-	if (ZEPHIR_IS_STRING(&prop, "_pdo")) {
+	if (ZEPHIR_IS_STRING(&prop, "pdo")) {
 		
-            add_property_null_ex(this_ptr, SL("_pdo") TSRMLS_CC);
+            add_property_null_ex(this_ptr, SL("pdo") TSRMLS_CC);
             
-		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("_descriptor"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("descriptor"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, 0, &_0$$3);
 		zephir_check_call_status();
-		RETURN_MM_MEMBER(getThis(), "_pdo");
+		RETURN_MM_MEMBER(getThis(), "pdo");
 	}
 	RETURN_MM_NULL();
 
@@ -153,11 +153,11 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, isUnderTransaction) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&prop);
-	ZVAL_STRING(&prop, "_pdo");
+	ZVAL_STRING(&prop, "pdo");
 	isPdoSet = 0;
 	
         isPdoSet = Z_OBJ_HT_P(this_ptr)->has_property(this_ptr, &prop, 0, NULL);
-        // isPdoSet = zephir_isset_property(this_ptr, SL("_pdo"));
+        // isPdoSet = zephir_isset_property(this_ptr, SL("pdo"));
         
 	if (isPdoSet == 0) {
 		RETURN_MM_BOOL(0);

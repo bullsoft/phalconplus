@@ -42,11 +42,12 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Exception) {
 
 PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 
-	zend_bool _15, _28;
+	zend_bool _15, _30;
+	zend_class_entry *_13, *_17, *_22$$8;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zephir_fcall_cache_entry *_3 = NULL, *_13 = NULL;
+	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long code, ZEPHIR_LAST_CALL_STATUS;
-	zval *info, info_sub, *code_param = NULL, message, args, _0, _12, _14, _16, _17, _18, _19, showMessage, _26, cnt, _30, _32, _1$$4, _2$$4, _4$$4, _5$$5, _6$$5, _7$$5, _8$$6, _9$$6, _10$$6, _11$$7, logger$$8, _20$$8, _21$$8, _22$$8, argsJson$$8, _23$$8, _24$$8, _25$$8, _27$$9, _29$$12, _31$$13;
+	zval *info, info_sub, *code_param = NULL, message, args, _0, _12, _14, _16, _18, _19, _20, showMessage, _28, cnt, _32, _34, _1$$4, _2$$4, _4$$4, _5$$5, _6$$5, _7$$5, _8$$6, _9$$6, _10$$6, _11$$7, logger$$8, _21$$8, _23$$8, _24$$8, argsJson$$8, _25$$8, _26$$8, _27$$8, _29$$9, _31$$12, _33$$13;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&info_sub);
@@ -56,14 +57,14 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_14);
 	ZVAL_UNDEF(&_16);
-	ZVAL_UNDEF(&_17);
 	ZVAL_UNDEF(&_18);
 	ZVAL_UNDEF(&_19);
+	ZVAL_UNDEF(&_20);
 	ZVAL_UNDEF(&showMessage);
-	ZVAL_UNDEF(&_26);
+	ZVAL_UNDEF(&_28);
 	ZVAL_UNDEF(&cnt);
-	ZVAL_UNDEF(&_30);
 	ZVAL_UNDEF(&_32);
+	ZVAL_UNDEF(&_34);
 	ZVAL_UNDEF(&_1$$4);
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&_4$$4);
@@ -75,16 +76,16 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	ZVAL_UNDEF(&_10$$6);
 	ZVAL_UNDEF(&_11$$7);
 	ZVAL_UNDEF(&logger$$8);
-	ZVAL_UNDEF(&_20$$8);
 	ZVAL_UNDEF(&_21$$8);
-	ZVAL_UNDEF(&_22$$8);
-	ZVAL_UNDEF(&argsJson$$8);
 	ZVAL_UNDEF(&_23$$8);
 	ZVAL_UNDEF(&_24$$8);
+	ZVAL_UNDEF(&argsJson$$8);
 	ZVAL_UNDEF(&_25$$8);
-	ZVAL_UNDEF(&_27$$9);
-	ZVAL_UNDEF(&_29$$12);
-	ZVAL_UNDEF(&_31$$13);
+	ZVAL_UNDEF(&_26$$8);
+	ZVAL_UNDEF(&_27$$8);
+	ZVAL_UNDEF(&_29$$9);
+	ZVAL_UNDEF(&_31$$12);
+	ZVAL_UNDEF(&_33$$13);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &info, &code_param);
@@ -148,73 +149,76 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 			ZEPHIR_CPY_WRT(&message, &_11$$7);
 		}
 	}
-	ZEPHIR_CALL_CE_STATIC(&_12, phalconplus_enum_sys_ce, "app", &_13, 0);
+	_13 = zephir_fetch_class_str_ex(SL("PhalconPlus\\Enum\\Sys"), ZEND_FETCH_CLASS_AUTO);
+	ZEPHIR_CALL_CE_STATIC(&_12, _13, "app", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_14, &_12, "isbooted", NULL, 0);
 	zephir_check_call_status();
 	_15 = zephir_is_true(&_14);
 	if (_15) {
-		ZEPHIR_CALL_CE_STATIC(&_16, phalconplus_enum_sys_ce, "app", &_13, 0);
+		_17 = zephir_fetch_class_str_ex(SL("PhalconPlus\\Enum\\Sys"), ZEND_FETCH_CLASS_AUTO);
+		ZEPHIR_CALL_CE_STATIC(&_16, _17, "app", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_17, &_16, "di", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_18, &_16, "di", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_INIT_VAR(&_19);
-		ZVAL_STRING(&_19, "logger");
-		ZEPHIR_CALL_METHOD(&_18, &_17, "has", NULL, 0, &_19);
+		ZEPHIR_INIT_VAR(&_20);
+		ZVAL_STRING(&_20, "logger");
+		ZEPHIR_CALL_METHOD(&_19, &_18, "has", NULL, 0, &_20);
 		zephir_check_call_status();
-		_15 = zephir_is_true(&_18);
+		_15 = zephir_is_true(&_19);
 	}
 	if (_15) {
-		ZEPHIR_CALL_CE_STATIC(&_20$$8, phalconplus_enum_sys_ce, "app", &_13, 0);
+		_22$$8 = zephir_fetch_class_str_ex(SL("PhalconPlus\\Enum\\Sys"), ZEND_FETCH_CLASS_AUTO);
+		ZEPHIR_CALL_CE_STATIC(&_21$$8, _22$$8, "app", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_21$$8, &_20$$8, "di", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_23$$8, &_21$$8, "di", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_INIT_VAR(&_22$$8);
-		ZVAL_STRING(&_22$$8, "logger");
-		ZEPHIR_CALL_METHOD(&logger$$8, &_21$$8, "get", NULL, 0, &_22$$8);
-		zephir_check_call_status();
-		ZVAL_LONG(&_23$$8, 256);
-		ZEPHIR_INIT_VAR(&argsJson$$8);
-		zephir_json_encode(&argsJson$$8, &args, zephir_get_intval(&_23$$8) );
 		ZEPHIR_INIT_VAR(&_24$$8);
-		ZEPHIR_CONCAT_VSV(&_24$$8, &message, ", args: ", &argsJson$$8);
-		ZEPHIR_CALL_METHOD(&_25$$8, this_ptr, "getlevel", NULL, 0);
+		ZVAL_STRING(&_24$$8, "logger");
+		ZEPHIR_CALL_METHOD(&logger$$8, &_23$$8, "get", NULL, 0, &_24$$8);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &logger$$8, "log", NULL, 0, &_24$$8, &_25$$8);
+		ZVAL_LONG(&_25$$8, 256);
+		ZEPHIR_INIT_VAR(&argsJson$$8);
+		zephir_json_encode(&argsJson$$8, &args, zephir_get_intval(&_25$$8) );
+		ZEPHIR_CALL_METHOD(&_26$$8, this_ptr, "getlevel", NULL, 0);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(&_27$$8);
+		ZEPHIR_CONCAT_VSV(&_27$$8, &message, ", args: ", &argsJson$$8);
+		ZEPHIR_CALL_METHOD(NULL, &logger$$8, "log", NULL, 0, &_26$$8, &_27$$8);
 		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_VAR(&showMessage);
-	zephir_read_property(&_26, this_ptr, ZEND_STRL("message"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_28, this_ptr, ZEND_STRL("message"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_string_fetch(&showMessage, info, SL("text"), 0)) {
-		ZEPHIR_CALL_FUNCTION(&_27$$9, "strval", &_3, 27, &showMessage);
+		ZEPHIR_CALL_FUNCTION(&_29$$9, "strval", &_3, 27, &showMessage);
 		zephir_check_call_status();
-		ZEPHIR_CPY_WRT(&showMessage, &_27$$9);
-	} else if (!(ZEPHIR_IS_EMPTY(&_26))) {
+		ZEPHIR_CPY_WRT(&showMessage, &_29$$9);
+	} else if (!(ZEPHIR_IS_EMPTY(&_28))) {
 		ZEPHIR_OBS_NVAR(&showMessage);
 		zephir_read_property(&showMessage, this_ptr, ZEND_STRL("message"), PH_NOISY_CC);
 	} else {
 		ZEPHIR_CPY_WRT(&showMessage, &message);
 	}
-	ZEPHIR_INIT_NVAR(&_19);
-	ZVAL_STRING(&_19, "%s");
-	ZEPHIR_CALL_FUNCTION(&cnt, "substr_count", NULL, 28, &showMessage, &_19);
+	ZEPHIR_INIT_NVAR(&_20);
+	ZVAL_STRING(&_20, "%s");
+	ZEPHIR_CALL_FUNCTION(&cnt, "substr_count", NULL, 28, &showMessage, &_20);
 	zephir_check_call_status();
-	_28 = ZEPHIR_GT_LONG(&cnt, 0);
-	if (_28) {
-		_28 = ZEPHIR_LE_LONG(&cnt, zephir_fast_count_int(&args));
+	_30 = ZEPHIR_GT_LONG(&cnt, 0);
+	if (_30) {
+		_30 = ZEPHIR_LE_LONG(&cnt, zephir_fast_count_int(&args));
 	}
-	if (_28) {
-		ZEPHIR_CALL_FUNCTION(&_29$$12, "vsprintf", NULL, 29, &showMessage, &args);
+	if (_30) {
+		ZEPHIR_CALL_FUNCTION(&_31$$12, "vsprintf", NULL, 29, &showMessage, &args);
 		zephir_check_call_status();
-		ZEPHIR_CPY_WRT(&showMessage, &_29$$12);
+		ZEPHIR_CPY_WRT(&showMessage, &_31$$12);
 	}
-	zephir_read_property(&_30, this_ptr, ZEND_STRL("code"), PH_NOISY_CC | PH_READONLY);
-	if (ZEPHIR_GT_LONG(&_30, 0)) {
-		zephir_read_property(&_31$$13, this_ptr, ZEND_STRL("code"), PH_NOISY_CC | PH_READONLY);
-		code = zephir_get_numberval(&_31$$13);
+	zephir_read_property(&_32, this_ptr, ZEND_STRL("code"), PH_NOISY_CC | PH_READONLY);
+	if (ZEPHIR_GT_LONG(&_32, 0)) {
+		zephir_read_property(&_33$$13, this_ptr, ZEND_STRL("code"), PH_NOISY_CC | PH_READONLY);
+		code = zephir_get_numberval(&_33$$13);
 	}
-	ZVAL_LONG(&_32, code);
-	ZEPHIR_CALL_PARENT(NULL, phalconplus_base_exception_ce, getThis(), "__construct", NULL, 0, &showMessage, &_32);
+	ZVAL_LONG(&_34, code);
+	ZEPHIR_CALL_PARENT(NULL, phalconplus_base_exception_ce, getThis(), "__construct", NULL, 0, &showMessage, &_34);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

@@ -16,8 +16,8 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
-#include "kernel/concat.h"
 #include "kernel/string.h"
+#include "kernel/concat.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Helper_Variable) {
@@ -230,46 +230,6 @@ PHP_METHOD(PhalconPlus_Helper_Variable, isFunctional) {
 
 }
 
-PHP_METHOD(PhalconPlus_Helper_Variable, dump) {
-
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *input, input_sub, str, _0, _1$$3, _2$$3, _3$$4;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&input_sub);
-	ZVAL_UNDEF(&str);
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1$$3);
-	ZVAL_UNDEF(&_2$$3);
-	ZVAL_UNDEF(&_3$$4);
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &input);
-
-
-
-	ZEPHIR_CALL_SELF(&str, "stringify", NULL, 0, input);
-	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_0);
-	ZEPHIR_GET_CONSTANT(&_0, "PHP_SAPI");
-	ZEPHIR_INIT_NVAR(&str);
-	if (ZEPHIR_IS_STRING(&_0, "cli")) {
-		ZEPHIR_INIT_VAR(&_1$$3);
-		ZEPHIR_GET_CONSTANT(&_1$$3, "PHP_EOL");
-		ZEPHIR_INIT_VAR(&_2$$3);
-		ZEPHIR_CONCAT_VV(&_2$$3, &str, &_1$$3);
-		ZEPHIR_CPY_WRT(&str, &_2$$3);
-	} else {
-		ZEPHIR_INIT_VAR(&_3$$4);
-		ZEPHIR_CONCAT_VS(&_3$$4, &str, "<br />");
-		ZEPHIR_CPY_WRT(&str, &_3$$4);
-	}
-	zend_print_zval(&str, 0);
-	ZEPHIR_MM_RESTORE();
-
-}
-
 PHP_METHOD(PhalconPlus_Helper_Variable, stringify) {
 
 	zval _1$$5;
@@ -346,13 +306,13 @@ PHP_METHOD(PhalconPlus_Helper_Variable, stringify) {
 		_8 = Z_TYPE_P(value) == IS_RESOURCE;
 	}
 	if (_8) {
-		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 131, value, &__$true);
+		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 133, value, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_9$$7);
 		ZVAL_STRING(&_9$$7, "/\\s+/");
 		ZEPHIR_INIT_VAR(&_10$$7);
 		ZVAL_STRING(&_10$$7, " ");
-		ZEPHIR_CALL_FUNCTION(&_11$$7, "preg_replace", NULL, 132, &_9$$7, &_10$$7, &val);
+		ZEPHIR_CALL_FUNCTION(&_11$$7, "preg_replace", NULL, 134, &_9$$7, &_10$$7, &val);
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(&val, &_11$$7);
 		_12$$7 = full == 0;

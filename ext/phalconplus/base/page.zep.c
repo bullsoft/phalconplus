@@ -107,7 +107,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 				if (ZEPHIR_IS_LONG(&hydrateMode, 0)) {
 					ZEPHIR_INIT_NVAR(&tmpData);
 					object_init_ex(&tmpData, spl_ce_ArrayObject);
-					ZEPHIR_CALL_METHOD(NULL, &tmpData, "__construct", NULL, 76);
+					ZEPHIR_CALL_METHOD(NULL, &tmpData, "__construct", NULL, 77);
 					zephir_check_call_status();
 					ZEPHIR_INIT_VAR(&_4$$6);
 					ZEPHIR_CALL_METHOD(&_5$$6, data, "getfirst", NULL, 0);
@@ -127,7 +127,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 						}
 						ZEPHIR_CALL_METHOD(&_9$$7, &item, "toarray", NULL, 0);
 						zephir_check_call_status();
-						ZEPHIR_CALL_METHOD(NULL, &tmpData, "append", &_10, 77, &_9$$7);
+						ZEPHIR_CALL_METHOD(NULL, &tmpData, "append", &_10, 78, &_9$$7);
 						zephir_check_call_status();
 					}
 					zend_iterator_dtor(_8$$6);

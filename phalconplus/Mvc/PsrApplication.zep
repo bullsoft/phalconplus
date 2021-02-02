@@ -6,7 +6,7 @@ use Phalcon\Http\Response as BaseResponse;
 use PhalconPlus\Http\PsrResponseFactory;
 use PhalconPlus\Http\NonPsrRequest;
 use PhalconPlus\Base\Exception as BaseException;
-use Phalcon\DiInterface;
+use Phalcon\Di\DiInterface;
 
 class PsrApplication extends BaseApplication
 {
@@ -33,11 +33,11 @@ class PsrApplication extends BaseApplication
 
     public function handle(string uri = null) -> <ResponseInterface>
     {
-        if empty this->_dependencyInjector {
+        if empty this->container {
             throw new BaseException("there is no di(dependency injector) in PsrAppliction");
         }
 
-        this->_dependencyInjector->setShared("request", this->nativeRequest);
+        this->container->setShared("request", this->nativeRequest);
    
         // var psrRequest = this->psrRequest,
         //     reqUri     = psrRequest->getUri()->getPath(),

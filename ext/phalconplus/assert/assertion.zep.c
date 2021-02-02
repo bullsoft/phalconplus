@@ -1605,7 +1605,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable) {
 
 
 	if ((zephir_function_exists_ex(ZEND_STRL("is_countable")) == SUCCESS)) {
-		ZEPHIR_CALL_FUNCTION(&assert, "is_countable", NULL, 0, value);
+		ZEPHIR_CALL_FUNCTION(&assert, "is_countable", NULL, 62, value);
 		zephir_check_call_status();
 	} else {
 		_0$$4 = Z_TYPE_P(value) == IS_ARRAY;
@@ -1614,7 +1614,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable) {
 			if (_1$$4) {
 				_2$$4 = zephir_is_instance_of(value, SL("Countable"));
 				if (!(_2$$4)) {
-					_2$$4 = zephir_instance_of_ev(value, zephir_get_internal_ce(SL("resourcebundle")));
+					_2$$4 = zephir_is_instance_of(value, SL("ResourceBundle"));
 				}
 				_3$$4 = _2$$4;
 				if (!(_3$$4)) {
@@ -1804,7 +1804,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString) {
 	zephir_json_decode(&data, value, zephir_get_intval(&__$true) );
 	_0 = Z_TYPE_P(&data) == IS_NULL;
 	if (_0) {
-		ZEPHIR_CALL_FUNCTION(&_1, "json_last_error", NULL, 62);
+		ZEPHIR_CALL_FUNCTION(&_1, "json_last_error", NULL, 63);
 		zephir_check_call_status();
 		_0 = !ZEPHIR_IS_LONG(&_1, 0);
 	}

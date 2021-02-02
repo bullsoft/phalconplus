@@ -129,6 +129,8 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/2__closure.zep.c
 	phalconplus/3__closure.zep.c "
 	PHP_NEW_EXTENSION(phalconplus, $phalconplus_sources, $ext_shared,, )
+	PHP_ADD_BUILD_DIR([$ext_builddir/kernel/])
+	PHP_ADD_BUILD_DIR([$ext_builddir/phalconplus/])
 	PHP_SUBST(PHALCONPLUS_SHARED_LIBADD)
 
 	old_CPPFLAGS=$CPPFLAGS

@@ -1,19 +1,55 @@
 namespace PhalconPlus\Logger;
 use PhalconPlus\Logger\Processor\AbstractProcessor;
+use Phalcon\Logger\Adapter\Stream;
 
-class MultiPleFile extends \Phalcon\Logger\MultiPle
+class MultiPleFile extends \Phalcon\Logger
 {
     protected processors = [] { get };
 
+    /**
+     *  options = [
+     *       "level" => Phalcon\Logger::INFO,
+     *       "adapters" => [
+     *          [
+     *               "name" => "local",
+     *               "filePath" => "/path/to/logger/file.log",
+     *          ],
+     *          [
+     *               "name" => "local",
+     *               "filePath" => "/path/to/logger/file.log",
+     *          ],
+     *       ]
+     */
     public function  __construct(array! options)
-    {  
-        var opt, logger;
-        for opt in options {
-            let logger = new \Phalcon\Logger\Adapter\File(opt["filePath"]);
-            logger->setLogLevel(opt["level"]);
-            this->push(logger);
+    {
+        if empty options {
+            throw new \PhalconPlus\Base\Exception("Logger config can not empty");
         }
-    } 
+
+        var opt, logger, level;
+
+        if isset(options["level"]) {
+            let level = options["level"];
+        } else {
+            let level = options[0]["level"];
+        }
+
+        this->setLogLevel(level);
+
+        if isset(options["adapters"]) {
+            for opt in options["adapters"] {
+                let logger = new Stream(opt["filePath"]);
+                this->addAdapter(opt["name"], logger);
+            }
+        } else {
+            var i = 1;
+            for opt in options {
+                let logger = new Stream(opt["filePath"]);
+                this->addAdapter("message". i, logger);
+                let i = i + 1;
+            }
+        }
+    }
     
     public function addProcessor(string! name, <AbstractProcessor> processor)
     {
@@ -38,9 +74,9 @@ class MultiPleFile extends \Phalcon\Logger\MultiPle
 	/**
 	 * Sends a message to each registered logger
 	 */
-     public function log(var type, var message = null, array! context = null)
+     public function log(level, message, array context = []) -> void
      {
-         var loggers, logger, name, processor, custormContext = [];
+         var name, processor, custormContext = [];
  
          if empty(context) {
              if !empty(this->processors) {
@@ -52,16 +88,6 @@ class MultiPleFile extends \Phalcon\Logger\MultiPle
              let custormContext = context;
          }
 
-         let loggers = this->_loggers;
-         if typeof loggers == "array" {
-             for logger in loggers {
-                 if logger->getLogLevel() === \Phalcon\Logger::SPECIAL { 
-                    logger->log(type, message, custormContext);
-                 }
-                 if(logger->getLogLevel() === type) {
-                    logger->log(type, message, custormContext);
-                 }
-             }
-         }
+         parent::log(level, message, custormContext);
     }
 }

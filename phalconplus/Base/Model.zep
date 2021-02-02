@@ -1,10 +1,9 @@
 namespace PhalconPlus\Base;
 use PhalconPlus\Base\Pagable;
 use PhalconPlus\Assert\Assertion as Assert;
-use Phalcon\Db\AdapterInterface;
+use Phalcon\Db\Adapter\AdapterInterface;
 use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\MetaDataInterface;
-use Phalcon\Db\AdapterInterface;
 use Phalcon\Mvc\Model\Resultset;
 use PhalconPlus\Base\Exception as BaseException;
 
@@ -15,7 +14,7 @@ use PhalconPlus\Base\Exception as BaseException;
 class Model extends \Phalcon\Mvc\Model
 {
     // 自定义模型唯一键
-    protected __uniqueKeys = [];
+    protected _uniqueKeys = [];
 
     protected optimisticLock = false;
 
@@ -65,7 +64,8 @@ class Model extends \Phalcon\Mvc\Model
 
     public function saveOrFail(var data = null, var whiteList = null) -> boolean
     {
-        var result = this->save(data, whiteList);
+        this->assign(data, whiteList);
+        var result = this->save();
         if result !== true {
             throw new BaseException([
                 "Model save failed: " . (string) this->getMessage(),
@@ -77,7 +77,8 @@ class Model extends \Phalcon\Mvc\Model
 
     public function createOrFail(var data = null, var whiteList = null) -> boolean
     {
-        var result = this->create(data, whiteList);
+        this->assign(data, whiteList);
+        var result = this->create();
         if result !== true {
             throw new BaseException([
                 "Model create failed: " . (string) this->getMessage(),
@@ -89,7 +90,8 @@ class Model extends \Phalcon\Mvc\Model
 
     public function updateOrFail(var data = null, var whiteList = null) -> boolean
     {
-        var result = this->update(data, whiteList);
+        this->assign(data, whiteList);
+        var result = this->update();
         if result !== true {
             throw new BaseException([
                 "Model update failed: " . (string) this->getMessage(),
@@ -345,9 +347,9 @@ class Model extends \Phalcon\Mvc\Model
             "page":pagable->getPageNo()
         ]);
 
-        let page = queryBuilder->getPaginate();
+        let page = queryBuilder->paginate();
 
-        if typeof page->items == "object" {
+        if typeof page->getItems() == "object" {
             var hydration;
             if fetch hydration, params["hydration"] {
                 page->items->setHydrateMode(hydration);
@@ -360,39 +362,15 @@ class Model extends \Phalcon\Mvc\Model
     /**
      * Check if a reord is already exists?
      */
-    public function exists() -> boolean
+    public function exists(<MetaDataInterface> metaData = null, <AdapterInterface> connection = null) -> bool
     {
-        var metaData, readConnection, schema, source, table, builds, num;
-        let
-            metaData = this->getModelsMetaData(),
-            readConnection = this->getReadConnection(),
-            schema = this->getSchema(),
-            source = this->getSource();
-
-        if schema {
-            let table = [schema, source];
-        } else {
-            let table = source;
+        if is_null(metaData) {
+            let metaData = this->getModelsMetaData();
         }
-
-        if empty this->__uniqueKeys {
-            return this->_exists(metaData, readConnection, table);
+        if is_null(connection) {
+            let connection = this->getReadConnection();
         }
-
-        let builds = this->__buildUniqueCondition(metaData, readConnection);
-        if empty builds {
-            return false;
-        }
-        let num = readConnection->fetchOne(
-            "SELECT COUNT(*) \"rowcount\" FROM " . readConnection->escapeIdentifier(table) . " WHERE " . builds["uniqueKey"],
-            null,
-            builds["uniqueParams"],
-            builds["uniqueTypes"]
-        );
-        if num["rowcount"] {
-            return true;
-        }
-        return false;
+        return parent::exists(metaData, connection);
     }
 
     /**
@@ -452,20 +430,20 @@ class Model extends \Phalcon\Mvc\Model
             }
         }
 
-        if !empty this->_uniqueKey {
-            let this->_uniqueKey = this->_uniqueKey . " AND ";
+        if !empty this->uniqueKey {
+            let this->uniqueKey = this->uniqueKey . " AND ";
         }
         if typeof conditions == "array" {
             merge_append(whereUk, conditions);
-            let this->_uniqueKey = this->_uniqueKey . join(" AND ", whereUk);
+            let this->uniqueKey = this->uniqueKey . join(" AND ", whereUk);
         } elseif typeof conditions == "string" {
             let conditions = join(" AND ", whereUk) . " AND " . conditions;
-            let this->_uniqueKey = this->_uniqueKey . conditions;
+            let this->uniqueKey = this->uniqueKey . conditions;
         }
 
-        let this->_uniqueKey = str_replace(array_values(columnMap), array_keys(columnMap), this->_uniqueKey);
+        let this->uniqueKey = str_replace(array_values(columnMap), array_keys(columnMap), this->uniqueKey);
 
-        var countKeys = substr_count(this->_uniqueKey, "= ?");
+        var countKeys = substr_count(this->uniqueKey, "= ?");
 
         /**
          * Assign bind types
@@ -474,21 +452,21 @@ class Model extends \Phalcon\Mvc\Model
             merge_append(uniqueParams, bind);
         }
 
-        if this->_uniqueParams == null {
-            let this->_uniqueParams = [];
+        if this->uniqueParams == null {
+            let this->uniqueParams = [];
         }
-        merge_append(this->_uniqueParams, uniqueParams);
-        let this->_uniqueParams = array_pad(this->_uniqueParams, countKeys, null);
+        merge_append(this->uniqueParams, uniqueParams);
+        let this->uniqueParams = array_pad(this->uniqueParams, countKeys, null);
 
         if fetch bindTypes, params["bindTypes"] {
             merge_append(uniqueTypes, bindTypes);
         }
 
-        if this->_uniqueTypes == null {
-            let this->_uniqueTypes = [];
+        if this->uniqueTypes == null {
+            let this->uniqueTypes = [];
         }
-        merge_append(this->_uniqueTypes, uniqueTypes);
-        let this->_uniqueTypes = array_pad(this->_uniqueTypes, countKeys, \Phalcon\Db\Column::BIND_SKIP);
+        merge_append(this->uniqueTypes, uniqueTypes);
+        let this->uniqueTypes = array_pad(this->uniqueTypes, countKeys, \Phalcon\Db\Column::BIND_SKIP);
 
         let this->optimisticLock = true;
 
@@ -521,13 +499,13 @@ class Model extends \Phalcon\Mvc\Model
                 let field = attributeField;
             }
 
-            let this->__uniqueKeys[attributeField]["field"] = field;
+            let this->_uniqueKeys[attributeField]["field"] = field;
 
             if !fetch type, bindDataTypes[field] {
                 throw new BaseException("Model::setUqKeys: Column '" . field . "' isn't part of the table columns");
             }
-            let this->__uniqueKeys[attributeField]["type"] = type;
-            let this->__uniqueKeys[attributeField]["op"] = "=";
+            let this->uniqueKeys[attributeField]["type"] = type;
+            let this->_uniqueKeys[attributeField]["op"] = "=";
         }
         return this;
     }
@@ -540,7 +518,7 @@ class Model extends \Phalcon\Mvc\Model
             uniqueParams = [],
             uniqueTypes = [];
 
-        for attributeField, info in this->__uniqueKeys {
+        for attributeField, info in this->_uniqueKeys {
             let type = info["type"],
                 field = info["field"],
                 value = null;
@@ -576,17 +554,17 @@ class Model extends \Phalcon\Mvc\Model
     public function getUniqueFields() -> array
     {
         return [
-            "key" : this->_uniqueKey,
-            "params" : this->_uniqueParams,
-            "types" : this->_uniqueTypes
+            "key" : this->uniqueKey,
+            "params" : this->uniqueParams,
+            "types" : this->uniqueTypes
         ];
     }
 
     protected function resetUniqueFields() -> void
     {
-        let this->_uniqueKey = null;
-        let this->_uniqueParams = null;
-        let this->_uniqueTypes = null;
+        let this->uniqueKey = null;
+        let this->uniqueParams = null;
+        let this->uniqueTypes = null;
     }
 
     public function toProtoBuffer(columns = null) -> <ProtoBuffer>
@@ -625,18 +603,4 @@ class Model extends \Phalcon\Mvc\Model
         return proto;
     }
 
-    /**
-     * Gets the connection used to read data for the model
-     *
-     * Check transaction in writeConnection before `_transaction`
-     */
-    public function getReadConnection() -> <AdapterInterface>
-    {
-        var dbConn = this->getWriteConnection();
-        if dbConn->isUnderTransaction() {
-            return dbConn;
-        } else {
-            return parent::getReadConnection();
-        }
-    }
 }
