@@ -5,6 +5,7 @@ use Phalcon\Application as BaseApplication;
 use PhalconPlus\App\Module\AbstractModule as AppModule;
 use Phalcon\Mvc\Application as MvcHandler;
 use Phalcon\Http\ResponseInterface as HttpResponse;
+use PhalconPlus\Base\Exception as BaseException;
 
 class Web extends Injectable implements AppEngine
 {

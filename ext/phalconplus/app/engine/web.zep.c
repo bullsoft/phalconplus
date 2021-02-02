@@ -129,40 +129,22 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, exec) {
 
 PHP_METHOD(PhalconPlus_App_Engine_Web, setHandler) {
 
-	zend_class_entry *_1$$4 = NULL;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *handler, handler_sub, _0$$4, _2$$4;
+	zval *handler, handler_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&handler_sub);
-	ZVAL_UNDEF(&_0$$4);
-	ZVAL_UNDEF(&_2$$4);
 
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &handler);
+	zephir_fetch_params_without_memory_grow(1, 0, &handler);
 
 
 
-	if (EXPECTED(zephir_instance_of_ev(handler, zephir_get_internal_ce(SL("phalcon\\application"))))) {
+	if (EXPECTED(zephir_is_instance_of(handler, SL("Phalcon\\Application")))) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	} else {
-		ZEPHIR_INIT_VAR(&_0$$4);
-		if (!_1$$4) {
-		_1$$4 = zephir_fetch_class_str_ex(SL("PhalconPlus\\App\\Engine\\BaseException"), ZEND_FETCH_CLASS_AUTO);
-		}
-		object_init_ex(&_0$$4, _1$$4);
-		if (zephir_has_constructor(&_0$$4)) {
-			ZEPHIR_INIT_VAR(&_2$$4);
-			ZVAL_STRING(&_2$$4, "Application must be instance of phalcon\\application");
-			ZEPHIR_CALL_METHOD(NULL, &_0$$4, "__construct", NULL, 0, &_2$$4);
-			zephir_check_call_status();
-		}
-		zephir_throw_exception_debug(&_0$$4, "phalconplus/App/Engine/Web.zep", 47);
-		ZEPHIR_MM_RESTORE();
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Application must be instance of phalcon\\application", "phalconplus/App/Engine/Web.zep", 48);
 		return;
 	}
-	RETURN_THIS();
+	RETURN_THISW();
 
 }
 
@@ -177,34 +159,18 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, handler) {
 
 PHP_METHOD(PhalconPlus_App_Engine_Web, getHandler) {
 
-	zend_class_entry *_2$$3 = NULL;
-	zval _0, _1$$3, _3$$3;
+	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1$$3);
-	ZVAL_UNDEF(&_3$$3);
 
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_OBS_VAR(&_0);
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC);
 	if (UNEXPECTED(ZEPHIR_IS_EMPTY(&_0))) {
-		ZEPHIR_INIT_VAR(&_1$$3);
-		if (!_2$$3) {
-		_2$$3 = zephir_fetch_class_str_ex(SL("PhalconPlus\\App\\Engine\\BaseException"), ZEND_FETCH_CLASS_AUTO);
-		}
-		object_init_ex(&_1$$3, _2$$3);
-		if (zephir_has_constructor(&_1$$3)) {
-			ZEPHIR_INIT_VAR(&_3$$3);
-			ZVAL_STRING(&_3$$3, "Sorry, empty web handler");
-			ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 0, &_3$$3);
-			zephir_check_call_status();
-		}
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/App/Engine/Web.zep", 61);
-		ZEPHIR_MM_RESTORE();
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty web handler", "phalconplus/App/Engine/Web.zep", 62);
 		return;
 	}
 	RETURN_MM_MEMBER(getThis(), "handler");

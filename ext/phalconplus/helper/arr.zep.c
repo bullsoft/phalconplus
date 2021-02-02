@@ -61,7 +61,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyInt) {
 	ZVAL_STRING(&_2, "is_int");
 	ZEPHIR_CALL_FUNCTION(&_3, "array_map", NULL, 61, &_2, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&input, "array_unique", NULL, 121, &_3);
+	ZEPHIR_CALL_FUNCTION(&input, "array_unique", NULL, 123, &_3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&expected);
 	zephir_create_array(&expected, 1, 0);
@@ -102,7 +102,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyString) {
 	ZVAL_STRING(&_2, "is_string");
 	ZEPHIR_CALL_FUNCTION(&_3, "array_map", NULL, 61, &_2, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&input, "array_unique", NULL, 121, &_3);
+	ZEPHIR_CALL_FUNCTION(&input, "array_unique", NULL, 123, &_3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&expected);
 	zephir_create_array(&expected, 1, 0);
@@ -139,7 +139,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isKeyNumericSequentialZeroBased) {
 	zephir_array_keys(&input, inputArray);
 	ZVAL_LONG(&_1, 0);
 	ZVAL_LONG(&_2, (zephir_fast_count_int(inputArray) - 1));
-	ZEPHIR_CALL_FUNCTION(&expected, "range", NULL, 122, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&expected, "range", NULL, 124, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&input, &expected));
 
@@ -163,7 +163,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, newProtoBuffer) {
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
 	zephir_check_call_status();
 	object_init_ex(return_value, phalconplus_base_protobuffer_ce);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 72, inputArray);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 73, inputArray);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -194,12 +194,12 @@ PHP_METHOD(PhalconPlus_Helper_Arr, encodeJson) {
 	ZVAL_LONG(&_1, 256);
 	ZEPHIR_INIT_VAR(&str);
 	zephir_json_encode(&str, inputArray, zephir_get_intval(&_1) );
-	ZEPHIR_CALL_FUNCTION(&errCode, "json_last_error", NULL, 62);
+	ZEPHIR_CALL_FUNCTION(&errCode, "json_last_error", NULL, 63);
 	zephir_check_call_status();
 	if (!ZEPHIR_IS_LONG(&errCode, 0)) {
 		ZEPHIR_INIT_VAR(&_2$$3);
 		object_init_ex(&_2$$3, phalconplus_helper_exception_ce);
-		ZEPHIR_CALL_FUNCTION(&_3$$3, "json_last_error_msg", NULL, 123);
+		ZEPHIR_CALL_FUNCTION(&_3$$3, "json_last_error_msg", NULL, 125);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "__construct", NULL, 2, &_3$$3);
 		zephir_check_call_status();
@@ -234,7 +234,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, firstKey) {
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(inputArray);
-	ZEPHIR_CALL_FUNCTION(NULL, "reset", NULL, 66, inputArray);
+	ZEPHIR_CALL_FUNCTION(NULL, "reset", NULL, 67, inputArray);
 	ZEPHIR_UNREF(inputArray);
 	zephir_check_call_status();
 	zephir_is_iterable(inputArray, 0, "phalconplus/Helper/Arr.zep", 64);
@@ -297,7 +297,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, lastKey) {
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(inputArray);
-	ZEPHIR_CALL_FUNCTION(NULL, "reset", NULL, 66, inputArray);
+	ZEPHIR_CALL_FUNCTION(NULL, "reset", NULL, 67, inputArray);
 	ZEPHIR_UNREF(inputArray);
 	zephir_check_call_status();
 	zephir_is_iterable(inputArray, 0, "phalconplus/Helper/Arr.zep", 74);
@@ -355,7 +355,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, first) {
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(inputArray);
-	ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 66, inputArray);
+	ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 67, inputArray);
 	ZEPHIR_UNREF(inputArray);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -380,7 +380,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, last) {
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(inputArray);
-	ZEPHIR_RETURN_CALL_FUNCTION("end", NULL, 67, inputArray);
+	ZEPHIR_RETURN_CALL_FUNCTION("end", NULL, 68, inputArray);
 	ZEPHIR_UNREF(inputArray);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -436,7 +436,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, groupBy) {
 			}
 			ZEPHIR_INIT_NVAR(&v);
 			ZVAL_COPY(&v, _1);
-			ZEPHIR_CALL_FUNCTION(&group$$3, "call_user_func", &_5, 124, handler, &k, &v);
+			ZEPHIR_CALL_FUNCTION(&group$$3, "call_user_func", &_5, 126, handler, &k, &v);
 			zephir_check_call_status();
 			if (!(zephir_array_isset(&tmp, &group$$3))) {
 				ZEPHIR_INIT_NVAR(&_6$$4);
@@ -458,7 +458,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, groupBy) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&v, inputArray, "current", NULL, 0);
 			zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&group$$5, "call_user_func", &_5, 124, handler, &k, &v);
+				ZEPHIR_CALL_FUNCTION(&group$$5, "call_user_func", &_5, 126, handler, &k, &v);
 				zephir_check_call_status();
 				if (!(zephir_array_isset(&tmp, &group$$5))) {
 					ZEPHIR_INIT_NVAR(&_7$$6);

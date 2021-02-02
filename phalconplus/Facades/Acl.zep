@@ -14,7 +14,7 @@ class Acl extends AbstractFacade
         var acl;
         let acl = new AclList();
         acl->setDefaultAction(
-            \Phalcon\Acl::DENY
+            \Phalcon\Acl\Enum::DENY
         );
         di->setShared(this->getName(), acl);
         return null;

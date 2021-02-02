@@ -45,26 +45,30 @@ PHP_METHOD(PhalconPlus_Helper_Ns, super) {
 	ZVAL_UNDEF(&_2);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &ns_param, &levels_param);
+	zephir_fetch_params(1, 1, 1, &ns_param, &levels_param);
 
 	zephir_get_strval(&ns, ns_param);
-	levels = zephir_get_intval(levels_param);
+	if (!levels_param) {
+		levels = 1;
+	} else {
+		levels = zephir_get_intval(levels_param);
+	}
 
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "\\");
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "/");
-	ZEPHIR_CALL_FUNCTION(&dir, "strtr", NULL, 125, &ns, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&dir, "strtr", NULL, 127, &ns, &_0, &_1);
 	zephir_check_call_status();
 	ZVAL_LONG(&_2, levels);
-	ZEPHIR_CALL_FUNCTION(&here, "dirname", NULL, 119, &dir, &_2);
+	ZEPHIR_CALL_FUNCTION(&here, "dirname", NULL, 121, &dir, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "/");
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "\\");
-	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 125, &here, &_0, &_1);
+	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 127, &here, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
 

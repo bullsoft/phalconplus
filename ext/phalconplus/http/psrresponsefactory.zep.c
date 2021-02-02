@@ -160,7 +160,7 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, mapHeaders) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&headers, &_0, "toarray", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&rawHeaders, "headers_list", NULL, 138);
+	ZEPHIR_CALL_FUNCTION(&rawHeaders, "headers_list", NULL, 140);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&nativeHeaders);
 	array_init(&nativeHeaders);
@@ -243,7 +243,7 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, mapHeaders) {
 		}
 	}
 	ZEPHIR_INIT_NVAR(&h);
-	ZEPHIR_CALL_FUNCTION(NULL, "header_remove", NULL, 139);
+	ZEPHIR_CALL_FUNCTION(NULL, "header_remove", NULL, 141);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_17);
 	zephir_fast_array_merge(&_17, &nativeHeaders, &headers);

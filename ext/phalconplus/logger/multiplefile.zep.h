@@ -48,10 +48,20 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_logger_multiplefile_
 #endif
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_multiplefile_log, 0, 0, 1)
-	ZEND_ARG_INFO(0, type)
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_logger_multiplefile_log, 0, 2, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_logger_multiplefile_log, 0, 2, IS_VOID, NULL, 0)
+#endif
+#else
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_logger_multiplefile_log, 0, 0, 2)
+#define arginfo_phalconplus_logger_multiplefile_log NULL
+#endif
+
+	ZEND_ARG_INFO(0, level)
 	ZEND_ARG_INFO(0, message)
-	ZEND_ARG_ARRAY_INFO(0, context, 1)
+	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_logger_multiplefile_method_entry) {

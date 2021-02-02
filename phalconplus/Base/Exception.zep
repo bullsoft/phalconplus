@@ -1,6 +1,6 @@
 namespace PhalconPlus\Base;
-use PhalconPlus\Assert\Assertion as Assert;
-use PhalconPlus\Enum\Sys;
+use \PhalconPlus\Assert\Assertion as Assert;
+use \PhalconPlus\Enum\Sys as Sys;
 /**
  * throw new Exception("error message");
  * throw new Exception(["error message", "hello"]);
@@ -30,10 +30,11 @@ class Exception extends \Exception
                 let message = message . ", message: " . info;
             }
         }
+
         if Sys::app()->isBooted() && Sys::app()->di()->has("logger") {
             var logger = Sys::app()->di()->get("logger");
             var argsJson = json_encode(args, JSON_UNESCAPED_UNICODE);
-            logger->log(message . ", args: ". argsJson, this->getLevel());
+            logger->log(this->getLevel(), message . ", args: ". argsJson);
         }
 
         var showMessage;

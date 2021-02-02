@@ -45,7 +45,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunMode) {
 
 PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 
-	zval script, _0, _2, _3, _4, _5, _6$$3;
+	zval script, _0, _2, _3, _4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
@@ -56,8 +56,6 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&_5);
-	ZVAL_UNDEF(&_6$$3);
 
 	ZEPHIR_MM_GROW();
 
@@ -69,15 +67,6 @@ PHP_METHOD(PhalconPlus_Enum_RunMode, getScriptPath) {
 	zephir_array_fetch(&_3, &_2, &_4, PH_NOISY | PH_READONLY, "phalconplus/Enum/RunMode.zep", 35);
 	ZEPHIR_INIT_VAR(&script);
 	ZEPHIR_CONCAT_VV(&script, &_0, &_3);
-	ZEPHIR_CALL_FUNCTION(&_5, "is_file", NULL, 54, &script);
-	zephir_check_call_status();
-	if (!(zephir_is_true(&_5))) {
-		ZEPHIR_INIT_VAR(&_6$$3);
-		ZEPHIR_CONCAT_SV(&_6$$3, "PHP Notice:  PhalconPlus\\Enum\\RunMode Global load file not exists: ", &script);
-		ZEPHIR_CALL_FUNCTION(NULL, "error_log", NULL, 108, &_6$$3);
-		zephir_check_call_status();
-		RETURN_MM_NULL();
-	}
 	RETURN_CCTOR(&script);
 
 }

@@ -31,7 +31,6 @@ PHP_METHOD(PhalconPlus_Base_Model, __buildUniqueCondition);
 PHP_METHOD(PhalconPlus_Base_Model, getUniqueFields);
 PHP_METHOD(PhalconPlus_Base_Model, resetUniqueFields);
 PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
-PHP_METHOD(PhalconPlus_Base_Model, getReadConnection);
 zend_object *zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findfirstorfail, 0, 0, 0)
@@ -141,6 +140,8 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_exists, 0
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_exists, 0, 0, _IS_BOOL, NULL, 0)
 #endif
+	ZEND_ARG_OBJ_INFO(0, metaData, Phalcon\\Mvc\\Model\\MetaDataInterface, 1)
+	ZEND_ARG_OBJ_INFO(0, connection, Phalcon\\Db\\Adapter\\AdapterInterface, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_setupdatecondition, 0, 0, 1)
@@ -153,7 +154,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model___builduniquecondition, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, metaData, Phalcon\\Mvc\\Model\\MetaDataInterface, 0)
-	ZEND_ARG_OBJ_INFO(0, connection, Phalcon\\Db\\AdapterInterface, 0)
+	ZEND_ARG_OBJ_INFO(0, connection, Phalcon\\Db\\Adapter\\AdapterInterface, 0)
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
@@ -180,13 +181,6 @@ ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_model_toprotobuf
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_toprotobuffer, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\ProtoBuffer", 0)
 #endif
 	ZEND_ARG_INFO(0, columns)
-ZEND_END_ARG_INFO()
-
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_model_getreadconnection, 0, 0, Phalcon\\Db\\AdapterInterface, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_model_getreadconnection, 0, 0, IS_OBJECT, "Phalcon\\Db\\AdapterInterface", 0)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
@@ -218,6 +212,5 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
 	PHP_ME(PhalconPlus_Base_Model, getUniqueFields, arginfo_phalconplus_base_model_getuniquefields, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_Model, resetUniqueFields, arginfo_phalconplus_base_model_resetuniquefields, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Base_Model, toProtoBuffer, arginfo_phalconplus_base_model_toprotobuffer, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Base_Model, getReadConnection, arginfo_phalconplus_base_model_getreadconnection, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

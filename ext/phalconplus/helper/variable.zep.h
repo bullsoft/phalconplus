@@ -15,7 +15,6 @@ PHP_METHOD(PhalconPlus_Helper_Variable, isString);
 PHP_METHOD(PhalconPlus_Helper_Variable, isNull);
 PHP_METHOD(PhalconPlus_Helper_Variable, isFloat);
 PHP_METHOD(PhalconPlus_Helper_Variable, isFunctional);
-PHP_METHOD(PhalconPlus_Helper_Variable, dump);
 PHP_METHOD(PhalconPlus_Helper_Variable, stringify);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_helper_variable_issoftnull, 0, 0, 1)
@@ -98,10 +97,6 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_variable_isfu
 	ZEND_ARG_INFO(0, input)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_helper_variable_dump, 0, 0, 1)
-	ZEND_ARG_INFO(0, input)
-ZEND_END_ARG_INFO()
-
 #if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_variable_stringify, 0, 1, IS_STRING, 0)
 #else
@@ -128,7 +123,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_helper_variable_method_entry) {
 	PHP_ME(PhalconPlus_Helper_Variable, isNull, arginfo_phalconplus_helper_variable_isnull, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Helper_Variable, isFloat, arginfo_phalconplus_helper_variable_isfloat, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Helper_Variable, isFunctional, arginfo_phalconplus_helper_variable_isfunctional, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	PHP_ME(PhalconPlus_Helper_Variable, dump, arginfo_phalconplus_helper_variable_dump, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Helper_Variable, stringify, arginfo_phalconplus_helper_variable_stringify, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_FE_END
 };

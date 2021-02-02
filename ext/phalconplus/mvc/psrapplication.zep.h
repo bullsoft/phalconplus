@@ -16,7 +16,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_mvc_psrapplication___construct, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, psrRequest, Psr\\Http\\Message\\ServerRequestInterface, 0)
-	ZEND_ARG_OBJ_INFO(0, dependencyInjector, Phalcon\\DiInterface, 1)
+	ZEND_ARG_OBJ_INFO(0, dependencyInjector, Phalcon\\Di\\DiInterface, 1)
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200

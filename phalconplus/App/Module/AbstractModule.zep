@@ -5,6 +5,7 @@ use PhalconPlus\App\Engine\AppEngine;
 use Phalcon\Di\Injectable;
 use PhalconPlus\Base\Exception as BaseException;
 use PhalconPlus\Enum\RunMode;
+use Phalcon\Events\ManagerInterface;
 
 abstract class AbstractModule extends Injectable
 {
@@ -19,7 +20,7 @@ abstract class AbstractModule extends Injectable
     {
         let this->app = app; // Hold SuperApp instance
         let this->def = def; // Module should have it's definition.
-        let this->_dependencyInjector = app->di();
+        let this->container = app->di();
     }
 
     public function isPrimary()
@@ -59,7 +60,7 @@ abstract class AbstractModule extends Injectable
 
     public function di() -> <\Phalcon\Di>
     {
-        return this->_dependencyInjector;
+        return this->container;
     }
 
     public function def() -> <ModuleDef>
@@ -95,7 +96,7 @@ abstract class AbstractModule extends Injectable
             engineClass,  
             engineName = this->def->getMapClassName();
         
-        let eventsManager = <ManagerInterface> this->_eventsManager;
+        let eventsManager = <ManagerInterface> this->container->getInternalEventsManager();
         if typeof eventsManager == "object" {
             if eventsManager->fire("module:beforeStartEngine", this, [engineClass, params]) === false {
                 // 

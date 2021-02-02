@@ -168,9 +168,9 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_getprimarymo
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_app_setdefaultmodule, 0, 1, Phalcon\\Application, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_app_setdefaultmodule, 0, 1, Phalcon\\Application\\AbstractApplication, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_setdefaultmodule, 0, 1, IS_OBJECT, "Phalcon\\Application", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_app_setdefaultmodule, 0, 1, IS_OBJECT, "Phalcon\\Application\\AbstractApplication", 0)
 #endif
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, defaultModule, IS_STRING, 0)

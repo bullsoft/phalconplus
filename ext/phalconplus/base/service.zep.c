@@ -52,7 +52,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 78);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 79);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

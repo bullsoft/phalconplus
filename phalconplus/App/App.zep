@@ -1,8 +1,8 @@
 namespace PhalconPlus\App;
-use Phalcon\Application as BaseApplication;
+use Phalcon\Application\AbstractApplication as BaseApplication;
 use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\App\Module\ModuleDef;
-use Phalcon\DiInterface;
+use Phalcon\Di\DiInterface;
 use Phalcon\Di;
 use PhalconPlus\App\Module\AbstractModule;
 use PhalconPlus\Enum\RunEnv;
@@ -62,7 +62,7 @@ final class App extends BaseApplication
         // 初始化主模块
         var primaryModuleDef;
         let primaryModuleDef = new ModuleDef(this, Sys::getPrimaryModuleDir(), true, runMode);
-        if this->_dependencyInjector == null {
+        if this->container == null {
             this->setDI(primaryModuleDef->newDI());
             this->getDI()->setShared("superApp", this);
             this->getDI()->setShared("config", this->config);
@@ -77,10 +77,10 @@ final class App extends BaseApplication
 
     private function registerModule(<ModuleDef> moduleDef) -> <AbstractModule>
     {
-        if unlikely isset(this->_modules[moduleDef->getName()]) {
-            return this->_modules[moduleDef->getName()];
+        if unlikely isset(this->modules[moduleDef->getName()]) {
+            return this->modules[moduleDef->getName()];
         }
-        if unlikely is_null(this->_dependencyInjector) {
+        if unlikely is_null(this->container) {
             throw new BaseException("DI doesn't load yet, failed to register module " . moduleDef->getName());
         }
         if unlikely is_null(this->config) {
@@ -95,13 +95,13 @@ final class App extends BaseApplication
             // 合并配置，Module配置优先级更高
             this->config->merge(moduleConf);
         }
-        // Checkout a module instance from it's defintion
+        // Checkout a module instance from it's definition
         var module = moduleDef->checkout();
         if module->isPrimary() {
-            let this->_defaultModule = module;
+            let this->defaultModule = module;
         }
         // Maintain a HashMap of loaded modules
-        let this->_modules[moduleDef->getName()] = module;
+        let this->modules[moduleDef->getName()] = module;
         return module;
     }
 
@@ -114,8 +114,8 @@ final class App extends BaseApplication
     public function dependModule(string! moduleName, bool force = true) -> <AbstractModule>
     {
         let moduleName = trim(moduleName);
-        if unlikely isset(this->_modules[moduleName]) {
-            return this->_modules[moduleName];
+        if unlikely isset(this->modules[moduleName]) {
+            return this->modules[moduleName];
         }
         var moduleDef;
         let moduleDef = new ModuleDef(this, Sys::getModuleDirByName(moduleName));
@@ -177,17 +177,17 @@ final class App extends BaseApplication
             response = null, 
             params = func_get_args();
 
-        let eventsManager = <ManagerInterface> this->_eventsManager;
+        let eventsManager = <ManagerInterface> this->eventsManager;
         if typeof eventsManager == "object" {
-            if eventsManager->fire("superapp:beforeExecModule", this, [this->_defaultModule, params]) === false {
+            if eventsManager->fire("superapp:beforeExecModule", this, [this->defaultModule, params]) === false {
                 // 
             }
         }
         // Exec primary module, and get response
-        let response = this->_defaultModule->exec(params);
+        let response = this->defaultModule->exec(params);
 
         if typeof eventsManager == "object" {
-            if eventsManager->fire("superapp:afterExecModule", this, [this->_defaultModule, response]) === false {
+            if eventsManager->fire("superapp:afterExecModule", this, [this->defaultModule, response]) === false {
                 // 
             }
         }
@@ -209,8 +209,8 @@ final class App extends BaseApplication
             _GET = [], _SERVER = [],
             _REQUEST = [], _COOKIE = [], _FILES = [];
 
-        let this->_modules = [];
-        let this->_defaultModule = null;
+        let this->modules = [];
+        let this->defaultModule = null;
         let this->booted = false;
 
         var finalizer;
@@ -220,7 +220,7 @@ final class App extends BaseApplication
         let this->finalizers = [];
         if deeply === true {
             Di::reset();
-            let this->_dependencyInjector = null;
+            let this->container = null;
         }
     }
 
@@ -237,12 +237,12 @@ final class App extends BaseApplication
 
     public function getDefaultModuleDef() -> <ModuleDef>
     {
-        return this->_defaultModule->def();
+        return this->defaultModule->def();
     }
 
     public function getPrimaryModuleDef() -> <ModuleDef>
     {
-        return this->_defaultModule->def();
+        return this->defaultModule->def();
     }
 
     public function setDefaultModule(string defaultModule) -> <BaseApplication>
@@ -254,38 +254,38 @@ final class App extends BaseApplication
     public function getDefaultModule() -> string
     {
         // Constraited by parent class, have to return module-name as string
-        return this->_defaultModule->getName();
+        return this->defaultModule->getName();
     }
 
     public function getPrimaryModule() -> <AbstractModule>
     {
-        var name = this->_defaultModule->getName();
-        if !isset(this->_modules[name]) {
+        var name = this->defaultModule->getName();
+        if !isset(this->modules[name]) {
             throw new BaseException("Module not exists: " . name);
         }
-        return this->_modules[name];
+        return this->modules[name];
     }
 
     public function getModule(string! name = "") -> <AbstractModule>
     {
         if name === "" {
-            return this->_defaultModule;
+            return this->defaultModule;
         }
-        if !isset(this->_modules[name]) {
+        if !isset(this->modules[name]) {
             throw new BaseException("Module not exists: " . name);
         }
-        return this->_modules[name];
+        return this->modules[name];
     }
 
     public function getModuleDef(string! name = "") -> <ModuleDef>
     {
         if name === "" {
-            return this->_defaultModule->def();
+            return this->defaultModule->def();
         }
-        if !isset(this->_modules[name]) {
+        if !isset(this->modules[name]) {
             throw new BaseException("Module not exists: " . name);
         }
-        return this->_modules[name]->def();
+        return this->modules[name]->def();
     }
 
     public function config() -> <Config>
@@ -293,9 +293,9 @@ final class App extends BaseApplication
         return this->config;
     }
 
-    public function di() -> <Di>
+    public function di() -> <\Phalcon\Di>
     {
-        return this->_dependencyInjector;
+        return this->container;
     }
 
     public function __call(string method, array params)
@@ -307,7 +307,7 @@ final class App extends BaseApplication
             return null;
         }
 
-        let dependencyInjector = <DiInterface> this->_dependencyInjector;
+        let dependencyInjector = <DiInterface> this->container;
         if dependencyInjector->has(method) {
             return dependencyInjector->get(method, params);
         }

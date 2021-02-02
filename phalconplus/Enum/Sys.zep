@@ -28,7 +28,7 @@ final class Sys extends AbstractEnum
         }
         let moduleDir = rtrim(moduleDir, Sys::DS);
         if !is_dir(moduleDir) {
-            throw new BaseException("Module directory not exists or not a dir, file positon: " . moduleDir);
+            throw new \Exception("Module directory not exists or not a dir, file positon: " . moduleDir);
         }
         let self::primaryModuleDir = moduleDir;
         let self::rootDir = dirname(moduleDir);
@@ -54,7 +54,7 @@ final class Sys extends AbstractEnum
     public static function app() -> <SuperApp>
     {
         if self::app == null {
-            throw new BaseException("SuperApp has no instances yet");
+            throw new \Exception("SuperApp has no instances yet");
         }
         return self::app;
     }
@@ -175,7 +175,7 @@ final class Sys extends AbstractEnum
         %{
             zend_class_entry *ce;
             ce = zephir_fetch_class(&className TSRMLS_CC);
-            zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce);
+            zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce, 0);
         }%
         
         return true;
@@ -184,7 +184,7 @@ final class Sys extends AbstractEnum
     public static function load(string filePath, array context = [])
     {
         if unlikely !is_file(filePath) {
-            throw new BaseException("The file you try to load is not exists. The Path is: " . filePath);
+            throw new \Exception("The file you try to load is not exists. The Path is: " . filePath);
         }
         var result;
         if fetch result, self::requiredFiles[filePath] {
