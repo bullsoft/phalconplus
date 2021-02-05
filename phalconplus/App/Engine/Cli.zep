@@ -3,6 +3,7 @@ use PhalconPlus\App\App as SuperApp;
 use PhalconPlus\App\Module\AbstractModule as AppModule;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\Di\Injectable;
+use Phalcon\Application\AbstractApplication as BaseApplication;
 use Phalcon\Cli\Console as TaskHandler;
 use Phalcon\Cli\Task;
 

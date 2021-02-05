@@ -1,7 +1,7 @@
 namespace PhalconPlus\App\Engine;
 use PhalconPlus\App\App as SuperApp;
 use Phalcon\Di\Injectable;
-use Phalcon\Application as BaseApplication;
+use Phalcon\Application\AbstractApplication as BaseApplication;
 use PhalconPlus\App\Module\AbstractModule as AppModule;
 use Phalcon\Mvc\Application as MvcHandler;
 use Phalcon\Http\ResponseInterface as HttpResponse;

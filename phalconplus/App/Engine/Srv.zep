@@ -6,6 +6,7 @@ use PhalconPlus\App\Module\AbstractModule as AppModule;
 use PhalconPlus\Rpc\Server\AbstractServer;
 use PhalconPlus\Rpc\Server\SimpleServer;
 use PhalconPlus\Rpc\Yar as YarServerPlus;
+use Phalcon\Application\AbstractApplication as BaseApplication;
 
 use Phalcon\Di\Injectable;
 use PhalconPlus\Base\Exception as BaseException;
