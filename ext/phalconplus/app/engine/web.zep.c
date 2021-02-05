@@ -138,7 +138,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, setHandler) {
 
 
 
-	if (EXPECTED(zephir_is_instance_of(handler, SL("Phalcon\\Application")))) {
+	if (EXPECTED(zephir_instance_of_ev(handler, zephir_get_internal_ce(SL("phalcon\\application\\abstractapplication"))))) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	} else {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Application must be instance of phalcon\\application", "phalconplus/App/Engine/Web.zep", 48);

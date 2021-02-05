@@ -11,7 +11,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, getHandler);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_engine_cli___construct, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, appModule, PhalconPlus\\App\\Module\\AbstractModule, 0)
-	ZEND_ARG_OBJ_INFO(0, handler, PhalconPlus\\App\\Engine\\BaseApplication, 1)
+	ZEND_ARG_OBJ_INFO(0, handler, Phalcon\\Application\\AbstractApplication, 1)
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200

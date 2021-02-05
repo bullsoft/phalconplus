@@ -128,9 +128,6 @@ zend_class_entry *phalconplus_helper_exception_ce;
 zend_class_entry *phalconplus_helper_ns_ce;
 zend_class_entry *phalconplus_helper_str_ce;
 zend_class_entry *phalconplus_helper_variable_ce;
-zend_class_entry *phalconplus_http_nonpsrrequest_ce;
-zend_class_entry *phalconplus_http_nonpsrresponse_ce;
-zend_class_entry *phalconplus_http_psrresponsefactory_ce;
 zend_class_entry *phalconplus_logger_multiplefile_ce;
 zend_class_entry *phalconplus_logger_processor_logid_ce;
 zend_class_entry *phalconplus_logger_processor_msec_ce;
@@ -254,9 +251,6 @@ static PHP_MINIT_FUNCTION(phalconplus)
 	ZEPHIR_INIT(PhalconPlus_Helper_Ns);
 	ZEPHIR_INIT(PhalconPlus_Helper_Str);
 	ZEPHIR_INIT(PhalconPlus_Helper_Variable);
-	ZEPHIR_INIT(PhalconPlus_Http_NonPsrRequest);
-	ZEPHIR_INIT(PhalconPlus_Http_NonPsrResponse);
-	ZEPHIR_INIT(PhalconPlus_Http_PsrResponseFactory);
 	ZEPHIR_INIT(PhalconPlus_Logger_MultiPleFile);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_LogId);
 	ZEPHIR_INIT(PhalconPlus_Logger_Processor_Msec);
@@ -382,6 +376,8 @@ zend_function_entry php_phalconplus_functions[] = {
 
 static const zend_module_dep php_phalconplus_deps[] = {
 	ZEND_MOD_REQUIRED("phalcon")
+	ZEND_MOD_REQUIRED("mbstring")
+	ZEND_MOD_REQUIRED("psr")
 	ZEND_MOD_END
 };
 

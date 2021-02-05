@@ -127,10 +127,10 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, setHandler) {
 
 
 
-	if (EXPECTED(zephir_is_instance_of(handler, SL("PhalconPlus\\App\\Engine\\BaseApplication")))) {
+	if (EXPECTED(zephir_instance_of_ev(handler, zephir_get_internal_ce(SL("phalcon\\application\\abstractapplication"))))) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Handler must be instance of phalcon\\application", "phalconplus/App/Engine/Cli.zep", 41);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(phalconplus_base_exception_ce, "Handler must be instance of phalcon\\application", "phalconplus/App/Engine/Cli.zep", 42);
 		return;
 	}
 	RETURN_THISW();
@@ -159,7 +159,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Cli, getHandler) {
 	ZEPHIR_OBS_VAR(&_0);
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC);
 	if (UNEXPECTED(ZEPHIR_IS_EMPTY(&_0))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty cli handler", "phalconplus/App/Engine/Cli.zep", 55);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty cli handler", "phalconplus/App/Engine/Cli.zep", 56);
 		return;
 	}
 	RETURN_MM_MEMBER(getThis(), "handler");
