@@ -38,15 +38,16 @@ class Yar extends \Phalcon\Application\AbstractApplication
     public function handle()
     {
         var serviceName = get_class(this->serviceObj);
+        var config = this->container->get("config");
         var sampleCodes;
-        let  sampleCodes = "<?php
+        let sampleCodes = "<?php
 $remoteUrls = [
 	\"http://" . _SERVER["HTTP_HOST"] . "\",
 ];
 $client = new \PhalconPlus\Rpc\Client\Adapter\Curl($remoteUrls);
 $result = $client->callByObject([
-	\"service\" => \"\\Demo\\Services\\Dummy\",
-	\"method\" => \"demo\",
+	\"service\" => \"\\".config->application->ns."Services\Demo\",
+	\"method\" => \"main\",
 	\"args\"   => [
 		\"foo\" => \"bar\",
 	],
