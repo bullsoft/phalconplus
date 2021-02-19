@@ -1,6 +1,8 @@
 namespace PhalconPlus\Curl;
+use PhalconPlus\Contracts\Stringer;
+use PhalconPlus\Contracts\ArrayOf;
 
-class Response
+class Response implements Stringer, ArrayOf
 {
 	/**
 	 * The response headers.
@@ -125,7 +127,7 @@ class Response
       *
       * @return mixed
       */
-     public function getHeader(key)
+     public function getHeader(key) -> string | null
      {
          let key = strtolower(key);
          return isset(this->headers[key]) ? this->headers[key] : null;
@@ -135,7 +137,7 @@ class Response
       *
       * @return array
       */
-     public function getHeaders()
+     public function getHeaders() -> array
      {
          return this->headers;
      }
@@ -144,7 +146,7 @@ class Response
       *
       * @return array
       */
-     public function toArray()
+     public function toArray(array columns = []) -> array
      {
          return [
              "headers" : this->headers,
@@ -157,7 +159,7 @@ class Response
       *
       * @return string
       */
-     public function toJson()
+     public function toJson() -> string
      {
          return json_encode(this->toArray());
      }
