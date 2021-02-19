@@ -47,10 +47,11 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long code, ZEPHIR_LAST_CALL_STATUS;
-	zval *info, info_sub, *code_param = NULL, message, args, _0, _12, _14, _16, _18, _19, _20, showMessage, _28, cnt, _32, _34, _1$$4, _2$$4, _4$$4, _5$$5, _6$$5, _7$$5, _8$$6, _9$$6, _10$$6, _11$$7, logger$$8, _21$$8, _23$$8, _24$$8, argsJson$$8, _25$$8, _26$$8, _27$$8, _29$$9, _31$$12, _33$$13;
+	zval *info = NULL, info_sub, *code_param = NULL, __$null, message, args, _0, _12, _14, _16, _18, _19, _20, showMessage, _28, cnt, _32, _34, _1$$4, _2$$4, _4$$4, _5$$5, _6$$5, _7$$5, _8$$6, _9$$6, _10$$6, _11$$7, logger$$8, _21$$8, _23$$8, _24$$8, argsJson$$8, _25$$8, _26$$8, _27$$8, _29$$9, _31$$12, _33$$13;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&info_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&args);
 	ZVAL_UNDEF(&_0);
@@ -88,8 +89,12 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	ZVAL_UNDEF(&_33$$13);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &info, &code_param);
+	zephir_fetch_params(1, 0, 2, &info, &code_param);
 
+	if (!info) {
+		info = &info_sub;
+		info = &__$null;
+	}
 	if (!code_param) {
 		code = 0;
 	} else {

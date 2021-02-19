@@ -94,6 +94,13 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_tojson
 #endif
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response___tostring, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response___tostring, 0, 0, IS_STRING, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(phalconplus_curl_response_method_entry) {
 	PHP_ME(PhalconPlus_Curl_Response, getBody, arginfo_phalconplus_curl_response_getbody, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Response, getStatusText, arginfo_phalconplus_curl_response_getstatustext, ZEND_ACC_PUBLIC)
@@ -106,6 +113,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_curl_response_method_entry) {
 	PHP_ME(PhalconPlus_Curl_Response, toArray, arginfo_phalconplus_curl_response_toarray, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Response, toJson, arginfo_phalconplus_curl_response_tojson, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Response, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Curl_Response, __toString, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Curl_Response, __toString, arginfo_phalconplus_curl_response___tostring, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
