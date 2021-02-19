@@ -13,7 +13,7 @@ class Exception extends \Exception
     protected level = \Phalcon\Logger::DEBUG;
     protected info;
 
-    public function __construct(info, int code = 0)
+    public function __construct(info = null, int code = 0)
     {
         var message = "", args = [];
         let message = "An exception created: " . get_class(this);

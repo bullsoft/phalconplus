@@ -174,7 +174,7 @@ class Response implements Stringer, ArrayOf
       *
       * @return string
       */
-     public function __toString()
+     public function __toString() -> string
      {
          return this->body;
      }
