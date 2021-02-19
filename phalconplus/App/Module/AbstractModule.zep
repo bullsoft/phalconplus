@@ -6,6 +6,8 @@ use Phalcon\Di\Injectable;
 use PhalconPlus\Base\Exception as BaseException;
 use PhalconPlus\Enum\RunMode;
 use Phalcon\Events\ManagerInterface;
+use Phalcon\Http\ResponseInterface as HttpResponse;
+use Phalcon\Cli\Task as CliTask;
 
 abstract class AbstractModule extends Injectable
 {
@@ -23,32 +25,32 @@ abstract class AbstractModule extends Injectable
         let this->container = app->di();
     }
 
-    public function isPrimary()
+    public function isPrimary() -> boolean
     {
         return this->def->getIsPrimary() === true; // Report is primary or not
     }
 
-    public function isCli()
+    public function isCli() -> boolean
     {
         return this->def->getRunMode()->isCli();
     }
 
-    public function isWeb()
+    public function isWeb() -> boolean
     {
         return this->def->getRunMode()->isWeb();
     }
 
-    public function isSrv()
+    public function isSrv() -> boolean
     {
         return this->def->getRunMode()->isSrv();
     }
 
-    public function isMicro()
+    public function isMicro() -> boolean
     {
         return this->def->getRunMode()->isMicro();
     }
 
-    public function getName()
+    public function getName() -> string
     {
         return this->def->getName();
     }
@@ -86,7 +88,7 @@ abstract class AbstractModule extends Injectable
         );
     }
 
-    public function exec(array params = [])
+    public function exec(array params = []) -> <HttpResponse> | <CliTask>
     {
         if !this->def->isPrimary() {
             throw new BaseException("Only primary module can be executed");
