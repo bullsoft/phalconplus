@@ -228,7 +228,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	zephir_read_property(&_4, &config, ZEND_STRL("application"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_5, &_4, ZEND_STRL("ns"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&sampleCodes);
-	ZEPHIR_CONCAT_SVSVS(&sampleCodes, "<?php\n$remoteUrls = [\n	\"http://", &_3, "\",\n];\n$client = new \\PhalconPlus\\Rpc\\Client\\Adapter\\Curl($remoteUrls);\n$result = $client->callByObject([\n	\"service\" => \"\\", &_5, "Services\\Demo\",\n	\"method\" => \"demo\",\n	\"args\"   => [\n		\"foo\" => \"bar\",\n	],\n]);\nvar_export($result);\n");
+	ZEPHIR_CONCAT_SVSVS(&sampleCodes, "<?php\n$remoteUrls = [\n	\"http://", &_3, "\",\n];\n$client = new \\PhalconPlus\\Rpc\\Client\\Adapter\\Curl($remoteUrls);\n$result = $client->callByObject([\n	\"service\" => \"\\", &_5, "Services\\Demo\",\n	\"method\" => \"main\",\n	\"args\"   => [\n		\"foo\" => \"bar\",\n	],\n]);\nvar_export($result);\n");
 	ZEPHIR_INIT_VAR(&expectedRet);
 	ZVAL_STRING(&expectedRet, "<?php\narray (\n	'errorCode' => 0,\n	'errorMsg' => '',\n	'logId' => 'da0abdea3483146cd8',\n	'data' => array (\n		'params' => array (\n			'foo' => 'bar',\n		),\n	),\n)\n");
 	ZEPHIR_INIT_NVAR(&_2);

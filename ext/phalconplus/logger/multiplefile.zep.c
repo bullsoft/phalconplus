@@ -56,7 +56,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessors) {
  *               "filePath" => "/path/to/logger/file.log",
  *               "level" => \Phalcon\Logger::CUSTOM，
  *          ],
- *       ]
+ *  ]
  */
 PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct) {
 

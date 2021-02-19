@@ -16,9 +16,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/enum/abstractenum.zep.c
 	phalconplus/app/engine/appengine.zep.c
 	phalconplus/base/exception.zep.c
+	phalconplus/contracts/stringer.zep.c
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
-	phalconplus/contracts/stringer.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
 	phalconplus/base/abstractrequest.zep.c
