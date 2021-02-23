@@ -112,7 +112,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct) {
 			zephir_check_call_status();
 			if (!(zephir_is_true(&_4$$4))) {
 				ZVAL_LONG(&_6$$5, 0777);
-				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_7, 135, &dir, &_6$$5, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_7, 142, &dir, &_6$$5, &__$true);
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_NVAR(&logger);
@@ -153,7 +153,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct) {
 				zephir_check_call_status();
 				if (!(zephir_is_true(&_13$$8))) {
 					ZVAL_LONG(&_14$$9, 0777);
-					ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_7, 135, &dir, &_14$$9, &__$true);
+					ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_7, 142, &dir, &_14$$9, &__$true);
 					zephir_check_call_status();
 				}
 				ZEPHIR_INIT_NVAR(&logger);
@@ -375,7 +375,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addMessage) {
 	}
 	ZEPHIR_INIT_VAR(&_9);
 	ZVAL_STRING(&_9, "name");
-	ZEPHIR_CALL_FUNCTION(&_10, "array_column", NULL, 136, &options, &_9);
+	ZEPHIR_CALL_FUNCTION(&_10, "array_column", NULL, 143, &options, &_9);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "excludeadapters", NULL, 0, &_10);
 	zephir_check_call_status();

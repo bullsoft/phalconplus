@@ -110,6 +110,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/helper/ns.zep.c
 	phalconplus/helper/str.zep.c
 	phalconplus/helper/variable.zep.c
+	phalconplus/http/nonpsrrequest.zep.c
+	phalconplus/http/nonpsrresponse.zep.c
+	phalconplus/http/psrresponsefactory.zep.c
 	phalconplus/logger/multiplefile.zep.c
 	phalconplus/logger/processor/logid.zep.c
 	phalconplus/logger/processor/msec.zep.c

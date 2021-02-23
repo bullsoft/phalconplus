@@ -86,13 +86,13 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "server url can not be empty", "phalconplus/Rpc/Client/Adapter/Curl.zep", 16);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 141, &remoteServerUrl);
+	ZEPHIR_CALL_FUNCTION(&key, "array_rand", NULL, 149, &remoteServerUrl);
 	zephir_check_call_status();
 	zephir_array_fetch(&_0, &remoteServerUrl, &key, PH_NOISY | PH_READONLY, "phalconplus/Rpc/Client/Adapter/Curl.zep", 19);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("remoteServerUrl"), &_0);
 	ZEPHIR_INIT_VAR(&_1);
 	object_init_ex(&_1, phalconplus_curl_curl_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 142);
+	ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 150);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("client"), &_1);
 	if (!(ZEPHIR_IS_EMPTY(&opts))) {
