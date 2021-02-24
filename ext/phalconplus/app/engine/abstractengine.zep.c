@@ -16,6 +16,7 @@
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/exception.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_App_Engine_AbstractEngine) {
@@ -70,6 +71,51 @@ PHP_METHOD(PhalconPlus_App_Engine_AbstractEngine, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	}
 	ZEPHIR_MM_RESTORE();
+
+}
+
+PHP_METHOD(PhalconPlus_App_Engine_AbstractEngine, handler) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "handler");
+
+}
+
+PHP_METHOD(PhalconPlus_App_Engine_AbstractEngine, getHandler) {
+
+	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_OBS_VAR(&_0);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC);
+	if (UNEXPECTED(ZEPHIR_IS_EMPTY(&_0))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Sorry, empty cli handler", "phalconplus/App/Engine/AbstractEngine.zep", 36);
+		return;
+	}
+	RETURN_MM_MEMBER(getThis(), "handler");
+
+}
+
+PHP_METHOD(PhalconPlus_App_Engine_AbstractEngine, setHandler) {
+
+	zval *handler, handler_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&handler_sub);
+
+	zephir_fetch_params_without_memory_grow(1, 0, &handler);
+
+
+
+	zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
+	RETURN_THISW();
 
 }
 

@@ -253,7 +253,7 @@ PHP_METHOD(PhalconPlus_Curl_Response, parseHeaders) {
 	array_init(&_0);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("headers"), &_0);
 	ZEPHIR_MAKE_REF(&headers);
-	ZEPHIR_CALL_FUNCTION(&firstHeader, "array_shift", NULL, 106, &headers);
+	ZEPHIR_CALL_FUNCTION(&firstHeader, "array_shift", NULL, 109, &headers);
 	ZEPHIR_UNREF(&headers);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
@@ -318,7 +318,7 @@ PHP_METHOD(PhalconPlus_Curl_Response, parseHeaders) {
 		}
 		ZEPHIR_INIT_NVAR(&header);
 		ZEPHIR_INIT_NVAR(&key);
-		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "parseheaders", NULL, 107, &headers);
+		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "parseheaders", NULL, 110, &headers);
 		zephir_check_call_status();
 		RETURN_MM();
 	}

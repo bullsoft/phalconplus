@@ -97,12 +97,12 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("container"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_IS_EMPTY(&_0)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "there is no di(dependency injector) in PsrAppliction", "phalconplus/Mvc/PsrApplication.zep", 36);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "there is no di(dependency injector) in PsrAppliction", "phalconplus/Mvc/PsrApplication.zep", 32);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&nativeRequest);
 	object_init_ex(&nativeRequest, phalconplus_http_nonpsrrequest_ce);
-	ZEPHIR_CALL_METHOD(NULL, &nativeRequest, "__construct", NULL, 148, request);
+	ZEPHIR_CALL_METHOD(NULL, &nativeRequest, "__construct", NULL, 151, request);
 	zephir_check_call_status();
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("container"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
@@ -144,31 +144,12 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, setEventsManager) {
 
 
 
+	ZEPHIR_CALL_PARENT(NULL, phalconplus_mvc_psrapplication_ce, getThis(), "seteventsmanager", NULL, 0, eventsManager);
+	zephir_check_call_status();
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("app"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_0, "seteventsmanager", NULL, 0, eventsManager);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
-}
-
-/**
- * Returns the internal event manager
- */
-PHP_METHOD(PhalconPlus_Mvc_PsrApplication, getEventsManager) {
-
-	zval _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&_0);
-
-	ZEPHIR_MM_GROW();
-
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("app"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_RETURN_CALL_METHOD(&_0, "geteventsmanager", NULL, 0);
-	zephir_check_call_status();
-	RETURN_MM();
 
 }
 

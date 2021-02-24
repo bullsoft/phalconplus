@@ -58,7 +58,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Msec, __toString) {
 	zephir_microtime(&_0, NULL);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "%f %d");
-	ZEPHIR_CALL_FUNCTION(&tmp, "sscanf", NULL, 146, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&tmp, "sscanf", NULL, 149, &_0, &_1);
 	zephir_check_call_status();
 	zephir_array_fetch_long(&_2, &tmp, 0, PH_NOISY | PH_READONLY, "phalconplus/Logger/Processor/Msec.zep", 15);
 	ZEPHIR_INIT_NVAR(&_1);

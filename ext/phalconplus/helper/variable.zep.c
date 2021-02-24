@@ -306,13 +306,13 @@ PHP_METHOD(PhalconPlus_Helper_Variable, stringify) {
 		_8 = Z_TYPE_P(value) == IS_RESOURCE;
 	}
 	if (_8) {
-		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 133, value, &__$true);
+		ZEPHIR_CALL_FUNCTION(&val, "print_r", NULL, 136, value, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_9$$7);
 		ZVAL_STRING(&_9$$7, "/\\s+/");
 		ZEPHIR_INIT_VAR(&_10$$7);
 		ZVAL_STRING(&_10$$7, " ");
-		ZEPHIR_CALL_FUNCTION(&_11$$7, "preg_replace", NULL, 134, &_9$$7, &_10$$7, &val);
+		ZEPHIR_CALL_FUNCTION(&_11$$7, "preg_replace", NULL, 137, &_9$$7, &_10$$7, &val);
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(&val, &_11$$7);
 		_12$$7 = full == 0;

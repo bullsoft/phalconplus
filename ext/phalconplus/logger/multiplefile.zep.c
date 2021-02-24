@@ -106,13 +106,13 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct) {
 			zephir_array_fetch_string(&level, &opt, SL("level"), PH_NOISY, "phalconplus/Logger/MultipleFile.zep", 36);
 			zephir_update_property_array(this_ptr, SL("options"), &level, &opt);
 			zephir_array_fetch_string(&_2$$4, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 38);
-			ZEPHIR_CALL_FUNCTION(&dir, "dirname", &_3, 121, &_2$$4);
+			ZEPHIR_CALL_FUNCTION(&dir, "dirname", &_3, 124, &_2$$4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_4$$4, "is_dir", &_5, 52, &dir);
+			ZEPHIR_CALL_FUNCTION(&_4$$4, "is_dir", &_5, 55, &dir);
 			zephir_check_call_status();
 			if (!(zephir_is_true(&_4$$4))) {
 				ZVAL_LONG(&_6$$5, 0777);
-				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_7, 142, &dir, &_6$$5, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_7, 145, &dir, &_6$$5, &__$true);
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_NVAR(&logger);
@@ -147,13 +147,13 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct) {
 				zephir_array_fetch_string(&level, &opt, SL("level"), PH_NOISY, "phalconplus/Logger/MultipleFile.zep", 36);
 				zephir_update_property_array(this_ptr, SL("options"), &level, &opt);
 				zephir_array_fetch_string(&_12$$8, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 38);
-				ZEPHIR_CALL_FUNCTION(&dir, "dirname", &_3, 121, &_12$$8);
+				ZEPHIR_CALL_FUNCTION(&dir, "dirname", &_3, 124, &_12$$8);
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_13$$8, "is_dir", &_5, 52, &dir);
+				ZEPHIR_CALL_FUNCTION(&_13$$8, "is_dir", &_5, 55, &dir);
 				zephir_check_call_status();
 				if (!(zephir_is_true(&_13$$8))) {
 					ZVAL_LONG(&_14$$9, 0777);
-					ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_7, 142, &dir, &_14$$9, &__$true);
+					ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_7, 145, &dir, &_14$$9, &__$true);
 					zephir_check_call_status();
 				}
 				ZEPHIR_INIT_NVAR(&logger);
@@ -375,7 +375,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addMessage) {
 	}
 	ZEPHIR_INIT_VAR(&_9);
 	ZVAL_STRING(&_9, "name");
-	ZEPHIR_CALL_FUNCTION(&_10, "array_column", NULL, 143, &options, &_9);
+	ZEPHIR_CALL_FUNCTION(&_10, "array_column", NULL, 146, &options, &_9);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "excludeadapters", NULL, 0, &_10);
 	zephir_check_call_status();

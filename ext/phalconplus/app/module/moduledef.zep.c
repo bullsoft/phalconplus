@@ -122,7 +122,7 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "is_dir", NULL, 52, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_0, "is_dir", NULL, 55, &moduleDir);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
@@ -175,13 +175,13 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct) {
 		zephir_read_property(&_17$$5, &appConfig, ZEND_STRL("mode"), PH_NOISY_CC | PH_READONLY);
 		zephir_fast_strtolower(&_16$$5, &_17$$5);
 		zephir_ucfirst(&_15$$5, &_16$$5);
-		ZEPHIR_CALL_METHOD(NULL, &_14$$5, "__construct", NULL, 53, &_15$$5);
+		ZEPHIR_CALL_METHOD(NULL, &_14$$5, "__construct", NULL, 56, &_15$$5);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("runMode"), &_14$$5);
 	} else {
 		ZEPHIR_INIT_VAR(&_18$$6);
 		object_init_ex(&_18$$6, phalconplus_enum_runmode_ce);
-		ZEPHIR_CALL_METHOD(NULL, &_18$$6, "__construct", NULL, 53, &runMode);
+		ZEPHIR_CALL_METHOD(NULL, &_18$$6, "__construct", NULL, 56, &runMode);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("runMode"), &_18$$6);
 	}
@@ -192,7 +192,7 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("classPath"), &_19);
 	zephir_read_property(&_23, this_ptr, ZEND_STRL("classPath"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_24, "is_file", NULL, 54, &_23);
+	ZEPHIR_CALL_FUNCTION(&_24, "is_file", NULL, 57, &_23);
 	zephir_check_call_status();
 	if (zephir_is_true(&_24)) {
 		zephir_read_property(&_25$$7, &appConfig, ZEND_STRL("ns"), PH_NOISY_CC | PH_READONLY);
@@ -219,30 +219,48 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct) {
 
 PHP_METHOD(PhalconPlus_App_Module_ModuleDef, newDI) {
 
-	zval _0, _1;
+	zval di, _0, _1, _2, _3, _4, _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
+	ZVAL_UNDEF(&di);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_5);
 
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("runMode"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "iscli", NULL, 0);
 	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&di);
 	if (zephir_is_true(&_1)) {
-		object_init_ex(return_value, zephir_get_internal_ce(SL("phalcon\\di\\factorydefault\\cli")));
-		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
+		object_init_ex(&di, zephir_get_internal_ce(SL("phalcon\\di\\factorydefault\\cli")));
+		ZEPHIR_CALL_METHOD(NULL, &di, "__construct", NULL, 0);
 		zephir_check_call_status();
-		RETURN_MM();
 	} else {
-		object_init_ex(return_value, zephir_get_internal_ce(SL("phalcon\\di\\factorydefault")));
-		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
+		object_init_ex(&di, zephir_get_internal_ce(SL("phalcon\\di\\factorydefault")));
+		ZEPHIR_CALL_METHOD(NULL, &di, "__construct", NULL, 0);
 		zephir_check_call_status();
-		RETURN_MM();
 	}
+	ZEPHIR_INIT_VAR(&_3);
+	ZVAL_STRING(&_3, "eventsManager");
+	ZEPHIR_CALL_METHOD(&_2, &di, "get", NULL, 0, &_3);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, &di, "setinternaleventsmanager", NULL, 0, &_2);
+	zephir_check_call_status();
+	zephir_read_property(&_4, this_ptr, ZEND_STRL("app"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_NVAR(&_3);
+	ZVAL_STRING(&_3, "eventsManager");
+	ZEPHIR_CALL_METHOD(&_5, &di, "get", NULL, 0, &_3);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, &_4, "seteventsmanager", NULL, 0, &_5);
+	zephir_check_call_status();
+	RETURN_CCTOR(&di);
 
 }
 
@@ -334,7 +352,7 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, checkout) {
 		zephir_array_fast_append(&_11$$6, &_13$$6);
 		ZEPHIR_CALL_METHOD(NULL, &_10$$6, "__construct", NULL, 2, &_11$$6);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_10$$6, "phalconplus/App/Module/ModuleDef.zep", 116);
+		zephir_throw_exception_debug(&_10$$6, "phalconplus/App/Module/ModuleDef.zep", 120);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
