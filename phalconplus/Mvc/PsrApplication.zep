@@ -22,10 +22,6 @@ class PsrApplication extends AbstractApplication
     {
         parent::__construct(di);
         let this->app = new MvcApplication(di);
-//        var eventsManager;
-//        let eventsManager = <ManagerInterface> this->container->getInternalEventsManager();
-//        this->setEventsManager(eventsManager);
-//        this->app->setEventsManager(eventsManager);
         this->app->sendCookiesOnHandleRequest(false)
                  ->sendHeadersOnHandleRequest(false);
     }
@@ -57,15 +53,7 @@ class PsrApplication extends AbstractApplication
      */
     public function setEventsManager(<ManagerInterface> eventsManager) -> void
     {
+        parent::setEventsManager(eventsManager);
         this->app->setEventsManager(eventsManager);
-    }
-
-
-    /**
-     * Returns the internal event manager
-     */
-    public function getEventsManager() -> <ManagerInterface>
-    {
-        return this->app->getEventsManager();
     }
 }
