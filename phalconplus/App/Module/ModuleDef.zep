@@ -85,11 +85,15 @@ class ModuleDef
 
     public function newDI() -> <\Phalcon\Di>
     {
+        var di;
         if this->runMode->isCli() {
-            return new TaskDI();
+            let di = new TaskDI();
         } else {
-            return new DefaultDI();
+            let di = new DefaultDI();
         }
+        di->setInternalEventsManager(di->get("eventsManager"));
+        this->app->setEventsManager(di->get("eventsManager"));
+        return di;
     }
 
     public function checkout() -> <AbstractModule>

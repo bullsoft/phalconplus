@@ -1,7 +1,7 @@
 namespace PhalconPlus\App\Module;
 use PhalconPlus\App\Module\ModuleDef;
 use PhalconPlus\App\App as SuperApp;
-use PhalconPlus\App\Engine\AppEngine;
+use PhalconPlus\App\Engine\AbstractEngine;
 use Phalcon\Di\Injectable;
 use PhalconPlus\Base\Exception as BaseException;
 use PhalconPlus\Enum\RunMode;
@@ -75,7 +75,7 @@ abstract class AbstractModule extends Injectable
         return this->def->config();
     }
 
-    public function engine() -> <AppEngine>
+    public function engine() -> <AbstractEngine>
     {
         return this->engine;
     }
@@ -98,7 +98,7 @@ abstract class AbstractModule extends Injectable
             engineClass,  
             engineName = this->def->getMapClassName();
         
-        let eventsManager = <ManagerInterface> this->container->getInternalEventsManager();
+        let eventsManager = <ManagerInterface> this->container->get("eventsManager");
         if typeof eventsManager == "object" {
             if eventsManager->fire("module:beforeStartEngine", this, [engineClass, params]) === false {
                 // 
@@ -108,7 +108,7 @@ abstract class AbstractModule extends Injectable
         if empty this->engine {
             this->registerEngine();
         }
-        this->di()->setShared("appEngine", this->engine);
+        this->container->setShared("appEngine", this->engine);
 
         return call_user_func_array(
             [this->engine, "exec"], 
@@ -131,7 +131,7 @@ abstract class AbstractModule extends Injectable
         
         var engineClass,  
             engineName = this->def->getMapClassName();
-        let engineClass = "\\PhalconPlus\\App\\Engine\\".engineName;
+        let engineClass = "PhalconPlus\\App\\Engine\\".engineName;
 
         let this->engine = new {engineClass}(this);
 
