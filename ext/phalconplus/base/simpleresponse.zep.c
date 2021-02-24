@@ -75,7 +75,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, softClone) {
 			}
 			ZEPHIR_INIT_NVAR(&val);
 			ZVAL_COPY(&val, _0);
-			ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 81, &key, &val);
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 84, &key, &val);
 			zephir_check_call_status();
 		} ZEND_HASH_FOREACH_END();
 	} else {
@@ -91,7 +91,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, softClone) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&val, &data, "current", NULL, 0);
 			zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 81, &key, &val);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "__set", &_4, 84, &key, &val);
 				zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, &data, "next", NULL, 0);
 			zephir_check_call_status();
@@ -192,7 +192,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, setItem) {
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, ZEND_STRL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_0$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 75, &_0$$4, val);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 78, &_0$$4, val);
 		ZEPHIR_UNREF(&_0$$4);
 		zephir_check_call_status();
 	}
@@ -233,7 +233,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleResponse, getItem) {
 	} else {
 		zephir_read_property(&_3$$5, this_ptr, ZEND_STRL("result"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_MAKE_REF(&_3$$5);
-		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 67, &_3$$5);
+		ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 70, &_3$$5);
 		ZEPHIR_UNREF(&_3$$5);
 		zephir_check_call_status();
 		RETURN_MM();

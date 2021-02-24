@@ -1,88 +1,83 @@
 namespace PhalconPlus\Http;
 
-use Phalcon\Http\Request as BaseRequest;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UploadedFileInterface;
 
-use Phalcon\DiInterface;
-use Phalcon\FilterInterface;
+use Phalcon\Di\DiInterface;
 use Phalcon\Http\Request\File;
 use Phalcon\Http\Request\Exception;
+use Phalcon\Http\Request as NativeRequest;
 use Phalcon\Events\ManagerInterface;
 use Phalcon\Di\InjectionAwareInterface;
 
-class NonPsrRequest extends BaseRequest
+class NonPsrRequest extends NativeRequest
 {
-    protected attributes = [] {
-        get
-    };
-    protected cookies = [] {
-        get
-    };
+    protected attributes = [] { get };
+    protected cookies = [] { get };
+    protected files = [] { get };
+    protected psrRequest = null { get };
     protected headers = [];
-    protected files = [] {
-        get
-    };
-    protected psrRequest = null {
-        get
-    };
-    
+
     public function __construct(<ServerRequestInterface> request)
     {
+        // Hold an instance of PsrRequest
+        let this->psrRequest = request;
+
         let this->attributes = request->getAttributes() ?: [];
         let this->cookies    = request->getCookieParams() ?: [];
         let this->headers    = request->getHeaders() ?: [];
-        let this->_rawBody   = request->getBody()->__toString();
-        
-        var posts, gets, cookies;
+        let this->rawBody    = request->getBody()->__toString();
+
+        var posts, gets, cookies, serverParams;
         let posts = request->getParsedBody() ?: [];
         let gets  = request->getQueryParams() ?: [];
         let cookies = request->getCookieParams() ?: [];
+        let serverParams = request->getServerParams() ?: [];
+
         // Global variables
         var k, v;
+
         // POST
-        for k, v in  posts {
+        for k, v in posts {
             let _POST[k] = v;
         }
         // GET
         for k, v in gets {
             let _GET[k] = v;
         }
-
         // SERVER
-        for k, v in request->getServerParams() {
+        for k, v in serverParams {
             let _SERVER[k] = v;
         }
         for k, v in this->headers {
             let k = strtoupper(str_replace("-", "_", k));
             let _SERVER["HTTP_".k] = is_array(v) ? reset(v) : v;
         }
-
-        let _SERVER["REQUEST_URI"] = self::getRequestTarget(request);
+        let _SERVER["REQUEST_URI"] = this->getRequestTarget();
         let _SERVER["REQUEST_METHOD"] = request->getMethod();
-
         // COOKIE
         for k, v in cookies {
             let _COOKIE[k] = v;
         }
-        // 设置SessionId
+        // SESSION_ID
         if !empty this->cookies {
             if isset this->cookies[session_name()] {
                 session_id(this->cookies[session_name()]);
             }
         }
+        // FILES
         this->mapFiles(request->getUploadedFiles());
         var prefix, input;
         for prefix, input in this->files {
             let _FILES[prefix] = input;
         }
-
-        let this->psrRequest = request;
     }
 
-    protected static function getRequestTarget(<ServerRequestInterface> request)
+    protected function getRequestTarget()
     {
+        var request = this->psrRequest;
         var target = request->getUri()->getPath();
+
         if (target == "") {
             let target = "/";
         }
@@ -91,7 +86,7 @@ class NonPsrRequest extends BaseRequest
         }
         return target;
     }
- 
+
     private function mapFiles(array uploads)
     {
         var file;
@@ -101,11 +96,11 @@ class NonPsrRequest extends BaseRequest
             } elseif file instanceof UploadedFileInterface {
                 var tmpname;
                 let tmpname = tempnam(sys_get_temp_dir(), "upload");
-             
+
                 if (UPLOAD_ERR_OK == file->getError()) {
                     file_put_contents(tmpname, (string) file->getStream());
                 }
-                
+
                 let this->files[] = [
                     "error"    : file->getError(),
                     "name"     : file->getClientFilename(),
@@ -117,7 +112,7 @@ class NonPsrRequest extends BaseRequest
         }
     }
 
-    public function removeTmpFiles()
+    protected function removeTmpFiles()
     {
         var item, tmp;
         for item in this->files {
@@ -135,16 +130,16 @@ class NonPsrRequest extends BaseRequest
     }
 
     /**
-    * Checks whether request has been made using ajax
-    */
+     * Checks whether request has been made using ajax
+     */
     public function isAjax() -> boolean
     {
         return isset this->headers["HTTP_X_REQUESTED_WITH"] && this->headers["HTTP_X_REQUESTED_WITH"] === "XMLHttpRequest";
     }
 
     /**
-    * Checks whether request has been made using SOAP
-    */
+     * Checks whether request has been made using SOAP
+     */
     public function isSoap() -> boolean
     {
         var contentType;
@@ -158,7 +153,6 @@ class NonPsrRequest extends BaseRequest
         }
         return false;
     }
- 
 
     public function getHttpHost() -> string
     {
@@ -177,8 +171,11 @@ class NonPsrRequest extends BaseRequest
 
     public function getContentType() -> string | null
     {
-    return  this->psrRequest->getHeaderLine("Content-Type");
+        return  this->psrRequest->getHeaderLine("Content-Type");
     }
 
+    public function __destruct()
+    {
+        this->removeTmpFiles();
+    }
 }
- 

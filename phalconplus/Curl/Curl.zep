@@ -261,12 +261,12 @@ class Curl
     */
     protected function createResponseObject(response) -> <Response>
     {
-        var info, headerSize, headers, body;
+        var info, headerSize, headerStr, body;
         let info = curl_getinfo(this->ch);
-        let headerSize = curl_getinfo(this->ch, CURLINFO_HEADER_SIZE);
-        let headers = substr(response, 0, headerSize);
+        let headerSize = info["header_size"];
+        let headerStr = substr(response, 0, headerSize);
         let body = substr(response, headerSize);
-        return new Response(body, headers, info);
+        return new Response(body, headerStr, info);
     }
     /**
     * Handle dynamic calls to the class.

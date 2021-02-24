@@ -100,21 +100,21 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init) {
 	ZVAL_STRING(&_2, "/");
 	zephir_fast_trim(&_1, &moduleDir, &_2, ZEPHIR_TRIM_RIGHT);
 	zephir_get_strval(&moduleDir, &_1);
-	ZEPHIR_CALL_FUNCTION(&_3, "is_dir", NULL, 52, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_3, "is_dir", NULL, 55, &moduleDir);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_3))) {
 		ZEPHIR_INIT_VAR(&_4$$4);
 		object_init_ex(&_4$$4, zend_exception_get_default(TSRMLS_C));
 		ZEPHIR_INIT_VAR(&_5$$4);
 		ZEPHIR_CONCAT_SV(&_5$$4, "Module directory not exists or not a dir, file positon: ", &moduleDir);
-		ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", NULL, 120, &_5$$4);
+		ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", NULL, 123, &_5$$4);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_4$$4, "phalconplus/Enum/Sys.zep", 31);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
 	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("primaryModuleDir"), &moduleDir);
-	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 121, &moduleDir);
+	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 124, &moduleDir);
 	zephir_check_call_status();
 	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("rootDir"), &_6);
 	ZEPHIR_INIT_VAR(&_7);
@@ -402,7 +402,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleNameByDir) {
 
 
 	ZVAL_LONG(&_0, 8);
-	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 122, &moduleDir, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("pathinfo", NULL, 125, &moduleDir, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -496,7 +496,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 	ZVAL_STRING(&_3, "/");
 	ZEPHIR_INIT_NVAR(&confPath);
 	zephir_fast_join(&confPath, &_3, &_0);
-	ZEPHIR_CALL_FUNCTION(&_4, "is_file", &_5, 54, &confPath);
+	ZEPHIR_CALL_FUNCTION(&_4, "is_file", &_5, 57, &confPath);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_4))) {
 		ZEPHIR_INIT_VAR(&_6$$3);
@@ -516,7 +516,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath) {
 		ZEPHIR_INIT_NVAR(&confPath);
 		zephir_fast_join(&confPath, &_7$$3, &_6$$3);
 	}
-	ZEPHIR_CALL_FUNCTION(&_9, "is_file", &_5, 54, &confPath);
+	ZEPHIR_CALL_FUNCTION(&_9, "is_file", &_5, 57, &confPath);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_9))) {
 		ZEPHIR_INIT_VAR(&_10$$4);
@@ -649,14 +649,14 @@ PHP_METHOD(PhalconPlus_Enum_Sys, load) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "is_file", NULL, 54, &filePath);
+	ZEPHIR_CALL_FUNCTION(&_0, "is_file", NULL, 57, &filePath);
 	zephir_check_call_status();
 	if (UNEXPECTED(!zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		object_init_ex(&_1$$3, zend_exception_get_default(TSRMLS_C));
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_CONCAT_SV(&_2$$3, "The file you try to load is not exists. The Path is: ", &filePath);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 120, &_2$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 123, &_2$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_1$$3, "phalconplus/Enum/Sys.zep", 187);
 		ZEPHIR_MM_RESTORE();

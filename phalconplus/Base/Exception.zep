@@ -1,6 +1,6 @@
 namespace PhalconPlus\Base;
-use \PhalconPlus\Assert\Assertion as Assert;
-use \PhalconPlus\Enum\Sys as Sys;
+use PhalconPlus\Assert\Assertion as Assert;
+use PhalconPlus\Enum\Sys as Sys;
 /**
  * throw new Exception("error message");
  * throw new Exception(["error message", "hello"]);
@@ -13,7 +13,7 @@ class Exception extends \Exception
     protected level = \Phalcon\Logger::DEBUG;
     protected info;
 
-    public function __construct(info, int code = 0)
+    public function __construct(info = null, int code = 0)
     {
         var message = "", args = [];
         let message = "An exception created: " . get_class(this);

@@ -19,7 +19,7 @@ class Mysql extends AbstractMysql
         var dialectClass, connectionId;
 
         let connectionId = self::connectionConsecutive,
-            this->_connectionId = connectionId,
+            this->connectionId = connectionId,
             self::connectionConsecutive = connectionId + 1;
 
         /**
@@ -39,7 +39,7 @@ class Mysql extends AbstractMysql
                 let this->dialect = dialectClass;
             }
         }
-        let this->_descriptor = descriptor;
+        let this->descriptor = descriptor;
         
         // ------------------------------------------------------ //
         // end coping
@@ -60,23 +60,13 @@ class Mysql extends AbstractMysql
 
     public function isUnderTransaction() -> boolean
     {
-        string prop = "pdo";
         int isPdoSet = 0;
-        /* 
-         * Used to check if a property of the object exists 
-         * https://wiki.php.net/internals/engine/objects#the_handler_table
-         *
-         * param has_set_exists:
-         * 0 (has) whether property exists and is not NULL
-         * 1 (set) whether property exists and is true
-         * 2 (exists) whether property exists
-         */
+
         %{
-        isPdoSet = Z_OBJ_HT_P(this_ptr)->has_property(this_ptr, &prop, 0, NULL);
-        // isPdoSet = zephir_isset_property(this_ptr, SL("pdo"));
+        isPdoSet = zephir_isset_property(this_ptr, SL("pdo"));
         }%
 
-        if(isPdoSet == 0) {
+        if(isPdoSet == 0 || this->pdo == null) {
             return false;
         }
 

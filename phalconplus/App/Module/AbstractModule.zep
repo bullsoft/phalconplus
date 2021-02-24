@@ -1,11 +1,13 @@
 namespace PhalconPlus\App\Module;
 use PhalconPlus\App\Module\ModuleDef;
 use PhalconPlus\App\App as SuperApp;
-use PhalconPlus\App\Engine\AppEngine;
+use PhalconPlus\App\Engine\AbstractEngine;
 use Phalcon\Di\Injectable;
 use PhalconPlus\Base\Exception as BaseException;
 use PhalconPlus\Enum\RunMode;
 use Phalcon\Events\ManagerInterface;
+use Phalcon\Http\ResponseInterface as HttpResponse;
+use Phalcon\Cli\Task as CliTask;
 
 abstract class AbstractModule extends Injectable
 {
@@ -23,32 +25,32 @@ abstract class AbstractModule extends Injectable
         let this->container = app->di();
     }
 
-    public function isPrimary()
+    public function isPrimary() -> boolean
     {
         return this->def->getIsPrimary() === true; // Report is primary or not
     }
 
-    public function isCli()
+    public function isCli() -> boolean
     {
         return this->def->getRunMode()->isCli();
     }
 
-    public function isWeb()
+    public function isWeb() -> boolean
     {
         return this->def->getRunMode()->isWeb();
     }
 
-    public function isSrv()
+    public function isSrv() -> boolean
     {
         return this->def->getRunMode()->isSrv();
     }
 
-    public function isMicro()
+    public function isMicro() -> boolean
     {
         return this->def->getRunMode()->isMicro();
     }
 
-    public function getName()
+    public function getName() -> string
     {
         return this->def->getName();
     }
@@ -73,7 +75,7 @@ abstract class AbstractModule extends Injectable
         return this->def->config();
     }
 
-    public function engine() -> <AppEngine>
+    public function engine() -> <AbstractEngine>
     {
         return this->engine;
     }
@@ -86,7 +88,7 @@ abstract class AbstractModule extends Injectable
         );
     }
 
-    public function exec(array params = [])
+    public function exec(array params = []) -> <HttpResponse> | <CliTask>
     {
         if !this->def->isPrimary() {
             throw new BaseException("Only primary module can be executed");
@@ -96,7 +98,7 @@ abstract class AbstractModule extends Injectable
             engineClass,  
             engineName = this->def->getMapClassName();
         
-        let eventsManager = <ManagerInterface> this->container->getInternalEventsManager();
+        let eventsManager = <ManagerInterface> this->container->get("eventsManager");
         if typeof eventsManager == "object" {
             if eventsManager->fire("module:beforeStartEngine", this, [engineClass, params]) === false {
                 // 
@@ -106,7 +108,7 @@ abstract class AbstractModule extends Injectable
         if empty this->engine {
             this->registerEngine();
         }
-        this->di()->setShared("appEngine", this->engine);
+        this->container->setShared("appEngine", this->engine);
 
         return call_user_func_array(
             [this->engine, "exec"], 
@@ -129,7 +131,7 @@ abstract class AbstractModule extends Injectable
         
         var engineClass,  
             engineName = this->def->getMapClassName();
-        let engineClass = "\\PhalconPlus\\App\\Engine\\".engineName;
+        let engineClass = "PhalconPlus\\App\\Engine\\".engineName;
 
         let this->engine = new {engineClass}(this);
 

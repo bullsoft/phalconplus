@@ -517,7 +517,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		ZVAL_STRING(&_15$$8, "logger");
 		ZEPHIR_CALL_METHOD(&_14$$8, &_13$$8, "get", NULL, 0, &_15$$8);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_14$$8, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_14$$8, "info", NULL, 0, &message);
 		zephir_check_call_status();
 	}
 	zephir_read_property(&_16, this_ptr, ZEND_STRL("eventsManager"), PH_NOISY_CC | PH_READONLY);
@@ -558,7 +558,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_AbstractServer, callByObject) {
 		ZVAL_STRING(&_25$$9, "logger");
 		ZEPHIR_CALL_METHOD(&_24$$9, &_23$$9, "get", NULL, 0, &_25$$9);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_24$$9, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_24$$9, "info", NULL, 0, &message);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&response);

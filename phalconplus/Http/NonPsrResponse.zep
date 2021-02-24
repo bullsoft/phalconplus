@@ -1,13 +1,11 @@
 namespace PhalconPlus\Http;
 
-use Phalcon\Http\Response as BaseResponse;
+use Phalcon\Http\Response as NativeResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UploadedFileInterface;
 
-class NonPsrResponse extends BaseResponse
+class NonPsrResponse extends NativeResponse
 {
-    protected psrResponse = null;
-
     public function __construct(<ResponseInterface> psrResponse)
     {
         parent::__construct(
@@ -16,7 +14,7 @@ class NonPsrResponse extends BaseResponse
             psrResponse->getReasonPhrase()
         );
 
-        var cookies, cookie, 
+        var cookies, cookie,
             values, value, name;
 
         let cookies = psrResponse->getHeader("Set-Cookie");

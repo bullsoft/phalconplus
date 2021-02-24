@@ -31,6 +31,48 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_module_abstractmodule___construct
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_isprimary, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_isprimary, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_iscli, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_iscli, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_isweb, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_isweb, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_issrv, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_issrv, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_ismicro, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_ismicro, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_getname, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_getname, 0, 0, IS_STRING, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_app, 0, 0, PhalconPlus\\App\\App, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_app, 0, 0, IS_OBJECT, "PhalconPlus\\App\\App", 0)
@@ -59,9 +101,9 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractm
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_engine, 0, 0, PhalconPlus\\App\\Engine\\AppEngine, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_engine, 0, 0, PhalconPlus\\App\\Engine\\AbstractEngine, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_engine, 0, 0, IS_OBJECT, "PhalconPlus\\App\\Engine\\AppEngine", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_engine, 0, 0, IS_OBJECT, "PhalconPlus\\App\\Engine\\AbstractEngine", 0)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -74,7 +116,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_module_abstractmodule___call, 0, 
 	ZEND_ARG_ARRAY_INFO(0, params, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_exec, 0, 0, 0)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_exec, 0, 0, NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_module_abstractmodule_exec, 0, 0, IS_OBJECT, "NULL", 0)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, params, 0)
 ZEND_END_ARG_INFO()
 
@@ -90,12 +136,12 @@ ZEPHIR_INIT_FUNCS(phalconplus_app_module_abstractmodule_method_entry) {
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, getDef, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, getEngine, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, __construct, arginfo_phalconplus_app_module_abstractmodule___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(PhalconPlus_App_Module_AbstractModule, isPrimary, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_Module_AbstractModule, isCli, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_Module_AbstractModule, isWeb, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_Module_AbstractModule, isSrv, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_Module_AbstractModule, isMicro, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_App_Module_AbstractModule, getName, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_AbstractModule, isPrimary, arginfo_phalconplus_app_module_abstractmodule_isprimary, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_AbstractModule, isCli, arginfo_phalconplus_app_module_abstractmodule_iscli, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_AbstractModule, isWeb, arginfo_phalconplus_app_module_abstractmodule_isweb, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_AbstractModule, isSrv, arginfo_phalconplus_app_module_abstractmodule_issrv, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_AbstractModule, isMicro, arginfo_phalconplus_app_module_abstractmodule_ismicro, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_App_Module_AbstractModule, getName, arginfo_phalconplus_app_module_abstractmodule_getname, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, app, arginfo_phalconplus_app_module_abstractmodule_app, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, di, arginfo_phalconplus_app_module_abstractmodule_di, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_App_Module_AbstractModule, def, arginfo_phalconplus_app_module_abstractmodule_def, ZEND_ACC_PUBLIC)

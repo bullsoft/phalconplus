@@ -22,8 +22,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Http_NonPsrResponse) {
 
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Http, NonPsrResponse, phalconplus, http_nonpsrresponse, zephir_get_internal_ce(SL("phalcon\\http\\response")), phalconplus_http_nonpsrresponse_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_http_nonpsrresponse_ce, SL("psrResponse"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
 
 }
@@ -83,7 +81,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&headers, &newPsrResponse, "getheaders", NULL, 0);
 	zephir_check_call_status();
-	zephir_is_iterable(&headers, 0, "phalconplus/Http/NonPsrResponse.zep", 34);
+	zephir_is_iterable(&headers, 0, "phalconplus/Http/NonPsrResponse.zep", 32);
 	if (Z_TYPE_P(&headers) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&headers), _7, _8, _5)
 		{
@@ -95,7 +93,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct) {
 			}
 			ZEPHIR_INIT_NVAR(&values);
 			ZVAL_COPY(&values, _5);
-			zephir_is_iterable(&values, 0, "phalconplus/Http/NonPsrResponse.zep", 32);
+			zephir_is_iterable(&values, 0, "phalconplus/Http/NonPsrResponse.zep", 30);
 			if (Z_TYPE_P(&values) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&values), _9$$3)
 				{
@@ -136,7 +134,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&values, &headers, "current", NULL, 0);
 			zephir_check_call_status();
-				zephir_is_iterable(&values, 0, "phalconplus/Http/NonPsrResponse.zep", 32);
+				zephir_is_iterable(&values, 0, "phalconplus/Http/NonPsrResponse.zep", 30);
 				if (Z_TYPE_P(&values) == IS_ARRAY) {
 					ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&values), _12$$6)
 					{
@@ -169,7 +167,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct) {
 	}
 	ZEPHIR_INIT_NVAR(&values);
 	ZEPHIR_INIT_NVAR(&name);
-	zephir_is_iterable(&cookies, 0, "phalconplus/Http/NonPsrResponse.zep", 37);
+	zephir_is_iterable(&cookies, 0, "phalconplus/Http/NonPsrResponse.zep", 35);
 	if (Z_TYPE_P(&cookies) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&cookies), _14)
 		{

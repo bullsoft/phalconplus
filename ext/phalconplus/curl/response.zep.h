@@ -64,8 +64,41 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_response_parseheaders, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, headers, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_curl_response_getheader, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_getheader, 0, 1, IS_STRING, 1)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_getheader, 0, 1, IS_STRING, NULL, 1)
+#endif
 	ZEND_ARG_INFO(0, key)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_getheaders, 0, 0, IS_ARRAY, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_getheaders, 0, 0, IS_ARRAY, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_toarray, 0, 0, IS_ARRAY, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_toarray, 0, 0, IS_ARRAY, NULL, 0)
+#endif
+	ZEND_ARG_ARRAY_INFO(0, columns, 0)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_tojson, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response_tojson, 0, 0, IS_STRING, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response___tostring, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_curl_response___tostring, 0, 0, IS_STRING, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_curl_response_method_entry) {
@@ -76,10 +109,10 @@ ZEPHIR_INIT_FUNCS(phalconplus_curl_response_method_entry) {
 	PHP_ME(PhalconPlus_Curl_Response, parseHeader, arginfo_phalconplus_curl_response_parseheader, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Curl_Response, parseHeaders, arginfo_phalconplus_curl_response_parseheaders, ZEND_ACC_PROTECTED)
 	PHP_ME(PhalconPlus_Curl_Response, getHeader, arginfo_phalconplus_curl_response_getheader, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Curl_Response, getHeaders, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Curl_Response, toArray, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Curl_Response, toJson, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Curl_Response, getHeaders, arginfo_phalconplus_curl_response_getheaders, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Curl_Response, toArray, arginfo_phalconplus_curl_response_toarray, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Curl_Response, toJson, arginfo_phalconplus_curl_response_tojson, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Curl_Response, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(PhalconPlus_Curl_Response, __toString, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(PhalconPlus_Curl_Response, __toString, arginfo_phalconplus_curl_response___tostring, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

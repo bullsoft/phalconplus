@@ -6,45 +6,48 @@ use PhalconPlus\App\Module\AbstractModule as AppModule;
 use PhalconPlus\Rpc\Server\AbstractServer;
 use PhalconPlus\Rpc\Server\SimpleServer;
 use PhalconPlus\Rpc\Yar as YarServerPlus;
+use PhalconPlus\Rpc\YarServerWrapper;
+use PhalconPlus\Rpc\AbstractYar;
+use Phalcon\Application\AbstractApplication as BaseApplication;
 
+use Phalcon\Di\DiInterface;
 use Phalcon\Di\Injectable;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\Http\ResponseInterface as HttpResponse;
-use Yar_Server;
 
-class Srv extends Injectable implements AppEngine
+class Srv extends AbstractEngine
 {
-    protected appModule = null;
-    protected handler = null;
-
     public function __construct(<AppModule> appModule, <BaseApplication> handler = null)
     {
-        let this->appModule = appModule;
-
         var di = appModule->di();
-        this->setDI(di);
+        var moduleConf = appModule->{"config"}();
 
-        var backendSrv = null;
+        if is_null(handler) {
+            if moduleConf->application->handler == "yar" {
+                let handler = new YarServerWrapper();
+            } else {
+                let handler = new YarServerPlus();
+            }
+        }
+        var backendSrv = this->newService(di);
+        handler->setServer(backendSrv);
+        parent::__construct(appModule, handler);
+    }
 
-        // Backend Server, Default is SimpleServer 
-        if unlikely di->has("backendSrv") {
-            let backendSrv = di->get("backendSrv");
+    private function newService(<DiInterface> di) -> <AbstractServer>
+    {
+        // Backend Server, Default is SimpleServer
+        var backendSrv;
+        if unlikely di->has(AbstractYar::NAME) {
+            let backendSrv = di->get(AbstractYar::NAME);
             if ! (backendSrv instanceof AbstractServer) {
                 throw new BaseException("Service object(DI[\"backendSrv\"]) must be type of PhalconPlus\\Rpc\\Server\\AbstractServer");
             }
         } else {
             let backendSrv = new SimpleServer(di);
-            di->setShared("backendSrv", backendSrv);
+            di->setShared(AbstractYar::NAME, backendSrv);
         }
-
-        var moduleConf = appModule->{"config"}();
-        if moduleConf->application->handler == "yar" {
-            let this->handler = new Yar_Server(backendSrv);
-        } else {
-            let this->handler = new YarServerPlus(di);
-            this->handler->setServer(backendSrv);
-            this->handler->setEventsManager(di->get("eventsManager"));
-        }
+        return backendSrv;
     }
     
     public function exec() -> <HttpResponse>
@@ -56,29 +59,5 @@ class Srv extends Injectable implements AppEngine
         response->setStatusCode(200, "OK");
         response->setContent(content);
         return response;
-    }
-
-    public function setHandler(object handler) -> <AppEngine>
-    {
-        if likely (handler instanceof BaseApplication) || (handler instanceof Yar_Server) {
-            let this->handler = handler;
-        } else {
-            throw new BaseException("Application must be instance of phalcon\\application or yar_server");
-        }
-        
-        return this;
-    }
-    
-    public function handler() -> object
-    {
-        return this->handler;
-    }
-
-    public function getHandler() -> object
-    {
-        if unlikely empty(this->handler) {
-            throw new BaseException("Sorry, empty srv handler");
-        }
-        return this->handler;
     }
 }

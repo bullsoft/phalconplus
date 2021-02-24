@@ -2,51 +2,49 @@ namespace PhalconPlus\Http;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UploadedFileInterface;
-use GuzzleHttp\Psr7\Response as PsrBaseResponse;
-use Phalcon\Http\Response as BaseResponse;
+use Phalcon\Http\Message\Response as PsrResponse;
+use Phalcon\Http\Response as NativeResponse;
 use PhalconPlus\Base\Exception as BaseException;
-use Psr\Http\Message\ResponseInterface;
+//use GuzzleHttp\Psr7\Response as GuzzlePsrResponse;
 
 class PsrResponseFactory
 {
-    protected psrResponse = null;
-
-    public static function create(<BaseResponse> response, var protocol = "1.1") -> <ResponseInterface>
+    public static function create(<NativeResponse> response, var protocol = "1.1") -> <ResponseInterface>
     {
-        var status = response->getStatusCode();
-        var reason = response->getReasonPhrase();
+        var status  = response->getStatusCode();
+        var reason  = response->getReasonPhrase();
         var content = response->getContent();
+
         // ob_start();
         // response->send();
         // var content = ob_get_clean();
         // if !empty stdout {
         //     let content = stdout . content;
         // }
+
         var headers = self::mapHeaders(response);
 
-        if !class_exists("GuzzleHttp\\Psr7\\Response") {
-            throw new BaseException("We use GuzzleHttp\\Psr7\\Response, please include that package");
-        }
         var psrResponse;
-        let psrResponse = new PsrBaseResponse(
-            status ? status : 200, 
-            headers, 
-            content, 
-            protocol, 
-            reason ? reason : "OK"
+        string className = "GuzzleHttp\\Psr7\\Response";
+        let psrResponse = new {className}(
+            status ? status : 200,
+            headers,
+            content,
+            protocol
         );
 
         if !isset(headers["Content-Length"]) {
             psrResponse->withAddedHeader("Content-Length", strlen(content));
         }
+
         return psrResponse;
     }
 
-    protected static function mapHeaders(<BaseResponse> response) -> array
+    protected static function mapHeaders(<NativeResponse> response) -> array
     {
         var headers = response->getHeaders()->toArray();
-        
         var rawHeaders = headers_list();
+
         var h, pos, nativeHeaders = [];
         for h in rawHeaders {
             let pos = strpos(h, ":");
@@ -67,9 +65,9 @@ class PsrResponseFactory
         // operates on a clean header.
         header_remove();
         let headers = array_merge(nativeHeaders, headers);
-        
+
         if isset(nativeHeaders["Set-Cookie"]) {
-            let headers["Set-Cookie"] = is_array(nativeHeaders["Set-Cookie"])?nativeHeaders["Set-Cookie"]:[nativeHeaders["Set-Cookie"]];
+            let headers["Set-Cookie"] = is_array(nativeHeaders["Set-Cookie"]) ? nativeHeaders["Set-Cookie"] : [nativeHeaders["Set-Cookie"]];
         } else {
             let headers["Set-Cookie"] = null;
         }

@@ -119,7 +119,7 @@ abstract class AbstractServer
 
         if this->di->has("logger") {
             let message = "RPC Request - logId: " . logId . ", invoke: " . service . "::" . method . ", args: " . json_encode(request);           
-            this->di->get("logger")->log(message);
+            this->di->get("logger")->info(message);
         }
 
         this->eventsManager->fire("backend-server:beforeDispatch", $this, [service, method, request]);
@@ -130,7 +130,7 @@ abstract class AbstractServer
 
         if this->di->has("logger") {
             let message = "RPC Response - logId: " . logId . ", invoke: " . service . "::" . method . ", response: " . json_encode(response);
-            this->di->get("logger")->log(message);
+            this->di->get("logger")->info(message);
         }
         return response;
     }

@@ -1,48 +1,59 @@
 namespace PhalconPlus\Mvc;
-use Phalcon\Mvc\Application as BaseApplication;
+
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
+
 use Phalcon\Http\ResponseInterface;
 use Phalcon\Http\Response as BaseResponse;
+use Phalcon\Di\DiInterface;
+use Phalcon\Application\AbstractApplication as AbstractApplication;
+use Phalcon\Mvc\Application as MvcApplication;
+
 use PhalconPlus\Http\PsrResponseFactory;
 use PhalconPlus\Http\NonPsrRequest;
 use PhalconPlus\Base\Exception as BaseException;
-use Phalcon\Di\DiInterface;
+use Phalcon\Events\ManagerInterface;
 
-class PsrApplication extends BaseApplication
+class PsrApplication extends AbstractApplication
 {
-    protected psrRequest = null { set, get };
-    protected nativeRequest = null { get };
+    protected app = null;
 
-    public function __construct(<ServerRequestInterface> psrRequest, <DiInterface> dependencyInjector = null)
+    public function __construct(<DiInterface> di)
     {
-        parent::__construct(dependencyInjector);
-        let this->_sendHeaders = false;
-        let this->_sendCookies = false;
-        // <ServerRequestInterface>
-        let this->psrRequest = psrRequest;
-        // <Phalcon\Http\Request>
-        let this->nativeRequest = new NonPsrRequest(psrRequest);
+        parent::__construct(di);
+        let this->app = new MvcApplication(di);
+        this->app->sendCookiesOnHandleRequest(false)
+                 ->sendHeadersOnHandleRequest(false);
     }
 
-    public function __destruct()
-    {
-        if this->nativeRequest {
-            this->nativeRequest->removeTmpFiles();
-        }
-    }
-
-    public function handle(string uri = null) -> <ResponseInterface>
+    public function handle(<ServerRequestInterface> request, boolean psr = false) -> <ResponseInterface> | <PsrResponseInterface>
     {
         if empty this->container {
             throw new BaseException("there is no di(dependency injector) in PsrAppliction");
         }
 
-        this->container->setShared("request", this->nativeRequest);
-   
-        // var psrRequest = this->psrRequest,
-        //     reqUri     = psrRequest->getUri()->getPath(),
-        //     protocol   = psrRequest->getProtocolVersion();
+        var nativeRequest, nativeResponse, reqUri;
 
-        return <BaseResponse> parent::handle();
+        let nativeRequest = new NonPsrRequest(request);
+        this->container->setShared("request", nativeRequest);
+
+        let reqUri = request->getUri()->getPath();
+
+        let nativeResponse = <BaseResponse> this->app->handle(reqUri);
+
+        if psr == true {
+            return PsrResponseFactory::create(nativeResponse); // TODO
+        }
+
+        return nativeResponse;
+    }
+
+    /**
+     * Sets the events manager
+     */
+    public function setEventsManager(<ManagerInterface> eventsManager) -> void
+    {
+        parent::setEventsManager(eventsManager);
+        this->app->setEventsManager(eventsManager);
     }
 }
