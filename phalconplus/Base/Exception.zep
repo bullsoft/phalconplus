@@ -1,6 +1,6 @@
 namespace PhalconPlus\Base;
-use \PhalconPlus\Assert\Assertion as Assert;
-use \PhalconPlus\Enum\Sys as Sys;
+use PhalconPlus\Assert\Assertion as Assert;
+use PhalconPlus\Enum\Sys as Sys;
 /**
  * throw new Exception("error message");
  * throw new Exception(["error message", "hello"]);
