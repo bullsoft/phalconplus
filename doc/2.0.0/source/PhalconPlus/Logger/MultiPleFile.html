@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v2.0.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Logger/MultiPleFile.html">PhalconPlus\Logger\MultiPleFile</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Logger/MultiPleFile.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Logger.html">Logger</a>
+        </span>
+        
+        <h1 class="class-name">MultiPleFile</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Logger;
+use PhalconPlus\Logger\Processor\AbstractProcessor;
+use Phalcon\Logger\Adapter\Stream;
+use Phalcon\Logger\Formatter\FormatterInterface;
+use PhalconPlus\Base\Exception as BaseException;
+
+class MultiPleFile extends \Phalcon\Logger
+{
+    protected processors = [] { get };
+
+    protected options = [];
+
+    /**
+     *  options = [
+     *          [
+     *               "name" => "local",
+     *               "filePath" => "/path/to/logger/file.log",
+     *               "level"  => \Phalcon\Logger::DEBUG,
+     *          ],
+     *          [
+     *               "name" => "remote",
+     *               "filePath" => "/path/to/logger/file.log",
+     *               "level" => \Phalcon\Logger::CUSTOM，
+     *          ],
+     *  ]
+     */
+    public function  __construct(array! options)
+    {
+        if empty options {
+            throw new BaseException("Logger config can not be empty");
+        }
+
+        var opt, logger, level, name, dir;
+
+        for opt in options {
+            let level = opt["level"];
+            let this->options[level] = opt;
+            let dir = dirname(opt["filePath"]);
+            if !is_dir(dir) {
+                mkdir(dir, 0777, true);
+            }
+            let logger = new Stream(opt["filePath"]);
+            if isset opt["name"] {
+                this->addAdapter(opt["name"], logger);
+            } else {
+                let name = "adapter#".level;
+                this->addAdapter(name, logger);
+                let this->options[level]["name"] = name;
+            }
+        }
+    }
+    
+    public function addProcessor(string! name, <AbstractProcessor> processor) -> <MultiPleFile>
+    {
+        let this->processors[name] = processor;
+        return this;
+    }
+
+    public function getProcessorVar(string! name)  -> string
+    {
+        var processor;
+        if fetch processor, this->processors[name] {
+            return (string) processor;
+        }
+        return "<empty>";
+    }
+
+    public function __get(string! property) -> string
+    {
+        return this->getProcessorVar(property);
+    }
+
+    protected function addMessage(int level, string message, array context = []) -> bool
+    {
+        var name, processor, custormContext = [];
+        if empty(context) {
+            if !empty(this->processors) {
+                for name, processor in this->processors {
+                    let custormContext[name] = processor->__toString();
+                }
+            }
+        } else {
+            let custormContext = context;
+        }
+
+        var options = this->options;
+        if isset options[level] {
+            unset(options[level]);
+        } elseif isset options[self::CUSTOM] {
+            unset(options[self::CUSTOM]);
+        } else {
+            // nothing here...
+        }
+        this->excludeAdapters(array_column(options, "name"));
+        return parent::addMessage(level, message, custormContext);
+    }
+
+    public function setFormatter(<FormatterInterface> formatter) -> <MultiPleFile>
+    {
+        var adapter;
+        for adapter in this->adapters {
+            adapter->setFormatter(formatter);
+        }
+        return this;
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

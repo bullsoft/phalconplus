@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+
+<script src="../../../../asset/static/prettify.js"></script>
+<script src="../../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../asset/api_definition.js"></script>
+                    <script src="../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v2.0.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../class/PhalconPlus/App/Engine/Web.html">PhalconPlus\App\Engine\Web</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../class/PhalconPlus/App/Engine/Web.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/App.html">App</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/App/Engine.html">Engine</a>
+        </span>
+        
+        <h1 class="class-name">Web</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\App\Engine;
+
+use PhalconPlus\App\App as SuperApp;
+use Phalcon\Di\Injectable;
+use Phalcon\Application\AbstractApplication as BaseApplication;
+use PhalconPlus\App\Module\AbstractModule as AppModule;
+use Phalcon\Http\ResponseInterface as HttpResponse;
+use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\Mvc\Application as MvcHandler;
+use PhalconPlus\Mvc\PsrApplication as PsrHandler;
+
+use Psr\Http\Message\ServerRequestInterface;
+
+class Web extends AbstractEngine
+{
+    public function __construct(<AppModule> appModule, <BaseApplication> handler = null)
+    {
+        if is_null(handler) {
+            let handler = new MvcHandler();
+        }
+        parent::__construct(appModule, handler);
+    }
+
+    /**
+    * @request a uri string (for \Phalcon\Mvc\Application) or Psr\Http\Message\Request
+    */
+    public function exec(var uri = null) -> <HttpResponse>
+    {
+        if this->handler instanceof PsrHandler {
+            var request;
+            if is_object(uri) && uri instanceof ServerRequestInterface {
+                let request = uri;
+            } else {
+                string className = "GuzzleHttp\\Psr7\\ServerRequest";
+                let request = {className}::fromGlobals();
+            }
+            return this->handler->handle(request);
+        } elseif this->handler instanceof MvcHandler {
+            return this->handler->handle(strval(uri));
+        }
+
+        throw new BaseException("Handler for Web-Engine must be PsrHandler or MvcHandler");
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

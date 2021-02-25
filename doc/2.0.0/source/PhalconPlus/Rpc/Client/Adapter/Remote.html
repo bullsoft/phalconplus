@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../../../asset/static/prettify.css" />
+
+<script src="../../../../../asset/static/prettify.js"></script>
+<script src="../../../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../../asset/api_definition.js"></script>
+                    <script src="../../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v2.0.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../../class/PhalconPlus/Rpc/Client/Adapter/Remote.html">PhalconPlus\Rpc\Client\Adapter\Remote</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../../class/PhalconPlus/Rpc/Client/Adapter/Remote.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/Rpc.html">Rpc</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/Rpc/Client.html">Client</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../../namespace/PhalconPlus/Rpc/Client/Adapter.html">Adapter</a>
+        </span>
+        
+        <h1 class="class-name">Remote</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Rpc\Client\Adapter;
+use PhalconPlus\Rpc\Client\AbstractClient;
+use PhalconPlus\Base\Exception as BaseException;
+
+class Remote extends AbstractClient
+{
+    private remoteServerUrl = "";
+    private client = null;
+
+    public function __construct(array remoteServerUrl, array opts = [])
+    {
+        if empty remoteServerUrl {
+            throw new BaseException("server url can not be empty");
+        }
+        var key = array_rand(remoteServerUrl);
+        let this->remoteServerUrl = remoteServerUrl[key];
+        let this->client = new \Yar_Client(this->remoteServerUrl);
+
+        if !empty opts {
+            var optKey, optVal;
+            for optKey, optVal in opts {
+                this->client->setOpt(optKey, optVal);
+            }
+        }
+    }
+
+    public function callByObject(array rawData)
+    {
+        let rawData["service"] = this->namePrefix . rawData["service"];
+        var message = "";
+        if isset(this->di) && this->di->has("logger") {
+            let message = "RemoteRpc> callByObject: ". var_export(rawData, true);
+            this->di->get("logger")->log(message);
+        }
+        return this->client->callByObject(rawData);
+    }
+
+    public function __call(string! method, array args)
+    {
+        if method_exists(this->client, method) {
+            return call_user_func_array([this->client, method], args);
+        } else {
+            throw new BaseException("Yar_Client: method(".method.") not exists");
+        }
+    }
+
+}
+</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v2.0.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Mvc/PsrApplication.html">PhalconPlus\Mvc\PsrApplication</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Mvc/PsrApplication.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Mvc.html">Mvc</a>
+        </span>
+        
+        <h1 class="class-name">PsrApplication</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Mvc;
+
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
+
+use Phalcon\Http\ResponseInterface;
+use Phalcon\Http\Response as BaseResponse;
+use Phalcon\Di\DiInterface;
+use Phalcon\Application\AbstractApplication as AbstractApplication;
+use Phalcon\Mvc\Application as MvcApplication;
+
+use PhalconPlus\Http\PsrResponseFactory;
+use PhalconPlus\Http\NonPsrRequest;
+use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\Events\ManagerInterface;
+
+class PsrApplication extends AbstractApplication
+{
+    protected app = null;
+
+    public function __construct(<DiInterface> di)
+    {
+        parent::__construct(di);
+        let this->app = new MvcApplication(di);
+        this->app->sendCookiesOnHandleRequest(false)
+                 ->sendHeadersOnHandleRequest(false);
+    }
+
+    public function handle(<ServerRequestInterface> request, boolean psr = false) -> <ResponseInterface> | <PsrResponseInterface>
+    {
+        if empty this->container {
+            throw new BaseException("there is no di(dependency injector) in PsrAppliction");
+        }
+
+        var nativeRequest, nativeResponse, reqUri;
+
+        let nativeRequest = new NonPsrRequest(request);
+        this->container->setShared("request", nativeRequest);
+
+        let reqUri = request->getUri()->getPath();
+
+        let nativeResponse = <BaseResponse> this->app->handle(reqUri);
+
+        if psr == true {
+            return PsrResponseFactory::create(nativeResponse); // TODO
+        }
+
+        return nativeResponse;
+    }
+
+    /**
+     * Sets the events manager
+     */
+    public function setEventsManager(<ManagerInterface> eventsManager) -> void
+    {
+        parent::setEventsManager(eventsManager);
+        this->app->setEventsManager(eventsManager);
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

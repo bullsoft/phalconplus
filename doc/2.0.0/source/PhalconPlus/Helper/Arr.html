@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v2.0.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Helper/Arr.html">PhalconPlus\Helper\Arr</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Helper/Arr.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Helper.html">Helper</a>
+        </span>
+        
+        <h1 class="class-name">Arr</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Helper;
+use PhalconPlus\Assert\Assertion as Assert;
+use PhalconPlus\Base\ProtoBuffer;
+
+class Arr
+{
+    public static function isAllKeyInt(var inputArray) -> boolean
+    {
+        Assert::isArray(inputArray);
+        if count(inputArray) <= 0 {
+            return true;
+        }
+        var input = array_unique(array_map("is_int", array_keys(inputArray)));
+        var expected = [true];
+        return  input === expected;
+    }
+    
+    public static function isAllKeyString(var inputArray) -> boolean
+    {
+        Assert::isArray(inputArray);
+        if count(inputArray) <= 0 {
+            return true;
+        }
+        var input = array_unique(array_map("is_string", array_keys(inputArray)));
+        var expected = [true];
+        return input === expected;
+    }
+
+    public static function isKeyNumericSequentialZeroBased(var inputArray) -> boolean
+    {
+        Assert::isArray(inputArray);
+        if count(inputArray) <= 0 {
+            return true;
+        }
+        var input = array_keys(inputArray);
+        var expected = range(0, count(inputArray) - 1);
+        return  input === expected;
+    }
+
+    public static function newProtoBuffer(inputArray) -> <ProtoBuffer>
+    {
+        Assert::isArray(inputArray);
+        return new ProtoBuffer(inputArray);
+    }
+
+    public static function encodeJson(inputArray) -> string
+    {
+        Assert::isArray(inputArray);
+        var str = json_encode(inputArray, JSON_UNESCAPED_UNICODE);
+        var errCode = json_last_error();
+        if JSON_ERROR_NONE != errCode {
+            throw new Exception(json_last_error_msg());
+        }
+        return str;
+    }
+    public static function firstKey(inputArray)
+    {
+        Assert::isArray(inputArray);
+        reset(inputArray);
+        var k, v;
+        for k, v in inputArray {
+            return k;
+        }
+    }
+
+    public static function lastKey(inputArray)
+    {
+        Assert::isArray(inputArray);
+        reset(inputArray);
+        var k, v;
+        for k, v in reverse inputArray {
+            return k;
+        }
+    }
+
+    public static function first(inputArray)
+    {
+        Assert::isArray(inputArray);
+        return reset(inputArray);
+    }
+
+    public static function last(inputArray)
+    {
+        Assert::isArray(inputArray);
+        return end(inputArray);
+    }
+
+    /**
+     * 
+     * handler = function(string | int key, mixed val) : string {
+     *    return <string>
+     * }
+     *
+     */
+    public static function groupBy(inputArray, callable handler) -> array
+    {
+        Assert::isArray(inputArray);
+        
+        var k, v;
+        var tmp = [];
+        for k, v in inputArray {
+            var group = call_user_func(handler, k, v);
+            if !isset tmp[group] {
+                let tmp[group] = [];
+            }
+            let tmp[group][k] = v;
+        }
+        return tmp;
+    }
+
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+
+<script src="../../../../asset/static/prettify.js"></script>
+<script src="../../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../../asset/static/prettify.js"></script>
+                                    <script src="../../../../asset/api_definition.js"></script>
+                    <script src="../../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v2.0.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../../index.html">Home</a></li>
+        
+                <li><a href="../../../../classes.html">Classes</a></li>
+                <li><a href="../../../../class/PhalconPlus/App/Engine/Srv.html">PhalconPlus\App\Engine\Srv</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../../class/PhalconPlus/App/Engine/Srv.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/App.html">App</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../../namespace/PhalconPlus/App/Engine.html">Engine</a>
+        </span>
+        
+        <h1 class="class-name">Srv</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\App\Engine;
+
+use PhalconPlus\App\App as SuperApp;
+use PhalconPlus\App\Module\AbstractModule as AppModule;
+
+use PhalconPlus\Rpc\Server\AbstractServer;
+use PhalconPlus\Rpc\Server\SimpleServer;
+use PhalconPlus\Rpc\Yar as YarServerPlus;
+use PhalconPlus\Rpc\YarServerWrapper;
+use PhalconPlus\Rpc\AbstractYar;
+use Phalcon\Application\AbstractApplication as BaseApplication;
+
+use Phalcon\Di\DiInterface;
+use Phalcon\Di\Injectable;
+use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\Http\ResponseInterface as HttpResponse;
+
+class Srv extends AbstractEngine
+{
+    public function __construct(<AppModule> appModule, <BaseApplication> handler = null)
+    {
+        var di = appModule->di();
+        var moduleConf = appModule->{"config"}();
+
+        if is_null(handler) {
+            if moduleConf->application->handler == "yar" {
+                let handler = new YarServerWrapper();
+            } else {
+                let handler = new YarServerPlus();
+            }
+        }
+        var backendSrv = this->newService(di);
+        handler->setServer(backendSrv);
+        parent::__construct(appModule, handler);
+    }
+
+    private function newService(<DiInterface> di) -> <AbstractServer>
+    {
+        // Backend Server, Default is SimpleServer
+        var backendSrv;
+        if unlikely di->has(AbstractYar::NAME) {
+            let backendSrv = di->get(AbstractYar::NAME);
+            if ! (backendSrv instanceof AbstractServer) {
+                throw new BaseException("Service object(DI[\"backendSrv\"]) must be type of PhalconPlus\\Rpc\\Server\\AbstractServer");
+            }
+        } else {
+            let backendSrv = new SimpleServer(di);
+            di->setShared(AbstractYar::NAME, backendSrv);
+        }
+        return backendSrv;
+    }
+    
+    public function exec() -> <HttpResponse>
+    {
+        ob_start();
+        this->handler->handle();
+        var content = ob_get_clean();
+        var response = this->getDI()->get("response");
+        response->setStatusCode(200, "OK");
+        response->setContent(content);
+        return response;
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

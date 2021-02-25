@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="phalconplus API doc" name="description">
+    <title>
+                    phalconplus API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script type="application/javascript">let ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    phalconplus Documentation <span class="version">v2.0.0</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/PhalconPlus/Helper/Variable.html">PhalconPlus\Helper\Variable</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/PhalconPlus/Helper/Variable.html">Class</a>
+
+            </div>
+    
+    <div class="class-full-name">
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus.html">PhalconPlus</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/PhalconPlus/Helper.html">Helper</a>
+        </span>
+        
+        <h1 class="class-name">Variable</h1>
+    </div>
+    
+</div>
+
+<pre class="zephir-source-file prettyprint linenums">
+    namespace PhalconPlus\Helper;
+use PhalconPlus\Assert\Assertion as Assert;
+
+class Variable
+{
+    const NULL_VALUE = "$Ph/Var/SoftNull$";
+
+    public static function softNull()
+    {
+        return Variable::NULL_VALUE;
+    }
+
+    public static function isSoftNull(string nil)
+    {
+        return Variable::NULL_VALUE === nil;
+    }
+
+    /**
+     * if $a is null, exception will be thrown
+     *
+     * Variable::notNull($a)->callMethod()
+     */ 
+    public static function notNull(var val)
+    {
+        Assert::notNull(val);
+        return val;
+    }
+
+    public static function notEmpty(var val) 
+    {
+        Assert::notEmpty(val);
+        return val;
+    }
+
+    public static function isInt(var input) -> boolean
+    {
+        return typeof input == "integer";
+    }
+
+    public static function isArray(var input) -> boolean
+    {
+        return typeof input == "array";
+    }
+
+    public static function isObject(var input) -> boolean
+    {
+        return typeof input == "object";
+    }
+
+    public static function isBool(var input) -> boolean
+    {
+        return typeof input == "boolean";
+    }
+
+    public static function isString(var input) -> boolean
+    {
+        return typeof input == "string";
+    }
+
+    public static function isNull(var input) -> boolean
+    {
+        return typeof input == "null";
+    }
+
+    public static function isFloat(var input) -> boolean
+    {
+        return typeof input == "float";
+    }
+
+    public static function isFunctional(var input) -> boolean
+    {
+        return typeof input == "callable";
+    }
+
+    public static function stringify(var value, bool full = false) -> string
+    {
+        if is_bool(value) {
+            return value == true ? "TRUE" : "FALSE";
+        }
+        if value === NULL { 
+            return "NULL"; 
+        }
+        var val = "";
+        if is_scalar(value) {
+            let val = (string) value;
+            if full == false && strlen(val) > 100 {
+                let val = substr(val, 0, 96) . " ...";
+            }
+            return val;
+        }
+        if is_array(value) || is_object(value) || is_resource(value) {
+            let val = print_r(value, true);
+            let val = preg_replace("/\s+/", " ", val);
+            if full == false && strlen(val) > 260 {
+                return substr(val, 0, 256) . " ...";
+            }
+            return val;
+        }
+        return "unknown";
+    }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
