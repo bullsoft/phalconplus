@@ -23,19 +23,17 @@
 #include "kernel/concat.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AbstractEnum) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AbstractEnum)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Enum, AbstractEnum, phalconplus, enum_abstractenum, phalconplus_enum_abstractenum_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(phalconplus_enum_abstractenum_ce, SL("val"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalconplus_enum_abstractenum_ce, 1, zephir_get_internal_ce(SL("jsonserializable")));
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_9 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -54,10 +52,17 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_7$$4);
 	ZVAL_UNDEF(&_8$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(val)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &val);
-
 	if (!val) {
 		val = &val_sub;
 		ZEPHIR_INIT_VAR(val);
@@ -106,11 +111,10 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __construct) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, _0, _1$$3, _2$$3, _3$$3, _4$$3;
@@ -122,10 +126,16 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(val)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &val);
-
 
 
 	ZEPHIR_CALL_STATIC(&_0, "isvalid", NULL, 0, val);
@@ -147,20 +157,19 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, setValue) {
 	}
 	zephir_update_property_zval(this_ptr, ZEND_STRL("val"), val);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValue) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValue)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "val");
 
+	RETURN_MEMBER(getThis(), "val");
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *val, val_sub, __$true, _0, _1;
@@ -170,10 +179,16 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(val)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &val);
-
 
 
 	ZEPHIR_CALL_STATIC(&_0, "validvalues", NULL, 0);
@@ -184,11 +199,10 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, isValid) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, commaString) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, commaString)
+{
 	zval vals, _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -197,6 +211,7 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, commaString) {
 	ZVAL_UNDEF(&vals);
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZVAL_BOOL(&_0, 1);
@@ -204,17 +219,17 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, commaString) {
 	zephir_check_call_status();
 	zephir_fast_join_str(return_value, SL(", "), &vals);
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getList) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getList)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -222,11 +237,10 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getList) {
 	ZEPHIR_RETURN_CALL_STATIC("validvalues", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getMap) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getMap)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -234,17 +248,17 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getMap) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZVAL_BOOL(&_0, 1);
 	ZEPHIR_RETURN_CALL_STATIC("validvalues", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValues) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValues)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -252,17 +266,17 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, getValues) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZVAL_BOOL(&_0, 1);
 	ZEPHIR_RETURN_CALL_STATIC("validvalues", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *assoc_param = NULL, reflection, consts, _0, countValues, duplicated$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3;
@@ -280,10 +294,17 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_6$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(assoc)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &assoc_param);
-
 	if (!assoc_param) {
 		assoc = 0;
 	} else {
@@ -333,14 +354,14 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, validValues) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, jsonSerialize) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, jsonSerialize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
+
 
 
 	ZEPHIR_MM_GROW();
@@ -348,11 +369,10 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, jsonSerialize) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getvalue", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __toString) {
-
+PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __toString)
+{
 	zval _1;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -362,12 +382,12 @@ PHP_METHOD(PhalconPlus_Enum_AbstractEnum, __toString) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getvalue", NULL, 0);
 	zephir_check_call_status();
-	zephir_get_strval(&_1, &_0);
+	zephir_cast_to_string(&_1, &_0);
 	RETURN_CTOR(&_1);
-
 }
 

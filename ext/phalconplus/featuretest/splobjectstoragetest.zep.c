@@ -20,24 +20,23 @@
 #include "kernel/concat.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_FeatureTest_SplObjectStorageTest) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_FeatureTest_SplObjectStorageTest)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\FeatureTest, SplObjectStorageTest, phalconplus, featuretest_splobjectstoragetest, phalconplus_featuretest_splobjectstoragetest_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_featuretest_splobjectstoragetest_ce, SL("objects"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, __construct) {
-
+PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, __construct)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -47,13 +46,13 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, __construct) {
 		ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
+
 	zephir_update_property_zval(this_ptr, ZEND_STRL("objects"), &_0);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, insert) {
-
+PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, insert)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data, _2;
@@ -66,10 +65,19 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, insert) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_ZVAL(name)
+		Z_PARAM_OBJECT_OF_CLASS(obj, zend_standard_class_def)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &name, &obj, &data_param);
-
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
@@ -90,11 +98,10 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, insert) {
 	ZEPHIR_CALL_METHOD(NULL, &_1, "attach", NULL, 0, obj, &_2);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
-
+PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec)
+{
 	zval obj, info, _0, _1, _2, _3$$3, _4$$3, _5$$3, _6$$3, _7$$3, _8$$3, _9$$3, _10$$3, _11$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -114,6 +121,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
 	ZVAL_UNDEF(&_9$$3);
 	ZVAL_UNDEF(&_10$$3);
 	ZVAL_UNDEF(&_11$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -149,6 +157,5 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, exec) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

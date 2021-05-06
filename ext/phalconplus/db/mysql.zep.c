@@ -23,37 +23,28 @@
 #include "kernel/string.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Db_Mysql) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Db_Mysql)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Db, Mysql, phalconplus, db_mysql, phalconplus_db_mysql_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_db_mysql_ce, SL("di"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_db_mysql_ce, SL("descriptor"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_db_mysql_ce, SL("options"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_long(phalconplus_db_mysql_ce, SL("retryTimes"), 5, ZEND_ACC_PRIVATE);
-
 	zend_declare_property_long(phalconplus_db_mysql_ce, SL("retryInterval"), 100000, ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_db_mysql_ce, SL("name"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_db_mysql_ce, SL("connection"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_bool(phalconplus_db_mysql_ce, SL("connected"), 0, ZEND_ACC_PRIVATE);
-
 	phalconplus_db_mysql_ce->create_object = zephir_init_properties_PhalconPlus_Db_Mysql;
 	zephir_declare_class_constant_long(phalconplus_db_mysql_ce, SL("RETRY_TIMES"), 5);
 
 	zephir_declare_class_constant_long(phalconplus_db_mysql_ce, SL("RETRY_INTERVAL"), 100000);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
-
+PHP_METHOD(PhalconPlus_Db_Mysql, __construct)
+{
 	zval _9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -76,10 +67,17 @@ PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
 	ZVAL_UNDEF(&_8$$5);
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_9);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(di, phalcon_di_ce)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &di, &name_param);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -88,7 +86,6 @@ PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 
 
@@ -150,11 +147,10 @@ PHP_METHOD(PhalconPlus_Db_Mysql, __construct) {
 	zephir_array_update_string(&_9, SL("options"), &_5, PH_COPY | PH_SEPARATE);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("descriptor"), &_9);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
-
+PHP_METHOD(PhalconPlus_Db_Mysql, getConnection)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_7 = NULL, *_12 = NULL, *_14 = NULL, *_17 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, _15$$7;
@@ -185,10 +181,17 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 	ZVAL_UNDEF(&_22$$9);
 	ZVAL_UNDEF(&_23$$9);
 	ZVAL_UNDEF(&_24$$9);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(autoConnect)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &autoConnect_param);
-
 	if (!autoConnect_param) {
 		autoConnect = 1;
 	} else {
@@ -238,8 +241,8 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 			ZEPHIR_INIT_NVAR(&_8$$3);
 			ZVAL_OBJ(&_8$$3, EG(exception));
 			Z_ADDREF_P(&_8$$3);
-			if (zephir_instance_of_ev(&_8$$3, zend_exception_get_default(TSRMLS_C))) {
-				zend_clear_exception(TSRMLS_C);
+			if (zephir_instance_of_ev(&_8$$3, zend_ce_exception)) {
+				zend_clear_exception();
 				ZEPHIR_CPY_WRT(&e, &_8$$3);
 				ZEPHIR_INIT_NVAR(&_9$$7);
 				zephir_read_property(&_10$$7, this_ptr, ZEND_STRL("descriptor"), PH_NOISY_CC | PH_READONLY);
@@ -282,17 +285,17 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection) {
 		}
 	}
 	RETURN_MM_MEMBER(getThis(), "connection");
-
 }
 
-zend_object *zephir_init_properties_PhalconPlus_Db_Mysql(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_PhalconPlus_Db_Mysql(zend_class_entry *class_type)
+{
 		zval _0, _2, _1$$3, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -314,6 +317,5 @@ zend_object *zephir_init_properties_PhalconPlus_Db_Mysql(zend_class_entry *class
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

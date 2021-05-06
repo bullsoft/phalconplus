@@ -21,16 +21,15 @@
 #include "kernel/string.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Helper_Str) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Helper_Str)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Helper, Str, phalconplus, helper_str, phalconplus_helper_str_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Str, decodeJson) {
-
+PHP_METHOD(PhalconPlus_Helper_Str, decodeJson)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_2 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -48,10 +47,16 @@ PHP_METHOD(PhalconPlus_Helper_Str, decodeJson) {
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_7$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(inputStr)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputStr_param);
-
 	zephir_get_strval(&inputStr, inputStr_param);
 
 
@@ -77,8 +82,8 @@ PHP_METHOD(PhalconPlus_Helper_Str, decodeJson) {
 		ZEPHIR_INIT_VAR(&_5);
 		ZVAL_OBJ(&_5, EG(exception));
 		Z_ADDREF_P(&_5);
-		if (zephir_instance_of_ev(&_5, zend_exception_get_default(TSRMLS_C))) {
-			zend_clear_exception(TSRMLS_C);
+		if (zephir_instance_of_ev(&_5, zend_ce_exception)) {
+			zend_clear_exception();
 			ZEPHIR_CPY_WRT(&e, &_5);
 			ZEPHIR_INIT_VAR(&_6$$4);
 			object_init_ex(&_6$$4, phalconplus_helper_exception_ce);
@@ -94,11 +99,10 @@ PHP_METHOD(PhalconPlus_Helper_Str, decodeJson) {
 	ZEPHIR_RETURN_CALL_METHOD(&obj, "getarraycopy", NULL, 131);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Str, startsWith) {
-
+PHP_METHOD(PhalconPlus_Helper_Str, startsWith)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *full_param = NULL, *partial_param = NULL, _0, _1, _2;
@@ -110,10 +114,17 @@ PHP_METHOD(PhalconPlus_Helper_Str, startsWith) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(full)
+		Z_PARAM_STR(partial)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &full_param, &partial_param);
-
 	zephir_get_strval(&full, full_param);
 	zephir_get_strval(&partial, partial_param);
 
@@ -123,11 +134,10 @@ PHP_METHOD(PhalconPlus_Helper_Str, startsWith) {
 	ZEPHIR_CALL_FUNCTION(&_2, "mb_substr", NULL, 132, &full, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&partial, &_2));
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Str, endsWith) {
-
+PHP_METHOD(PhalconPlus_Helper_Str, endsWith)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *full_param = NULL, *partial_param = NULL, _0, _1;
@@ -138,10 +148,17 @@ PHP_METHOD(PhalconPlus_Helper_Str, endsWith) {
 	ZVAL_UNDEF(&partial);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(full)
+		Z_PARAM_STR(partial)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &full_param, &partial_param);
-
 	zephir_get_strval(&full, full_param);
 	zephir_get_strval(&partial, partial_param);
 
@@ -150,11 +167,10 @@ PHP_METHOD(PhalconPlus_Helper_Str, endsWith) {
 	ZEPHIR_CALL_FUNCTION(&_1, "mb_substr", NULL, 132, &full, &_0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&partial, &_1));
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Str, contains) {
-
+PHP_METHOD(PhalconPlus_Helper_Str, contains)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *full_param = NULL, *partial_param = NULL, _0;
@@ -164,10 +180,17 @@ PHP_METHOD(PhalconPlus_Helper_Str, contains) {
 	ZVAL_UNDEF(&full);
 	ZVAL_UNDEF(&partial);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(full)
+		Z_PARAM_STR(partial)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &full_param, &partial_param);
-
 	zephir_get_strval(&full, full_param);
 	zephir_get_strval(&partial, partial_param);
 
@@ -175,11 +198,10 @@ PHP_METHOD(PhalconPlus_Helper_Str, contains) {
 	ZEPHIR_CALL_FUNCTION(&_0, "mb_substr_count", NULL, 133, &full, &partial);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_GT_LONG(&_0, 0));
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Encode) {
-
+PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Encode)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool padding;
@@ -193,10 +215,18 @@ PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Encode) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(inputStr)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(padding)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &inputStr_param, &padding_param);
-
 	zephir_get_strval(&inputStr, inputStr_param);
 	if (!padding_param) {
 		padding = 0;
@@ -220,11 +250,10 @@ PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Encode) {
 		RETURN_MM();
 	}
 	RETURN_CCTOR(&s);
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Decode) {
-
+PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Decode)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *inputStr_param = NULL, _0, _1, _2;
@@ -235,10 +264,16 @@ PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Decode) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(inputStr)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputStr_param);
-
 	zephir_get_strval(&inputStr, inputStr_param);
 
 
@@ -251,6 +286,5 @@ PHP_METHOD(PhalconPlus_Helper_Str, safeBase64Decode) {
 	ZEPHIR_RETURN_CALL_FUNCTION("base64_decode", NULL, 135, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

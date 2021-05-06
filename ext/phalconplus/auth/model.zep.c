@@ -19,63 +19,70 @@
 #include "kernel/array.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Auth_Model) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Auth_Model)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Auth, Model, phalconplus, auth_model, phalconplus_auth_model_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_auth_model_ce, SL("user"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalconplus_auth_model_ce, SL("policies"), ZEND_ACC_PROTECTED);
-
 	phalconplus_auth_model_ce->create_object = zephir_init_properties_PhalconPlus_Auth_Model;
 
 	zend_class_implements(phalconplus_auth_model_ce, 1, phalconplus_contracts_auth_access_modelevent_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_Model, getUser) {
-
+PHP_METHOD(PhalconPlus_Auth_Model, getUser)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "user");
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_Model, __construct) {
-
+PHP_METHOD(PhalconPlus_Auth_Model, __construct)
+{
 	zval *user, user_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&user_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(user, phalconplus_contracts_auth_userprovider_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &user);
-
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("user"), user);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_Model, setUser) {
-
+PHP_METHOD(PhalconPlus_Auth_Model, setUser)
+{
 	zval *user, user_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&user_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(user, phalconplus_contracts_auth_userprovider_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &user);
-
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("user"), user);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_Model, beforeDelete) {
-
+PHP_METHOD(PhalconPlus_Auth_Model, beforeDelete)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *event, event_sub, *model, model_sub, *context = NULL, context_sub, __$null, instance, _0, _1;
@@ -88,10 +95,19 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeDelete) {
 	ZVAL_UNDEF(&instance);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_OBJECT_OF_CLASS(event, phalcon_events_event_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_model_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(context)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &event, &model, &context);
-
 	if (!context) {
 		context = &context_sub;
 		context = &__$null;
@@ -109,11 +125,10 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeDelete) {
 		ZVAL_BOOL(&_0, 0);
 	}
 	RETURN_CCTOR(&_0);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_Model, beforeCreate) {
-
+PHP_METHOD(PhalconPlus_Auth_Model, beforeCreate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *event, event_sub, *model, model_sub, *context = NULL, context_sub, __$null, instance, _0, _1;
@@ -126,10 +141,19 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeCreate) {
 	ZVAL_UNDEF(&instance);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_OBJECT_OF_CLASS(event, phalcon_events_event_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_model_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(context)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &event, &model, &context);
-
 	if (!context) {
 		context = &context_sub;
 		context = &__$null;
@@ -147,11 +171,10 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeCreate) {
 		ZVAL_BOOL(&_0, 0);
 	}
 	RETURN_CCTOR(&_0);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_Model, beforeUpdate) {
-
+PHP_METHOD(PhalconPlus_Auth_Model, beforeUpdate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *event, event_sub, *model, model_sub, *context = NULL, context_sub, __$null, instance, _0, _1;
@@ -164,10 +187,19 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeUpdate) {
 	ZVAL_UNDEF(&instance);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_OBJECT_OF_CLASS(event, phalcon_events_event_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_model_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(context)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &event, &model, &context);
-
 	if (!context) {
 		context = &context_sub;
 		context = &__$null;
@@ -185,11 +217,10 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeUpdate) {
 		ZVAL_BOOL(&_0, 0);
 	}
 	RETURN_CCTOR(&_0);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_Model, beforeValidation) {
-
+PHP_METHOD(PhalconPlus_Auth_Model, beforeValidation)
+{
 	zval *event, event_sub, *model, model_sub, *context = NULL, context_sub, __$null;
 	zval *this_ptr = getThis();
 
@@ -197,9 +228,18 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeValidation) {
 	ZVAL_UNDEF(&model_sub);
 	ZVAL_UNDEF(&context_sub);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_OBJECT_OF_CLASS(event, phalcon_events_event_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_model_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(context)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(2, 1, &event, &model, &context);
-
 	if (!context) {
 		context = &context_sub;
 		context = &__$null;
@@ -207,11 +247,10 @@ PHP_METHOD(PhalconPlus_Auth_Model, beforeValidation) {
 
 
 	RETURN_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_Model, getPolicy) {
-
+PHP_METHOD(PhalconPlus_Auth_Model, getPolicy)
+{
 	zend_class_entry *_4$$5;
 	zval _1$$4;
 	zend_bool _0;
@@ -227,10 +266,16 @@ PHP_METHOD(PhalconPlus_Auth_Model, getPolicy) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3$$5);
 	ZVAL_UNDEF(&_1$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(model)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &model);
-
 
 
 	_0 = Z_TYPE_P(model) == IS_OBJECT;
@@ -241,7 +286,7 @@ PHP_METHOD(PhalconPlus_Auth_Model, getPolicy) {
 		ZEPHIR_INIT_VAR(&modelClass);
 		zephir_get_class(&modelClass, model, 0);
 	} else {
-		zephir_get_strval(&_1$$4, model);
+		zephir_cast_to_string(&_1$$4, model);
 		ZEPHIR_CPY_WRT(&modelClass, &_1$$4);
 	}
 	zephir_read_property(&_2, this_ptr, ZEND_STRL("policies"), PH_NOISY_CC | PH_READONLY);
@@ -257,21 +302,22 @@ PHP_METHOD(PhalconPlus_Auth_Model, getPolicy) {
 			ZEPHIR_CALL_METHOD(NULL, &instance, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 	} else {
 		object_init_ex(&instance, phalconplus_auth_policy_ce);
 		ZEPHIR_CALL_METHOD(NULL, &instance, "__construct", NULL, 67);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&instance);
-
 }
 
-zend_object *zephir_init_properties_PhalconPlus_Auth_Model(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_PhalconPlus_Auth_Model(zend_class_entry *class_type)
+{
 		zval _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -287,6 +333,5 @@ zend_object *zephir_init_properties_PhalconPlus_Auth_Model(zend_class_entry *cla
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

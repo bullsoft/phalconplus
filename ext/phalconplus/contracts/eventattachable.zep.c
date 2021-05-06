@@ -12,13 +12,11 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Contracts_EventAttachable) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Contracts_EventAttachable)
+{
 	ZEPHIR_REGISTER_INTERFACE(PhalconPlus\\Contracts, EventAttachable, phalconplus, contracts_eventattachable, phalconplus_contracts_eventattachable_method_entry);
 
 	return SUCCESS;
-
 }
 
 ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_EventAttachable, attach);
-

@@ -3,41 +3,25 @@ extern zend_class_entry *phalconplus_contracts_auth_access_modelevent_ce;
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Contracts_Auth_Access_ModelEvent);
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_contracts_auth_access_modelevent_beforedelete, 0, 2, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_contracts_auth_access_modelevent_beforedelete, 0, 2, _IS_BOOL, NULL, 0)
-#endif
 	ZEND_ARG_OBJ_INFO(0, event, Phalcon\\Events\\Event, 0)
 	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
 	ZEND_ARG_INFO(0, context)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_contracts_auth_access_modelevent_beforecreate, 0, 2, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_contracts_auth_access_modelevent_beforecreate, 0, 2, _IS_BOOL, NULL, 0)
-#endif
 	ZEND_ARG_OBJ_INFO(0, event, Phalcon\\Events\\Event, 0)
 	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
 	ZEND_ARG_INFO(0, context)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_contracts_auth_access_modelevent_beforeupdate, 0, 2, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_contracts_auth_access_modelevent_beforeupdate, 0, 2, _IS_BOOL, NULL, 0)
-#endif
 	ZEND_ARG_OBJ_INFO(0, event, Phalcon\\Events\\Event, 0)
 	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
 	ZEND_ARG_INFO(0, context)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_contracts_auth_access_modelevent_beforevalidation, 0, 2, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_contracts_auth_access_modelevent_beforevalidation, 0, 2, _IS_BOOL, NULL, 0)
-#endif
 	ZEND_ARG_OBJ_INFO(0, event, Phalcon\\Events\\Event, 0)
 	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
 	ZEND_ARG_INFO(0, context)

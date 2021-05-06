@@ -20,16 +20,13 @@
 #include "kernel/array.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Enum, Facade, phalconplus, enum_facade, phalconplus_enum_abstractenum_ce, phalconplus_enum_facade_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_enum_facade_ce, SL("facades"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC);
-
 	zend_declare_property_string(phalconplus_enum_facade_ce, SL("classPrefix"), "PhalconPlus\\Facades\\", ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
-
 	zend_declare_property_bool(phalconplus_enum_facade_ce, SL("loaded"), 0, ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
-
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("ANNO"), "Annotations");
 
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("ASSETS"), "Assets");
@@ -97,11 +94,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade) {
 	zephir_declare_class_constant_string(phalconplus_enum_facade_ce, SL("USER"), "User");
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_Facade, register) {
-
+PHP_METHOD(PhalconPlus_Enum_Facade, register)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
@@ -124,10 +120,18 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register) {
 	ZVAL_UNDEF(&prefix);
 	ZVAL_UNDEF(&className);
 	ZVAL_UNDEF(&classAlias);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_OBJECT_OF_CLASS(superApp, phalconplus_app_app_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(prefix)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &superApp, &prefix_param);
-
 	if (!prefix_param) {
 		ZEPHIR_INIT_VAR(&prefix);
 		ZVAL_STRING(&prefix, "");
@@ -195,16 +199,16 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register) {
 	ZEPHIR_INIT_NVAR(&alias);
 	zephir_update_static_property_ce(phalconplus_enum_facade_ce, ZEND_STRL("loaded"), &__$true);
 	RETURN_MM_BOOL(1);
-
 }
 
-void zephir_init_static_properties_PhalconPlus_Enum_Facade(TSRMLS_D) {
-
+void zephir_init_static_properties_PhalconPlus_Enum_Facade()
+{
 	zval _1;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -311,6 +315,5 @@ void zephir_init_static_properties_PhalconPlus_Enum_Facade(TSRMLS_D) {
 	zephir_array_fast_append(&_0, &_1);
 	zephir_update_static_property_ce(phalconplus_enum_facade_ce, ZEND_STRL("facades"), &_0);
 	ZEPHIR_MM_RESTORE();
-
 }
 

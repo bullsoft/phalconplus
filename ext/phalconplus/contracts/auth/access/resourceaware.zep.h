@@ -3,8 +3,14 @@ extern zend_class_entry *phalconplus_contracts_auth_access_resourceaware_ce;
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Contracts_Auth_Access_ResourceAware);
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_contracts_auth_access_resourceaware_register, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_contracts_auth_access_resourceaware_control, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(phalconplus_contracts_auth_access_resourceaware_method_entry) {
-	PHP_ABSTRACT_ME(PhalconPlus_Contracts_Auth_Access_ResourceAware, register, NULL)
-	PHP_ABSTRACT_ME(PhalconPlus_Contracts_Auth_Access_ResourceAware, control, NULL)
+	PHP_ABSTRACT_ME(PhalconPlus_Contracts_Auth_Access_ResourceAware, register, arginfo_phalconplus_contracts_auth_access_resourceaware_register)
+	PHP_ABSTRACT_ME(PhalconPlus_Contracts_Auth_Access_ResourceAware, control, arginfo_phalconplus_contracts_auth_access_resourceaware_control)
 	PHP_FE_END
 };

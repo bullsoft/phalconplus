@@ -20,25 +20,24 @@
 #include "kernel/string.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_AppEngine) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_AppEngine)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, AppEngine, phalconplus, facades_appengine, phalconplus_facades_abstractfacade_ce, phalconplus_facades_appengine_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_AppEngine, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_AppEngine, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("appEngine");
 
+	RETURN_STRING("appEngine");
 }
 
-PHP_METHOD(PhalconPlus_Facades_AppEngine, request) {
-
+PHP_METHOD(PhalconPlus_Facades_AppEngine, request)
+{
 	zend_bool _6$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -64,10 +63,20 @@ PHP_METHOD(PhalconPlus_Facades_AppEngine, request) {
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&params);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 4)
+		Z_PARAM_STR(controller)
+		Z_PARAM_STR(action)
+		Z_PARAM_ARRAY(params)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(callback)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 1, &controller_param, &action_param, &params_param, &callback);
-
 	zephir_get_strval(&controller, controller_param);
 	zephir_get_strval(&action, action_param);
 	zephir_get_arrval(&params, params_param);
@@ -135,6 +144,5 @@ PHP_METHOD(PhalconPlus_Facades_AppEngine, request) {
 	} else {
 		RETURN_CCTOR(&cont);
 	}
-
 }
 

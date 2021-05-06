@@ -10,11 +10,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_field___construct, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, model, Phalcon\\Mvc\\Model, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, attr, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, attr)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_field_getvalue, 0, 0, 1)
@@ -25,11 +21,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_field_getfield, 0, 0, 1
 	ZEND_ARG_OBJ_INFO(0, unitwork, PhalconPlus\\Db\\UnitOfWork, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_unitofwork_field___tostring, 0, 0, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_unitofwork_field___tostring, 0, 0, IS_STRING, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_db_unitofwork_field_method_entry) {

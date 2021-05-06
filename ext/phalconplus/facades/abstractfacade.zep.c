@@ -21,78 +21,86 @@
 #include "kernel/array.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_AbstractFacade) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_AbstractFacade)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Facades, AbstractFacade, phalconplus, facades_abstractfacade, phalconplus_facades_abstractfacade_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(phalconplus_facades_abstractfacade_ce, SL("app"), ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_AbstractFacade, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, getName)
+{
 }
 
-PHP_METHOD(PhalconPlus_Facades_AbstractFacade, resolve) {
-
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, resolve)
+{
 	zval *di, di_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&di_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(di, phalcon_di_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &di);
 
 
-
 	RETURN_NULL();
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_AbstractFacade, setApp) {
-
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, setApp)
+{
 	zval *app, app_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&app_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(app, phalconplus_app_app_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &app);
 
 
-
 	zephir_update_static_property_ce(phalconplus_facades_abstractfacade_ce, ZEND_STRL("app"), app);
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_AbstractFacade, app) {
-
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, app)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_static_property_ce(&_0, phalconplus_facades_abstractfacade_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
 	RETURN_CTORW(&_0);
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_AbstractFacade, getApp) {
-
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, getApp)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_static_property_ce(&_0, phalconplus_facades_abstractfacade_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
 	RETURN_CTORW(&_0);
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_AbstractFacade, itself) {
-
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, itself)
+{
 	zend_bool _6$$4;
 	zend_class_entry *_2;
 	zval di, name, facade, service, _0, _1, _3, _4, _5$$3, _7$$4, _8$$4, _9$$5, _10$$6, _11$$6, _12$$6;
@@ -116,6 +124,7 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, itself) {
 	ZVAL_UNDEF(&_11$$6);
 	ZVAL_UNDEF(&_12$$6);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_static_property_ce(&_0, phalconplus_facades_abstractfacade_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
@@ -134,6 +143,7 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, itself) {
 		ZEPHIR_CALL_METHOD(NULL, &facade, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
+
 	ZEPHIR_CALL_METHOD(&_4, &facade, "getname", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_3, &di, "has", NULL, 0, &_4);
@@ -177,11 +187,10 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, itself) {
 		return;
 	}
 	RETURN_CCTOR(&service);
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
-
+PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval params, _0;
@@ -193,10 +202,17 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 	ZVAL_UNDEF(&service);
 	ZVAL_UNDEF(&params);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(method)
+		Z_PARAM_ARRAY(params)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &method_param, &params_param);
-
 	zephir_get_strval(&method, method_param);
 	zephir_get_arrval(&params, params_param);
 
@@ -210,6 +226,5 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, __callStatic) {
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, &params);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

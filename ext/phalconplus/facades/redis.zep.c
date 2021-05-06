@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Redis) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Redis)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, Redis, phalconplus, facades_redis, phalconplus_facades_abstractfacade_ce, phalconplus_facades_redis_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_Redis, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_Redis, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("redis");
 
+	RETURN_STRING("redis");
 }
 

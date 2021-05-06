@@ -18,16 +18,15 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_App_Engine_Web) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_App_Engine_Web)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\App\\Engine, Web, phalconplus, app_engine_web, phalconplus_app_engine_abstractengine_ce, phalconplus_app_engine_web_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_App_Engine_Web, __construct) {
-
+PHP_METHOD(PhalconPlus_App_Engine_Web, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -37,10 +36,18 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, __construct) {
 	ZVAL_UNDEF(&appModule_sub);
 	ZVAL_UNDEF(&handler_sub);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_OBJECT_OF_CLASS(appModule, phalconplus_app_module_abstractmodule_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(handler, phalcon_application_abstractapplication_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &appModule, &handler);
-
 	if (!handler) {
 		handler = &handler_sub;
 		ZEPHIR_CPY_WRT(handler, &__$null);
@@ -58,14 +65,13 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalconplus_app_engine_web_ce, getThis(), "__construct", &_0, 0, appModule, handler);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * @request a uri string (for \Phalcon\Mvc\Application) or Psr\Http\Message\Request
  */
-PHP_METHOD(PhalconPlus_App_Engine_Web, exec) {
-
+PHP_METHOD(PhalconPlus_App_Engine_Web, exec)
+{
 	zend_class_entry *_3$$5;
 	zval className$$5;
 	zend_bool _2$$3;
@@ -83,10 +89,17 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, exec) {
 	ZVAL_UNDEF(&_5$$6);
 	ZVAL_UNDEF(&_6$$6);
 	ZVAL_UNDEF(&className$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(uri)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri);
-
 	if (!uri) {
 		uri = &uri_sub;
 		uri = &__$null;
@@ -125,6 +138,5 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, exec) {
 	}
 	ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Handler for Web-Engine must be PsrHandler or MvcHandler", "phalconplus/App/Engine/Web.zep", 42);
 	return;
-
 }
 

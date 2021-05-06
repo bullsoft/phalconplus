@@ -11,11 +11,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_engine_web___construct, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, handler, Phalcon\\Application\\AbstractApplication, 1)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_engine_web_exec, 0, 0, Phalcon\\Http\\ResponseInterface, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_engine_web_exec, 0, 0, IS_OBJECT, "Phalcon\\Http\\ResponseInterface", 0)
-#endif
 	ZEND_ARG_INFO(0, uri)
 ZEND_END_ARG_INFO()
 

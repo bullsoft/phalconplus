@@ -22,26 +22,24 @@
 #include "ext/spl/spl_exceptions.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Logger_MultiPleFile) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Logger_MultiPleFile)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Logger, MultiPleFile, phalconplus, logger_multiplefile, zephir_get_internal_ce(SL("phalcon\\logger")), phalconplus_logger_multiplefile_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_logger_multiplefile_ce, SL("processors"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalconplus_logger_multiplefile_ce, SL("options"), ZEND_ACC_PROTECTED);
-
 	phalconplus_logger_multiplefile_ce->create_object = zephir_init_properties_PhalconPlus_Logger_MultiPleFile;
-	return SUCCESS;
 
+	return SUCCESS;
 }
 
-PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessors) {
-
+PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessors)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "processors");
 
+	RETURN_MEMBER(getThis(), "processors");
 }
 
 /**
@@ -58,8 +56,8 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessors) {
  *          ],
  *  ]
  */
-PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct) {
-
+PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_5 = NULL, *_7 = NULL, *_9 = NULL, *_11 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -85,10 +83,16 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct) {
 	ZVAL_UNDEF(&_15$$8);
 	ZVAL_UNDEF(&_14$$9);
 	ZVAL_UNDEF(&_16$$10);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &options_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 
 
@@ -178,11 +182,10 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct) {
 	}
 	ZEPHIR_INIT_NVAR(&opt);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addProcessor) {
-
+PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addProcessor)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *name_param = NULL, *processor, processor_sub;
 	zval name;
@@ -190,10 +193,17 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addProcessor) {
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&processor_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(name)
+		Z_PARAM_OBJECT_OF_CLASS(processor, phalconplus_logger_processor_abstractprocessor_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &processor);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -202,17 +212,15 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addProcessor) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 
 
 	zephir_update_property_array(this_ptr, SL("processors"), &name, processor);
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessorVar) {
-
+PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessorVar)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *name_param = NULL, processor, _0;
 	zval name, _1$$3;
@@ -222,10 +230,16 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessorVar) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&processor);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -234,21 +248,19 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessorVar) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("processors"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&processor, &_0, &name, 1)) {
-		zephir_get_strval(&_1$$3, &processor);
+		zephir_cast_to_string(&_1$$3, &processor);
 		RETURN_CTOR(&_1$$3);
 	}
 	RETURN_MM_STRING("<empty>");
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __get) {
-
+PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *property_param = NULL;
@@ -256,10 +268,16 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __get) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&property);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(property)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &property_param);
-
 	if (UNEXPECTED(Z_TYPE_P(property_param) != IS_STRING && Z_TYPE_P(property_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string"));
 		RETURN_MM_NULL();
@@ -268,18 +286,16 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __get) {
 		zephir_get_strval(&property, property_param);
 	} else {
 		ZEPHIR_INIT_VAR(&property);
-		ZVAL_EMPTY_STRING(&property);
 	}
 
 
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getprocessorvar", NULL, 0, &property);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addMessage) {
-
+PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addMessage)
+{
 	zend_string *_5$$4;
 	zend_ulong _4$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -303,10 +319,19 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addMessage) {
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&context);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_LONG(level)
+		Z_PARAM_STR(message)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(context)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &level_param, &message_param, &context_param);
-
 	level = zephir_get_intval(level_param);
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
@@ -383,11 +408,10 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addMessage) {
 	ZEPHIR_RETURN_CALL_PARENT(phalconplus_logger_multiplefile_ce, getThis(), "addmessage", NULL, 0, &_8, &message, &custormContext);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_MultiPleFile, setFormatter) {
-
+PHP_METHOD(PhalconPlus_Logger_MultiPleFile, setFormatter)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *formatter, formatter_sub, adapter, _0, *_1, _2;
@@ -397,10 +421,16 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, setFormatter) {
 	ZVAL_UNDEF(&adapter);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(formatter, phalcon_logger_formatter_formatterinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &formatter);
-
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("adapters"), PH_NOISY_CC | PH_READONLY);
@@ -432,17 +462,17 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, setFormatter) {
 	}
 	ZEPHIR_INIT_NVAR(&adapter);
 	RETURN_THIS();
-
 }
 
-zend_object *zephir_init_properties_PhalconPlus_Logger_MultiPleFile(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_PhalconPlus_Logger_MultiPleFile(zend_class_entry *class_type)
+{
 		zval _0, _2, _1$$3, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -464,6 +494,5 @@ zend_object *zephir_init_properties_PhalconPlus_Logger_MultiPleFile(zend_class_e
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

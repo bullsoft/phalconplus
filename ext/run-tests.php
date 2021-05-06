@@ -25,7 +25,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id: ce16b4fbf0aba210a673410ad92c7fc42ebd9365 $ */
+/* $Id: 19b7f5cb4015d00823d154fd0b256389c2d8d6cc $ */
 
 /* Let there be no top-level code beyond this point:
  * Only functions and classes, thanks!
@@ -521,7 +521,7 @@ NO_PROC_OPEN_ERROR;
                     $html_output = is_resource($html_file);
                     break;
                 case '--version':
-                    echo '$Id: ce16b4fbf0aba210a673410ad92c7fc42ebd9365 $' . "\n";
+                    echo '$Id: 19b7f5cb4015d00823d154fd0b256389c2d8d6cc $' . "\n";
                     exit(1);
 
                 default:
@@ -797,7 +797,7 @@ HELP;
 
     junit_save_xml();
     if (getenv('REPORT_EXIT_STATUS') !== '0' &&
-        getenv('REPORT_EXIT_STATUS') !== 'no' && ($sum_results['FAILED'] || $sum_results['LEAKED'])) {
+        getenv('REPORT_EXIT_STATUS') !== 'no' && ($sum_results['FAILED'] || $sum_results['BORKED'] || $sum_results['LEAKED'])) {
         exit(1);
     }
     exit(0);
@@ -1273,6 +1273,9 @@ function system_with_timeout($commandline, $env = null, $stdin = null, $captureS
     }
     if ($stat["exitcode"] > 128 && $stat["exitcode"] < 160) {
         $data .= "\nTermsig=" . ($stat["exitcode"] - 128) . "\n";
+    } else if (defined('PHP_WINDOWS_VERSION_MAJOR') && (($stat["exitcode"] >> 28) & 0b1111) === 0b1100) {
+        // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/87fba13e-bf06-450e-83b1-9241dc81e781
+        $data .= "\nTermsig=" . $stat["exitcode"] . "\n";
     }
 
     proc_close($proc);

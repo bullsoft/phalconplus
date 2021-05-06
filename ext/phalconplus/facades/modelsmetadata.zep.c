@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_ModelsMetadata) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_ModelsMetadata)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, ModelsMetadata, phalconplus, facades_modelsmetadata, phalconplus_facades_abstractfacade_ce, phalconplus_facades_modelsmetadata_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_ModelsMetadata, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_ModelsMetadata, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("modelsMetadata");
 
+	RETURN_STRING("modelsMetadata");
 }
 

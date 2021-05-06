@@ -20,16 +20,15 @@
 #include "kernel/string.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Http_PsrResponseFactory) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Http_PsrResponseFactory)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Http, PsrResponseFactory, phalconplus, http_psrresponsefactory, phalconplus_http_psrresponsefactory_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, create) {
-
+PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, create)
+{
 	zend_class_entry *_1;
 	zval className;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -49,10 +48,18 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, create) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&className);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_OBJECT_OF_CLASS(response, phalcon_http_response_ce)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(protocol)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &response, &protocol);
-
 	if (!protocol) {
 		protocol = &protocol_sub;
 		ZEPHIR_INIT_VAR(protocol);
@@ -88,6 +95,7 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, create) {
 		ZEPHIR_CALL_METHOD(NULL, &psrResponse, "__construct", NULL, 0, &_2, &headers, &content, protocol);
 		zephir_check_call_status();
 	}
+
 	if (!(zephir_array_isset_string(&headers, SL("Content-Length")))) {
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZVAL_STRING(&_3$$3, "Content-Length");
@@ -96,11 +104,10 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, create) {
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&psrResponse);
-
 }
 
-PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, mapHeaders) {
-
+PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, mapHeaders)
+{
 	zval _8$$6, _15$$11;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -139,10 +146,16 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, mapHeaders) {
 	ZVAL_UNDEF(&_21$$13);
 	ZVAL_UNDEF(&_8$$6);
 	ZVAL_UNDEF(&_15$$11);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(response, phalcon_http_response_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &response);
-
 
 
 	ZEPHIR_CALL_METHOD(&_0, response, "getheaders", NULL, 0);
@@ -256,6 +269,5 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, mapHeaders) {
 		zephir_array_update_string(&headers, SL("Set-Cookie"), &__$null, PH_COPY | PH_SEPARATE);
 	}
 	RETURN_CCTOR(&headers);
-
 }
 

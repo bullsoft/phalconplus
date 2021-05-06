@@ -23,20 +23,17 @@
 #include "ext/spl/spl_exceptions.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_Adapter_Remote) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_Adapter_Remote)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc\\Client\\Adapter, Remote, phalconplus, rpc_client_adapter_remote, phalconplus_rpc_client_abstractclient_ce, phalconplus_rpc_client_adapter_remote_method_entry, 0);
 
 	zend_declare_property_string(phalconplus_rpc_client_adapter_remote_ce, SL("remoteServerUrl"), "", ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_rpc_client_adapter_remote_ce, SL("client"), ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct) {
-
+PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct)
+{
 	zend_string *_6$$4;
 	zend_ulong _5$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -56,10 +53,18 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct) {
 	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&_7$$5);
 	ZVAL_UNDEF(&_8$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(remoteServerUrl)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(opts)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &remoteServerUrl_param, &opts_param);
-
 	zephir_get_arrval(&remoteServerUrl, remoteServerUrl_param);
 	if (!opts_param) {
 		ZEPHIR_INIT_VAR(&opts);
@@ -124,11 +129,10 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct) {
 		ZEPHIR_INIT_NVAR(&optKey$$4);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, callByObject) {
-
+PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, callByObject)
+{
 	zend_bool _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -149,10 +153,16 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, callByObject) {
 	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&_9$$3);
 	ZVAL_UNDEF(&_10$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(rawData)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &rawData_param);
-
 	zephir_get_arrval(&rawData, rawData_param);
 
 
@@ -190,11 +200,10 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, callByObject) {
 	ZEPHIR_RETURN_CALL_METHOD(&_11, "callbyobject", NULL, 0, &rawData);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __call) {
-
+PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __call)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval args, _1$$3;
@@ -209,10 +218,17 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __call) {
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&args);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(method)
+		Z_PARAM_ARRAY(args)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &method_param, &args_param);
-
 	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string"));
 		RETURN_MM_NULL();
@@ -221,7 +237,6 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __call) {
 		zephir_get_strval(&method, method_param);
 	} else {
 		ZEPHIR_INIT_VAR(&method);
-		ZVAL_EMPTY_STRING(&method);
 	}
 	zephir_get_arrval(&args, args_param);
 
@@ -248,6 +263,5 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __call) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-
 }
 

@@ -20,22 +20,22 @@
 #include "kernel/exception.h"
 #include "kernel/array.h"
 #include "kernel/string.h"
+#include "ext/spl/spl_array.h"
 
 
 /**
  *
  * @ref https://github.com/beberlei/assert
  */
-ZEPHIR_INIT_CLASS(PhalconPlus_Assert_Assertion) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Assert_Assertion)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Assert, Assertion, phalconplus, assert_assertion, phalconplus_assert_assertion_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, createException)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval constraints;
@@ -47,10 +47,21 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 	ZVAL_UNDEF(&code_sub);
 	ZVAL_UNDEF(&propertyPath_sub);
 	ZVAL_UNDEF(&constraints);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(4, 5)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(code)
+		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(constraints)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 4, 1, &value, &message, &code, &propertyPath, &constraints_param);
-
 	if (!constraints_param) {
 		ZEPHIR_INIT_VAR(&constraints);
 		array_init(&constraints);
@@ -63,11 +74,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, createException) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 58, message, code, propertyPath, value, &constraints);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, eq)
+{
 	zval _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -85,10 +95,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_ZVAL(value1)
+		Z_PARAM_ZVAL(value2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &value1, &value2, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -121,11 +141,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, notEq) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, notEq)
+{
 	zval _5$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -144,10 +163,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEq) {
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_5$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_ZVAL(value1)
+		Z_PARAM_ZVAL(value2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &value1, &value2, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -185,11 +214,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEq) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, same)
+{
 	zval _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -207,10 +235,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_ZVAL(value1)
+		Z_PARAM_ZVAL(value2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &value1, &value2, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -243,11 +281,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -261,10 +298,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 	ZVAL_UNDEF(&v1$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -292,11 +338,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, notNull)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -310,10 +355,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 	ZVAL_UNDEF(&v1$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -341,11 +395,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank)
+{
 	zend_bool _0, _1, _3, _4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -364,10 +417,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank) {
 	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&_10$$3);
 	ZVAL_UNDEF(&_11$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -422,11 +484,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, integer) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, integer)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -442,10 +503,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, integer) {
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -482,11 +552,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, integer) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, numeric)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -500,10 +569,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 	ZVAL_UNDEF(&v1$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -531,11 +609,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, range) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, range)
+{
 	zval _7$$3;
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -555,10 +632,21 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, range) {
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&_7$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 5)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_LONG(minValue)
+		Z_PARAM_LONG(maxValue)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 2, &value, &minValue_param, &maxValue_param, &message, &propertyPath);
-
 	minValue = zephir_get_intval(minValue_param);
 	maxValue = zephir_get_intval(maxValue_param);
 	if (!message) {
@@ -609,11 +697,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, range) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, minLength) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, minLength)
+{
 	zval _8$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL, *_4 = NULL;
@@ -635,10 +722,21 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, minLength) {
 	ZVAL_UNDEF(&_9$$3);
 	ZVAL_UNDEF(&encodeing);
 	ZVAL_UNDEF(&_8$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 5)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_LONG(minLength)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_STR(encodeing)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 3, &value, &minLength_param, &message, &propertyPath, &encodeing_param);
-
 	minLength = zephir_get_intval(minLength_param);
 	if (!message) {
 		message = &message_sub;
@@ -691,11 +789,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, minLength) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, maxLength) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, maxLength)
+{
 	zval _8$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL, *_4 = NULL;
@@ -717,10 +814,21 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, maxLength) {
 	ZVAL_UNDEF(&_9$$3);
 	ZVAL_UNDEF(&encodeing);
 	ZVAL_UNDEF(&_8$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 5)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_LONG(maxLength)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_STR(encodeing)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 3, &value, &maxLength_param, &message, &propertyPath, &encodeing_param);
-
 	maxLength = zephir_get_intval(maxLength_param);
 	if (!message) {
 		message = &message_sub;
@@ -773,11 +881,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, maxLength) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, betweenLength) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, betweenLength)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval encodeing;
 	zend_long minLength, maxLength, ZEPHIR_LAST_CALL_STATUS;
@@ -790,10 +897,22 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, betweenLength) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&encodeing);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 6)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_LONG(minLength)
+		Z_PARAM_LONG(maxLength)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_STR(encodeing)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 3, &value, &minLength_param, &maxLength_param, &message, &propertyPath, &encodeing_param);
-
 	minLength = zephir_get_intval(minLength_param);
 	maxLength = zephir_get_intval(maxLength_param);
 	if (!message) {
@@ -821,11 +940,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, betweenLength) {
 	ZEPHIR_CALL_STATIC(NULL, "maxlength", NULL, 0, value, &_0, message, propertyPath, &encodeing);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, min) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, min)
+{
 	zval _6$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_2 = NULL;
@@ -844,10 +962,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, min) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_6$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_LONG(minValue)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &value, &minValue_param, &message, &propertyPath);
-
 	minValue = zephir_get_intval(minValue_param);
 	if (!message) {
 		message = &message_sub;
@@ -891,11 +1019,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, min) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, max) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, max)
+{
 	zval _6$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_2 = NULL;
@@ -914,10 +1041,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, max) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_6$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_LONG(maxValue)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &value, &maxValue_param, &message, &propertyPath);
-
 	maxValue = zephir_get_intval(maxValue_param);
 	if (!message) {
 		message = &message_sub;
@@ -961,11 +1098,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, max) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, contains) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, contains)
+{
 	zval _6$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
@@ -987,10 +1123,21 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, contains) {
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&encodeing);
 	ZVAL_UNDEF(&_6$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 5)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_ZVAL(needle)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_STR(encodeing)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 3, &value, &needle, &message, &propertyPath, &encodeing_param);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1039,11 +1186,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, contains) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, notContains) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, notContains)
+{
 	zval _6$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
@@ -1065,10 +1211,21 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notContains) {
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&encodeing);
 	ZVAL_UNDEF(&_6$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 5)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_ZVAL(needle)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_STR(encodeing)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 3, &value, &needle, &message, &propertyPath, &encodeing_param);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1117,11 +1274,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notContains) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, inArray) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, inArray)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1145,10 +1301,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, inArray) {
 	ZVAL_UNDEF(&choices);
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_9$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_ARRAY(choices)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &value, &choices_param, &message, &propertyPath);
-
 	zephir_get_arrval(&choices, choices_param);
 	if (!message) {
 		message = &message_sub;
@@ -1199,11 +1365,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, inArray) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, keyExists) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, keyExists)
+{
 	zval _4$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_2 = NULL;
@@ -1221,10 +1386,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, keyExists) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_4$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_ZVAL(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &value, &key, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1262,11 +1437,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, keyExists) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, isResource) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, isResource)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_2 = NULL;
@@ -1281,10 +1455,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isResource) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1317,11 +1500,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isResource) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, isString) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, isString)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_2 = NULL;
@@ -1337,10 +1519,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isString) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1375,11 +1566,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isString) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, isArray) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, isArray)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_2 = NULL;
@@ -1394,10 +1584,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArray) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1430,11 +1629,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArray) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, isTraversable) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, isTraversable)
+{
 	zend_bool _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1451,10 +1649,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isTraversable) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&propertyPath);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_STR_OR_NULL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath_param);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1463,7 +1670,6 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isTraversable) {
 	}
 	if (!propertyPath_param) {
 		ZEPHIR_INIT_VAR(&propertyPath);
-		ZVAL_STRING(&propertyPath, "");
 	} else {
 		zephir_get_strval(&propertyPath, propertyPath_param);
 	}
@@ -1497,11 +1703,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isTraversable) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, isArrayAccessible) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, isArrayAccessible)
+{
 	zend_bool _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1518,10 +1723,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArrayAccessible) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&propertyPath);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_STR_OR_NULL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath_param);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1530,7 +1744,6 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArrayAccessible) {
 	}
 	if (!propertyPath_param) {
 		ZEPHIR_INIT_VAR(&propertyPath);
-		ZVAL_STRING(&propertyPath, "");
 	} else {
 		zephir_get_strval(&propertyPath, propertyPath_param);
 	}
@@ -1564,11 +1777,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArrayAccessible) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable)
+{
 	zend_bool _0$$4, _1$$4, _2$$4, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_6 = NULL;
@@ -1586,10 +1798,19 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable) {
 	ZVAL_UNDEF(&_7$$5);
 	ZVAL_UNDEF(&_8$$5);
 	ZVAL_UNDEF(&propertyPath);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_STR_OR_NULL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &value, &message, &propertyPath_param);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1598,7 +1819,6 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable) {
 	}
 	if (!propertyPath_param) {
 		ZEPHIR_INIT_VAR(&propertyPath);
-		ZVAL_STRING(&propertyPath, "");
 	} else {
 		zephir_get_strval(&propertyPath, propertyPath_param);
 	}
@@ -1647,11 +1867,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, isInstanceOf) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, isInstanceOf)
+{
 	zval _6$$10;
 	zend_bool result;
 	zval classItem;
@@ -1674,10 +1893,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isInstanceOf) {
 	ZVAL_UNDEF(&_7$$10);
 	ZVAL_UNDEF(&classItem);
 	ZVAL_UNDEF(&_6$$10);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_OBJECT(value)
+		Z_PARAM_ZVAL(classNames)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &value, &classNames, &message, &propertyPath);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1754,11 +1983,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isInstanceOf) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString)
+{
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL;
@@ -1778,10 +2006,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_6$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(obj, spl_ce_ArrayObject)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &value, &message, &propertyPath, &obj);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_CPY_WRT(message, &__$null);
@@ -1832,11 +2070,10 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString) {
 		zephir_check_call_status();
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_Assertion, stringify) {
-
+PHP_METHOD(PhalconPlus_Assert_Assertion, stringify)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -1844,15 +2081,20 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, stringify) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &value);
 
 
-
 	ZEPHIR_RETURN_CALL_CE_STATIC(phalconplus_helper_variable_ce, "stringify", &_0, 0, value);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

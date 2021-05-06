@@ -23,34 +23,24 @@
 #include "ext/spl/spl_exceptions.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_App_Module_ModuleDef) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_App_Module_ModuleDef)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\App\\Module, ModuleDef, phalconplus, app_module_moduledef, phalconplus_app_module_moduledef_method_entry, 0);
 
 	zend_declare_property_string(phalconplus_app_module_moduledef_ce, SL("classPath"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalconplus_app_module_moduledef_ce, SL("className"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalconplus_app_module_moduledef_ce, SL("name"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalconplus_app_module_moduledef_ce, SL("configPath"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalconplus_app_module_moduledef_ce, SL("dir"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalconplus_app_module_moduledef_ce, SL("config"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalconplus_app_module_moduledef_ce, SL("runMode"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalconplus_app_module_moduledef_ce, SL("app"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(phalconplus_app_module_moduledef_ce, SL("isPrimary"), 0, ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct)
+{
 	zval _10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_5 = NULL, *_8 = NULL, *_20 = NULL;
@@ -95,10 +85,20 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct) {
 	ZVAL_UNDEF(&runMode);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_10);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_OBJECT_OF_CLASS(app, phalconplus_app_app_ce)
+		Z_PARAM_STR(moduleDir)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(isPrimary)
+		Z_PARAM_STR(runMode)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &app, &moduleDir_param, &isPrimary_param, &runMode_param);
-
 	if (UNEXPECTED(Z_TYPE_P(moduleDir_param) != IS_STRING && Z_TYPE_P(moduleDir_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'moduleDir' must be of the type string"));
 		RETURN_MM_NULL();
@@ -107,7 +107,6 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct) {
 		zephir_get_strval(&moduleDir, moduleDir_param);
 	} else {
 		ZEPHIR_INIT_VAR(&moduleDir);
-		ZVAL_EMPTY_STRING(&moduleDir);
 	}
 	if (!isPrimary_param) {
 		isPrimary = 0;
@@ -214,11 +213,10 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("className"), &_32$$8);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, newDI) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, newDI)
+{
 	zval di, _0, _1, _2, _3, _4, _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -231,6 +229,7 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, newDI) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -261,11 +260,10 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, newDI) {
 	ZEPHIR_CALL_METHOD(NULL, &_4, "seteventsmanager", NULL, 0, &_5);
 	zephir_check_call_status();
 	RETURN_CCTOR(&di);
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, checkout) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, checkout)
+{
 	zval _11$$6, _13$$6;
 	zend_class_entry *_17;
 	zval e, _0, _8, _9, module, className, _15, _16, _18, _3$$4, _4$$4, _5$$3, _6$$5, _7$$5, _10$$6, _12$$6, _14$$6, _19$$7, _20$$7, _21$$7;
@@ -297,6 +295,7 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, checkout) {
 	ZVAL_UNDEF(&_11$$6);
 	ZVAL_UNDEF(&_13$$6);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isprimary", &_1, 0);
@@ -317,8 +316,8 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, checkout) {
 			ZEPHIR_INIT_VAR(&_5$$3);
 			ZVAL_OBJ(&_5$$3, EG(exception));
 			Z_ADDREF_P(&_5$$3);
-			if (zephir_instance_of_ev(&_5$$3, zend_exception_get_default(TSRMLS_C))) {
-				zend_clear_exception(TSRMLS_C);
+			if (zephir_instance_of_ev(&_5$$3, zend_ce_exception)) {
+				zend_clear_exception();
 				ZEPHIR_CPY_WRT(&e, &_5$$3);
 				ZEPHIR_CALL_METHOD(&_6$$5, &e, "getmessage", NULL, 0);
 				zephir_check_call_status();
@@ -370,6 +369,7 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, checkout) {
 		ZEPHIR_CALL_METHOD(NULL, &module, "__construct", NULL, 0, &_15, this_ptr);
 		zephir_check_call_status();
 	}
+
 	ZEPHIR_CALL_METHOD(&_18, this_ptr, "isprimary", &_1, 0);
 	zephir_check_call_status();
 	if (zephir_is_true(&_18)) {
@@ -388,106 +388,106 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, checkout) {
 	ZEPHIR_CALL_METHOD(NULL, &module, "registerevents", NULL, 0);
 	zephir_check_call_status();
 	RETURN_CCTOR(&module);
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, isDefault) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, isDefault)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("isPrimary"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_TRUE_IDENTICAL(&_0));
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, isPrimary) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, isPrimary)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("isPrimary"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_TRUE_IDENTICAL(&_0));
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getIsPrimary) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getIsPrimary)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "isPrimary");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, classPath) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, classPath)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "classPath");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getClassPath) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getClassPath)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "classPath");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, className) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, className)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "className");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getClassName) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getClassName)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "className");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, runMode) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, runMode)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "runMode");
 
+	RETURN_MEMBER(getThis(), "runMode");
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getRunMode) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getRunMode)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "runMode");
 
+	RETURN_MEMBER(getThis(), "runMode");
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, mapClassName) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, mapClassName)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -495,17 +495,17 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, mapClassName) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getmapclassname", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getMapClassName) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getMapClassName)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -513,11 +513,10 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getMapClassName) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getmapclassname", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, mode) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, mode)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -525,17 +524,17 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, mode) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("runMode"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getvalue", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getMode) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getMode)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -543,35 +542,35 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getMode) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("runMode"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getvalue", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, mame) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, mame)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "name");
 
+	RETURN_MEMBER(getThis(), "name");
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getName) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "name");
 
+	RETURN_MEMBER(getThis(), "name");
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, ns) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, ns)
+{
 	zval _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -580,6 +579,7 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, ns) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -592,11 +592,10 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, ns) {
 	ZVAL_STRING(&_2, "\\");
 	zephir_fast_trim(return_value, &_1, &_2, ZEPHIR_TRIM_RIGHT);
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getNs) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getNs)
+{
 	zval _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -605,6 +604,7 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getNs) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -617,89 +617,89 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getNs) {
 	ZVAL_STRING(&_2, "\\");
 	zephir_fast_trim(return_value, &_1, &_2, ZEPHIR_TRIM_RIGHT);
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, configPath) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, configPath)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "configPath");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getConfigPath) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getConfigPath)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "configPath");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getConfig) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getConfig)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "config");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, dir) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, dir)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "dir");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getDir) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getDir)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "dir");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, config) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, config)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "config");
-
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, app) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, app)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "app");
 
+	RETURN_MEMBER(getThis(), "app");
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getApp) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, getApp)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "app");
 
+	RETURN_MEMBER(getThis(), "app");
 }
 
-PHP_METHOD(PhalconPlus_App_Module_ModuleDef, di) {
-
+PHP_METHOD(PhalconPlus_App_Module_ModuleDef, di)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -707,6 +707,5 @@ PHP_METHOD(PhalconPlus_App_Module_ModuleDef, di) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "di", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

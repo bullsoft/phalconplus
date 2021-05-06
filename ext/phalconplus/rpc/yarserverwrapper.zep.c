@@ -20,18 +20,16 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_YarServerWrapper) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_YarServerWrapper)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc, YarServerWrapper, phalconplus, rpc_yarserverwrapper, phalconplus_rpc_abstractyar_ce, phalconplus_rpc_yarserverwrapper_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_rpc_yarserverwrapper_ce, SL("yar"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, setServer) {
-
+PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, setServer)
+{
 	zval _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -41,10 +39,16 @@ PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, setServer) {
 	ZVAL_UNDEF(&obj_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(obj, phalconplus_rpc_server_abstractserver_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &obj);
-
 
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -58,11 +62,10 @@ PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, setServer) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registermodules", NULL, 0, &_1);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, handle) {
-
+PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, handle)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -70,6 +73,7 @@ PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, handle) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -82,6 +86,5 @@ PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, handle) {
 	ZEPHIR_RETURN_CALL_METHOD(&_1, "handle", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

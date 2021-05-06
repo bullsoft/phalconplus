@@ -20,34 +20,29 @@
 #include "kernel/concat.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Auth_UserProvider) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Auth_UserProvider)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Auth, UserProvider, phalconplus, auth_userprovider, phalconplus_base_protobuffer_ce, phalconplus_auth_userprovider_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(phalconplus_auth_userprovider_ce, SL("id"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalconplus_auth_userprovider_ce, SL("role"), "Guests", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalconplus_auth_userprovider_ce, SL("name"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalconplus_auth_userprovider_ce, SL("entity"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalconplus_auth_userprovider_ce, 1, phalconplus_contracts_auth_userprovider_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getEntity) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getEntity)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "entity");
 
+	RETURN_MEMBER(getThis(), "entity");
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct)
+{
 	zend_class_entry *_3$$3, *_14$$8;
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -74,10 +69,18 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
 	ZVAL_UNDEF(&_12$$8);
 	ZVAL_UNDEF(&_13$$8);
 	ZVAL_UNDEF(&role);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(user)
+		Z_PARAM_STR(role)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &user, &role_param);
-
 	if (!user) {
 		user = &user_sub;
 		ZEPHIR_CPY_WRT(user, &__$null);
@@ -164,119 +167,143 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct) {
 		goto BEGIN;
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getById) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getById)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *userId_param = NULL;
 	zval userId;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&userId);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(userId)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &userId_param);
-
 	zephir_get_strval(&userId, userId_param);
-
 
 
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getByToken) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getByToken)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *token_param = NULL;
 	zval token;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&token);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(token)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &token_param);
-
 	zephir_get_strval(&token, token_param);
 
 
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getByCredentials) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getByCredentials)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *credentials_param = NULL;
 	zval credentials;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&credentials);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(credentials)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &credentials_param);
-
 	zephir_get_arrval(&credentials, credentials_param);
-
 
 
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, loginByCredentials) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, loginByCredentials)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *credentials_param = NULL;
 	zval credentials;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&credentials);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(credentials)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &credentials_param);
-
 	zephir_get_arrval(&credentials, credentials_param);
-
 
 
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, loginByToken) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, loginByToken)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *credentials_param = NULL;
 	zval credentials;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&credentials);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(credentials)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &credentials_param);
-
 	zephir_get_arrval(&credentials, credentials_param);
-
 
 
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, checkLogin) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, checkLogin)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_BOOL(0);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, checkLoginByToken) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, checkLoginByToken)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_BOOL(0);
 
+	RETURN_BOOL(0);
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, validateCredentials) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, validateCredentials)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval credentials;
 	zval *user, user_sub, *credentials_param = NULL;
@@ -284,19 +311,25 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, validateCredentials) {
 
 	ZVAL_UNDEF(&user_sub);
 	ZVAL_UNDEF(&credentials);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(user, phalcon_mvc_model_ce)
+		Z_PARAM_ARRAY(credentials)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &user, &credentials_param);
-
 	zephir_get_arrval(&credentials, credentials_param);
 
 
 	RETURN_MM_BOOL(0);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, guest) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, guest)
+{
 	zend_class_entry *_1;
 	zval userClass, _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -305,6 +338,7 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, guest) {
 
 	ZVAL_UNDEF(&userClass);
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -320,12 +354,12 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, guest) {
 		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 		zephir_check_call_status();
 	}
-	RETURN_MM();
 
+	RETURN_MM();
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, hashPassword) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, hashPassword)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool makeSalt;
@@ -338,10 +372,18 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, hashPassword) {
 	ZVAL_UNDEF(&salt);
 	ZVAL_UNDEF(&encryptedPasswd);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(rawPasswd)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(makeSalt)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &rawPasswd_param, &makeSalt_param);
-
 	zephir_get_strval(&rawPasswd, rawPasswd_param);
 	if (!makeSalt_param) {
 		makeSalt = 0;
@@ -371,11 +413,10 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, hashPassword) {
 	zephir_array_update_string(return_value, SL("encrypted"), &encryptedPasswd, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("salt"), &salt, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, checkPassword) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, checkPassword)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *rawPasswd_param = NULL, *encryptedPasswd_param = NULL, *salt_param = NULL, sec;
@@ -387,10 +428,19 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, checkPassword) {
 	ZVAL_UNDEF(&salt);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&sec);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(rawPasswd)
+		Z_PARAM_STR(encryptedPasswd)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(salt)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &rawPasswd_param, &encryptedPasswd_param, &salt_param);
-
 	zephir_get_strval(&rawPasswd, rawPasswd_param);
 	zephir_get_strval(&encryptedPasswd, encryptedPasswd_param);
 	if (!salt_param) {
@@ -410,11 +460,10 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, checkPassword) {
 	ZEPHIR_RETURN_CALL_METHOD(&sec, "checkhash", NULL, 0, &_0, &encryptedPasswd);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, can) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, can)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *ability_param = NULL, *params, params_sub;
 	zval ability;
@@ -422,96 +471,107 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, can) {
 
 	ZVAL_UNDEF(&ability);
 	ZVAL_UNDEF(&params_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(ability)
+		Z_PARAM_ZVAL(params)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ability_param, &params);
-
 	zephir_get_strval(&ability, ability_param);
 
 
 	RETURN_MM_BOOL(0);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, entity) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, entity)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "entity");
 
+	RETURN_MEMBER(getThis(), "entity");
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, hasAccess) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, hasAccess)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *roleName_param = NULL;
 	zval roleName;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&roleName);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(roleName)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &roleName_param);
-
 	zephir_get_strval(&roleName, roleName_param);
 
 
 	RETURN_MM_BOOL(0);
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getId) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getId)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "id");
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getRole) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getRole)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "role");
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getName) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getName)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "name");
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getIdName) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getIdName)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_STRING("id");
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getUsernameName) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getUsernameName)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_STRING("username");
-
 }
 
-PHP_METHOD(PhalconPlus_Auth_UserProvider, getRoleName) {
-
+PHP_METHOD(PhalconPlus_Auth_UserProvider, getRoleName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("role");
 
+	RETURN_STRING("role");
 }
 

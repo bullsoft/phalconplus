@@ -14,11 +14,10 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Db_Pdo_AbstractMysql) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Db_Pdo_AbstractMysql)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Db\\Pdo, AbstractMysql, phalconplus, db_pdo_abstractmysql, zephir_get_internal_ce(SL("phalcon\\db\\adapter\\pdo\\mysql")), NULL, 0);
 
 	return SUCCESS;
-
 }
 

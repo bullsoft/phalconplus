@@ -23,20 +23,17 @@
 #include "ext/spl/spl_exceptions.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Yar) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Yar)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc, Yar, phalconplus, rpc_yar, phalconplus_rpc_abstractyar_ce, phalconplus_rpc_yar_method_entry, 0);
 
 	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("formater"), "msgpack", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("encoder"), "msgpack_pack", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Yar, __construct) {
-
+PHP_METHOD(PhalconPlus_Rpc_Yar, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval formater;
@@ -48,10 +45,18 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&formater);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(di, phalcon_di_diinterface_ce)
+		Z_PARAM_STR(formater)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &di, &formater_param);
-
 	if (!di) {
 		di = &di_sub;
 		di = &__$null;
@@ -76,11 +81,10 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("encoder"), &_1$$3);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Yar, setServer) {
-
+PHP_METHOD(PhalconPlus_Rpc_Yar, setServer)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -89,10 +93,16 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, setServer) {
 
 	ZVAL_UNDEF(&obj_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(obj, phalconplus_rpc_server_abstractserver_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &obj);
-
 
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -101,11 +111,10 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, setServer) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "registermodules", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
-
+PHP_METHOD(PhalconPlus_Rpc_Yar, handle)
+{
 	zval encoder$$5;
 	zval _6$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -147,6 +156,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 	ZVAL_UNDEF(&_19$$10);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&encoder$$5);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -240,8 +250,8 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 			ZEPHIR_INIT_NVAR(&_11$$5);
 			ZVAL_OBJ(&_11$$5, EG(exception));
 			Z_ADDREF_P(&_11$$5);
-			if (zephir_instance_of_ev(&_11$$5, zend_exception_get_default(TSRMLS_C))) {
-				zend_clear_exception(TSRMLS_C);
+			if (zephir_instance_of_ev(&_11$$5, zend_ce_exception)) {
+				zend_clear_exception();
 				ZEPHIR_CPY_WRT(&e$$5, &_11$$5);
 				ZEPHIR_CALL_METHOD(&_16$$10, &e$$5, "getcode", NULL, 0);
 				zephir_check_call_status();
@@ -270,11 +280,10 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Yar, defaultResponse) {
-
+PHP_METHOD(PhalconPlus_Rpc_Yar, defaultResponse)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_7 = NULL;
@@ -301,11 +310,18 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, defaultResponse) {
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(vals)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_SERVER, SL("_SERVER"));
 	zephir_fetch_params(1, 0, 1, &vals_param);
-
 	if (!vals_param) {
 		ZEPHIR_INIT_VAR(&vals);
 		array_init(&vals);
@@ -347,6 +363,5 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, defaultResponse) {
 	zephir_fast_str_replace(&_10, &_12, &_13, &_11);
 	ZEPHIR_CONCAT_SVSVSVSVS(return_value, "<!DOCTYPE html>\n<html>\n <head>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n  <title>", &_3, " - Phalcon+ Server</title>\n  <style type=\"text/css\">\n   body { margin: 0; font:14px/20px Verdana, Arial, sans-serif; color: #333; background: #f8f8f8;}\n   h1, h2, pre { margin: 0; padding: 0;}\n   h1 { font:bold 28px Verdana,Arial; background:#99c; padding: 12px 5px; border-bottom: 4px solid #669; box-shadow: 0 1px 4px #bbb; color: #222;}\n   h2 { font:normal 20px/22px Georgia, Times, \"Times New Roman\", serif; padding: 5px 0 8px; margin: 20px 10px 0; border-bottom: 1px solid #ddd; cursor:pointer;}\n   p, dd { color: #555; }\n   .api-info { padding: 10px 0; margin-left: 20px; }\n   .api-block, .sample-codes { margin: 0 40px;}\n   .code {border: 1px solid #669; padding: 10px;}\n   h2 u { font-size:20px;text-decoration:none;padding:10px; }\n  </style>\n  <script type=\"text/javascript\">\n   function _t(elem) {\n    var block = elem.nextSibling;\n    var info = elem.getElementsByTagName('u')[0];\n    while (block) {\n     if ( block.nodeType == 1 && block.className.indexOf('api-block') > -1 ) {\n      break;\n     }\n     block = block.nextSibling;\n    }\n    var isHidden = block.style.display == 'none';\n    block.style.display = isHidden ? '' : 'none';\n    info.innerHTML = isHidden ? '-'  : '+';\n   }\n  </script>\n </head>\n <body>\n    <h1>Phalcon+ Server: ", &_4, "</h1>\n    <h2>Code Samples: </h2>\n    <div class=\"sample-codes\">\n    <p class=\"code\">", &_5, "</p>\n    <p><center style=\"font-weight: bolder;\">-------------- Expected Result --------------</center></p>\n    <p class=\"code\">", &_10, "</p>\n    </div>\n    <footer>\n        <center>Copyright &copy <a href=\"https://bullsoft.org\">BullSoft.org</a></center>\n    </footer>\n </body>\n</html>");
 	RETURN_MM();
-
 }
 

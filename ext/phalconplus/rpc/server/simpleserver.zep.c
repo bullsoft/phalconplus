@@ -20,16 +20,15 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Server_SimpleServer) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Server_SimpleServer)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc\\Server, SimpleServer, phalconplus, rpc_server_simpleserver, phalconplus_rpc_server_abstractserver_ce, phalconplus_rpc_server_simpleserver_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __construct) {
-
+PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub, _0, _1;
@@ -38,10 +37,16 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __construct) {
 	ZVAL_UNDEF(&di_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(di, phalcon_di_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &di);
-
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
@@ -57,19 +62,18 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __construct) {
 	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 82);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, onConstruct) {
-
+PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, onConstruct)
+{
 	zval *this_ptr = getThis();
 
 
 
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __get) {
-
+PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *property_param = NULL, _0, _1, _2$$3;
@@ -80,10 +84,16 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __get) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(property)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &property_param);
-
 	if (UNEXPECTED(Z_TYPE_P(property_param) != IS_STRING && Z_TYPE_P(property_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'property' must be of the type string"));
 		RETURN_MM_NULL();
@@ -92,7 +102,6 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __get) {
 		zephir_get_strval(&property, property_param);
 	} else {
 		ZEPHIR_INIT_VAR(&property);
-		ZVAL_EMPTY_STRING(&property);
 	}
 
 
@@ -106,6 +115,5 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __get) {
 		RETURN_MM();
 	}
 	RETURN_MM_NULL();
-
 }
 

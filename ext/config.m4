@@ -132,7 +132,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/3__closure.zep.c "
 	PHP_NEW_EXTENSION(phalconplus, $phalconplus_sources, $ext_shared,, )
 	PHP_ADD_BUILD_DIR([$ext_builddir/kernel/])
-	PHP_ADD_BUILD_DIR([$ext_builddir/phalconplus/])
+	for dir in "phalconplus phalconplus/app phalconplus/app/engine phalconplus/app/module phalconplus/assert phalconplus/auth phalconplus/base phalconplus/contracts phalconplus/contracts/auth phalconplus/contracts/auth/access phalconplus/curl phalconplus/db phalconplus/db/pdo phalconplus/db/unitofwork phalconplus/enum phalconplus/facades phalconplus/featuretest phalconplus/helper phalconplus/http phalconplus/logger phalconplus/logger/processor phalconplus/mvc phalconplus/rpc phalconplus/rpc/client phalconplus/rpc/client/adapter phalconplus/rpc/server phalconplus/volt/extension"; do
+		PHP_ADD_BUILD_DIR([$ext_builddir/$dir])
+	done
 	PHP_SUBST(PHALCONPLUS_SHARED_LIBADD)
 
 	old_CPPFLAGS=$CPPFLAGS

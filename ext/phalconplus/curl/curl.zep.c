@@ -26,53 +26,56 @@
 /**
 * @ref https://github.com/anlutro/php-curl
 */
-ZEPHIR_INIT_CLASS(PhalconPlus_Curl_Curl) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Curl_Curl)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Curl, Curl, phalconplus, curl_curl, phalconplus_curl_curl_method_entry, 0);
 
 	/**
 	 * The cURL resource.
 	 */
 	zend_declare_property_null(phalconplus_curl_curl_ce, SL("ch"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * The default headers.
 	 *
 	 * @var array
 	 */
 	zend_declare_property_null(phalconplus_curl_curl_ce, SL("defaultHeaders"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * The default curl options.
 	 *
 	 * @var array
 	 */
 	zend_declare_property_null(phalconplus_curl_curl_ce, SL("defaultOptions"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * The base url
 	 *
 	 * @var string
 	 */
 	zend_declare_property_string(phalconplus_curl_curl_ce, SL("baseUrl"), "", ZEND_ACC_PROTECTED);
-
 	phalconplus_curl_curl_ce->create_object = zephir_init_properties_PhalconPlus_Curl_Curl;
-	return SUCCESS;
 
+	return SUCCESS;
 }
 
-PHP_METHOD(PhalconPlus_Curl_Curl, __construct) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *opts_param = NULL;
 	zval opts;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&opts);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(opts)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &opts_param);
-
 	if (!opts_param) {
 		ZEPHIR_INIT_VAR(&opts);
 		array_init(&opts);
@@ -83,7 +86,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, __construct) {
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaultOptions"), &opts);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -91,17 +93,17 @@ PHP_METHOD(PhalconPlus_Curl_Curl, __construct) {
  *
  * @return array
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, getAllowedMethods) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, getAllowedMethods)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_static_property_ce(&_0, phalconplus_curl_request_ce, SL("methods"), PH_NOISY_CC | PH_READONLY);
 	RETURN_CTORW(&_0);
-
 }
 
 /**
@@ -109,24 +111,29 @@ PHP_METHOD(PhalconPlus_Curl_Curl, getAllowedMethods) {
  *
  * @param array $headers
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultHeaders) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultHeaders)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *headers_param = NULL;
 	zval headers;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&headers);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(headers)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &headers_param);
-
 	zephir_get_arrval(&headers, headers_param);
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaultHeaders"), &headers);
 	RETURN_THIS();
-
 }
 
 /**
@@ -134,13 +141,13 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultHeaders) {
  *
  * @return array
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultHeaders) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultHeaders)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "defaultHeaders");
 
+	RETURN_MEMBER(getThis(), "defaultHeaders");
 }
 
 /**
@@ -148,8 +155,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultHeaders) {
  *
  * @param array $options
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultOptions) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultOptions)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *options_param = NULL, _0, _1;
 	zval options;
@@ -158,10 +165,16 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultOptions) {
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &options_param);
-
 	zephir_get_arrval(&options, options_param);
 
 
@@ -170,7 +183,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultOptions) {
 	zephir_add_function(&_1, &options, &_0);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaultOptions"), &_1);
 	RETURN_THIS();
-
 }
 
 /**
@@ -178,13 +190,13 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setDefaultOptions) {
  *
  * @return array
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultOptions) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultOptions)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "defaultOptions");
 
+	RETURN_MEMBER(getThis(), "defaultOptions");
 }
 
 /**
@@ -192,8 +204,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, getDefaultOptions) {
  *
  * @return array
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, setBaseUrl) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, setBaseUrl)
+{
 	zend_bool _3;
 	zend_class_entry *_1, *_5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -206,10 +218,16 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setBaseUrl) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(baseUrl)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &baseUrl_param);
-
 	zephir_get_strval(&baseUrl, baseUrl_param);
 
 
@@ -233,7 +251,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setBaseUrl) {
 	}
 	zephir_update_property_zval(this_ptr, ZEND_STRL("baseUrl"), &baseUrl);
 	RETURN_THIS();
-
 }
 
 /**
@@ -244,8 +261,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, setBaseUrl) {
  *
  * @return string
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, buildUrl) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, buildUrl)
+{
 	zend_bool _3, _8;
 	zend_class_entry *_1, *_5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -279,10 +296,17 @@ PHP_METHOD(PhalconPlus_Curl_Curl, buildUrl) {
 	ZVAL_UNDEF(&_21$$8);
 	ZVAL_UNDEF(&_22$$9);
 	ZVAL_UNDEF(&query);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(url)
+		Z_PARAM_ARRAY(query)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &url_param, &query_param);
-
 	zephir_get_strval(&url, url_param);
 	zephir_get_arrval(&query, query_param);
 
@@ -356,7 +380,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, buildUrl) {
 		ZEPHIR_CPY_WRT(&retUrl, &_22$$9);
 	}
 	RETURN_CCTOR(&retUrl);
-
 }
 
 /**
@@ -369,8 +392,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, buildUrl) {
  *
  * @return Request
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, newRequest) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, newRequest)
+{
 	zend_bool _7;
 	zend_class_entry *_5, *_9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -393,10 +416,20 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newRequest) {
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_10$$5);
 	ZVAL_UNDEF(&_11$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 4)
+		Z_PARAM_STR(method)
+		Z_PARAM_STR(url)
+		Z_PARAM_ZVAL(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(encoding)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 1, &method_param, &url_param, &data, &encoding_param);
-
 	zephir_get_strval(&method, method_param);
 	zephir_get_strval(&url, url_param);
 	if (!encoding_param) {
@@ -452,7 +485,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newRequest) {
 	ZEPHIR_CALL_METHOD(NULL, &request, "setencoding", NULL, 96, &_12);
 	zephir_check_call_status();
 	RETURN_CCTOR(&request);
-
 }
 
 /**
@@ -464,8 +496,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newRequest) {
  *
  * @return Request
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, newJsonRequest) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, newJsonRequest)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
@@ -477,10 +509,19 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newJsonRequest) {
 	ZVAL_UNDEF(&url);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&data);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(method)
+		Z_PARAM_STR(url)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &method_param, &url_param, &data_param);
-
 	zephir_get_strval(&method, method_param);
 	zephir_get_strval(&url, url_param);
 	if (!data_param) {
@@ -495,7 +536,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newJsonRequest) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "newrequest", NULL, 0, &method, &url, &data, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -507,8 +547,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newJsonRequest) {
  *
  * @return Request
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, newRawRequest) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, newRawRequest)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *url_param = NULL, *data = NULL, data_sub, _0;
@@ -519,10 +559,19 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newRawRequest) {
 	ZVAL_UNDEF(&url);
 	ZVAL_UNDEF(&data_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(method)
+		Z_PARAM_STR(url)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &method_param, &url_param, &data);
-
 	zephir_get_strval(&method, method_param);
 	zephir_get_strval(&url, url_param);
 	if (!data) {
@@ -536,7 +585,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newRawRequest) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "newrequest", NULL, 0, &method, &url, data, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -546,8 +594,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, newRawRequest) {
  *
  * @return Curl
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, prepareRequest) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, prepareRequest)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -578,10 +626,16 @@ PHP_METHOD(PhalconPlus_Curl_Curl, prepareRequest) {
 	ZVAL_UNDEF(&_17$$5);
 	ZVAL_UNDEF(&_18$$6);
 	ZVAL_UNDEF(&_19$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(request, phalconplus_curl_request_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &request);
-
 
 
 	ZEPHIR_CALL_FUNCTION(&_0, "curl_init", NULL, 97);
@@ -647,7 +701,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, prepareRequest) {
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -657,8 +710,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, prepareRequest) {
  *
  * @return Response
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, sendRequest) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, sendRequest)
+{
 	zval _6$$3, _7$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL;
@@ -680,10 +733,16 @@ PHP_METHOD(PhalconPlus_Curl_Curl, sendRequest) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_7$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(request, phalconplus_curl_request_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &request);
-
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "preparerequest", NULL, 0, request);
@@ -724,7 +783,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, sendRequest) {
 	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", &_4, 103, &_8);
 	zephir_check_call_status();
 	RETURN_CCTOR(&response);
-
 }
 
 /**
@@ -735,8 +793,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, sendRequest) {
  *
  * @return Response
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, createResponseObject) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, createResponseObject)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *response, response_sub, info, headerSize, headerStr, body, _0, _1;
@@ -749,10 +807,16 @@ PHP_METHOD(PhalconPlus_Curl_Curl, createResponseObject) {
 	ZVAL_UNDEF(&body);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(response)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &response);
-
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("ch"), PH_NOISY_CC | PH_READONLY);
@@ -769,7 +833,6 @@ PHP_METHOD(PhalconPlus_Curl_Curl, createResponseObject) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 105, &body, &headerStr, &info);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -780,8 +843,8 @@ PHP_METHOD(PhalconPlus_Curl_Curl, createResponseObject) {
  *
  * @return Response
  */
-PHP_METHOD(PhalconPlus_Curl_Curl, __call) {
-
+PHP_METHOD(PhalconPlus_Curl_Curl, __call)
+{
 	zend_string *_20$$10;
 	zend_ulong _19$$10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -821,10 +884,17 @@ PHP_METHOD(PhalconPlus_Curl_Curl, __call) {
 	ZVAL_UNDEF(&_21$$11);
 	ZVAL_UNDEF(&_22$$12);
 	ZVAL_UNDEF(&args);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(func)
+		Z_PARAM_ARRAY(args)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &func_param, &args_param);
-
 	zephir_get_strval(&func, func_param);
 	zephir_get_arrval(&args, args_param);
 
@@ -945,17 +1015,17 @@ PHP_METHOD(PhalconPlus_Curl_Curl, __call) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "sendrequest", NULL, 0, &request);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-zend_object *zephir_init_properties_PhalconPlus_Curl_Curl(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_PhalconPlus_Curl_Curl(zend_class_entry *class_type)
+{
 		zval _0, _2, _1$$3, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -977,6 +1047,5 @@ zend_object *zephir_init_properties_PhalconPlus_Curl_Curl(zend_class_entry *clas
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

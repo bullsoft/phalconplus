@@ -14,15 +14,14 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_AbstractValue) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_AbstractValue)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Db\\UnitOfWork, AbstractValue, phalconplus, db_unitofwork_abstractvalue, phalconplus_db_unitofwork_abstractvalue_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Db_UnitOfWork_AbstractValue, getValue) {
-
+PHP_METHOD(PhalconPlus_Db_UnitOfWork_AbstractValue, getValue)
+{
 }
 

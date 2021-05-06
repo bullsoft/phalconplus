@@ -22,16 +22,15 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Db_Pdo_Mysql) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Db_Pdo_Mysql)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Db\\Pdo, Mysql, phalconplus, db_pdo_mysql, phalconplus_db_pdo_abstractmysql_ce, phalconplus_db_pdo_mysql_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
-
+PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct)
+{
 	zend_class_entry *_4$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -47,10 +46,18 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 	ZVAL_UNDEF(&_1$$5);
 	ZVAL_UNDEF(&_2$$6);
 	ZVAL_UNDEF(&_3$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(descriptor)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(autoConnect)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &descriptor_param, &autoConnect_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&descriptor, descriptor_param);
 	if (!autoConnect_param) {
 		autoConnect = 1;
@@ -91,6 +98,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 			ZEPHIR_CALL_METHOD(NULL, &_2$$6, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		zephir_update_property_zval(this_ptr, ZEND_STRL("dialect"), &_2$$6);
 	} else {
 		if (Z_TYPE_P(&dialectClass) == IS_OBJECT) {
@@ -99,11 +107,10 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __construct) {
 	}
 	zephir_update_property_zval(this_ptr, ZEND_STRL("descriptor"), &descriptor);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
-
+PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *prop_param = NULL, _0$$3;
@@ -112,10 +119,16 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 
 	ZVAL_UNDEF(&prop);
 	ZVAL_UNDEF(&_0$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(prop)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &prop_param);
-
 	if (UNEXPECTED(Z_TYPE_P(prop_param) != IS_STRING && Z_TYPE_P(prop_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'prop' must be of the type string"));
 		RETURN_MM_NULL();
@@ -124,7 +137,6 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 		zephir_get_strval(&prop, prop_param);
 	} else {
 		ZEPHIR_INIT_VAR(&prop);
-		ZVAL_EMPTY_STRING(&prop);
 	}
 
 
@@ -138,11 +150,10 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get) {
 		RETURN_MM_MEMBER(getThis(), "pdo");
 	}
 	RETURN_MM_NULL();
-
 }
 
-PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, isUnderTransaction) {
-
+PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, isUnderTransaction)
+{
 	zval _1;
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -150,6 +161,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, isUnderTransaction) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -168,6 +180,5 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, isUnderTransaction) {
 	ZEPHIR_RETURN_CALL_PARENT(phalconplus_db_pdo_mysql_ce, getThis(), "isundertransaction", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

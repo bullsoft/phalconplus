@@ -14,15 +14,14 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_AbstractProcessor) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_AbstractProcessor)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Logger\\Processor, AbstractProcessor, phalconplus, logger_processor_abstractprocessor, phalconplus_logger_processor_abstractprocessor_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_AbstractProcessor, __toString) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_AbstractProcessor, __toString)
+{
 }
 

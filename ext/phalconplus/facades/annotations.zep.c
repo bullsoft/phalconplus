@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Annotations) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Annotations)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, Annotations, phalconplus, facades_annotations, phalconplus_facades_abstractfacade_ce, phalconplus_facades_annotations_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_Annotations, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_Annotations, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("annotations");
 
+	RETURN_STRING("annotations");
 }
 

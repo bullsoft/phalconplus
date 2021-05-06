@@ -22,34 +22,27 @@
 #include "kernel/math.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, Page, phalconplus, base_page, phalconplus_base_protobuffer_ce, phalconplus_base_page_method_entry, 0);
 
 	/**
 	 * @var <\Phalcon\Base\Pagable>
 	 */
 	zend_declare_property_null(phalconplus_base_page_ce, SL("pagable"), ZEND_ACC_PRIVATE);
-
 	/**
 	 * @var mixed array | <ArrayObject>
 	 */
 	zend_declare_property_null(phalconplus_base_page_ce, SL("data"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_long(phalconplus_base_page_ce, SL("totalSize"), 0, ZEND_ACC_PRIVATE);
-
 	zend_declare_property_long(phalconplus_base_page_ce, SL("pageNo"), 0, ZEND_ACC_PRIVATE);
-
 	zend_declare_property_long(phalconplus_base_page_ce, SL("pageSize"), 0, ZEND_ACC_PRIVATE);
-
 	zend_declare_property_long(phalconplus_base_page_ce, SL("totalPage"), 0, ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, __construct) {
-
+PHP_METHOD(PhalconPlus_Base_Page, __construct)
+{
 	zend_object_iterator *_8$$6, *_11$$8;
 	zend_bool _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -72,10 +65,19 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 	ZVAL_UNDEF(&_6$$6);
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&_9$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_OBJECT_OF_CLASS(pagable, phalconplus_base_pagable_ce)
+		Z_PARAM_LONG(totalSize)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(data)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &pagable, &totalSize_param, &data);
-
 	totalSize = zephir_get_intval(totalSize_param);
 	if (!data) {
 		data = &data_sub;
@@ -160,11 +162,10 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, &_14, "settotalpage", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
-
+PHP_METHOD(PhalconPlus_Base_Page, setPageNo)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -172,6 +173,7 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -180,11 +182,10 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageNo) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("pageNo"), &_1);
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
-
+PHP_METHOD(PhalconPlus_Base_Page, setPageSize)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -193,6 +194,7 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("pagable"), PH_NOISY_CC | PH_READONLY);
@@ -200,11 +202,10 @@ PHP_METHOD(PhalconPlus_Base_Page, setPageSize) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("pageSize"), &_1);
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
-
+PHP_METHOD(PhalconPlus_Base_Page, setTotalPage)
+{
 	zval _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
@@ -212,6 +213,7 @@ PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -224,68 +226,67 @@ PHP_METHOD(PhalconPlus_Base_Page, setTotalPage) {
 	ZVAL_LONG(&_1, zephir_get_intval(&_0));
 	zephir_update_property_zval(this_ptr, ZEND_STRL("totalPage"), &_1);
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, getPageNo) {
-
+PHP_METHOD(PhalconPlus_Base_Page, getPageNo)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "pageNo");
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, getTotalPage) {
-
+PHP_METHOD(PhalconPlus_Base_Page, getTotalPage)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "totalPage");
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, getTotalSize) {
-
+PHP_METHOD(PhalconPlus_Base_Page, getTotalSize)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "totalSize");
 
+	RETURN_MEMBER(getThis(), "totalSize");
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, hasPreviousPage) {
-
+PHP_METHOD(PhalconPlus_Base_Page, hasPreviousPage)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("pageNo"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_GT_LONG(&_0, 1));
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, isFirstPage) {
-
+PHP_METHOD(PhalconPlus_Base_Page, isFirstPage)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "haspreviouspage", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(!zephir_is_true(&_0));
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
-
+PHP_METHOD(PhalconPlus_Base_Page, isLastPage)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -293,16 +294,16 @@ PHP_METHOD(PhalconPlus_Base_Page, isLastPage) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "hasnextpage", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(!zephir_is_true(&_0));
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
-
+PHP_METHOD(PhalconPlus_Base_Page, hasNextPage)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -311,6 +312,7 @@ PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getpageno", NULL, 0);
@@ -318,28 +320,27 @@ PHP_METHOD(PhalconPlus_Base_Page, hasNextPage) {
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "gettotalpage", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_LT(&_0, &_1));
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, getData) {
-
+PHP_METHOD(PhalconPlus_Base_Page, getData)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "data");
 
+	RETURN_MEMBER(getThis(), "data");
 }
 
-PHP_METHOD(PhalconPlus_Base_Page, isEmpty) {
-
+PHP_METHOD(PhalconPlus_Base_Page, isEmpty)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(zephir_fast_count_int(&_0) == 0);
-
 }
 

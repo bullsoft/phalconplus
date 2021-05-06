@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Security) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Security)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, Security, phalconplus, facades_security, phalconplus_facades_abstractfacade_ce, phalconplus_facades_security_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_Security, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_Security, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("security");
 
+	RETURN_STRING("security");
 }
 

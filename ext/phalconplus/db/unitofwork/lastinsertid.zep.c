@@ -21,34 +21,37 @@
 #include "kernel/concat.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_LastInsertId) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_LastInsertId)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Db\\UnitOfWork, LastInsertId, phalconplus, db_unitofwork_lastinsertid, phalconplus_db_unitofwork_abstractvalue_ce, phalconplus_db_unitofwork_lastinsertid_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_db_unitofwork_lastinsertid_ce, SL("model"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalconplus_db_unitofwork_lastinsertid_ce, 1, phalconplus_contracts_stringer_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __construct) {
-
+PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __construct)
+{
 	zval *model, model_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&model_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_model_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &model);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("model"), model);
-
 }
 
-PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
-
+PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue)
+{
 	zend_bool _5$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -69,10 +72,16 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_7$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(unitwork, phalconplus_db_unitofwork_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &unitwork);
-
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("model"), PH_NOISY_CC | PH_READONLY);
@@ -111,11 +120,10 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, getValue) {
 	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/LastInsertId.zep", 29);
 	ZEPHIR_MM_RESTORE();
 	return;
-
 }
 
-PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __toString) {
-
+PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __toString)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -124,6 +132,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __toString) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("model"), PH_NOISY_CC | PH_READONLY);
@@ -131,6 +140,5 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_LastInsertId, __toString) {
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SV(return_value, "LastInsertId: ", &_1);
 	RETURN_MM();
-
 }
 

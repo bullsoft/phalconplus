@@ -12,19 +12,14 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Contracts_Auth_Access_ModelEvent) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Contracts_Auth_Access_ModelEvent)
+{
 	ZEPHIR_REGISTER_INTERFACE(PhalconPlus\\Contracts\\Auth\\Access, ModelEvent, phalconplus, contracts_auth_access_modelevent, phalconplus_contracts_auth_access_modelevent_method_entry);
 
 	return SUCCESS;
-
 }
 
 ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_Access_ModelEvent, beforeDelete);
-
 ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_Access_ModelEvent, beforeCreate);
-
 ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_Access_ModelEvent, beforeUpdate);
-
 ZEPHIR_DOC_METHOD(PhalconPlus_Contracts_Auth_Access_ModelEvent, beforeValidation);
-
