@@ -13,11 +13,11 @@
 
 #include "kernel/main.h"
 #include "kernel/fcall.h"
+#include "kernel/operators.h"
+#include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/array.h"
 #include "kernel/object.h"
-#include "kernel/operators.h"
-#include "kernel/exception.h"
 #include "kernel/concat.h"
 #include "ext/spl/spl_exceptions.h"
 #include "ext/date/php_date.h"
@@ -33,38 +33,6 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Model)
 	phalconplus_base_model_ce->create_object = zephir_init_properties_PhalconPlus_Base_Model;
 
 	return SUCCESS;
-}
-
-PHP_METHOD(PhalconPlus_Base_Model, initialize)
-{
-	zval _0;
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval __$false, __$true, _1;
-	zval *this_ptr = getThis();
-
-	ZVAL_BOOL(&__$false, 0);
-	ZVAL_BOOL(&__$true, 1);
-	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_0);
-
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 3, 0);
-	zephir_array_update_string(&_0, SL("notNullValidations"), &__$false, PH_COPY | PH_SEPARATE);
-	zephir_array_update_string(&_0, SL("castOnHydrate"), &__$true, PH_COPY | PH_SEPARATE);
-	zephir_array_update_string(&_0, SL("forceCasting"), &__$true, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_SELF(NULL, "setup", NULL, 0, &_0);
-	zephir_check_call_status();
-	ZVAL_BOOL(&_1, 1);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "usedynamicupdate", NULL, 0, &_1);
-	zephir_check_call_status();
-	ZVAL_BOOL(&_1, 1);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "keepsnapshots", NULL, 0, &_1);
-	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
 }
 
 PHP_METHOD(PhalconPlus_Base_Model, findFirstOrFail)

@@ -6,6 +6,7 @@ use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\MetaDataInterface;
 use Phalcon\Mvc\Model\Resultset;
 use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\Mvc\Model\Query\BuilderInterface;
 
 // use Phalcon\Mvc\Model;
 // use Phalcon\Mvc\ModelMessage;
@@ -18,16 +19,16 @@ class Model extends \Phalcon\Mvc\Model
 
     protected optimisticLock = false;
 
-    public function initialize()
-    {
-        self::setUp([
-            "notNullValidations" : false,
-            "castOnHydrate" : true,
-            "forceCasting" : true
-        ]);
-        this->useDynamicUpdate(true);
-        this->keepSnapshots(true);
-    }
+   public function initialize()
+   {
+       self::setUp([
+           "notNullValidations" : false,
+           "castOnHydrate" : true,
+           "forceCasting" : true
+       ]);
+       this->useDynamicUpdate(true);
+       this->keepSnapshots(true);
+   }
 
     public static function findFirstOrFail(var params = null)
     {
@@ -125,7 +126,7 @@ class Model extends \Phalcon\Mvc\Model
         return null;
     }
 
-    public function createBuilder(string! alias = "") -> <\Phalcon\Mvc\Model\Query\BuilderInterface>
+    public function createBuilder(string! alias = "") -> <BuilderInterface>
     {
         var source;
         if !empty alias {
@@ -139,7 +140,7 @@ class Model extends \Phalcon\Mvc\Model
     public static function newInstance() -> <\Phalcon\Mvc\Model>
     {
         var className = get_called_class();
-        return new {className}();
+        return create_instance(className);
     }
 
     public static function batchInsert(array columns, array rows)
