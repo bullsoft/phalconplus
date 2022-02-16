@@ -14,8 +14,8 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AssertionCode) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AssertionCode)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Enum, AssertionCode, phalconplus, enum_assertioncode, phalconplus_enum_abstractenum_ce, NULL, 0);
 
 	zephir_declare_class_constant_long(phalconplus_enum_assertioncode_ce, SL("INVALID_FLOAT"), 9);
@@ -127,6 +127,5 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AssertionCode) {
 	zephir_declare_class_constant_long(phalconplus_enum_assertioncode_ce, SL("INVALID_STRING_NOT_CONTAINS"), 229);
 
 	return SUCCESS;
-
 }
 

@@ -8,24 +8,23 @@ PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName);
 PHP_METHOD(PhalconPlus_Volt_Extension_PhpFunction, compileFunction);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_volt_extension_phpfunction_setcustnamespace, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, ns, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, ns)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_volt_extension_phpfunction_setcustfuncname, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, func, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, func)
-#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_volt_extension_phpfunction_compilefunction, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_volt_extension_phpfunction_method_entry) {
 	PHP_ME(PhalconPlus_Volt_Extension_PhpFunction, setCustNamespace, arginfo_phalconplus_volt_extension_phpfunction_setcustnamespace, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Volt_Extension_PhpFunction, setCustFuncName, arginfo_phalconplus_volt_extension_phpfunction_setcustfuncname, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
+	PHP_ME(PhalconPlus_Volt_Extension_PhpFunction, compileFunction, arginfo_phalconplus_volt_extension_phpfunction_compilefunction, ZEND_ACC_PUBLIC)
+#else
 	PHP_ME(PhalconPlus_Volt_Extension_PhpFunction, compileFunction, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_FE_END
 };

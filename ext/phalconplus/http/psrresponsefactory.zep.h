@@ -6,20 +6,12 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Http_PsrResponseFactory);
 PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, create);
 PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, mapHeaders);
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_http_psrresponsefactory_create, 0, 1, Psr\\Http\\Message\\ResponseInterface, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrresponsefactory_create, 0, 1, IS_OBJECT, "Psr\\Http\\Message\\ResponseInterface", 0)
-#endif
 	ZEND_ARG_OBJ_INFO(0, response, Phalcon\\Http\\Response, 0)
 	ZEND_ARG_INFO(0, protocol)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrresponsefactory_mapheaders, 0, 1, IS_ARRAY, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_http_psrresponsefactory_mapheaders, 0, 1, IS_ARRAY, NULL, 0)
-#endif
 	ZEND_ARG_OBJ_INFO(0, response, Phalcon\\Http\\Response, 0)
 ZEND_END_ARG_INFO()
 

@@ -284,7 +284,7 @@ static PHP_MINIT_FUNCTION(phalconplus)
 static PHP_MSHUTDOWN_FUNCTION(phalconplus)
 {
 	
-	zephir_deinitialize_memory(TSRMLS_C);
+	zephir_deinitialize_memory();
 	UNREGISTER_INI_ENTRIES();
 	return SUCCESS;
 }
@@ -293,7 +293,7 @@ static PHP_MSHUTDOWN_FUNCTION(phalconplus)
 /**
  * Initialize globals on each request or each thread started
  */
-static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_globals TSRMLS_DC)
+static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_globals)
 {
 	phalconplus_globals->initialized = 0;
 
@@ -313,7 +313,7 @@ static void php_zephir_init_globals(zend_phalconplus_globals *phalconplus_global
 /**
  * Initialize globals only on each thread started
  */
-static void php_zephir_init_module_globals(zend_phalconplus_globals *phalconplus_globals TSRMLS_DC)
+static void php_zephir_init_module_globals(zend_phalconplus_globals *phalconplus_globals)
 {
 	
 }
@@ -326,9 +326,9 @@ static PHP_RINIT_FUNCTION(phalconplus)
 	php_zephir_init_globals(phalconplus_globals_ptr);
 	zephir_initialize_memory(phalconplus_globals_ptr);
 
-		zephir_init_static_properties_PhalconPlus_Curl_Request(TSRMLS_C);
-		zephir_init_static_properties_PhalconPlus_Enum_Facade(TSRMLS_C);
-		zephir_init_static_properties_PhalconPlus_Enum_Sys(TSRMLS_C);
+		zephir_init_static_properties_PhalconPlus_Curl_Request();
+		zephir_init_static_properties_PhalconPlus_Enum_Facade();
+		zephir_init_static_properties_PhalconPlus_Enum_Sys();
 	
 	return SUCCESS;
 }
@@ -336,7 +336,7 @@ static PHP_RINIT_FUNCTION(phalconplus)
 static PHP_RSHUTDOWN_FUNCTION(phalconplus)
 {
 	
-	zephir_deinitialize_memory(TSRMLS_C);
+	zephir_deinitialize_memory();
 	return SUCCESS;
 }
 

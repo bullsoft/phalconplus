@@ -28,19 +28,31 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_save, 0, 0, 2)
 	ZEND_ARG_INFO(0, name)
 	ZEND_ARG_OBJ_INFO(0, model, PhalconPlus\\Base\\Model, 0)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, initial_data, IS_ARRAY, 0, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, initial_data, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_insert, 0, 0, 2)
 	ZEND_ARG_INFO(0, name)
 	ZEND_ARG_OBJ_INFO(0, model, PhalconPlus\\Base\\Model, 0)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, initial_data, IS_ARRAY, 0, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, initial_data, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_update, 0, 0, 2)
 	ZEND_ARG_INFO(0, name)
 	ZEND_ARG_INFO(0, model)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, initial_data, IS_ARRAY, 0, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, initial_data, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_delete, 0, 0, 2)
@@ -57,11 +69,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_detach, 0, 0, 1)
 	ZEND_ARG_INFO(0, model)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_unitofwork_exec, 0, 0, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_db_unitofwork_exec, 0, 0, _IS_BOOL, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_execinsert, 0, 0, 2)
@@ -71,12 +79,38 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_execupdate, 0, 0, 1)
 	ZEND_ARG_INFO(0, model)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, info, IS_ARRAY, 0, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, info, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_execdelete, 0, 0, 1)
 	ZEND_ARG_INFO(0, model)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, info, IS_ARRAY, 0, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, info, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_getobjects, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_getinserted, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_getupdated, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_getdeleted, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_getexception, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_db_unitofwork_getfailed, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_db_unitofwork_method_entry) {
@@ -91,11 +125,35 @@ ZEPHIR_INIT_FUNCS(phalconplus_db_unitofwork_method_entry) {
 	PHP_ME(PhalconPlus_Db_UnitOfWork, execInsert, arginfo_phalconplus_db_unitofwork_execinsert, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Db_UnitOfWork, execUpdate, arginfo_phalconplus_db_unitofwork_execupdate, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Db_UnitOfWork, execDelete, arginfo_phalconplus_db_unitofwork_execdelete, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
+	PHP_ME(PhalconPlus_Db_UnitOfWork, getObjects, arginfo_phalconplus_db_unitofwork_getobjects, ZEND_ACC_PUBLIC)
+#else
 	PHP_ME(PhalconPlus_Db_UnitOfWork, getObjects, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
+	PHP_ME(PhalconPlus_Db_UnitOfWork, getInserted, arginfo_phalconplus_db_unitofwork_getinserted, ZEND_ACC_PUBLIC)
+#else
 	PHP_ME(PhalconPlus_Db_UnitOfWork, getInserted, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
+	PHP_ME(PhalconPlus_Db_UnitOfWork, getUpdated, arginfo_phalconplus_db_unitofwork_getupdated, ZEND_ACC_PUBLIC)
+#else
 	PHP_ME(PhalconPlus_Db_UnitOfWork, getUpdated, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
+	PHP_ME(PhalconPlus_Db_UnitOfWork, getDeleted, arginfo_phalconplus_db_unitofwork_getdeleted, ZEND_ACC_PUBLIC)
+#else
 	PHP_ME(PhalconPlus_Db_UnitOfWork, getDeleted, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
+	PHP_ME(PhalconPlus_Db_UnitOfWork, getException, arginfo_phalconplus_db_unitofwork_getexception, ZEND_ACC_PUBLIC)
+#else
 	PHP_ME(PhalconPlus_Db_UnitOfWork, getException, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
+	PHP_ME(PhalconPlus_Db_UnitOfWork, getFailed, arginfo_phalconplus_db_unitofwork_getfailed, ZEND_ACC_PUBLIC)
+#else
 	PHP_ME(PhalconPlus_Db_UnitOfWork, getFailed, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_FE_END
 };

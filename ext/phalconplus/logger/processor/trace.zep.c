@@ -21,27 +21,23 @@
 #include "kernel/concat.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Trace) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Trace)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Logger\\Processor, Trace, phalconplus, logger_processor_trace, phalconplus_logger_processor_abstractprocessor_ce, phalconplus_logger_processor_trace_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_logger_processor_trace_ce, SL("skipClassesPartials"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_long(phalconplus_logger_processor_trace_ce, SL("mode"), 0x0001, ZEND_ACC_PRIVATE);
-
 	zend_declare_property_long(phalconplus_logger_processor_trace_ce, SL("limit"), 15, ZEND_ACC_PRIVATE);
-
 	phalconplus_logger_processor_trace_ce->create_object = zephir_init_properties_PhalconPlus_Logger_Processor_Trace;
 	zephir_declare_class_constant_long(phalconplus_logger_processor_trace_ce, SL("T_FILE"), 0x0001);
 
 	zephir_declare_class_constant_long(phalconplus_logger_processor_trace_ce, SL("T_CLASS"), 0x0010);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval skipClassesPartials, _1$$4;
 	zval *mode_param = NULL, *skipClassesPartials_param = NULL, _0, _2$$4;
@@ -52,10 +48,18 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&skipClassesPartials);
 	ZVAL_UNDEF(&_1$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(mode)
+		Z_PARAM_ARRAY(skipClassesPartials)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &mode_param, &skipClassesPartials_param);
-
 	if (!mode_param) {
 		mode = 0x0001;
 	} else {
@@ -92,19 +96,25 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("skipClassesPartials"), &_1$$4);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_Trace, setLimit) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_Trace, setLimit)
+{
 	zval *limit_param = NULL, _0;
 	zend_long limit;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(limit)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(0, 1, &limit_param);
-
 	if (!limit_param) {
 		limit = 15;
 	} else {
@@ -115,11 +125,10 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, setLimit) {
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_LONG(&_0, limit);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("limit"), &_0);
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString)
+{
 	zend_bool _4$$3;
 	zval trace, _0, _1, j, part, k, trace1, trace2, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, tmp$$3, _3$$3, _5$$4, *_6$$4, _7$$4, _8$$5, _9$$5, _10$$7, _11$$7, _24$$10, _25$$10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -156,6 +165,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	ZVAL_UNDEF(&_11$$7);
 	ZVAL_UNDEF(&_24$$10);
 	ZVAL_UNDEF(&_25$$10);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -308,15 +318,15 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Trace, __toString) {
 	} while(0);
 
 	ZEPHIR_MM_RESTORE();
-
 }
 
-zend_object *zephir_init_properties_PhalconPlus_Logger_Processor_Trace(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_PhalconPlus_Logger_Processor_Trace(zend_class_entry *class_type)
+{
 		zval _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -332,6 +342,5 @@ zend_object *zephir_init_properties_PhalconPlus_Logger_Processor_Trace(zend_clas
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

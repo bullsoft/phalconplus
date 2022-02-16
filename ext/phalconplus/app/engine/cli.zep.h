@@ -11,11 +11,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_engine_cli___construct, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, handler, Phalcon\\Application\\AbstractApplication, 1)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_engine_cli_exec, 0, 1, Phalcon\\Cli\\Task, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_engine_cli_exec, 0, 1, IS_OBJECT, "Phalcon\\Cli\\Task", 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, argv, 0)
 	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\Di\\DiInterface, 1)
 ZEND_END_ARG_INFO()

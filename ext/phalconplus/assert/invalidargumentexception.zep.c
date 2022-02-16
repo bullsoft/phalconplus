@@ -19,23 +19,19 @@
 #include "kernel/operators.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Assert_InvalidArgumentException) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Assert_InvalidArgumentException)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Assert, InvalidArgumentException, phalconplus, assert_invalidargumentexception, spl_ce_InvalidArgumentException, phalconplus_assert_invalidargumentexception_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("propertyPath"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("value"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_assert_invalidargumentexception_ce, SL("constraints"), ZEND_ACC_PRIVATE);
-
 	zend_class_implements(phalconplus_assert_invalidargumentexception_ce, 1, phalconplus_assert_assertionfailedexception_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
-
+PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval constraints;
@@ -48,10 +44,21 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&constraints);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 5)
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(code)
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
+		Z_PARAM_ARRAY(constraints)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 2, &message, &code, &propertyPath, &value, &constraints_param);
-
 	if (!propertyPath) {
 		propertyPath = &propertyPath_sub;
 		propertyPath = &__$null;
@@ -70,33 +77,32 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct) {
 	zephir_update_property_zval(this_ptr, ZEND_STRL("value"), value);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("constraints"), &constraints);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getPropertyPath) {
-
+PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getPropertyPath)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "propertyPath");
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getValue) {
-
+PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getValue)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "value");
-
 }
 
-PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getConstraints) {
-
+PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, getConstraints)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "constraints");
 
+	RETURN_MEMBER(getThis(), "constraints");
 }
 

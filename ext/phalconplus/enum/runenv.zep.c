@@ -18,8 +18,8 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunEnv) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunEnv)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Enum, RunEnv, phalconplus, enum_runenv, phalconplus_enum_abstractenum_ce, phalconplus_enum_runenv_method_entry, 0);
 
 	zephir_declare_class_constant_string(phalconplus_enum_runenv_ce, SL("DEV"), "dev");
@@ -39,11 +39,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_RunEnv) {
 	zephir_declare_class_constant_string(phalconplus_enum_runenv_ce, SL("__default"), "dev");
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_RunEnv, isInProd) {
-
+PHP_METHOD(PhalconPlus_Enum_RunEnv, isInProd)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *env_param = NULL, _0, _1, _2, _3, _4, _5, _6;
 	zval env;
@@ -57,10 +56,16 @@ PHP_METHOD(PhalconPlus_Enum_RunEnv, isInProd) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(env)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &env_param);
-
 	zephir_get_strval(&env, env_param);
 
 
@@ -75,11 +80,10 @@ PHP_METHOD(PhalconPlus_Enum_RunEnv, isInProd) {
 	ZEPHIR_INIT_VAR(&_6);
 	zephir_substr(&_6, &_3, 0 , 7 , 0);
 	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(&_2, &_6));
-
 }
 
-PHP_METHOD(PhalconPlus_Enum_RunEnv, isInAbTest) {
-
+PHP_METHOD(PhalconPlus_Enum_RunEnv, isInAbTest)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
@@ -87,12 +91,12 @@ PHP_METHOD(PhalconPlus_Enum_RunEnv, isInAbTest) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("val"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "ab_test");
 	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(&_1, &_0));
-
 }
 

@@ -14,43 +14,23 @@ PHP_METHOD(PhalconPlus_Helper_Arr, first);
 PHP_METHOD(PhalconPlus_Helper_Arr, last);
 PHP_METHOD(PhalconPlus_Helper_Arr, groupBy);
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_isallkeyint, 0, 1, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_isallkeyint, 0, 1, _IS_BOOL, NULL, 0)
-#endif
 	ZEND_ARG_INFO(0, inputArray)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_isallkeystring, 0, 1, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_isallkeystring, 0, 1, _IS_BOOL, NULL, 0)
-#endif
 	ZEND_ARG_INFO(0, inputArray)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_iskeynumericsequentialzerobased, 0, 1, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_iskeynumericsequentialzerobased, 0, 1, _IS_BOOL, NULL, 0)
-#endif
 	ZEND_ARG_INFO(0, inputArray)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_helper_arr_newprotobuffer, 0, 1, PhalconPlus\\Base\\ProtoBuffer, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_newprotobuffer, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\ProtoBuffer", 0)
-#endif
 	ZEND_ARG_INFO(0, inputArray)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_encodejson, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_encodejson, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_INFO(0, inputArray)
 ZEND_END_ARG_INFO()
 
@@ -70,11 +50,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_helper_arr_last, 0, 0, 1)
 	ZEND_ARG_INFO(0, inputArray)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_groupby, 0, 2, IS_ARRAY, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_helper_arr_groupby, 0, 2, IS_ARRAY, NULL, 0)
-#endif
 	ZEND_ARG_INFO(0, inputArray)
 	ZEND_ARG_INFO(0, handler)
 ZEND_END_ARG_INFO()

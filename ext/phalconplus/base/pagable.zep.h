@@ -15,107 +15,58 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys);
 PHP_METHOD(PhalconPlus_Base_Pagable, hasOrderBy);
 PHP_METHOD(PhalconPlus_Base_Pagable, setPageNo);
 PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize);
-zend_object *zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type TSRMLS_DC);
+zend_object *zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_pagable___construct, 0, 0, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, pageNo, IS_LONG, 0)
-#else
-	ZEND_ARG_INFO(0, pageNo)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, pageSize, IS_LONG, 0)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, orderBys, IS_ARRAY, 0, "[]")
 #else
-	ZEND_ARG_INFO(0, pageSize)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, orderBys, 0)
+#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_pagable_fromarray, 0, 1, PhalconPlus\\Base\\Pagable, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_fromarray, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\Pagable", 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, pages, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, cursor, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, cursor)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getpageno, 0, 0, IS_LONG, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getpageno, 0, 0, IS_LONG, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getpagesize, 0, 0, IS_LONG, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getpagesize, 0, 0, IS_LONG, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_pagable_getorderbys, 0, 0, PhalconPlus\\Base\\ProtoOrderBy, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getorderbys, 0, 0, IS_OBJECT, "PhalconPlus\\Base\\ProtoOrderBy", 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getoffset, 0, 0, IS_LONG, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getoffset, 0, 0, IS_LONG, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getlimit, 0, 0, IS_LONG, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_getlimit, 0, 0, IS_LONG, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_pagable_setorderby, 0, 1, PhalconPlus\\Base\\Pagable, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_setorderby, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\Pagable", 0)
-#endif
 	ZEND_ARG_OBJ_INFO(0, orderBy, PhalconPlus\\Base\\ProtoOrderBy, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_pagable_setorderbys, 0, 1, PhalconPlus\\Base\\Pagable, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_setorderbys, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\Pagable", 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, orderBys, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_hasorderby, 0, 0, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_hasorderby, 0, 0, _IS_BOOL, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_pagable_setpageno, 0, 1, PhalconPlus\\Base\\Pagable, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_setpageno, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\Pagable", 0)
-#endif
 	ZEND_ARG_INFO(0, pageNo)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_pagable_setpagesize, 0, 1, PhalconPlus\\Base\\Pagable, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_pagable_setpagesize, 0, 1, IS_OBJECT, "PhalconPlus\\Base\\Pagable", 0)
-#endif
 	ZEND_ARG_INFO(0, pageSize)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_pagable_zephir_init_properties_phalconplus_base_pagable, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_base_pagable_method_entry) {

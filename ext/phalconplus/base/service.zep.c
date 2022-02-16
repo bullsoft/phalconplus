@@ -20,31 +20,35 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, Service, phalconplus, base_service, phalconplus_base_service_method_entry, 0);
 
 	/**
-	 * @var <\Phalcon\DI>
+	 * @var <\Phalcon\Di\Di>
 	 */
 	zend_declare_property_null(phalconplus_base_service_ce, SL("di"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Service, __construct) {
-
+PHP_METHOD(PhalconPlus_Base_Service, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&di_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(di, zephir_get_internal_ce(SL("phalcon\\di\\di")))
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &di);
-
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
@@ -55,28 +59,27 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct) {
 	ZEPHIR_CALL_FUNCTION(NULL, "ob_end_clean", NULL, 82);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Service, onConstruct) {
-
+PHP_METHOD(PhalconPlus_Base_Service, onConstruct)
+{
 	zval *this_ptr = getThis();
 
 
 
 }
 
-PHP_METHOD(PhalconPlus_Base_Service, getDI) {
-
+PHP_METHOD(PhalconPlus_Base_Service, getDI)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "di");
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Service, __get) {
-
+PHP_METHOD(PhalconPlus_Base_Service, __get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, _0, _1$$3, _2$$4;
@@ -87,10 +90,16 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(key)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key_param);
-
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
 		RETURN_MM_NULL();
@@ -99,7 +108,6 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 		zephir_get_strval(&key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(&key);
-		ZVAL_EMPTY_STRING(&key);
 	}
 
 
@@ -115,6 +123,5 @@ PHP_METHOD(PhalconPlus_Base_Service, __get) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-
 }
 

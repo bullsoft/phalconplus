@@ -13,25 +13,13 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_engine_abstractengine___construct
 	ZEND_ARG_OBJ_INFO(0, handler, Phalcon\\Application\\AbstractApplication, 1)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_engine_abstractengine_handler, 0, 0, Phalcon\\Application\\AbstractApplication, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_engine_abstractengine_handler, 0, 0, IS_OBJECT, "Phalcon\\Application\\AbstractApplication", 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_engine_abstractengine_gethandler, 0, 0, Phalcon\\Application\\AbstractApplication, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_engine_abstractengine_gethandler, 0, 0, IS_OBJECT, "Phalcon\\Application\\AbstractApplication", 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_engine_abstractengine_sethandler, 0, 1, PhalconPlus\\App\\Engine\\AbstractEngine, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_app_engine_abstractengine_sethandler, 0, 1, IS_OBJECT, "PhalconPlus\\App\\Engine\\AbstractEngine", 0)
-#endif
 	ZEND_ARG_OBJ_INFO(0, handler, Phalcon\\Application\\AbstractApplication, 0)
 ZEND_END_ARG_INFO()
 

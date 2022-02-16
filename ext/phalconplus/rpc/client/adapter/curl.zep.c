@@ -21,33 +21,28 @@
 #include "kernel/concat.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_Adapter_Curl) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_Adapter_Curl)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc\\Client\\Adapter, Curl, phalconplus, rpc_client_adapter_curl, phalconplus_rpc_client_abstractclient_ce, phalconplus_rpc_client_adapter_curl_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_rpc_client_adapter_curl_ce, SL("remoteServerUrl"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_rpc_client_adapter_curl_ce, SL("client"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(phalconplus_rpc_client_adapter_curl_ce, SL("response"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_string(phalconplus_rpc_client_adapter_curl_ce, SL("formater"), "msgpack", ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, getResponse) {
-
+PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, getResponse)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "response");
 
+	RETURN_MEMBER(getThis(), "response");
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, __construct) {
-
+PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval formater;
@@ -63,10 +58,19 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, __construct) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&formater);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ARRAY(remoteServerUrl)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(opts)
+		Z_PARAM_STR(formater)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &remoteServerUrl_param, &opts_param, &formater_param);
-
 	zephir_get_arrval(&remoteServerUrl, remoteServerUrl_param);
 	if (!opts_param) {
 		ZEPHIR_INIT_VAR(&opts);
@@ -106,11 +110,10 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("formater"), &formater);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, callByObject) {
-
+PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, callByObject)
+{
 	zval encoder, decoder;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -142,10 +145,16 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, callByObject) {
 	ZVAL_UNDEF(&_18$$7);
 	ZVAL_UNDEF(&encoder);
 	ZVAL_UNDEF(&decoder);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(rawData)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &rawData_param);
-
 	zephir_get_arrval(&rawData, rawData_param);
 
 
@@ -203,6 +212,5 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Curl, callByObject) {
 		RETURN_CCTOR(&_20$$4);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

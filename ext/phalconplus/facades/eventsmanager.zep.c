@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_EventsManager) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_EventsManager)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, EventsManager, phalconplus, facades_eventsmanager, phalconplus_facades_abstractfacade_ce, phalconplus_facades_eventsmanager_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_EventsManager, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_EventsManager, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("eventsManager");
 
+	RETURN_STRING("eventsManager");
 }
 

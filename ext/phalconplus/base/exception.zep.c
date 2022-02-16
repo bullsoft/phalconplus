@@ -28,20 +28,17 @@
  * throw new Exception(["error message", "text" => "", "args" => ["foo", "bar"]]);
  *
  */
-ZEPHIR_INIT_CLASS(PhalconPlus_Base_Exception) {
-
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, Exception, phalconplus, base_exception, zend_exception_get_default(TSRMLS_C), phalconplus_base_exception_method_entry, 0);
+ZEPHIR_INIT_CLASS(PhalconPlus_Base_Exception)
+{
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, Exception, phalconplus, base_exception, zend_ce_exception, phalconplus_base_exception_method_entry, 0);
 
 	zend_declare_property_long(phalconplus_base_exception_ce, SL("level"), 7, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalconplus_base_exception_ce, SL("info"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
-
+PHP_METHOD(PhalconPlus_Base_Exception, __construct)
+{
 	zend_bool _15, _28;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_13 = NULL;
@@ -86,10 +83,18 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	ZVAL_UNDEF(&_27$$9);
 	ZVAL_UNDEF(&_29$$12);
 	ZVAL_UNDEF(&_31$$13);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL_OR_NULL(info)
+		Z_PARAM_LONG(code)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &info, &code_param);
-
 	if (!info) {
 		info = &info_sub;
 		info = &__$null;
@@ -112,7 +117,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	if (!(ZEPHIR_IS_EMPTY(info))) {
 		if (Z_TYPE_P(info) == IS_ARRAY) {
 			zephir_update_property_zval(this_ptr, ZEND_STRL("info"), info);
-			zephir_array_fetch_long(&_1$$4, info, 0, PH_NOISY | PH_READONLY, "phalconplus/Base/Exception.zep", 23);
+			zephir_array_fetch_long(&_1$$4, info, 0, PH_NOISY | PH_READONLY, "phalconplus/Base/Exception.zep", 25);
 			ZEPHIR_CALL_FUNCTION(&_2$$4, "strval", &_3, 27, &_1$$4);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_4$$4);
@@ -222,40 +227,44 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, phalconplus_base_exception_ce, getThis(), "__construct", NULL, 0, &showMessage, &_32);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Exception, getLevel) {
-
+PHP_METHOD(PhalconPlus_Base_Exception, getLevel)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "level");
 
+	RETURN_MEMBER(getThis(), "level");
 }
 
-PHP_METHOD(PhalconPlus_Base_Exception, setLevel) {
-
+PHP_METHOD(PhalconPlus_Base_Exception, setLevel)
+{
 	zval *level, level_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&level_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(level)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &level);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("level"), level);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Exception, getInfo) {
-
+PHP_METHOD(PhalconPlus_Base_Exception, getInfo)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "info");
 
+	RETURN_MEMBER(getThis(), "info");
 }
 

@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Assets) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Assets)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, Assets, phalconplus, facades_assets, phalconplus_facades_abstractfacade_ce, phalconplus_facades_assets_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_Assets, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_Assets, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("assets");
 
+	RETURN_STRING("assets");
 }
 

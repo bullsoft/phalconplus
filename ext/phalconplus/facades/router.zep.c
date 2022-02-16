@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Router) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Router)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, Router, phalconplus, facades_router, phalconplus_facades_abstractfacade_ce, phalconplus_facades_router_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_Router, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_Router, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("router");
 
+	RETURN_STRING("router");
 }
 

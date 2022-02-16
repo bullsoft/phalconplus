@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_SessionBag) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_SessionBag)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, SessionBag, phalconplus, facades_sessionbag, phalconplus_facades_abstractfacade_ce, phalconplus_facades_sessionbag_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_SessionBag, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_SessionBag, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("sessionBag");
 
+	RETURN_STRING("sessionBag");
 }
 
