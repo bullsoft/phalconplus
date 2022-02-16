@@ -14,11 +14,10 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Auth_Exception) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Auth_Exception)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Auth, Exception, phalconplus, auth_exception, phalconplus_base_exception_ce, NULL, 0);
 
 	return SUCCESS;
-
 }
 

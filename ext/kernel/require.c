@@ -1,4 +1,4 @@
-/*
+/**
  * This file is part of the Zephir.
  *
  * (c) Phalcon Team <team@zephir-lang.com>
@@ -45,23 +45,22 @@ int zephir_require_ret(zval *return_value_ptr, const char *require_path)
 	}
 #endif
 
-#if PHP_VERSION_ID < 70400
-	file_handle.filename = require_path;
-	file_handle.free_filename = 0;
-	file_handle.type = ZEND_HANDLE_FILENAME;
-	file_handle.opened_path = NULL;
-	file_handle.handle.fp = NULL;
+#if PHP_VERSION_ID >= 80100
+	zend_string *zend_string_path = zend_string_init(require_path, strlen(require_path), 0);
+
+	zend_stream_init_filename_ex(&file_handle, zend_string_path);
+    ret = php_stream_open_for_zend_ex(&file_handle, USE_PATH|STREAM_OPEN_FOR_INCLUDE);
+
+    zval_ptr_dtor(zend_string_path);
 #else
 	ret = php_stream_open_for_zend_ex(require_path, &file_handle, USE_PATH|STREAM_OPEN_FOR_INCLUDE);
-
-	if (ret != SUCCESS) {
-		return FAILURE;
-	}
 #endif
+    if (ret != SUCCESS) {
+        return FAILURE;
+    }
 
 	new_op_array = zend_compile_file(&file_handle, ZEND_REQUIRE);
 	if (new_op_array) {
-
 		if (file_handle.handle.stream.handle) {
 			ZVAL_NULL(&dummy);
 			if (!file_handle.opened_path) {
@@ -72,11 +71,95 @@ int zephir_require_ret(zval *return_value_ptr, const char *require_path)
 			zend_destroy_file_handle(&file_handle);
 		}
 
-#if PHP_VERSION_ID >= 70100
 		new_op_array->scope = EG(fake_scope) ? EG(fake_scope) : zend_get_executed_scope();
-#else
-		new_op_array->scope = EG(scope);
+		zend_execute(new_op_array, &local_retval);
+
+		if (return_value_ptr) {
+			zval_ptr_dtor(return_value_ptr);
+			ZVAL_COPY_VALUE(return_value_ptr, &local_retval);
+		} else {
+			zval_ptr_dtor(&local_retval);
+		}
+
+		destroy_op_array(new_op_array);
+		efree_size(new_op_array, sizeof(zend_op_array));
+
+		if (EG(exception)) {
+			ret = FAILURE;
+		} else {
+			ret = SUCCESS;
+		}
+
+		return ret;
+	} else {
+		zend_destroy_file_handle(&file_handle);
+	}
+
+	return FAILURE;
+}
+
+/**
+ * Do an internal require once to a plain php file taking care of the value returned by the file
+ */
+int zephir_require_once_ret(zval *return_value_ptr, const char *require_path)
+{
+	zend_file_handle file_handle;
+	zend_op_array *new_op_array;
+	zval dummy, local_retval;
+	int ret;
+
+	ZVAL_UNDEF(&local_retval);
+
+#ifndef ZEPHIR_RELEASE
+	if (return_value_ptr != NULL && Z_TYPE_P(return_value_ptr) > IS_NULL) {
+		fprintf(stderr, "%s: *return_value_ptr is expected to be NULL", __func__);
+		zephir_print_backtrace();
+		abort();
+	}
 #endif
+
+#if PHP_VERSION_ID >= 80100
+	zend_string *zend_string_path = zend_string_init(require_path, strlen(require_path), 0);
+
+	zend_stream_init_filename_ex(&file_handle, zend_string_path);
+    ret = php_stream_open_for_zend_ex(&file_handle, USE_PATH|STREAM_OPEN_FOR_INCLUDE);
+
+    zval_ptr_dtor(zend_string_path);
+#else
+	ret = php_stream_open_for_zend_ex(require_path, &file_handle, USE_PATH|STREAM_OPEN_FOR_INCLUDE);
+#endif
+    if (ret != SUCCESS) {
+        return FAILURE;
+    }
+
+	if (zend_hash_exists(&EG(included_files), file_handle.opened_path)) {
+		zend_destroy_file_handle(&file_handle);
+
+		if (return_value_ptr) {
+			ZVAL_TRUE(&local_retval);
+
+			zval_ptr_dtor(return_value_ptr);
+			ZVAL_COPY_VALUE(return_value_ptr, &local_retval);
+		} else {
+			zval_ptr_dtor(&local_retval);
+		}
+
+		return SUCCESS;
+	}
+
+	new_op_array = zend_compile_file(&file_handle, ZEND_INCLUDE);
+	if (new_op_array) {
+		if (file_handle.handle.stream.handle) {
+			ZVAL_NULL(&dummy);
+			if (!file_handle.opened_path) {
+				file_handle.opened_path = zend_string_init(require_path, strlen(require_path), 0);
+			}
+
+			zend_hash_add_empty_element(&EG(included_files), file_handle.opened_path);
+			zend_destroy_file_handle(&file_handle);
+		}
+
+		new_op_array->scope = EG(fake_scope) ? EG(fake_scope) : zend_get_executed_scope();
 		zend_execute(new_op_array, &local_retval);
 
 		if (return_value_ptr) {

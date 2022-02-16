@@ -21,18 +21,16 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_LogId) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_LogId)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Logger\\Processor, LogId, phalconplus, logger_processor_logid, phalconplus_logger_processor_abstractprocessor_ce, phalconplus_logger_processor_logid_method_entry, 0);
 
 	zend_declare_property_string(phalconplus_logger_processor_logid_ce, SL("id"), "", ZEND_ACC_PRIVATE|ZEND_ACC_STATIC);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_LogId, __construct) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_LogId, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *len = NULL, len_sub, __$true, _0, _1$$5, _2$$5, _3$$5, _4$$5;
@@ -45,10 +43,17 @@ PHP_METHOD(PhalconPlus_Logger_Processor_LogId, __construct) {
 	ZVAL_UNDEF(&_2$$5);
 	ZVAL_UNDEF(&_3$$5);
 	ZVAL_UNDEF(&_4$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(len)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &len);
-
 	if (!len) {
 		len = &len_sub;
 		ZEPHIR_INIT_VAR(len);
@@ -77,21 +82,26 @@ PHP_METHOD(PhalconPlus_Logger_Processor_LogId, __construct) {
 		}
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_LogId, setId) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_LogId, setId)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *logId_param = NULL;
 	zval logId;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&logId);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(logId)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &logId_param);
-
 	if (UNEXPECTED(Z_TYPE_P(logId_param) != IS_STRING && Z_TYPE_P(logId_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'logId' must be of the type string"));
 		RETURN_MM_NULL();
@@ -100,38 +110,36 @@ PHP_METHOD(PhalconPlus_Logger_Processor_LogId, setId) {
 		zephir_get_strval(&logId, logId_param);
 	} else {
 		ZEPHIR_INIT_VAR(&logId);
-		ZVAL_EMPTY_STRING(&logId);
 	}
 
 
 	zephir_update_static_property_ce(phalconplus_logger_processor_logid_ce, ZEND_STRL("id"), &logId);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_LogId, getId) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_LogId, getId)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_static_property_ce(&_0, phalconplus_logger_processor_logid_ce, SL("id"), PH_NOISY_CC | PH_READONLY);
 	RETURN_CTORW(&_0);
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_LogId, __toString) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_LogId, __toString)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_static_property_ce(&_0, phalconplus_logger_processor_logid_ce, SL("id"), PH_NOISY_CC | PH_READONLY);
 	RETURN_CTORW(&_0);
-
 }
 

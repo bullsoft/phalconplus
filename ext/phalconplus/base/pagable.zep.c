@@ -21,27 +21,23 @@
 #include "kernel/string.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Base_Pagable) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Base_Pagable)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, Pagable, phalconplus, base_pagable, phalconplus_base_protobuffer_ce, phalconplus_base_pagable_method_entry, 0);
 
 	zend_declare_property_long(phalconplus_base_pagable_ce, SL("pageNo"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_long(phalconplus_base_pagable_ce, SL("pageSize"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(phalconplus_base_pagable_ce, SL("orderBys"), ZEND_ACC_PROTECTED);
-
 	phalconplus_base_pagable_ce->create_object = zephir_init_properties_PhalconPlus_Base_Pagable;
 	zephir_declare_class_constant_long(phalconplus_base_pagable_ce, SL("DEFAULT_PAGE_NO"), 1);
 
 	zephir_declare_class_constant_long(phalconplus_base_pagable_ce, SL("DEFAULT_PAGE_SIZE"), 20);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, __construct) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval orderBys;
 	zval *pageNo_param = NULL, *pageSize_param = NULL, *orderBys_param = NULL, _0, _1;
@@ -51,10 +47,19 @@ PHP_METHOD(PhalconPlus_Base_Pagable, __construct) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&orderBys);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(pageNo)
+		Z_PARAM_LONG(pageSize)
+		Z_PARAM_ARRAY(orderBys)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &pageNo_param, &pageSize_param, &orderBys_param);
-
 	if (!pageNo_param) {
 		pageNo = 0;
 	} else {
@@ -90,11 +95,10 @@ PHP_METHOD(PhalconPlus_Base_Pagable, __construct) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, fromArray) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, fromArray)
+{
 	zend_class_entry *_11;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, pageNo = 0, pageSize = 0;
@@ -120,10 +124,18 @@ PHP_METHOD(PhalconPlus_Base_Pagable, fromArray) {
 	ZVAL_UNDEF(&_8$$4);
 	ZVAL_UNDEF(&_9$$4);
 	ZVAL_UNDEF(&_14$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ARRAY(pages)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(cursor)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &pages_param, &cursor_param);
-
 	zephir_get_arrval(&pages, pages_param);
 	if (!cursor_param) {
 		cursor = 0;
@@ -199,44 +211,44 @@ PHP_METHOD(PhalconPlus_Base_Pagable, fromArray) {
 		ZEPHIR_CALL_METHOD(NULL, &clsInst, "__construct", NULL, 0, &_12, &_13);
 		zephir_check_call_status();
 	}
+
 	if (zephir_array_isset_string(&pages, SL("orderBys"))) {
 		zephir_array_fetch_string(&_14$$5, &pages, SL("orderBys"), PH_NOISY | PH_READONLY, "phalconplus/Base/Pagable.zep", 46);
 		ZEPHIR_CALL_METHOD(NULL, &clsInst, "setorderbys", NULL, 0, &_14$$5);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&clsInst);
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, getPageNo) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, getPageNo)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "pageNo");
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, getPageSize) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, getPageSize)
+{
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "pageSize");
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, getOrderBys) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, getOrderBys)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "orderBys");
 
+	RETURN_MEMBER(getThis(), "orderBys");
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, getOffset) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, getOffset)
+{
 	zval _0, _1;
 	zval *this_ptr = getThis();
 
@@ -244,23 +256,23 @@ PHP_METHOD(PhalconPlus_Base_Pagable, getOffset) {
 	ZVAL_UNDEF(&_1);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("pageNo"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("pageSize"), PH_NOISY_CC | PH_READONLY);
 	RETURN_LONG((((zephir_get_numberval(&_0) - 1)) * zephir_get_numberval(&_1)));
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, getLimit) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, getLimit)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(getThis(), "pageSize");
 
+	RETURN_MEMBER(getThis(), "pageSize");
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *orderBy, orderBy_sub, _0;
@@ -268,10 +280,16 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 
 	ZVAL_UNDEF(&orderBy_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(orderBy, phalconplus_base_protoorderby_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &orderBy);
-
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("orderBys"), PH_NOISY_CC | PH_READONLY);
@@ -280,11 +298,10 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy) {
 	ZEPHIR_UNREF(&_0);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys)
+{
 	zend_bool _2$$3, _11$$5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL, *_5 = NULL, *_8 = NULL, *_9 = NULL, *_10 = NULL;
@@ -308,10 +325,16 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys) {
 	ZVAL_UNDEF(&_12$$6);
 	ZVAL_UNDEF(&_13$$6);
 	ZVAL_UNDEF(&_14$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(orderBys)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &orderBys_param);
-
 	zephir_get_arrval(&orderBys, orderBys_param);
 
 
@@ -387,63 +410,73 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBys) {
 	}
 	ZEPHIR_INIT_NVAR(&item);
 	RETURN_THIS();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, hasOrderBy) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, hasOrderBy)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_OBS_VAR(&_0);
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("orderBys"), PH_NOISY_CC);
 	RETURN_MM_BOOL(!(ZEPHIR_IS_EMPTY(&_0)));
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, setPageNo) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, setPageNo)
+{
 	zval *pageNo, pageNo_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&pageNo_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(pageNo)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &pageNo);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("pageNo"), pageNo);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize) {
-
+PHP_METHOD(PhalconPlus_Base_Pagable, setPageSize)
+{
 	zval *pageSize, pageSize_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&pageSize_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(pageSize)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &pageSize);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("pageSize"), pageSize);
 	RETURN_THISW();
-
 }
 
-zend_object *zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type TSRMLS_DC) {
-
+zend_object *zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *class_type)
+{
 		zval _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -459,6 +492,5 @@ zend_object *zephir_init_properties_PhalconPlus_Base_Pagable(zend_class_entry *c
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

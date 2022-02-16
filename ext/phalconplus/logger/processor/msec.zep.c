@@ -20,26 +20,24 @@
 #include "kernel/operators.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Msec) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Logger_Processor_Msec)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Logger\\Processor, Msec, phalconplus, logger_processor_msec, phalconplus_logger_processor_abstractprocessor_ce, phalconplus_logger_processor_msec_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_logger_processor_msec_ce, SL("msec"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_Msec, __construct) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_Msec, __construct)
+{
 	zval *this_ptr = getThis();
 
 
 
 }
 
-PHP_METHOD(PhalconPlus_Logger_Processor_Msec, __toString) {
-
+PHP_METHOD(PhalconPlus_Logger_Processor_Msec, __toString)
+{
 	zval tmp, _0, _1, _2, _3, _4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -51,6 +49,7 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Msec, __toString) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -68,6 +67,5 @@ PHP_METHOD(PhalconPlus_Logger_Processor_Msec, __toString) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("msec"), &_4);
 	RETURN_MM_MEMBER(getThis(), "msec");
-
 }
 

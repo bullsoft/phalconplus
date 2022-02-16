@@ -1,4 +1,5 @@
 namespace PhalconPlus\Db;
+use Phalcon\Di\Di;
 
 class Mysql
 {
@@ -16,7 +17,7 @@ class Mysql
     private connection = null;
     private connected = false;
 
-    public function __construct(<\Phalcon\DI> di, string! name)
+    public function __construct(<Di> di, string! name)
     {
         var config, dbConfig;
         let config = di->get("config");

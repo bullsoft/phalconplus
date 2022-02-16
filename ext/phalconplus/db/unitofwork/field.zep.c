@@ -21,21 +21,18 @@
 #include "kernel/concat.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_Field) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Db_UnitOfWork_Field)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Db\\UnitOfWork, Field, phalconplus, db_unitofwork_field, phalconplus_db_unitofwork_abstractvalue_ce, phalconplus_db_unitofwork_field_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_db_unitofwork_field_ce, SL("model"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(phalconplus_db_unitofwork_field_ce, SL("attr"), "", ZEND_ACC_PROTECTED);
-
 	zend_class_implements(phalconplus_db_unitofwork_field_ce, 1, phalconplus_contracts_stringer_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct) {
-
+PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval attr;
 	zval *model, model_sub, *attr_param = NULL;
@@ -43,10 +40,17 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct) {
 
 	ZVAL_UNDEF(&model_sub);
 	ZVAL_UNDEF(&attr);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))
+		Z_PARAM_STR(attr)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &model, &attr_param);
-
 	if (UNEXPECTED(Z_TYPE_P(attr_param) != IS_STRING && Z_TYPE_P(attr_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'attr' must be of the type string"));
 		RETURN_MM_NULL();
@@ -55,18 +59,16 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct) {
 		zephir_get_strval(&attr, attr_param);
 	} else {
 		ZEPHIR_INIT_VAR(&attr);
-		ZVAL_EMPTY_STRING(&attr);
 	}
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("model"), model);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("attr"), &attr);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
-
+PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *unitwork, unitwork_sub, className, _0, hash, _1, objs, _2, _3, _8, _9, attr$$3, _4$$3, _5$$3, _6$$4, _7$$4;
@@ -87,10 +89,16 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_7$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(unitwork, phalconplus_db_unitofwork_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &unitwork);
-
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("model"), PH_NOISY_CC | PH_READONLY);
@@ -128,31 +136,35 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue) {
 	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 31);
 	ZEPHIR_MM_RESTORE();
 	return;
-
 }
 
-PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getField) {
-
+PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getField)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *unitwork, unitwork_sub;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&unitwork_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(unitwork, phalconplus_db_unitofwork_ce)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &unitwork);
 
 
-
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "getvalue", NULL, 0, unitwork);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
-
+PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString)
+{
 	zval _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -162,6 +174,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("attr"), PH_NOISY_CC | PH_READONLY);
@@ -170,6 +183,5 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __toString) {
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVSV(return_value, "Field: ", &_0, ", Hash: ", &_2);
 	RETURN_MM();
-
 }
 

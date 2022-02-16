@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_ModelsCache) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_ModelsCache)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, ModelsCache, phalconplus, facades_modelscache, phalconplus_facades_abstractfacade_ce, phalconplus_facades_modelscache_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_ModelsCache, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_ModelsCache, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("modelsCache");
 
+	RETURN_STRING("modelsCache");
 }
 

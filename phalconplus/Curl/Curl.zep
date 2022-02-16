@@ -2,7 +2,7 @@ namespace PhalconPlus\Curl;
 use PhalconPlus\Curl\Request;
 use PhalconPlus\Curl\Response;
 use PhalconPlus\Curl\Exception as CurlException;
-use Phalcon\Text;
+use Phalcon\Support\Helper\Str\StartsWith as StrStartsWith;
 
 /**
 * @ref https://github.com/anlutro/php-curl
@@ -94,7 +94,7 @@ class Curl
      */
     public function setBaseUrl(string baseUrl) -> <Curl>
     {
-        if !Text::startsWith(baseUrl, "http://") && !Text::startsWith(baseUrl, "https://") {
+        if !StrStartsWith(baseUrl, "http://") && !StrStartsWith(baseUrl, "https://") {
             throw new CurlException("Base Url should start with http:// or https://");
         }
         let this->baseUrl = baseUrl;
@@ -111,7 +111,7 @@ class Curl
      */
     public function buildUrl(string url, array query) -> string
     {
-        if !Text::startsWith(url, "http://") && !Text::startsWith(url, "https://") {
+        if !StrStartsWith(url, "http://") && !StrStartsWith(url, "https://") {
             let url = this->baseUrl . url;
         }
 
@@ -160,7 +160,7 @@ class Curl
             request->setOptions(this->defaultOptions);
         }
         request->setMethod(method);
-        if !Text::startsWith(url, "http://") && !Text::startsWith(url, "https://") {
+        if !StrStartsWith(url, "http://") && !StrStartsWith(url, "https://") {
             let url = this->baseUrl . url;
         }
         request->setUrl(url);

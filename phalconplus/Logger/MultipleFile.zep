@@ -1,10 +1,11 @@
 namespace PhalconPlus\Logger;
+
 use PhalconPlus\Logger\Processor\AbstractProcessor;
 use Phalcon\Logger\Adapter\Stream;
 use Phalcon\Logger\Formatter\FormatterInterface;
 use PhalconPlus\Base\Exception as BaseException;
 
-class MultiPleFile extends \Phalcon\Logger
+class MultiPleFile extends \Phalcon\Logger\Logger
 {
     protected processors = [] { get };
 

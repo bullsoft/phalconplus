@@ -7,7 +7,7 @@ class Di extends AbstractFacade
         return "di";
     }
 
-    protected function resolve(<\Phalcon\Di> di) -> null | <\Phalcon\Di>
+    protected function resolve(<\Phalcon\Di\Di> di) -> null | <\Phalcon\Di\Di>
     {
         return di;
     }

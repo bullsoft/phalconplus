@@ -50,7 +50,7 @@ class Mysql extends AbstractMysql
     {
         if prop == "pdo" {
             %{
-            add_property_null_ex(this_ptr, SL("pdo") TSRMLS_CC);
+            add_property_null_ex(this_ptr, SL("pdo"));
             }%
             this->connect(this->descriptor);
             return this->pdo;

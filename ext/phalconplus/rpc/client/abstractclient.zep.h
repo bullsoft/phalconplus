@@ -8,19 +8,11 @@ PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, setDI);
 PHP_METHOD(PhalconPlus_Rpc_Client_AbstractClient, callByObject);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_abstractclient_setnameprefix, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, prefix, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, prefix)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_rpc_client_abstractclient_setdi, 0, 1, PhalconPlus\\Rpc\\Client\\AbstractClient, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_rpc_client_abstractclient_setdi, 0, 1, IS_OBJECT, "PhalconPlus\\Rpc\\Client\\AbstractClient", 0)
-#endif
-	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
+	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\Di\\DiInterface, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_abstractclient_callbyobject, 0, 0, 1)

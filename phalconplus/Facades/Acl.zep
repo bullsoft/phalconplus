@@ -1,6 +1,6 @@
 namespace PhalconPlus\Facades;
 use Phalcon\Acl\Adapter\Memory as AclList;
-use Phalcon\Di;
+use Phalcon\Di\Di;
 
 class Acl extends AbstractFacade
 {

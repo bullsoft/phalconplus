@@ -21,16 +21,15 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Helper_Arr) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Helper_Arr)
+{
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Helper, Arr, phalconplus, helper_arr, phalconplus_helper_arr_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyInt) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyInt)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -44,10 +43,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyInt) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&expected);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -67,11 +72,10 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyInt) {
 	zephir_create_array(&expected, 1, 0);
 	zephir_array_fast_append(&expected, &__$true);
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&input, &expected));
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyString) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyString)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -85,10 +89,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyString) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&expected);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -108,11 +118,10 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isAllKeyString) {
 	zephir_create_array(&expected, 1, 0);
 	zephir_array_fast_append(&expected, &__$true);
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&input, &expected));
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, isKeyNumericSequentialZeroBased) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, isKeyNumericSequentialZeroBased)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -124,10 +133,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isKeyNumericSequentialZeroBased) {
 	ZVAL_UNDEF(&expected);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -142,11 +157,10 @@ PHP_METHOD(PhalconPlus_Helper_Arr, isKeyNumericSequentialZeroBased) {
 	ZEPHIR_CALL_FUNCTION(&expected, "range", NULL, 127, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_IDENTICAL(&input, &expected));
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, newProtoBuffer) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, newProtoBuffer)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -154,10 +168,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, newProtoBuffer) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&inputArray_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -166,11 +186,10 @@ PHP_METHOD(PhalconPlus_Helper_Arr, newProtoBuffer) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 76, inputArray);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, encodeJson) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, encodeJson)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -183,10 +202,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, encodeJson) {
 	ZVAL_UNDEF(&errCode);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -208,11 +233,10 @@ PHP_METHOD(PhalconPlus_Helper_Arr, encodeJson) {
 		return;
 	}
 	RETURN_CCTOR(&str);
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, firstKey) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, firstKey)
+{
 	zend_string *_4;
 	zend_ulong _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -225,10 +249,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, firstKey) {
 	ZVAL_UNDEF(&k);
 	ZVAL_UNDEF(&v);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -271,11 +301,10 @@ PHP_METHOD(PhalconPlus_Helper_Arr, firstKey) {
 	}
 	ZEPHIR_INIT_NVAR(&v);
 	ZEPHIR_INIT_NVAR(&k);
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, lastKey) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, lastKey)
+{
 	zend_string *_4;
 	zend_ulong _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -288,10 +317,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, lastKey) {
 	ZVAL_UNDEF(&k);
 	ZVAL_UNDEF(&v);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -334,11 +369,10 @@ PHP_METHOD(PhalconPlus_Helper_Arr, lastKey) {
 	}
 	ZEPHIR_INIT_NVAR(&v);
 	ZEPHIR_INIT_NVAR(&k);
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, first) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, first)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -346,10 +380,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, first) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&inputArray_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -359,11 +399,10 @@ PHP_METHOD(PhalconPlus_Helper_Arr, first) {
 	ZEPHIR_UNREF(inputArray);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(PhalconPlus_Helper_Arr, last) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, last)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -371,10 +410,16 @@ PHP_METHOD(PhalconPlus_Helper_Arr, last) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&inputArray_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(inputArray)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &inputArray);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -384,7 +429,6 @@ PHP_METHOD(PhalconPlus_Helper_Arr, last) {
 	ZEPHIR_UNREF(inputArray);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -394,8 +438,8 @@ PHP_METHOD(PhalconPlus_Helper_Arr, last) {
  * }
  *
  */
-PHP_METHOD(PhalconPlus_Helper_Arr, groupBy) {
-
+PHP_METHOD(PhalconPlus_Helper_Arr, groupBy)
+{
 	zend_string *_4;
 	zend_ulong _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -414,10 +458,17 @@ PHP_METHOD(PhalconPlus_Helper_Arr, groupBy) {
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&group$$5);
 	ZVAL_UNDEF(&_7$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(inputArray)
+		Z_PARAM_ZVAL(handler)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &inputArray, &handler);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_assert_assertion_ce, "isarray", &_0, 0, inputArray);
@@ -473,6 +524,5 @@ PHP_METHOD(PhalconPlus_Helper_Arr, groupBy) {
 	ZEPHIR_INIT_NVAR(&v);
 	ZEPHIR_INIT_NVAR(&k);
 	RETURN_CCTOR(&tmp);
-
 }
 

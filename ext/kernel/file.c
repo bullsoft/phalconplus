@@ -1,22 +1,13 @@
-
-/*
-  +------------------------------------------------------------------------+
-  | Zephir Language                                                        |
-  +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2017 Phalcon Team (http://www.zephir-lang.com)       |
-  +------------------------------------------------------------------------+
-  | This source file is subject to the New BSD License that is bundled     |
-  | with this package in the file docs/LICENSE.txt.                        |
-  |                                                                        |
-  | If you did not receive a copy of the license and are unable to         |
-  | obtain it through the world-wide-web, please send an email             |
-  | to license@zephir-lang.com so we can send you a copy immediately.      |
-  +------------------------------------------------------------------------+
-  | Authors: Andres Gutierrez <andres@zephir-lang.com>                     |
-  |          Eduar Carvajal <eduar@zephir-lang.com>                        |
-  |          Vladimir Kolesnikov <vladimir@extrememember.com>              |
-  +------------------------------------------------------------------------+
-*/
+/**
+ * This file is part of the Zephir.
+ *
+ * (c) Phalcon Team <team@zephir-lang.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code. If you did not receive
+ * a copy of the license it is available through the world-wide-web at the
+ * following url: https://docs.zephir-lang.com/en/latest/license
+ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -74,7 +65,13 @@ int zephir_file_exists(zval *filename)
 		return FAILURE;
 	}
 
+#if PHP_VERSION_ID >= 80100
+	zend_string *file = zend_string_init(Z_STRVAL_P(filename), Z_STRLEN_P(filename), 0);
+	php_stat(file, FS_EXISTS, &return_value);
+	zval_ptr_dtor(file);
+#else
 	php_stat(Z_STRVAL_P(filename), (php_stat_len) Z_STRLEN_P(filename), FS_EXISTS, &return_value);
+#endif
 
 	if (Z_TYPE(return_value) != IS_TRUE) {
 		return FAILURE;
@@ -88,7 +85,6 @@ int zephir_file_exists(zval *filename)
  */
 int zephir_compare_mtime(zval *filename1, zval *filename2)
 {
-
 	php_stream_statbuf statbuffer1, statbuffer2;
 
 	if (Z_TYPE_P(filename1) != IS_STRING || Z_TYPE_P(filename2) != IS_STRING) {
@@ -111,7 +107,6 @@ int zephir_compare_mtime(zval *filename1, zval *filename2)
 
 void zephir_fwrite(zval *return_value, zval *stream_zval, zval *data)
 {
-
 	int num_bytes;
 	php_stream *stream;
 
@@ -152,7 +147,6 @@ void zephir_fwrite(zval *return_value, zval *stream_zval, zval *data)
 
 int zephir_feof(zval *stream_zval)
 {
-
 	php_stream *stream;
 
 	if (Z_TYPE_P(stream_zval) != IS_RESOURCE) {
@@ -256,11 +250,7 @@ void zephir_file_put_contents(zval *return_value, zval *filename, zval *data)
 		case IS_DOUBLE:
 		case IS_TRUE:
 		case IS_FALSE:
-#if PHP_VERSION_ID < 70300
-		case IS_CONSTANT:
-#else
 		case IS_CONSTANT_AST:
-#endif
 			use_copy = zend_make_printable_zval(data, &copy);
 			if (use_copy) {
 				data = &copy;
@@ -304,7 +294,13 @@ void zephir_file_put_contents(zval *return_value, zval *filename, zval *data)
 void zephir_filemtime(zval *return_value, zval *path)
 {
 	if (EXPECTED(Z_TYPE_P(path) == IS_STRING)) {
+#if PHP_VERSION_ID >= 80100
+		zend_string *file = zend_string_init(Z_STRVAL_P(path), Z_STRLEN_P(path), 0);
+		php_stat(file, FS_MTIME, return_value);
+		zval_ptr_dtor(file);
+#else
 		php_stat(Z_STRVAL_P(path), (php_stat_len)(Z_STRLEN_P(path)), FS_MTIME, return_value);
+#endif
 	} else {
 		ZVAL_FALSE(return_value);
 	}
@@ -315,7 +311,6 @@ void zephir_filemtime(zval *return_value, zval *path)
  */
 void zephir_prepare_virtual_path(zval *return_value, zval *path, zval *virtual_separator)
 {
-
 	unsigned int i;
 	unsigned char ch;
 	smart_str virtual_str = {0};

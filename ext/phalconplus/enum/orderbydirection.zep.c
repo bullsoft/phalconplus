@@ -14,8 +14,8 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Enum_OrderByDirection) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Enum_OrderByDirection)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Enum, OrderByDirection, phalconplus, enum_orderbydirection, phalconplus_enum_abstractenum_ce, NULL, 0);
 
 	zephir_declare_class_constant_string(phalconplus_enum_orderbydirection_ce, SL("__default"), "ASC");
@@ -25,6 +25,5 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_OrderByDirection) {
 	zephir_declare_class_constant_string(phalconplus_enum_orderbydirection_ce, SL("DESC"), "DESC");
 
 	return SUCCESS;
-
 }
 

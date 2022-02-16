@@ -19,18 +19,16 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Mvc_PsrApplication) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Mvc_PsrApplication)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Mvc, PsrApplication, phalconplus, mvc_psrapplication, zephir_get_internal_ce(SL("phalcon\\application\\abstractapplication")), phalconplus_mvc_psrapplication_method_entry, 0);
 
 	zend_declare_property_null(phalconplus_mvc_psrapplication_ce, SL("app"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
-
+PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di, di_sub, _0, _1, _2, _3;
@@ -41,10 +39,16 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(di, zephir_get_internal_ce(SL("phalcon\\di\\diinterface")))
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &di);
-
 
 
 	ZEPHIR_CALL_PARENT(NULL, phalconplus_mvc_psrapplication_ce, getThis(), "__construct", NULL, 0, di);
@@ -62,11 +66,10 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, &_2, "sendheadersonhandlerequest", NULL, 0, &_3);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
-
+PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -84,10 +87,18 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_OBJECT_OF_CLASS(request, zephir_get_internal_ce(SL("psrext\\http\\message\\serverrequestinterface")))
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(psr)
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &request, &psr_param);
-
 	if (!psr_param) {
 		psr = 0;
 	} else {
@@ -123,14 +134,13 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle) {
 		RETURN_MM();
 	}
 	RETURN_CCTOR(&nativeResponse);
-
 }
 
 /**
  * Sets the events manager
  */
-PHP_METHOD(PhalconPlus_Mvc_PsrApplication, setEventsManager) {
-
+PHP_METHOD(PhalconPlus_Mvc_PsrApplication, setEventsManager)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *eventsManager, eventsManager_sub, _0;
@@ -138,10 +148,16 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, setEventsManager) {
 
 	ZVAL_UNDEF(&eventsManager_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(eventsManager, zephir_get_internal_ce(SL("phalcon\\events\\managerinterface")))
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &eventsManager);
-
 
 
 	ZEPHIR_CALL_PARENT(NULL, phalconplus_mvc_psrapplication_ce, getThis(), "seteventsmanager", NULL, 0, eventsManager);
@@ -150,6 +166,5 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, setEventsManager) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "seteventsmanager", NULL, 0, eventsManager);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 

@@ -1,5 +1,8 @@
 namespace PhalconPlus\Enum;
 use PhalconPlus\Enum\AbstractEnum;
+use Phalcon\Logger\Logger;
+use Phalcon\Support\Helper\Str\Camelize as StrCamelize;
+use Phalcon\Logger\Adapter\AbstractAdapter as LoggerAdapter;
 
 class Exception extends AbstractEnum
 {
@@ -14,9 +17,9 @@ class Exception extends AbstractEnum
         #if PHP_VERSION_ID >= 70000
         zend_class_entry *ce;
         ce = zephir_fetch_class_str_ex(Z_STRVAL_P(&className), Z_STRLEN_P(&className), ZEND_FETCH_CLASS_AUTO);
-        zephir_read_static_property_ce(&details, ce, SL("details") TSRMLS_CC, 0);
+        zephir_read_static_property_ce(&details, ce, SL("details"), 0);
         #else
-        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC);
+        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details"));
         #endif
         }%
         if fetch val, details[code->__toString()] {
@@ -36,14 +39,14 @@ class Exception extends AbstractEnum
         return detail;
     }
 
-    public static function newException(e, <\Phalcon\Logger\Adapter> logger = null)
+    public static function newException(e, <LoggerAdapter> logger = null)
     {
         var code, eCode, eName, map2Name, className;
         let map2Name = array_flip(static::validValues(true));
         let eCode = e->getCode();
 
         // e.g. USER_NOT_EXISTS -> UserNotExists
-        let eName = \Phalcon\Text::camelize(map2Name[eCode]);
+        let eName = StrCamelize(map2Name[eCode]);
 
         var eClassName, exception;
         let eClassName = static::exceptionClassPrefix() . eName;
@@ -83,7 +86,7 @@ class Exception extends AbstractEnum
         if fetch val, detail["level"] {
             return val;
         } else {
-            return \Phalcon\Logger::DEBUG;
+            return Logger::DEBUG;
         }
     }
 

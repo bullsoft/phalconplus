@@ -15,20 +15,19 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Dispatcher) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Facades_Dispatcher)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Facades, Dispatcher, phalconplus, facades_dispatcher, phalconplus_facades_abstractfacade_ce, phalconplus_facades_dispatcher_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Facades_Dispatcher, getName) {
-
+PHP_METHOD(PhalconPlus_Facades_Dispatcher, getName)
+{
 	zval *this_ptr = getThis();
 
 
-	RETURN_STRING("dispatcher");
 
+	RETURN_STRING("dispatcher");
 }
 

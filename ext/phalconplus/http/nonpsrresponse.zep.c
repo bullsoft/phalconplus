@@ -18,16 +18,15 @@
 #include "kernel/object.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Http_NonPsrResponse) {
-
+ZEPHIR_INIT_CLASS(PhalconPlus_Http_NonPsrResponse)
+{
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Http, NonPsrResponse, phalconplus, http_nonpsrresponse, zephir_get_internal_ce(SL("phalcon\\http\\response")), phalconplus_http_nonpsrresponse_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct) {
-
+PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct)
+{
 	zend_string *_8;
 	zend_ulong _7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -55,10 +54,16 @@ PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct) {
 	ZVAL_UNDEF(&_13$$6);
 	ZVAL_UNDEF(&_16$$9);
 	ZVAL_UNDEF(&_18$$10);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(psrResponse, zephir_get_internal_ce(SL("psrext\\http\\message\\responseinterface")))
+	ZEND_PARSE_PARAMETERS_END();
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &psrResponse);
-
 
 
 	ZEPHIR_CALL_METHOD(&_0, psrResponse, "getbody", NULL, 0);
@@ -199,6 +204,5 @@ PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct) {
 	}
 	ZEPHIR_INIT_NVAR(&cookie);
 	ZEPHIR_MM_RESTORE();
-
 }
 

@@ -3,10 +3,10 @@ use Phalcon\Application\AbstractApplication as BaseApplication;
 use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\App\Module\ModuleDef;
 use Phalcon\Di\DiInterface;
-use Phalcon\Di;
+use Phalcon\Di\Di;
 use PhalconPlus\App\Module\AbstractModule;
 use PhalconPlus\Enum\RunEnv;
-use Phalcon\Config;
+use Phalcon\Config\Config;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\Events\ManagerInterface;
 
