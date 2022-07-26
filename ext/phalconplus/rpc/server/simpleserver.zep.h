@@ -8,7 +8,7 @@ PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, onConstruct);
 PHP_METHOD(PhalconPlus_Rpc_Server_SimpleServer, __get);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_simpleserver___construct, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
+	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\Di\\Di, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_simpleserver_onconstruct, 0, 0, 0)

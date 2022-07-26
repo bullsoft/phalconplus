@@ -45,9 +45,9 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
-		Z_PARAM_OBJECT_OF_CLASS(appModule, phalconplus_app_module_abstractmodule_ce)
+		Z_PARAM_OBJECT_OF_CLASS(appModule, zephir_get_internal_ce(SL("phalconplus\\app\\module\\abstractmodule")))
 		Z_PARAM_OPTIONAL
-		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(handler, phalcon_application_abstractapplication_ce)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(handler, zephir_get_internal_ce(SL("phalcon\\application\\abstractapplication")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -106,7 +106,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, newService)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(di, phalcon_di_diinterface_ce)
+		Z_PARAM_OBJECT_OF_CLASS(di, zephir_get_internal_ce(SL("phalcon\\di\\diinterface")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

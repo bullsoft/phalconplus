@@ -1,9 +1,10 @@
 namespace PhalconPlus\Rpc\Server;
 use PhalconPlus\Rpc\Server\AbstractServer;
+use Phalcon\Di\Di;
 
 class SimpleServer extends AbstractServer
 {
-    final public function __construct(<\Phalcon\DI> di)
+    final public function __construct(<Di> di)
     {
         let this->di = di;
         let this->eventsManager = di->getShared("eventsManager");

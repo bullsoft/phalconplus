@@ -49,7 +49,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct)
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(di, phalcon_di_diinterface_ce)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(di, zephir_get_internal_ce(SL("phalcon\\di\\diinterface")))
 		Z_PARAM_STR(formater)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -96,7 +96,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, setServer)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(obj, phalconplus_rpc_server_abstractserver_ce)
+		Z_PARAM_OBJECT_OF_CLASS(obj, zephir_get_internal_ce(SL("phalconplus\\rpc\\server\\abstractserver")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -250,7 +250,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle)
 			ZEPHIR_INIT_NVAR(&_11$$5);
 			ZVAL_OBJ(&_11$$5, EG(exception));
 			Z_ADDREF_P(&_11$$5);
-			if (zephir_instance_of_ev(&_11$$5, zend_ce_exception)) {
+			if (zephir_is_instance_of(&_11$$5, SL("Exception"))) {
 				zend_clear_exception();
 				ZEPHIR_CPY_WRT(&e$$5, &_11$$5);
 				ZEPHIR_CALL_METHOD(&_16$$10, &e$$5, "getcode", NULL, 0);

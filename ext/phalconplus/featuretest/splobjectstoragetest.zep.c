@@ -13,6 +13,7 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
+#include "ext/spl/spl_observer.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
 #include "kernel/array.h"
@@ -41,7 +42,7 @@ PHP_METHOD(PhalconPlus_FeatureTest_SplObjectStorageTest, __construct)
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
-	object_init_ex(&_0, zephir_get_internal_ce(SL("splobjectstorage")));
+	object_init_ex(&_0, spl_ce_SplObjectStorage);
 	if (zephir_has_constructor(&_0)) {
 		ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0);
 		zephir_check_call_status();

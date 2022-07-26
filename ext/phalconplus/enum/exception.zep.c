@@ -17,6 +17,7 @@
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/operators.h"
+#include "kernel/string.h"
 #include "kernel/concat.h"
 
 
@@ -77,9 +78,9 @@ PHP_METHOD(PhalconPlus_Enum_Exception, has)
         #if PHP_VERSION_ID >= 70000
         zend_class_entry *ce;
         ce = zephir_fetch_class_str_ex(Z_STRVAL_P(&className), Z_STRLEN_P(&className), ZEND_FETCH_CLASS_AUTO);
-        zephir_read_static_property_ce(&details, ce, SL("details") TSRMLS_CC, 0);
+        zephir_read_static_property_ce(&details, ce, SL("details"), 0);
         #else
-        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details") TSRMLS_CC);
+        zephir_read_static_property_ce(&details, phalconplus_enum_exception_ce, SL("details"));
         #endif
         
 	ZEPHIR_CALL_METHOD(&_2, &code, "__tostring", NULL, 0);
@@ -125,10 +126,10 @@ PHP_METHOD(PhalconPlus_Enum_Exception, getByCode)
 
 PHP_METHOD(PhalconPlus_Enum_Exception, newException)
 {
-	zend_class_entry *_2, *_6, *_8;
+	zend_class_entry *_5, *_7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *e, e_sub, *logger = NULL, logger_sub, __$null, code, eCode, eName, map2Name, className, _0, _1, _3, eClassName, exception, _4, _5, _7, _9, _10, _11, _12;
+	zval *e, e_sub, *logger = NULL, logger_sub, __$null, code, eCode, eName, map2Name, className, _0, _1, _2, eClassName, exception, _3, _4, _6, _8, _9, _10, _11;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&e_sub);
@@ -141,22 +142,22 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException)
 	ZVAL_UNDEF(&className);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&eClassName);
 	ZVAL_UNDEF(&exception);
+	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&_5);
-	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_6);
+	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_9);
 	ZVAL_UNDEF(&_10);
 	ZVAL_UNDEF(&_11);
-	ZVAL_UNDEF(&_12);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(e)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(logger, phalcon_logger_adapter_ce)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(logger, zephir_get_internal_ce(SL("phalcon\\logger\\loggerinterface")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -176,53 +177,52 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException)
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&eCode, e, "getcode", NULL, 0);
 	zephir_check_call_status();
-	_2 = zephir_fetch_class_str_ex(SL("Phalcon\\Text"), ZEND_FETCH_CLASS_AUTO);
-	zephir_array_fetch(&_3, &map2Name, &eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 46);
-	ZEPHIR_CALL_CE_STATIC(&eName, _2, "camelize", NULL, 0, &_3);
-	zephir_check_call_status();
-	ZEPHIR_CALL_STATIC(&_4, "exceptionclassprefix", NULL, 0);
+	ZEPHIR_INIT_VAR(&eName);
+	zephir_array_fetch(&_2, &map2Name, &eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 50);
+	zephir_camelize(&eName, &_2, NULL  );
+	ZEPHIR_CALL_STATIC(&_3, "exceptionclassprefix", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&eClassName);
-	ZEPHIR_CONCAT_VV(&eClassName, &_4, &eName);
+	ZEPHIR_CONCAT_VV(&eClassName, &_3, &eName);
 	ZEPHIR_INIT_VAR(&className);
 	zephir_get_called_class(&className);
 	ZEPHIR_INIT_VAR(&code);
-	zephir_fetch_safe_class(&_5, &className);
-	_6 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_5), Z_STRLEN_P(&_5), ZEND_FETCH_CLASS_AUTO);
-	if(!_6) {
+	zephir_fetch_safe_class(&_4, &className);
+	_5 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_4), Z_STRLEN_P(&_4), ZEND_FETCH_CLASS_AUTO);
+	if(!_5) {
 		RETURN_MM_NULL();
 	}
-	object_init_ex(&code, _6);
+	object_init_ex(&code, _5);
 	if (zephir_has_constructor(&code)) {
 		ZEPHIR_CALL_METHOD(NULL, &code, "__construct", NULL, 0, &eCode);
 		zephir_check_call_status();
 	}
 
 	ZEPHIR_INIT_VAR(&exception);
-	zephir_fetch_safe_class(&_7, &eClassName);
-	_8 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_7), Z_STRLEN_P(&_7), ZEND_FETCH_CLASS_AUTO);
-	if(!_8) {
+	zephir_fetch_safe_class(&_6, &eClassName);
+	_7 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_6), Z_STRLEN_P(&_6), ZEND_FETCH_CLASS_AUTO);
+	if(!_7) {
 		RETURN_MM_NULL();
 	}
-	object_init_ex(&exception, _8);
+	object_init_ex(&exception, _7);
 	if (zephir_has_constructor(&exception)) {
-		ZEPHIR_CALL_METHOD(&_9, &code, "getmessage", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_8, &code, "getmessage", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &exception, "__construct", NULL, 0, &_9, logger);
+		ZEPHIR_CALL_METHOD(NULL, &exception, "__construct", NULL, 0, &_8, logger);
 		zephir_check_call_status();
 	}
 
-	ZEPHIR_CALL_METHOD(&_10, &code, "getcode", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_9, &code, "getcode", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, &exception, "setcode", NULL, 0, &_10);
+	ZEPHIR_CALL_METHOD(NULL, &exception, "setcode", NULL, 0, &_9);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_11, &code, "getlevel", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_10, &code, "getlevel", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, &exception, "setlevel", NULL, 0, &_11);
+	ZEPHIR_CALL_METHOD(NULL, &exception, "setlevel", NULL, 0, &_10);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_12, e, "getmessage", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_11, e, "getmessage", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, &exception, "setmessage", NULL, 0, &_12);
+	ZEPHIR_CALL_METHOD(NULL, &exception, "setmessage", NULL, 0, &_11);
 	zephir_check_call_status();
 	RETURN_CCTOR(&exception);
 }

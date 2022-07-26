@@ -68,7 +68,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 3)
-		Z_PARAM_OBJECT_OF_CLASS(pagable, phalconplus_base_pagable_ce)
+		Z_PARAM_OBJECT_OF_CLASS(pagable, zephir_get_internal_ce(SL("phalconplus\\base\\pagable")))
 		Z_PARAM_LONG(totalSize)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(data)
@@ -95,7 +95,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct)
 	array_init(&tmpData);
 	_2 = Z_TYPE_P(data) == IS_OBJECT;
 	if (_2) {
-		_2 = zephir_instance_of_ev(data, zephir_get_internal_ce(SL("phalcon\\mvc\\model\\resultset")));
+		_2 = zephir_is_instance_of(data, SL("Phalcon\\Mvc\\Model\\Resultset"));
 	}
 	if (Z_TYPE_P(data) == IS_ARRAY) {
 		ZEPHIR_CPY_WRT(&tmpData, data);

@@ -1,5 +1,5 @@
 namespace PhalconPlus\Facades;
-use Phalcon\Di;
+use Phalcon\Di\Di;
 
 class App extends AbstractFacade
 {

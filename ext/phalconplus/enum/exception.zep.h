@@ -21,7 +21,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_exception_newexception, 0, 0, 1)
 	ZEND_ARG_INFO(0, e)
-	ZEND_ARG_OBJ_INFO(0, logger, Phalcon\\Logger\\Adapter, 1)
+	ZEND_ARG_OBJ_INFO(0, logger, Phalcon\\Logger\\LoggerInterface, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_exception_exceptionclassprefix, 0, 0, 0)

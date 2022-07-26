@@ -1,0 +1,171 @@
+phalconplus/auth/exception.lo: \
+  /Users/weigang/Developments/github/phalconplus/ext/phalconplus/auth/exception.zep.c \
+  /Users/weigang/Developments/github/phalconplus/ext/phalconplus/auth/../../ext_config.h \
+  config.h /usr/local/Cellar/php/8.1.4/include/php/main/php.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_version.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_types.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_portability.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_config.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/../main/php_config.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/../TSRM/TSRM.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_config.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_stdint.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_range_check.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_long.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_map_ptr.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_errors.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_alloc.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_alloc_sizes.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_llist.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_string.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_hash.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_ast.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_gc.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_variables.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_iterators.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_stream.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_smart_str_public.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_smart_string_public.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_signal.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_object_handlers.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_operators.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_strtod.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_multiply.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_sort.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_compat.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_API.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_modules.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_compile.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_globals.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_globals_macros.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_stack.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_ptr_stack.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_objects.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_objects_API.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_float.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_multibyte.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_arena.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_vm_opcodes.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_build.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_list.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_execute.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_type_info.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/build-defs.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/snprintf.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/spprintf.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_syslog.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_output.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_streams.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/streams/php_stream_context.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/streams/php_stream_filter_api.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/streams/php_stream_transport.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/streams/php_stream_plain_wrapper.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/streams/php_stream_glob_wrapper.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/streams/php_stream_userspace.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/streams/php_stream_mmap.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_memory_streams.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/fopen_wrappers.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_globals.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_ini.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_ini.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_virtual_cwd.h \
+  /usr/local/Cellar/php/8.1.4/include/php/TSRM/TSRM.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_constants.h \
+  /usr/local/Cellar/php/8.1.4/include/php/main/php_reentrancy.h \
+  /Users/weigang/Developments/github/phalconplus/ext/phalconplus/auth/../../php_ext.h \
+  php_phalconplus.h kernel/globals.h \
+  /Users/weigang/Developments/github/phalconplus/ext/phalconplus/auth/../../ext.h \
+  phalconplus.h phalconplus/facades/abstractfacade.zep.h \
+  phalconplus/contracts/arrayof.zep.h \
+  phalconplus/contracts/emptyornot.zep.h \
+  phalconplus/base/protobuffer.zep.h phalconplus/enum/abstractenum.zep.h \
+  phalconplus/app/engine/abstractengine.zep.h \
+  phalconplus/base/exception.zep.h phalconplus/contracts/stringer.zep.h \
+  phalconplus/logger/processor/abstractprocessor.zep.h \
+  phalconplus/rpc/client/abstractclient.zep.h \
+  phalconplus/db/unitofwork/abstractvalue.zep.h \
+  phalconplus/rpc/abstractyar.zep.h \
+  phalconplus/assert/assertionfailedexception.zep.h \
+  phalconplus/base/abstractrequest.zep.h \
+  phalconplus/base/abstractresponse.zep.h \
+  phalconplus/contracts/auth/access/modelevent.zep.h \
+  phalconplus/contracts/auth/policy.zep.h \
+  phalconplus/contracts/auth/userprovider.zep.h \
+  phalconplus/db/pdo/abstractmysql.zep.h \
+  phalconplus/rpc/server/abstractserver.zep.h phalconplus/app/app.zep.h \
+  phalconplus/app/engine/cli.zep.h phalconplus/app/engine/srv.zep.h \
+  phalconplus/app/engine/web.zep.h \
+  phalconplus/app/module/abstractmodule.zep.h \
+  phalconplus/app/module/moduledef.zep.h \
+  phalconplus/assert/assertion.zep.h \
+  phalconplus/assert/invalidargumentexception.zep.h \
+  phalconplus/auth/exception.zep.h phalconplus/auth/model.zep.h \
+  phalconplus/auth/policy.zep.h phalconplus/auth/userprovider.zep.h \
+  phalconplus/base/model.zep.h phalconplus/base/pagable.zep.h \
+  phalconplus/base/page.zep.h phalconplus/base/protoorderby.zep.h \
+  phalconplus/base/service.zep.h phalconplus/base/simplerequest.zep.h \
+  phalconplus/base/simpleresponse.zep.h phalconplus/bootstrap.zep.h \
+  phalconplus/contracts/auth/access/authorizable.zep.h \
+  phalconplus/contracts/auth/access/dispatchevent.zep.h \
+  phalconplus/contracts/auth/access/resourceaware.zep.h \
+  phalconplus/contracts/auth/access/routerevent.zep.h \
+  phalconplus/contracts/dump.zep.h \
+  phalconplus/contracts/eventattachable.zep.h \
+  phalconplus/contracts/invoke.zep.h phalconplus/curl/curl.zep.h \
+  phalconplus/curl/exception.zep.h phalconplus/curl/request.zep.h \
+  phalconplus/curl/response.zep.h phalconplus/db/mysql.zep.h \
+  phalconplus/db/pdo/mysql.zep.h phalconplus/db/unitofwork.zep.h \
+  phalconplus/db/unitofwork/field.zep.h \
+  phalconplus/db/unitofwork/lastinsertid.zep.h \
+  phalconplus/enum/assertioncode.zep.h phalconplus/enum/exception.zep.h \
+  phalconplus/enum/facade.zep.h phalconplus/enum/orderbydirection.zep.h \
+  phalconplus/enum/runenv.zep.h phalconplus/enum/runmode.zep.h \
+  phalconplus/enum/sys.zep.h phalconplus/facades/acl.zep.h \
+  phalconplus/facades/annotations.zep.h phalconplus/facades/app.zep.h \
+  phalconplus/facades/appengine.zep.h \
+  phalconplus/facades/appmodule.zep.h phalconplus/facades/assets.zep.h \
+  phalconplus/facades/config.zep.h phalconplus/facades/cookies.zep.h \
+  phalconplus/facades/crypt.zep.h phalconplus/facades/di.zep.h \
+  phalconplus/facades/dispatcher.zep.h phalconplus/facades/escaper.zep.h \
+  phalconplus/facades/eventsmanager.zep.h \
+  phalconplus/facades/filter.zep.h phalconplus/facades/flash.zep.h \
+  phalconplus/facades/flashsession.zep.h phalconplus/facades/log.zep.h \
+  phalconplus/facades/modelscache.zep.h \
+  phalconplus/facades/modelsmanager.zep.h \
+  phalconplus/facades/modelsmetadata.zep.h \
+  phalconplus/facades/redis.zep.h phalconplus/facades/request.zep.h \
+  phalconplus/facades/response.zep.h phalconplus/facades/router.zep.h \
+  phalconplus/facades/security.zep.h phalconplus/facades/service.zep.h \
+  phalconplus/facades/session.zep.h phalconplus/facades/sessionbag.zep.h \
+  phalconplus/facades/tag.zep.h \
+  phalconplus/facades/transactionmanager.zep.h \
+  phalconplus/facades/url.zep.h phalconplus/facades/user.zep.h \
+  phalconplus/facades/view.zep.h \
+  phalconplus/featuretest/splobjectstoragetest.zep.h \
+  phalconplus/helper/arr.zep.h phalconplus/helper/exception.zep.h \
+  phalconplus/helper/ns.zep.h phalconplus/helper/str.zep.h \
+  phalconplus/helper/variable.zep.h phalconplus/http/nonpsrrequest.zep.h \
+  phalconplus/http/nonpsrresponse.zep.h \
+  phalconplus/http/psrresponsefactory.zep.h \
+  phalconplus/logger/multiplefile.zep.h \
+  phalconplus/logger/processor/logid.zep.h \
+  phalconplus/logger/processor/msec.zep.h \
+  phalconplus/logger/processor/trace.zep.h \
+  phalconplus/mvc/psrapplication.zep.h \
+  phalconplus/rpc/client/adapter/curl.zep.h \
+  phalconplus/rpc/client/adapter/local.zep.h \
+  phalconplus/rpc/client/adapter/remote.zep.h \
+  phalconplus/rpc/server/simpleserver.zep.h phalconplus/rpc/yar.zep.h \
+  phalconplus/rpc/yarserverwrapper.zep.h \
+  phalconplus/volt/extension/phpfunction.zep.h \
+  phalconplus/0__closure.zep.h phalconplus/1__closure.zep.h \
+  phalconplus/2__closure.zep.h phalconplus/3__closure.zep.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_exceptions.h \
+  /usr/local/Cellar/php/8.1.4/include/php/Zend/zend_interfaces.h \
+  kernel/main.h \
+  /usr/local/Cellar/php/8.1.4/include/php/ext/spl/spl_exceptions.h \
+  /usr/local/Cellar/php/8.1.4/include/php/ext/spl/php_spl.h \
+  /usr/local/Cellar/php/8.1.4/include/php/ext/spl/spl_iterators.h \
+  /usr/local/Cellar/php/8.1.4/include/php/ext/pcre/php_pcre.h \
+  /usr/local/include/pcre2.h kernel/exception.h

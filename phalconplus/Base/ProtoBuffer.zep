@@ -144,7 +144,7 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
         return vars;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize() -> mixed
     {
         return this->toArray();
     }
@@ -198,7 +198,7 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
         this->__unset(offset);
     }
 
-    public function offsetGet(offset) 
+    public function offsetGet(offset) -> mixed
     {
         Assert::isString(offset);
         return this->__get(offset);

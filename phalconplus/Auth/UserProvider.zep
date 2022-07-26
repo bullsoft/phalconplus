@@ -2,7 +2,7 @@ namespace PhalconPlus\Auth;
 use PhalconPlus\Contracts\Auth\UserProvider as UserProviderContract;
 use PhalconPlus\Base\ProtoBuffer;
 use Phalcon\Security;
-use Phalcon\Text;
+use Phalcon\Support\Helper\Str\Random as RandomText;
 use Phalcon\Mvc\Model;
 
 abstract class UserProvider extends ProtoBuffer implements UserProviderContract
@@ -17,7 +17,7 @@ abstract class UserProvider extends ProtoBuffer implements UserProviderContract
         %{BEGIN:}%
         if is_null(user) {
             let this->id = 0;    
-            let this->name = Text::random(Text::RANDOM_ALNUM);
+            let this->name = (new RandomText())->__invoke(RandomText::RANDOM_ALNUM);
             let this->role = role;
         } elseif (typeof user == "array") {
             if !isset user["id"] {
@@ -39,7 +39,7 @@ abstract class UserProvider extends ProtoBuffer implements UserProviderContract
                 let this->entity = user;
             } else {
                 let this->id = 0;    
-                let this->name = Text::random(Text::RANDOM_ALNUM);
+                let this->name = (new RandomText())->__invoke(RandomText::RANDOM_ALNUM);
                 let this->role = role;
             }
         } else {

@@ -2,10 +2,11 @@ namespace PhalconPlus\Rpc\Client\Adapter;
 use PhalconPlus\Rpc\Client\AbstractClient;
 use PhalconPlus\Base\ProtoBuffer;
 use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\Di\Di;
 
 class Local extends AbstractClient
 {
-    public function __construct(<\Phalcon\DI> di)
+    public function __construct(<Di> di)
     {
         this->setDI(di);
     }

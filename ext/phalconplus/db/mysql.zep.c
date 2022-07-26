@@ -70,7 +70,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_OBJECT_OF_CLASS(di, phalcon_di_ce)
+		Z_PARAM_OBJECT_OF_CLASS(di, zephir_get_internal_ce(SL("phalcon\\di\\di")))
 		Z_PARAM_STR(name)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -241,7 +241,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection)
 			ZEPHIR_INIT_NVAR(&_8$$3);
 			ZVAL_OBJ(&_8$$3, EG(exception));
 			Z_ADDREF_P(&_8$$3);
-			if (zephir_instance_of_ev(&_8$$3, zend_ce_exception)) {
+			if (zephir_is_instance_of(&_8$$3, SL("Exception"))) {
 				zend_clear_exception();
 				ZEPHIR_CPY_WRT(&e, &_8$$3);
 				ZEPHIR_INIT_NVAR(&_9$$7);
@@ -277,7 +277,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection)
 					ZEPHIR_CONCAT_SV(&_24$$9, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: ", &_22$$9);
 					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_14, 112, &_24$$9);
 					zephir_check_call_status();
-					zephir_throw_exception_debug(&e, "phalconplus/Db/Mysql.zep", 82);
+					zephir_throw_exception_debug(&e, "phalconplus/Db/Mysql.zep", 83);
 					ZEPHIR_MM_RESTORE();
 					return;
 				}

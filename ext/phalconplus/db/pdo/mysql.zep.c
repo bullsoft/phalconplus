@@ -142,7 +142,7 @@ PHP_METHOD(PhalconPlus_Db_Pdo_Mysql, __get)
 
 	if (ZEPHIR_IS_STRING(&prop, "pdo")) {
 		
-            add_property_null_ex(this_ptr, SL("pdo") TSRMLS_CC);
+            add_property_null_ex(this_ptr, SL("pdo"));
             
 		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("descriptor"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "connect", NULL, 0, &_0$$3);

@@ -70,7 +70,7 @@ PHP_METHOD(PhalconPlus_Facades_AppEngine, request)
 		Z_PARAM_STR(action)
 		Z_PARAM_ARRAY(params)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(callback)
+		Z_PARAM_ZVAL_OR_NULL(callback)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

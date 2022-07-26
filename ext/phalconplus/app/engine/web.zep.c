@@ -39,9 +39,9 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
-		Z_PARAM_OBJECT_OF_CLASS(appModule, phalconplus_app_module_abstractmodule_ce)
+		Z_PARAM_OBJECT_OF_CLASS(appModule, zephir_get_internal_ce(SL("phalconplus\\app\\module\\abstractmodule")))
 		Z_PARAM_OPTIONAL
-		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(handler, phalcon_application_abstractapplication_ce)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(handler, zephir_get_internal_ce(SL("phalcon\\application\\abstractapplication")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -93,7 +93,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, exec)
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(uri)
+		Z_PARAM_ZVAL_OR_NULL(uri)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -128,7 +128,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Web, exec)
 		ZEPHIR_RETURN_CALL_METHOD(&_4$$3, "handle", NULL, 0, &request$$3);
 		zephir_check_call_status();
 		RETURN_MM();
-	} else if (zephir_instance_of_ev(&_1, zephir_get_internal_ce(SL("phalcon\\mvc\\application")))) {
+	} else if (zephir_is_instance_of(&_1, SL("Phalcon\\Mvc\\Application"))) {
 		zephir_read_property(&_5$$6, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_FUNCTION(&_6$$6, "strval", NULL, 27, uri);
 		zephir_check_call_status();

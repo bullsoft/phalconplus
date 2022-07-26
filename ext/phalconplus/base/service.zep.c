@@ -25,7 +25,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service)
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, Service, phalconplus, base_service, phalconplus_base_service_method_entry, 0);
 
 	/**
-	 * @var <\Phalcon\DI>
+	 * @var <Di>
 	 */
 	zend_declare_property_null(phalconplus_base_service_ce, SL("di"), ZEND_ACC_PROTECTED);
 	return SUCCESS;
@@ -42,7 +42,7 @@ PHP_METHOD(PhalconPlus_Base_Service, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(di, phalcon_di_ce)
+		Z_PARAM_OBJECT_OF_CLASS(di, zephir_get_internal_ce(SL("phalcon\\di\\di")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

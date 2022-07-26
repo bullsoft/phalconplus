@@ -1,5 +1,5 @@
 namespace PhalconPlus\Facades;
-use Phalcon\Di;
+use Phalcon\Di\Di;
 use PhalconPlus\App\App as SuperApp;
 use PhalconPlus\Base\Exception as BaseException;
 

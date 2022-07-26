@@ -55,7 +55,11 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_protobuffer_getselfvars, 0, 0, IS_ARRAY, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_protobuffer_jsonserialize, 0, 0, 0)
+#if PHP_VERSION_ID >= 80000
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_protobuffer_jsonserialize, 0, 0, IS_MIXED, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_protobuffer_jsonserialize, 0, 0, IS_NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_protobuffer_toarray, 0, 0, IS_ARRAY, 0)
@@ -81,7 +85,11 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_protobuffer_off
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_protobuffer_offsetget, 0, 0, 1)
+#if PHP_VERSION_ID >= 80000
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_protobuffer_offsetget, 0, 1, IS_MIXED, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_base_protobuffer_offsetget, 0, 1, IS_NULL, 0)
+#endif
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
@@ -103,11 +111,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_protobuffer_method_entry) {
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, __unset, arginfo_phalconplus_base_protobuffer___unset, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, isSetGet, arginfo_phalconplus_base_protobuffer_issetget, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, getSelfVars, arginfo_phalconplus_base_protobuffer_getselfvars, ZEND_ACC_PROTECTED)
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, jsonSerialize, arginfo_phalconplus_base_protobuffer_jsonserialize, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(PhalconPlus_Base_ProtoBuffer, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
-#endif
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, toArray, arginfo_phalconplus_base_protobuffer_toarray, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, offsetSet, arginfo_phalconplus_base_protobuffer_offsetset, ZEND_ACC_PUBLIC)
 	PHP_ME(PhalconPlus_Base_ProtoBuffer, offsetExists, arginfo_phalconplus_base_protobuffer_offsetexists, ZEND_ACC_PUBLIC)

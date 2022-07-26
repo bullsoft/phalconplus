@@ -1,6 +1,8 @@
 namespace PhalconPlus\Base;
 use PhalconPlus\Assert\Assertion as Assert;
 use PhalconPlus\Enum\Sys as Sys;
+use Phalcon\Logger\Logger;
+
 /**
  * throw new Exception("error message");
  * throw new Exception(["error message", "hello"]);
@@ -10,7 +12,7 @@ use PhalconPlus\Enum\Sys as Sys;
  */
 class Exception extends \Exception
 {
-    protected level = \Phalcon\Logger::DEBUG;
+    protected level = Logger::DEBUG;
     protected info;
 
     public function __construct(info = null, int code = 0)

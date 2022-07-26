@@ -51,7 +51,7 @@ PHP_METHOD(PhalconPlus_Assert_InvalidArgumentException, __construct)
 		Z_PARAM_ZVAL(code)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 		Z_PARAM_ARRAY(constraints)
 	ZEND_PARSE_PARAMETERS_END();
 #endif

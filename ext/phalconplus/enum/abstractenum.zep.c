@@ -12,6 +12,7 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "ext/json/php_json.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
@@ -28,7 +29,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_AbstractEnum)
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Enum, AbstractEnum, phalconplus, enum_abstractenum, phalconplus_enum_abstractenum_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(phalconplus_enum_abstractenum_ce, SL("val"), ZEND_ACC_PROTECTED);
-	zend_class_implements(phalconplus_enum_abstractenum_ce, 1, zephir_get_internal_ce(SL("jsonserializable")));
+	zend_class_implements(phalconplus_enum_abstractenum_ce, 1, php_json_serializable_ce);
 	return SUCCESS;
 }
 

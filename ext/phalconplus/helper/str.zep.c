@@ -82,7 +82,7 @@ PHP_METHOD(PhalconPlus_Helper_Str, decodeJson)
 		ZEPHIR_INIT_VAR(&_5);
 		ZVAL_OBJ(&_5, EG(exception));
 		Z_ADDREF_P(&_5);
-		if (zephir_instance_of_ev(&_5, zend_ce_exception)) {
+		if (zephir_is_instance_of(&_5, SL("Exception"))) {
 			zend_clear_exception();
 			ZEPHIR_CPY_WRT(&e, &_5);
 			ZEPHIR_INIT_VAR(&_6$$4);

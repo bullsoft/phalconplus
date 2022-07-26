@@ -371,7 +371,7 @@ class Model extends \Phalcon\Mvc\Model
         if is_null(connection) {
             let connection = this->getReadConnection();
         }
-        return parent::exists(metaData, connection);
+        return parent::has(metaData, connection);
     }
 
     /**

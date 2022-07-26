@@ -109,7 +109,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, __construct)
 		ZVAL_OBJ(&_6, EG(exception));
 		Z_ADDREF_P(&_6);
 		ZEPHIR_INIT_VAR(&_7);
-		if (zephir_instance_of_ev(&_6, zend_ce_exception)) {
+		if (zephir_is_instance_of(&_6, SL("Exception"))) {
 			zend_clear_exception();
 			ZEPHIR_CPY_WRT(&_7, &_6);
 		}
@@ -143,7 +143,7 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf)
 	/* try_start_1: */
 
 		ZEPHIR_INIT_VAR(&globalConf);
-		object_init_ex(&globalConf, zephir_get_internal_ce(SL("phalcon\\config")));
+		object_init_ex(&globalConf, zephir_get_internal_ce(SL("phalcon\\config\\config")));
 		ZEPHIR_CALL_CE_STATIC(&_1$$3, phalconplus_enum_sys_ce, "load", &_2, 0, &globalConfPath);
 		zephir_check_call_status_or_jump(try_end_1);
 		ZEPHIR_CALL_METHOD(NULL, &globalConf, "__construct", NULL, 0, &_1$$3);
@@ -155,11 +155,11 @@ PHP_METHOD(PhalconPlus_Bootstrap, initConf)
 		ZEPHIR_INIT_VAR(&_3);
 		ZVAL_OBJ(&_3, EG(exception));
 		Z_ADDREF_P(&_3);
-		if (zephir_instance_of_ev(&_3, zend_ce_exception)) {
+		if (zephir_is_instance_of(&_3, SL("Exception"))) {
 			zend_clear_exception();
 			ZEPHIR_CPY_WRT(&e, &_3);
 			ZEPHIR_INIT_NVAR(&globalConf);
-			object_init_ex(&globalConf, zephir_get_internal_ce(SL("phalcon\\config")));
+			object_init_ex(&globalConf, zephir_get_internal_ce(SL("phalcon\\config\\config")));
 			ZEPHIR_INIT_VAR(&_4$$4);
 			array_init(&_4$$4);
 			ZEPHIR_CALL_METHOD(NULL, &globalConf, "__construct", NULL, 0, &_4$$4);

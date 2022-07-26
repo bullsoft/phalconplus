@@ -2,6 +2,7 @@ namespace PhalconPlus\Rpc\Server;
 use PhalconPlus\Base\ProtoBuffer;
 use PhalconPlus\Logger\Processor\LogId;
 use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\Di\Di;
 
 abstract class AbstractServer
 {
@@ -9,7 +10,7 @@ abstract class AbstractServer
     protected phpOnly = false { get };
     protected eventsManager = null;
 
-    abstract public function __construct(<\Phalcon\DI> di);
+    abstract public function __construct(<Di> di);
 
     protected function callByParams(string! service, string! method, request = null)
     {

@@ -20,6 +20,7 @@
 #include "kernel/exception.h"
 #include "kernel/array.h"
 #include "kernel/string.h"
+#include "ext/simplexml/php_simplexml.h"
 #include "ext/spl/spl_array.h"
 
 
@@ -101,8 +102,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, eq)
 		Z_PARAM_ZVAL(value1)
 		Z_PARAM_ZVAL(value2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -169,8 +170,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEq)
 		Z_PARAM_ZVAL(value1)
 		Z_PARAM_ZVAL(value2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -241,8 +242,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, same)
 		Z_PARAM_ZVAL(value1)
 		Z_PARAM_ZVAL(value2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -303,8 +304,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notEmpty)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -360,8 +361,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notNull)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -422,8 +423,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notBlank)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -508,8 +509,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, integer)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -574,8 +575,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, numeric)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -639,8 +640,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, range)
 		Z_PARAM_LONG(minValue)
 		Z_PARAM_LONG(maxValue)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -728,8 +729,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, minLength)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_LONG(minLength)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 		Z_PARAM_STR(encodeing)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -820,8 +821,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, maxLength)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_LONG(maxLength)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 		Z_PARAM_STR(encodeing)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -904,8 +905,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, betweenLength)
 		Z_PARAM_LONG(minLength)
 		Z_PARAM_LONG(maxLength)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 		Z_PARAM_STR(encodeing)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -968,8 +969,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, min)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_LONG(minValue)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -1047,8 +1048,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, max)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_LONG(maxValue)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -1129,8 +1130,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, contains)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_ZVAL(needle)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 		Z_PARAM_STR(encodeing)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -1217,8 +1218,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, notContains)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_ZVAL(needle)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 		Z_PARAM_STR(encodeing)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -1307,8 +1308,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, inArray)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_ARRAY(choices)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -1392,8 +1393,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, keyExists)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_ZVAL(key)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -1460,8 +1461,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isResource)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -1524,8 +1525,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isString)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -1589,8 +1590,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArray)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -1654,7 +1655,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isTraversable)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL_OR_NULL(message)
 		Z_PARAM_STR_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -1728,7 +1729,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isArrayAccessible)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL_OR_NULL(message)
 		Z_PARAM_STR_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -1803,7 +1804,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable)
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL_OR_NULL(message)
 		Z_PARAM_STR_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -1838,7 +1839,7 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isCountable)
 				}
 				_3$$4 = _2$$4;
 				if (!(_3$$4)) {
-					_3$$4 = zephir_instance_of_ev(value, zephir_get_internal_ce(SL("simplexmlelement")));
+					_3$$4 = zephir_is_instance_of(value, SL("SimpleXMLElement"));
 				}
 				_1$$4 = _3$$4;
 			}
@@ -1899,8 +1900,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isInstanceOf)
 		Z_PARAM_OBJECT(value)
 		Z_PARAM_ZVAL(classNames)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -2011,8 +2012,8 @@ PHP_METHOD(PhalconPlus_Assert_Assertion, isJsonString)
 	ZEND_PARSE_PARAMETERS_START(1, 4)
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(message)
-		Z_PARAM_ZVAL(propertyPath)
+		Z_PARAM_ZVAL_OR_NULL(message)
+		Z_PARAM_ZVAL_OR_NULL(propertyPath)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(obj, spl_ce_ArrayObject)
 	ZEND_PARSE_PARAMETERS_END();
 #endif

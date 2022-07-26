@@ -3,6 +3,7 @@ extern zend_class_entry *phalconplus_base_model_ce;
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_Model);
 
+PHP_METHOD(PhalconPlus_Base_Model, initialize);
 PHP_METHOD(PhalconPlus_Base_Model, findFirstOrFail);
 PHP_METHOD(PhalconPlus_Base_Model, findFirstOrEmpty);
 PHP_METHOD(PhalconPlus_Base_Model, findOrFail);
@@ -31,6 +32,9 @@ PHP_METHOD(PhalconPlus_Base_Model, getUniqueFields);
 PHP_METHOD(PhalconPlus_Base_Model, resetUniqueFields);
 PHP_METHOD(PhalconPlus_Base_Model, toProtoBuffer);
 zend_object *zephir_init_properties_PhalconPlus_Base_Model(zend_class_entry *class_type);
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_initialize, 0, 0, 0)
+ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_findfirstorfail, 0, 0, 0)
 	ZEND_ARG_INFO(0, params)
@@ -149,6 +153,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_model_zephir_init_properties_pha
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_base_model_method_entry) {
+#if PHP_VERSION_ID >= 80000
+	PHP_ME(PhalconPlus_Base_Model, initialize, arginfo_phalconplus_base_model_initialize, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(PhalconPlus_Base_Model, initialize, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(PhalconPlus_Base_Model, findFirstOrFail, arginfo_phalconplus_base_model_findfirstorfail, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Base_Model, findFirstOrEmpty, arginfo_phalconplus_base_model_findfirstorempty, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(PhalconPlus_Base_Model, findOrFail, arginfo_phalconplus_base_model_findorfail, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)

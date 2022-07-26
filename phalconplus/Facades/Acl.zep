@@ -1,6 +1,7 @@
 namespace PhalconPlus\Facades;
 use Phalcon\Acl\Adapter\Memory as AclList;
-use Phalcon\Di;
+use Phalcon\Acl\Enum as AclEnum;
+use Phalcon\Di\Di;
 
 class Acl extends AbstractFacade
 {
@@ -13,9 +14,7 @@ class Acl extends AbstractFacade
     {
         var acl;
         let acl = new AclList();
-        acl->setDefaultAction(
-            \Phalcon\Acl\Enum::DENY
-        );
+        acl->setDefaultAction(AclEnum::DENY);
         di->setShared(this->getName(), acl);
         return null;
     }

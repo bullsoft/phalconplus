@@ -43,7 +43,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_model_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))
 		Z_PARAM_STR(attr)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -92,7 +92,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(unitwork, phalconplus_db_unitofwork_ce)
+		Z_PARAM_OBJECT_OF_CLASS(unitwork, zephir_get_internal_ce(SL("phalconplus\\db\\unitofwork")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -149,7 +149,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getField)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(unitwork, phalconplus_db_unitofwork_ce)
+		Z_PARAM_OBJECT_OF_CLASS(unitwork, zephir_get_internal_ce(SL("phalconplus\\db\\unitofwork")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

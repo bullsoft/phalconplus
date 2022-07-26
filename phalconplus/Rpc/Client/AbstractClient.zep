@@ -1,4 +1,5 @@
 namespace PhalconPlus\Rpc\Client;
+use Phalcon\Di\Di;
 
 abstract class AbstractClient
 {
@@ -11,7 +12,7 @@ abstract class AbstractClient
 		 return this;
 	}
 
-	public function setDI(<\Phalcon\DI> di) -> <AbstractClient>
+	public function setDI(<Di> di) -> <AbstractClient>
 	{
 		let this->di = di;
 		return this;

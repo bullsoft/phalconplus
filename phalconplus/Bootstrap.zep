@@ -1,7 +1,7 @@
 namespace PhalconPlus;
 use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\App\App as SuperApp;
-use Phalcon\Config;
+use Phalcon\Config\Config;
 
 final class Bootstrap
 {

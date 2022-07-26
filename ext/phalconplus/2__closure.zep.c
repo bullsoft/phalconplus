@@ -37,7 +37,7 @@ PHP_METHOD(phalconplus_2__closure, __invoke)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_ZVAL(iterator)
+		Z_PARAM_OBJECT_OF_CLASS(iterator, zend_ce_iterator)
 		Z_PARAM_ZVAL(transaction)
 	ZEND_PARSE_PARAMETERS_END();
 #endif

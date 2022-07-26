@@ -16,7 +16,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_getphponly,
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver___construct, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
+	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\Di\\Di, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_server_abstractserver_callbyparams, 0, 0, 2)

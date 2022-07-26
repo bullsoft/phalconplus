@@ -283,7 +283,7 @@ PHP_METHOD(PhalconPlus_Base_Pagable, setOrderBy)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(orderBy, phalconplus_base_protoorderby_ce)
+		Z_PARAM_OBJECT_OF_CLASS(orderBy, zephir_get_internal_ce(SL("phalconplus\\base\\protoorderby")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

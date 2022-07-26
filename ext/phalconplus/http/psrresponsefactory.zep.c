@@ -51,7 +51,7 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, create)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
-		Z_PARAM_OBJECT_OF_CLASS(response, phalcon_http_response_ce)
+		Z_PARAM_OBJECT_OF_CLASS(response, zephir_get_internal_ce(SL("phalcon\\http\\response")))
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(protocol)
 	ZEND_PARSE_PARAMETERS_END();
@@ -149,7 +149,7 @@ PHP_METHOD(PhalconPlus_Http_PsrResponseFactory, mapHeaders)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(response, phalcon_http_response_ce)
+		Z_PARAM_OBJECT_OF_CLASS(response, zephir_get_internal_ce(SL("phalcon\\http\\response")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

@@ -1,13 +1,14 @@
 namespace PhalconPlus\Base;
+use Phalcon\Di\Di;
 
 class Service
 {
     /**
-     * @var <\Phalcon\DI>
+     * @var <Di>
      */
     protected di = null;
 
-    final public function __construct(<\Phalcon\DI> di)
+    final public function __construct(<Di> di)
     {
         let this->di = di;
         ob_start();
@@ -17,12 +18,12 @@ class Service
 
     protected function onConstruct() {}
 
-    protected function getDI() -> <\Phalcon\DI>
+    protected function getDI() -> <Di>
     {
         return this->di;
     }
 
-    protected function __get(string! key)
+    public function __get(string! key)
     {
         if property_exists(this, key) {
             return this->{key};

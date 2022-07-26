@@ -123,7 +123,7 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
-		Z_PARAM_OBJECT_OF_CLASS(superApp, phalconplus_app_app_ce)
+		Z_PARAM_OBJECT_OF_CLASS(superApp, zephir_get_internal_ce(SL("phalconplus\\app\\app")))
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR(prefix)
 	ZEND_PARSE_PARAMETERS_END();
@@ -164,7 +164,7 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register)
 			zephir_get_strval(&classAlias, &_6$$4);
 			
                 zend_class_entry *ce;
-                ce = zephir_fetch_class(&className TSRMLS_CC);
+                ce = zephir_fetch_class(&className);
                 zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce, 0);
             
 		} ZEND_HASH_FOREACH_END();
@@ -189,7 +189,7 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register)
 				zephir_get_strval(&classAlias, &_9$$5);
 				
                 zend_class_entry *ce;
-                ce = zephir_fetch_class(&className TSRMLS_CC);
+                ce = zephir_fetch_class(&className);
                 zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce, 0);
             
 			ZEPHIR_CALL_METHOD(NULL, &facades, "next", NULL, 0);
@@ -213,7 +213,7 @@ void zephir_init_static_properties_PhalconPlus_Enum_Facade()
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 33, 0);
+	zephir_create_array(&_0, 37, 0);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "Annotations");
 	zephir_array_fast_append(&_0, &_1);

@@ -133,7 +133,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, getParam)
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(idx)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_ZVAL_OR_NULL(defaultValue)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -220,7 +220,7 @@ PHP_METHOD(PhalconPlus_Base_SimpleRequest, setParam)
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(val)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(key)
+		Z_PARAM_ZVAL_OR_NULL(key)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

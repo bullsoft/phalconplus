@@ -12,6 +12,7 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "ext/json/php_json.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
@@ -21,16 +22,17 @@
 #include "kernel/exception.h"
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
+#include "ext/spl/spl_array.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Base_ProtoBuffer)
 {
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, ProtoBuffer, phalconplus, base_protobuffer, phalconplus_base_protobuffer_method_entry, 0);
 
-	zend_class_implements(phalconplus_base_protobuffer_ce, 1, zephir_get_internal_ce(SL("jsonserializable")));
+	zend_class_implements(phalconplus_base_protobuffer_ce, 1, php_json_serializable_ce);
 	zend_class_implements(phalconplus_base_protobuffer_ce, 1, zend_ce_arrayaccess);
 	zend_class_implements(phalconplus_base_protobuffer_ce, 1, zend_ce_countable);
-	zend_class_implements(phalconplus_base_protobuffer_ce, 1, zephir_get_internal_ce(SL("iteratoraggregate")));
+	zend_class_implements(phalconplus_base_protobuffer_ce, 1, zend_ce_aggregate);
 	zend_class_implements(phalconplus_base_protobuffer_ce, 1, phalconplus_contracts_emptyornot_ce);
 	zend_class_implements(phalconplus_base_protobuffer_ce, 1, phalconplus_contracts_arrayof_ce);
 	return SUCCESS;
@@ -302,7 +304,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 		ZVAL_OBJ(&_14, EG(exception));
 		Z_ADDREF_P(&_14);
 		ZEPHIR_INIT_VAR(&_15);
-		if (zephir_instance_of_ev(&_14, zend_ce_exception)) {
+		if (zephir_is_instance_of(&_14, SL("Exception"))) {
 			zend_clear_exception();
 			ZEPHIR_CPY_WRT(&_15, &_14);
 		}
@@ -933,7 +935,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getIterator)
 
 	ZEPHIR_MM_GROW();
 
-	object_init_ex(return_value, zephir_get_internal_ce(SL("recursivearrayiterator")));
+	object_init_ex(return_value, spl_ce_RecursiveArrayIterator);
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getselfvars", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 15, &_0);

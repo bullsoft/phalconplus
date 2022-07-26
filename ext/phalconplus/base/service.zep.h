@@ -9,13 +9,13 @@ PHP_METHOD(PhalconPlus_Base_Service, getDI);
 PHP_METHOD(PhalconPlus_Base_Service, __get);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_service___construct, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
+	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\Di\\Di, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_service_onconstruct, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_service_getdi, 0, 0, Phalcon\\DI, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_base_service_getdi, 0, 0, Phalcon\\Di\\Di, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_base_service___get, 0, 0, 1)
@@ -30,6 +30,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_service_method_entry) {
 	PHP_ME(PhalconPlus_Base_Service, onConstruct, NULL, ZEND_ACC_PROTECTED)
 #endif
 	PHP_ME(PhalconPlus_Base_Service, getDI, arginfo_phalconplus_base_service_getdi, ZEND_ACC_PROTECTED)
-	PHP_ME(PhalconPlus_Base_Service, __get, arginfo_phalconplus_base_service___get, ZEND_ACC_PROTECTED)
+	PHP_ME(PhalconPlus_Base_Service, __get, arginfo_phalconplus_base_service___get, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

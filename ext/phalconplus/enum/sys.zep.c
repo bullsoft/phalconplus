@@ -164,7 +164,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, initApp)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(app, phalconplus_app_app_ce)
+		Z_PARAM_OBJECT_OF_CLASS(app, zephir_get_internal_ce(SL("phalconplus\\app\\app")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -617,7 +617,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, classAlias)
 
 	
             zend_class_entry *ce;
-            ce = zephir_fetch_class(&className TSRMLS_CC);
+            ce = zephir_fetch_class(&className);
             zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce, 0);
         
 	RETURN_MM_BOOL(1);

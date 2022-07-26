@@ -12,7 +12,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_abstractclient_setnamepref
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_rpc_client_abstractclient_setdi, 0, 1, PhalconPlus\\Rpc\\Client\\AbstractClient, 0)
-	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\DI, 0)
+	ZEND_ARG_OBJ_INFO(0, di, Phalcon\\Di\\Di, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_rpc_client_abstractclient_callbyobject, 0, 0, 1)

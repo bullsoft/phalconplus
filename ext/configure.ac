@@ -5,10 +5,6 @@ dnl comments starting with # and empty newlines from the included files.
 m4_include([build/ax_check_compile_flag.m4])
 m4_include([build/ax_gcc_func_attribute.m4])
 m4_include([build/libtool.m4])
-m4_include([build/ltoptions.m4])
-m4_include([build/ltsugar.m4])
-m4_include([build/ltversion.m4])
-m4_include([build/lt~obsolete.m4])
 m4_include([build/php_cxx_compile_stdcxx.m4])
 m4_include([build/php.m4])
 m4_include([build/pkg.m4])
@@ -174,6 +170,14 @@ CXXFLAGS_CLEAN='$(CXXFLAGS)'
 test "$prefix" = "NONE" && prefix="/usr/local"
 test "$exec_prefix" = "NONE" && exec_prefix='$(prefix)'
 
+if test "$cross_compiling" = yes ; then
+  AC_MSG_CHECKING(for native build C compiler)
+  AC_CHECK_PROGS(BUILD_CC, [gcc clang c99 c89 cc cl],none)
+  AC_MSG_RESULT($BUILD_CC)
+else
+  BUILD_CC=$CC
+fi
+
 PHP_SUBST(PHP_MODULES)
 PHP_SUBST(PHP_ZEND_EX)
 
@@ -206,6 +210,7 @@ PHP_SUBST(SHARED_LIBTOOL)
 PHP_SUBST(LIBTOOL)
 PHP_SUBST(SHELL)
 PHP_SUBST(INSTALL_HEADERS)
+PHP_SUBST(BUILD_CC)
 
 PHP_GEN_BUILD_DIRS
 PHP_GEN_GLOBAL_MAKEFILE

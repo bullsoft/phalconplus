@@ -3,8 +3,9 @@ use PhalconPlus\Logger\Processor\AbstractProcessor;
 use Phalcon\Logger\Adapter\Stream;
 use Phalcon\Logger\Formatter\FormatterInterface;
 use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\Logger\Logger as PhLogger;
 
-class MultiPleFile extends \Phalcon\Logger
+class MultiPleFile extends PhLogger
 {
     protected processors = [] { get };
 

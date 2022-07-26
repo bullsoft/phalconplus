@@ -13,6 +13,7 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
+#include "ext/spl/spl_observer.h"
 #include "kernel/fcall.h"
 #include "kernel/object.h"
 #include "kernel/operators.h"
@@ -61,7 +62,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, __construct)
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	object_init_ex(&_0, zephir_get_internal_ce(SL("splobjectstorage")));
+	object_init_ex(&_0, spl_ce_SplObjectStorage);
 	if (zephir_has_constructor(&_0)) {
 		ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 0);
 		zephir_check_call_status();
@@ -69,7 +70,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, __construct)
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("objects"), &_0);
 	ZEPHIR_INIT_VAR(&_1);
-	object_init_ex(&_1, zephir_get_internal_ce(SL("splobjectstorage")));
+	object_init_ex(&_1, spl_ce_SplObjectStorage);
 	if (zephir_has_constructor(&_1)) {
 		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 0);
 		zephir_check_call_status();
@@ -77,7 +78,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, __construct)
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("deleted"), &_1);
 	ZEPHIR_INIT_VAR(&_2);
-	object_init_ex(&_2, zephir_get_internal_ce(SL("splobjectstorage")));
+	object_init_ex(&_2, spl_ce_SplObjectStorage);
 	if (zephir_has_constructor(&_2)) {
 		ZEPHIR_CALL_METHOD(NULL, &_2, "__construct", NULL, 0);
 		zephir_check_call_status();
@@ -85,7 +86,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, __construct)
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("inserted"), &_2);
 	ZEPHIR_INIT_VAR(&_3);
-	object_init_ex(&_3, zephir_get_internal_ce(SL("splobjectstorage")));
+	object_init_ex(&_3, spl_ce_SplObjectStorage);
 	if (zephir_has_constructor(&_3)) {
 		ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", NULL, 0);
 		zephir_check_call_status();
@@ -112,7 +113,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, save)
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 3)
 		Z_PARAM_ZVAL(name)
-		Z_PARAM_OBJECT_OF_CLASS(model, phalconplus_base_model_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalconplus\\base\\model")))
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(initial_data)
 	ZEND_PARSE_PARAMETERS_END();
@@ -161,7 +162,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, insert)
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 3)
 		Z_PARAM_ZVAL(name)
-		Z_PARAM_OBJECT_OF_CLASS(model, phalconplus_base_model_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalconplus\\base\\model")))
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(initial_data)
 	ZEND_PARSE_PARAMETERS_END();
@@ -227,9 +228,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, update)
 	}
 
 
-	_0 = (zephir_instance_of_ev(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model"))));
+	_0 = (zephir_is_instance_of(model, SL("Phalcon\\Mvc\\Model")));
 	if (!(_0)) {
-		_0 = (zephir_instance_of_ev(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model\\resultset"))));
+		_0 = (zephir_is_instance_of(model, SL("Phalcon\\Mvc\\Model\\Resultset")));
 	}
 	if (_0) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "detach", NULL, 0, model);
@@ -276,9 +277,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, delete)
 	zephir_fetch_params(1, 2, 0, &name, &model);
 
 
-	_0 = (zephir_instance_of_ev(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model"))));
+	_0 = (zephir_is_instance_of(model, SL("Phalcon\\Mvc\\Model")));
 	if (!(_0)) {
-		_0 = (zephir_instance_of_ev(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model\\resultset"))));
+		_0 = (zephir_is_instance_of(model, SL("Phalcon\\Mvc\\Model\\Resultset")));
 	}
 	if (_0) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "detach", NULL, 0, model);
@@ -400,7 +401,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec)
 	ZEPHIR_CALL_METHOD(&transaction, &txManager, "get", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&objects);
-	object_init_ex(&objects, zephir_get_internal_ce(SL("splobjectstorage")));
+	object_init_ex(&objects, spl_ce_SplObjectStorage);
 	if (zephir_has_constructor(&objects)) {
 		ZEPHIR_CALL_METHOD(NULL, &objects, "__construct", NULL, 0);
 		zephir_check_call_status();
@@ -430,10 +431,10 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec)
 			ZEPHIR_OBS_NVAR(&name$$4);
 			zephir_array_fetch_string(&name$$4, &info, SL("name"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 123);
 			zephir_array_unset_string(&info, SL("name"), PH_SEPARATE);
-			if (zephir_instance_of_ev(&obj, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))) {
+			if (zephir_is_instance_of(&obj, SL("Phalcon\\Mvc\\Model"))) {
 				ZEPHIR_CALL_METHOD(NULL, &obj, "settransaction", NULL, 0, &transaction);
 				zephir_check_call_status_or_jump(try_end_1);
-			} else if (zephir_instance_of_ev(&obj, zephir_get_internal_ce(SL("phalcon\\mvc\\model\\resultset")))) {
+			} else if (zephir_is_instance_of(&obj, SL("Phalcon\\Mvc\\Model\\Resultset"))) {
 				ZEPHIR_INIT_NVAR(&_6$$6);
 				ZEPHIR_INIT_NVAR(&_6$$6);
 				zephir_create_closure_ex(&_6$$6, NULL, phalconplus_2__closure_ce, SL("__invoke"));
@@ -472,7 +473,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec)
 		ZEPHIR_INIT_VAR(&_15);
 		ZVAL_OBJ(&_15, EG(exception));
 		Z_ADDREF_P(&_15);
-		if (zephir_instance_of_ev(&_15, zephir_get_internal_ce(SL("phalcon\\mvc\\model\\transaction\\failed")))) {
+		if (zephir_is_instance_of(&_15, SL("Phalcon\\Mvc\\Model\\Transaction\\Failed"))) {
 			zend_clear_exception();
 			ZEPHIR_CPY_WRT(&e, &_15);
 			zephir_update_property_zval(this_ptr, ZEND_STRL("failed"), &obj);
@@ -519,7 +520,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_OBJECT_OF_CLASS(model, phalcon_mvc_model_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))
 		Z_PARAM_ARRAY(info)
 	ZEND_PARSE_PARAMETERS_END();
 #endif

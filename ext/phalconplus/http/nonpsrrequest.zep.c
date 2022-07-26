@@ -19,7 +19,6 @@
 #include "kernel/array.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
-#include "ext/psr/psr_http_message.h"
 #include "kernel/file.h"
 
 
@@ -139,7 +138,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrRequest, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(request, PsrHttpMessageServerRequestInterface_ce_ptr)
+		Z_PARAM_OBJECT_OF_CLASS(request, zephir_get_internal_ce(SL("psrext\\http\\message\\serverrequestinterface")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

@@ -69,7 +69,7 @@ class Facade extends AbstractEnum
             let classAlias = prefix.alias;
             %{
                 zend_class_entry *ce;
-                ce = zephir_fetch_class(&className TSRMLS_CC);
+                ce = zephir_fetch_class(&className);
                 zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce, 0);
             }%
         }

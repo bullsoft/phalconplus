@@ -16,7 +16,6 @@
 #include "kernel/memory.h"
 #include "kernel/concat.h"
 #include "kernel/object.h"
-#include "ext/psr/psr_http_message.h"
 
 
 ZEPHIR_INIT_CLASS(PhalconPlus_Http_NonPsrResponse)
@@ -58,7 +57,7 @@ PHP_METHOD(PhalconPlus_Http_NonPsrResponse, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(psrResponse, PsrHttpMessageResponseInterface_ce_ptr)
+		Z_PARAM_OBJECT_OF_CLASS(psrResponse, zephir_get_internal_ce(SL("psrext\\http\\message\\responseinterface")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
