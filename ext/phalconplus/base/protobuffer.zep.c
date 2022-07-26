@@ -114,7 +114,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone)
 	}
 
 
-	zephir_is_iterable(&data, 0, "phalconplus/Base/ProtoBuffer.zep", 31);
+	zephir_is_iterable(&data, 0, "phalconplus/Base/ProtoBuffer.zep", 33);
 	if (Z_TYPE_P(&data) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _2, _3, _0)
 		{
@@ -250,7 +250,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 			ZEPHIR_CONCAT_SSVS(&_4$$4, "PhalconPlus\\Base\\ProtoBuffer", "::", &method, "() need at least 1 parameter");
 			ZEPHIR_CALL_METHOD(NULL, &_3$$4, "__construct", &_5, 2, &_4$$4);
 			zephir_check_call_status_or_jump(try_end_1);
-			zephir_throw_exception_debug(&_3$$4, "phalconplus/Base/ProtoBuffer.zep", 44);
+			zephir_throw_exception_debug(&_3$$4, "phalconplus/Base/ProtoBuffer.zep", 46);
 			goto try_end_1;
 
 		}
@@ -275,7 +275,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 			ZEPHIR_CALL_METHOD(NULL, &paramClassRef, "__construct", NULL, 8, &paramClass);
 			zephir_check_call_status_or_jump(try_end_1);
 			ZEPHIR_INIT_VAR(&_11$$5);
-			ZVAL_STRING(&_11$$5, "\\PhalconPlus\\Base\\ProtoBuffer");
+			ZVAL_STRING(&_11$$5, "PhalconPlus\\Base\\ProtoBuffer");
 			ZEPHIR_CALL_METHOD(&_10$$5, &paramClassRef, "issubclassof", NULL, 9, &_11$$5);
 			zephir_check_call_status_or_jump(try_end_1);
 			if (zephir_is_true(&_10$$5)) {
@@ -334,7 +334,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 		ZEPHIR_CONCAT_SVS(&_21$$10, "Please add ", &method, " in your class, complex-type vars are not allowed to assign directly");
 		ZEPHIR_CALL_METHOD(NULL, &_20$$10, "__construct", &_5, 2, &_21$$10);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_20$$10, "phalconplus/Base/ProtoBuffer.zep", 72);
+		zephir_throw_exception_debug(&_20$$10, "phalconplus/Base/ProtoBuffer.zep", 74);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -576,7 +576,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars)
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&pros, &objRef, "getproperties", NULL, 13);
 	zephir_check_call_status();
-	zephir_is_iterable(&pros, 0, "phalconplus/Base/ProtoBuffer.zep", 144);
+	zephir_is_iterable(&pros, 0, "phalconplus/Base/ProtoBuffer.zep", 146);
 	if (Z_TYPE_P(&pros) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&pros), _0)
 		{
@@ -686,7 +686,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray)
 	} else {
 		ZEPHIR_CPY_WRT(&currPros, &inputPros);
 	}
-	zephir_is_iterable(&currPros, 0, "phalconplus/Base/ProtoBuffer.zep", 171);
+	zephir_is_iterable(&currPros, 0, "phalconplus/Base/ProtoBuffer.zep", 173);
 	if (Z_TYPE_P(&currPros) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&currPros), _2, _3, _0)
 		{

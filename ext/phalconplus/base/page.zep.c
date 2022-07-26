@@ -27,7 +27,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Page)
 	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Base, Page, phalconplus, base_page, phalconplus_base_protobuffer_ce, phalconplus_base_page_method_entry, 0);
 
 	/**
-	 * @var <\Phalcon\Base\Pagable>
+	 * @var <\PhalconPlus\Base\Pagable>
 	 */
 	zend_declare_property_null(phalconplus_base_page_ce, SL("pagable"), ZEND_ACC_PRIVATE);
 	/**
@@ -143,7 +143,7 @@ PHP_METHOD(PhalconPlus_Base_Page, __construct)
 					{
 						ZEPHIR_ITERATOR_COPY(&item, _11$$8);
 					}
-					zephir_array_append(&tmpData, &item, PH_SEPARATE, "phalconplus/Base/Page.zep", 51);
+					zephir_array_append(&tmpData, &item, PH_SEPARATE, "phalconplus/Base/Page.zep", 52);
 				}
 				zend_iterator_dtor(_11$$8);
 				break;

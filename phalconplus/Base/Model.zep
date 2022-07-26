@@ -5,8 +5,12 @@ use Phalcon\Db\Adapter\AdapterInterface;
 use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\MetaDataInterface;
 use Phalcon\Mvc\Model\Resultset;
+use Exception as RootException;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\Mvc\Model\Query\BuilderInterface;
+use Phalcon\Paginator\Adapter\QueryBuilder;
+use Phalcon\Mvc\Model as PhModel;
+use DateTime;
 
 // use Phalcon\Mvc\Model;
 // use Phalcon\Mvc\ModelMessage;
@@ -137,7 +141,7 @@ class Model extends \Phalcon\Mvc\Model
         return this->getModelsManager()->createBuilder()->from(source);
     }
 
-    public static function newInstance() -> <\Phalcon\Mvc\Model>
+    public static function newInstance() -> <PhModel>
     {
         var className = get_called_class();
         return create_instance(className);
@@ -169,7 +173,7 @@ class Model extends \Phalcon\Mvc\Model
                 conn->insert(model->getSource(), row, newColumns);
             }
             conn->commit();
-        } catch \Exception, e {
+        } catch RootException, e {
             conn->rollback();
             throw e;
         }
@@ -197,16 +201,16 @@ class Model extends \Phalcon\Mvc\Model
     public function afterFetch()
     {
         if property_exists(this, "ctime") {
-            let this->{"ctime"} = new \DateTime(this->{"ctime"});
+            let this->{"ctime"} = new DateTime(this->{"ctime"});
         }
         if property_exists(this, "mtime") {
-            let this->{"mtime"} = new \DateTime(this->{"mtime"});
+            let this->{"mtime"} = new DateTime(this->{"mtime"});
         }
         if property_exists(this, "created_at") {
-            let this->{"createdAt"} = new \DateTime(this->{"createdAt"});
+            let this->{"createdAt"} = new DateTime(this->{"createdAt"});
         }
         if property_exists(this, "updated_at") {
-            let this->{"updatedAt"} = new \DateTime(this->{"updatedAt"});
+            let this->{"updatedAt"} = new DateTime(this->{"updatedAt"});
         }
     }
 
@@ -243,22 +247,22 @@ class Model extends \Phalcon\Mvc\Model
             }
         }
         if property_exists(this, "ctime") {
-            if is_object(this->{"ctime"}) && (this->{"ctime"} instanceof \DateTime) {
+            if is_object(this->{"ctime"}) && (this->{"ctime"} instanceof DateTime) {
                 let this->{"ctime"} = this->{"ctime"}->format("Y-m-d H:i:s");
             }
         }
         if property_exists(this, "created_at") {
-            if is_object(this->{"createdAt"}) && (this->{"createdAt"} instanceof \DateTime) {
+            if is_object(this->{"createdAt"}) && (this->{"createdAt"} instanceof DateTime) {
                let this->{"createdAt"} = this->{"createdAt"}->format("Y-m-d H:i:s");
             }
         }
         if property_exists(this, "mtime") {
-            if is_object(this->{"mtime"}) && (this->{"mtime"} instanceof \DateTime) {
+            if is_object(this->{"mtime"}) && (this->{"mtime"} instanceof DateTime) {
                 let this->{"mtime"} = this->{"mtime"}->format("Y-m-d H:i:s");
             }
         }
         if property_exists(this, "updated_at") {
-            if is_object(this->{"updatedAt"}) && (this->{"updatedAt"} instanceof \DateTime) {
+            if is_object(this->{"updatedAt"}) && (this->{"updatedAt"} instanceof DateTime) {
                 let this->{"updatedAt"} = this->{"updatedAt"}->format("Y-m-d H:i:s");
             }
         }
@@ -281,9 +285,9 @@ class Model extends \Phalcon\Mvc\Model
         var fields = parent::toArray(columns);
         var tmp = fields;
         for key, val in tmp {
-            if is_object(val) && (val instanceof \DateTime) {
+            if is_object(val) && (val instanceof DateTime) {
                 let fields[key] = val->format("Y-m-d H:i:s");
-            } elseif is_object(val) && (val instanceof \Phalcon\Mvc\Model) {
+            } elseif is_object(val) && (val instanceof PhModel) {
                 let fields[key] = val->toArray();
             }
         }
@@ -342,7 +346,7 @@ class Model extends \Phalcon\Mvc\Model
             }
         }
         var queryBuilder, page;
-        let queryBuilder = new \Phalcon\Paginator\Adapter\QueryBuilder([
+        let queryBuilder = new QueryBuilder([
             "builder":builder,
             "limit":pagable->getPageSize(),
             "page":pagable->getPageNo()

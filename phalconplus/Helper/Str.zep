@@ -1,12 +1,13 @@
 namespace PhalconPlus\Helper;
 use PhalconPlus\Assert\Assertion as Assert;
+use ArrayObject;
 
 class Str
 {
     public static function decodeJson(string inputStr) -> array
     {
         var obj, e;
-        let obj = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+        let obj = new ArrayObject([], ArrayObject::ARRAY_AS_PROPS);
         try {
             Assert::isJsonString(inputStr, null, "/", obj);
         } catch \Exception, e {

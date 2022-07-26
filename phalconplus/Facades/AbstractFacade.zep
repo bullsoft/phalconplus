@@ -13,17 +13,17 @@ abstract class AbstractFacade
         return null;
     }
 
-    public static function setApp(<\PhalconPlus\App\App> app)
+    public static function setApp(<SuperApp> app)
     {
         let self::app = app;
     }
 
-    public static function app() -> <\PhalconPlus\App\App>
+    public static function app() -> <SuperApp>
     {
         return self::app;
     }
 		
-    public static function getApp() -> <\PhalconPlus\App\App>
+    public static function getApp() -> <SuperApp>
     {
         return self::app;
     }

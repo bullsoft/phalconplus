@@ -2,12 +2,13 @@ namespace PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Base\Exception as BaseException;
 use PhalconPlus\Contracts\Stringer;
+use Phalcon\Mvc\Model as PhModel;
 
 class LastInsertId extends AbstractValue implements Stringer
 {
     protected model;
 
-    public function __construct(<\Phalcon\Mvc\Model> model)
+    public function __construct(<PhModel> model)
     {
         let this->model = model;
     }

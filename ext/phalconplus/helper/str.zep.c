@@ -91,7 +91,7 @@ PHP_METHOD(PhalconPlus_Helper_Str, decodeJson)
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, &_6$$4, "__construct", NULL, 2, &_7$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_6$$4, "phalconplus/Helper/Str.zep", 13);
+			zephir_throw_exception_debug(&_6$$4, "phalconplus/Helper/Str.zep", 14);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}

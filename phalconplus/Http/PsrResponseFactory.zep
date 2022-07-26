@@ -5,7 +5,6 @@ use Psr\Http\Message\UploadedFileInterface;
 use Phalcon\Http\Message\Response as PsrResponse;
 use Phalcon\Http\Response as NativeResponse;
 use PhalconPlus\Base\Exception as BaseException;
-//use GuzzleHttp\Psr7\Response as GuzzlePsrResponse;
 
 class PsrResponseFactory
 {

@@ -133,7 +133,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue)
 	ZEPHIR_CONCAT_SVSVS(&_9, "Object(", &hash, ") instance of ", &className, " not in SplObjectStorage");
 	ZEPHIR_CALL_METHOD(NULL, &_8, "__construct", NULL, 2, &_9);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 31);
+	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 32);
 	ZEPHIR_MM_RESTORE();
 	return;
 }

@@ -1,5 +1,6 @@
 namespace PhalconPlus\Db\Pdo;
+use Phalcon\Db\Adapter\Pdo\Mysql as PhMysql;
 
-class AbstractMysql extends \Phalcon\Db\Adapter\Pdo\Mysql
+class AbstractMysql extends PhMysql
 {
 }

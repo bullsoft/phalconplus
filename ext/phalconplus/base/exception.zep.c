@@ -117,7 +117,7 @@ PHP_METHOD(PhalconPlus_Base_Exception, __construct)
 	if (!(ZEPHIR_IS_EMPTY(info))) {
 		if (Z_TYPE_P(info) == IS_ARRAY) {
 			zephir_update_property_zval(this_ptr, ZEND_STRL("info"), info);
-			zephir_array_fetch_long(&_1$$4, info, 0, PH_NOISY | PH_READONLY, "phalconplus/Base/Exception.zep", 25);
+			zephir_array_fetch_long(&_1$$4, info, 0, PH_NOISY | PH_READONLY, "phalconplus/Base/Exception.zep", 26);
 			ZEPHIR_CALL_FUNCTION(&_2$$4, "strval", &_3, 27, &_1$$4);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_4$$4);

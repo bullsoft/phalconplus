@@ -84,7 +84,7 @@ class ModuleDef
         }
     }
 
-    public function newDI() -> <\Phalcon\Di>
+    public function newDI() -> <Di>
     {
         var di;
         if this->runMode->isCli() {

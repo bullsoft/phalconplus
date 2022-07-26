@@ -2,6 +2,7 @@ namespace PhalconPlus\Base;
 use PhalconPlus\Assert\Assertion as Assert;
 use PhalconPlus\Enum\Sys as Sys;
 use Phalcon\Logger\Logger;
+use Exception as RootException;
 
 /**
  * throw new Exception("error message");
@@ -10,7 +11,7 @@ use Phalcon\Logger\Logger;
  * throw new Exception(["error message", "text" => "", "args" => ["foo", "bar"]]);
  *
  */
-class Exception extends \Exception
+class Exception extends RootException
 {
     protected level = Logger::DEBUG;
     protected info;
