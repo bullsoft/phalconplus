@@ -115,7 +115,7 @@ PHP_METHOD(PhalconPlus_Curl_Request, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(curl, phalconplus_curl_curl_ce)
+		Z_PARAM_OBJECT_OF_CLASS(curl, zephir_get_internal_ce(SL("phalconplus\\curl\\curl")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

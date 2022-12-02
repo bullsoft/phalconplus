@@ -28,6 +28,10 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Auth_UserProvider)
 	zend_declare_property_string(phalconplus_auth_userprovider_ce, SL("role"), "Guests", ZEND_ACC_PROTECTED);
 	zend_declare_property_string(phalconplus_auth_userprovider_ce, SL("name"), "", ZEND_ACC_PROTECTED);
 	zend_declare_property_null(phalconplus_auth_userprovider_ce, SL("entity"), ZEND_ACC_PROTECTED);
+	zephir_declare_class_constant_string(phalconplus_auth_userprovider_ce, SL("DEFAULT_ROLE1"), "Guests");
+
+	zephir_declare_class_constant_string(phalconplus_auth_userprovider_ce, SL("DEFAULT_ROLE2"), "Members");
+
 	zend_class_implements(phalconplus_auth_userprovider_ce, 1, phalconplus_contracts_auth_userprovider_ce);
 	return SUCCESS;
 }
@@ -43,37 +47,33 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, getEntity)
 
 PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct)
 {
-	zval _3$$3, _15$$8;
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval role;
-	zval *user = NULL, user_sub, *role_param = NULL, __$null, helper, _1$$3, _2$$3, _4$$3, _5$$4, _6$$4, _7$$4, idName$$6, usernameName$$6, roleName$$6, _8$$6, _9$$6, _10$$7, _11$$7, _12$$7, _13$$8, _14$$8, _16$$8;
+	zval *user = NULL, user_sub, *role_param = NULL, __$null, _1$$3, _2$$3, _3$$3, _4$$4, _5$$4, _6$$4, idName$$6, usernameName$$6, roleName$$6, _7$$6, _8$$6, _9$$7, _10$$7, _11$$7, _12$$8, _13$$8, _14$$8;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&user_sub);
 	ZVAL_NULL(&__$null);
-	ZVAL_UNDEF(&helper);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
-	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_6$$4);
-	ZVAL_UNDEF(&_7$$4);
 	ZVAL_UNDEF(&idName$$6);
 	ZVAL_UNDEF(&usernameName$$6);
 	ZVAL_UNDEF(&roleName$$6);
+	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&_8$$6);
-	ZVAL_UNDEF(&_9$$6);
+	ZVAL_UNDEF(&_9$$7);
 	ZVAL_UNDEF(&_10$$7);
 	ZVAL_UNDEF(&_11$$7);
-	ZVAL_UNDEF(&_12$$7);
+	ZVAL_UNDEF(&_12$$8);
 	ZVAL_UNDEF(&_13$$8);
 	ZVAL_UNDEF(&_14$$8);
-	ZVAL_UNDEF(&_16$$8);
 	ZVAL_UNDEF(&role);
-	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_15$$8);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
@@ -100,10 +100,6 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct)
 	}
 
 
-	ZEPHIR_INIT_VAR(&helper);
-	object_init_ex(&helper, zephir_get_internal_ce(SL("phalcon\\support\\helperfactory")));
-	ZEPHIR_CALL_METHOD(NULL, &helper, "__construct", NULL, 0);
-	zephir_check_call_status();
 	BEGIN:
 	_0 = Z_TYPE_P(user) == IS_OBJECT;
 	if (_0) {
@@ -113,16 +109,17 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct)
 		ZEPHIR_INIT_ZVAL_NREF(_1$$3);
 		ZVAL_LONG(&_1$$3, 0);
 		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_1$$3);
-		ZEPHIR_INIT_VAR(&_3$$3);
-		zephir_create_array(&_3$$3, 1, 0);
-		ZEPHIR_INIT_VAR(&_4$$3);
-		ZVAL_LONG(&_4$$3, 0);
-		zephir_array_fast_append(&_3$$3, &_4$$3);
-		ZEPHIR_INIT_NVAR(&_4$$3);
-		ZVAL_STRING(&_4$$3, "random");
-		ZEPHIR_CALL_METHOD(&_2$$3, &helper, "__call", NULL, 0, &_4$$3, &_3$$3);
+		ZEPHIR_INIT_VAR(&_2$$3);
+		object_init_ex(&_2$$3, zephir_get_internal_ce(SL("phalcon\\support\\helper\\str\\random")));
+		if (zephir_has_constructor(&_2$$3)) {
+			ZEPHIR_CALL_METHOD(NULL, &_2$$3, "__construct", NULL, 0);
+			zephir_check_call_status();
+		}
+
+		ZVAL_LONG(&_1$$3, 0);
+		ZEPHIR_CALL_METHOD(&_3$$3, &_2$$3, "__invoke", NULL, 0, &_1$$3);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_2$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_3$$3);
 		zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &role);
 	} else if (Z_TYPE_P(user) == IS_ARRAY) {
 		if (!(zephir_array_isset_string(user, SL("id")))) {
@@ -130,12 +127,12 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct)
 			ZVAL_NULL(user);
 			goto BEGIN;
 		}
-		zephir_array_fetch_string(&_5$$4, user, SL("id"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 30);
-		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_5$$4);
-		zephir_array_fetch_string(&_6$$4, user, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 31);
-		zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_6$$4);
-		zephir_array_fetch_string(&_7$$4, user, SL("role"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 32);
-		zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &_7$$4);
+		zephir_array_fetch_string(&_4$$4, user, SL("id"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 32);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_4$$4);
+		zephir_array_fetch_string(&_5$$4, user, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 33);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_5$$4);
+		zephir_array_fetch_string(&_6$$4, user, SL("role"), PH_NOISY | PH_READONLY, "phalconplus/Auth/UserProvider.zep", 34);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &_6$$4);
 	} else if (_0) {
 		ZEPHIR_CALL_METHOD(&idName$$6, this_ptr, "getidname", NULL, 0);
 		zephir_check_call_status();
@@ -143,39 +140,40 @@ PHP_METHOD(PhalconPlus_Auth_UserProvider, __construct)
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&roleName$$6, this_ptr, "getrolename", NULL, 0);
 		zephir_check_call_status();
+		ZEPHIR_OBS_VAR(&_7$$6);
+		zephir_read_property_zval(&_7$$6, user, &idName$$6, PH_NOISY_CC);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_7$$6);
 		ZEPHIR_OBS_VAR(&_8$$6);
-		zephir_read_property_zval(&_8$$6, user, &idName$$6, PH_NOISY_CC);
-		zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_8$$6);
-		ZEPHIR_OBS_VAR(&_9$$6);
-		zephir_read_property(&_9$$6, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
-		if (!(ZEPHIR_IS_EMPTY(&_9$$6))) {
-			ZEPHIR_OBS_VAR(&_10$$7);
-			zephir_read_property_zval(&_10$$7, user, &usernameName$$6, PH_NOISY_CC);
-			zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_10$$7);
-			ZEPHIR_INIT_VAR(&_11$$7);
-			ZEPHIR_OBS_VAR(&_12$$7);
-			zephir_read_property_zval(&_12$$7, user, &roleName$$6, PH_NOISY_CC);
-			if (ZEPHIR_IS_EMPTY(&_12$$7)) {
-				ZEPHIR_INIT_NVAR(&_11$$7);
-				ZVAL_STRING(&_11$$7, "Members");
+		zephir_read_property(&_8$$6, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
+		if (!(ZEPHIR_IS_EMPTY(&_8$$6))) {
+			ZEPHIR_OBS_VAR(&_9$$7);
+			zephir_read_property_zval(&_9$$7, user, &usernameName$$6, PH_NOISY_CC);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_9$$7);
+			ZEPHIR_INIT_VAR(&_10$$7);
+			ZEPHIR_OBS_VAR(&_11$$7);
+			zephir_read_property_zval(&_11$$7, user, &roleName$$6, PH_NOISY_CC);
+			if (ZEPHIR_IS_EMPTY(&_11$$7)) {
+				ZEPHIR_INIT_NVAR(&_10$$7);
+				ZVAL_STRING(&_10$$7, "Members");
 			} else {
-				ZEPHIR_OBS_NVAR(&_11$$7);
-				zephir_read_property_zval(&_11$$7, user, &roleName$$6, PH_NOISY_CC);
+				ZEPHIR_OBS_NVAR(&_10$$7);
+				zephir_read_property_zval(&_10$$7, user, &roleName$$6, PH_NOISY_CC);
 			}
-			zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &_11$$7);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &_10$$7);
 			zephir_update_property_zval(this_ptr, ZEND_STRL("entity"), user);
 		} else {
-			ZEPHIR_INIT_ZVAL_NREF(_13$$8);
-			ZVAL_LONG(&_13$$8, 0);
-			zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_13$$8);
-			ZEPHIR_INIT_VAR(&_15$$8);
-			zephir_create_array(&_15$$8, 1, 0);
-			ZEPHIR_INIT_VAR(&_16$$8);
-			ZVAL_LONG(&_16$$8, 0);
-			zephir_array_fast_append(&_15$$8, &_16$$8);
-			ZEPHIR_INIT_NVAR(&_16$$8);
-			ZVAL_STRING(&_16$$8, "random");
-			ZEPHIR_CALL_METHOD(&_14$$8, &helper, "__call", NULL, 0, &_16$$8, &_15$$8);
+			ZEPHIR_INIT_ZVAL_NREF(_12$$8);
+			ZVAL_LONG(&_12$$8, 0);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("id"), &_12$$8);
+			ZEPHIR_INIT_VAR(&_13$$8);
+			object_init_ex(&_13$$8, zephir_get_internal_ce(SL("phalcon\\support\\helper\\str\\random")));
+			if (zephir_has_constructor(&_13$$8)) {
+				ZEPHIR_CALL_METHOD(NULL, &_13$$8, "__construct", NULL, 0);
+				zephir_check_call_status();
+			}
+
+			ZVAL_LONG(&_12$$8, 0);
+			ZEPHIR_CALL_METHOD(&_14$$8, &_13$$8, "__invoke", NULL, 0, &_12$$8);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, ZEND_STRL("name"), &_14$$8);
 			zephir_update_property_zval(this_ptr, ZEND_STRL("role"), &role);

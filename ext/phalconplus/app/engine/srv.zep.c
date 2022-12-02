@@ -45,7 +45,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
-		Z_PARAM_OBJECT_OF_CLASS(appModule, phalconplus_app_module_abstractmodule_ce)
+		Z_PARAM_OBJECT_OF_CLASS(appModule, zephir_get_internal_ce(SL("phalconplus\\app\\module\\abstractmodule")))
 		Z_PARAM_OPTIONAL
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(handler, zephir_get_internal_ce(SL("phalcon\\application\\abstractapplication")))
 	ZEND_PARSE_PARAMETERS_END();
@@ -71,17 +71,17 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct)
 		zephir_read_property(&_1$$3, &_0$$3, ZEND_STRL("handler"), PH_NOISY_CC | PH_READONLY);
 		if (ZEPHIR_IS_STRING(&_1$$3, "yar")) {
 			ZEPHIR_INIT_NVAR(handler);
-			object_init_ex(handler, phalconplus_rpc_yarserverwrapper_ce);
+			object_init_ex(handler, phalconplus_rpc_yarservice_ce);
 			ZEPHIR_CALL_METHOD(NULL, handler, "__construct", NULL, 47);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_INIT_NVAR(handler);
-			object_init_ex(handler, phalconplus_rpc_yar_ce);
+			object_init_ex(handler, phalconplus_rpc_simpleservice_ce);
 			ZEPHIR_CALL_METHOD(NULL, handler, "__construct", NULL, 48);
 			zephir_check_call_status();
 		}
 	}
-	ZEPHIR_CALL_METHOD(&backendSrv, this_ptr, "newservice", NULL, 49, &di);
+	ZEPHIR_CALL_METHOD(&backendSrv, this_ptr, "newserver", NULL, 49, &di);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, handler, "setserver", NULL, 50, &backendSrv);
 	zephir_check_call_status();
@@ -90,7 +90,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, __construct)
 	ZEPHIR_MM_RESTORE();
 }
 
-PHP_METHOD(PhalconPlus_App_Engine_Srv, newService)
+PHP_METHOD(PhalconPlus_App_Engine_Srv, newServer)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -125,7 +125,7 @@ PHP_METHOD(PhalconPlus_App_Engine_Srv, newService)
 		ZEPHIR_CALL_METHOD(&backendSrv, di, "get", NULL, 0, &_2$$3);
 		zephir_check_call_status();
 		if (!(zephir_instance_of_ev(&backendSrv, phalconplus_rpc_server_abstractserver_ce))) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Service object(DI[\"backendSrv\"]) must be type of PhalconPlus\\Rpc\\Server\\AbstractServer", "phalconplus/App/Engine/Srv.zep", 44);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Server object(DI[\"backendSrv\"]) must be type of PhalconPlus\\Rpc\\Server\\AbstractServer", "phalconplus/App/Engine/Srv.zep", 44);
 			return;
 		}
 	} else {

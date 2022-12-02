@@ -33,11 +33,18 @@ final class Sys extends AbstractEnum
         let self::primaryModuleDir = moduleDir;
         let self::rootDir = dirname(moduleDir);
         // Alias classes for convenience.
-        Sys::classAlias("PhalconPlus\\Enum\\Sys",   "Ph\\Sys");
-        Sys::classAlias("PhalconPlus\\Helper\\Arr", "Ph\\Arr");
-        Sys::classAlias("PhalconPlus\\Helper\\Str", "Ph\\Str");
-        Sys::classAlias("PhalconPlus\\Helper\\Ns",  "Ph\\Ns");
+        // With Ph prefix - will remove in future
+        Sys::classAlias("PhalconPlus\\Enum\\Sys",        "Ph\\Sys");
+        Sys::classAlias("PhalconPlus\\Helper\\Arr",      "Ph\\Arr");
+        Sys::classAlias("PhalconPlus\\Helper\\Str",      "Ph\\Str");
+        Sys::classAlias("PhalconPlus\\Helper\\Ns",       "Ph\\Ns");
         Sys::classAlias("PhalconPlus\\Helper\\Variable", "Ph\\Vars");
+        // With Plus prefix
+        Sys::classAlias("PhalconPlus\\Enum\\Sys",        "Plus\\Sys");
+        Sys::classAlias("PhalconPlus\\Helper\\Arr",      "Plus\\Arr");
+        Sys::classAlias("PhalconPlus\\Helper\\Str",      "Plus\\Str");
+        Sys::classAlias("PhalconPlus\\Helper\\Ns",       "Plus\\Ns");
+        Sys::classAlias("PhalconPlus\\Helper\\Variable", "Plus\\Vars");
     }
 
     public static function initApp(<SuperApp> app) -> void
@@ -48,7 +55,7 @@ final class Sys extends AbstractEnum
         }
         let self::app = app;
         // 加载Facacdes
-        Facade::register(app, "Ph\\");
+        Facade::register(app);
     }
 
     public static function app() -> <SuperApp>

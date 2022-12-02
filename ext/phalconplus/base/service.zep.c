@@ -25,7 +25,7 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Base_Service)
 	ZEPHIR_REGISTER_CLASS(PhalconPlus\\Base, Service, phalconplus, base_service, phalconplus_base_service_method_entry, 0);
 
 	/**
-	 * @var <\Phalcon\Di\Di>
+	 * @var <Di>
 	 */
 	zend_declare_property_null(phalconplus_base_service_ce, SL("di"), ZEND_ACC_PROTECTED);
 	return SUCCESS;

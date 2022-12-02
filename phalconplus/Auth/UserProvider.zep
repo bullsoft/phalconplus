@@ -3,24 +3,26 @@ use PhalconPlus\Contracts\Auth\UserProvider as UserProviderContract;
 use PhalconPlus\Base\ProtoBuffer;
 use Phalcon\Security;
 use Phalcon\Support\HelperFactory;
-use Phalcon\Support\Helper\Str\Random as StrRandom;
+use Phalcon\Support\Helper\Str\Random as RandomText;
 use Phalcon\Mvc\Model;
 
 abstract class UserProvider extends ProtoBuffer implements UserProviderContract
 {
+    const DEFAULT_ROLE1 = "Guests";
+    const DEFAULT_ROLE2 = "Members";
+
     protected id;
-    protected role = "Guests";
+    protected role = UserProvider::DEFAULT_ROLE1;
     protected name = "";
     protected entity = null { get };
 
     public function __construct(var user = null, string role = "Guests")
     {
-        var helper;
-        let helper = new HelperFactory();
+
         %{BEGIN:}%
         if is_null(user) {
             let this->id = 0;    
-            let this->name = helper->__call("random", [StrRandom::RANDOM_ALNUM]);
+            let this->name = (new RandomText())->__invoke(RandomText::RANDOM_ALNUM);
             let this->role = role;
         } elseif (typeof user == "array") {
             if !isset user["id"] {
@@ -38,11 +40,11 @@ abstract class UserProvider extends ProtoBuffer implements UserProviderContract
             let this->id = user->{idName};
             if !empty(this->id) {
                 let this->name = user->{usernameName};
-                let this->role = empty(user->{roleName}) ? "Members" : user->{roleName};
+                let this->role = empty(user->{roleName}) ? UserProvider::DEFAULT_ROLE2 : user->{roleName};
                 let this->entity = user;
             } else {
                 let this->id = 0;    
-                let this->name = helper->__call("random", [StrRandom::RANDOM_ALNUM]);
+                let this->name = (new RandomText())->__invoke(RandomText::RANDOM_ALNUM);
                 let this->role = role;
             }
         } else {

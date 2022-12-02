@@ -22,21 +22,19 @@ class Web extends AbstractEngine
     }
 
     /**
-    * @request a uri string (for \Phalcon\Mvc\Application) or Psr\Http\Message\Request
+    * @request (for \Phalcon\Mvc\Application) or Psr\Http\Message\Request
     */
-    public function exec(var uri = null) -> <HttpResponse>
+    public function exec(var request = null) -> <HttpResponse>
     {
         if this->handler instanceof PsrHandler {
-            var request;
-            if is_object(uri) && uri instanceof ServerRequestInterface {
-                let request = uri;
+            if is_object(request) && request instanceof ServerRequestInterface {
             } else {
                 string className = "GuzzleHttp\\Psr7\\ServerRequest";
                 let request = {className}::fromGlobals();
             }
             return this->handler->handle(request);
         } elseif this->handler instanceof MvcHandler {
-            return this->handler->handle(strval(uri));
+            return this->handler->handle(strval(request));
         }
 
         throw new BaseException("Handler for Web-Engine must be PsrHandler or MvcHandler");

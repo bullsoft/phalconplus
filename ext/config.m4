@@ -20,7 +20,7 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/logger/processor/abstractprocessor.zep.c
 	phalconplus/rpc/client/abstractclient.zep.c
 	phalconplus/db/unitofwork/abstractvalue.zep.c
-	phalconplus/rpc/abstractyar.zep.c
+	phalconplus/rpc/abstractservice.zep.c
 	phalconplus/assert/assertionfailedexception.zep.c
 	phalconplus/base/abstractrequest.zep.c
 	phalconplus/base/abstractresponse.zep.c
@@ -123,8 +123,8 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/rpc/client/adapter/local.zep.c
 	phalconplus/rpc/client/adapter/remote.zep.c
 	phalconplus/rpc/server/simpleserver.zep.c
-	phalconplus/rpc/yar.zep.c
-	phalconplus/rpc/yarserverwrapper.zep.c
+	phalconplus/rpc/simpleservice.zep.c
+	phalconplus/rpc/yarservice.zep.c
 	phalconplus/volt/extension/phpfunction.zep.c
 	phalconplus/0__closure.zep.c
 	phalconplus/1__closure.zep.c

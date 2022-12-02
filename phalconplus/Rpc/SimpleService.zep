@@ -6,7 +6,7 @@ use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\Enum\RunMode;
 use PhalconPlus\Base\Exception as BaseException;
 
-class Yar extends AbstractYar
+class SimpleService extends AbstractService
 {
     protected formater = "msgpack";
     protected encoder  = "msgpack_pack";
@@ -20,10 +20,10 @@ class Yar extends AbstractYar
         }
     }
 
-    public function setServer(<AbstractServer> obj) -> <AbstractYar>
+    public function setServer(<AbstractServer> obj) -> <AbstractService>
     {
         this->registerModules([
-            AbstractYar::NAME : obj
+            AbstractServer::NAME : obj
         ]);
         return this;
     }

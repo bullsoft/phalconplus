@@ -2,13 +2,14 @@ namespace PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Db\UnitOfWork;
 use PhalconPlus\Base\Exception as BaseException;
 use PhalconPlus\Contracts\Stringer;
+use Phalcon\Mvc\Model as PhModel;
 
 class Field extends AbstractValue implements Stringer
 {
     protected model = null;
     protected attr = "";
 
-    public function __construct(<\Phalcon\Mvc\Model> model, string! attr)
+    public function __construct(<PhModel> model, string! attr)
     {
         let this->model = model;
         let this->attr = attr;

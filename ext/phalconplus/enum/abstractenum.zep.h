@@ -46,7 +46,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_abstractenum_validvalues, 0, 0, 
 	ZEND_ARG_TYPE_INFO(0, assoc, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 80000
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_abstractenum_jsonserialize, 0, 0, IS_MIXED, 0)
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_abstractenum_jsonserialize, 0, 0, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 #if PHP_VERSION_ID >= 80000
@@ -86,11 +90,7 @@ ZEPHIR_INIT_FUNCS(phalconplus_enum_abstractenum_method_entry) {
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, getValues, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 #endif
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, validValues, arginfo_phalconplus_enum_abstractenum_validvalues, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-#if PHP_VERSION_ID >= 80000
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, jsonSerialize, arginfo_phalconplus_enum_abstractenum_jsonserialize, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(PhalconPlus_Enum_AbstractEnum, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
-#endif
 #if PHP_VERSION_ID >= 80000
 	PHP_ME(PhalconPlus_Enum_AbstractEnum, __toString, arginfo_phalconplus_enum_abstractenum___tostring, ZEND_ACC_PUBLIC)
 #else

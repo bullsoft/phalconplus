@@ -1,5 +1,4 @@
 namespace PhalconPlus\Facades;
-use Phalcon\Di\Di;
 
 class User extends AbstractFacade
 {

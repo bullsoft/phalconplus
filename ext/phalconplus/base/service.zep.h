@@ -30,6 +30,6 @@ ZEPHIR_INIT_FUNCS(phalconplus_base_service_method_entry) {
 	PHP_ME(PhalconPlus_Base_Service, onConstruct, NULL, ZEND_ACC_PROTECTED)
 #endif
 	PHP_ME(PhalconPlus_Base_Service, getDI, arginfo_phalconplus_base_service_getdi, ZEND_ACC_PROTECTED)
-	PHP_ME(PhalconPlus_Base_Service, __get, arginfo_phalconplus_base_service___get, ZEND_ACC_PROTECTED)
+	PHP_ME(PhalconPlus_Base_Service, __get, arginfo_phalconplus_base_service___get, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

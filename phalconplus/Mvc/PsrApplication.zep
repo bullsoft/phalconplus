@@ -29,7 +29,7 @@ class PsrApplication extends AbstractApplication
     public function handle(<ServerRequestInterface> request, boolean psr = false) -> <ResponseInterface> | <PsrResponseInterface>
     {
         if empty this->container {
-            throw new BaseException("there is no di(dependency injector) in PsrAppliction");
+            throw new BaseException("There is no di(dependency injector) in PsrAppliction");
         }
 
         var nativeRequest, nativeResponse, reqUri;

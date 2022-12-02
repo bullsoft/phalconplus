@@ -92,7 +92,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(unitwork, phalconplus_db_unitofwork_ce)
+		Z_PARAM_OBJECT_OF_CLASS(unitwork, zephir_get_internal_ce(SL("phalconplus\\db\\unitofwork")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -133,7 +133,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getValue)
 	ZEPHIR_CONCAT_SVSVS(&_9, "Object(", &hash, ") instance of ", &className, " not in SplObjectStorage");
 	ZEPHIR_CALL_METHOD(NULL, &_8, "__construct", NULL, 2, &_9);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 31);
+	zephir_throw_exception_debug(&_8, "phalconplus/Db/UnitOfWork/Field.zep", 32);
 	ZEPHIR_MM_RESTORE();
 	return;
 }
@@ -149,7 +149,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork_Field, getField)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(unitwork, phalconplus_db_unitofwork_ce)
+		Z_PARAM_OBJECT_OF_CLASS(unitwork, zephir_get_internal_ce(SL("phalconplus\\db\\unitofwork")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

@@ -34,12 +34,11 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Client_Adapter_Remote)
 
 PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct)
 {
-	zend_string *_7$$4;
-	zend_ulong _6$$4;
-	zend_class_entry *_2 = NULL;
+	zend_string *_6$$4;
+	zend_ulong _5$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *remoteServerUrl_param = NULL, *opts_param = NULL, key, _0, _1, _3, optKey$$4, optVal$$4, *_4$$4, _5$$4, _8$$5, _9$$6;
+	zval *remoteServerUrl_param = NULL, *opts_param = NULL, key, _0, _1, _2, optKey$$4, optVal$$4, *_3$$4, _4$$4, _7$$5, _8$$6;
 	zval remoteServerUrl, opts;
 	zval *this_ptr = getThis();
 
@@ -48,12 +47,12 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct)
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&optKey$$4);
 	ZVAL_UNDEF(&optVal$$4);
-	ZVAL_UNDEF(&_5$$4);
-	ZVAL_UNDEF(&_8$$5);
-	ZVAL_UNDEF(&_9$$6);
+	ZVAL_UNDEF(&_4$$4);
+	ZVAL_UNDEF(&_7$$5);
+	ZVAL_UNDEF(&_8$$6);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
@@ -84,49 +83,43 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, __construct)
 	zephir_array_fetch(&_0, &remoteServerUrl, &key, PH_NOISY | PH_READONLY, "phalconplus/Rpc/Client/Adapter/Remote.zep", 16);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("remoteServerUrl"), &_0);
 	ZEPHIR_INIT_VAR(&_1);
-	if (!_2) {
-	_2 = zephir_fetch_class_str_ex(SL("Yar_Client"), ZEND_FETCH_CLASS_AUTO);
-	}
-	object_init_ex(&_1, _2);
-	if (zephir_has_constructor(&_1)) {
-		zephir_read_property(&_3, this_ptr, ZEND_STRL("remoteServerUrl"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 0, &_3);
-		zephir_check_call_status();
-	}
-
+	object_init_ex(&_1, zephir_get_internal_ce(SL("yar_client")));
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("remoteServerUrl"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 0, &_2);
+	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("client"), &_1);
 	if (!(ZEPHIR_IS_EMPTY(&opts))) {
 		zephir_is_iterable(&opts, 0, "phalconplus/Rpc/Client/Adapter/Remote.zep", 24);
 		if (Z_TYPE_P(&opts) == IS_ARRAY) {
-			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&opts), _6$$4, _7$$4, _4$$4)
+			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&opts), _5$$4, _6$$4, _3$$4)
 			{
 				ZEPHIR_INIT_NVAR(&optKey$$4);
-				if (_7$$4 != NULL) { 
-					ZVAL_STR_COPY(&optKey$$4, _7$$4);
+				if (_6$$4 != NULL) { 
+					ZVAL_STR_COPY(&optKey$$4, _6$$4);
 				} else {
-					ZVAL_LONG(&optKey$$4, _6$$4);
+					ZVAL_LONG(&optKey$$4, _5$$4);
 				}
 				ZEPHIR_INIT_NVAR(&optVal$$4);
-				ZVAL_COPY(&optVal$$4, _4$$4);
-				zephir_read_property(&_8$$5, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_METHOD(NULL, &_8$$5, "setopt", NULL, 0, &optKey$$4, &optVal$$4);
+				ZVAL_COPY(&optVal$$4, _3$$4);
+				zephir_read_property(&_7$$5, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);
+				ZEPHIR_CALL_METHOD(NULL, &_7$$5, "setopt", NULL, 0, &optKey$$4, &optVal$$4);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 		} else {
 			ZEPHIR_CALL_METHOD(NULL, &opts, "rewind", NULL, 0);
 			zephir_check_call_status();
 			while (1) {
-				ZEPHIR_CALL_METHOD(&_5$$4, &opts, "valid", NULL, 0);
+				ZEPHIR_CALL_METHOD(&_4$$4, &opts, "valid", NULL, 0);
 				zephir_check_call_status();
-				if (!zend_is_true(&_5$$4)) {
+				if (!zend_is_true(&_4$$4)) {
 					break;
 				}
 				ZEPHIR_CALL_METHOD(&optKey$$4, &opts, "key", NULL, 0);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&optVal$$4, &opts, "current", NULL, 0);
 				zephir_check_call_status();
-					zephir_read_property(&_9$$6, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);
-					ZEPHIR_CALL_METHOD(NULL, &_9$$6, "setopt", NULL, 0, &optKey$$4, &optVal$$4);
+					zephir_read_property(&_8$$6, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);
+					ZEPHIR_CALL_METHOD(NULL, &_8$$6, "setopt", NULL, 0, &optKey$$4, &optVal$$4);
 					zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, &opts, "next", NULL, 0);
 				zephir_check_call_status();
@@ -200,7 +193,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Remote, callByObject)
 		ZVAL_STRING(&_10$$3, "logger");
 		ZEPHIR_CALL_METHOD(&_9$$3, &_8$$3, "get", NULL, 0, &_10$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_9$$3, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_9$$3, "debug", NULL, 0, &message);
 		zephir_check_call_status();
 	}
 	zephir_read_property(&_11, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);

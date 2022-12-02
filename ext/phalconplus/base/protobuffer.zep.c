@@ -114,7 +114,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone)
 	}
 
 
-	zephir_is_iterable(&data, 0, "phalconplus/Base/ProtoBuffer.zep", 31);
+	zephir_is_iterable(&data, 0, "phalconplus/Base/ProtoBuffer.zep", 33);
 	if (Z_TYPE_P(&data) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _2, _3, _0)
 		{
@@ -173,12 +173,12 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, softClone)
 
 PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 {
-	zval _6$$3, _13$$3;
-	zend_bool _16, _17, _18, _19;
+	zval _6$$3, _16$$3;
+	zend_bool _19, _20, _21, _22, _9$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *val = NULL, val_sub, method, methodRef, param, paramClass, paramClassRef, paramObj, _0, _1, _14, _15, _2$$3, _7$$3, _8$$3, _3$$4, _4$$4, _9$$5, _10$$5, _11$$5, _12$$6, _20$$10, _21$$10;
+	zval *key_param = NULL, *val = NULL, val_sub, method, methodRef, param, paramClass, paramClassRef, paramObj, _0, _1, _17, _18, _2$$3, _7$$3, _8$$3, _10$$3, _11$$3, _3$$4, _4$$4, _12$$5, _13$$5, _14$$5, _15$$6, _23$$10, _24$$10;
 	zval key;
 	zval *this_ptr = getThis();
 
@@ -192,21 +192,23 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 	ZVAL_UNDEF(&paramObj);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_14);
-	ZVAL_UNDEF(&_15);
+	ZVAL_UNDEF(&_17);
+	ZVAL_UNDEF(&_18);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_8$$3);
+	ZVAL_UNDEF(&_10$$3);
+	ZVAL_UNDEF(&_11$$3);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_4$$4);
-	ZVAL_UNDEF(&_9$$5);
-	ZVAL_UNDEF(&_10$$5);
-	ZVAL_UNDEF(&_11$$5);
-	ZVAL_UNDEF(&_12$$6);
-	ZVAL_UNDEF(&_20$$10);
-	ZVAL_UNDEF(&_21$$10);
+	ZVAL_UNDEF(&_12$$5);
+	ZVAL_UNDEF(&_13$$5);
+	ZVAL_UNDEF(&_14$$5);
+	ZVAL_UNDEF(&_15$$6);
+	ZVAL_UNDEF(&_23$$10);
+	ZVAL_UNDEF(&_24$$10);
 	ZVAL_UNDEF(&_6$$3);
-	ZVAL_UNDEF(&_13$$3);
+	ZVAL_UNDEF(&_16$$3);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
@@ -250,7 +252,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 			ZEPHIR_CONCAT_SSVS(&_4$$4, "PhalconPlus\\Base\\ProtoBuffer", "::", &method, "() need at least 1 parameter");
 			ZEPHIR_CALL_METHOD(NULL, &_3$$4, "__construct", &_5, 2, &_4$$4);
 			zephir_check_call_status_or_jump(try_end_1);
-			zephir_throw_exception_debug(&_3$$4, "phalconplus/Base/ProtoBuffer.zep", 44);
+			zephir_throw_exception_debug(&_3$$4, "phalconplus/Base/ProtoBuffer.zep", 46);
 			goto try_end_1;
 
 		}
@@ -263,25 +265,33 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 		ZVAL_LONG(&_7$$3, 0);
 		ZEPHIR_CALL_METHOD(NULL, &param, "__construct", NULL, 6, &_6$$3, &_7$$3);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_METHOD(&_8$$3, &param, "getclass", NULL, 7);
+		ZEPHIR_CALL_METHOD(&_8$$3, &param, "gettype", NULL, 7);
 		zephir_check_call_status_or_jump(try_end_1);
-		if (zephir_is_true(&_8$$3)) {
-			ZEPHIR_CALL_METHOD(&_9$$5, &param, "getclass", NULL, 7);
+		_9$$3 = zephir_is_true(&_8$$3);
+		if (_9$$3) {
+			ZEPHIR_CALL_METHOD(&_10$$3, &param, "gettype", NULL, 7);
 			zephir_check_call_status_or_jump(try_end_1);
-			ZEPHIR_CALL_METHOD(&paramClass, &_9$$5, "getname", NULL, 0);
+			ZEPHIR_CALL_METHOD(&_11$$3, &_10$$3, "isbuiltin", NULL, 0);
+			zephir_check_call_status_or_jump(try_end_1);
+			_9$$3 = !zephir_is_true(&_11$$3);
+		}
+		if (_9$$3) {
+			ZEPHIR_CALL_METHOD(&_12$$5, &param, "gettype", NULL, 7);
+			zephir_check_call_status_or_jump(try_end_1);
+			ZEPHIR_CALL_METHOD(&paramClass, &_12$$5, "getname", NULL, 0);
 			zephir_check_call_status_or_jump(try_end_1);
 			ZEPHIR_INIT_VAR(&paramClassRef);
 			object_init_ex(&paramClassRef, zephir_get_internal_ce(SL("reflectionclass")));
 			ZEPHIR_CALL_METHOD(NULL, &paramClassRef, "__construct", NULL, 8, &paramClass);
 			zephir_check_call_status_or_jump(try_end_1);
-			ZEPHIR_INIT_VAR(&_11$$5);
-			ZVAL_STRING(&_11$$5, "\\PhalconPlus\\Base\\ProtoBuffer");
-			ZEPHIR_CALL_METHOD(&_10$$5, &paramClassRef, "issubclassof", NULL, 9, &_11$$5);
+			ZEPHIR_INIT_VAR(&_14$$5);
+			ZVAL_STRING(&_14$$5, "PhalconPlus\\Base\\ProtoBuffer");
+			ZEPHIR_CALL_METHOD(&_13$$5, &paramClassRef, "issubclassof", NULL, 9, &_14$$5);
 			zephir_check_call_status_or_jump(try_end_1);
-			if (zephir_is_true(&_10$$5)) {
-				ZEPHIR_CALL_METHOD(&_12$$6, &paramClassRef, "newinstance", NULL, 10);
+			if (zephir_is_true(&_13$$5)) {
+				ZEPHIR_CALL_METHOD(&_15$$6, &paramClassRef, "newinstance", NULL, 10);
 				zephir_check_call_status_or_jump(try_end_1);
-				ZEPHIR_CALL_METHOD(&paramObj, &_12$$6, "softclone", NULL, 0, val);
+				ZEPHIR_CALL_METHOD(&paramObj, &_15$$6, "softclone", NULL, 0, val);
 				zephir_check_call_status_or_jump(try_end_1);
 				ZEPHIR_CPY_WRT(val, &paramObj);
 			} else {
@@ -290,51 +300,51 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, __set)
 				ZEPHIR_CPY_WRT(val, &paramObj);
 			}
 		}
-		ZEPHIR_INIT_VAR(&_13$$3);
-		zephir_create_array(&_13$$3, 1, 0);
-		zephir_array_fast_append(&_13$$3, val);
-		ZEPHIR_RETURN_CALL_METHOD(&methodRef, "invokeargs", NULL, 11, this_ptr, &_13$$3);
+		ZEPHIR_INIT_VAR(&_16$$3);
+		zephir_create_array(&_16$$3, 1, 0);
+		zephir_array_fast_append(&_16$$3, val);
+		ZEPHIR_RETURN_CALL_METHOD(&methodRef, "invokeargs", NULL, 11, this_ptr, &_16$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		RETURN_MM();
 
 	try_end_1:
 
 	if (EG(exception)) {
-		ZEPHIR_INIT_VAR(&_14);
-		ZVAL_OBJ(&_14, EG(exception));
-		Z_ADDREF_P(&_14);
-		ZEPHIR_INIT_VAR(&_15);
-		if (zephir_is_instance_of(&_14, SL("Exception"))) {
+		ZEPHIR_INIT_VAR(&_17);
+		ZVAL_OBJ(&_17, EG(exception));
+		Z_ADDREF_P(&_17);
+		ZEPHIR_INIT_VAR(&_18);
+		if (zephir_is_instance_of(&_17, SL("Exception"))) {
 			zend_clear_exception();
-			ZEPHIR_CPY_WRT(&_15, &_14);
+			ZEPHIR_CPY_WRT(&_18, &_17);
 		}
 	}
-	_16 = zephir_is_scalar(val);
-	if (!(_16)) {
-		_16 = Z_TYPE_P(val) == IS_NULL;
+	_19 = zephir_is_scalar(val);
+	if (!(_19)) {
+		_19 = Z_TYPE_P(val) == IS_NULL;
 	}
-	_17 = _16;
-	if (!(_17)) {
-		_17 = Z_TYPE_P(val) == IS_ARRAY;
+	_20 = _19;
+	if (!(_20)) {
+		_20 = Z_TYPE_P(val) == IS_ARRAY;
 	}
-	_18 = _17;
-	if (!(_18)) {
-		_19 = Z_TYPE_P(val) == IS_OBJECT;
-		if (_19) {
-			_19 = zephir_instance_of_ev(val, phalconplus_base_protobuffer_ce);
+	_21 = _20;
+	if (!(_21)) {
+		_22 = Z_TYPE_P(val) == IS_OBJECT;
+		if (_22) {
+			_22 = zephir_instance_of_ev(val, phalconplus_base_protobuffer_ce);
 		}
-		_18 = _19;
+		_21 = _22;
 	}
-	if (_18) {
+	if (_21) {
 		zephir_update_property_zval_zval(this_ptr, &key, val);
 	} else {
-		ZEPHIR_INIT_VAR(&_20$$10);
-		object_init_ex(&_20$$10, phalconplus_base_exception_ce);
-		ZEPHIR_INIT_VAR(&_21$$10);
-		ZEPHIR_CONCAT_SVS(&_21$$10, "Please add ", &method, " in your class, complex-type vars are not allowed to assign directly");
-		ZEPHIR_CALL_METHOD(NULL, &_20$$10, "__construct", &_5, 2, &_21$$10);
+		ZEPHIR_INIT_VAR(&_23$$10);
+		object_init_ex(&_23$$10, phalconplus_base_exception_ce);
+		ZEPHIR_INIT_VAR(&_24$$10);
+		ZEPHIR_CONCAT_SVS(&_24$$10, "Please add ", &method, " in your class, complex-type vars are not allowed to assign directly");
+		ZEPHIR_CALL_METHOD(NULL, &_23$$10, "__construct", &_5, 2, &_24$$10);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_20$$10, "phalconplus/Base/ProtoBuffer.zep", 72);
+		zephir_throw_exception_debug(&_23$$10, "phalconplus/Base/ProtoBuffer.zep", 74);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -576,7 +586,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, getSelfVars)
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&pros, &objRef, "getproperties", NULL, 13);
 	zephir_check_call_status();
-	zephir_is_iterable(&pros, 0, "phalconplus/Base/ProtoBuffer.zep", 144);
+	zephir_is_iterable(&pros, 0, "phalconplus/Base/ProtoBuffer.zep", 146);
 	if (Z_TYPE_P(&pros) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&pros), _0)
 		{
@@ -686,7 +696,7 @@ PHP_METHOD(PhalconPlus_Base_ProtoBuffer, toArray)
 	} else {
 		ZEPHIR_CPY_WRT(&currPros, &inputPros);
 	}
-	zephir_is_iterable(&currPros, 0, "phalconplus/Base/ProtoBuffer.zep", 171);
+	zephir_is_iterable(&currPros, 0, "phalconplus/Base/ProtoBuffer.zep", 173);
 	if (Z_TYPE_P(&currPros) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&currPros), _2, _3, _0)
 		{

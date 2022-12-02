@@ -90,7 +90,7 @@ PHP_METHOD(PhalconPlus_Facades_AppEngine, request)
 
 	ZEPHIR_CALL_SELF(&_0, "app", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&di, &_0, "di", NULL, 54);
+	ZEPHIR_CALL_METHOD(&di, &_0, "di", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&dispatcher);
 	ZVAL_NULL(&dispatcher);

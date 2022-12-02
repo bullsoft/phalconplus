@@ -1,16 +1,18 @@
 namespace PhalconPlus\Helper;
 use PhalconPlus\Assert\Assertion as Assert;
+use ArrayObject;
+use Exception as PhpException;
 
 class Str
 {
     public static function decodeJson(string inputStr) -> array
     {
         var obj, e;
-        let obj = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+        let obj = new ArrayObject([], ArrayObject::ARRAY_AS_PROPS);
         try {
             Assert::isJsonString(inputStr, null, "/", obj);
-        } catch \Exception, e {
-            throw new Exception(e->getMessage());
+        } catch PhpException, e {
+            throw new PhpException(e->getMessage());
         }
         return obj->getArrayCopy();
     }

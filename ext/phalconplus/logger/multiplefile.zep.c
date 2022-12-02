@@ -47,12 +47,12 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, getProcessors)
  *          [
  *               "name" => "local",
  *               "filePath" => "/path/to/logger/file.log",
- *               "level"  => \Phalcon\Logger::DEBUG,
+ *               "level"  => PhLogger::DEBUG,
  *          ],
  *          [
  *               "name" => "remote",
  *               "filePath" => "/path/to/logger/file.log",
- *               "level" => \Phalcon\Logger::CUSTOM，
+ *               "level" => PhLogger::CUSTOM，
  *          ],
  *  ]
  */
@@ -97,19 +97,19 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct)
 
 
 	if (ZEPHIR_IS_EMPTY(&options)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Logger config can not be empty", "phalconplus/Logger/MultipleFile.zep", 31);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Logger config can not be empty", "phalconplus/Logger/MultipleFile.zep", 32);
 		return;
 	}
-	zephir_is_iterable(&options, 0, "phalconplus/Logger/MultipleFile.zep", 52);
+	zephir_is_iterable(&options, 0, "phalconplus/Logger/MultipleFile.zep", 53);
 	if (Z_TYPE_P(&options) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&options), _0)
 		{
 			ZEPHIR_INIT_NVAR(&opt);
 			ZVAL_COPY(&opt, _0);
 			ZEPHIR_OBS_NVAR(&level);
-			zephir_array_fetch_string(&level, &opt, SL("level"), PH_NOISY, "phalconplus/Logger/MultipleFile.zep", 37);
+			zephir_array_fetch_string(&level, &opt, SL("level"), PH_NOISY, "phalconplus/Logger/MultipleFile.zep", 38);
 			zephir_update_property_array(this_ptr, SL("options"), &level, &opt);
-			zephir_array_fetch_string(&_2$$4, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 39);
+			zephir_array_fetch_string(&_2$$4, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 40);
 			ZEPHIR_CALL_FUNCTION(&dir, "dirname", &_3, 124, &_2$$4);
 			zephir_check_call_status();
 			ZEPHIR_CALL_FUNCTION(&_4$$4, "is_dir", &_5, 55, &dir);
@@ -121,11 +121,11 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct)
 			}
 			ZEPHIR_INIT_NVAR(&logger);
 			object_init_ex(&logger, zephir_get_internal_ce(SL("phalcon\\logger\\adapter\\stream")));
-			zephir_array_fetch_string(&_8$$4, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 43);
+			zephir_array_fetch_string(&_8$$4, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 44);
 			ZEPHIR_CALL_METHOD(NULL, &logger, "__construct", &_9, 0, &_8$$4);
 			zephir_check_call_status();
 			if (zephir_array_isset_string(&opt, SL("name"))) {
-				zephir_array_fetch_string(&_10$$6, &opt, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 45);
+				zephir_array_fetch_string(&_10$$6, &opt, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 46);
 				ZEPHIR_CALL_METHOD(NULL, this_ptr, "addadapter", &_11, 0, &_10$$6, &logger);
 				zephir_check_call_status();
 			} else {
@@ -148,9 +148,9 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct)
 			ZEPHIR_CALL_METHOD(&opt, &options, "current", NULL, 0);
 			zephir_check_call_status();
 				ZEPHIR_OBS_NVAR(&level);
-				zephir_array_fetch_string(&level, &opt, SL("level"), PH_NOISY, "phalconplus/Logger/MultipleFile.zep", 37);
+				zephir_array_fetch_string(&level, &opt, SL("level"), PH_NOISY, "phalconplus/Logger/MultipleFile.zep", 38);
 				zephir_update_property_array(this_ptr, SL("options"), &level, &opt);
-				zephir_array_fetch_string(&_12$$8, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 39);
+				zephir_array_fetch_string(&_12$$8, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 40);
 				ZEPHIR_CALL_FUNCTION(&dir, "dirname", &_3, 124, &_12$$8);
 				zephir_check_call_status();
 				ZEPHIR_CALL_FUNCTION(&_13$$8, "is_dir", &_5, 55, &dir);
@@ -162,11 +162,11 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, __construct)
 				}
 				ZEPHIR_INIT_NVAR(&logger);
 				object_init_ex(&logger, zephir_get_internal_ce(SL("phalcon\\logger\\adapter\\stream")));
-				zephir_array_fetch_string(&_15$$8, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 43);
+				zephir_array_fetch_string(&_15$$8, &opt, SL("filePath"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 44);
 				ZEPHIR_CALL_METHOD(NULL, &logger, "__construct", &_9, 0, &_15$$8);
 				zephir_check_call_status();
 				if (zephir_array_isset_string(&opt, SL("name"))) {
-					zephir_array_fetch_string(&_16$$10, &opt, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 45);
+					zephir_array_fetch_string(&_16$$10, &opt, SL("name"), PH_NOISY | PH_READONLY, "phalconplus/Logger/MultipleFile.zep", 46);
 					ZEPHIR_CALL_METHOD(NULL, this_ptr, "addadapter", &_11, 0, &_16$$10, &logger);
 					zephir_check_call_status();
 				} else {
@@ -197,7 +197,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addProcessor)
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
 		Z_PARAM_STR(name)
-		Z_PARAM_OBJECT_OF_CLASS(processor, phalconplus_logger_processor_abstractprocessor_ce)
+		Z_PARAM_OBJECT_OF_CLASS(processor, zephir_get_internal_ce(SL("phalconplus\\logger\\processor\\abstractprocessor")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -349,7 +349,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, addMessage)
 		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("processors"), PH_NOISY_CC);
 		if (!(ZEPHIR_IS_EMPTY(&_0$$3))) {
 			zephir_read_property(&_1$$4, this_ptr, ZEND_STRL("processors"), PH_NOISY_CC | PH_READONLY);
-			zephir_is_iterable(&_1$$4, 0, "phalconplus/Logger/MultipleFile.zep", 82);
+			zephir_is_iterable(&_1$$4, 0, "phalconplus/Logger/MultipleFile.zep", 83);
 			if (Z_TYPE_P(&_1$$4) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_1$$4), _4$$4, _5$$4, _2$$4)
 				{
@@ -434,7 +434,7 @@ PHP_METHOD(PhalconPlus_Logger_MultiPleFile, setFormatter)
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("adapters"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "phalconplus/Logger/MultipleFile.zep", 105);
+	zephir_is_iterable(&_0, 0, "phalconplus/Logger/MultipleFile.zep", 106);
 	if (Z_TYPE_P(&_0) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 		{

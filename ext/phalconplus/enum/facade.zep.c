@@ -98,11 +98,11 @@ ZEPHIR_INIT_CLASS(PhalconPlus_Enum_Facade)
 
 PHP_METHOD(PhalconPlus_Enum_Facade, register)
 {
+	zval className;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_1 = NULL;
-	zval prefix, className, classAlias;
-	zval *superApp, superApp_sub, *prefix_param = NULL, __$true, _0, alias, facades, *_2, _3, _4$$4, _5$$4, _6$$4, _7$$5, _8$$5, _9$$5;
+	zephir_fcall_cache_entry *_1 = NULL, *_6 = NULL;
+	zval *superApp, superApp_sub, __$true, _0, alias, facades, *_2, _3, _4$$4, _5$$4, _7$$4, _8$$4, _9$$5, _10$$5, _11$$5, _12$$5;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&superApp_sub);
@@ -113,31 +113,23 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register)
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&_5$$4);
-	ZVAL_UNDEF(&_6$$4);
-	ZVAL_UNDEF(&_7$$5);
-	ZVAL_UNDEF(&_8$$5);
+	ZVAL_UNDEF(&_7$$4);
+	ZVAL_UNDEF(&_8$$4);
 	ZVAL_UNDEF(&_9$$5);
-	ZVAL_UNDEF(&prefix);
+	ZVAL_UNDEF(&_10$$5);
+	ZVAL_UNDEF(&_11$$5);
+	ZVAL_UNDEF(&_12$$5);
 	ZVAL_UNDEF(&className);
-	ZVAL_UNDEF(&classAlias);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
-	ZEND_PARSE_PARAMETERS_START(1, 2)
-		Z_PARAM_OBJECT_OF_CLASS(superApp, phalconplus_app_app_ce)
-		Z_PARAM_OPTIONAL
-		Z_PARAM_STR(prefix)
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(superApp, zephir_get_internal_ce(SL("phalconplus\\app\\app")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &superApp, &prefix_param);
-	if (!prefix_param) {
-		ZEPHIR_INIT_VAR(&prefix);
-		ZVAL_STRING(&prefix, "");
-	} else {
-		zephir_get_strval(&prefix, prefix_param);
-	}
+	zephir_fetch_params(1, 1, 0, &superApp);
 
 
 	zephir_read_static_property_ce(&_0, phalconplus_enum_facade_ce, SL("loaded"), PH_NOISY_CC | PH_READONLY);
@@ -148,7 +140,7 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register)
 	zephir_check_call_status();
 	ZEPHIR_CALL_SELF(&facades, "validvalues", NULL, 0);
 	zephir_check_call_status();
-	zephir_is_iterable(&facades, 0, "phalconplus/Enum/Facade.zep", 76);
+	zephir_is_iterable(&facades, 0, "phalconplus/Enum/Facade.zep", 75);
 	if (Z_TYPE_P(&facades) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&facades), _2)
 		{
@@ -159,14 +151,14 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register)
 			ZEPHIR_INIT_NVAR(&_5$$4);
 			ZEPHIR_CONCAT_VV(&_5$$4, &_4$$4, &alias);
 			zephir_get_strval(&className, &_5$$4);
-			ZEPHIR_INIT_NVAR(&_6$$4);
-			ZEPHIR_CONCAT_VV(&_6$$4, &prefix, &alias);
-			zephir_get_strval(&classAlias, &_6$$4);
-			
-                zend_class_entry *ce;
-                ce = zephir_fetch_class(&className);
-                zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce, 0);
-            
+			ZEPHIR_INIT_NVAR(&_7$$4);
+			ZEPHIR_CONCAT_SV(&_7$$4, "Ph\\", &alias);
+			ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_sys_ce, "classalias", &_6, 0, &className, &_7$$4);
+			zephir_check_call_status();
+			ZEPHIR_INIT_NVAR(&_8$$4);
+			ZEPHIR_CONCAT_SV(&_8$$4, "Plus\\", &alias);
+			ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_sys_ce, "classalias", &_6, 0, &className, &_8$$4);
+			zephir_check_call_status();
 		} ZEND_HASH_FOREACH_END();
 	} else {
 		ZEPHIR_CALL_METHOD(NULL, &facades, "rewind", NULL, 0);
@@ -179,19 +171,19 @@ PHP_METHOD(PhalconPlus_Enum_Facade, register)
 			}
 			ZEPHIR_CALL_METHOD(&alias, &facades, "current", NULL, 0);
 			zephir_check_call_status();
-				ZEPHIR_OBS_NVAR(&_7$$5);
-				zephir_read_static_property_ce(&_7$$5, phalconplus_enum_facade_ce, SL("classPrefix"), PH_NOISY_CC);
-				ZEPHIR_INIT_NVAR(&_8$$5);
-				ZEPHIR_CONCAT_VV(&_8$$5, &_7$$5, &alias);
-				zephir_get_strval(&className, &_8$$5);
-				ZEPHIR_INIT_NVAR(&_9$$5);
-				ZEPHIR_CONCAT_VV(&_9$$5, &prefix, &alias);
-				zephir_get_strval(&classAlias, &_9$$5);
-				
-                zend_class_entry *ce;
-                ce = zephir_fetch_class(&className);
-                zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce, 0);
-            
+				ZEPHIR_OBS_NVAR(&_9$$5);
+				zephir_read_static_property_ce(&_9$$5, phalconplus_enum_facade_ce, SL("classPrefix"), PH_NOISY_CC);
+				ZEPHIR_INIT_NVAR(&_10$$5);
+				ZEPHIR_CONCAT_VV(&_10$$5, &_9$$5, &alias);
+				zephir_get_strval(&className, &_10$$5);
+				ZEPHIR_INIT_NVAR(&_11$$5);
+				ZEPHIR_CONCAT_SV(&_11$$5, "Ph\\", &alias);
+				ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_sys_ce, "classalias", &_6, 0, &className, &_11$$5);
+				zephir_check_call_status();
+				ZEPHIR_INIT_NVAR(&_12$$5);
+				ZEPHIR_CONCAT_SV(&_12$$5, "Plus\\", &alias);
+				ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_sys_ce, "classalias", &_6, 0, &className, &_12$$5);
+				zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, &facades, "next", NULL, 0);
 			zephir_check_call_status();
 		}

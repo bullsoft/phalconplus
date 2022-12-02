@@ -8,7 +8,6 @@ void zephir_init_static_properties_PhalconPlus_Enum_Facade();
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_phalconplus_enum_facade_register, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_OBJ_INFO(0, superApp, PhalconPlus\\App\\App, 0)
-	ZEND_ARG_TYPE_INFO(0, prefix, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_enum_facade_zephir_init_static_properties_phalconplus_enum_facade, 0, 0, 0)

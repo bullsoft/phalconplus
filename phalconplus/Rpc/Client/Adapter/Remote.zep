@@ -30,7 +30,7 @@ class Remote extends AbstractClient
         var message = "";
         if isset(this->di) && this->di->has("logger") {
             let message = "RemoteRpc> callByObject: ". var_export(rawData, true);
-            this->di->get("logger")->log(message);
+            this->di->get("logger")->debug(message);
         }
         return this->client->callByObject(rawData);
     }

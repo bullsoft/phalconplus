@@ -69,7 +69,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, list)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_OBJECT_OF_CLASS(user, phalconplus_contracts_auth_userprovider_ce)
+		Z_PARAM_OBJECT_OF_CLASS(user, zephir_get_internal_ce(SL("phalconplus\\contracts\\auth\\userprovider")))
 		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -113,7 +113,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, view)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_OBJECT_OF_CLASS(user, phalconplus_contracts_auth_userprovider_ce)
+		Z_PARAM_OBJECT_OF_CLASS(user, zephir_get_internal_ce(SL("phalconplus\\contracts\\auth\\userprovider")))
 		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -157,7 +157,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, delete)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_OBJECT_OF_CLASS(user, phalconplus_contracts_auth_userprovider_ce)
+		Z_PARAM_OBJECT_OF_CLASS(user, zephir_get_internal_ce(SL("phalconplus\\contracts\\auth\\userprovider")))
 		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -201,7 +201,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, update)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_OBJECT_OF_CLASS(user, phalconplus_contracts_auth_userprovider_ce)
+		Z_PARAM_OBJECT_OF_CLASS(user, zephir_get_internal_ce(SL("phalconplus\\contracts\\auth\\userprovider")))
 		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
@@ -245,7 +245,7 @@ PHP_METHOD(PhalconPlus_Auth_Policy, create)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_OBJECT_OF_CLASS(user, phalconplus_contracts_auth_userprovider_ce)
+		Z_PARAM_OBJECT_OF_CLASS(user, zephir_get_internal_ce(SL("phalconplus\\contracts\\auth\\userprovider")))
 		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalcon\\mvc\\model")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif

@@ -6,15 +6,15 @@ use Phalcon\Application\AbstractApplication;
 use PhalconPlus\Rpc\Server\AbstractServer;
 use PhalconPlus\Base\Exception as BaseException;
 
-class YarServerWrapper extends AbstractYar
+class YarService extends AbstractService
 {
     protected yar = null;
 
-    public function setServer(<AbstractServer> obj) -> <AbstractYar>
+    public function setServer(<AbstractServer> obj) -> <AbstractService>
     {
         let this->yar = new Yar_Server(obj);
         this->registerModules([
-            AbstractYar::NAME : obj
+            AbstractServer::NAME : obj
         ]);
         return this;
     }

@@ -147,6 +147,36 @@ PHP_METHOD(PhalconPlus_Enum_Sys, init)
 	ZVAL_STRING(&_8, "Ph\\Vars");
 	ZEPHIR_CALL_SELF(NULL, "classalias", NULL, 0, &_7, &_8);
 	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(&_7);
+	ZVAL_STRING(&_7, "PhalconPlus\\Enum\\Sys");
+	ZEPHIR_INIT_NVAR(&_8);
+	ZVAL_STRING(&_8, "Plus\\Sys");
+	ZEPHIR_CALL_SELF(NULL, "classalias", NULL, 0, &_7, &_8);
+	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(&_7);
+	ZVAL_STRING(&_7, "PhalconPlus\\Helper\\Arr");
+	ZEPHIR_INIT_NVAR(&_8);
+	ZVAL_STRING(&_8, "Plus\\Arr");
+	ZEPHIR_CALL_SELF(NULL, "classalias", NULL, 0, &_7, &_8);
+	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(&_7);
+	ZVAL_STRING(&_7, "PhalconPlus\\Helper\\Str");
+	ZEPHIR_INIT_NVAR(&_8);
+	ZVAL_STRING(&_8, "Plus\\Str");
+	ZEPHIR_CALL_SELF(NULL, "classalias", NULL, 0, &_7, &_8);
+	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(&_7);
+	ZVAL_STRING(&_7, "PhalconPlus\\Helper\\Ns");
+	ZEPHIR_INIT_NVAR(&_8);
+	ZVAL_STRING(&_8, "Plus\\Ns");
+	ZEPHIR_CALL_SELF(NULL, "classalias", NULL, 0, &_7, &_8);
+	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(&_7);
+	ZVAL_STRING(&_7, "PhalconPlus\\Helper\\Variable");
+	ZEPHIR_INIT_NVAR(&_8);
+	ZVAL_STRING(&_8, "Plus\\Vars");
+	ZEPHIR_CALL_SELF(NULL, "classalias", NULL, 0, &_7, &_8);
+	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 }
 
@@ -155,16 +185,15 @@ PHP_METHOD(PhalconPlus_Enum_Sys, initApp)
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
-	zval *app, app_sub, _0, _2;
+	zval *app, app_sub, _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&app_sub);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_2);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(app, phalconplus_app_app_ce)
+		Z_PARAM_OBJECT_OF_CLASS(app, zephir_get_internal_ce(SL("phalconplus\\app\\app")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -178,9 +207,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, initApp)
 		RETURN_MM_NULL();
 	}
 	zephir_update_static_property_ce(phalconplus_enum_sys_ce, ZEND_STRL("app"), app);
-	ZEPHIR_INIT_VAR(&_2);
-	ZVAL_STRING(&_2, "Ph\\");
-	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_facade_ce, "register", &_1, 0, app, &_2);
+	ZEPHIR_CALL_CE_STATIC(NULL, phalconplus_enum_facade_ce, "register", &_1, 0, app);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 }
@@ -197,7 +224,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, app)
 
 	zephir_read_static_property_ce(&_0, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
 	if (Z_TYPE_P(&_0) == IS_NULL) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_ce_exception, "SuperApp has no instances yet", "phalconplus/Enum/Sys.zep", 57);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(zend_ce_exception, "SuperApp has no instances yet", "phalconplus/Enum/Sys.zep", 64);
 		return;
 	}
 	zephir_read_static_property_ce(&_1, phalconplus_enum_sys_ce, SL("app"), PH_NOISY_CC | PH_READONLY);
@@ -553,7 +580,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, getModuleConfigPath)
 		ZEPHIR_CONCAT_SVSVS(&_12$$4, "Module Config file not exists: ", &confPath, " & ", &_11$$4, ".php");
 		ZEPHIR_CALL_METHOD(NULL, &_10$$4, "__construct", NULL, 2, &_12$$4);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_10$$4, "phalconplus/Enum/Sys.zep", 158);
+		zephir_throw_exception_debug(&_10$$4, "phalconplus/Enum/Sys.zep", 165);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -697,7 +724,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, load)
 		ZEPHIR_CONCAT_SV(&_2$$3, "The file you try to load is not exists. The Path is: ", &filePath);
 		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 123, &_2$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "phalconplus/Enum/Sys.zep", 187);
+		zephir_throw_exception_debug(&_1$$3, "phalconplus/Enum/Sys.zep", 194);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -765,7 +792,7 @@ PHP_METHOD(PhalconPlus_Enum_Sys, load)
 			}
 		}
 	}
-	zephir_is_iterable(&context, 0, "phalconplus/Enum/Sys.zep", 216);
+	zephir_is_iterable(&context, 0, "phalconplus/Enum/Sys.zep", 223);
 	if (Z_TYPE_P(&context) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&context), _22, _23, _20)
 		{

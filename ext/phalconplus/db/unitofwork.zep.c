@@ -113,7 +113,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, save)
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 3)
 		Z_PARAM_ZVAL(name)
-		Z_PARAM_OBJECT_OF_CLASS(model, phalconplus_base_model_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalconplus\\base\\model")))
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(initial_data)
 	ZEND_PARSE_PARAMETERS_END();
@@ -162,7 +162,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, insert)
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 3)
 		Z_PARAM_ZVAL(name)
-		Z_PARAM_OBJECT_OF_CLASS(model, phalconplus_base_model_ce)
+		Z_PARAM_OBJECT_OF_CLASS(model, zephir_get_internal_ce(SL("phalconplus\\base\\model")))
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(initial_data)
 	ZEND_PARSE_PARAMETERS_END();
@@ -243,7 +243,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, update)
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "attach", NULL, 0, model, &_1$$3);
 		zephir_check_call_status();
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "UnitOfWork: Accept <Model> & <Resultset> only", "phalconplus/Db/UnitOfWork.zep", 72);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "UnitOfWork: Accept <Model> & <Resultset> only", "phalconplus/Db/UnitOfWork.zep", 75);
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
@@ -277,7 +277,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, delete)
 	zephir_fetch_params(1, 2, 0, &name, &model);
 
 
-	_0 = (zephir_is_instance_of(model, SL("Phalcon\\Mvc\\Model")));
+	_0 = (zephir_is_instance_of(model, SL("PhalconPlus\\Db\\Model")));
 	if (!(_0)) {
 		_0 = (zephir_is_instance_of(model, SL("Phalcon\\Mvc\\Model\\Resultset")));
 	}
@@ -291,7 +291,7 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, delete)
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "attach", NULL, 0, model, &_1$$3);
 		zephir_check_call_status();
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "UnitOfWork: Accept <Model> & <Resultset> only", "phalconplus/Db/UnitOfWork.zep", 88);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "UnitOfWork: Accept <Model> & <Resultset> only", "phalconplus/Db/UnitOfWork.zep", 91);
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
@@ -426,10 +426,10 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, exec)
 			ZEPHIR_CALL_METHOD(&info, &objects, "getinfo", &_5, 118);
 			zephir_check_call_status_or_jump(try_end_1);
 			ZEPHIR_OBS_NVAR(&method$$4);
-			zephir_array_fetch_string(&method$$4, &info, SL("method"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 122);
+			zephir_array_fetch_string(&method$$4, &info, SL("method"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 125);
 			zephir_array_unset_string(&info, SL("method"), PH_SEPARATE);
 			ZEPHIR_OBS_NVAR(&name$$4);
-			zephir_array_fetch_string(&name$$4, &info, SL("name"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 123);
+			zephir_array_fetch_string(&name$$4, &info, SL("name"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 126);
 			zephir_array_unset_string(&info, SL("name"), PH_SEPARATE);
 			if (zephir_is_instance_of(&obj, SL("Phalcon\\Mvc\\Model"))) {
 				ZEPHIR_CALL_METHOD(NULL, &obj, "settransaction", NULL, 0, &transaction);
@@ -532,9 +532,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execInsert)
 
 
 	ZEPHIR_OBS_VAR(&initial_data);
-	zephir_array_fetch_string(&initial_data, &info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 154);
+	zephir_array_fetch_string(&initial_data, &info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 157);
 	if (!(ZEPHIR_IS_EMPTY(&initial_data))) {
-		zephir_is_iterable(&initial_data, 1, "phalconplus/Db/UnitOfWork.zep", 167);
+		zephir_is_iterable(&initial_data, 1, "phalconplus/Db/UnitOfWork.zep", 170);
 		if (Z_TYPE_P(&initial_data) == IS_ARRAY) {
 			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&initial_data), _2$$3, _3$$3, _0$$3)
 			{
@@ -661,9 +661,9 @@ PHP_METHOD(PhalconPlus_Db_UnitOfWork, execUpdate)
 
 
 	ZEPHIR_OBS_VAR(&initial_data);
-	zephir_array_fetch_string(&initial_data, &info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 184);
+	zephir_array_fetch_string(&initial_data, &info, SL("initial_data"), PH_NOISY, "phalconplus/Db/UnitOfWork.zep", 187);
 	if (!(ZEPHIR_IS_EMPTY(&initial_data))) {
-		zephir_is_iterable(&initial_data, 1, "phalconplus/Db/UnitOfWork.zep", 192);
+		zephir_is_iterable(&initial_data, 1, "phalconplus/Db/UnitOfWork.zep", 195);
 		if (Z_TYPE_P(&initial_data) == IS_ARRAY) {
 			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&initial_data), _2$$3, _3$$3, _0$$3)
 			{

@@ -1,5 +1,6 @@
 namespace PhalconPlus\Enum;
 use PhalconPlus\Enum\AbstractEnum;
+use PhalconPlus\Enum\Sys;
 use PhalconPlus\App\App as SuperApp;
 use PhalconPlus\Facades\AbstractFacade;
 
@@ -53,7 +54,7 @@ class Facade extends AbstractEnum
     private static classPrefix = "PhalconPlus\\Facades\\";
     private static loaded = false;
 
-    public static function register(<SuperApp> superApp, string prefix = "") -> boolean
+    public static function register(<SuperApp> superApp) -> boolean
     {
         if self::loaded === true {
             return true; 
@@ -61,17 +62,15 @@ class Facade extends AbstractEnum
         AbstractFacade::setApp(superApp);
 
         var alias, facades;
-        string className, classAlias;
+        string className;
 
         let facades = self::validValues();
         for alias in facades {
             let className = self::classPrefix.alias;
-            let classAlias = prefix.alias;
-            %{
-                zend_class_entry *ce;
-                ce = zephir_fetch_class(&className);
-                zend_register_class_alias_ex(Z_STRVAL(classAlias), Z_STRLEN(classAlias), ce, 0);
-            }%
+            // With Ph prefix - will remove in future
+            Sys::classAlias(className, "Ph\\".alias);
+            // With Plus prefix
+            Sys::classAlias(className, "Plus\\".alias);
         }
         let self::loaded = true;
         return true;

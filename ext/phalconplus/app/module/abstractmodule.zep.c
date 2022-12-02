@@ -72,9 +72,9 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, __construct)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
-		Z_PARAM_OBJECT_OF_CLASS(app, phalconplus_app_app_ce)
+		Z_PARAM_OBJECT_OF_CLASS(app, zephir_get_internal_ce(SL("phalconplus\\app\\app")))
 		Z_PARAM_OPTIONAL
-		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(def, phalconplus_app_module_moduledef_ce)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(def, zephir_get_internal_ce(SL("phalconplus\\app\\module\\moduledef")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -364,7 +364,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec)
 	ZEPHIR_CALL_METHOD(&_1, &_0, "isprimary", NULL, 0);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Only primary module can be executed", "phalconplus/App/Module/AbstractModule.zep", 94);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Only primary module can be executed", "phalconplus/App/Module/AbstractModule.zep", 96);
 		return;
 	}
 	zephir_read_property(&_2, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);

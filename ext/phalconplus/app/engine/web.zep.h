@@ -12,7 +12,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalconplus_app_engine_web___construct, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_phalconplus_app_engine_web_exec, 0, 0, Phalcon\\Http\\ResponseInterface, 0)
-	ZEND_ARG_INFO(0, uri)
+	ZEND_ARG_INFO(0, request)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalconplus_app_engine_web_method_entry) {
