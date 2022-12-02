@@ -1,2 +1,0 @@
-kernel/backtrace.lo: \
- /home/weigang/github/phalconplus/ext/kernel/backtrace.c

@@ -86,12 +86,12 @@ PHP_METHOD(PhalconPlus_Helper_Str, decodeJson)
 			zend_clear_exception();
 			ZEPHIR_CPY_WRT(&e, &_5);
 			ZEPHIR_INIT_VAR(&_6$$4);
-			object_init_ex(&_6$$4, phalconplus_helper_exception_ce);
+			object_init_ex(&_6$$4, zend_ce_exception);
 			ZEPHIR_CALL_METHOD(&_7$$4, &e, "getmessage", NULL, 0);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &_6$$4, "__construct", NULL, 2, &_7$$4);
+			ZEPHIR_CALL_METHOD(NULL, &_6$$4, "__construct", NULL, 123, &_7$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_6$$4, "phalconplus/Helper/Str.zep", 13);
+			zephir_throw_exception_debug(&_6$$4, "phalconplus/Helper/Str.zep", 15);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}

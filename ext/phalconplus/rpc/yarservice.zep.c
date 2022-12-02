@@ -20,15 +20,15 @@
 #include "kernel/exception.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_YarServerWrapper)
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_YarService)
 {
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc, YarServerWrapper, phalconplus, rpc_yarserverwrapper, phalconplus_rpc_abstractyar_ce, phalconplus_rpc_yarserverwrapper_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc, YarService, phalconplus, rpc_yarservice, phalconplus_rpc_abstractservice_ce, phalconplus_rpc_yarservice_method_entry, 0);
 
-	zend_declare_property_null(phalconplus_rpc_yarserverwrapper_ce, SL("yar"), ZEND_ACC_PROTECTED);
+	zend_declare_property_null(phalconplus_rpc_yarservice_ce, SL("yar"), ZEND_ACC_PROTECTED);
 	return SUCCESS;
 }
 
-PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, setServer)
+PHP_METHOD(PhalconPlus_Rpc_YarService, setServer)
 {
 	zval _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -64,7 +64,7 @@ PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, setServer)
 	RETURN_THIS();
 }
 
-PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, handle)
+PHP_METHOD(PhalconPlus_Rpc_YarService, handle)
 {
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -79,7 +79,7 @@ PHP_METHOD(PhalconPlus_Rpc_YarServerWrapper, handle)
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("yar"), PH_NOISY_CC | PH_READONLY);
 	if (Z_TYPE_P(&_0) == IS_NULL) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "You need set a server before handler request", "phalconplus/Rpc/YarServerWrapper.zep", 25);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "You need set a server before handler request", "phalconplus/Rpc/YarService.zep", 25);
 		return;
 	}
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("yar"), PH_NOISY_CC | PH_READONLY);

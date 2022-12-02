@@ -23,16 +23,16 @@
 #include "ext/spl/spl_exceptions.h"
 
 
-ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_Yar)
+ZEPHIR_INIT_CLASS(PhalconPlus_Rpc_SimpleService)
 {
-	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc, Yar, phalconplus, rpc_yar, phalconplus_rpc_abstractyar_ce, phalconplus_rpc_yar_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(PhalconPlus\\Rpc, SimpleService, phalconplus, rpc_simpleservice, phalconplus_rpc_abstractservice_ce, phalconplus_rpc_simpleservice_method_entry, 0);
 
-	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("formater"), "msgpack", ZEND_ACC_PROTECTED);
-	zend_declare_property_string(phalconplus_rpc_yar_ce, SL("encoder"), "msgpack_pack", ZEND_ACC_PROTECTED);
+	zend_declare_property_string(phalconplus_rpc_simpleservice_ce, SL("formater"), "msgpack", ZEND_ACC_PROTECTED);
+	zend_declare_property_string(phalconplus_rpc_simpleservice_ce, SL("encoder"), "msgpack_pack", ZEND_ACC_PROTECTED);
 	return SUCCESS;
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Yar, __construct)
+PHP_METHOD(PhalconPlus_Rpc_SimpleService, __construct)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -69,7 +69,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct)
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, phalconplus_rpc_yar_ce, getThis(), "__construct", NULL, 0, di);
+	ZEPHIR_CALL_PARENT(NULL, phalconplus_rpc_simpleservice_ce, getThis(), "__construct", NULL, 0, di);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "json");
@@ -83,7 +83,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, __construct)
 	ZEPHIR_MM_RESTORE();
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Yar, setServer)
+PHP_METHOD(PhalconPlus_Rpc_SimpleService, setServer)
 {
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -113,7 +113,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, setServer)
 	RETURN_THIS();
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Yar, handle)
+PHP_METHOD(PhalconPlus_Rpc_SimpleService, handle)
 {
 	zval encoder$$5;
 	zval _6$$4;
@@ -163,7 +163,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle)
 	ZEPHIR_CALL_METHOD(&serviceObj, this_ptr, "getserver", NULL, 0);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_EMPTY(&serviceObj)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "You need set a server before handler request", "phalconplus/Rpc/Yar.zep", 35);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "You need set a server before handler request", "phalconplus/Rpc/SimpleService.zep", 35);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&serviceName);
@@ -236,7 +236,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle)
 				ZVAL_STRING(&_14$$9, "invalid request args");
 				ZEPHIR_CALL_METHOD(NULL, &_13$$9, "__construct", NULL, 2, &_14$$9);
 				zephir_check_call_status_or_jump(try_end_1);
-				zephir_throw_exception_debug(&_13$$9, "phalconplus/Rpc/Yar.zep", 65);
+				zephir_throw_exception_debug(&_13$$9, "phalconplus/Rpc/SimpleService.zep", 65);
 				goto try_end_1;
 
 			}
@@ -282,7 +282,7 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, handle)
 	RETURN_MM_BOOL(1);
 }
 
-PHP_METHOD(PhalconPlus_Rpc_Yar, defaultResponse)
+PHP_METHOD(PhalconPlus_Rpc_SimpleService, defaultResponse)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -331,20 +331,20 @@ PHP_METHOD(PhalconPlus_Rpc_Yar, defaultResponse)
 
 
 	ZEPHIR_OBS_VAR(&host);
-	zephir_array_fetch_string(&host, &_SERVER, SL("HTTP_HOST"), PH_NOISY, "phalconplus/Rpc/Yar.zep", 88);
-	zephir_array_fetch_string(&_0, &vals, SL("originalMode"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 89);
+	zephir_array_fetch_string(&host, &_SERVER, SL("HTTP_HOST"), PH_NOISY, "phalconplus/Rpc/SimpleService.zep", 88);
+	zephir_array_fetch_string(&_0, &vals, SL("originalMode"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 89);
 	if (ZEPHIR_IS_STRING(&_0, "Web")) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		ZEPHIR_CONCAT_VS(&_1$$3, &host, "/rpc.php");
 		ZEPHIR_CPY_WRT(&host, &_1$$3);
 	}
-	zephir_array_fetch_string(&_2, &vals, SL("ns"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 92);
+	zephir_array_fetch_string(&_2, &vals, SL("ns"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 92);
 	ZEPHIR_INIT_VAR(&sampleCodes);
 	ZEPHIR_CONCAT_SVSVS(&sampleCodes, "\n<?php\n$remoteUrls = [\n    \"http://", &host, "\",\n];\n$client = new PhalconPlus\\Rpc\\Client\\Adapter\\Curl($remoteUrls);\n$result = $client->callByObject([\n    \"service\" => \"", &_2, "Services\\Demo\",\n    \"method\" => \"main\",\n    \"args\"   => [\n        \"foo\" => \"bar\",\n    ],\n]);\nvar_export($result);\n");
 	ZEPHIR_INIT_VAR(&expectedRet);
 	ZVAL_STRING(&expectedRet, "<?php\narray (\n	'errorCode' => 0,\n	'errorMsg' => '',\n	'logId' => 'da0abdea3483146cd8',\n	'data' => array (\n		'params' => array (\n			'foo' => 'bar',\n		),\n	),\n)\n");
-	zephir_array_fetch_string(&_3, &vals, SL("serviceName"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 94);
-	zephir_array_fetch_string(&_4, &vals, SL("serviceName"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/Yar.zep", 94);
+	zephir_array_fetch_string(&_3, &vals, SL("serviceName"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 94);
+	zephir_array_fetch_string(&_4, &vals, SL("serviceName"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 94);
 	ZEPHIR_INIT_VAR(&_5);
 	ZEPHIR_CALL_FUNCTION(&_6, "highlight_string", &_7, 159, &sampleCodes, &__$true);
 	zephir_check_call_status();

@@ -277,7 +277,7 @@ PHP_METHOD(PhalconPlus_Db_Mysql, getConnection)
 					ZEPHIR_CONCAT_SV(&_24$$9, "PHP Fatal error:  PhalconPlus::Db::MySQL::connect() finally failed to connect to MySQL. Detail: ", &_22$$9);
 					ZEPHIR_CALL_FUNCTION(NULL, "error_log", &_14, 112, &_24$$9);
 					zephir_check_call_status();
-					zephir_throw_exception_debug(&e, "phalconplus/Db/Mysql.zep", 83);
+					zephir_throw_exception_debug(&e, "phalconplus/Db/Mysql.zep", 85);
 					ZEPHIR_MM_RESTORE();
 					return;
 				}

@@ -62,7 +62,7 @@ PHP_METHOD(PhalconPlus_Facades_AbstractFacade, setApp)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJECT_OF_CLASS(app, phalconplus_app_app_ce)
+		Z_PARAM_OBJECT_OF_CLASS(app, zephir_get_internal_ce(SL("phalconplus\\app\\app")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 

@@ -9,6 +9,7 @@ use PhalconPlus\Enum\RunEnv;
 use Phalcon\Config\Config;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\Events\ManagerInterface;
+use Phalcon\Autoload\Loader;
 
 final class App extends BaseApplication
 {
@@ -17,7 +18,7 @@ final class App extends BaseApplication
     // Enum: ['dev', 'test', 'pre-production', 'production']
     protected env = RunEnv::DEV;
     protected booted = false;
-    // 全局配置 <\Phalcon\Config>
+    // 全局配置 <Config>
     protected config = null { get };
     // 处理请求次数
     protected requestNumber = 0;
@@ -66,7 +67,7 @@ final class App extends BaseApplication
             this->setDI(primaryModuleDef->newDI());
             this->getDI()->setShared("superApp", this);
             this->getDI()->setShared("config", this->config);
-            this->getDI()->setShared("loader", new \Phalcon\Loader());
+            this->getDI()->setShared("loader", new Loader());
         }
         // App启动成功
         let this->booted = true;
@@ -293,7 +294,7 @@ final class App extends BaseApplication
         return this->config;
     }
 
-    public function di() -> <\Phalcon\Di>
+    public function di() -> <Di>
     {
         return this->container;
     }

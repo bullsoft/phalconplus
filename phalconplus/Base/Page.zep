@@ -1,11 +1,12 @@
 namespace PhalconPlus\Base;
 use PhalconPlus\Assert\Assertion as Assert;
 use Phalcon\Mvc\Model\Resultset;
+use ArrayObject;
 
 class Page extends ProtoBuffer
 {
     /**
-     * @var <\Phalcon\Base\Pagable>
+     * @var <\PhalconPlus\Base\Pagable>
      */
     private pagable = null;
 
@@ -38,7 +39,7 @@ class Page extends ProtoBuffer
             if data->count() > 0 {
                 switch(hydrateMode) {
                     case Resultset::HYDRATE_RECORDS:
-                        let tmpData = new \ArrayObject();
+                        let tmpData = new ArrayObject();
                         let tmpData->modelName = get_class(data->getFirst());
                         let tmpData->columnMap = data->getFirst()->columnMap();
                         for item in iterator(data) {

@@ -6,6 +6,7 @@ use Phalcon\Di\Di;
 
 abstract class AbstractServer
 {
+    const NAME = "backendSrv";
     protected di = null { get };
     protected phpOnly = false { get };
     protected eventsManager = null;
@@ -40,8 +41,8 @@ abstract class AbstractServer
                 var tmp = request, param, paramClass;
                 // We just care the first parameter, and ignore others
                 let param = new \ReflectionParameter([serviceClass, method], 0);
-                if param->getClass() {
-                    let paramClass = param->getClass()->getName();
+                if param->getType() && !param->getType()->isBuiltin() {
+                    let paramClass = param->getType()->getName();
                     let request = new {paramClass}();
                     request->softClone(tmp);
                 } else {

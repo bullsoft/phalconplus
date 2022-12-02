@@ -53,6 +53,7 @@ class Arr
         }
         return str;
     }
+
     public static function firstKey(inputArray)
     {
         Assert::isArray(inputArray);

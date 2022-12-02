@@ -37,7 +37,7 @@ class Local extends AbstractClient
 
         if this->di->has("logger") {
             let message = "LocalRpc> dispatch to '" .serviceClass. "::". method . "(request)' where request is: " . var_export(request, true);
-            this->di->get("logger")->log(message);
+            this->di->get("logger")->debug(message);
         }
 
         if methodReflection->getNumberOfParameters() > 0 {
@@ -65,7 +65,7 @@ class Local extends AbstractClient
 
         if this->di->has("logger") {
             let message = "LocalRpc> finally requst transformed to: ". var_export(request, true);
-            this->di->get("logger")->log(message);
+            this->di->get("logger")->debug(message);
         }
         
         var response;
@@ -91,7 +91,7 @@ class Local extends AbstractClient
 
         if this->di->has("logger") {
             let message = "LocalRpc> callByObject: " . var_export(rawData, true);
-            this->di->get("logger")->log(message);
+            this->di->get("logger")->debug(message);
         }
 
         if !fetch service, rawData["service"] {
@@ -114,7 +114,7 @@ class Local extends AbstractClient
 
         if this->di->has("logger") {
             let message = "LocalRpc> callByParams with (" . service . ", " . method . ")";
-            this->di->get("logger")->log(message);
+            this->di->get("logger")->debug(message);
         }
 		
         return this->callByParams(service, method, request);

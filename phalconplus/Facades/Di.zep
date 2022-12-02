@@ -1,4 +1,5 @@
 namespace PhalconPlus\Facades;
+use Phalcon\Di\Di as PhDi;
 
 class Di extends AbstractFacade
 {
@@ -7,7 +8,7 @@ class Di extends AbstractFacade
         return "di";
     }
 
-    protected function resolve(<\Phalcon\Di\Di> di) -> null | <\Phalcon\Di\Di>
+    protected function resolve(<PhDi> di) -> null | <PhDi>
     {
         return di;
     }

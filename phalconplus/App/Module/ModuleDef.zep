@@ -3,10 +3,11 @@ use PhalconPlus\Enum\Sys as Sys;
 use PhalconPlus\App\App as SuperApp;
 use PhalconPlus\Enum\RunMode;
 use PhalconPlus\Base\AbstractModule;
-use Phalcon\Config;
+use Phalcon\Config\Config;
 use PhalconPlus\Base\Exception as BaseException;
 use Phalcon\DI\FactoryDefault as DefaultDI;
 use Phalcon\DI\FactoryDefault\CLI as TaskDI;
+use Phalcon\Di\Di;
 
 /* Module Structure
     .
@@ -83,7 +84,7 @@ class ModuleDef
         }
     }
 
-    public function newDI() -> <\Phalcon\Di>
+    public function newDI() -> <Di>
     {
         var di;
         if this->runMode->isCli() {
@@ -231,7 +232,7 @@ class ModuleDef
         return this->configPath;
     }
 
-    public function getConfig() -> <\Phalcon\Config>
+    public function getConfig() -> <Config>
     {
         return this->config;
     }
@@ -246,7 +247,7 @@ class ModuleDef
         return this->dir;
     }
 
-    public function config() -> <\Phalcon\Config>
+    public function config() -> <Config>
     {
         return this->config;
     }
@@ -261,7 +262,7 @@ class ModuleDef
         return this->app;
     }
 
-    public function di() -> <\Phalcon\Di>
+    public function di() -> <Di>
     {
         return this->app->di();
     }

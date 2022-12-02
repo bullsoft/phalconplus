@@ -5,8 +5,11 @@ use PhalconPlus\Base\Exception;
 use Phalcon\Mvc\Model\Transaction\Manager as TxManager;
 use Phalcon\Mvc\Model\Transaction\Failed as TxFailed;
 use PhalconPlus\Db\UnitOfWork\AbstractValue;
-use Phalcon\Mvc\Model as Model;
 use Phalcon\Mvc\Model\Resultset as Resultset;
+use Phalcon\Mvc\Model as PhModel;
+use PhalconPlus\Base\Model as PlusModel;
+use PhalconPlus\Db\UnitOfWork\LastInsertId;
+use PhalconPlus\Db\UnitOfWork\Field;
 
 class UnitOfWork
 {
@@ -34,7 +37,7 @@ class UnitOfWork
         let this->dbServiceName = dbServiceName;
     }
 
-    public function save(var name, <\PhalconPlus\Base\Model> model, array initial_data = [])
+    public function save(var name, <PlusModel> model, array initial_data = [])
     {
         if !empty initial_data {
             model->assign(initial_data);
@@ -46,7 +49,7 @@ class UnitOfWork
         }
     }
 
-    public function insert(var name, <\PhalconPlus\Base\Model> model, array initial_data = [])
+    public function insert(var name, <PlusModel> model, array initial_data = [])
     {
         this->detach(model);
         this->attach(model, [
@@ -61,7 +64,7 @@ class UnitOfWork
      */
     public function update(var name, var model, array initial_data = [])
     {
-        if (model instanceof Model) || (model instanceof Resultset) {
+        if (model instanceof PhModel) || (model instanceof Resultset) {
             this->detach(model);
             this->attach(model, [
                 "method" : "update",
@@ -122,9 +125,9 @@ class UnitOfWork
                 var method = info["method"]; unset(info["method"]);
                 var name = info["name"]; unset(info["name"]);
 
-                if obj instanceof \Phalcon\Mvc\Model {
+                if obj instanceof PhModel {
                     obj->setTransaction(transaction);
-                } elseif obj instanceof \Phalcon\Mvc\Model\Resultset {
+                } elseif obj instanceof Resultset {
                     iterator_apply(obj, function(<\Iterator> iterator, transaction) {
                         iterator->current()->setTransaction(transaction);
                     }, [obj, transaction]);
@@ -148,7 +151,7 @@ class UnitOfWork
         return true;
     }
 
-    public function execInsert(<\Phalcon\Mvc\Model> model, array info)
+    public function execInsert(<PhModel> model, array info)
     {
         var initial_data, result, last_insert_id;
         let initial_data = info["initial_data"];
@@ -157,9 +160,9 @@ class UnitOfWork
             var col, val;
             for col, val in initial_data {
                 if is_object(val) && val instanceof AbstractValue {
-                    if val instanceof \PhalconPlus\Db\UnitOfWork\LastInsertId {
+                    if val instanceof LastInsertId {
                         let initial_data[col] = val->getValue(this);
-                    } elseif val instanceof \PhalconPlus\Db\UnitOfWork\Field {
+                    } elseif val instanceof Field {
                         let initial_data[col] = val->getField(this);
                     }
                 }

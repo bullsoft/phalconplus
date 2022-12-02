@@ -1,6 +1,7 @@
 namespace PhalconPlus\Assert;
+use InvalidArgumentException;
 
-class InvalidArgumentException extends \InvalidArgumentException implements AssertionFailedException
+class InvalidArgumentException extends InvalidArgumentException implements AssertionFailedException
 {
     private propertyPath;
     private value;

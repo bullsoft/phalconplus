@@ -108,7 +108,7 @@ PHP_METHOD(PhalconPlus_Mvc_PsrApplication, handle)
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("container"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_IS_EMPTY(&_0)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "there is no di(dependency injector) in PsrAppliction", "phalconplus/Mvc/PsrApplication.zep", 32);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "There is no di(dependency injector) in PsrAppliction", "phalconplus/Mvc/PsrApplication.zep", 32);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&nativeRequest);

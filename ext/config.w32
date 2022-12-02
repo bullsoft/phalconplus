@@ -18,7 +18,7 @@ if (PHP_PHALCONPLUS != "no") {
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/logger/processor", "abstractprocessor.zep.c logid.zep.c msec.zep.c trace.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc/client", "abstractclient.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/db/unitofwork", "abstractvalue.zep.c field.zep.c lastinsertid.zep.c", "phalconplus");
-	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc", "abstractyar.zep.c yar.zep.c yarserverwrapper.zep.c", "phalconplus");
+	ADD_SOURCES(configure_module_dirname + "/phalconplus/rpc", "abstractservice.zep.c simpleservice.zep.c yarservice.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/assert", "assertionfailedexception.zep.c assertion.zep.c invalidargumentexception.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/contracts/auth/access", "modelevent.zep.c authorizable.zep.c dispatchevent.zep.c resourceaware.zep.c routerevent.zep.c", "phalconplus");
 	ADD_SOURCES(configure_module_dirname + "/phalconplus/contracts/auth", "policy.zep.c userprovider.zep.c", "phalconplus");

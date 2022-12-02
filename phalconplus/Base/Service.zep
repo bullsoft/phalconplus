@@ -4,7 +4,7 @@ use Phalcon\Di\Di;
 class Service
 {
     /**
-     * @var <\Phalcon\Di\Di>
+     * @var <Di>
      */
     protected di = null;
 
@@ -23,7 +23,7 @@ class Service
         return this->di;
     }
 
-    protected function __get(string! key)
+    public function __get(string! key)
     {
         if property_exists(this, key) {
             return this->{key};

@@ -1,8 +1,8 @@
 namespace PhalconPlus\Enum;
 use PhalconPlus\Enum\AbstractEnum;
 use Phalcon\Logger\Logger;
-use Phalcon\Support\Helper\Str\Camelize as StrCamelize;
-use Phalcon\Logger\Adapter\AbstractAdapter as LoggerAdapter;
+use Phalcon\Logger\Logger;
+use Phalcon\Logger\LoggerInterface;
 
 class Exception extends AbstractEnum
 {
@@ -39,14 +39,14 @@ class Exception extends AbstractEnum
         return detail;
     }
 
-    public static function newException(e, <LoggerAdapter> logger = null)
+    public static function newException(e, <LoggerInterface> logger = null)
     {
         var code, eCode, eName, map2Name, className;
         let map2Name = array_flip(static::validValues(true));
         let eCode = e->getCode();
 
         // e.g. USER_NOT_EXISTS -> UserNotExists
-        let eName = StrCamelize(map2Name[eCode]);
+        let eName = camelize(map2Name[eCode]);
 
         var eClassName, exception;
         let eClassName = static::exceptionClassPrefix() . eName;

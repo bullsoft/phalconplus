@@ -267,7 +267,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, firstKey)
 	ZEPHIR_CALL_FUNCTION(NULL, "reset", NULL, 70, inputArray);
 	ZEPHIR_UNREF(inputArray);
 	zephir_check_call_status();
-	zephir_is_iterable(inputArray, 0, "phalconplus/Helper/Arr.zep", 64);
+	zephir_is_iterable(inputArray, 0, "phalconplus/Helper/Arr.zep", 65);
 	if (Z_TYPE_P(inputArray) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(inputArray), _3, _4, _1)
 		{
@@ -335,7 +335,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, lastKey)
 	ZEPHIR_CALL_FUNCTION(NULL, "reset", NULL, 70, inputArray);
 	ZEPHIR_UNREF(inputArray);
 	zephir_check_call_status();
-	zephir_is_iterable(inputArray, 0, "phalconplus/Helper/Arr.zep", 74);
+	zephir_is_iterable(inputArray, 0, "phalconplus/Helper/Arr.zep", 75);
 	if (Z_TYPE_P(inputArray) == IS_ARRAY) {
 		ZEND_HASH_REVERSE_FOREACH_KEY_VAL(Z_ARRVAL_P(inputArray), _3, _4, _1)
 		{
@@ -475,7 +475,7 @@ PHP_METHOD(PhalconPlus_Helper_Arr, groupBy)
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&tmp);
 	array_init(&tmp);
-	zephir_is_iterable(inputArray, 0, "phalconplus/Helper/Arr.zep", 108);
+	zephir_is_iterable(inputArray, 0, "phalconplus/Helper/Arr.zep", 109);
 	if (Z_TYPE_P(inputArray) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(inputArray), _3, _4, _1)
 		{

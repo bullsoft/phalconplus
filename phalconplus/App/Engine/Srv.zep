@@ -5,9 +5,9 @@ use PhalconPlus\App\Module\AbstractModule as AppModule;
 
 use PhalconPlus\Rpc\Server\AbstractServer;
 use PhalconPlus\Rpc\Server\SimpleServer;
-use PhalconPlus\Rpc\Yar as YarServerPlus;
-use PhalconPlus\Rpc\YarServerWrapper;
-use PhalconPlus\Rpc\AbstractYar;
+use PhalconPlus\Rpc\SimpleService;
+use PhalconPlus\Rpc\YarService;
+use PhalconPlus\Rpc\AbstractService;
 use Phalcon\Application\AbstractApplication as BaseApplication;
 
 use Phalcon\Di\DiInterface;
@@ -24,28 +24,28 @@ class Srv extends AbstractEngine
 
         if is_null(handler) {
             if moduleConf->application->handler == "yar" {
-                let handler = new YarServerWrapper();
+                let handler = new YarService();
             } else {
-                let handler = new YarServerPlus();
+                let handler = new SimpleService();
             }
         }
-        var backendSrv = this->newService(di);
+        var backendSrv = this->newServer(di);
         handler->setServer(backendSrv);
         parent::__construct(appModule, handler);
     }
 
-    private function newService(<DiInterface> di) -> <AbstractServer>
+    private function newServer(<DiInterface> di) -> <AbstractServer>
     {
         // Backend Server, Default is SimpleServer
         var backendSrv;
-        if unlikely di->has(AbstractYar::NAME) {
-            let backendSrv = di->get(AbstractYar::NAME);
+        if unlikely di->has(AbstractServer::NAME) {
+            let backendSrv = di->get(AbstractServer::NAME);
             if ! (backendSrv instanceof AbstractServer) {
-                throw new BaseException("Service object(DI[\"backendSrv\"]) must be type of PhalconPlus\\Rpc\\Server\\AbstractServer");
+                throw new BaseException("Server object(DI[\"backendSrv\"]) must be type of PhalconPlus\\Rpc\\Server\\AbstractServer");
             }
         } else {
             let backendSrv = new SimpleServer(di);
-            di->setShared(AbstractYar::NAME, backendSrv);
+            di->setShared(AbstractServer::NAME, backendSrv);
         }
         return backendSrv;
     }

@@ -1,5 +1,7 @@
 namespace PhalconPlus\Db;
 use Phalcon\Di\Di;
+use Phalcon\Db\Adapter\Pdo\Mysql as PhMysql;
+use PhalconPlus\Db\Pdo\Mysql as PlusMysql;
 
 class Mysql
 {
@@ -54,7 +56,7 @@ class Mysql
         ];
     }
 
-    public function getConnection(boolean autoConnect = true) -> <\Phalcon\Db\Adapter\Pdo\Mysql>
+    public function getConnection(boolean autoConnect = true) -> <PhMysql>
     {
         var tryTimes, e;
         let tryTimes = this->retryTimes;
@@ -62,10 +64,10 @@ class Mysql
         while !this->connected {
             try {
                 if autoConnect == true {
-                    let this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql(this->descriptor);
+                    let this->connection = new PhMysql(this->descriptor);
                 } else {
                     // Lazy connection
-                    let this->connection = new \PhalconPlus\Db\Pdo\Mysql(this->descriptor, autoConnect);
+                    let this->connection = new PlusMysql(this->descriptor, autoConnect);
                 }
                 let this->connected = true;
             } catch \Exception, e {

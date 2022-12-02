@@ -256,7 +256,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams)
 		ZVAL_STRING(&_22$$7, "logger");
 		ZEPHIR_CALL_METHOD(&_21$$7, &_20$$7, "get", NULL, 0, &_22$$7);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_21$$7, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_21$$7, "debug", NULL, 0, &message);
 		zephir_check_call_status();
 	}
 	ZEPHIR_CALL_METHOD(&_23, &methodReflection, "getnumberofparameters", NULL, 5);
@@ -287,10 +287,10 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams)
 			ZVAL_LONG(&_26$$10, 0);
 			ZEPHIR_CALL_METHOD(NULL, &param$$10, "__construct", NULL, 6, &_25$$10, &_26$$10);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_27$$10, &param$$10, "getclass", NULL, 7);
+			ZEPHIR_CALL_METHOD(&_27$$10, &param$$10, "getclass", NULL, 154);
 			zephir_check_call_status();
 			if (zephir_is_true(&_27$$10)) {
-				ZEPHIR_CALL_METHOD(&_28$$11, &param$$10, "getclass", NULL, 7);
+				ZEPHIR_CALL_METHOD(&_28$$11, &param$$10, "getclass", NULL, 154);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&paramClass$$10, &_28$$11, "getname", NULL, 0);
 				zephir_check_call_status();
@@ -349,7 +349,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByParams)
 		ZVAL_STRING(&_41$$14, "logger");
 		ZEPHIR_CALL_METHOD(&_40$$14, &_39$$14, "get", NULL, 0, &_41$$14);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_40$$14, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_40$$14, "debug", NULL, 0, &message);
 		zephir_check_call_status();
 	}
 
@@ -467,7 +467,7 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByObject)
 		ZVAL_STRING(&_6$$3, "logger");
 		ZEPHIR_CALL_METHOD(&_5$$3, &_4$$3, "get", NULL, 0, &_6$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_5$$3, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_5$$3, "debug", NULL, 0, &message);
 		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_VAR(&service);
@@ -529,10 +529,10 @@ PHP_METHOD(PhalconPlus_Rpc_Client_Adapter_Local, callByObject)
 		ZVAL_STRING(&_20$$8, "logger");
 		ZEPHIR_CALL_METHOD(&_19$$8, &_18$$8, "get", NULL, 0, &_20$$8);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_19$$8, "log", NULL, 0, &message);
+		ZEPHIR_CALL_METHOD(NULL, &_19$$8, "debug", NULL, 0, &message);
 		zephir_check_call_status();
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 154, &service, &method, &request);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "callbyparams", NULL, 155, &service, &method, &request);
 	zephir_check_call_status();
 	RETURN_MM();
 }

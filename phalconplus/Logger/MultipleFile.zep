@@ -4,8 +4,9 @@ use PhalconPlus\Logger\Processor\AbstractProcessor;
 use Phalcon\Logger\Adapter\Stream;
 use Phalcon\Logger\Formatter\FormatterInterface;
 use PhalconPlus\Base\Exception as BaseException;
+use Phalcon\Logger\Logger as PhLogger;
 
-class MultiPleFile extends \Phalcon\Logger\Logger
+class MultiPleFile extends PhLogger
 {
     protected processors = [] { get };
 
@@ -16,12 +17,12 @@ class MultiPleFile extends \Phalcon\Logger\Logger
      *          [
      *               "name" => "local",
      *               "filePath" => "/path/to/logger/file.log",
-     *               "level"  => \Phalcon\Logger::DEBUG,
+     *               "level"  => PhLogger::DEBUG,
      *          ],
      *          [
      *               "name" => "remote",
      *               "filePath" => "/path/to/logger/file.log",
-     *               "level" => \Phalcon\Logger::CUSTOM，
+     *               "level" => PhLogger::CUSTOM，
      *          ],
      *  ]
      */

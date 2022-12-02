@@ -4,6 +4,8 @@ use PhalconPlus\Assert\Assertion as Assert;
 use PhalconPlus\Contracts\EmptyOrNot;
 use PhalconPlus\Contracts\ArrayOf;
 use PhalconPlus\Helper\Variable;
+use ReflectionObject, ReflectionMethod, ReflectionParameter, ReflectionClass;
+use RecursiveArrayIterator;
 
 class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable, 
                              \IteratorAggregate, EmptyOrNot, ArrayOf
@@ -39,16 +41,16 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
         let method = "set".key->upperfirst();
 
         try {
-            let methodRef = new \ReflectionMethod(this, method);
+            let methodRef = new ReflectionMethod(this, method);
             if methodRef->getNumberOfParameters() < 1 {
                 throw new BaseException(__CLASS__."::".method."() need at least 1 parameter");
             }
-            let param = new \ReflectionParameter([this, method], 0);
-            if param->getClass() {
-                let paramClass = param->getClass()->getName();
-                let paramClassRef = new \ReflectionClass(paramClass);
+            let param = new ReflectionParameter([this, method], 0);
+            if param->getType() && !param->getType()->isBuiltin() {
+                let paramClass = param->getType()->getName();
+                let paramClassRef = new ReflectionClass(paramClass);
                 // if is-a ProtoBuffer class
-                if paramClassRef->isSubclassOf("\\PhalconPlus\\Base\\ProtoBuffer") {
+                if paramClassRef->isSubclassOf(__CLASS__) {
                     let paramObj = (paramClassRef->newInstance())->softClone(val);
                     let val = paramObj;
                 } else {
@@ -144,7 +146,7 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
         return vars;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize() -> mixed
     {
         return this->toArray();
     }
@@ -198,7 +200,7 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
         this->__unset(offset);
     }
 
-    public function offsetGet(offset) 
+    public function offsetGet(offset) -> mixed
     {
         Assert::isString(offset);
         return this->__get(offset);
@@ -214,8 +216,8 @@ class ProtoBuffer implements \JsonSerializable, \ArrayAccess, \Countable,
         return empty(this->getSelfVars());
     }
 
-    public function getIterator() -> <\RecursiveArrayIterator>
+    public function getIterator() -> <RecursiveArrayIterator>
     {
-        return new \RecursiveArrayIterator(this->getSelfVars());
+        return new RecursiveArrayIterator(this->getSelfVars());
     }
 }

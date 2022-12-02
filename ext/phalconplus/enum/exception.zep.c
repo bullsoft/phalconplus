@@ -17,6 +17,7 @@
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/operators.h"
+#include "kernel/string.h"
 #include "kernel/concat.h"
 
 
@@ -156,7 +157,7 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException)
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(e)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(logger, zephir_get_internal_ce(SL("phalcon\\logger\\adapter\\abstractadapter")))
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(logger, zephir_get_internal_ce(SL("phalcon\\logger\\loggerinterface")))
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
@@ -176,9 +177,9 @@ PHP_METHOD(PhalconPlus_Enum_Exception, newException)
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&eCode, e, "getcode", NULL, 0);
 	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&eName);
 	zephir_array_fetch(&_2, &map2Name, &eCode, PH_NOISY | PH_READONLY, "phalconplus/Enum/Exception.zep", 49);
-	ZEPHIR_CALL_FUNCTION(&eName, "strcamelize", NULL, 0, &_2);
-	zephir_check_call_status();
+	zephir_camelize(&eName, &_2, NULL  );
 	ZEPHIR_CALL_STATIC(&_3, "exceptionclassprefix", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&eClassName);
