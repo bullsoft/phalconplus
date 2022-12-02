@@ -7,6 +7,7 @@ use Phalcon\Di\Di;
 abstract class AbstractServer
 {
     const NAME = "backendSrv";
+
     protected di = null { get };
     protected phpOnly = false { get };
     protected eventsManager = null;

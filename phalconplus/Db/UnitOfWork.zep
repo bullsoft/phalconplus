@@ -29,10 +29,10 @@ class UnitOfWork
 
     public function __construct(var dbServiceName)
     {
-        let this->objects = new \SplObjectStorage();
-        let this->deleted = new \SplObjectStorage();
+        let this->objects  = new \SplObjectStorage();
+        let this->deleted  = new \SplObjectStorage();
         let this->inserted = new \SplObjectStorage();
-        let this->updated = new \SplObjectStorage();
+        let this->updated  = new \SplObjectStorage();
 
         let this->dbServiceName = dbServiceName;
     }

@@ -5,8 +5,6 @@ use Phalcon\Application\AbstractApplication;
 
 class AbstractService extends AbstractApplication
 {
-    // const NAME = "backendSrv";
-
     public function getServer() -> <AbstractServer>
     {
         return this->getModule(AbstractServer::NAME);
