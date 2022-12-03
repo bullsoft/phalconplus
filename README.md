@@ -50,8 +50,8 @@ graph TD
     B3 --> B33(RunMode: Srv)
     B32 --> C2{Engine\Web::handler is}
     C2 --> |request:GuzzleHttp\\Psr7\\ServerRequest|C21(PsrHandler::handle) --> D1
-    C2 --> |reqeust:String|C22(Phalcon\Mvc\Application::handle) --> D1
-    C2 --> C23(Excepton: Invalid Handler)
+    C2 --> |request:String|C22(Phalcon\Mvc\Application::handle) --> D1
+    C2 --> C23(Exception: Invalid Handler)
     B33 --> C3{application.handler==yar?}
     C3 --> |yes|C31(YarService::handle)  --> D1
     C3 --> |no|C32(SimpleService::handle)  --> D1
