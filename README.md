@@ -35,13 +35,13 @@ So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框�
 ## 框架执行流程
 ```mermaid
 graph TD
-    A[PhalconPlus\Bootstrap::__construct] -->|Sys::init, initConf| A1(SuperApp::boot with Env, RunMode)
+    A[PhalconPlus\Bootstrap::__construct] -->|Sys::init|A01(Sys::load ComposerAutoloadPath)
+    A01 --> |initConf|A1(SuperApp::boot with Env, RunMode)
     A1 --> |Sys::iniApp, Define global constants, The first module is primary| A2(SuperApp::bootPrimaryModule)
     A2 --> |Make sure we have a valid module: Web/Cli/Srv|A3(ModuleDef)
     A3 --> |Assign SuperApp::booted -> true, Make this a defaultModule |A4(SuperApp::registerModule with ModuleDef)
     A4 --> |Make sure this module is not running in SuperApp::modules|A5(Checkout Module)
-    A5 --> |AbstractModule::registerAutoloaders/registerServices/registerEvents|A6(Sys::load ComposerAutoloadPath)
-    A6 --> A7(SuperApp::handle)
+    A5 --> |AbstractModule::registerAutoloaders/registerServices/registerEvents|A7(SuperApp::handle)
     A7 --> |params=func_get_args, Event: superapp:beforeExecModule|B1(SuperApp::defaultModule->exec with params)
     B1 --> |Event: superapp:afterExecModule|B2(AbstractModule::registerEngine)
     B2 --> |Event: module:beforeStartEngine|B3(AbstractModule::exec with params)
@@ -249,7 +249,7 @@ psr-worker.php内容如下：
 use Nyholm\Psr7;
 use Spiral\RoadRunner;
 use PhalconPlus\Http\PsrResponseFactory;
-use Web\Exceptions\Handler as ExceptionHandler;
+use Test\Exceptions\Handler as ExceptionHandler;
 
 $app = (new PhalconPlus\Bootstrap(__DIR__))->app();
 
