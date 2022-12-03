@@ -12,14 +12,14 @@ final class Bootstrap
     {
         // PrimaryModule Dir
         Sys::init(moduleDir);
-        var config = this->initConf();
-        let this->app = (new SuperApp(config))->boot(env, runMode);
         // Try to load composer-autoloader
         try {
             Sys::load(Sys::getComposerAutoloadPath());
         } catch \Exception {
             // nothing here...
-        }
+        }    
+        var config = this->initConf();
+        let this->app = (new SuperApp(config))->boot(env, runMode);       
     }
 
     protected function initConf() -> <Config>

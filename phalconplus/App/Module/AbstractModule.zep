@@ -112,10 +112,18 @@ abstract class AbstractModule extends Injectable
         }
         this->container->setShared("appEngine", this->engine);
 
-        return call_user_func_array(
+        var ret = call_user_func_array(
             [this->engine, "exec"], 
             params
         );
+
+        if typeof eventsManager == "object" {
+            if eventsManager->fire("module:afterStartEngine", this, [engineClass, ret]) === false {
+                // 
+            }
+        }
+
+        return ret;
     }
 
     abstract public function registerAutoloaders();

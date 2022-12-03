@@ -44,12 +44,12 @@ class PsrResponseFactory
         var headers = response->getHeaders()->toArray();
         var rawHeaders = headers_list();
 
-        var h, pos, nativeHeaders = [];
-        for h in rawHeaders {
-            let pos = strpos(h, ":");
+        var line, key, pos, nativeHeaders = [];
+        for line in rawHeaders {
+            let pos = strpos(line, ":");
             if false !== pos {
-                var name = substr(h, 0, pos);
-                var value = trim(substr(h, pos + 1));
+                var name = substr(line, 0, pos);
+                var value = trim(substr(line, pos + 1));
                 if isset(nativeHeaders[name]) {
                     if !is_array(nativeHeaders[name]) {
                         let nativeHeaders[name] = [nativeHeaders[name]];
@@ -58,6 +58,11 @@ class PsrResponseFactory
                 } else {
                     let nativeHeaders[name] = value;
                 }
+            }
+        }
+        for key, _ in headers {
+            if typeof key == "string" && starts_with(key, "HTTP/") {
+                unset(headers[key]);
             }
         }
         // after reading all headers we need to reset it, so next request
