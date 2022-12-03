@@ -319,13 +319,14 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *params_param = NULL, _0, _1, eventsManager, engineClass, engineName, _2, _3, _4, _5, _9, _10, _11, _13, _6$$4, _8$$4;
-	zval params, _12, _7$$4;
+	zval *params_param = NULL, _0, _1, eventsManager, engineClass, engineName, _2, _3, _4, _5, _9, _10, _11, ret, _13, _6$$4, _8$$4, _14$$6, _16$$6;
+	zval params, _12, _7$$4, _15$$6;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&params);
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_7$$4);
+	ZVAL_UNDEF(&_15$$6);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&eventsManager);
@@ -338,9 +339,12 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec)
 	ZVAL_UNDEF(&_9);
 	ZVAL_UNDEF(&_10);
 	ZVAL_UNDEF(&_11);
+	ZVAL_UNDEF(&ret);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_8$$4);
+	ZVAL_UNDEF(&_14$$6);
+	ZVAL_UNDEF(&_16$$6);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
@@ -407,9 +411,22 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec)
 	ZEPHIR_INIT_NVAR(&_5);
 	ZVAL_STRING(&_5, "exec");
 	zephir_array_fast_append(&_12, &_5);
-	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_12, &params);
+	ZEPHIR_INIT_VAR(&ret);
+	ZEPHIR_CALL_USER_FUNC_ARRAY(&ret, &_12, &params);
 	zephir_check_call_status();
-	RETURN_MM();
+	if (Z_TYPE_P(&eventsManager) == IS_OBJECT) {
+		ZEPHIR_INIT_VAR(&_15$$6);
+		zephir_create_array(&_15$$6, 2, 0);
+		zephir_array_fast_append(&_15$$6, &engineClass);
+		zephir_array_fast_append(&_15$$6, &ret);
+		ZEPHIR_INIT_VAR(&_16$$6);
+		ZVAL_STRING(&_16$$6, "module:afterStartEngine");
+		ZEPHIR_CALL_METHOD(&_14$$6, &eventsManager, "fire", NULL, 0, &_16$$6, this_ptr, &_15$$6);
+		zephir_check_call_status();
+		if (ZEPHIR_IS_FALSE_IDENTICAL(&_14$$6)) {
+		}
+	}
+	RETURN_CCTOR(&ret);
 }
 
 PHP_METHOD(PhalconPlus_App_Module_AbstractModule, registerAutoloaders)
