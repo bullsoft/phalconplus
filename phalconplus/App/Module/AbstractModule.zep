@@ -10,6 +10,7 @@ use Phalcon\Http\ResponseInterface as HttpResponse;
 use Phalcon\Cli\Task as CliTask;
 use Phalcon\Config\Config;
 use Phalcon\Di\Di;
+use Phalcon\Di\Di\DiInterface;
 
 abstract class AbstractModule extends Injectable
 {
@@ -62,7 +63,7 @@ abstract class AbstractModule extends Injectable
         return this->app;
     }
 
-    public function di() -> <Di>
+    public function di() -> <DiInterface>
     {
         return this->container;
     }
