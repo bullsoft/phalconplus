@@ -35,7 +35,7 @@ So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框�
 ## 框架执行流程
 ```mermaid
 graph TD
-    A[PhalconPlus\Bootstrap::__construct] -->|Sys::init, initConf, Load ComposerAutoloadPath| A1(SuperApp::boot with Env, RunMode)
+    A[PhalconPlus\Bootstrap::__construct] -->|Sys::init, initConf| A1(SuperApp::boot with Env, RunMode)
     A1 --> |Sys::iniApp, Define global constants, The first module is primary| A2(SuperApp::bootPrimaryModule)
     A2 --> |Make sure we have a valid module: Web/Cli/Srv|A3(ModuleDef)
     A3 --> |Assign SuperApp::booted -> true, Make this a defaultModule |A4(SuperApp::registerModule with ModuleDef)
