@@ -213,64 +213,66 @@ ppm.json内容如下：
 ```
 ➜ composer require spiral/roadrunner
 ➜ cd test
-➜ touch .rr.json
+➜ touch .rr.yaml
 ➜ touch psr-worker.php
 ```
-.rr.json内容如下：
-```json
-{
-  "http": {
-    "address": "0.0.0.0:8181",
-    "workers": {
-      "command": "/usr/local/opt/php@7.2/bin/php psr-worker.php",
-      "relay": "unix://rr.sock",
-      "pool": {
-        "numWorkers": 2
-      }
-    }
-  },
-  "static" : {
-  	"enable" : true,
-  	"dir": "public",
-  	"forbid": [".php", ".htaccess"]
-  }
-}
+.rr.yaml内容如下：
+```yaml
+# configuration version: https://roadrunner.dev/docs/beep-beep-config/2.x/en
+version: '2.7'
+
+rpc:
+  listen: tcp://127.0.0.1:6001
+
+server:
+  command: "/usr/local/bin/php psr-worker.php"
+  relay: pipes
+
+http:
+  address: "0.0.0.0:8384"
+  pool:
+    debug: true
+    num_workers: 2
+
+  static:
+    dir: "public"
+    forbid: [".php", ".htaccess"]
+
+logs:
+  mode: development
+  level: debug
+
 ```
 psr-worker.php内容如下：
 ```php
 <?php
-
-use Spiral\Goridge;
+use Nyholm\Psr7;
 use Spiral\RoadRunner;
 use PhalconPlus\Http\PsrResponseFactory;
-
-ini_set('display_errors', 'stderr');
+use Web\Exceptions\Handler as ExceptionHandler;
 
 $app = (new PhalconPlus\Bootstrap(__DIR__))->app();
 
-$worker = new RoadRunner\Worker(
-    new Goridge\SocketRelay(__DIR__."/rr.sock", null, Goridge\SocketRelay::SOCK_UNIX)
-);
+$worker = RoadRunner\Worker::create();
+$psrFactory = new Psr7\Factory\Psr17Factory();
+$worker = new RoadRunner\Http\PSR7Worker($worker, $psrFactory, $psrFactory, $psrFactory);
 
-$psr7 = new RoadRunner\PSR7Client($worker);
 
-while ($req = $psr7->acceptRequest()) {
-
+while ($req = $worker->waitRequest()) {
     try {
-        $resp = $app->handle($req);
+        $rsp = $app->handle($req);
     } catch (\Throwable $e) {
-        Test\Exceptions\Handler::catch($e);
-        $resp = $app->response();
+        ExceptionHandler::catch($e);
+        $rsp = $app?->response();
     }
-
-    $psr7->respond(PsrResponseFactory::create($resp));
+    $worker->respond(PsrResponseFactory::create($rsp));
     $app->terminate();
-    unset($req, $resp);
+    unset($req, $rsp);
 }
 ```
 然后在模块目录下执行
 ```
-➜ rr serve -d -v
+➜ rr serve -d
 ```
 
 ### 使用Nginx
