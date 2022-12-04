@@ -1,6 +1,7 @@
 namespace PhalconPlus\Rpc\Client\Adapter;
 use PhalconPlus\Rpc\Client\AbstractClient;
 use PhalconPlus\Base\Exception as BaseException;
+use PhalconPlus\Base\ProtoBuffer;
 
 class Yar extends AbstractClient
 {
@@ -27,12 +28,25 @@ class Yar extends AbstractClient
     public function callByObject(array rawData)
     {
         let rawData["service"] = this->namePrefix . rawData["service"];
-        var message = "";
+        var message = "", rsp = null, e = null;
         if isset(this->di) && this->di->has("logger") {
             let message = "RemoteRpc> callByObject: ". var_export(rawData, true);
             this->di->get("logger")->debug(message);
         }
-        return this->client->callByObject(rawData);
+        let rsp = new ProtoBuffer();
+        let rsp->logId = this->di->get("logger")->logId;
+        try {
+            let rsp->results = this->client->callByObject(rawData);
+            let rsp->status = "success";
+            let rsp->code = 0;
+            let rsp->message = "";
+        } catch \Exception, e {
+            let rsp->results = null;
+            let rsp->status = "fail";
+            let rsp->code = max(e->getCode(), 1);
+            let rsp->message = e->getMessage();
+        }
+        return rsp;
     }
 
     public function __call(string! method, array args)
