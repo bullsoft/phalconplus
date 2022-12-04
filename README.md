@@ -5,10 +5,11 @@
 So, 总结来说，Phalcon+并不是一个全新的框架，而是对Phalcon框架的一次优秀实践，是对Phalcon框架的再次加工和补充，能让Phalcon开发者更简单地入门和精通，最后达到天人合一的最高境界。
 
 ## 依赖
-    * PHP 7.0 or above
-    * cPhalcon 3.4.x，在官方发布3.4.6之前一定要下载此分支，通过`zephir build`手动编译phalcon - https://github.com/phalcon/cphalcon/tree/3.4.x
+    * PHP 8.0 or above
+    * Just for cphalcon 5.x
       > 安装zephir之前，需要先安装扩展 https://github.com/phalcon/php-zephir-parser ，然后使用`composer`安装`zephir`
       `composer global require phalcon/zephir`
+    
 
 ## 约束
  - 不支持Phalcon的多模块结构，Phalcon+有自己的模块机制
