@@ -3,7 +3,7 @@ use PhalconPlus\Rpc\Client\AbstractClient;
 use PhalconPlus\Curl\Curl as HttpClient;
 use PhalconPlus\Base\Exception as BaseException;
 
-class Curl extends AbstractClient
+class Simple extends AbstractClient
 {
     private remoteServerUrl;
     private client;
@@ -42,7 +42,7 @@ class Curl extends AbstractClient
 
         if is_object(this->response) {
             if(this->response->statusCode == 200) {
-                if "json" == this->formater { 
+                if "json" == this->formater {
                     return {decoder}(this->response->body, true);
                 } else {
                     return {decoder}(this->response->body);

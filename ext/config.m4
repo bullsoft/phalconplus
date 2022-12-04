@@ -119,9 +119,9 @@ if test "$PHP_PHALCONPLUS" = "yes"; then
 	phalconplus/logger/processor/msec.zep.c
 	phalconplus/logger/processor/trace.zep.c
 	phalconplus/mvc/psrapplication.zep.c
-	phalconplus/rpc/client/adapter/curl.zep.c
 	phalconplus/rpc/client/adapter/local.zep.c
-	phalconplus/rpc/client/adapter/remote.zep.c
+	phalconplus/rpc/client/adapter/simple.zep.c
+	phalconplus/rpc/client/adapter/yar.zep.c
 	phalconplus/rpc/server/simpleserver.zep.c
 	phalconplus/rpc/simpleservice.zep.c
 	phalconplus/rpc/yarservice.zep.c

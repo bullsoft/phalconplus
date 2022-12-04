@@ -56,18 +56,20 @@ class SimpleService extends AbstractService
                 let requestArgs = msgpack_unpack(rawRequestBody);
             }
             let ret = [
-                "errorCode" : 0,
-                "errorMsg" : "",
-                "data" : []
+                "code" : 0,
+                "message" : "",
+                "results" : null
             ];
             try {
                 if empty requestArgs {
                     throw new BaseException("invalid request args");
                 }
-                let ret["data"] = serviceObj->callByObject(requestArgs);
+                let ret["results"] = serviceObj->callByObject(requestArgs);
+                let ret["status"] = "success";
             } catch \Exception, e {
-                let ret["errorCode"] = max(e->getCode(), 1);
-                let ret["errorMsg"] = e->getMessage();
+                let ret["code"] = max(e->getCode(), 1);
+                let ret["message"] = e->getMessage();
+                let ret["status"] = "fail";
             }
             // Must do this after `callByObject`
             let ret["logId"] = this->__get("logger")->logId;
@@ -94,7 +96,7 @@ class SimpleService extends AbstractService
 $remoteUrls = [
     \"http://".host."\",
 ];
-$client = new PhalconPlus\Rpc\Client\Adapter\Curl($remoteUrls);
+$client = new PhalconPlus\Rpc\Client\Adapter\Simple($remoteUrls);
 $result = $client->callByObject([
     \"service\" => \"". vals["ns"] ."Services\Demo\",
     \"method\" => \"main\",

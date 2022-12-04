@@ -368,7 +368,7 @@ PHP_METHOD(PhalconPlus_App_Module_AbstractModule, exec)
 	ZEPHIR_CALL_METHOD(&_1, &_0, "isprimary", NULL, 0);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Only primary module can be executed", "phalconplus/App/Module/AbstractModule.zep", 96);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(phalconplus_base_exception_ce, "Only primary module can be executed", "phalconplus/App/Module/AbstractModule.zep", 97);
 		return;
 	}
 	zephir_read_property(&_2, this_ptr, ZEND_STRL("def"), PH_NOISY_CC | PH_READONLY);

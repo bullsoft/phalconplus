@@ -2,11 +2,12 @@ namespace PhalconPlus\Rpc\Client\Adapter;
 use PhalconPlus\Rpc\Client\AbstractClient;
 use PhalconPlus\Base\ProtoBuffer;
 use PhalconPlus\Base\Exception as BaseException;
-use Phalcon\Di\Di;
+use Phalcon\Di\DiInterface;
+use PhalconPlus\Base\ProtoBuffer;
 
 class Local extends AbstractClient
 {
-    public function __construct(<Di> di)
+    public function __construct(<DiInterface> di)
     {
         this->setDI(di);
     }
@@ -87,7 +88,7 @@ class Local extends AbstractClient
 
     public function callByObject(array rawData)
     {
-        var service, method, request, message;
+        var service, method, request, message, rsp, e = null;
 
         if this->di->has("logger") {
             let message = "LocalRpc> callByObject: " . var_export(rawData, true);
@@ -116,8 +117,19 @@ class Local extends AbstractClient
             let message = "LocalRpc> callByParams with (" . service . ", " . method . ")";
             this->di->get("logger")->debug(message);
         }
-		
-        return this->callByParams(service, method, request);
+        let rsp = new ProtoBuffer();
+        try {
+            let rsp->results = this->callByParams(service, method, request);
+            let rsp->status = "success";
+            let rsp->code = 0;
+            let rsp->message = "";
+        } catch \Exception, e {
+            let rsp->results = null;
+            let rsp->status = "fail";
+            let rsp->code = max(e->getCode(), 1);
+            let rsp->message = e->getMessage();
+        }
+        let rsp->logId = this->di->get("logger")->logId;
+        return rsp;
     }
 }
-

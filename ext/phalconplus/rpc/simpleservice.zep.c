@@ -118,11 +118,12 @@ PHP_METHOD(PhalconPlus_Rpc_SimpleService, handle)
 	zval encoder$$5;
 	zval _6$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval __$true, serviceObj, serviceName, config, _0, _1, responseBody, _2, _3, _4, _5, _7$$4, _8$$4, _9$$4, e$$5, ret$$5, rawRequestBody$$5, requestArgs$$5, _10$$5, _11$$5, _12$$5, _20$$5, _21$$5, _22$$5, _23$$5, _13$$9, _14$$9, _15$$8, _16$$10, _17$$10, _18$$10, _19$$10;
+	zval __$true, __$null, serviceObj, serviceName, config, _0, _1, responseBody, _2, _3, _4, _5, _7$$4, _8$$4, _9$$4, e$$5, ret$$5, rawRequestBody$$5, requestArgs$$5, _10$$5, _11$$5, _12$$5, _22$$5, _23$$5, _24$$5, _25$$5, _13$$9, _14$$9, _15$$8, _16$$8, _17$$10, _18$$10, _19$$10, _20$$10, _21$$10;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&serviceObj);
 	ZVAL_UNDEF(&serviceName);
 	ZVAL_UNDEF(&config);
@@ -143,17 +144,19 @@ PHP_METHOD(PhalconPlus_Rpc_SimpleService, handle)
 	ZVAL_UNDEF(&_10$$5);
 	ZVAL_UNDEF(&_11$$5);
 	ZVAL_UNDEF(&_12$$5);
-	ZVAL_UNDEF(&_20$$5);
-	ZVAL_UNDEF(&_21$$5);
 	ZVAL_UNDEF(&_22$$5);
 	ZVAL_UNDEF(&_23$$5);
+	ZVAL_UNDEF(&_24$$5);
+	ZVAL_UNDEF(&_25$$5);
 	ZVAL_UNDEF(&_13$$9);
 	ZVAL_UNDEF(&_14$$9);
 	ZVAL_UNDEF(&_15$$8);
-	ZVAL_UNDEF(&_16$$10);
+	ZVAL_UNDEF(&_16$$8);
 	ZVAL_UNDEF(&_17$$10);
 	ZVAL_UNDEF(&_18$$10);
 	ZVAL_UNDEF(&_19$$10);
+	ZVAL_UNDEF(&_20$$10);
+	ZVAL_UNDEF(&_21$$10);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&encoder$$5);
 
@@ -199,7 +202,7 @@ PHP_METHOD(PhalconPlus_Rpc_SimpleService, handle)
 		ZEPHIR_OBS_NVAR(&_8$$4);
 		zephir_read_property(&_8$$4, &_9$$4, ZEND_STRL("mode"), PH_NOISY_CC);
 		zephir_array_update_string(&_6$$4, SL("originalMode"), &_8$$4, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&responseBody, this_ptr, "defaultresponse", NULL, 156, &_6$$4);
+		ZEPHIR_CALL_METHOD(&responseBody, this_ptr, "defaultresponse", NULL, 157, &_6$$4);
 		zephir_check_call_status();
 		zend_print_zval(&responseBody, 0);
 	} else if (zephir_is_true(&_5)) {
@@ -216,16 +219,14 @@ PHP_METHOD(PhalconPlus_Rpc_SimpleService, handle)
 			ZEPHIR_INIT_VAR(&requestArgs$$5);
 			zephir_json_decode(&requestArgs$$5, &rawRequestBody$$5, zephir_get_intval(&__$true) );
 		} else {
-			ZEPHIR_CALL_FUNCTION(&requestArgs$$5, "msgpack_unpack", NULL, 157, &rawRequestBody$$5);
+			ZEPHIR_CALL_FUNCTION(&requestArgs$$5, "msgpack_unpack", NULL, 158, &rawRequestBody$$5);
 			zephir_check_call_status();
 		}
 		ZEPHIR_INIT_VAR(&ret$$5);
 		zephir_create_array(&ret$$5, 3, 0);
-		add_assoc_long_ex(&ret$$5, SL("errorCode"), 0);
-		add_assoc_stringl_ex(&ret$$5, SL("errorMsg"), SL(""));
-		ZEPHIR_INIT_NVAR(&_11$$5);
-		array_init(&_11$$5);
-		zephir_array_update_string(&ret$$5, SL("data"), &_11$$5, PH_COPY | PH_SEPARATE);
+		add_assoc_long_ex(&ret$$5, SL("code"), 0);
+		add_assoc_stringl_ex(&ret$$5, SL("message"), SL(""));
+		zephir_array_update_string(&ret$$5, SL("results"), &__$null, PH_COPY | PH_SEPARATE);
 
 		/* try_start_1: */
 
@@ -242,7 +243,10 @@ PHP_METHOD(PhalconPlus_Rpc_SimpleService, handle)
 			}
 			ZEPHIR_CALL_METHOD(&_15$$8, &serviceObj, "callbyobject", NULL, 0, &requestArgs$$5);
 			zephir_check_call_status_or_jump(try_end_1);
-			zephir_array_update_string(&ret$$5, SL("data"), &_15$$8, PH_COPY | PH_SEPARATE);
+			zephir_array_update_string(&ret$$5, SL("results"), &_15$$8, PH_COPY | PH_SEPARATE);
+			ZEPHIR_INIT_VAR(&_16$$8);
+			ZVAL_STRING(&_16$$8, "success");
+			zephir_array_update_string(&ret$$5, SL("status"), &_16$$8, PH_COPY | PH_SEPARATE);
 
 		try_end_1:
 
@@ -253,25 +257,28 @@ PHP_METHOD(PhalconPlus_Rpc_SimpleService, handle)
 			if (zephir_is_instance_of(&_11$$5, SL("Exception"))) {
 				zend_clear_exception();
 				ZEPHIR_CPY_WRT(&e$$5, &_11$$5);
-				ZEPHIR_CALL_METHOD(&_16$$10, &e$$5, "getcode", NULL, 0);
+				ZEPHIR_CALL_METHOD(&_17$$10, &e$$5, "getcode", NULL, 0);
 				zephir_check_call_status();
-				ZVAL_LONG(&_17$$10, 1);
-				ZEPHIR_CALL_FUNCTION(&_18$$10, "max", NULL, 158, &_16$$10, &_17$$10);
+				ZVAL_LONG(&_18$$10, 1);
+				ZEPHIR_CALL_FUNCTION(&_19$$10, "max", NULL, 154, &_17$$10, &_18$$10);
 				zephir_check_call_status();
-				zephir_array_update_string(&ret$$5, SL("errorCode"), &_18$$10, PH_COPY | PH_SEPARATE);
-				ZEPHIR_CALL_METHOD(&_19$$10, &e$$5, "getmessage", NULL, 0);
+				zephir_array_update_string(&ret$$5, SL("code"), &_19$$10, PH_COPY | PH_SEPARATE);
+				ZEPHIR_CALL_METHOD(&_20$$10, &e$$5, "getmessage", NULL, 0);
 				zephir_check_call_status();
-				zephir_array_update_string(&ret$$5, SL("errorMsg"), &_19$$10, PH_COPY | PH_SEPARATE);
+				zephir_array_update_string(&ret$$5, SL("message"), &_20$$10, PH_COPY | PH_SEPARATE);
+				ZEPHIR_INIT_VAR(&_21$$10);
+				ZVAL_STRING(&_21$$10, "fail");
+				zephir_array_update_string(&ret$$5, SL("status"), &_21$$10, PH_COPY | PH_SEPARATE);
 			}
 		}
-		ZEPHIR_INIT_VAR(&_21$$5);
-		ZVAL_STRING(&_21$$5, "logger");
-		ZEPHIR_CALL_METHOD(&_20$$5, this_ptr, "__get", NULL, 0, &_21$$5);
+		ZEPHIR_INIT_VAR(&_23$$5);
+		ZVAL_STRING(&_23$$5, "logger");
+		ZEPHIR_CALL_METHOD(&_22$$5, this_ptr, "__get", NULL, 0, &_23$$5);
 		zephir_check_call_status();
-		zephir_read_property(&_22$$5, &_20$$5, ZEND_STRL("logId"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_update_string(&ret$$5, SL("logId"), &_22$$5, PH_COPY | PH_SEPARATE);
-		zephir_read_property(&_23$$5, this_ptr, ZEND_STRL("encoder"), PH_NOISY_CC | PH_READONLY);
-		zephir_get_strval(&encoder$$5, &_23$$5);
+		zephir_read_property(&_24$$5, &_22$$5, ZEND_STRL("logId"), PH_NOISY_CC | PH_READONLY);
+		zephir_array_update_string(&ret$$5, SL("logId"), &_24$$5, PH_COPY | PH_SEPARATE);
+		zephir_read_property(&_25$$5, this_ptr, ZEND_STRL("encoder"), PH_NOISY_CC | PH_READONLY);
+		zephir_get_strval(&encoder$$5, &_25$$5);
 		ZEPHIR_CALL_ZVAL_FUNCTION(&responseBody, &encoder$$5, NULL, 0, &ret$$5);
 		zephir_check_call_status();
 		zend_print_zval(&responseBody, 0);
@@ -331,20 +338,20 @@ PHP_METHOD(PhalconPlus_Rpc_SimpleService, defaultResponse)
 
 
 	ZEPHIR_OBS_VAR(&host);
-	zephir_array_fetch_string(&host, &_SERVER, SL("HTTP_HOST"), PH_NOISY, "phalconplus/Rpc/SimpleService.zep", 88);
-	zephir_array_fetch_string(&_0, &vals, SL("originalMode"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 89);
+	zephir_array_fetch_string(&host, &_SERVER, SL("HTTP_HOST"), PH_NOISY, "phalconplus/Rpc/SimpleService.zep", 90);
+	zephir_array_fetch_string(&_0, &vals, SL("originalMode"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 91);
 	if (ZEPHIR_IS_STRING(&_0, "Web")) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		ZEPHIR_CONCAT_VS(&_1$$3, &host, "/rpc.php");
 		ZEPHIR_CPY_WRT(&host, &_1$$3);
 	}
-	zephir_array_fetch_string(&_2, &vals, SL("ns"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 92);
+	zephir_array_fetch_string(&_2, &vals, SL("ns"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 94);
 	ZEPHIR_INIT_VAR(&sampleCodes);
-	ZEPHIR_CONCAT_SVSVS(&sampleCodes, "\n<?php\n$remoteUrls = [\n    \"http://", &host, "\",\n];\n$client = new PhalconPlus\\Rpc\\Client\\Adapter\\Curl($remoteUrls);\n$result = $client->callByObject([\n    \"service\" => \"", &_2, "Services\\Demo\",\n    \"method\" => \"main\",\n    \"args\"   => [\n        \"foo\" => \"bar\",\n    ],\n]);\nvar_export($result);\n");
+	ZEPHIR_CONCAT_SVSVS(&sampleCodes, "\n<?php\n$remoteUrls = [\n    \"http://", &host, "\",\n];\n$client = new PhalconPlus\\Rpc\\Client\\Adapter\\Simple($remoteUrls);\n$result = $client->callByObject([\n    \"service\" => \"", &_2, "Services\\Demo\",\n    \"method\" => \"main\",\n    \"args\"   => [\n        \"foo\" => \"bar\",\n    ],\n]);\nvar_export($result);\n");
 	ZEPHIR_INIT_VAR(&expectedRet);
 	ZVAL_STRING(&expectedRet, "<?php\narray (\n	'errorCode' => 0,\n	'errorMsg' => '',\n	'logId' => 'da0abdea3483146cd8',\n	'data' => array (\n		'params' => array (\n			'foo' => 'bar',\n		),\n	),\n)\n");
-	zephir_array_fetch_string(&_3, &vals, SL("serviceName"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 94);
-	zephir_array_fetch_string(&_4, &vals, SL("serviceName"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 94);
+	zephir_array_fetch_string(&_3, &vals, SL("serviceName"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 96);
+	zephir_array_fetch_string(&_4, &vals, SL("serviceName"), PH_NOISY | PH_READONLY, "phalconplus/Rpc/SimpleService.zep", 96);
 	ZEPHIR_INIT_VAR(&_5);
 	ZEPHIR_CALL_FUNCTION(&_6, "highlight_string", &_7, 159, &sampleCodes, &__$true);
 	zephir_check_call_status();

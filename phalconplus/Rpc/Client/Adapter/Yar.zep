@@ -2,7 +2,7 @@ namespace PhalconPlus\Rpc\Client\Adapter;
 use PhalconPlus\Rpc\Client\AbstractClient;
 use PhalconPlus\Base\Exception as BaseException;
 
-class Remote extends AbstractClient
+class Yar extends AbstractClient
 {
     private remoteServerUrl = "";
     private client = null;
